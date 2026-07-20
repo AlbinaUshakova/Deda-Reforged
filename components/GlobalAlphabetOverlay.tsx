@@ -83,8 +83,8 @@ export default function GlobalAlphabetOverlay() {
 
   useEffect(() => {
     if (isLessonsPage) return;
-    setOpen(isStudyPage || isGamePage);
-  }, [isGamePage, isLessonsPage, isStudyPage, pathname]);
+    setOpen(isStudyPage);
+  }, [isLessonsPage, isStudyPage, pathname]);
 
   useEffect(() => {
     setAlphabetOpen(!isLessonsPage && !isServicePage && open && pathname !== '/');
