@@ -250,7 +250,7 @@ export default function GlobalAlphabetOverlay() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#aab8ff] opacity-45" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#aab8ff]" />
           </span>
-          <span>Нажми на букву</span>
+          <span>Нажми букву, чтобы услышать звук</span>
         </div>
         <div className="mt-1 flex flex-col gap-y-[clamp(1px,0.45vw,4px)]">
           {GEORGIAN_ALPHABET_ROWS.map((row, rowIdx) => (

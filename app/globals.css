@@ -476,8 +476,19 @@ html[data-theme='dark'] .lessons-screen {
         linear-gradient(180deg, #2b211a 0%, #23211f 42%, var(--app-bg) 100%);
 }
 
+html[data-theme='dark'] .study-card-screen {
+    background:
+        radial-gradient(circle at 14% 18%, rgba(249, 115, 22, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(16, 163, 127, 0.12), transparent 26%),
+        linear-gradient(180deg, #2b211a 0%, #23211f 44%, var(--app-bg) 100%) !important;
+}
+
 html[data-theme='dark'] .lessons-screen::before {
     color: rgba(255, 247, 237, 0.055);
+}
+
+html[data-theme='dark'] .study-card-screen::before {
+    color: rgba(255, 247, 237, 0.045);
 }
 
 html[data-theme='dark'] .lessons-hero {
@@ -519,6 +530,31 @@ html[data-theme='dark'] .lessons-hero-steps span {
     background: rgba(20, 184, 166, 0.10);
     color: #99f6e4;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme='dark'] .study-alphabet-hint {
+    border-color: rgba(45, 212, 191, 0.14);
+    background: rgba(45, 45, 48, 0.72);
+    color: #dbe7e5;
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme='dark'] .study-alphabet-hint-icon {
+    background: rgba(20, 184, 166, 0.12);
+    color: #99f6e4;
+    box-shadow: inset 0 0 0 1px rgba(45, 212, 191, 0.14);
+}
+
+html[data-theme='dark'] .study-alphabet-hint-copy {
+    color: #dbe7e5;
+}
+
+html[data-theme='dark'] .study-alphabet-hint-action[aria-pressed='true'] {
+    border-color: rgba(45, 212, 191, 0.16);
+    background: rgba(20, 184, 166, 0.12);
+    color: #99f6e4;
 }
 
 html[data-theme='dark'] .lessons-hero-secondary:hover {
@@ -1409,6 +1445,146 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 
 .study-card-screen {
     min-height: 760px;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 14% 18%, rgba(249, 115, 22, 0.16), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(16, 163, 127, 0.12), transparent 26%),
+        linear-gradient(180deg, #fff7ed 0%, #f7f3ec 44%, var(--app-bg) 100%) !important;
+}
+
+.study-card-screen::before {
+    content: 'აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ';
+    position: absolute;
+    top: 92px;
+    left: 50%;
+    width: min(1120px, 94vw);
+    transform: translateX(-50%);
+    color: rgba(120, 113, 108, 0.055);
+    font-family: 'Noto Sans Georgian', 'DejaVu Sans', system-ui, sans-serif;
+    font-size: clamp(58px, 8vw, 118px);
+    letter-spacing: 0.08em;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.study-screen-orb {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 999px;
+    filter: blur(8px);
+    opacity: 0.70;
+}
+
+.study-screen-orb--left {
+    top: 210px;
+    left: max(-90px, calc((100vw - 1180px) / 2 - 132px));
+    width: 230px;
+    height: 230px;
+    background: rgba(251, 146, 60, 0.18);
+}
+
+.study-screen-orb--right {
+    top: 92px;
+    right: max(-120px, calc((100vw - 1180px) / 2 - 148px));
+    width: 280px;
+    height: 280px;
+    background: rgba(16, 163, 127, 0.12);
+}
+
+.study-alphabet-hint {
+    position: relative;
+    z-index: 35;
+    display: flex;
+    width: min(100%, 500px);
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin: clamp(4px, 0.9vh, 10px) auto 0;
+    border: 1px solid rgba(15, 118, 110, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.66);
+    padding: 7px 8px 7px 11px;
+    color: #36564f;
+    box-shadow:
+        0 10px 24px rgba(15, 23, 42, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(10px);
+}
+
+.study-alphabet-hint-icon {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(236, 253, 245, 0.86);
+    color: #0f766e;
+    font-family: 'Noto Sans Georgian', 'DejaVu Sans', system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.12);
+}
+
+.study-alphabet-hint-copy {
+    min-width: 0;
+    color: #4d5b57;
+    font-size: clamp(12px, 1.34vw, 13px);
+    font-weight: 650;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+}
+
+.study-alphabet-hint-action {
+    display: inline-flex;
+    min-height: 30px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid rgba(249, 115, 22, 0.22);
+    background: linear-gradient(135deg, rgba(255, 138, 42, 0.96), rgba(249, 115, 22, 0.96));
+    padding: 0 11px;
+    color: white;
+    font-size: 12px;
+    font-weight: 850;
+    letter-spacing: -0.01em;
+    box-shadow: 0 8px 16px rgba(249, 115, 22, 0.22);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+@media (max-width: 700px) {
+    .study-alphabet-hint {
+        align-items: flex-start;
+        border-radius: 20px;
+        padding: 8px 9px;
+    }
+
+    .study-alphabet-hint-copy {
+        font-size: 12px;
+    }
+
+    .study-alphabet-hint-action {
+        min-height: 28px;
+        padding: 0 10px;
+        font-size: 11px;
+    }
+}
+
+.study-alphabet-hint-action:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.26);
+}
+
+.study-alphabet-hint-action[aria-pressed='true'] {
+    border-color: rgba(15, 118, 110, 0.18);
+    background: rgba(236, 253, 245, 0.84);
+    color: #0f766e;
+    box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.08);
 }
 
 .app-screen-fixed {
@@ -1423,11 +1599,15 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
     aspect-ratio: 16 / 10;
     height: auto;
     max-height: 420px;
-    border: 1px solid #e5eaf3 !important;
+    border: 1px solid rgba(249, 115, 22, 0.20) !important;
     box-shadow:
-        0 10px 28px rgba(0, 0, 0, 0.08),
-        0 2px 6px rgba(0, 0, 0, 0.05) !important;
-    background: #f7f7f8 !important;
+        0 24px 60px rgba(120, 53, 15, 0.12),
+        0 2px 8px rgba(15, 23, 42, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 237, 0.88)),
+        radial-gradient(circle at 78% 10%, rgba(16, 163, 127, 0.10), transparent 36%) !important;
+    backdrop-filter: blur(10px);
 }
 
 .flashcard-card-shell {
@@ -1501,8 +1681,10 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 
     .flashcard-main-card:hover {
         transform: translateY(-1px) scale(1.01);
-        background: #fbfcfe !important;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08) !important;
+        background:
+            linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 247, 237, 0.94)),
+            radial-gradient(circle at 78% 10%, rgba(16, 163, 127, 0.12), transparent 36%) !important;
+        box-shadow: 0 26px 62px rgba(120, 53, 15, 0.14) !important;
     }
 }
 
@@ -1548,8 +1730,8 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 }
 
 .flashcard-main-card--flipped {
-    border-color: rgba(99, 102, 241, 0.42) !important;
-    box-shadow: 0 10px 24px rgba(99, 102, 241, 0.11), 0 0 0 1px rgba(99, 102, 241, 0.1) !important;
+    border-color: rgba(16, 163, 127, 0.30) !important;
+    box-shadow: 0 22px 54px rgba(16, 163, 127, 0.10), 0 0 0 1px rgba(16, 163, 127, 0.08) !important;
 }
 
 .flashcard-main-card--auto {
@@ -1963,13 +2145,17 @@ html[data-theme='dark'] .blocks-grid-board {
 }
 
 html[data-theme='dark'] .flashcard-main-card {
-    background: #3a3b40 !important;
-    border-color: #585d65 !important;
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.03) !important;
+    background:
+        linear-gradient(145deg, rgba(45, 45, 48, 0.96), rgba(55, 43, 34, 0.88)),
+        radial-gradient(circle at 78% 10%, rgba(16, 163, 127, 0.12), transparent 36%) !important;
+    border-color: rgba(251, 146, 60, 0.18) !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(255, 255, 255, 0.03) !important;
 }
 
 html[data-theme='dark'] .flashcard-main-card:hover {
-    background: #3f4046 !important;
+    background:
+        linear-gradient(145deg, rgba(54, 54, 58, 0.98), rgba(64, 47, 36, 0.92)),
+        radial-gradient(circle at 78% 10%, rgba(16, 163, 127, 0.14), transparent 36%) !important;
     box-shadow: 0 16px 46px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
 }
 

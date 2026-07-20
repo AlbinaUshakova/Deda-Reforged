@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { Route } from 'next';
 import FlashcardDeck from '@/components/FlashcardDeck';
+import { StudyAlphabetHint } from '@/components/study/StudyAlphabetHint';
 import StudyPageActions from '@/components/study/StudyPageActions';
 import type { Episode } from '@/lib/content';
 import { getStudyDeckCards, resolveStudyEpisode } from './studyContent';
@@ -39,8 +40,11 @@ export default function StudyClient({
 
   return (
     <main className="study-card-screen app-screen-fixed min-h-screen bg-transparent text-[var(--text-primary)]">
+      <div className="study-screen-orb study-screen-orb--left" aria-hidden="true" />
+      <div className="study-screen-orb study-screen-orb--right" aria-hidden="true" />
       <div className="mx-auto h-full w-full overflow-hidden px-[clamp(14px,3.6vw,48px)] py-[clamp(16px,2.6vh,32px)] lg:pl-[124px]">
         <StudyPageActions playHref={playHref as Route} />
+        {hasEpisode && hasWords ? <StudyAlphabetHint /> : null}
 
         {!hasEpisode ? (
           <div className="p-6">Эпизод не найден</div>
