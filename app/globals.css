@@ -1581,6 +1581,8 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 }
 
 .flashcard-controls-wrap {
+    position: relative;
+    z-index: 45;
     margin-top: clamp(10px, 1.8vh, 18px);
     width: min(100%, 560px, 84vw);
     max-width: 560px;

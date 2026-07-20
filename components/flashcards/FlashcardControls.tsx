@@ -126,7 +126,7 @@ export function FlashcardControls({
             <span className="flashcard-speed-current">{currentSpeedLabel}</span>
           </button>
           {speedMenuOpen && (
-            <div className="flashcard-speed-menu absolute right-0 bottom-full z-30 mb-2 flex flex-col items-stretch gap-1">
+            <div className="flashcard-speed-menu absolute right-0 top-full z-50 mt-2 flex flex-col items-stretch gap-1">
               {FLASHCARD_AUTO_SPEED_OPTIONS.map(option => (
                 <button
                   key={option.value}
