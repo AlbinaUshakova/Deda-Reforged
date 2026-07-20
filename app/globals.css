@@ -1502,16 +1502,16 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
     display: flex;
     width: min(100%, 560px, 84vw);
     max-width: 560px;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
     margin: 0 auto clamp(9px, 1.4vh, 13px);
     border: 1px solid rgba(15, 118, 110, 0.12);
     border-radius: 24px;
     background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 247, 237, 0.62)),
         radial-gradient(circle at 92% 20%, rgba(20, 184, 166, 0.12), transparent 38%);
-    padding: 8px 10px 8px 14px;
+    padding: 9px 10px 10px;
     box-shadow:
         0 12px 28px rgba(120, 53, 15, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.80);
@@ -1520,9 +1520,11 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 
 .flashcard-lesson-letters-copy {
     display: flex;
-    min-width: 118px;
-    flex-direction: column;
-    gap: 2px;
+    width: 100%;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 4px;
 }
 
 .flashcard-lesson-letters-kicker {
@@ -1534,6 +1536,7 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 }
 
 .flashcard-lesson-letters-hint {
+    max-width: 360px;
     color: #71817b;
     font-size: 10px;
     font-weight: 650;
@@ -1544,8 +1547,8 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 .flashcard-lesson-letters-list {
     display: flex;
     min-width: 0;
-    flex: 1;
-    justify-content: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 6px;
 }
 
@@ -1670,22 +1673,23 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 
 @media (max-width: 700px) {
     .flashcard-lesson-letters {
-        align-items: flex-start;
         border-radius: 20px;
         padding: 8px;
     }
 
     .flashcard-lesson-letters-copy {
-        min-width: 88px;
-        padding-left: 2px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+        padding: 0 3px;
     }
 
     .flashcard-lesson-letters-hint {
-        display: none;
+        max-width: 100%;
+        font-size: 9px;
     }
 
     .flashcard-lesson-letters-list {
-        flex-wrap: wrap;
         gap: 5px;
     }
 
