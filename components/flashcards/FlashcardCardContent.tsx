@@ -96,7 +96,6 @@ export function FlashcardCardContent({
         </div>
         {showTranslit && (
           <div className="flashcard-translit-panel mb-2 max-[640px]:mb-4 max-[460px]:mb-5">
-            <span className="flashcard-translit-label">Транскрипция</span>
             <div className="flashcard-translit-value">
               {isGeDialog && translitDialogLines.length > 1 ? (
                 <div className="flex flex-col items-center gap-1.5">

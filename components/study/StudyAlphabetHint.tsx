@@ -12,7 +12,7 @@ export function StudyAlphabetHint() {
       </span>
       <span className="study-alphabet-hint-copy">
         {alphabetOpen
-          ? 'Нажми любую букву в алфавите, чтобы услышать звук.'
+          ? 'Нажми нужную букву в алфавите, чтобы услышать звук.'
           : 'Нажми «Алфавит» рядом с Deda, затем выбери букву.'}
       </span>
     </aside>

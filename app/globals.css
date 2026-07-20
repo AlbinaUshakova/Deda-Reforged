@@ -2000,15 +2000,6 @@ html[data-theme='dark'] .flashcard-nav-arrow:active {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-.flashcard-translit-label {
-    color: #64756f;
-    font-size: 10px;
-    font-weight: 750;
-    letter-spacing: 0.08em;
-    line-height: 1;
-    text-transform: uppercase;
-}
-
 .flashcard-translit-value {
     color: #0f766e;
     font-size: clamp(16px, 2vw, 22px);
@@ -2082,10 +2073,6 @@ html[data-theme='dark'] .flashcard-translit-panel {
     border-color: rgba(45, 212, 191, 0.14);
     background: rgba(20, 184, 166, 0.10);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-html[data-theme='dark'] .flashcard-translit-label {
-    color: #aab3c2;
 }
 
 html[data-theme='dark'] .flashcard-translit-value {
