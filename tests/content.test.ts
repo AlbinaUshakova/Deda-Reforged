@@ -22,6 +22,16 @@ test('loadEpisode returns normalized phrases episode', async () => {
   assert.ok(episode.cards.every((card) => !card.ge_text.includes('и')));
 });
 
+test('loadEpisode returns 100 practical conversational phrases', async () => {
+  const episode = await loadEpisode('phrases');
+
+  assert.ok(episode);
+  assert.equal(episode.cards.length, 100);
+  assert.ok(episode.cards.every((card) => card.type === 'word'));
+  assert.ok(episode.cards.every((card) => /[\u10D0-\u10FF]/.test(card.ge_text)));
+  assert.ok(episode.cards.every((card) => card.ru_meaning.trim().length > 0));
+});
+
 test('loadNewLettersPerEpisode returns letters for each numbered lesson', async () => {
   const lettersByEpisode = await loadNewLettersPerEpisode();
 
