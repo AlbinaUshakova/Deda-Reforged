@@ -130,7 +130,7 @@ export function BlocksQuestionPanel({
           disabled={showCorrect}
         >
           <span className="inline-block -translate-y-[1px] text-[clamp(15px,1.6vw,18px)] leading-none font-normal">↻</span>
-          <span className="leading-none">Другой вопрос</span>
+          <span className="leading-none">Другой перевод</span>
         </button>
         {!isFavoritesEpisode && (
           <button
