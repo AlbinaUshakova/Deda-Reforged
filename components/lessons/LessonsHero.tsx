@@ -27,6 +27,9 @@ export function LessonsHero({
   const lessonLabel = recommendedLessonNumber
     ? `Урок ${recommendedLessonNumber}`
     : 'Первый урок';
+  const primaryLabel = recommendedLessonNumber
+    ? `Начать урок ${recommendedLessonNumber}`
+    : 'Начать первый урок';
   const progressPercent = lessonTargetScore > 0
     ? Math.min(Math.round((recommendedScore / lessonTargetScore) * 100), 100)
     : 0;
@@ -37,30 +40,35 @@ export function LessonsHero({
         <div>
           <div className="lessons-hero-kicker">Твой путь к чтению</div>
           <h1 className="lessons-hero-title">
-            Грузинские буквы без зубрёжки
+            Читай грузинские буквы играя
           </h1>
           <p className="lessons-hero-subtitle">
-            Слушай, читай карточки и закрепляй буквы в игре. Один короткий заход каждый день.
+            Нажми на рекомендованный урок: сначала услышишь буквы, потом закрепишь их на карточках и в игре.
           </p>
+          <div className="lessons-hero-steps" aria-label="Как устроено обучение">
+            <span>1. Слушай</span>
+            <span>2. Читай</span>
+            <span>3. Играй</span>
+          </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
           <Link href={lessonHref} legacyBehavior>
             <a className="lessons-hero-primary">
-              Продолжить
+              {primaryLabel}
               <span aria-hidden="true">→</span>
             </a>
           </Link>
           <Link href={phrasesHref} legacyBehavior>
             <a className="lessons-hero-secondary">
-              100 фраз для жизни
+              Разговорные фразы
             </a>
           </Link>
         </div>
       </div>
 
       <Link href={lessonHref} legacyBehavior>
-        <a className="lessons-hero-card group">
+        <a className="lessons-hero-card group self-start">
           <div className="lessons-hero-card-glow" aria-hidden="true" />
           <div className="relative z-10 flex items-start justify-between gap-3">
             <div>
@@ -81,7 +89,7 @@ export function LessonsHero({
             />
           </div>
 
-          <div className="relative z-10 mt-5 flex min-h-[74px] items-center justify-center rounded-[24px] bg-white/62 px-4 py-3">
+          <div className="relative z-10 mt-4 flex min-h-[62px] items-center justify-center rounded-[22px] bg-white/62 px-4 py-2.5">
             <div
               className="lessons-hero-letters"
               style={{
@@ -93,7 +101,7 @@ export function LessonsHero({
             </div>
           </div>
 
-          <div className="relative z-10 mt-4 flex items-center gap-3">
+          <div className="relative z-10 mt-3 flex items-center gap-3">
             <div className="h-2 flex-1 overflow-hidden rounded-full bg-orange-100">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-orange-400 to-emerald-400"
