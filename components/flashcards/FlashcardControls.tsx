@@ -5,9 +5,44 @@ import type { RefObject } from 'react';
 import { FLASHCARD_AUTO_SPEED_OPTIONS } from '@/lib/studyPreferences';
 
 const playControl =
-  'h-[clamp(24px,5.9vw,44px)] w-[clamp(24px,5.9vw,44px)] rounded-full border-0 bg-transparent text-current opacity-100 transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.97] flex items-center justify-center text-[clamp(18px,4.8vw,29px)] font-light leading-none';
+  'flashcard-control-btn flashcard-control-btn--primary';
 const shuffleControl =
-  'h-[clamp(24px,5.9vw,44px)] w-[clamp(24px,5.9vw,44px)] rounded-full border-0 bg-transparent text-current opacity-100 transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.97] flex items-center justify-center text-[clamp(20px,5.1vw,31px)] font-light leading-none';
+  'flashcard-control-btn';
+
+function ShuffleIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="flashcard-control-icon">
+      <path d="M4 7h3.1c2.1 0 3.2 1.1 4.2 3.2l1.4 3c1 2.1 2.1 3.2 4.2 3.2H20" />
+      <path d="M17 4l3 3-3 3" />
+      <path d="M4 17h3.1c1.5 0 2.5-.6 3.3-1.8" />
+      <path d="M15.7 8.8c.6-1.1 1.6-1.8 3.2-1.8H20" />
+      <path d="M17 14l3 3-3 3" />
+    </svg>
+  );
+}
+
+function PlayIcon({ active }: { active: boolean }) {
+  if (active) {
+    return (
+      <span className="flashcard-pause-icon" aria-hidden="true">
+        <span />
+        <span />
+      </span>
+    );
+  }
+
+  return <span className="flashcard-play-triangle" aria-hidden="true" />;
+}
+
+function SpeedIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="flashcard-control-icon">
+      <path d="M5 13a7 7 0 0 1 14 0" />
+      <path d="M12 13l4-4" />
+      <path d="M4 17h16" />
+    </svg>
+  );
+}
 
 export function FlashcardControls({
   shuffled,
@@ -34,7 +69,7 @@ export function FlashcardControls({
     FLASHCARD_AUTO_SPEED_OPTIONS.find(option => option.value === autoSpeedMs)?.label ?? '1.5x';
 
   return (
-    <div className="flashcard-controls-wrap relative h-[clamp(31px,7.2vw,56px)] min-w-0">
+    <div className="flashcard-controls-wrap relative h-[clamp(44px,8vw,64px)] min-w-0">
       <div className="flashcard-cat-inline pointer-events-none absolute z-[20] select-none">
         <Image
           src="/images/deda-cat_2.png"
@@ -47,61 +82,61 @@ export function FlashcardControls({
         />
       </div>
 
-      <div className="flashcard-controls-compact absolute left-1/2 top-1/2 inline-flex h-[clamp(31px,7.2vw,56px)] -translate-x-1/2 -translate-y-1/2 items-center gap-[clamp(22px,6vw,40px)]">
+      <div className="flashcard-controls-compact absolute left-1/2 top-1/2 inline-flex h-[clamp(44px,8vw,64px)] -translate-x-1/2 -translate-y-1/2 items-center">
         <button
           onClick={onShuffle}
           className={`flashcard-shuffle-btn ${shuffleControl}`}
-          title="Перемешать"
+          title="Перемешать карточки"
           aria-pressed={shuffled}
+          aria-label={shuffled ? 'Перемешивание включено' : 'Перемешать карточки'}
         >
-          <span className="relative inline-flex h-full w-full items-center justify-center">
-            <span>⇄</span>
+          <span className="flashcard-control-glyph">
+            <ShuffleIcon />
           </span>
+          <span className="flashcard-control-label">Микс</span>
         </button>
 
         <button
           onClick={onToggleAuto}
           className={`flashcard-play-btn ${playControl}`}
-          title="Автопрокрутка"
+          title={auto ? 'Остановить автопрокрутку' : 'Запустить автопрокрутку'}
           aria-pressed={auto}
+          aria-label={auto ? 'Автопрокрутка включена' : 'Запустить автопрокрутку'}
         >
-          {auto ? (
-            <span className="inline-flex h-[0.54em] items-center gap-[4px]" aria-hidden="true">
-              <span className="block h-full w-[4px] rounded-full bg-current" />
-              <span className="block h-full w-[4px] rounded-full bg-current" />
-            </span>
-          ) : (
-            <span
-              className="flashcard-play-triangle inline-block translate-x-[1px]"
-              aria-hidden="true"
-            />
-          )}
+          <span className="flashcard-control-glyph">
+            <PlayIcon active={auto} />
+          </span>
+          <span className="flashcard-control-label">Авто</span>
         </button>
 
         <div className="relative flex items-center justify-center" ref={speedMenuRef}>
           <button
             type="button"
             onClick={onToggleSpeedMenu}
-            className="flashcard-speed-btn h-[clamp(24px,5.9vw,44px)] min-w-0 rounded-full border-0 bg-transparent px-[clamp(1px,0.4vw,2px)] text-[clamp(11px,2.5vw,13px)] leading-none font-normal text-current outline-none transition-all duration-200 hover:scale-[1.03] active:scale-[0.97] focus:outline-none"
+            className="flashcard-speed-btn flashcard-control-btn"
             aria-label="Скорость автопрокрутки"
             title={`Скорость: ${currentSpeedLabel}`}
             aria-haspopup="menu"
             aria-expanded={speedMenuOpen}
           >
-            {currentSpeedLabel}
+            <span className="flashcard-control-glyph">
+              <SpeedIcon />
+            </span>
+            <span className="flashcard-control-label">Скорость</span>
+            <span className="flashcard-speed-current">{currentSpeedLabel}</span>
           </button>
           {speedMenuOpen && (
-            <div className="absolute right-0 top-full mt-1 z-30 flex flex-col items-end gap-1 py-0.5">
+            <div className="flashcard-speed-menu absolute right-0 bottom-full z-30 mb-2 flex flex-col items-stretch gap-1">
               {FLASHCARD_AUTO_SPEED_OPTIONS.map(option => (
                 <button
                   key={option.value}
                   type="button"
                   onClick={() => onSelectSpeed(option.value)}
                   title={`Установить скорость ${option.label}`}
-                  className={`flashcard-speed-option min-w-0 px-1 py-0.5 text-right text-[11px] leading-none transition-all duration-150 active:scale-[0.99] ${
+                  className={`flashcard-speed-option ${
                     autoSpeedMs === option.value
-                      ? 'font-medium text-current'
-                      : 'text-current'
+                      ? 'flashcard-speed-option--active'
+                      : ''
                   }`}
                 >
                   {option.label}
