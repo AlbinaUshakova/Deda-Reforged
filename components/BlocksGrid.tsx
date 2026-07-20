@@ -428,7 +428,7 @@ export default function BlocksGrid({
           className="flex flex-col items-stretch relative"
           style={{ width: boardPixelSize }}
         >
-          <div className="mb-[clamp(4px,0.8vh,8px)] px-1 relative z-[70]">
+          <div className="blocks-grid-score-row mb-[clamp(4px,0.8vh,8px)] px-1 relative z-[70] flex justify-end">
             <div className="blocks-grid-score mt-0 text-center text-[clamp(11px,1.2vw,13px)] font-medium tracking-[-0.01em] text-slate-700 opacity-72">
               <span>Счёт {score}</span>
               <span aria-hidden="true">•</span>
