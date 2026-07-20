@@ -35,7 +35,7 @@ export function LessonsHero({
     <section className="lessons-hero mx-auto grid w-full max-w-[1060px] grid-cols-[minmax(0,1.1fr)_minmax(280px,0.72fr)] items-stretch gap-5 rounded-[34px] px-5 py-5 md:px-7 md:py-6 [@media(max-width:820px)]:grid-cols-1">
       <div className="lessons-hero-copy relative z-10 flex min-w-0 flex-col justify-between gap-5">
         <div>
-          <div className="lessons-hero-kicker">Маршрут чтения Deda</div>
+          <div className="lessons-hero-kicker">Твой путь к чтению</div>
           <h1 className="lessons-hero-title">
             Грузинские буквы без зубрёжки
           </h1>
