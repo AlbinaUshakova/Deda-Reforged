@@ -18,7 +18,7 @@ export function BlocksGameOverOverlay({ onRestart }: BlocksGameOverOverlayProps)
         <div className="mt-3 flex justify-center">
           <button
             onClick={onRestart}
-            className="blocks-grid-gameover-button inline-flex min-h-[42px] min-w-[160px] items-center justify-center rounded-2xl bg-indigo-600 px-5 text-[15px] font-semibold text-white shadow-[0_6px_14px_rgba(79,70,229,0.18)] transition-all duration-150 hover:bg-indigo-700"
+            className="blocks-grid-gameover-button inline-flex min-h-[42px] min-w-[160px] items-center justify-center rounded-2xl bg-teal-600 px-5 text-[15px] font-semibold text-white shadow-[0_6px_14px_rgba(15,118,110,0.18)] transition-all duration-150 hover:bg-teal-700"
           >
             Сыграть снова
           </button>

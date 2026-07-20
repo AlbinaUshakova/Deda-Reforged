@@ -430,7 +430,9 @@ export default function BlocksGrid({
         >
           <div className="mb-[clamp(4px,0.8vh,8px)] px-1 relative z-[70]">
             <div className="blocks-grid-score mt-0 text-center text-[clamp(11px,1.2vw,13px)] font-medium tracking-[-0.01em] text-slate-700 opacity-72">
-              {score} / {bestScore}
+              <span>Счёт {score}</span>
+              <span aria-hidden="true">•</span>
+              <span>Рекорд {bestScore}</span>
             </div>
           </div>
 

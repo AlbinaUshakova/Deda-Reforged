@@ -157,23 +157,27 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
   }, []);
 
   return (
-    <main className="app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">
+    <main className="blocks-game-screen app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">
+      <div className="study-screen-orb study-screen-orb--left" aria-hidden="true" />
+      <div className="study-screen-orb study-screen-orb--right" aria-hidden="true" />
       <div className="mx-auto h-full w-full overflow-hidden px-3 sm:px-4 md:px-6 py-8 lg:pl-[124px]">
         <div className="relative z-30 mb-2 mx-auto w-full max-w-[980px]">
           <div className="relative flex min-h-[52px] items-center justify-end">
-            <div className="topButtons ml-auto flex flex-wrap justify-end gap-2 lg:pr-[112px]">
+            <div className="topButtons study-page-actions ml-auto flex flex-wrap justify-end gap-2 lg:pr-[112px]">
             <Link
-              className="play-tab--secondary inline-flex items-center justify-center rounded-xl border border-slate-300 bg-transparent px-[clamp(10px,1.35vw,14px)] py-[clamp(6px,1vw,8px)] text-[clamp(11px,1.15vw,13px)] font-medium text-[var(--text-secondary)] shadow-sm transition-all duration-200 hover:border-slate-400 hover:bg-white/70 hover:text-[var(--text-primary)]"
-              style={{ fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif' }}
+              className="study-action-pill study-action-pill--secondary"
               href="/lessons"
+              aria-label="Вернуться на главную страницу уроков"
             >
+              <span aria-hidden="true">←</span>
               Главная
             </Link>
             <Link
-              className="play-tab--secondary inline-flex items-center justify-center rounded-xl border border-slate-300 bg-transparent px-[clamp(10px,1.35vw,14px)] py-[clamp(6px,1vw,8px)] text-[clamp(11px,1.15vw,13px)] font-medium text-[var(--text-secondary)] shadow-sm transition-all duration-200 hover:border-slate-400 hover:bg-white/70 hover:text-[var(--text-primary)]"
-              style={{ fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif' }}
+              className="study-action-pill study-action-pill--primary"
               href={studyHref}
+              aria-label="Вернуться к карточкам этого урока"
             >
+              <span aria-hidden="true">▣</span>
               Карточки
             </Link>
             </div>

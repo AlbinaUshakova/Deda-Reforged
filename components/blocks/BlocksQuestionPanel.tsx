@@ -63,9 +63,14 @@ export function BlocksQuestionPanel({
 
   return (
     <div
-      className="w-full lg:translate-x-3 rounded-3xl bg-transparent p-2.5 sm:p-3 md:p-4"
+      className="blocks-question-card w-full lg:translate-x-3 rounded-3xl p-3 sm:p-4"
       style={panelStyle}
     >
+      <div className="blocks-question-meta mb-3 flex items-center justify-between gap-2">
+        <span className="blocks-question-chip">Переведи</span>
+        <span className="blocks-question-chip blocks-question-chip--muted">Enter ↵</span>
+      </div>
+
       <div className="labelRow mb-2 sm:mb-3 md:mb-4 flex items-center gap-2">
         <div
           className="blocks-prompt-text max-w-full break-words overflow-visible text-[var(--text-primary)] font-semibold tracking-[0.2px] leading-[1.16]"
@@ -106,6 +111,13 @@ export function BlocksQuestionPanel({
                     : 'bg-white/70 text-slate-800 shadow-none')
               }
             />
+            <button
+              type="submit"
+              className="blocks-submit-btn"
+              disabled={!showCorrect && !answer.trim()}
+            >
+              {showCorrect ? 'Дальше' : 'Проверить'}
+            </button>
           </div>
         </form>
       </div>
@@ -117,8 +129,8 @@ export function BlocksQuestionPanel({
           className="blocks-refresh-btn inline-flex h-[clamp(28px,4vh,36px)] items-center gap-1 rounded-lg border border-transparent bg-transparent px-[clamp(4px,0.8vw,7px)] text-[clamp(11px,1.05vw,13px)] font-normal transition-all duration-150 focus:outline-none [-webkit-tap-highlight-color:transparent]"
           disabled={showCorrect}
         >
-          <span className="inline-block -translate-y-[2px] text-[clamp(16px,1.7vw,20px)] leading-none font-normal">⟳</span>
-          <span className="leading-none">Обновить</span>
+          <span className="inline-block -translate-y-[1px] text-[clamp(15px,1.6vw,18px)] leading-none font-normal">↻</span>
+          <span className="leading-none">Другой вопрос</span>
         </button>
         {!isFavoritesEpisode && (
           <button
@@ -134,6 +146,11 @@ export function BlocksQuestionPanel({
               isCurrentFavorite
                 ? 'Убрать из избранного'
                 : 'Добавить в избранное'
+            }
+            aria-label={
+              isCurrentFavorite
+                ? 'Убрать слово из избранного'
+                : 'Добавить слово в избранное'
             }
           >
             {isCurrentFavorite ? '★' : '☆'}
