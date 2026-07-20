@@ -1,0 +1,209 @@
+{
+  "id": "ep3",
+  "title": "Урок 3",
+  "letters": [
+    "გ",
+    "ვ",
+    "მ",
+    "შ"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "გიორგი",
+      "reading": "giorgi",
+      "ru_meaning": "Гиорги"
+    },
+    {
+      "type": "word",
+      "ge_text": "გიორგის",
+      "ru_meaning": "Гиорги (чей?)"
+    },
+    {
+      "type": "word",
+      "ge_text": "მეგობარი",
+      "reading": "megobari",
+      "ru_meaning": "друг"
+    },
+    {
+      "type": "word",
+      "ge_text": "დათო მეგობარია",
+      "reading": "dato megobaria",
+      "ru_meaning": "Дато — друг"
+    },
+    {
+      "type": "word",
+      "ge_text": "დათო გიორგის მეგობარია",
+      "reading": "dato giorgis megobaria",
+      "ru_meaning": "Дато — друг Гиорги"
+    },
+    {
+      "type": "word",
+      "ge_text": "ვარდი",
+      "reading": "vardi",
+      "ru_meaning": "роза"
+    },
+    {
+      "type": "word",
+      "ge_text": "რვა",
+      "reading": "rva",
+      "ru_meaning": "восемь"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი რვა ვარდი",
+      "reading": "ai rva vardi",
+      "ru_meaning": "вот восемь роз"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს დედის ვარდია",
+      "reading": "es dedis vardia",
+      "ru_meaning": "это мамина роза"
+    },
+    {
+      "type": "word",
+      "ge_text": "მაგიდა",
+      "reading": "magida",
+      "ru_meaning": "стол"
+    },
+    {
+      "type": "word",
+      "ge_text": "მამა",
+      "reading": "mama",
+      "ru_meaning": "папа"
+    },
+    {
+      "type": "word",
+      "ge_text": "მამის",
+      "ru_meaning": "папы (чей?)"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი დედის მაგიდა",
+      "reading": "ai dedis magida",
+      "ru_meaning": "вот мамин стол"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი მამის მაგიდა",
+      "reading": "ai mamis magida",
+      "ru_meaning": "вот папин стол"
+    },
+    {
+      "type": "word",
+      "ge_text": "ბევრი",
+      "reading": "bevri",
+      "ru_meaning": "много"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ბევრი ბარათი",
+      "reading": "ai bevri barati",
+      "ru_meaning": "вот много карточек"
+    },
+    {
+      "type": "word",
+      "ge_text": "გოგო",
+      "reading": "gogo",
+      "ru_meaning": "девочка"
+    },
+    {
+      "type": "word",
+      "ge_text": "გოგოს",
+      "ru_meaning": "девочки (чей?)"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი გოგოს ოთხი ბარათი",
+      "reading": "ai gogos otkhi barati",
+      "ru_meaning": "вот четыре карточки девочки"
+    },
+    {
+      "type": "word",
+      "ge_text": "სამი",
+      "reading": "sami",
+      "ru_meaning": "три"
+    },
+    {
+      "type": "word",
+      "ge_text": "მე",
+      "ru_meaning": "я"
+    },
+    {
+      "type": "word",
+      "ge_text": "მე გიორგი ვარ",
+      "reading": "me giorgi var",
+      "ru_meaning": "я Гиорги"
+    },
+    {
+      "type": "word",
+      "ge_text": "შოთი",
+      "reading": "shoti",
+      "ru_meaning": "шоти (хлеб)"
+    },
+    {
+      "type": "word",
+      "ge_text": "შვიდი",
+      "reading": "shvidi",
+      "ru_meaning": "семь"
+    },
+    {
+      "type": "word",
+      "ge_text": "შორს",
+      "reading": "shors",
+      "ru_meaning": "далеко"
+    },
+    {
+      "type": "word",
+      "ge_text": "ის გოგოა",
+      "ru_meaning": "та девочка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს არის მამა",
+      "reading": "es aris mama",
+      "ru_meaning": "это папа"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს ვარდია",
+      "ru_meaning": "это роза"
+    },
+    {
+      "type": "word",
+      "ge_text": "გოგო შორსაა",
+      "ru_meaning": "девочка далеко"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს გოგოა",
+      "ru_meaning": "это девочка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს დათოს ვარდია",
+      "ru_meaning": "это роза Дато"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს გიორგის მეგობარია",
+      "ru_meaning": "это друг Гиорги"
+    },
+    {
+      "type": "word",
+      "ge_text": "გიორგის ვარდი",
+      "ru_meaning": "роза Гиорги"
+    },
+    {
+      "type": "word",
+      "ge_text": "მამის ვარდი",
+      "ru_meaning": "папина роза"
+    },
+    {
+      "type": "word",
+      "ge_text": "გოგოს მეგობარი",
+      "ru_meaning": "друг девочки"
+    }
+  ]
+}

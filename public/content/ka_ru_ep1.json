@@ -1,0 +1,221 @@
+{
+  "id": "ep1",
+  "title": "Урок 1",
+  "letters": [
+    "ა",
+    "ი",
+    "ს",
+    "ო",
+    "თ",
+    "ხ",
+    "უ"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "აი",
+      "reading": "ai",
+      "ru_meaning": "вот"
+    },
+    {
+      "type": "word",
+      "ge_text": "ია",
+      "reading": "ia",
+      "ru_meaning": "фиалка"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ია",
+      "reading": "ai ia",
+      "ru_meaning": "вот фиалка"
+    },
+    {
+      "type": "word",
+      "ge_text": "სოსო",
+      "reading": "soso",
+      "ru_meaning": "Сосо"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი სოსო",
+      "reading": "ai soso",
+      "ru_meaning": "вот Сосо"
+    },
+    {
+      "type": "word",
+      "ge_text": "სია",
+      "reading": "sia",
+      "ru_meaning": "список"
+    },
+    {
+      "type": "word",
+      "ge_text": "სოსოს",
+      "ru_meaning": "Сосо (чей?)"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი სოსოს სია",
+      "reading": "ai sosos sia",
+      "ru_meaning": "вот список Сосо"
+    },
+    {
+      "type": "word",
+      "ge_text": "საათი",
+      "reading": "saati",
+      "ru_meaning": "часы"
+    },
+    {
+      "type": "word",
+      "ge_text": "სოსოს საათი",
+      "reading": "sosos saati",
+      "ru_meaning": "часы Сосо"
+    },
+    {
+      "type": "word",
+      "ge_text": "იას",
+      "ru_meaning": "Ии (чей?)"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი იას საათი",
+      "reading": "ai ias saati",
+      "ru_meaning": "вот часы Ии"
+    },
+    {
+      "type": "word",
+      "ge_text": "უთო",
+      "reading": "uto",
+      "ru_meaning": "утюг"
+    },
+    {
+      "type": "word",
+      "ge_text": "ხუთი",
+      "reading": "khuti",
+      "ru_meaning": "пять"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ხუთი უთო",
+      "reading": "ai khuti uto",
+      "ru_meaning": "вот пять утюгов"
+    },
+    {
+      "type": "word",
+      "ge_text": "ოთხი",
+      "reading": "otkhi",
+      "ru_meaning": "четыре"
+    },
+    {
+      "type": "word",
+      "ge_text": "იას ოთხი ია",
+      "ru_meaning": "у Ии четыре фиалки"
+    },
+    {
+      "type": "word",
+      "ge_text": "ხუთი საათია",
+      "reading": "khuti saatia",
+      "ru_meaning": "сейчас пять часов"
+    },
+    {
+      "type": "word",
+      "ge_text": "თხა",
+      "reading": "tkha",
+      "ru_meaning": "коза"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ოთხი თხა",
+      "reading": "ai otkhi tkha",
+      "ru_meaning": "вот четыре козы"
+    },
+    {
+      "type": "word",
+      "ge_text": "ათი",
+      "reading": "ati",
+      "ru_meaning": "десять"
+    },
+    {
+      "type": "word",
+      "ge_text": "ათი საათია",
+      "reading": "ati saatia",
+      "ru_meaning": "сейчас десять часов"
+    },
+    {
+      "type": "word",
+      "ge_text": "სოსოს ათი თხა",
+      "reading": "sosos ati tkha",
+      "ru_meaning": "у Сосо десять коз"
+    },
+    {
+      "type": "word",
+      "ge_text": "ასი",
+      "reading": "asi",
+      "ru_meaning": "сто"
+    },
+    {
+      "type": "word",
+      "ge_text": "ასო",
+      "reading": "aso",
+      "ru_meaning": "буква"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ათი ასო",
+      "reading": "ai ati aso",
+      "ru_meaning": "вот десять букв"
+    },
+    {
+      "type": "word",
+      "ge_text": "ოთახი",
+      "reading": "otakhi",
+      "ru_meaning": "комната"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი სოსოს ოთახი",
+      "reading": "ai sosos otakhi",
+      "ru_meaning": "вот комната Сосо"
+    },
+    {
+      "type": "word",
+      "ge_text": "ოთხი ოთახი",
+      "reading": "otkhi otakhi",
+      "ru_meaning": "четыре комнаты"
+    },
+    {
+      "type": "word",
+      "ge_text": "თათია",
+      "reading": "tatia",
+      "ru_meaning": "Татия"
+    },
+    {
+      "type": "word",
+      "ge_text": "თათიას",
+      "ru_meaning": "Татии (чей?)"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი თათიას ათი თხა",
+      "reading": "ai tatias ati tkha",
+      "ru_meaning": "вот десять коз Татии"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი თათიას საათი",
+      "reading": "ai tatias saati",
+      "ru_meaning": "вот часы Татии"
+    },
+    {
+      "type": "word",
+      "ge_text": "ათასი",
+      "reading": "atasi",
+      "ru_meaning": "тысяча"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ათასი ია",
+      "reading": "ai atasi ia",
+      "ru_meaning": "вот тысяча фиалок"
+    }
+  ]
+}

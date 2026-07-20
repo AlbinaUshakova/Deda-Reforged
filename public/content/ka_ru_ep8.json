@@ -1,0 +1,221 @@
+{
+  "id": "ep8",
+  "title": "Урок 8",
+  "letters": [
+    "ფ",
+    "პ",
+    "ჟ"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "ფანქარი",
+      "ru_meaning": "карандаш",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "პალტო",
+      "ru_meaning": "пальто",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ჟაკეტი",
+      "ru_meaning": "куртка",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "მე მაქვს ფანქარი",
+      "ru_meaning": "у меня есть карандаш",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "პომიდორი",
+      "ru_meaning": "помидор",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ჟაკეტი ძვირია",
+      "ru_meaning": "куртка дорогая",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "კაფე",
+      "ru_meaning": "кафе",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "კაფეშია",
+      "ru_meaning": "в кафе",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "მარი კაფეშია",
+      "ru_meaning": "Мари в кафе",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ოფისი",
+      "ru_meaning": "офис",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ის ოფისშია",
+      "ru_meaning": "он в офисе",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "პარკი",
+      "ru_meaning": "парк",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "მარი პარკშია",
+      "ru_meaning": "Мари в парке",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ჟურნალი",
+      "ru_meaning": "журнал",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "მარის ჟურნალი",
+      "ru_meaning": "журнал Мари",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "პური",
+      "ru_meaning": "хлеб",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს პური ძვირია",
+      "ru_meaning": "хлеб дорогой",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს პურია",
+      "ru_meaning": "это хлеб",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "მე მაქვს პური",
+      "ru_meaning": "у меня есть хлеб",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ფაფა",
+      "ru_meaning": "каша",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს ფაფაა",
+      "ru_meaning": "это каша",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "არაჟანი",
+      "ru_meaning": "сметана",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "მე მიყვარს არაჟანი",
+      "ru_meaning": "я люблю сметану",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ფული",
+      "ru_meaning": "деньги",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "მე მაქვს ფული",
+      "ru_meaning": "у меня есть деньги",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "სად არის ფული?",
+      "ru_meaning": "где деньги?",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "სად არის პური?",
+      "ru_meaning": "где хлеб?",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "პომიდორები",
+      "ru_meaning": "помидоры",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "პომიდორი მაგიდაზეა",
+      "ru_meaning": "помидор на столе",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ფორთოხალი",
+      "ru_meaning": "апельсин",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ფორთოხლები",
+      "ru_meaning": "апельсины",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "მაგიდაზე პომიდორები და ფორთოხლებია",
+      "ru_meaning": "на столе помидоры и апельсины",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "პროფესორი",
+      "ru_meaning": "профессор",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "ჩემი დედა პროფესორია",
+      "ru_meaning": "моя мама — профессор",
+      "audio_url": ""
+    },
+    {
+      "type": "word",
+      "ge_text": "მე მაქვს პური და ყველი",
+      "ru_meaning": "у меня есть хлеб и сыр",
+      "audio_url": ""
+    }
+  ]
+}

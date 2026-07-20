@@ -1,0 +1,216 @@
+{
+  "id": "ep2",
+  "title": "Урок 2",
+  "letters": [
+    "ბ",
+    "დ",
+    "ე",
+    "რ"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "ერთი",
+      "reading": "erti",
+      "ru_meaning": "один"
+    },
+    {
+      "type": "word",
+      "ge_text": "ორი",
+      "reading": "ori",
+      "ru_meaning": "два"
+    },
+    {
+      "type": "word",
+      "ge_text": "თარო",
+      "reading": "taro",
+      "ru_meaning": "полка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ხე",
+      "reading": "khe",
+      "ru_meaning": "дерево"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს",
+      "reading": "es",
+      "ru_meaning": "это"
+    },
+    {
+      "type": "word",
+      "ge_text": "არის",
+      "reading": "aris",
+      "ru_meaning": "есть (он / она / это)"
+    },
+    {
+      "type": "word",
+      "ge_text": "რა",
+      "reading": "ra",
+      "ru_meaning": "что"
+    },
+    {
+      "type": "word",
+      "ge_text": "დედა",
+      "reading": "deda",
+      "ru_meaning": "мама"
+    },
+    {
+      "type": "word",
+      "ge_text": "და",
+      "reading": "da",
+      "ru_meaning": "и / сестра"
+    },
+    {
+      "type": "word",
+      "ge_text": "ბარათი",
+      "reading": "barati",
+      "ru_meaning": "карточка"
+    },
+    {
+      "type": "word",
+      "ge_text": "სად",
+      "reading": "sad",
+      "ru_meaning": "где"
+    },
+    {
+      "type": "word",
+      "ge_text": "ბაბუა",
+      "reading": "babua",
+      "ru_meaning": "дедушка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ბებია",
+      "reading": "bebia",
+      "ru_meaning": "бабушка"
+    },
+    {
+      "type": "word",
+      "ge_text": "დედის",
+      "ru_meaning": "мамы (чей?)"
+    },
+    {
+      "type": "word",
+      "ge_text": "დის",
+      "ru_meaning": "сестры (чей?)"
+    },
+    {
+      "type": "word",
+      "ge_text": "არ",
+      "ru_meaning": "не"
+    },
+    {
+      "type": "word",
+      "ge_text": "არაა",
+      "ru_meaning": "это не"
+    },
+    {
+      "type": "word",
+      "ge_text": "ერთი თარო",
+      "reading": "erti taro",
+      "ru_meaning": "одна полка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ორი ხე",
+      "reading": "ori khe",
+      "ru_meaning": "два дерева"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს რა არის?",
+      "reading": "es ra aris?",
+      "ru_meaning": "что это?"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს არის ხე",
+      "reading": "es aris khe",
+      "ru_meaning": "это дерево"
+    },
+    {
+      "type": "word",
+      "ge_text": "ხეა",
+      "ru_meaning": "это дерево"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს არის თარო",
+      "reading": "es aris taro",
+      "ru_meaning": "это полка"
+    },
+    {
+      "type": "word",
+      "ge_text": "თაროა",
+      "ru_meaning": "это полка"
+    },
+    {
+      "type": "word",
+      "ge_text": "დედა და და",
+      "reading": "deda da da",
+      "ru_meaning": "мама и сестра"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ორი ბარათი",
+      "reading": "ai ori barati",
+      "ru_meaning": "вот две карточки"
+    },
+    {
+      "type": "word",
+      "ge_text": "სად არის ბებია?",
+      "reading": "sad aris bebia?",
+      "ru_meaning": "где бабушка?"
+    },
+    {
+      "type": "word",
+      "ge_text": "სად არის ბაბუა?",
+      "reading": "sad aris babua?",
+      "ru_meaning": "где дедушка?"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი სოსოს ორი თარო",
+      "reading": "ai sosos ori taro",
+      "ru_meaning": "вот две полки Сосо"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს არის ოთახი",
+      "reading": "es aris otakhi",
+      "ru_meaning": "это комната"
+    },
+    {
+      "type": "word",
+      "ge_text": "დედის ოთახი",
+      "reading": "dedis otakhi",
+      "ru_meaning": "комната мамы"
+    },
+    {
+      "type": "word",
+      "ge_text": "დის საათი",
+      "reading": "dis saati",
+      "ru_meaning": "часы сестры"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს არ არის თარო",
+      "reading": "es ar aris taro",
+      "ru_meaning": "это не полка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს არაა თარო",
+      "reading": "es araa taro",
+      "ru_meaning": "это не полка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს არ არის უთო",
+      "reading": "es ar aris uto",
+      "ru_meaning": "это не утюг"
+    }
+  ]
+}
