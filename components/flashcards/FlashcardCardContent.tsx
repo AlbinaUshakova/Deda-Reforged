@@ -95,23 +95,26 @@ export function FlashcardCardContent({
           )}
         </div>
         {showTranslit && (
-          <div className="mb-2 max-[640px]:mb-4 max-[460px]:mb-5 text-[clamp(16px,2vw,22px)] text-emerald-600/90">
-            {isGeDialog && translitDialogLines.length > 1 ? (
-              <div className="flex flex-col items-center gap-1.5">
-                {translitDialogLines.map((line, lineIdx) => (
-                  <div
-                    key={`${line}-${lineIdx}`}
-                    className={`flashcard-dialog-line ${
-                      lineIdx === 0 ? 'flashcard-dialog-line--question' : 'flashcard-dialog-line--answer'
-                    }`}
-                  >
-                    {line}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              cardTranslit
-            )}
+          <div className="flashcard-translit-panel mb-2 max-[640px]:mb-4 max-[460px]:mb-5">
+            <span className="flashcard-translit-label">Транскрипция</span>
+            <div className="flashcard-translit-value">
+              {isGeDialog && translitDialogLines.length > 1 ? (
+                <div className="flex flex-col items-center gap-1.5">
+                  {translitDialogLines.map((line, lineIdx) => (
+                    <div
+                      key={`${line}-${lineIdx}`}
+                      className={`flashcard-dialog-line ${
+                        lineIdx === 0 ? 'flashcard-dialog-line--question' : 'flashcard-dialog-line--answer'
+                      }`}
+                    >
+                      {line}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                cardTranslit
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -119,7 +122,7 @@ export function FlashcardCardContent({
   }
 
   return (
-    <div key={`back-${idx}`} className="flex -translate-y-[14px] flex-col items-center justify:center gap-3">
+    <div key={`back-${idx}`} className="flex -translate-y-[14px] flex-col items-center justify-center gap-3">
       <div className={`flashcard-ru-text mx-auto w-full max-w-[20ch] max-[640px]:max-w-full whitespace-normal break-normal text-[clamp(30px,5vw,48px)] ${ruMobileTextClass} ${ruMobileLayoutClass} leading-tight text-[var(--text-primary)]`}>
         {isRuDialog ? (
           <div className="flex flex-col items-center gap-1.5">

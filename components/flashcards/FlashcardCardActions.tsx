@@ -12,7 +12,7 @@ type FlashcardCardActionsProps = {
 };
 
 const navLikeMiniControl =
-  'inline-flex items-center justify-center rounded-xl border-0 bg-transparent text-[var(--text-primary)] shadow-none transition-all duration-200 hover:text-[var(--text-primary)] active:scale-[0.98]';
+  'inline-flex items-center justify-center rounded-full border border-transparent text-[var(--text-primary)] transition-all duration-200 hover:text-[var(--text-primary)] active:scale-[0.98]';
 
 export function FlashcardCardActions({
   hintText,
@@ -25,9 +25,9 @@ export function FlashcardCardActions({
   onToggleTranslit,
 }: FlashcardCardActionsProps) {
   return (
-    <>
+    <div className="flashcard-action-bar absolute left-[clamp(14px,2vw,24px)] right-[clamp(14px,2vw,24px)] top-[clamp(12px,1.4vw,16px)] z-10 flex items-start justify-between gap-2">
       <button
-        className={`flashcard-hint-btn flashcard-secondary-label flashcard-top-muted flashcard-mini-btn group absolute left-[clamp(20px,2vw,26px)] top-[clamp(12px,1.4vw,16px)] z-10 h-8 px-2 text-[11px] md:text-xs ${navLikeMiniControl}`}
+        className={`flashcard-hint-btn flashcard-secondary-label flashcard-top-muted flashcard-mini-btn group min-h-8 min-w-0 max-w-[46%] px-3 text-[11px] md:text-xs ${navLikeMiniControl}`}
         onClick={e => {
           e.stopPropagation();
           onRevealHint();
@@ -36,20 +36,20 @@ export function FlashcardCardActions({
           e.preventDefault();
           onResetHint();
         }}
-        title="Показать перевод"
+        title="Подсказка по переводу"
         aria-pressed={revealCount > 0}
       >
-        <span className="text-[13px] leading-none">💡</span>
+        <span className="flashcard-action-icon" aria-hidden="true">?</span>
         {revealCount === 0 ? (
-          <span className="flashcard-hint-label ml-1">подсказка</span>
+          <span className="flashcard-hint-label ml-1">Подсказка</span>
         ) : (
-          <span className="flashcard-hint-value ml-1">{hintText}</span>
+          <span className="flashcard-hint-value ml-1">Перевод: {hintText}</span>
         )}
       </button>
 
-      <div className="absolute right-[clamp(20px,2vw,26px)] top-[clamp(12px,1.4vw,16px)] z-10 flex items-center gap-2">
+      <div className="flashcard-action-group flex min-w-0 items-center gap-2">
         <button
-          className={`flashcard-favorite-btn flashcard-top-muted flashcard-mini-btn h-6 w-6 text-[13px] ${navLikeMiniControl}`}
+          className={`flashcard-favorite-btn flashcard-top-muted flashcard-mini-btn min-h-8 px-3 text-[11px] md:text-xs ${navLikeMiniControl}`}
           onClick={e => {
             e.stopPropagation();
             onToggleFavorite();
@@ -57,20 +57,26 @@ export function FlashcardCardActions({
           title={isFavorite ? 'Убрать из избранного' : 'В избранное'}
           aria-pressed={isFavorite}
         >
-          {isFavorite ? '⭐' : '☆'}
+          <span className="flashcard-action-icon" aria-hidden="true">
+            {isFavorite ? '★' : '☆'}
+          </span>
+          <span className="flashcard-action-label ml-1">
+            {isFavorite ? 'В избранном' : 'Избранное'}
+          </span>
         </button>
         <button
-          className={`flashcard-top-muted flashcard-mini-btn flashcard-translit-btn h-6 min-w-6 px-1 text-[10px] md:text-[11px] ${navLikeMiniControl}`}
+          className={`flashcard-top-muted flashcard-mini-btn flashcard-translit-btn min-h-8 px-3 text-[11px] md:text-xs ${navLikeMiniControl}`}
           onClick={e => {
             e.stopPropagation();
             onToggleTranslit();
           }}
-          title="Показать чтение"
+          title="Показать транскрипцию"
           aria-pressed={showTranslit}
         >
-          Aa
+          <span className="flashcard-action-icon" aria-hidden="true">Aa</span>
+          <span className="flashcard-action-label ml-1">Транскрипция</span>
         </button>
       </div>
-    </>
+    </div>
   );
 }
