@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useAppStore } from '@/lib/appStore';
 import { AlphabetPanel } from '@/components/lessons/AlphabetPanel';
 import { LessonGrid } from '@/components/lessons/LessonGrid';
+import { LessonsHero } from '@/components/lessons/LessonsHero';
 import { LessonsAlphabetProgressHeader } from '@/components/lessons/LessonsAlphabetProgressHeader';
 import { SpecialLessonLinks } from '@/components/lessons/SpecialLessonLinks';
 import { useAlphabetPanelState } from '@/components/lessons/useAlphabetPanelState';
@@ -79,6 +80,24 @@ export default function HomePage() {
     viewportWidth === null
       ? 24
       : Math.round(Math.max(18, Math.min(30, viewportWidth * 0.028)));
+  const recommendedLessonIndex = recommendedEpId
+    ? normalEpisodes.findIndex(episode => episode.id === recommendedEpId)
+    : -1;
+  const recommendedLesson = recommendedLessonIndex >= 0
+    ? normalEpisodes[recommendedLessonIndex]
+    : normalEpisodes[0];
+  const recommendedLessonNumber = recommendedLessonIndex >= 0
+    ? recommendedLessonIndex + 1
+    : recommendedLesson
+      ? 1
+      : undefined;
+  const recommendedLetters = recommendedLesson
+    ? lettersByEp[recommendedLesson.id] ?? []
+    : [];
+  const recommendedScore = recommendedLesson
+    ? progress[recommendedLesson.id] ?? 0
+    : 0;
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
@@ -108,52 +127,62 @@ export default function HomePage() {
 
   return (
     <main
-      className="min-h-screen min-h-[100dvh] [@media(max-width:700px)]:min-h-[auto] bg-[var(--app-bg)] px-[clamp(20px,4.8vw,36px)] [@media(max-width:900px)]:px-[clamp(28px,8vw,44px)] [@media(max-width:700px)]:px-[clamp(24px,9vw,40px)] pt-3 pb-1 [@media(max-width:700px)]:pb-0 min-[1920px]:pt-6 min-[1920px]:pb-2 [@media(max-height:980px)]:pt-2 [@media(max-height:980px)]:pb-1 relative overflow-x-hidden flex flex-col"
+      className="lessons-screen min-h-screen min-h-[100dvh] [@media(max-width:700px)]:min-h-[auto] px-[clamp(18px,4.4vw,36px)] [@media(max-width:900px)]:px-[clamp(24px,7vw,42px)] [@media(max-width:700px)]:px-[clamp(18px,6vw,30px)] pt-5 pb-5 [@media(max-width:700px)]:pb-3 relative overflow-x-hidden flex flex-col"
     >
+      <div className="lessons-screen-orb lessons-screen-orb--left" aria-hidden="true" />
+      <div className="lessons-screen-orb lessons-screen-orb--right" aria-hidden="true" />
       <div className="relative mx-auto w-full flex-1 [@media(max-width:700px)]:flex-none flex flex-col justify-start pb-[clamp(32px,4.5vh,40px)] [@media(max-width:700px)]:pb-3">
-      {/* алфавит + сетка эпизодов */}
-      <section className="mt-16 [@media(max-width:900px)]:mt-3 [@media(max-width:700px)]:mt-0 min-[1512px]:mt-16 min-[1700px]:mt-20 min-[1700px]:pl-10 min-[2200px]:pl-12 [@media(max-height:980px)]:mt-10">
-        <div className="relative mx-auto w-full">
-          <AlphabetPanel
-            alphabetRef={alphabetRef}
-            alphabetOverlapsLessons={alphabetOverlapsLessons}
-            showAlphabet={showAlphabet}
-            transliterationMode={transliterationMode}
-            audioError={audioError}
-            onToggleAlphabet={toggleAlphabet}
-            onSpeakLetter={speakLetter}
-          />
-          <div ref={lessonsWrapRef} className="relative z-[150] mx-auto w-full max-w-[980px] [@media(max-height:980px)]:max-w-[900px]">
-            <LessonsAlphabetProgressHeader letterStatusByChar={letterStatusByChar} />
-            <LessonGrid
-              normalEpisodes={normalEpisodes}
-              progress={progress}
-              lettersByEp={lettersByEp}
-              lessonTargetScore={lessonTargetScore}
-              lessonLetterSizePx={lessonLetterSizePx}
-              statusById={statusById}
-              recommendedEpId={recommendedEpId}
-              recommendedLessonRef={recommendedLessonRef}
-              lockedLessonTooltipEpId={lockedLessonTooltipEpId}
-              onScheduleLockedLessonTooltip={scheduleLockedLessonTooltip}
-              onHideLockedLessonTooltip={hideLockedLessonTooltip}
-              onLockedLessonClick={(episodeId, event) => {
-                event.preventDefault();
-                showLockedLessonTooltipNow(episodeId);
-              }}
-              allLessonsSpecial={allLessonsSpecial}
-              allLessonsReady={allLessonsReady}
+        <LessonsHero
+          recommendedLesson={recommendedLesson}
+          recommendedLessonNumber={recommendedLessonNumber}
+          recommendedLetters={recommendedLetters}
+          recommendedScore={recommendedScore}
+          lessonTargetScore={lessonTargetScore}
+          phrasesLesson={phrasesSpecial}
+        />
+        {/* алфавит + сетка эпизодов */}
+        <section className="lessons-path-section mt-5 [@media(max-width:900px)]:mt-4 [@media(max-width:700px)]:mt-4 min-[1700px]:pl-10 min-[2200px]:pl-12">
+          <div className="relative mx-auto w-full">
+            <AlphabetPanel
+              alphabetRef={alphabetRef}
+              alphabetOverlapsLessons={alphabetOverlapsLessons}
+              showAlphabet={showAlphabet}
+              transliterationMode={transliterationMode}
+              audioError={audioError}
+              onToggleAlphabet={toggleAlphabet}
+              onSpeakLetter={speakLetter}
             />
+            <div ref={lessonsWrapRef} className="relative z-[150] mx-auto w-full max-w-[980px] [@media(max-height:980px)]:max-w-[900px]">
+              <LessonsAlphabetProgressHeader letterStatusByChar={letterStatusByChar} />
+              <LessonGrid
+                normalEpisodes={normalEpisodes}
+                progress={progress}
+                lettersByEp={lettersByEp}
+                lessonTargetScore={lessonTargetScore}
+                lessonLetterSizePx={lessonLetterSizePx}
+                statusById={statusById}
+                recommendedEpId={recommendedEpId}
+                recommendedLessonRef={recommendedLessonRef}
+                lockedLessonTooltipEpId={lockedLessonTooltipEpId}
+                onScheduleLockedLessonTooltip={scheduleLockedLessonTooltip}
+                onHideLockedLessonTooltip={hideLockedLessonTooltip}
+                onLockedLessonClick={(episodeId, event) => {
+                  event.preventDefault();
+                  showLockedLessonTooltipNow(episodeId);
+                }}
+                allLessonsSpecial={allLessonsSpecial}
+                allLessonsReady={allLessonsReady}
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <SpecialLessonLinks
-        allLessonsSpecial={allLessonsSpecial}
-        favoritesSpecial={favoritesSpecial}
-        phrasesSpecial={phrasesSpecial}
-        allLessonsReady={allLessonsReady}
-      />
+        <SpecialLessonLinks
+          allLessonsSpecial={allLessonsSpecial}
+          favoritesSpecial={favoritesSpecial}
+          phrasesSpecial={phrasesSpecial}
+          allLessonsReady={allLessonsReady}
+        />
 
       </div>
     </main>
