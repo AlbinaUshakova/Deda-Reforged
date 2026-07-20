@@ -60,8 +60,6 @@ export function FlashcardLessonLetters({ letters }: FlashcardLessonLettersProps)
     <section className="flashcard-lesson-letters" aria-label="Буквы этого урока">
       <div className="flashcard-lesson-letters-copy">
         <span className="flashcard-lesson-letters-kicker">Буквы урока</span>
-        <span className="flashcard-lesson-letters-hint">♪ нажми букву</span>
-        <span className="flashcard-lesson-letters-alphabet">остальные - Алфавит</span>
       </div>
       <div className="flashcard-lesson-letters-list">
         {letters.map(letter => (

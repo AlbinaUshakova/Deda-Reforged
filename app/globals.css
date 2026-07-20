@@ -1728,14 +1728,14 @@ html[data-theme='dark'] .blocks-game-screen::before {
     max-width: 560px;
     flex-direction: column;
     align-items: stretch;
-    gap: 7px;
+    gap: 6px;
     margin: 0 auto clamp(8px, 1.25vh, 12px);
     border: 1px solid rgba(15, 118, 110, 0.12);
     border-radius: 24px;
     background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 247, 237, 0.62)),
         radial-gradient(circle at 92% 20%, rgba(20, 184, 166, 0.12), transparent 38%);
-    padding: 8px 10px 9px;
+    padding: 8px 10px;
     box-shadow:
         0 12px 28px rgba(120, 53, 15, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.80);
@@ -1756,32 +1756,6 @@ html[data-theme='dark'] .blocks-game-screen::before {
     font-size: 12px;
     font-weight: 850;
     letter-spacing: -0.02em;
-    line-height: 1;
-}
-
-.flashcard-lesson-letters-hint {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 999px;
-    background: rgba(236, 253, 245, 0.74);
-    padding: 3px 7px;
-    color: #71817b;
-    font-size: 10px;
-    font-weight: 750;
-    letter-spacing: -0.01em;
-    line-height: 1;
-}
-
-.flashcard-lesson-letters-alphabet {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 999px;
-    background: rgba(255, 247, 237, 0.88);
-    padding: 3px 7px;
-    color: #9a5a23;
-    font-size: 10px;
-    font-weight: 750;
-    letter-spacing: -0.01em;
     line-height: 1;
 }
 
@@ -1933,12 +1907,6 @@ html[data-theme='dark'] .blocks-game-screen::before {
         flex-wrap: wrap;
         gap: 5px;
         padding: 0 3px;
-    }
-
-    .flashcard-lesson-letters-hint,
-    .flashcard-lesson-letters-alphabet {
-        font-size: 9px;
-        padding: 3px 6px;
     }
 
     .flashcard-lesson-letters-list {
@@ -2757,19 +2725,8 @@ html[data-theme='dark'] .flashcard-lesson-letters-kicker {
     color: #e5eaf3;
 }
 
-html[data-theme='dark'] .flashcard-lesson-letters-hint,
 html[data-theme='dark'] .flashcard-lesson-letter-hint {
     color: #aab3c2;
-}
-
-html[data-theme='dark'] .flashcard-lesson-letters-hint {
-    background: rgba(20, 184, 166, 0.12);
-    color: #99f6e4;
-}
-
-html[data-theme='dark'] .flashcard-lesson-letters-alphabet {
-    background: rgba(251, 146, 60, 0.11);
-    color: #fed7aa;
 }
 
 html[data-theme='dark'] .flashcard-lesson-letter {
