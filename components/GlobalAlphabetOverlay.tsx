@@ -40,6 +40,7 @@ export default function GlobalAlphabetOverlay() {
   const pathname = usePathname();
   const isLessonsPage = pathname === '/lessons';
   const isStudyPage = pathname.startsWith('/study/');
+  const isGamePage = pathname.startsWith('/play/');
   const isServicePage = pathname === '/support' || pathname === '/privacy';
   const hydrate = useAppStore(state => state.hydrate);
   const progress = useAppStore(state => state.progressMap);
@@ -48,9 +49,6 @@ export default function GlobalAlphabetOverlay() {
   const alphabetToggleRequest = useAppStore(state => state.alphabetToggleRequest);
   const profileMenuOpen = useAppStore(state => state.profileMenuOpen);
   const setAlphabetOpen = useAppStore(state => state.setAlphabetOpen);
-  const canAutoOpenAlphabet = () =>
-    typeof window !== 'undefined' &&
-    (window.matchMedia?.('(min-width: 1440px) and (min-height: 760px)').matches ?? false);
   const [open, setOpen] = useState(false);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const [letterStatusByChar, setLetterStatusByChar] = useState<Record<string, AlphabetLetterStatus>>({});
@@ -85,22 +83,8 @@ export default function GlobalAlphabetOverlay() {
 
   useEffect(() => {
     if (isLessonsPage) return;
-    const nextOpen =
-      isStudyPage &&
-      canAutoOpenAlphabet();
-    setOpen(nextOpen);
-  }, [isLessonsPage, isStudyPage, pathname]);
-
-  useEffect(() => {
-    if (isLessonsPage) return;
-    const onResize = () => {
-      if (!canAutoOpenAlphabet()) {
-        setOpen(false);
-      }
-    };
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, [isLessonsPage]);
+    setOpen(isStudyPage || isGamePage);
+  }, [isGamePage, isLessonsPage, isStudyPage, pathname]);
 
   useEffect(() => {
     setAlphabetOpen(!isLessonsPage && !isServicePage && open && pathname !== '/');
@@ -126,12 +110,12 @@ export default function GlobalAlphabetOverlay() {
   }, [isLessonsPage, open, pathname]);
 
   useEffect(() => {
-    if (isLessonsPage || isStudyPage || pathname === '/') return;
+    if (isLessonsPage || isStudyPage || isGamePage || pathname === '/') return;
     void hydrate();
-  }, [hydrate, isLessonsPage, isStudyPage, pathname]);
+  }, [hydrate, isGamePage, isLessonsPage, isStudyPage, pathname]);
 
   useEffect(() => {
-    if (isLessonsPage || isStudyPage || pathname === '/') return;
+    if (isLessonsPage || isStudyPage || isGamePage || pathname === '/') return;
     let cancelled = false;
 
     const load = async (forceRefresh = false) => {
@@ -158,7 +142,7 @@ export default function GlobalAlphabetOverlay() {
     return () => {
       cancelled = true;
     };
-  }, [isLessonsPage, isStudyPage, lessonTargetScore, pathname, progress]);
+  }, [isGamePage, isLessonsPage, isStudyPage, lessonTargetScore, pathname, progress]);
 
   const speakLetter = (letter: string) => {
     if (typeof window === 'undefined') return;

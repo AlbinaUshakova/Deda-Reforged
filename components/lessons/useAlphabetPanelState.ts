@@ -32,9 +32,6 @@ export function useAlphabetPanelState({
         !!lessonsRect &&
         alphabetRect.right + 16 <= lessonsRect.left;
       setAlphabetOverlapsLessons(!canFitWithoutOverlap);
-      if (!alphabetUserToggledRef.current) {
-        setShowAlphabet(canFitWithoutOverlap);
-      }
     };
 
     updateAlphabetLayoutMode();
