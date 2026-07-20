@@ -74,7 +74,6 @@ export function FlashcardLessonLetters({ letters }: FlashcardLessonLettersProps)
             aria-label={`Озвучить букву ${letter}`}
             aria-pressed={playingLetter === letter}
           >
-            <span className="flashcard-lesson-letter-audio" aria-hidden="true">♪</span>
             <span className="flashcard-lesson-letter-char">{letter}</span>
             <span className="flashcard-lesson-letter-hint">
               {geLetterToHint(letter, transliterationMode)}
