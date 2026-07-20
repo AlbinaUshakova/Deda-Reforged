@@ -1504,14 +1504,14 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
     max-width: 560px;
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
-    margin: 0 auto clamp(9px, 1.4vh, 13px);
+    gap: 7px;
+    margin: 0 auto clamp(8px, 1.25vh, 12px);
     border: 1px solid rgba(15, 118, 110, 0.12);
     border-radius: 24px;
     background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 247, 237, 0.62)),
         radial-gradient(circle at 92% 20%, rgba(20, 184, 166, 0.12), transparent 38%);
-    padding: 9px 10px 10px;
+    padding: 8px 10px 9px;
     box-shadow:
         0 12px 28px rgba(120, 53, 15, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.80);
@@ -1522,8 +1522,8 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
     display: flex;
     width: 100%;
     align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
+    justify-content: flex-start;
+    gap: 7px;
     padding: 0 4px;
 }
 
@@ -1536,12 +1536,29 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 }
 
 .flashcard-lesson-letters-hint {
-    max-width: 360px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    background: rgba(236, 253, 245, 0.74);
+    padding: 3px 7px;
     color: #71817b;
     font-size: 10px;
-    font-weight: 650;
+    font-weight: 750;
     letter-spacing: -0.01em;
-    line-height: 1.1;
+    line-height: 1;
+}
+
+.flashcard-lesson-letters-alphabet {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    background: rgba(255, 247, 237, 0.88);
+    padding: 3px 7px;
+    color: #9a5a23;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: -0.01em;
+    line-height: 1;
 }
 
 .flashcard-lesson-letters-list {
@@ -1553,9 +1570,10 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 }
 
 .flashcard-lesson-letter {
+    position: relative;
     display: inline-flex;
-    min-width: 42px;
-    min-height: 44px;
+    min-width: 40px;
+    min-height: 42px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -1596,6 +1614,16 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
     font-size: 22px;
     font-weight: 850;
     line-height: 0.95;
+}
+
+.flashcard-lesson-letter-audio {
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    color: rgba(15, 118, 110, 0.48);
+    font-size: 9px;
+    font-weight: 900;
+    line-height: 1;
 }
 
 .flashcard-lesson-letter-hint {
@@ -1678,15 +1706,15 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
     }
 
     .flashcard-lesson-letters-copy {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 3px;
+        flex-wrap: wrap;
+        gap: 5px;
         padding: 0 3px;
     }
 
-    .flashcard-lesson-letters-hint {
-        max-width: 100%;
+    .flashcard-lesson-letters-hint,
+    .flashcard-lesson-letters-alphabet {
         font-size: 9px;
+        padding: 3px 6px;
     }
 
     .flashcard-lesson-letters-list {
@@ -2497,6 +2525,16 @@ html[data-theme='dark'] .flashcard-lesson-letter-hint {
     color: #aab3c2;
 }
 
+html[data-theme='dark'] .flashcard-lesson-letters-hint {
+    background: rgba(20, 184, 166, 0.12);
+    color: #99f6e4;
+}
+
+html[data-theme='dark'] .flashcard-lesson-letters-alphabet {
+    background: rgba(251, 146, 60, 0.11);
+    color: #fed7aa;
+}
+
 html[data-theme='dark'] .flashcard-lesson-letter {
     border-color: rgba(226, 232, 240, 0.08);
     background: rgba(255, 255, 255, 0.07);
@@ -2504,6 +2542,10 @@ html[data-theme='dark'] .flashcard-lesson-letter {
     box-shadow:
         0 8px 18px rgba(0, 0, 0, 0.18),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme='dark'] .flashcard-lesson-letter-audio {
+    color: rgba(153, 246, 228, 0.54);
 }
 
 html[data-theme='dark'] .flashcard-lesson-letter:hover,

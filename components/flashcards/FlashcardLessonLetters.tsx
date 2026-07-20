@@ -60,9 +60,8 @@ export function FlashcardLessonLetters({ letters }: FlashcardLessonLettersProps)
     <section className="flashcard-lesson-letters" aria-label="Буквы этого урока">
       <div className="flashcard-lesson-letters-copy">
         <span className="flashcard-lesson-letters-kicker">Буквы урока</span>
-        <span className="flashcard-lesson-letters-hint">
-          Нажми букву, чтобы услышать, как она звучит. Остальные буквы - в «Алфавите» рядом с Deda.
-        </span>
+        <span className="flashcard-lesson-letters-hint">♪ нажми букву</span>
+        <span className="flashcard-lesson-letters-alphabet">остальные - Алфавит</span>
       </div>
       <div className="flashcard-lesson-letters-list">
         {letters.map(letter => (
@@ -77,6 +76,7 @@ export function FlashcardLessonLetters({ letters }: FlashcardLessonLettersProps)
             aria-label={`Озвучить букву ${letter}`}
             aria-pressed={playingLetter === letter}
           >
+            <span className="flashcard-lesson-letter-audio" aria-hidden="true">♪</span>
             <span className="flashcard-lesson-letter-char">{letter}</span>
             <span className="flashcard-lesson-letter-hint">
               {geLetterToHint(letter, transliterationMode)}
