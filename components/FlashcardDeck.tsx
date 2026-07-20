@@ -14,6 +14,7 @@ import { FlashcardCardActions } from '@/components/flashcards/FlashcardCardActio
 import { FlashcardCardContent } from '@/components/flashcards/FlashcardCardContent';
 import { FlashcardControls } from '@/components/flashcards/FlashcardControls';
 import { FlashcardFilters } from '@/components/flashcards/FlashcardFilters';
+import { FlashcardLessonLetters } from '@/components/flashcards/FlashcardLessonLetters';
 import { FlashcardNavArrow } from '@/components/flashcards/FlashcardNavArrow';
 import {
   getMobileTextSizeClass,
@@ -97,10 +98,14 @@ export default function FlashcardDeck({
   );
 
   const currentLessonLetters = useMemo(() => {
-    if (!episodeId || episodeId === 'ep1') return new Set<string>();
+    if (!episodeId) return new Set<string>();
     const { lettersByEpisode } = getEpisodesDataSync();
     return new Set(lettersByEpisode[episodeId] ?? []);
   }, [episodeId]);
+  const currentLessonLettersList = useMemo(
+    () => Array.from(currentLessonLetters),
+    [currentLessonLetters],
+  );
 
   const renderLessonLetterHighlight = useCallback(
     (text: string) => {
@@ -449,6 +454,8 @@ export default function FlashcardDeck({
 
       {/* Карточка */}
       <div className="flashcard-stage relative mx-auto flex w-full max-w-[900px] flex-col items-center justify-center px-[clamp(14px,3.6vw,40px)] pt-[clamp(8px,1.4vh,18px)] pb-[clamp(24px,4vh,44px)]">
+        <FlashcardLessonLetters letters={currentLessonLettersList} />
+
         <div className="flashcard-card-shell relative mx-auto">
           {canPrev && (
             <FlashcardNavArrow direction="prev" placement="outside" onClick={onPrev} />

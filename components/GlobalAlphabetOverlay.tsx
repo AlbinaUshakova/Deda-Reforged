@@ -10,6 +10,7 @@ import {
 import { geLetterToHint } from '@/lib/transliteration';
 import { getEpisodesDataCached } from '@/lib/clientContentCache';
 import { deriveLessonState, type AlphabetLetterStatus } from '@/lib/lessonProgress';
+import { geLetterAudioMap } from '@/lib/georgianLetterAudio';
 import { playLetterAudio, stopLetterAudioPlayback } from '@/lib/playLetterAudio';
 
 const GEORGIAN_ALPHABET = [
@@ -33,42 +34,6 @@ const alphabetLetterColorByStatus: Record<AlphabetLetterStatus, string> = {
   current: 'text-[var(--progress-current)]',
   locked: 'text-[var(--text-tertiary)]',
   unknown: 'text-[var(--ui-accent)]',
-};
-
-const geLetterAudioMap: Record<string, string> = {
-  'ა': '/audio/letters/01-ani.mp3',
-  'ბ': '/audio/letters/02-bani.mp3',
-  'გ': '/audio/letters/03-gani.mp3',
-  'დ': '/audio/letters/04-doni.mp3',
-  'ე': '/audio/letters/05-eni.mp3',
-  'ვ': '/audio/letters/06-vini.mp3',
-  'ზ': '/audio/letters/07-zeni.mp3',
-  'თ': '/audio/letters/08-tani.mp3',
-  'ი': '/audio/letters/09-ini.mp3',
-  'კ': '/audio/letters/10-kani.mp3',
-  'ლ': '/audio/letters/11-lasi.mp3',
-  'მ': '/audio/letters/12-mani.mp3',
-  'ნ': '/audio/letters/13-nari.mp3',
-  'ო': '/audio/letters/14-oni.mp3',
-  'პ': '/audio/letters/15-pari.mp3',
-  'ჟ': '/audio/letters/16-jhani.mp3',
-  'რ': '/audio/letters/17-rae.mp3',
-  'ს': '/audio/letters/18-sani.mp3',
-  'ტ': '/audio/letters/19-tari.mp3',
-  'უ': '/audio/letters/20-uni.mp3',
-  'ფ': '/audio/letters/21-phari.mp3',
-  'ქ': '/audio/letters/22-khani-q.mp3',
-  'ღ': '/audio/letters/23-ghani.mp3',
-  'ყ': '/audio/letters/24-qari.mp3',
-  'შ': '/audio/letters/25-shini.mp3',
-  'ჩ': '/audio/letters/26-chini.mp3',
-  'ც': '/audio/letters/27-tsani.mp3',
-  'ძ': '/audio/letters/28-dzili.mp3',
-  'წ': '/audio/letters/29-tsili.mp3',
-  'ჭ': '/audio/letters/30-chari.mp3',
-  'ხ': '/audio/letters/31-khani-x.mp3',
-  'ჯ': '/audio/letters/32-jani.mp3',
-  'ჰ': '/audio/letters/33-hae.mp3',
 };
 
 export default function GlobalAlphabetOverlay() {
