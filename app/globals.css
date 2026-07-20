@@ -1594,8 +1594,8 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 
 /* Flashcards light theme polish */
 .flashcard-main-card {
-    width: min(100%, 600px, 88vw);
-    max-width: 600px;
+    width: min(100%, 560px, 84vw);
+    max-width: 560px;
     aspect-ratio: 16 / 10;
     height: auto;
     max-height: 420px;
@@ -1611,20 +1611,20 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 }
 
 .flashcard-card-shell {
-    width: min(100%, 600px, 88vw);
-    max-width: 600px;
+    width: min(100%, 560px, 84vw);
+    max-width: 560px;
 }
 
 .flashcard-content {
     padding: 32px;
-    padding-top: 84px;
-    padding-bottom: 48px;
+    padding-top: 78px;
+    padding-bottom: 46px;
 }
 
 .flashcard-controls-wrap {
     margin-top: clamp(10px, 1.8vh, 18px);
-    width: min(100%, 600px, 88vw);
-    max-width: 600px;
+    width: min(100%, 560px, 84vw);
+    max-width: 560px;
 }
 
 @media (max-width: 900px) {
@@ -1635,9 +1635,14 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 }
 
 .flashcard-cat-inline {
-    left: clamp(-92px, -7vw, -72px);
-    top: 50%;
-    transform: translateY(-62%);
+    left: clamp(-70px, -5.4vw, -54px);
+    top: 48%;
+    transform: translateY(-52%);
+}
+
+.flashcard-cat {
+    width: clamp(112px, 10.4vw, 132px);
+    height: auto;
 }
 
 @media (max-width: 1000px) {
@@ -1752,15 +1757,15 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 
 @media (min-width: 1200px) {
     .flashcard-card-shell {
-        width: 600px;
+        width: 560px;
     }
 
     .flashcard-main-card {
-        width: 600px;
+        width: 560px;
     }
 
     .flashcard-controls-wrap {
-        width: 600px;
+        width: 560px;
     }
 }
 

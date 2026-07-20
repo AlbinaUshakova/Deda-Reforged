@@ -42,7 +42,7 @@ export default function StudyClient({
     <main className="study-card-screen app-screen-fixed min-h-screen bg-transparent text-[var(--text-primary)]">
       <div className="study-screen-orb study-screen-orb--left" aria-hidden="true" />
       <div className="study-screen-orb study-screen-orb--right" aria-hidden="true" />
-      <div className="mx-auto h-full w-full overflow-hidden px-[clamp(14px,3.6vw,48px)] py-[clamp(16px,2.6vh,32px)] lg:pl-[124px]">
+      <div className="mx-auto h-full w-full overflow-hidden px-[clamp(14px,3.6vw,48px)] py-[clamp(16px,2.6vh,32px)]">
         <StudyPageActions playHref={playHref as Route} />
         {hasEpisode && hasWords ? <StudyAlphabetHint /> : null}
 
