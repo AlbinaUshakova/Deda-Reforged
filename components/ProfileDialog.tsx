@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { getLocalProgress } from '@/lib/supabase';
 
 type Row = { episodeId: string; best: number; updatedAt?: number };
 
@@ -8,9 +9,12 @@ export default function ProfileDialog({ open, onClose }:{ open: boolean; onClose
 
   const load = () => {
     try {
-      const raw = localStorage.getItem('deda_progress');
-      const arr: Row[] = raw ? JSON.parse(raw) : [];
-      arr.sort((a,b)=> (b.updatedAt ?? 0) - (a.updatedAt ?? 0));
+      const arr: Row[] = getLocalProgress();
+      arr.sort((a, b) => {
+        const aNum = Number(a.episodeId.replace('ep', ''));
+        const bNum = Number(b.episodeId.replace('ep', ''));
+        return aNum - bNum;
+      });
       setRows(arr);
     } catch { setRows([]); }
   };

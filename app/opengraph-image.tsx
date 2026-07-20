@@ -95,6 +95,7 @@ export default async function OpenGraphImage() {
                   "radial-gradient(circle at 50% 30%, rgba(255, 176, 96, 0.18), transparent 36%)",
               }}
             />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={catImageSrc}
               alt="Deda cat"

@@ -13,6 +13,7 @@
  *   - Renders each letter as an image from /public/handwriting/mkhedruli/<LETTER>.svg
  *   - If an image is missing, we gracefully fall back to the text glyph.
  */
+import Image from 'next/image';
 import React, { useMemo, useState } from 'react';
 
 type Props = {
@@ -23,28 +24,56 @@ type Props = {
   preferPrintedImages?: boolean; // use /public/print/mkhedruli assets for printed
 };
 
+function LetterImage({
+  ch,
+  dir,
+  size,
+}: {
+  ch: string;
+  dir: 'print' | 'handwriting';
+  size: number;
+}) {
+  const [failed, setFailed] = useState(false);
+  const base = dir === 'print' ? '/print/mkhedruli' : '/handwriting/mkhedruli';
+
+  if (failed) {
+    return (
+      <span
+        style={{
+          fontSize: `${Math.floor(size * 0.9)}px`,
+          lineHeight: `${size}px`,
+          display: 'inline-block',
+        }}
+      >
+        {ch}
+      </span>
+    );
+  }
+
+  return (
+    <Image
+      src={`${base}/${ch}.svg`}
+      alt={`${dir} ${ch}`}
+      width={size}
+      height={size}
+      unoptimized
+      style={{ height: size, width: 'auto', display: 'block' }}
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 function LettersAsImages({ word, dir, size, gap }: { word: string; dir: 'print' | 'handwriting'; size: number; gap: number }) {
   const letters = useMemo(() => Array.from(word), [word]);
-  const base = dir === 'print' ? '/print/mkhedruli' : '/handwriting/mkhedruli';
   return (
     <div className="flex items-end" style={{ gap }}>
       {letters.map((ch, i) => {
-        const src = `${base}/${ch}.svg`;
         return (
-          <img
+          <LetterImage
             key={`${ch}-${i}`}
-            src={src}
-            alt={`${dir} ${ch}`}
-            height={size}
-            style={{ height: size, width: 'auto', display: 'block' }}
-            onError={(e) => {
-              const span = document.createElement('span');
-              span.textContent = ch;
-              span.style.fontSize = `${Math.floor(size * 0.9)}px`;
-              span.style.lineHeight = `${size}px`;
-              span.style.display = 'inline-block';
-              e.currentTarget.replaceWith(span);
-            }}
+            ch={ch}
+            dir={dir}
+            size={size}
           />
         );
       })}

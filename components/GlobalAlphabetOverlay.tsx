@@ -2,17 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { getSettings } from '@/lib/settings';
-import { geLetterToHint, type TransliterationMode } from '@/lib/transliteration';
-import { getEpisodesDataCached, getEpisodesDataSync } from '@/lib/clientContentCache';
-import { loadProgressMapCached, getLocalProgress, type ProgressMap } from '@/lib/supabase';
+import { useAppStore } from '@/lib/appStore';
+import {
+  readAlphabetStatusCache,
+  writeAlphabetStatusCache,
+} from '@/lib/alphabetProgressCache';
+import { geLetterToHint } from '@/lib/transliteration';
+import { getEpisodesDataCached } from '@/lib/clientContentCache';
+import { deriveLessonState, type AlphabetLetterStatus } from '@/lib/lessonProgress';
 import { playLetterAudio, stopLetterAudioPlayback } from '@/lib/playLetterAudio';
-
-type Ep = { id: string; title: string };
-
-type LessonStatus = 'mastered' | 'almost' | 'current' | 'locked';
-type AlphabetLetterStatus = LessonStatus | 'unknown';
-const ALPHABET_STATUS_CACHE_KEY = 'deda:alphabet-letter-status-cache:v1';
 
 const GEORGIAN_ALPHABET = [
   'ა', 'ბ', 'გ', 'დ', 'ე', 'ვ', 'ზ', 'თ', 'ი', 'კ', 'ლ',
@@ -75,29 +73,32 @@ const geLetterAudioMap: Record<string, string> = {
 
 export default function GlobalAlphabetOverlay() {
   const pathname = usePathname();
+  const isLessonsPage = pathname === '/lessons';
+  const isStudyPage = pathname.startsWith('/study/');
+  const hydrate = useAppStore(state => state.hydrate);
+  const progress = useAppStore(state => state.progressMap);
+  const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
+  const transliterationMode = useAppStore(state => state.settings.transliterationMode);
+  const alphabetToggleRequest = useAppStore(state => state.alphabetToggleRequest);
+  const profileMenuOpen = useAppStore(state => state.profileMenuOpen);
+  const setAlphabetOpen = useAppStore(state => state.setAlphabetOpen);
   const canAutoOpenAlphabet = () =>
     typeof window !== 'undefined' &&
-    window.matchMedia('(min-width: 1440px) and (min-height: 760px)').matches;
-  const shouldOpenByDefault = (path: string) =>
-    path !== '/' && !path.startsWith('/play/') && canAutoOpenAlphabet();
+    (window.matchMedia?.('(min-width: 1440px) and (min-height: 760px)').matches ?? false);
   const [open, setOpen] = useState(false);
   const overlayRef = useRef<HTMLDivElement | null>(null);
-  const [progress, setProgress] = useState<ProgressMap>({});
-  const [lettersByEp, setLettersByEp] = useState<Record<string, string[]>>({});
-  const [lessonTargetScore, setLessonTargetScore] = useState(25);
-  const [transliterationMode, setTransliterationMode] = useState<TransliterationMode>('ru');
   const [letterStatusByChar, setLetterStatusByChar] = useState<Record<string, AlphabetLetterStatus>>({});
   const [playingLetter, setPlayingLetter] = useState<string | null>(null);
   const playingTimerRef = useRef<number | null>(null);
+  const handledAlphabetToggleRef = useRef(alphabetToggleRequest);
 
   useEffect(() => {
-    const onToggle = () => {
-      if (pathname === '/') return;
-      setOpen(v => !v);
-    };
-    window.addEventListener('deda:toggle-alphabet', onToggle as EventListener);
-    return () => window.removeEventListener('deda:toggle-alphabet', onToggle as EventListener);
-  }, [pathname]);
+    if (isLessonsPage) return;
+    if (handledAlphabetToggleRef.current === alphabetToggleRequest) return;
+    handledAlphabetToggleRef.current = alphabetToggleRequest;
+    if (pathname === '/') return;
+    setOpen(v => !v);
+  }, [alphabetToggleRequest, isLessonsPage, pathname]);
 
   useEffect(() => {
     return () => {
@@ -110,25 +111,23 @@ export default function GlobalAlphabetOverlay() {
   }, []);
 
   useEffect(() => {
-    const onProfileMenuOpened = () => {
+    if (isLessonsPage) return;
+    if (profileMenuOpen) {
       setOpen(false);
-    };
-    window.addEventListener(
-      'deda:profile-menu-opened',
-      onProfileMenuOpened as EventListener,
-    );
-    return () =>
-      window.removeEventListener(
-        'deda:profile-menu-opened',
-        onProfileMenuOpened as EventListener,
-      );
-  }, []);
+    }
+  }, [isLessonsPage, profileMenuOpen]);
 
   useEffect(() => {
-    setOpen(shouldOpenByDefault(pathname));
-  }, [pathname]);
+    if (isLessonsPage) return;
+    const nextOpen =
+      pathname !== '/' &&
+      !pathname.startsWith('/play/') &&
+      canAutoOpenAlphabet();
+    setOpen(nextOpen);
+  }, [isLessonsPage, pathname]);
 
   useEffect(() => {
+    if (isLessonsPage) return;
     const onResize = () => {
       if (!canAutoOpenAlphabet()) {
         setOpen(false);
@@ -136,18 +135,14 @@ export default function GlobalAlphabetOverlay() {
     };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, []);
+  }, [isLessonsPage]);
 
   useEffect(() => {
-    const isOpenForPage = open && pathname !== '/';
-    window.dispatchEvent(
-      new CustomEvent('deda:alphabet-overlay-state', {
-        detail: { open: isOpenForPage },
-      }),
-    );
-  }, [open, pathname]);
+    setAlphabetOpen(!isLessonsPage && open && pathname !== '/');
+  }, [isLessonsPage, open, pathname, setAlphabetOpen]);
 
   useEffect(() => {
+    if (isLessonsPage) return;
     if (pathname === '/' || !open) return;
     const handleClickOutside = (e: MouseEvent) => {
       if (overlayRef.current && !overlayRef.current.contains(e.target as Node)) {
@@ -163,103 +158,42 @@ export default function GlobalAlphabetOverlay() {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEsc);
     };
-  }, [open, pathname]);
+  }, [isLessonsPage, open, pathname]);
 
   useEffect(() => {
-    if (pathname === '/') return;
+    if (isLessonsPage || isStudyPage || pathname === '/') return;
+    void hydrate();
+  }, [hydrate, isLessonsPage, isStudyPage, pathname]);
+
+  useEffect(() => {
+    if (isLessonsPage || isStudyPage || pathname === '/') return;
     let cancelled = false;
 
     const load = async (forceRefresh = false) => {
-      const cachedEpisodes = getEpisodesDataSync();
-      setLettersByEp(cachedEpisodes.lettersByEpisode);
+      const cachedLetterStatusByChar = readAlphabetStatusCache();
+      setLetterStatusByChar(cachedLetterStatusByChar);
 
-      const local = getLocalProgress();
-      const localMap: ProgressMap = {};
-      for (const row of local) localMap[row.episodeId] = Math.max(localMap[row.episodeId] ?? 0, row.best);
-      setProgress(localMap);
-      const settings = getSettings();
-      setLessonTargetScore(settings.lessonTargetScore);
-      setTransliterationMode(settings.transliterationMode);
-      try {
-        const raw = window.localStorage.getItem(ALPHABET_STATUS_CACHE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw) as Record<string, AlphabetLetterStatus>;
-          if (parsed && typeof parsed === 'object') setLetterStatusByChar(parsed);
-        }
-      } catch {}
-
-      const [{ episodes, lettersByEpisode }, merged] = await Promise.all([
-        getEpisodesDataCached(forceRefresh),
-        loadProgressMapCached(forceRefresh),
-      ]);
-      const refreshedSettings = getSettings();
-      const target = refreshedSettings.lessonTargetScore;
-      const nextTransliterationMode = refreshedSettings.transliterationMode;
+      const { episodes, lettersByEpisode } = await getEpisodesDataCached(forceRefresh);
       if (cancelled) return;
 
-      const progressMap: ProgressMap = { ...merged };
-      setProgress(progressMap);
-      setLettersByEp(lettersByEpisode);
-      setLessonTargetScore(target);
-      setTransliterationMode(nextTransliterationMode);
-
-      const normalEpisodes = episodes.filter(ep => /^ep\d+$/.test(ep.id));
-      const unlockedById: Record<string, boolean> = {};
-      for (let i = 0; i < normalEpisodes.length; i += 1) {
-        const ep = normalEpisodes[i];
-        if (i === 0) {
-          unlockedById[ep.id] = true;
-          continue;
-        }
-        const prevId = normalEpisodes[i - 1].id;
-        unlockedById[ep.id] = (progressMap[prevId] ?? 0) > 0;
-      }
-
-      const recommendedEpId = normalEpisodes
-        .filter(ep => unlockedById[ep.id] && (progressMap[ep.id] ?? 0) < target)
-        .sort((a, b) => {
-          const aBest = progressMap[a.id] ?? 0;
-          const bBest = progressMap[b.id] ?? 0;
-          if (aBest !== bBest) return aBest - bBest;
-          const aNum = Number(a.id.replace('ep', ''));
-          const bNum = Number(b.id.replace('ep', ''));
-          return aNum - bNum;
-        })[0]?.id;
-
-      const statusById: Record<string, LessonStatus> = {};
-      for (const ep of normalEpisodes) {
-        const best = progressMap[ep.id] ?? 0;
-        if (!unlockedById[ep.id]) statusById[ep.id] = 'locked';
-        else if (best >= target) statusById[ep.id] = 'mastered';
-        else statusById[ep.id] = ep.id === recommendedEpId ? 'current' : 'almost';
-      }
-
-      const byChar: Record<string, AlphabetLetterStatus> = {};
-      for (const ep of normalEpisodes) {
-        const epStatus = statusById[ep.id] ?? 'locked';
-        const lettersForEp = lettersByEpisode[ep.id] ?? [];
-        for (const ch of lettersForEp) {
-          if (!byChar[ch]) byChar[ch] = epStatus;
-        }
-      }
-      setLetterStatusByChar(byChar);
+      const { letterStatusByChar } = deriveLessonState({
+        episodes,
+        progress,
+        lessonTargetScore,
+        lettersByEpisode,
+        cachedLetterStatusByChar,
+      });
+      setLetterStatusByChar(letterStatusByChar);
       try {
-        window.localStorage.setItem(ALPHABET_STATUS_CACHE_KEY, JSON.stringify(byChar));
+        writeAlphabetStatusCache(letterStatusByChar);
       } catch {}
     };
 
-    load();
-    const onRefresh = () => {
-      load(true);
-    };
-    window.addEventListener('deda:progress-updated' as any, onRefresh);
-    window.addEventListener('deda:settings-updated' as any, onRefresh);
+    void load();
     return () => {
       cancelled = true;
-      window.removeEventListener('deda:progress-updated' as any, onRefresh);
-      window.removeEventListener('deda:settings-updated' as any, onRefresh);
     };
-  }, [pathname]);
+  }, [isLessonsPage, isStudyPage, lessonTargetScore, pathname, progress]);
 
   const speakLetter = (letter: string) => {
     if (typeof window === 'undefined') return;
@@ -286,7 +220,7 @@ export default function GlobalAlphabetOverlay() {
     playingTimerRef.current = window.setTimeout(finish, 1600);
   };
 
-  if (pathname === '/') return null;
+  if (pathname === '/' || isLessonsPage) return null;
 
   return (
     <div

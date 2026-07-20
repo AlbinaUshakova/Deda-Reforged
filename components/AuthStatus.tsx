@@ -1,42 +1,45 @@
 // components/AuthStatus.tsx
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useAppStore } from '@/lib/appStore';
 import SettingsPanel from '@/components/SettingsPanel';
 import ProgressPanel from '@/components/ProgressPanel';
 import FeedbackPanel from '@/components/FeedbackPanel';
-import { getSettings, setSettings, type Settings } from '@/lib/settings';
 
 export default function AuthStatus() {
+    const theme = useAppStore(state => state.settings.theme);
+    const transliterationMode = useAppStore(state => state.settings.transliterationMode);
+    const alphabetOpen = useAppStore(state => state.alphabetOpen);
+    const updateSettings = useAppStore(state => state.updateSettings);
+    const setProfileMenuOpen = useAppStore(state => state.setProfileMenuOpen);
     const [open, setOpen] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [showProgress, setShowProgress] = useState(false);
     const [showFeedback, setShowFeedback] = useState(false);
-    const [theme, setTheme] = useState<Settings['theme']>('light');
-    const [transliterationMode, setTransliterationMode] = useState<Settings['transliterationMode']>('ru');
     const menuRef = useRef<HTMLDivElement | null>(null);
-    const emitProfileMenuOpened = () => {
-        if (typeof window === 'undefined') return;
-        window.dispatchEvent(new CustomEvent('deda:profile-menu-opened'));
-    };
     const openMenu = () => {
         setOpen(true);
-        emitProfileMenuOpened();
+        setProfileMenuOpen(true);
     };
-    const closeMenu = () => setOpen(false);
+    const closeMenu = useCallback(() => {
+        setOpen(false);
+        setProfileMenuOpen(false);
+    }, [setProfileMenuOpen]);
     const toggleMenu = () => {
         setOpen(prev => {
             const next = !prev;
-            if (next) emitProfileMenuOpened();
+            setProfileMenuOpen(next);
             return next;
         });
     };
-    const closeAllProfileLayers = () => {
+    const closeAllProfileLayers = useCallback(() => {
         setOpen(false);
+        setProfileMenuOpen(false);
         setShowSettings(false);
         setShowProgress(false);
         setShowFeedback(false);
-    };
+    }, [setProfileMenuOpen]);
     const menuLabel = 'Меню';
     const focusRingClass =
         'focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2';
@@ -60,40 +63,13 @@ export default function AuthStatus() {
             document.removeEventListener('mousedown', handleClickOutside);
             document.removeEventListener('keydown', handleEsc);
         };
-    }, []);
+    }, [closeMenu]);
 
     useEffect(() => {
-        const syncSettings = () => {
-            const settings = getSettings();
-            setTheme(settings.theme);
-            setTransliterationMode(settings.transliterationMode);
-        };
-        syncSettings();
-        window.addEventListener('deda:settings-updated', syncSettings as EventListener);
-        return () => {
-            window.removeEventListener('deda:settings-updated', syncSettings as EventListener);
-        };
-    }, []);
-
-    useEffect(() => {
-        const onToggleAlphabet = () => {
+        if (alphabetOpen) {
             closeAllProfileLayers();
-        };
-        const onAlphabetOverlayState = (event: Event) => {
-            const custom = event as CustomEvent<{ open?: boolean }>;
-            if (custom.detail?.open) {
-                closeAllProfileLayers();
-            }
-        };
-
-        window.addEventListener('deda:toggle-alphabet', onToggleAlphabet as EventListener);
-        window.addEventListener('deda:alphabet-overlay-state', onAlphabetOverlayState as EventListener);
-
-        return () => {
-            window.removeEventListener('deda:toggle-alphabet', onToggleAlphabet as EventListener);
-            window.removeEventListener('deda:alphabet-overlay-state', onAlphabetOverlayState as EventListener);
-        };
-    }, []);
+        }
+    }, [alphabetOpen, closeAllProfileLayers]);
 
     useEffect(() => {
         const onResize = () => {
@@ -106,7 +82,7 @@ export default function AuthStatus() {
         return () => {
             window.removeEventListener('resize', onResize);
         };
-    }, []);
+    }, [closeAllProfileLayers]);
 
     return (
         <>
@@ -192,8 +168,7 @@ export default function AuthStatus() {
                                 <button
                                     type="button"
                                     onClick={() => {
-                                        setSettings({ theme: 'light' });
-                                        setTheme('light');
+                                        updateSettings({ theme: 'light' });
                                     }}
                                     aria-pressed={theme === 'light'}
                                     className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,12px)] font-medium transition ${focusRingClass} ${
@@ -215,8 +190,7 @@ export default function AuthStatus() {
                                 <button
                                     type="button"
                                     onClick={() => {
-                                        setSettings({ theme: 'dark' });
-                                        setTheme('dark');
+                                        updateSettings({ theme: 'dark' });
                                     }}
                                     aria-pressed={theme === 'dark'}
                                     className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,12px)] font-medium transition ${focusRingClass} ${
@@ -249,8 +223,7 @@ export default function AuthStatus() {
                                 <button
                                     type="button"
                                     onClick={() => {
-                                        setSettings({ transliterationMode: 'ru' });
-                                        setTransliterationMode('ru');
+                                        updateSettings({ transliterationMode: 'ru' });
                                     }}
                                     aria-pressed={transliterationMode === 'ru'}
                                     className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,12px)] font-medium transition ${focusRingClass} ${
@@ -272,8 +245,7 @@ export default function AuthStatus() {
                                 <button
                                     type="button"
                                     onClick={() => {
-                                        setSettings({ transliterationMode: 'latin' });
-                                        setTransliterationMode('latin');
+                                        updateSettings({ transliterationMode: 'latin' });
                                     }}
                                     aria-pressed={transliterationMode === 'latin'}
                                     className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,11.5px)] font-medium transition ${focusRingClass} ${

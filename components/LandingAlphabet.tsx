@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useAppStore } from '@/lib/appStore';
 import { playLetterAudio } from '@/lib/playLetterAudio';
-import { getSettings } from '@/lib/settings';
-import { geLetterToHint, type TransliterationMode } from '@/lib/transliteration';
+import { geLetterToHint } from '@/lib/transliteration';
 
 const GEORGIAN_ALPHABET = [
   'ა', 'ბ', 'გ', 'დ', 'ე', 'ვ', 'ზ', 'თ', 'ი', 'კ', 'ლ',
@@ -56,17 +55,7 @@ const geLetterAudioMap: Record<string, string> = {
 };
 
 export default function LandingAlphabet() {
-  const [transliterationMode, setTransliterationMode] = useState<TransliterationMode>('ru');
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const syncSettings = () => {
-      setTransliterationMode(getSettings().transliterationMode);
-    };
-    syncSettings();
-    window.addEventListener('deda:settings-updated', syncSettings as EventListener);
-    return () => window.removeEventListener('deda:settings-updated', syncSettings as EventListener);
-  }, []);
+  const transliterationMode = useAppStore(state => state.settings.transliterationMode);
 
   const speakLetter = (letter: string) => {
     void playLetterAudio({

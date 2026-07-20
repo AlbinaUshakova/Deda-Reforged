@@ -2,22 +2,28 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { BlocksBoard } from '@/components/blocks/BlocksBoard';
+import { BlocksCatHint } from '@/components/blocks/BlocksCatHint';
+import { BlocksPalettePortal } from '@/components/blocks/BlocksPalettePortal';
+import { PieceSVG } from '@/components/blocks/PieceSVG';
+import {
+  BOARD_PIXEL_SIZE,
+  BOARD_SIZE,
+  GRID_GAP_PX,
+  PREVIEW_SCALE,
+  canPlace,
+  clearLines,
+  createEmptyBoard,
+  findNearestValidPos,
+  hasAnyMove,
+  makeBag,
+  placePiece,
+  randomPaletteColor,
+  type CellColor,
+  type HoverPos,
+  type Piece,
+} from '@/lib/blocksGridLogic';
 
-const BOARD_SIZE = 8;
-const PREVIEW_SCALE = 0.78;
-const BOARD_PIXEL_SIZE = 'min(64dvh, clamp(180px, 100%, 620px))';
-const GRID_GAP_PX = 4;
-
-type CellColor = string | null;
-type ShapeCell = { r: number; c: number };
-
-type Difficulty = 'easy' | 'medium' | 'hard';
-
-type Shape = { id: string; cells: ShapeCell[]; difficulty: Difficulty };
-type Piece = { id: string; shape: Shape; color: string };
-
-type HoverPos = { row: number; col: number } | null;
 type DragState = { piece: Piece; pointerX: number; pointerY: number } | null;
 
 type BlocksGridProps = {
@@ -40,422 +46,6 @@ type ClearedCell = {
   color1: string;
   color2: string;
 };
-
-const SHAPES: Shape[] = [
-  {
-    id: 'line4',
-    difficulty: 'easy',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 0, c: 1 },
-      { r: 0, c: 2 },
-      { r: 0, c: 3 },
-    ],
-  },
-  {
-    id: 'L3',
-    difficulty: 'easy',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 1, c: 0 },
-      { r: 1, c: 1 },
-    ],
-  },
-  {
-    id: 'square3',
-    difficulty: 'medium',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 0, c: 1 },
-      { r: 0, c: 2 },
-      { r: 1, c: 0 },
-      { r: 1, c: 1 },
-      { r: 1, c: 2 },
-      { r: 2, c: 0 },
-      { r: 2, c: 1 },
-      { r: 2, c: 2 },
-    ],
-  },
-  {
-    id: 'bigL',
-    difficulty: 'hard',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 1, c: 0 },
-      { r: 2, c: 0 },
-      { r: 2, c: 1 },
-    ],
-  },
-  {
-    id: 'line3',
-    difficulty: 'easy',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 0, c: 1 },
-      { r: 0, c: 2 },
-    ],
-  },
-  {
-    id: 'square2',
-    difficulty: 'easy',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 0, c: 1 },
-      { r: 1, c: 0 },
-      { r: 1, c: 1 },
-    ],
-  },
-  {
-    id: 'plus5',
-    difficulty: 'medium',
-    cells: [
-      { r: 0, c: 1 },
-      { r: 1, c: 0 },
-      { r: 1, c: 1 },
-      { r: 1, c: 2 },
-      { r: 2, c: 1 },
-    ],
-  },
-  {
-    id: 'U5',
-    difficulty: 'hard',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 0, c: 2 },
-      { r: 1, c: 0 },
-      { r: 1, c: 1 },
-      { r: 1, c: 2 },
-    ],
-  },
-  {
-    id: 'T4',
-    difficulty: 'medium',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 0, c: 1 },
-      { r: 0, c: 2 },
-      { r: 1, c: 1 },
-    ],
-  },
-  {
-    id: 'zigzag4',
-    difficulty: 'medium',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 0, c: 1 },
-      { r: 1, c: 1 },
-      { r: 1, c: 2 },
-    ],
-  },
-  {
-    id: 'single1',
-    difficulty: 'easy',
-    cells: [{ r: 0, c: 0 }],
-  },
-  {
-    id: 'vline4',
-    difficulty: 'medium',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 1, c: 0 },
-      { r: 2, c: 0 },
-      { r: 3, c: 0 },
-    ],
-  },
-  {
-    id: 'vline3',
-    difficulty: 'easy',
-    cells: [
-      { r: 0, c: 0 },
-      { r: 1, c: 0 },
-      { r: 2, c: 0 },
-    ],
-  },
-];
-
-const TYPE_COLORS = [
-  'var(--shape-orange)',
-  'var(--shape-purple)',
-  'var(--shape-blue)',
-  'var(--shape-green)',
-];
-
-function randomInt(max: number): number {
-  return Math.floor(Math.random() * max);
-}
-
-function randomPaletteColor() {
-  return TYPE_COLORS[randomInt(TYPE_COLORS.length)];
-}
-
-function pickDistinctBagColors(count: number): string[] {
-  const shuffledColors = [...TYPE_COLORS];
-  for (let i = shuffledColors.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledColors[i], shuffledColors[j]] = [shuffledColors[j], shuffledColors[i]];
-  }
-  return shuffledColors.slice(0, count);
-}
-
-function createEmptyBoard(): CellColor[][] {
-  return Array.from({ length: BOARD_SIZE }, () =>
-    Array<CellColor>(BOARD_SIZE).fill(null),
-  );
-}
-
-function getBoardFillRatio(board: CellColor[][]): number {
-  const total = BOARD_SIZE * BOARD_SIZE;
-  let filled = 0;
-
-  for (let r = 0; r < BOARD_SIZE; r++) {
-    for (let c = 0; c < BOARD_SIZE; c++) {
-      if (board[r][c] !== null) filled++;
-    }
-  }
-
-  return filled / total;
-}
-
-// можно ли поставить фигуру в конкретное место
-function canPlace(
-  board: CellColor[][],
-  shape: Shape,
-  baseRow: number,
-  baseCol: number,
-): boolean {
-  const minRow = Math.min(...shape.cells.map(cell => cell.r));
-  const maxRow = Math.max(...shape.cells.map(cell => cell.r));
-  const minCol = Math.min(...shape.cells.map(cell => cell.c));
-  const maxCol = Math.max(...shape.cells.map(cell => cell.c));
-
-  if (baseRow + minRow < 0 || baseCol + minCol < 0) return false;
-  if (baseRow + maxRow >= BOARD_SIZE || baseCol + maxCol >= BOARD_SIZE) return false;
-
-  for (const cell of shape.cells) {
-    const r = baseRow + cell.r;
-    const c = baseCol + cell.c;
-    if (r < 0 || r >= BOARD_SIZE || c < 0 || c >= BOARD_SIZE) return false;
-    if (board[r][c] !== null) return false;
-  }
-  return true;
-}
-
-// физически кладём фигуру на поле
-function placePiece(
-  board: CellColor[][],
-  shape: Shape,
-  baseRow: number,
-  baseCol: number,
-  color: string,
-) {
-  if (!canPlace(board, shape, baseRow, baseCol)) {
-    return board.map(row => [...row]);
-  }
-
-  const next = board.map(row => [...row]);
-  for (const cell of shape.cells) {
-    const r = baseRow + cell.r;
-    const c = baseCol + cell.c;
-    next[r][c] = color;
-  }
-  return next;
-}
-
-// фигура вообще где-то помещается на текущем поле?
-function shapeHasAnyMove(board: CellColor[][], shape: Shape): boolean {
-  for (let r = 0; r < BOARD_SIZE; r++) {
-    for (let c = 0; c < BOARD_SIZE; c++) {
-      if (canPlace(board, shape, r, c)) return true;
-    }
-  }
-  return false;
-}
-
-function isLineShape(shape: Shape): boolean {
-  const sameRow = shape.cells.every(cell => cell.r === shape.cells[0].r);
-  const sameCol = shape.cells.every(cell => cell.c === shape.cells[0].c);
-  return sameRow || sameCol;
-}
-
-// ровно 3 разных фигуры
-// минимум одна точно ставится
-// остальные могут быть «заглушками» и усложнять игру
-function makeBag(board: CellColor[][]): Piece[] {
-  const fill = getBoardFillRatio(board);
-
-  // фигуры, которые вообще можно куда-то поставить
-  const availableShapes = SHAPES.filter(shape =>
-    shapeHasAnyMove(board, shape),
-  );
-
-  // если нет ни одной доступной фигуры — честный game over
-  if (availableShapes.length === 0) {
-    return [];
-  }
-
-  // веса сложностей в зависимости от заполненности
-  let weights: { easy: number; medium: number; hard: number };
-
-  if (fill < 0.25) {
-    weights = { easy: 6, medium: 3, hard: 1 };
-  } else if (fill < 0.6) {
-    weights = { easy: 4, medium: 3, hard: 2 };
-  } else {
-    weights = { easy: 8, medium: 1, hard: 0 };
-  }
-
-  const shapeWeight = (shape: Shape) =>
-    shape.difficulty === 'easy'
-      ? weights.easy
-      : shape.difficulty === 'medium'
-        ? weights.medium
-        : weights.hard;
-
-  // --- 1. выбираем ОДНУ гарантированно ставящуюся фигуру (из availableShapes) ---
-
-  const poolAvailable: Shape[] = [];
-  for (const s of availableShapes) {
-    const w = Math.max(shapeWeight(s), 1);
-    for (let i = 0; i < w; i++) {
-      poolAvailable.push(s);
-    }
-  }
-
-  const guaranteedShape =
-    poolAvailable.length > 0
-      ? poolAvailable[randomInt(poolAvailable.length)]
-      : availableShapes[randomInt(availableShapes.length)];
-
-  const pickedShapes: Shape[] = [guaranteedShape];
-  const usedIds = new Set<string>([guaranteedShape.id]);
-  let pickedLineShapes = isLineShape(guaranteedShape) ? 1 : 0;
-
-  // --- 2. добираем до 3 разных фигур из ВСЕХ SHAPES (могут не влезать) ---
-
-  const poolAll: Shape[] = [];
-  for (const s of SHAPES) {
-    const w = Math.max(shapeWeight(s), 1);
-    for (let i = 0; i < w; i++) {
-      poolAll.push(s);
-    }
-  }
-
-  // тасуем общий пул
-  for (let i = poolAll.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [poolAll[i], poolAll[j]] = [poolAll[j], poolAll[i]];
-  }
-
-  for (const s of poolAll) {
-    if (pickedShapes.length >= 3) break;
-    if (usedIds.has(s.id)) continue; // только разные фигуры
-    if (pickedLineShapes >= 1 && isLineShape(s)) continue; // в одной раздаче допускаем максимум одну линейную фигуру
-    pickedShapes.push(s);
-    usedIds.add(s.id);
-    if (isLineShape(s)) pickedLineShapes += 1;
-  }
-
-  // safety: если вдруг ещё не набрали 3 (например, мало фигур в SHAPES)
-  if (pickedShapes.length < 3) {
-    for (const s of SHAPES) {
-      if (pickedShapes.length >= 3) break;
-      if (usedIds.has(s.id)) continue;
-      if (pickedLineShapes >= 1 && isLineShape(s)) continue;
-      pickedShapes.push(s);
-      usedIds.add(s.id);
-      if (isLineShape(s)) pickedLineShapes += 1;
-    }
-  }
-
-  const now = Date.now();
-  const bagColors = pickDistinctBagColors(pickedShapes.length);
-
-  return pickedShapes.map((shape, idx) => ({
-    id: `p_${shape.id}_${now}_${idx}`,
-    shape,
-    // В одной раздаче все 3 фигуры должны иметь разные цвета.
-    color: bagColors[idx],
-  }));
-}
-
-function clearLines(board: CellColor[][]) {
-  let cleared = 0;
-  let next = board.map(row => [...row]);
-  const clearedCellsRaw: { r: number; c: number }[] = [];
-
-  // строки
-  for (let r = 0; r < BOARD_SIZE; r++) {
-    if (next[r].every(c => c !== null)) {
-      cleared++;
-      for (let c = 0; c < BOARD_SIZE; c++) {
-        clearedCellsRaw.push({ r, c });
-        next[r][c] = null;
-      }
-    }
-  }
-
-  // столбцы
-  for (let c = 0; c < BOARD_SIZE; c++) {
-    let full = true;
-    for (let r = 0; r < BOARD_SIZE; r++) {
-      if (next[r][c] === null) {
-        full = false;
-        break;
-      }
-    }
-    if (full) {
-      cleared++;
-      for (let r = 0; r < BOARD_SIZE; r++) {
-        clearedCellsRaw.push({ r, c });
-        next[r][c] = null;
-      }
-    }
-  }
-
-  return { board: next, cleared, clearedCellsRaw };
-}
-
-function hasAnyMove(board: CellColor[][], pieces: Piece[]): boolean {
-  for (const piece of pieces) {
-    for (let r = 0; r < BOARD_SIZE; r++) {
-      for (let c = 0; c < BOARD_SIZE; c++) {
-        if (canPlace(board, piece.shape, r, c)) return true;
-      }
-    }
-  }
-  return false;
-}
-
-function findNearestValidPos(
-  board: CellColor[][],
-  shape: Shape,
-  baseRow: number,
-  baseCol: number,
-  radius: number,
-): HoverPos {
-  if (canPlace(board, shape, baseRow, baseCol)) {
-    return { row: baseRow, col: baseCol };
-  }
-
-  let best: HoverPos = null;
-  let bestDist = Infinity;
-
-  for (let dr = -radius; dr <= radius; dr++) {
-    for (let dc = -radius; dc <= radius; dc++) {
-      const r = baseRow + dr;
-      const c = baseCol + dc;
-      if (r < 0 || r >= BOARD_SIZE || c < 0 || c >= BOARD_SIZE) continue;
-      if (!canPlace(board, shape, r, c)) continue;
-
-      const d = Math.abs(dr) + Math.abs(dc);
-      if (d < bestDist) {
-        bestDist = d;
-        best = { row: r, col: c };
-      }
-    }
-  }
-  return best;
-}
 
 export default function BlocksGrid({
   roundId,
@@ -788,6 +378,12 @@ export default function BlocksGrid({
     setDrag({ piece, pointerX: e.clientX, pointerY: e.clientY });
   };
 
+  const showLanguageHint = () => {
+    setShowCatLangHint(true);
+    if (catHintTimeoutRef.current) clearTimeout(catHintTimeoutRef.current);
+    catHintTimeoutRef.current = setTimeout(() => setShowCatLangHint(false), 3200);
+  };
+
   const handleRestart = () => {
     setBoard(createEmptyBoard());
     setScore(0);
@@ -848,149 +444,25 @@ export default function BlocksGrid({
               {leftOfCatAction}
             </div>
           )}
-          {/* поле */}
-          <div
-            ref={boardRef}
-            className="blocks-grid-board relative grid grid-cols-8 gap-[4px]"
-            style={{
-              width: '100%',
-              aspectRatio: '1 / 1',
-              minHeight: 240,
-              marginTop: 0,
-            }}
-          >
-            {board.map((row, r) =>
-              row.map((color, c) => {
-                const showHover =
-                  hover &&
-                  dragPiece &&
-                  canPlace(board, dragPiece.shape, hover.row, hover.col) &&
-                  dragPiece.shape.cells.some(
-                    cell =>
-                      cell.r + hover.row === r &&
-                      cell.c + hover.col === c,
-                  );
+          <BlocksBoard
+            board={board}
+            boardRef={boardRef}
+            dragPiece={dragPiece}
+            hover={hover}
+            clearedCells={clearedCells}
+            gameOver={gameOver}
+            onRestart={handleRestart}
+          />
 
-                const flash = clearedCells.find(
-                  cell => cell.r === r && cell.c === c,
-                );
-
-                return (
-                  <div
-                    key={`${r}-${c}`}
-                    className="blocks-grid-cell relative overflow-hidden rounded-lg bg-[var(--grid-cell)] transition-all duration-150 hover:-translate-y-[1px] hover:bg-[var(--grid-cell-hover)]"
-                  >
-                    {color && (
-                      <div
-                        className="blocks-grid-filled-cell w-full h-full"
-                        style={{ backgroundColor: color, borderRadius: 8 }}
-                      />
-                    )}
-
-                    {showHover && (
-                      <div className="blocks-grid-hover-cell absolute inset-[3px] rounded-md border border-indigo-400/90 pointer-events-none" />
-                    )}
-
-                    {flash && (
-                      <div
-                        className="absolute inset-[2px] rounded-md cell-flash pointer-events-none"
-                        style={
-                          {
-                            '--c1': flash.color1,
-                            '--c2': flash.color2,
-                          } as React.CSSProperties
-                        }
-                      />
-                    )}
-                  </div>
-                );
-              }),
-            )}
-
-            {gameOver && (
-              <div className="absolute inset-0 rounded-3xl flex items-center justify-center pointer-events-none">
-                <div className="blocks-grid-gameover-overlay absolute inset-0 rounded-3xl bg-slate-900/24" />
-                <div className="blocks-grid-gameover-card pointer-events-auto relative mx-4 w-[min(100%,286px)] rounded-[24px] border border-white/80 bg-white px-5 py-4 text-center shadow-[0_16px_34px_rgba(15,23,42,0.16)]">
-                  <div className="blocks-grid-gameover-title text-slate-800 text-[19px] font-semibold tracking-[-0.02em]">
-                    Ходов больше нет
-                  </div>
-                  <div className="blocks-grid-gameover-text mt-1.5 text-[14px] leading-[1.3] text-slate-600">
-                    Фигуры разместить нельзя
-                  </div>
-                  <div className="mt-3 flex justify-center">
-                    <button
-                      onClick={handleRestart}
-                      className="blocks-grid-gameover-button inline-flex min-h-[42px] min-w-[160px] items-center justify-center rounded-2xl bg-indigo-600 px-5 text-[15px] font-semibold text-white shadow-[0_6px_14px_rgba(79,70,229,0.18)] transition-all duration-150 hover:bg-indigo-700"
-                    >
-                      Сыграть снова
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-
-          </div>
-
-          {/* кот + подсказка языка */}
-          <button
-            type="button"
-            onClick={() => {
-              setShowCatLangHint(true);
-              if (catHintTimeoutRef.current) clearTimeout(catHintTimeoutRef.current);
-              catHintTimeoutRef.current = setTimeout(() => setShowCatLangHint(false), 3200);
-            }}
-            aria-label="Подсказка по выбору языка"
-            className="absolute left-0 z-[60] select-none"
-            style={{
-              top: palettePlacement === 'bottom' ? -cellSize * 1.18 : -cellSize * 1.48,
-              left: palettePlacement === 'bottom' ? cellSize * 0.08 : -cellSize * 0.02,
-              width: palettePlacement === 'bottom' ? cellSize * 1.95 : cellSize * 2.2,
-              transform: undefined,
-            }}
-          >
-            {catReaction && (
-              <div
-                className={`pointer-events-none absolute top-1 right-0 px-1.5 py-0.5 text-[15px] transition-opacity duration-300 ${
-                  catReactionVisible ? 'opacity-100' : 'opacity-0'
-                } ${catReaction.bounce ? 'animate-bounce' : ''}
-                `}
-              >
-                {catReaction.emoji}
-              </div>
-            )}
-            {showCatLangHint && (
-              <div className="pointer-events-none absolute bottom-[calc(100%-8px)] left-[58%] -translate-x-1/2 w-[250px] z-[80]">
-                <div className="relative w-[270px]">
-                  <svg viewBox="0 0 320 220" className="w-full h-auto drop-shadow-[0_12px_20px_rgba(0,0,0,0.35)]">
-                    <path
-                      d="M70 170 C35 170, 20 145, 30 120 C10 105, 18 72, 50 68 C62 40, 98 30, 122 48 C145 20, 190 20, 212 50 C245 40, 275 58, 280 88 C305 98, 312 128, 292 148 C282 162, 262 170, 240 170 C220 186, 96 186, 70 170 Z"
-                      fill="rgba(255,255,255,0.85)"
-                      stroke="#334155"
-                      strokeWidth="3"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center px-10 text-[15px] leading-snug text-center font-semibold tracking-tight text-slate-900">
-                    Направление перевода
-                    <br />
-                    меняется в Настройках
-                  </div>
-                </div>
-              </div>
-            )}
-            <div className="animate-cat-blink">
-              <img
-                src="/images/deda-cat_6.png"
-                alt="deda cat"
-                draggable={false}
-                className={`select-none pointer-events-none ${catMoodClass}`}
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                }}
-              />
-            </div>
-          </button>
+          <BlocksCatHint
+            cellSize={cellSize}
+            placement={palettePlacement}
+            moodClass={catMoodClass}
+            showLanguageHint={showCatLangHint}
+            reaction={catReaction}
+            reactionVisible={catReactionVisible}
+            onShowLanguageHint={showLanguageHint}
+          />
         </div>
       </div>
 
@@ -1007,48 +479,15 @@ export default function BlocksGrid({
         </div>
       )}
 
-      {/* палитра фигур слева */}
-      {paletteContainer &&
-        createPortal(
-          <div
-            className={
-              palettePlacement === 'bottom'
-                ? 'flex w-full flex-row items-center justify-center gap-[clamp(14px,2.2vw,24px)] overflow-hidden py-2'
-                : 'flex h-full -translate-y-[18px] flex-col items-center justify-center gap-[clamp(16px,2.8vh,30px)] overflow-visible py-1'
-            }
-            style={
-              palettePlacement === 'bottom'
-                ? undefined
-                : { transform: `translateX(${sidePaletteStackShift}px) translateY(-18px)` }
-            }
-          >
-            {bag.map(piece => {
-              const widthCells =
-                Math.max(...piece.shape.cells.map(c => c.c)) + 1;
-              const heightCells =
-                Math.max(...piece.shape.cells.map(c => c.r)) + 1;
-              const isDragging = dragPiece?.id === piece.id;
-
-              const previewCellSize = cellSize * PREVIEW_SCALE;
-
-              return (
-                <div
-                  key={piece.id}
-                  onPointerDown={e => startDrag(piece, e)}
-                  className="cursor-pointer touch-none"
-                  style={{
-                    width: widthCells * previewCellSize,
-                    height: heightCells * previewCellSize,
-                    opacity: isDragging ? 0.2 : 1,
-                  }}
-                >
-                  <PieceSVG piece={piece} cellSize={previewCellSize} />
-                </div>
-              );
-            })}
-          </div>,
-          paletteContainer,
-        )}
+      <BlocksPalettePortal
+        container={paletteContainer}
+        pieces={bag}
+        dragPieceId={dragPiece?.id}
+        cellSize={cellSize}
+        placement={palettePlacement}
+        sideStackShift={sidePaletteStackShift}
+        onStartDrag={startDrag}
+      />
 
       <style jsx>{`
         @keyframes flashTwice {
@@ -1084,27 +523,5 @@ export default function BlocksGrid({
         }
       `}</style>
     </div>
-  );
-}
-
-function PieceSVG({ piece, cellSize }: { piece: Piece; cellSize: number }) {
-  const widthCells = Math.max(...piece.shape.cells.map(c => c.c)) + 1;
-  const heightCells = Math.max(...piece.shape.cells.map(c => c.r)) + 1;
-
-  return (
-    <svg width={widthCells * cellSize} height={heightCells * cellSize}>
-      {piece.shape.cells.map((cell, i) => (
-        <rect
-          key={i}
-          x={cell.c * cellSize}
-          y={cell.r * cellSize}
-          width={cellSize}
-          height={cellSize}
-          rx={cellSize * 0.25}
-          ry={cellSize * 0.25}
-          fill={piece.color}
-        />
-      ))}
-    </svg>
   );
 }

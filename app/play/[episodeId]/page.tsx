@@ -3,13 +3,53 @@
 import Link from 'next/link';
 import type { Route } from 'next';
 import { useEffect, useState, useMemo } from 'react';
-import { loadProgressMap, getLocalProgress } from '@/lib/supabase';
+import { useAppStore } from '@/lib/appStore';
+import type { EpisodeCard } from '@/lib/clientContentCache';
 import BlocksGame from '@/components/BlocksGame';
 
 type Word = { ge: string; ru: string; audio?: string };
-type Card = { type: 'word' | 'phrase'; ge_text: string; ru_meaning: string; audio_url?: string; topic?: string };
+type Card = EpisodeCard;
 type Episode = { id: string; title: string; cards: Card[] };
-type EpisodeApiResponse = { ok: boolean; episode?: Episode };
+
+function isPlayableCard(card: Card): card is Card & { type: 'word' | 'phrase' } {
+  return card.type === 'word' || card.type === 'phrase';
+}
+
+function isEpisodeCard(value: unknown): value is Card {
+  if (!value || typeof value !== 'object') return false;
+  const card = value as Record<string, unknown>;
+  return (
+    (card.type === 'word' || card.type === 'phrase' || card.type === 'letter') &&
+    typeof card.ge_text === 'string' &&
+    typeof card.ru_meaning === 'string' &&
+    (card.audio_url === undefined || typeof card.audio_url === 'string') &&
+    (card.topic === undefined || typeof card.topic === 'string')
+  );
+}
+
+function parseEpisodeApiResponse(value: unknown): Episode | null {
+  if (!value || typeof value !== 'object') return null;
+  const response = value as Record<string, unknown>;
+  if (!response.ok || !response.episode || typeof response.episode !== 'object') {
+    return null;
+  }
+
+  const episode = response.episode as Record<string, unknown>;
+  if (
+    typeof episode.id !== 'string' ||
+    typeof episode.title !== 'string' ||
+    !Array.isArray(episode.cards) ||
+    !episode.cards.every(isEpisodeCard)
+  ) {
+    return null;
+  }
+
+  return {
+    id: episode.id,
+    title: episode.title,
+    cards: episode.cards,
+  };
+}
 
 function getEpisodeFallbackTitle(episodeId: string): string {
   const match = episodeId.match(/^ep(\d+)$/i);
@@ -23,17 +63,26 @@ async function loadEpisodeById(episodeId: string): Promise<Episode | null> {
   });
   if (res.status === 404) return null;
   if (!res.ok) throw new Error('Failed to load episode');
-  const json = (await res.json()) as EpisodeApiResponse;
-  return json.episode ?? null;
+  return parseEpisodeApiResponse(await res.json());
 }
 
 export default function PlayPage({ params }: { params: { episodeId: string } }) {
   const { episodeId } = params;
+  const hydrate = useAppStore(state => state.hydrate);
+  const progressMap = useAppStore(state => state.progressMap);
 
   const [title, setTitle] = useState<string>('');
   const [words, setWords] = useState<Word[]>([]);
   const [initialBest, setInitialBest] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    void hydrate();
+  }, [hydrate]);
+
+  useEffect(() => {
+    setInitialBest(progressMap[episodeId] ?? 0);
+  }, [episodeId, progressMap]);
 
   useEffect(() => {
     let cancelled = false;
@@ -62,9 +111,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
         }
 
         // берём только нужные карточки
-        let cards = ep.cards.filter(
-          (c: any) => c.type === 'word' || c.type === 'phrase',
-        ) as any[];
+        let cards = ep.cards.filter(isPlayableCard);
 
         if (topic) {
           const filtered = cards.filter(c => c.topic === topic);
@@ -73,35 +120,13 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
           }
         }
 
-        const ws: Word[] = cards.map((c: any) => ({
+        const ws: Word[] = cards.map((c) => ({
           ge: c.ge_text,
           ru: c.ru_meaning,
           audio: c.audio_url,
         }));
         setWords(ws);
-
-        // локальный рекорд
-        let localBest = 0;
-        if (typeof window !== 'undefined') {
-          const local = getLocalProgress();
-          const row = local.find(r => r.episodeId === episodeId);
-          if (row) localBest = row.best;
-        }
-        setInitialBest(localBest);
         setIsLoading(false);
-
-        // Рекорд из Supabase догружаем в фоне, чтобы не блокировать первый рендер игры.
-        loadProgressMap()
-          .then(progressMap => {
-            if (cancelled) return;
-            const serverBest = progressMap[episodeId] ?? 0;
-            if (serverBest > localBest) {
-              setInitialBest(serverBest);
-            }
-          })
-          .catch(e => {
-            console.error('load progress for episode error', e);
-          });
       } catch (e) {
         console.error('load play episode error', e);
         if (!cancelled) {

@@ -24,8 +24,9 @@ export default function SupaTestPage() {
 
                 if (error) setMsg('❌ Error: ' + error.message);
                 else setMsg('✅ Supabase OK. Query succeeded.');
-            } catch (e: any) {
-                setMsg('❌ Exception: ' + e?.message);
+            } catch (error: unknown) {
+                const message = error instanceof Error ? error.message : 'Unknown error';
+                setMsg('❌ Exception: ' + message);
             }
         }
 

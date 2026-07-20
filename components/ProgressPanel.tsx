@@ -2,9 +2,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useAppStore } from '@/lib/appStore';
 import { resetProgress } from '@/lib/supabase';
-import { loadProgressMapCached } from '@/lib/supabase';
-import { getSettings } from '@/lib/settings';
 import { getEpisodesDataCached } from '@/lib/clientContentCache';
 
 export default function ProgressPanel({
@@ -14,6 +13,8 @@ export default function ProgressPanel({
   onClose: () => void;
   onBack?: () => void;
 }) {
+  const progressMap = useAppStore(state => state.progressMap);
+  const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const [resetting, setResetting] = useState(false);
   const [confirmResetOpen, setConfirmResetOpen] = useState(false);
   const [masteredCount, setMasteredCount] = useState(0);
@@ -24,16 +25,14 @@ export default function ProgressPanel({
 
     const loadSummary = async () => {
       try {
-        const [episodesData, progressMap] = await Promise.all([
-          getEpisodesDataCached(),
-          loadProgressMapCached(),
-        ]);
+        const episodesData = await getEpisodesDataCached();
         if (cancelled) return;
 
         const episodes = episodesData.episodes;
-        const normalEpisodes = episodes.filter((ep: any) => /^ep\d+$/i.test(String(ep?.id ?? '')));
-        const target = getSettings().lessonTargetScore;
-        const mastered = normalEpisodes.filter((ep: any) => (progressMap[ep.id] ?? 0) >= target).length;
+        const normalEpisodes = episodes.filter(ep => /^ep\d+$/i.test(String(ep?.id ?? '')));
+        const mastered = normalEpisodes.filter(
+          ep => (progressMap[ep.id] ?? 0) >= lessonTargetScore,
+        ).length;
 
         setTotalLessons(normalEpisodes.length);
         setMasteredCount(mastered);
@@ -46,7 +45,7 @@ export default function ProgressPanel({
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [lessonTargetScore, progressMap]);
 
   const progressPercent = totalLessons > 0 ? Math.round((masteredCount / totalLessons) * 100) : 0;
 

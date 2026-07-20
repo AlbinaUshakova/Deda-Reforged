@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint . --ext .js,.ts,.tsx",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm run lint",
+    "test": "node --experimental-strip-types --test tests/**/*.test.ts",
+    "check": "npm run typecheck && npm run lint && npm run test",
     "check:lesson-letters": "node scripts/check-lesson-letters.mjs",
     "postinstall": "next telemetry disable || true"
   },

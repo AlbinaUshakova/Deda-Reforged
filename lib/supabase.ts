@@ -11,6 +11,8 @@ export const supabase = (url && key) ? createClient(url, key) : null;
 
 export type Progress = { episodeId: string; best: number };
 export type ProgressMap = Record<string, number>;
+type ProgressRow = { episode_id: string; best: number };
+type ProgressListener = (progressMap: ProgressMap) => void;
 
 // ключ локального хранилища (новая версия)
 const LS_KEY = 'deda_progress_v2';
@@ -19,9 +21,87 @@ const DEFAULT_EPISODE_IDS = Array.from({ length: 9 }, (_, i) => `ep${i + 1}`);
 const PROGRESS_CACHE_TTL_MS = 5000;
 let progressMapCache: { value: ProgressMap; at: number } | null = null;
 let progressMapPromise: Promise<ProgressMap> | null = null;
+const progressListeners = new Set<ProgressListener>();
+
+export function createDefaultLocalProgress(
+  episodeIds: string[] = DEFAULT_EPISODE_IDS,
+): Progress[] {
+  return episodeIds.map(episodeId => ({
+    episodeId,
+    best: 0,
+  }));
+}
+
+export function mergeProgressRows(
+  rows: ProgressRow[],
+  initialMap: ProgressMap = {},
+): ProgressMap {
+  const merged = { ...initialMap };
+  for (const row of rows) {
+    merged[row.episode_id] = Math.max(merged[row.episode_id] ?? 0, row.best);
+  }
+  return merged;
+}
+
+export function normalizeProgressRow(value: unknown): ProgressRow | null {
+  if (!value || typeof value !== 'object') return null;
+  const row = value as Record<string, unknown>;
+  if (typeof row.episode_id !== 'string' || !row.episode_id.trim()) return null;
+  const best =
+    typeof row.best === 'number'
+      ? row.best
+      : typeof row.best === 'string'
+        ? Number(row.best)
+        : Number.NaN;
+  if (!Number.isFinite(best)) return null;
+  return {
+    episode_id: row.episode_id,
+    best: Math.max(0, Math.floor(best)),
+  };
+}
+
+function normalizeProgress(value: unknown): Progress | null {
+  if (!value || typeof value !== 'object') return null;
+  const row = value as Record<string, unknown>;
+  if (typeof row.episodeId !== 'string' || !row.episodeId.trim()) return null;
+  const best =
+    typeof row.best === 'number'
+      ? row.best
+      : typeof row.best === 'string'
+        ? Number(row.best)
+        : Number.NaN;
+  if (!Number.isFinite(best)) return null;
+  return {
+    episodeId: row.episodeId,
+    best: Math.max(0, Math.floor(best)),
+  };
+}
+
+export function normalizeProgressArray(value: unknown): Progress[] {
+  if (!Array.isArray(value)) return [];
+  return value.flatMap(row => {
+    const normalized = normalizeProgress(row);
+    return normalized ? [normalized] : [];
+  });
+}
 
 function invalidateProgressCache() {
   progressMapCache = null;
+}
+
+function toProgressMap(progressRows: Progress[]): ProgressMap {
+  const map: ProgressMap = {};
+  for (const row of progressRows) {
+    map[row.episodeId] = Math.max(map[row.episodeId] ?? 0, row.best);
+  }
+  return map;
+}
+
+function notifyProgressListeners(progressMap: ProgressMap) {
+  const nextMap = { ...progressMap };
+  for (const listener of progressListeners) {
+    listener(nextMap);
+  }
 }
 
 // ===== ЛОКАЛЬНЫЙ ПРОГРЕСС =====
@@ -29,7 +109,7 @@ function invalidateProgressCache() {
 function getLocalProgressArray(): Progress[] {
   if (typeof window === 'undefined') return [];
   try {
-    return JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    return normalizeProgressArray(JSON.parse(localStorage.getItem(LS_KEY) || '[]'));
   } catch {
     return [];
   }
@@ -60,10 +140,7 @@ export function upsertLocalProgress(episodeId: string, score: number): number {
   }
   setLocalProgressArray(p);
   invalidateProgressCache();
-
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('deda:progress-updated'));
-  }
+  notifyProgressListeners(toProgressMap(p));
 
   const updated = p.find(x => x.episodeId === episodeId)!;
   return updated.best;
@@ -75,6 +152,19 @@ export function getLocalProgress(): Progress[] {
 }
 export function setLocalProgress(p: Progress[]) {
   setLocalProgressArray(p);
+  invalidateProgressCache();
+  notifyProgressListeners(toProgressMap(p));
+}
+
+export function getLocalProgressMap(): ProgressMap {
+  return toProgressMap(getLocalProgressArray());
+}
+
+export function subscribeToProgress(listener: ProgressListener) {
+  progressListeners.add(listener);
+  return () => {
+    progressListeners.delete(listener);
+  };
 }
 
 // ===== РАБОТА С SUPABASE =====
@@ -111,13 +201,15 @@ export async function loadProgressMap(): Promise<ProgressMap> {
   }
 
   // 5) сливаем: берём максимум по каждой паре (episodeId)
-  const serverMap: ProgressMap = {};
-  for (const row of rows as any[]) {
-    const ep = row.episode_id as string;
-    const best = row.best as number;
-    serverMap[ep] = Math.max(serverMap[ep] ?? 0, best);
-    map[ep] = Math.max(map[ep] ?? 0, best);
-  }
+  const typedRows = Array.isArray(rows)
+    ? rows.flatMap(row => {
+        const normalized = normalizeProgressRow(row);
+        return normalized ? [normalized] : [];
+      })
+    : [];
+  const serverMap = mergeProgressRows(typedRows);
+  const mergedMap = mergeProgressRows(typedRows, map);
+  Object.assign(map, mergedMap);
 
   // 6) если локально где-то лучше, чем на сервере — отправляем апдейт
   const toUpsert: { user_id: string; episode_id: string; best: number }[] = [];
@@ -155,6 +247,7 @@ export async function loadProgressMapCached(forceRefresh = false): Promise<Progr
   progressMapPromise = (async () => {
     const map = await loadProgressMap();
     progressMapCache = { value: map, at: Date.now() };
+    notifyProgressListeners(map);
     return map;
   })();
 
@@ -196,27 +289,20 @@ export async function upsertProgress(episodeId: string, score: number) {
 // сброс прогресса: локально всегда, на сервере — если есть авторизованный пользователь
 export async function resetProgress() {
   // Перезаписываем локально дефолтные значения (все уроки = 0).
-  const defaultLocalProgress: Progress[] = DEFAULT_EPISODE_IDS.map(episodeId => ({
-    episodeId,
-    best: 0,
-  }));
+  const defaultLocalProgress = createDefaultLocalProgress();
   setLocalProgressArray(defaultLocalProgress);
   clearLegacyLocalProgress();
   invalidateProgressCache();
 
   // Если backend не подключен — достаточно локального сброса.
   if (!supabase) {
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('deda:progress-updated'));
-    }
+    notifyProgressListeners(toProgressMap(defaultLocalProgress));
     return;
   }
 
   const { data: userData, error: userErr } = await supabase.auth.getUser();
   if (userErr || !userData.user) {
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('deda:progress-updated'));
-    }
+    notifyProgressListeners(toProgressMap(defaultLocalProgress));
     return;
   }
 
@@ -245,7 +331,5 @@ export async function resetProgress() {
 
   // Обновляем UI только после попытки серверного удаления,
   // чтобы не успевали вернуться старые значения.
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('deda:progress-updated'));
-  }
+  notifyProgressListeners(toProgressMap(defaultLocalProgress));
 }

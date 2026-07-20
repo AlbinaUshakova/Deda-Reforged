@@ -1,20 +1,20 @@
 'use client';
 
 import { useEffect } from 'react';
-import { applyThemeToDocument, getSettings } from '@/lib/settings';
+import { useAppStore } from '@/lib/appStore';
+import { applyThemeToDocument } from '@/lib/settings';
 
 export default function ThemeSync() {
-  useEffect(() => {
-    const syncTheme = () => {
-      applyThemeToDocument(getSettings().theme);
-    };
+  const hydrate = useAppStore(state => state.hydrate);
+  const theme = useAppStore(state => state.settings.theme);
 
-    syncTheme();
-    window.addEventListener('deda:settings-updated', syncTheme as EventListener);
-    return () => {
-      window.removeEventListener('deda:settings-updated', syncTheme as EventListener);
-    };
-  }, []);
+  useEffect(() => {
+    void hydrate();
+  }, [hydrate]);
+
+  useEffect(() => {
+    applyThemeToDocument(theme);
+  }, [theme]);
 
   return null;
 }

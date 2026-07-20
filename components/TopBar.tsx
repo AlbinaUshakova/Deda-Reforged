@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import type { User } from '@supabase/supabase-js';
 import SettingsPanel from '@/components/SettingsPanel';
 import FeedbackPanel from '@/components/FeedbackPanel';
 import { supabase } from '@/lib/supabase';
 
 export default function TopBar() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);

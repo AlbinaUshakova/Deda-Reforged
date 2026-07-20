@@ -1,8 +1,8 @@
 // components/SettingsPanel.tsx
 'use client';
 
-import { getSettings, setSettings } from '@/lib/settings';
 import { useEffect, useState } from 'react';
+import { useAppStore } from '@/lib/appStore';
 
 export default function SettingsPanel({
     onClose,
@@ -11,21 +11,21 @@ export default function SettingsPanel({
     onClose: () => void;
     onBack?: () => void;
 }) {
+    const settings = useAppStore(state => state.settings);
+    const updateSettings = useAppStore(state => state.updateSettings);
     const [lessonTargetScoreInput, setLessonTargetScoreInput] = useState('25');
     const [translationDirection, setTranslationDirection] = useState<'ge-ru' | 'ru-ge'>('ge-ru');
 
     useEffect(() => {
-        const s = getSettings();
-        const value = String(s.lessonTargetScore);
-        setLessonTargetScoreInput(value);
-        setTranslationDirection(s.translationDirection);
-    }, []);
+        setLessonTargetScoreInput(String(settings.lessonTargetScore));
+        setTranslationDirection(settings.translationDirection);
+    }, [settings.lessonTargetScore, settings.translationDirection]);
 
     const applyAndExit = (afterApply: () => void) => {
         const parsed = Number(lessonTargetScoreInput);
         const safe = Number.isFinite(parsed) ? parsed : 25;
         const next = Math.max(10, Math.min(100, Math.round(safe)));
-        setSettings({
+        updateSettings({
             lessonTargetScore: next,
             translationDirection,
         });

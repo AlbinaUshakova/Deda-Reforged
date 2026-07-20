@@ -2,9 +2,25 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
-import Image from 'next/image';
-import { pickImageForCard } from '@/lib/imageMap';
-import { getSettings } from '@/lib/settings';
+import { useAppStore } from '@/lib/appStore';
+import {
+  readFavoriteWordMap,
+  readFlashcardPreferences,
+  toggleFavoriteWord,
+  writeFlashcardAutoPlay,
+  writeFlashcardAutoSpeed,
+} from '@/lib/studyPreferences';
+import { FlashcardCardActions } from '@/components/flashcards/FlashcardCardActions';
+import { FlashcardCardContent } from '@/components/flashcards/FlashcardCardContent';
+import { FlashcardControls } from '@/components/flashcards/FlashcardControls';
+import { FlashcardFilters } from '@/components/flashcards/FlashcardFilters';
+import { FlashcardNavArrow } from '@/components/flashcards/FlashcardNavArrow';
+import {
+  getMobileTextSizeClass,
+  insertSoftHyphens,
+  splitDialogLines,
+} from '@/components/flashcards/flashcardText';
+import { useFlashcardKeyboardShortcuts } from '@/components/flashcards/useFlashcardKeyboardShortcuts';
 import { geTextToHint, type TransliterationMode } from '@/lib/transliteration';
 import { getEpisodesDataSync } from '@/lib/clientContentCache';
 
@@ -20,44 +36,6 @@ type Card = {
   topic?: string; // тема фразы (location_movement, questions и т.п.)
 };
 
-const LS_FAV = 'deda_fav_ge';
-
-// конфиг для тем (подписи и описания)
-const TOPIC_CONFIG: Record<string, { label: string; description: string }> = {
-  location_movement: {
-    label: 'Где / Куда',
-    description: 'Фразы про местоположение и движение: здесь, там, идём, остановка.',
-  },
-  questions: {
-    label: 'Вопросы',
-    description: 'Кто? Что? Где? Когда? Почему? — базовые вопросительные фразы.',
-  },
-  time: {
-    label: 'Время',
-    description: 'Сегодня, завтра, вчера, позже — ориентация во времени.',
-  },
-  daily_actions: {
-    label: 'Дело/быт',
-    description: 'Повседневные действия: работаю, читаю, готовлю, пользуюсь чем-то.',
-  },
-  needs_offers: {
-    label: 'Хочу / можно',
-    description: 'Хочу, могу, можно, помочь, подождать — выражение потребностей.',
-  },
-  shopping_places: {
-    label: 'Магазин / кафе',
-    description: 'Цена, открыто ли, очередь, варианты — всё про сервис и покупки.',
-  },
-  feelings_reactions: {
-    label: 'Чувства / реакция',
-    description: 'Нравится, помню, понимаю, забыла, правда? супер! — эмоции и мнение.',
-  },
-  politeness: {
-    label: 'Вежливость',
-    description: 'Спасибо, пожалуйста, извините, до свидания — вежливые формулы.',
-  },
-};
-
 function shuffleArr<T>(arr: T[]) {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
@@ -65,162 +43,6 @@ function shuffleArr<T>(arr: T[]) {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
-}
-
-function splitDialogLines(text: string): string[] {
-  return String(text || '')
-    .split('\n')
-    .map(s => s.trim())
-    .filter(Boolean);
-}
-
-function insertSoftHyphens(text: string, chunkSize: number) {
-  const trimmed = String(text || '').trim();
-  if (!trimmed || /\s/.test(trimmed) || trimmed.length <= chunkSize + 2) {
-    return trimmed;
-  }
-
-  const chars = Array.from(trimmed);
-  const parts: string[] = [];
-
-  for (let i = 0; i < chars.length; i += chunkSize) {
-    parts.push(chars.slice(i, i + chunkSize).join(''));
-  }
-
-  return parts.join('\u00AD');
-}
-
-function getMobileTextSizeClass(text: string, kind: 'ge' | 'ru') {
-  const trimmed = String(text || '').trim();
-  const length = Array.from(trimmed).length;
-  const words = trimmed.split(/\s+/).filter(Boolean);
-  const maxWordLength = words.reduce(
-    (max, word) => Math.max(max, Array.from(word).length),
-    0,
-  );
-
-  if (kind === 'ge') {
-    if (words.length >= 2 && words.length <= 3 && maxWordLength <= 8) {
-      return 'max-[640px]:text-[clamp(22px,7.4vw,34px)]';
-    }
-    if (length >= 34) return 'max-[640px]:text-[clamp(12px,4.1vw,18px)]';
-    if (length >= 28) return 'max-[640px]:text-[clamp(14px,4.8vw,22px)]';
-    if (length >= 20) return 'max-[640px]:text-[clamp(17px,5.5vw,26px)]';
-    if (length >= 14) return 'max-[640px]:text-[clamp(16px,5.1vw,24px)]';
-    if (length >= 10) return 'max-[640px]:text-[clamp(15px,4.8vw,22px)]';
-    return 'max-[640px]:text-[clamp(22px,7.4vw,34px)]';
-  }
-
-  if (length >= 34) return 'max-[640px]:text-[clamp(13px,4.4vw,20px)]';
-  if (length >= 24) return 'max-[640px]:text-[clamp(16px,5.1vw,24px)]';
-  if (length >= 16) return 'max-[640px]:text-[clamp(19px,6.1vw,28px)]';
-  return 'max-[640px]:text-[clamp(20px,6.6vw,30px)]';
-}
-
-function getInfoNoteMeta(kind: 'grammar' | 'speech' | 'mistake') {
-  if (kind === 'grammar') {
-    return {
-      icon: '🧠',
-      eyebrow: '',
-      title: '',
-      cardClass: 'border-amber-200/80 bg-gradient-to-br from-amber-50 via-orange-50 to-white shadow-[0_10px_26px_rgba(245,158,11,0.10)] hover:border-amber-300/90 hover:shadow-[0_12px_30px_rgba(245,158,11,0.14)]',
-      iconClass: 'bg-white/85 text-[15px] shadow-[inset_0_0_0_1px_rgba(251,191,36,0.22)]',
-      eyebrowClass: 'text-amber-700/70',
-      chevronClass: 'text-amber-700/70',
-      innerClass: 'border-amber-100/80 bg-white/72',
-      bulletClass: 'text-amber-600',
-    };
-  }
-
-  if (kind === 'speech') {
-    return {
-      icon: '💬',
-      eyebrow: 'Как Говорят',
-      title: 'Как звучит в жизни',
-      cardClass: 'border-sky-200/80 bg-gradient-to-br from-sky-50 via-cyan-50 to-white shadow-[0_10px_26px_rgba(14,165,233,0.10)] hover:border-sky-300/90 hover:shadow-[0_12px_30px_rgba(14,165,233,0.14)]',
-      iconClass: 'bg-white/85 text-[15px] shadow-[inset_0_0_0_1px_rgba(56,189,248,0.22)]',
-      eyebrowClass: 'text-sky-700/70',
-      chevronClass: 'text-sky-700/70',
-      innerClass: 'border-sky-100/80 bg-white/72',
-      bulletClass: 'text-sky-600',
-    };
-  }
-
-  return {
-    icon: '⚠️',
-    eyebrow: 'Частая Ошибка',
-    title: 'Что легко перепутать',
-    cardClass: 'border-rose-200/80 bg-gradient-to-br from-rose-50 via-orange-50 to-white shadow-[0_10px_26px_rgba(244,63,94,0.10)] hover:border-rose-300/90 hover:shadow-[0_12px_30px_rgba(244,63,94,0.14)]',
-    iconClass: 'bg-white/85 text-[15px] shadow-[inset_0_0_0_1px_rgba(251,113,133,0.22)]',
-    eyebrowClass: 'text-rose-700/70',
-    chevronClass: 'text-rose-700/70',
-    innerClass: 'border-rose-100/80 bg-white/72',
-    bulletClass: 'text-rose-600',
-  };
-}
-
-function getGrammarDisplay(text: string) {
-  const normalized = String(text || '').trim();
-  const [rawLead, rawTail] = normalized.split('→').map(part => part.trim());
-  const lead = rawLead || normalized;
-  const tail = rawTail || '';
-
-  const titleMap: Array<[RegExp, string]> = [
-    [/^вежливо/i, 'Это вежливо'],
-    [/^неформально/i, 'Это неформально'],
-    [/^универсально/i, 'Можно использовать везде'],
-    [/^формально/i, 'Это формально'],
-    [/^разговорно/i, 'Это разговорно'],
-    [/^мягкая просьба/i, 'Это мягкая просьба'],
-    [/^вежливая просьба/i, 'Это вежливая просьба'],
-    [/^базовый вопрос/i, 'Это базовый вопрос'],
-    [/^согласие/i, 'Когда соглашаемся'],
-    [/^ответ на/i, 'Когда отвечаем'],
-    [/^используем для роли/i, 'Когда говорим о себе'],
-    [/^самый естественный вариант знакомства/i, 'Когда представляемся'],
-    [/^дословно/i, 'Как это понимать'],
-    [/^объект ставим вперед/i, 'Как строится фраза'],
-    [/^в магазине \/ кафе/i, 'Где это говорить'],
-    [/^часто используемая фраза/i, 'Полезная фраза'],
-    [/^полезно при обучении/i, 'Когда учим новые слова'],
-    [/^более живо/i, 'Как звучать живее'],
-    [/^полная форма/i, 'Когда объясняем честно'],
-    [/^усиливаем благодарность/i, 'Как усилить благодарность'],
-    [/^самый частый вариант/i, 'Самый частый вариант'],
-  ];
-
-  const detailMap: Array<[RegExp, string]> = [
-    [/^вежливо/i, 'с незнакомыми людьми'],
-    [/^неформально/i, 'с друзьями и близкими'],
-    [/^универсально/i, 'почти в любой ситуации'],
-    [/^формально/i, 'в более официальной речи'],
-    [/^разговорно/i, 'в живой повседневной речи'],
-    [/^мягкая просьба/i, 'когда просим без давления'],
-    [/^вежливая просьба/i, 'в магазине, кафе и сервисе'],
-    [/^базовый вопрос/i, 'когда нужно быстро спросить'],
-    [/^согласие/i, 'чтобы ответить мягко и естественно'],
-    [/^ответ на/i, 'после благодарности'],
-    [/^используем для роли/i, 'когда говорим, кто мы'],
-    [/^самый естественный вариант знакомства/i, 'при знакомстве'],
-    [/^полезно при обучении/i, 'когда спрашиваем про слово'],
-    [/^в магазине \/ кафе/i, 'в сервисе и покупках'],
-    [/^часто используемая фраза/i, 'когда учим язык прямо в разговоре'],
-  ];
-
-  const title =
-    titleMap.find(([pattern]) => pattern.test(lead))?.[1] ??
-    'Когда это говорить';
-  const summary =
-    tail || lead.replace(/^[^:]+:\s*/i, '').replace(/\.$/, '');
-  const detail =
-    detailMap.find(([pattern]) => pattern.test(lead))?.[1] ??
-    '';
-  const normalizedSummary = summary.replace(/[.]/g, '').trim().toLowerCase();
-  const normalizedDetail = detail.replace(/[.]/g, '').trim().toLowerCase();
-  const dedupedDetail =
-    normalizedSummary && normalizedSummary === normalizedDetail ? '' : detail;
-
-  return { title, summary, detail: dedupedDetail };
 }
 
 export default function FlashcardDeck({
@@ -255,26 +77,19 @@ export default function FlashcardDeck({
   const [favMap, setFavMap] = useState<Record<string, true>>({});
 
   const [showTranslit, setShowTranslit] = useState(false);
-  const [transliterationMode, setTransliterationMode] = useState<TransliterationMode>('ru');
+  const transliterationMode = useAppStore(
+    state => state.settings.transliterationMode,
+  ) as TransliterationMode;
   const [revealCount, setRevealCount] = useState(0);
   const [auto, setAuto] = useState(false);
   const [autoSpeedMs, setAutoSpeedMs] = useState(1500);
   const [prefsHydrated, setPrefsHydrated] = useState(false);
   const [speedMenuOpen, setSpeedMenuOpen] = useState(false);
   const [shuffled, setShuffled] = useState(false);
-  const [brokenImages, setBrokenImages] = useState<Record<string, true>>({});
-  const [imageLoadState, setImageLoadState] = useState<Record<string, 'loaded' | 'error'>>({});
   const [expandedInfoKinds, setExpandedInfoKinds] = useState<Record<string, boolean>>({});
 
   const autoRef = useRef<number | null>(null);
   const speedMenuRef = useRef<HTMLDivElement | null>(null);
-
-  const chipBase =
-    'h-8 px-3 rounded-full flex items-center justify-center text-xs md:text-sm font-semibold transition transform duration-200';
-  const chipPassive =
-    'bg-white border border-slate-300 text-[var(--text-secondary)] hover:bg-slate-50 hover:text-[var(--text-primary)]';
-  const chipActive =
-    'bg-indigo-50 border border-indigo-400 text-indigo-700';
 
   const hasTopics = useMemo(
     () => cards.some(c => !!c.topic),
@@ -350,24 +165,8 @@ export default function FlashcardDeck({
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(LS_FAV);
-      if (raw) {
-        const arr = JSON.parse(raw) as string[];
-        const map: Record<string, true> = {};
-        arr.forEach(ge => (map[ge] = true));
-        setFavMap(map);
-      }
+      setFavMap(readFavoriteWordMap());
     } catch { }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const syncSettings = () => {
-      setTransliterationMode(getSettings().transliterationMode);
-    };
-    syncSettings();
-    window.addEventListener('deda:settings-updated', syncSettings as EventListener);
-    return () => window.removeEventListener('deda:settings-updated', syncSettings as EventListener);
   }, []);
 
   const visible = useMemo(() => {
@@ -428,16 +227,6 @@ export default function FlashcardDeck({
   const translitDialogLines = splitDialogLines(
     cardTranslit,
   );
-  const cardImageSrc = useMemo(() => {
-    if (!card) return null;
-    return pickImageForCard(card);
-  }, [card]);
-  const imageKey = card?.id || card?.ge_text || '';
-  const imageStateKey = cardImageSrc && imageKey ? `${imageKey}::${cardImageSrc}` : '';
-  const imageState = imageStateKey ? imageLoadState[imageStateKey] : undefined;
-  const canAttemptCardImage = !!cardImageSrc && !!imageKey && !brokenImages[imageKey];
-  const showCardImage = canAttemptCardImage && imageState === 'loaded';
-
   useEffect(() => {
     setExpandedInfoKinds({});
   }, [card?.ge_text, flipped]);
@@ -471,76 +260,30 @@ export default function FlashcardDeck({
     setRevealCount(0);
   }, [visible.length]);
 
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (
-        target &&
-        (target.tagName === 'INPUT' ||
-          target.tagName === 'TEXTAREA' ||
-          target.tagName === 'SELECT' ||
-          target.tagName === 'BUTTON' ||
-          target.isContentEditable)
-      ) {
-        return;
-      }
-
-      if (e.code === 'Space') {
-        if (!hasCard) return;
-        e.preventDefault();
-        setFlipped(f => !f);
-        return;
-      }
-
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        onNext();
-        return;
-      }
-
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        onPrev();
-      }
-    };
-
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [hasCard, onNext, onPrev]);
-
-  const persistFav = useCallback((map: Record<string, true>) => {
-    try {
-      localStorage.setItem(LS_FAV, JSON.stringify(Object.keys(map)));
-    } catch { }
-  }, []);
-
   const toggleFav = useCallback(
     (ge: string) => {
       setFavMap(prev => {
-        const next = { ...prev };
-        if (next[ge]) delete next[ge];
-        else next[ge] = true;
-        persistFav(next);
-        return next;
+        const next = toggleFavoriteWord(Object.keys(prev), ge);
+        return Object.fromEntries(
+          Array.from(next).map(word => [word, true] as const),
+        );
       });
     },
-    [persistFav],
+    [],
   );
 
-  useEffect(() => {
-    const h = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') onPrev();
-      else if (e.key === 'ArrowRight') onNext();
-      else if (e.key === ' ') {
-        e.preventDefault();
-        hasCard && setFlipped(f => !f);
-      } else if (e.key.toLowerCase() === 's' && hasCard && card) {
-        toggleFav(card.ge_text);
-      }
-    };
-    window.addEventListener('keydown', h);
-    return () => window.removeEventListener('keydown', h);
-  }, [onPrev, onNext, hasCard, card, toggleFav]);
+  const flipCard = useCallback(() => {
+    setFlipped(f => !f);
+  }, []);
+
+  useFlashcardKeyboardShortcuts({
+    hasCard,
+    currentCardGeText: card?.ge_text,
+    onFlip: flipCard,
+    onNext,
+    onPrev,
+    onToggleFavorite: toggleFav,
+  });
 
   useEffect(() => {
     if (!auto || !visible.length) {
@@ -551,15 +294,7 @@ export default function FlashcardDeck({
       return;
     }
     autoRef.current = window.setInterval(() => {
-      setIdx(i => {
-        const wrapped = i + 1 >= visible.length;
-        const nextIdx = wrapped ? 0 : i + 1;
-        setProgressStep(wrapped ? 0 : nextIdx + 1);
-        return nextIdx;
-      });
-      setFlipped(false);
-      setShowTranslit(false);
-      setRevealCount(0);
+      onNext();
     }, autoSpeedMs);
     return () => {
       if (autoRef.current !== null) {
@@ -567,18 +302,13 @@ export default function FlashcardDeck({
         autoRef.current = null;
       }
     };
-  }, [auto, visible.length, autoSpeedMs]);
+  }, [auto, visible.length, autoSpeedMs, onNext]);
 
   useEffect(() => {
     try {
-      const autoRaw = localStorage.getItem('deda_auto_play');
-      setAuto(autoRaw === '1');
-
-      const speedRaw = localStorage.getItem('deda_auto_speed_ms');
-      const speedParsed = Number(speedRaw);
-      if (speedParsed === 1500 || speedParsed === 2500 || speedParsed === 4000) {
-        setAutoSpeedMs(speedParsed);
-      }
+      const prefs = readFlashcardPreferences();
+      setAuto(prefs.autoPlay);
+      setAutoSpeedMs(prefs.autoSpeedMs);
     } catch { }
     setPrefsHydrated(true);
   }, []);
@@ -586,14 +316,14 @@ export default function FlashcardDeck({
   useEffect(() => {
     if (!prefsHydrated) return;
     try {
-      localStorage.setItem('deda_auto_play', auto ? '1' : '0');
+      writeFlashcardAutoPlay(auto);
     } catch { }
   }, [auto, prefsHydrated]);
 
   useEffect(() => {
     if (!prefsHydrated) return;
     try {
-      localStorage.setItem('deda_auto_speed_ms', String(autoSpeedMs));
+      writeFlashcardAutoSpeed(autoSpeedMs);
     } catch { }
   }, [autoSpeedMs, prefsHydrated]);
 
@@ -642,33 +372,57 @@ export default function FlashcardDeck({
   const isFav = !!(card && favMap[card.ge_text]);
   const canPrev = hasCard && total > 1;
   const canNext = hasCard && total > 1;
-  const playControl =
-    'h-[clamp(24px,5.9vw,44px)] w-[clamp(24px,5.9vw,44px)] rounded-full border-0 bg-transparent text-current opacity-100 transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.97] flex items-center justify-center text-[clamp(18px,4.8vw,29px)] font-light leading-none';
-  const shuffleControl =
-    'h-[clamp(24px,5.9vw,44px)] w-[clamp(24px,5.9vw,44px)] rounded-full border-0 bg-transparent text-current opacity-100 transition-all duration-200 ease-out hover:scale-[1.05] active:scale-[0.97] flex items-center justify-center text-[clamp(20px,5.1vw,31px)] font-light leading-none';
-  const glassMiniControl =
-    'inline-flex items-center justify-center rounded-xl border-0 bg-transparent text-[var(--text-primary)] shadow-none transition-all duration-200';
-  const navLikeMiniControl =
-    'inline-flex items-center justify-center rounded-xl border-0 bg-transparent text-[var(--text-primary)] shadow-none transition-all duration-200 hover:text-[var(--text-primary)] active:scale-[0.98]';
-  const speedOptions = [
-    { value: 1500, label: '1.5x' },
-    { value: 2500, label: '2.5x' },
-    { value: 4000, label: '4x' },
-  ] as const;
-  const currentSpeedLabel = speedOptions.find(o => o.value === autoSpeedMs)?.label ?? '1.5x';
 
-  const renderLevelDescription = (lvl: number | null) => {
-    if (lvl === 1) {
-      return 'L1 — супербазовые фразы: короткие, без сложной грамматики.';
-    }
-    if (lvl === 2) {
-      return 'L2 — простые фразы: полные предложения с объектами и обстоятельствами.';
-    }
-    if (lvl === 3) {
-      return 'L3 — фразы посложнее: обобщения, эмоции, более длинные конструкции.';
-    }
-    return '';
-  };
+  const clearFilters = useCallback(() => {
+    setTopicFilter(null);
+    setLevelFilter(null);
+    setLevelInfo(null);
+  }, []);
+
+  const selectTopic = useCallback((topic: string) => {
+    setTopicFilter(prev => (prev === topic ? null : topic));
+    setLevelFilter(null);
+    setLevelInfo(null);
+  }, []);
+
+  const selectLevel = useCallback((level: number) => {
+    setLevelFilter(prev => (prev === level ? null : level));
+    setLevelInfo(prev => (prev === level ? null : level));
+  }, []);
+
+  const toggleShuffle = useCallback(() => {
+    setShuffled(shuffleEnabled => {
+      const next = !shuffleEnabled;
+      setOrder(next ? shuffleArr(order) : visible.map((_, index) => index));
+      return next;
+    });
+  }, [order, visible]);
+
+  const selectAutoSpeed = useCallback((speedMs: number) => {
+    setAutoSpeedMs(speedMs);
+    setSpeedMenuOpen(false);
+  }, []);
+
+  const toggleInfoNote = useCallback((noteKey: string) => {
+    setExpandedInfoKinds(prev => ({
+      ...prev,
+      [noteKey]: !prev[noteKey],
+    }));
+  }, []);
+
+  const revealHint = useCallback(() => {
+    const t = (card?.ru_meaning || '').trim();
+    if (!t) return;
+    const lettersTotal = Array.from(t).filter(ch =>
+      /[A-Za-zА-Яа-яЁёІіЇїЄєҐґ\u0400-\u04FF]/.test(ch),
+    ).length;
+    setRevealCount(c => Math.min(lettersTotal, c + 1));
+  }, [card?.ru_meaning]);
+
+  const toggleCurrentFavorite = useCallback(() => {
+    if (!card) return;
+    toggleFav(card.ge_text);
+  }, [card, toggleFav]);
 
   return (
     <div className="flashcard-screen-root relative w-full min-w-0">
@@ -680,115 +434,28 @@ export default function FlashcardDeck({
           </div>
         </div>
 
-        {/* Фильтр по темам, если есть topic */}
-        {hasTopics && (
-          <>
-            <div className="mt-1 flex flex-wrap items-center justify-center gap-2">
-              <button
-                className={`${chipBase} ${topicFilter === null ? chipActive : chipPassive}`}
-                onClick={() => {
-                  setTopicFilter(null);
-                  setLevelFilter(null);
-                  setLevelInfo(null);
-                }}
-              >
-                Все
-              </button>
-              {topics.map(topic => {
-                const cfg = TOPIC_CONFIG[topic];
-                return (
-                  <button
-                    key={topic}
-                    className={`${chipBase} ${topicFilter === topic ? chipActive : chipPassive}`}
-                    onClick={() => {
-                      setTopicFilter(prev => (prev === topic ? null : topic));
-                      setLevelFilter(null);
-                      setLevelInfo(null);
-                    }}
-                  >
-                    {cfg?.label ?? topic}
-                  </button>
-                );
-              })}
-            </div>
-            {topicFilter && (
-              <div className="mt-1 max-w-xl text-center text-[11px] md:text-xs text-[var(--text-secondary)]">
-                {TOPIC_CONFIG[topicFilter]?.description ?? 'Фразы по выбранной теме.'}
-              </div>
-            )}
-          </>
-        )}
-
-        {/* Фильтр по уровню сложности — только если нет тем, но есть level */}
-        {!hasTopics && hasLevels && (
-          <>
-            <div className="mt-1 flex flex-wrap items-center justify-center gap-2">
-              <button
-                className={`${chipBase} ${levelFilter === null ? chipActive : chipPassive}`}
-                onClick={() => {
-                  setLevelFilter(null);
-                  setLevelInfo(null);
-                }}
-              >
-                Все
-              </button>
-              {[1, 2, 3].map(lvl => (
-                <button
-                  key={lvl}
-                  className={`${chipBase} ${levelFilter === lvl ? chipActive : chipPassive}`}
-                  onClick={() => {
-                    setLevelFilter(prev => (prev === lvl ? null : lvl));
-                    setLevelInfo(prev => (prev === lvl ? null : lvl));
-                  }}
-                >
-                  L{lvl}
-                </button>
-              ))}
-            </div>
-            {levelInfo !== null && (
-              <div className="mt-1 max-w-xl text-center text-[11px] md:text-xs text-[var(--text-secondary)]">
-                {renderLevelDescription(levelInfo)}
-              </div>
-            )}
-          </>
-        )}
+        <FlashcardFilters
+          hasTopics={hasTopics}
+          hasLevels={hasLevels}
+          topics={topics}
+          topicFilter={topicFilter}
+          levelFilter={levelFilter}
+          levelInfo={levelInfo}
+          onClearFilters={clearFilters}
+          onSelectTopic={selectTopic}
+          onSelectLevel={selectLevel}
+        />
       </div>
 
       {/* Карточка */}
       <div className="flashcard-stage relative mx-auto flex w-full max-w-[900px] flex-col items-center justify-center px-[clamp(14px,3.6vw,40px)] pt-[clamp(8px,1.4vh,18px)] pb-[clamp(24px,4vh,44px)]">
         <div className="flashcard-card-shell relative mx-auto">
           {canPrev && (
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                onPrev();
-              }}
-              className="flashcard-nav-arrow flashcard-nav-arrow--outside absolute top-1/2 z-20 hidden -translate-y-1/2 min-[1201px]:inline-flex items-center justify-center h-13 w-13 rounded-full border-0 bg-transparent text-[var(--text-secondary)] shadow-none transition-all duration-150 ease-out hover:scale-[1.04] active:scale-[0.98]"
-              style={{ left: '-54px' }}
-              title="Назад"
-              aria-label="Назад"
-            >
-              <svg className="block -scale-x-100 mx-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            <FlashcardNavArrow direction="prev" placement="outside" onClick={onPrev} />
           )}
 
           {canNext && (
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                onNext();
-              }}
-              className="flashcard-next-btn flashcard-nav-arrow flashcard-nav-arrow--outside absolute top-1/2 z-20 hidden -translate-y-1/2 min-[1201px]:inline-flex items-center justify-center h-13 w-13 rounded-full border-0 bg-transparent text-[var(--text-secondary)] shadow-none transition-all duration-150 ease-out hover:scale-[1.04] active:scale-[0.98]"
-              style={{ right: '-54px' }}
-              title="Вперёд"
-              aria-label="Вперёд"
-            >
-              <svg className="block mx-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            <FlashcardNavArrow direction="next" placement="outside" onClick={onNext} />
           )}
 
           <div
@@ -806,275 +473,52 @@ export default function FlashcardDeck({
             }}
           >
           {canPrev && (
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                onPrev();
-              }}
-              className="flashcard-nav-arrow flashcard-nav-arrow--inside absolute left-[-52px] top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border-0 bg-transparent text-[var(--text-secondary)] shadow-none transition-all duration-150 ease-out hover:scale-[1.04] active:scale-[0.98] max-[640px]:left-[-44px] min-[1201px]:hidden"
-              title="Назад"
-              aria-label="Назад"
-            >
-              <svg className="block -scale-x-100 mx-auto" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            <FlashcardNavArrow direction="prev" placement="inside" onClick={onPrev} />
           )}
 
           {canNext && (
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                onNext();
-              }}
-              className="flashcard-next-btn flashcard-nav-arrow flashcard-nav-arrow--inside absolute right-[-52px] top-1/2 z-20 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border-0 bg-transparent text-[var(--text-secondary)] shadow-none transition-all duration-150 ease-out hover:scale-[1.04] active:scale-[0.98] max-[640px]:right-[-44px] min-[1201px]:hidden"
-              title="Вперёд"
-              aria-label="Вперёд"
-            >
-              <svg className="block mx-auto" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            <FlashcardNavArrow direction="next" placement="inside" onClick={onNext} />
           )}
 
           {hasCard && (
-            <>
-              {/* Подсказка */}
-              <button
-                className={`flashcard-hint-btn flashcard-secondary-label flashcard-top-muted flashcard-mini-btn group absolute left-[clamp(20px,2vw,26px)] top-[clamp(12px,1.4vw,16px)] z-10 h-8 px-2 text-[11px] md:text-xs ${navLikeMiniControl}`}
-                onClick={e => {
-                  e.stopPropagation();
-                  const t = (card?.ru_meaning || '').trim();
-                  if (!t) return;
-                  const lettersTotal = Array.from(t).filter(ch =>
-                    /[A-Za-zА-Яа-яЁёІіЇїЄєҐґ\u0400-\u04FF]/.test(ch),
-                  ).length;
-                  setRevealCount(c => Math.min(lettersTotal, c + 1));
-                }}
-                onContextMenu={e => {
-                  e.preventDefault();
-                  setRevealCount(0);
-                }}
-                title="Показать перевод"
-                aria-pressed={revealCount > 0}
-              >
-                <span className="text-[13px] leading-none">💡</span>
-                {revealCount === 0 ? (
-                  <span className="flashcard-hint-label ml-1">подсказка</span>
-                ) : (
-                  <span className="flashcard-hint-value ml-1">{hintText}</span>
-                )}
-              </button>
-
-              {/* Справа сверху: избранное, транслит */}
-              <div className="absolute right-[clamp(20px,2vw,26px)] top-[clamp(12px,1.4vw,16px)] z-10 flex items-center gap-2">
-                <button
-                  className={`flashcard-favorite-btn flashcard-top-muted flashcard-mini-btn h-6 w-6 text-[13px] ${navLikeMiniControl}`}
-                  onClick={e => {
-                    e.stopPropagation();
-                    toggleFav(card.ge_text);
-                  }}
-                  title={isFav ? 'Убрать из избранного' : 'В избранное'}
-                  aria-pressed={isFav}
-                >
-                  {isFav ? '⭐' : '☆'}
-                </button>
-                <button
-                  className={`flashcard-top-muted flashcard-mini-btn flashcard-translit-btn h-6 min-w-6 px-1 text-[10px] md:text-[11px] ${navLikeMiniControl}`}
-                  onClick={e => {
-                    e.stopPropagation();
-                    setShowTranslit(v => !v);
-                  }}
-                  title="Показать чтение"
-                  aria-pressed={showTranslit}
-                >
-                  Aa
-                </button>
-              </div>
-
-            </>
+            <FlashcardCardActions
+              hintText={hintText}
+              revealCount={revealCount}
+              isFavorite={isFav}
+              showTranslit={showTranslit}
+              onRevealHint={revealHint}
+              onResetHint={() => setRevealCount(0)}
+              onToggleFavorite={toggleCurrentFavorite}
+              onToggleTranslit={() => setShowTranslit(v => !v)}
+            />
           )}
 
           {/* Контент */}
           <div className="flashcard-content grid h-full w-full select-none place-items-center text-center">
-            {!hasCard ? (
-              <div className="text-[var(--text-secondary)]">
-                {isFavoritesPage
-                  ? 'Нет отмеченных карточек'
-                  : 'Нет карточек'}
-              </div>
-            ) : !flipped ? (
-              <div key={`front-${idx}`} className="flex -translate-y-[14px] flex-col items-center justify-center gap-3">
-                <div
-                  className={`flashcard-ge-text mx-auto w-full max-w-[20ch] max-[640px]:max-w-full whitespace-normal break-normal text-[clamp(34px,5vw,56px)] ${geMobileTextClass} ${geMobileLayoutClass} leading-[1.12] text-slate-800`}
-                  style={{
-                    fontFamily:
-                      "'Noto Sans Georgian','DejaVu Sans',system-ui,sans-serif",
-                  }}
-                >
-                  {isGeDialog ? (
-                    <div className="flex flex-col items-center gap-2">
-                      {geDialogLines.map((line, lineIdx) => (
-                        <div
-                          key={`${line}-${lineIdx}`}
-                          className={`flashcard-dialog-line ${
-                            lineIdx === 0 ? 'flashcard-dialog-line--question' : 'flashcard-dialog-line--answer'
-                          }`}
-                        >
-                          {renderLessonLetterHighlight(line)}
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    renderCardText(card.ge_text, 'ge')
-                  )}
-                </div>
-                {showTranslit && (
-                  <div className="mb-2 max-[640px]:mb-4 max-[460px]:mb-5 text-[clamp(16px,2vw,22px)] text-emerald-600/90">
-                    {isGeDialog && translitDialogLines.length > 1 ? (
-                      <div className="flex flex-col items-center gap-1.5">
-                        {translitDialogLines.map((line, lineIdx) => (
-                          <div
-                            key={`${line}-${lineIdx}`}
-                            className={`flashcard-dialog-line ${
-                              lineIdx === 0 ? 'flashcard-dialog-line--question' : 'flashcard-dialog-line--answer'
-                            }`}
-                          >
-                            {line}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      cardTranslit
-            )}
-          </div>
-        )}
-      </div>
-    ) : (
-      <div key={`back-${idx}`} className="flex -translate-y-[14px] flex-col items-center justify:center gap-3">
-        <div className={`flashcard-ru-text mx-auto w-full max-w-[20ch] max-[640px]:max-w-full whitespace-normal break-normal text-[clamp(30px,5vw,48px)] ${ruMobileTextClass} ${ruMobileLayoutClass} leading-tight text-[var(--text-primary)]`}>
-          {isRuDialog ? (
-            <div className="flex flex-col items-center gap-1.5">
-              {ruDialogLines.map((line, lineIdx) => (
-                <div
-                          key={`${line}-${lineIdx}`}
-                          className={`flashcard-dialog-line ${
-                            lineIdx === 0 ? 'flashcard-dialog-line--question' : 'flashcard-dialog-line--answer'
-                          }`}
-                        >
-                          {line}
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    renderCardText(card.ru_meaning || '—', 'ru')
-                  )}
-                </div>
-                {infoNotes.length > 0 && (
-                  <div className="mt-4 flex w-full max-w-[32ch] flex-col gap-3">
-                    {infoNotes.map((note, noteIdx) => {
-                      const meta = getInfoNoteMeta(note.kind);
-                      const isExpanded = !!expandedInfoKinds[`${note.kind}-${noteIdx}`];
-                      const grammarDisplay =
-                        note.kind === 'grammar'
-                          ? getGrammarDisplay(note.text)
-                          : null;
-                      return (
-                        <button
-                          key={`${note.kind}-${noteIdx}-${note.text}`}
-                          type="button"
-                          onClick={e => {
-                            e.stopPropagation();
-                            setExpandedInfoKinds(prev => ({
-                              ...prev,
-                              [`${note.kind}-${noteIdx}`]: !prev[`${note.kind}-${noteIdx}`],
-                            }));
-                          }}
-                          className={`w-full overflow-hidden rounded-[22px] border px-4 py-3 text-left transition-all duration-200 ${meta.cardClass}`}
-                          aria-expanded={isExpanded}
-                          aria-label={`Открыть пояснение: ${meta.eyebrow}`}
-                        >
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="min-w-0">
-                              <div className="flex items-center gap-2">
-                                <span
-                                  className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${meta.iconClass}`}
-                                  aria-hidden="true"
-                                >
-                                  {meta.icon}
-                                </span>
-                                <div className="min-w-0">
-                                  {meta.eyebrow ? (
-                                    <span className={`block text-[10px] font-semibold uppercase tracking-[0.08em] ${meta.eyebrowClass}`}>
-                                      {meta.eyebrow}
-                                    </span>
-                                  ) : null}
-                                  <span className="block text-[clamp(15px,1.8vw,18px)] font-semibold leading-[1.15] text-slate-800">
-                                    {grammarDisplay ? grammarDisplay.title : meta.title}
-                                  </span>
-                                </div>
-                              </div>
-                              {grammarDisplay ? (
-                                <div className="mt-3 space-y-1">
-                                  <span className="block text-[clamp(13px,1.55vw,15px)] leading-relaxed text-slate-700">
-                                    {grammarDisplay.summary}
-                                  </span>
-                                  {grammarDisplay.detail ? (
-                                    <span className="block text-[clamp(12px,1.4vw,14px)] leading-relaxed text-slate-500">
-                                      → {grammarDisplay.detail}
-                                    </span>
-                                  ) : null}
-                                </div>
-                              ) : (
-                                <span className="mt-3 block text-[clamp(13px,1.55vw,15px)] leading-relaxed text-slate-700">
-                                  {note.text}
-                                </span>
-                              )}
-                            </div>
-                            <span
-                              className={`mt-1 shrink-0 text-[14px] transition-transform duration-200 ${meta.chevronClass} ${
-                                isExpanded ? 'rotate-180' : ''
-                              }`}
-                              aria-hidden="true"
-                            >
-                              ▾
-                            </span>
-                          </div>
-
-                          <div
-                            className={`grid transition-all duration-300 ease-out ${
-                              isExpanded ? 'grid-rows-[1fr] opacity-100 pt-3' : 'grid-rows-[0fr] opacity-0 pt-0'
-                            }`}
-                          >
-                            <div className="overflow-hidden">
-                              <div className={`rounded-[18px] border px-3.5 py-3 text-[clamp(12px,1.4vw,14px)] leading-relaxed text-slate-700 ${meta.innerClass}`}>
-                                {grammarDisplay ? (
-                                  <div className="space-y-2.5">
-                                    {grammarDisplay.detail ? (
-                                      <div className="text-slate-700">{grammarDisplay.summary}</div>
-                                    ) : null}
-                                    {grammarDisplay.detail ? (
-                                      <div className="text-slate-500">{grammarDisplay.detail}</div>
-                                    ) : null}
-                                  </div>
-                                ) : (
-                                  <div className="flex items-start gap-2">
-                                    <span className={`mt-[2px] text-[11px] ${meta.bulletClass}`} aria-hidden="true">
-                                      →
-                                    </span>
-                                    <span>{note.text}</span>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            )}
+            <FlashcardCardContent
+              hasCard={hasCard}
+              isFavoritesPage={isFavoritesPage}
+              flipped={flipped}
+              idx={idx}
+              geText={card?.ge_text || ''}
+              ruText={card?.ru_meaning || ''}
+              geDialogLines={geDialogLines}
+              ruDialogLines={ruDialogLines}
+              translitDialogLines={translitDialogLines}
+              cardTranslit={cardTranslit}
+              showTranslit={showTranslit}
+              isGeDialog={isGeDialog}
+              isRuDialog={isRuDialog}
+              geMobileTextClass={geMobileTextClass}
+              ruMobileTextClass={ruMobileTextClass}
+              geMobileLayoutClass={geMobileLayoutClass}
+              ruMobileLayoutClass={ruMobileLayoutClass}
+              infoNotes={infoNotes}
+              expandedInfoKinds={expandedInfoKinds}
+              renderCardText={renderCardText}
+              renderLessonLetterHighlight={renderLessonLetterHighlight}
+              onToggleInfoNote={toggleInfoNote}
+            />
           </div>
 
             <div
@@ -1086,93 +530,17 @@ export default function FlashcardDeck({
         </div>
 
         {/* Controls: below card, centered by the card wrapper */}
-        <div className="flashcard-controls-wrap relative h-[clamp(31px,7.2vw,56px)] min-w-0">
-          <div className="flashcard-cat-inline pointer-events-none absolute z-[20] select-none">
-            <Image
-              src="/images/deda-cat_2.png"
-              alt="Deda cat"
-              width={160}
-              height={107}
-              priority
-              className="flashcard-cat drop-shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
-              style={{ filter: 'saturate(0.9) brightness(1)' }}
-            />
-          </div>
-
-          <div className="flashcard-controls-compact absolute left-1/2 top-1/2 inline-flex h-[clamp(31px,7.2vw,56px)] -translate-x-1/2 -translate-y-1/2 items-center gap-[clamp(22px,6vw,40px)]">
-            <button
-              onClick={() => {
-                setShuffled(s => {
-                  const next = !s;
-                  setOrder(next ? shuffleArr(order) : visible.map((_, i) => i));
-                  return next;
-                });
-              }}
-              className={`flashcard-shuffle-btn ${shuffleControl}`}
-              title="Перемешать"
-              aria-pressed={shuffled}
-            >
-              <span className="relative inline-flex h-full w-full items-center justify-center">
-                <span>⇄</span>
-              </span>
-            </button>
-
-            <button
-              onClick={() => setAuto(a => !a)}
-              className={`flashcard-play-btn ${playControl}`}
-              title="Автопрокрутка"
-              aria-pressed={auto}
-            >
-              {auto ? (
-                <span className="inline-flex h-[0.54em] items-center gap-[4px]" aria-hidden="true">
-                  <span className="block h-full w-[4px] rounded-full bg-current" />
-                  <span className="block h-full w-[4px] rounded-full bg-current" />
-                </span>
-              ) : (
-                <span
-                  className="flashcard-play-triangle inline-block translate-x-[1px]"
-                  aria-hidden="true"
-                />
-              )}
-            </button>
-
-            <div className="relative flex items-center justify-center" ref={speedMenuRef}>
-              <button
-                type="button"
-                onClick={() => setSpeedMenuOpen(v => !v)}
-                className="flashcard-speed-btn h-[clamp(24px,5.9vw,44px)] min-w-0 rounded-full border-0 bg-transparent px-[clamp(1px,0.4vw,2px)] text-[clamp(11px,2.5vw,13px)] leading-none font-normal text-current outline-none transition-all duration-200 hover:scale-[1.03] active:scale-[0.97] focus:outline-none"
-                aria-label="Скорость автопрокрутки"
-                title={`Скорость: ${currentSpeedLabel}`}
-                aria-haspopup="menu"
-                aria-expanded={speedMenuOpen}
-              >
-                {currentSpeedLabel}
-              </button>
-              {speedMenuOpen && (
-                <div className="absolute right-0 top-full mt-1 z-30 flex flex-col items-end gap-1 py-0.5">
-                  {speedOptions.map(option => (
-                    <button
-                      key={option.value}
-                      type="button"
-                      onClick={() => {
-                        setAutoSpeedMs(option.value);
-                        setSpeedMenuOpen(false);
-                      }}
-                      title={`Установить скорость ${option.label}`}
-                      className={`flashcard-speed-option min-w-0 px-1 py-0.5 text-right text-[11px] leading-none transition-all duration-150 active:scale-[0.99] ${
-                        autoSpeedMs === option.value
-                          ? 'font-medium text-current'
-                          : 'text-current'
-                      }`}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        <FlashcardControls
+          shuffled={shuffled}
+          auto={auto}
+          autoSpeedMs={autoSpeedMs}
+          speedMenuOpen={speedMenuOpen}
+          speedMenuRef={speedMenuRef}
+          onShuffle={toggleShuffle}
+          onToggleAuto={() => setAuto(currentAuto => !currentAuto)}
+          onToggleSpeedMenu={() => setSpeedMenuOpen(open => !open)}
+          onSelectSpeed={selectAutoSpeed}
+        />
       </div>
     </div>
   );
