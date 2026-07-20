@@ -2976,6 +2976,20 @@ html[data-theme='dark'] .blocks-refresh-btn:active {
     color: #9a5a23;
 }
 
+.blocks-question-shortcut {
+    display: inline-flex;
+    min-height: 22px;
+    align-items: center;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.38);
+    padding: 0 8px;
+    color: rgba(97, 111, 106, 0.62);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
 html[data-theme='dark'] .blocks-question-card {
     border-color: rgba(190, 168, 132, 0.13);
     background:
@@ -2994,6 +3008,11 @@ html[data-theme='dark'] .blocks-question-chip {
 html[data-theme='dark'] .blocks-question-chip--muted {
     background: rgba(198, 168, 116, 0.12);
     color: #ead9b8;
+}
+
+html[data-theme='dark'] .blocks-question-shortcut {
+    background: rgba(255, 251, 235, 0.035);
+    color: rgba(216, 208, 194, 0.48);
 }
 
 .blocks-answer-input {
@@ -3078,6 +3097,10 @@ html[data-theme='dark'] .blocks-submit-btn:hover {
 }
 
 @media (max-width: 900px) {
+    .blocks-question-shortcut {
+        display: none;
+    }
+
     .blocks-answer-stack {
         width: min(100%, 640px);
         max-width: 640px;

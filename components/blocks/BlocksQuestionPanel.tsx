@@ -68,7 +68,7 @@ export function BlocksQuestionPanel({
     >
       <div className="blocks-question-meta mb-3 flex items-center justify-between gap-2">
         <span className="blocks-question-chip">Переведи</span>
-        <span className="blocks-question-chip blocks-question-chip--muted">Enter ↵</span>
+        <span className="blocks-question-shortcut">Enter ↵</span>
       </div>
 
       <div className="labelRow mb-2 sm:mb-3 md:mb-4 flex items-center gap-2">
