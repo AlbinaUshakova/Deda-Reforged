@@ -21,6 +21,7 @@ export default function BrandToggle() {
         aria-label="Показать или скрыть грузинский алфавит"
         title="Показать/скрыть алфавит"
       >
+        <span className="header-control-glyph" aria-hidden="true">ა</span>
         Алфавит
       </button>
     </div>

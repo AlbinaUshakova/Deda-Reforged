@@ -97,7 +97,6 @@ export default function AuthStatus() {
                     <span className="header-burger-lines flex flex-col items-center justify-center gap-[3px]" aria-hidden>
                         <span className="header-burger-line block h-[1.5px] w-[13px] rounded-full bg-current" />
                         <span className="header-burger-line block h-[1.5px] w-[13px] rounded-full bg-current" />
-                        <span className="header-burger-line block h-[1.5px] w-[13px] rounded-full bg-current" />
                     </span>
                 </button>
 
