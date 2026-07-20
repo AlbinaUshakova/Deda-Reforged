@@ -4,7 +4,6 @@ import { useAppStore } from '@/lib/appStore';
 
 export function StudyAlphabetHint() {
   const alphabetOpen = useAppStore(state => state.alphabetOpen);
-  const requestAlphabetToggle = useAppStore(state => state.requestAlphabetToggle);
 
   return (
     <aside className="study-alphabet-hint" aria-label="Как послушать буквы">
@@ -12,18 +11,10 @@ export function StudyAlphabetHint() {
         ა
       </span>
       <span className="study-alphabet-hint-copy">
-        Слушать буквы: открой «Алфавит» и нажми букву.
+        {alphabetOpen
+          ? 'Нажми любую букву в алфавите, чтобы услышать звук.'
+          : 'Нажми «Алфавит» рядом с Deda, затем выбери букву.'}
       </span>
-      <button
-        type="button"
-        className="study-alphabet-hint-action"
-        onClick={() => {
-          if (!alphabetOpen) requestAlphabetToggle();
-        }}
-        aria-pressed={alphabetOpen}
-      >
-        {alphabetOpen ? 'Открыт' : 'Открыть'}
-      </button>
     </aside>
   );
 }

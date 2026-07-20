@@ -551,12 +551,6 @@ html[data-theme='dark'] .study-alphabet-hint-copy {
     color: #dbe7e5;
 }
 
-html[data-theme='dark'] .study-alphabet-hint-action[aria-pressed='true'] {
-    border-color: rgba(45, 212, 191, 0.16);
-    background: rgba(20, 184, 166, 0.12);
-    color: #99f6e4;
-}
-
 html[data-theme='dark'] .lessons-hero-secondary:hover {
     background: rgba(20, 184, 166, 0.10);
 }
@@ -1497,8 +1491,8 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
     position: relative;
     z-index: 35;
     display: flex;
-    width: min(100%, 500px);
-    min-height: 42px;
+    width: min(100%, 430px);
+    min-height: 40px;
     align-items: center;
     justify-content: center;
     gap: 9px;
@@ -1506,7 +1500,7 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
     border: 1px solid rgba(15, 118, 110, 0.16);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.66);
-    padding: 7px 8px 7px 11px;
+    padding: 7px 14px 7px 11px;
     color: #36564f;
     box-shadow:
         0 10px 24px rgba(15, 23, 42, 0.06),
@@ -1539,52 +1533,17 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
     letter-spacing: -0.015em;
 }
 
-.study-alphabet-hint-action {
-    display: inline-flex;
-    min-height: 30px;
-    flex: 0 0 auto;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    border: 1px solid rgba(249, 115, 22, 0.22);
-    background: linear-gradient(135deg, rgba(255, 138, 42, 0.96), rgba(249, 115, 22, 0.96));
-    padding: 0 11px;
-    color: white;
-    font-size: 12px;
-    font-weight: 850;
-    letter-spacing: -0.01em;
-    box-shadow: 0 8px 16px rgba(249, 115, 22, 0.22);
-    transition: transform 160ms ease, box-shadow 160ms ease;
-}
-
 @media (max-width: 700px) {
     .study-alphabet-hint {
-        align-items: flex-start;
+        width: min(100%, 360px);
+        align-items: center;
         border-radius: 20px;
-        padding: 8px 9px;
+        padding: 8px 12px;
     }
 
     .study-alphabet-hint-copy {
         font-size: 12px;
     }
-
-    .study-alphabet-hint-action {
-        min-height: 28px;
-        padding: 0 10px;
-        font-size: 11px;
-    }
-}
-
-.study-alphabet-hint-action:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.26);
-}
-
-.study-alphabet-hint-action[aria-pressed='true'] {
-    border-color: rgba(15, 118, 110, 0.18);
-    background: rgba(236, 253, 245, 0.84);
-    color: #0f766e;
-    box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.08);
 }
 
 .app-screen-fixed {
