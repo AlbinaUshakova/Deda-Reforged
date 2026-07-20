@@ -5,7 +5,6 @@ import { useAppStore } from '@/lib/appStore';
 import { AlphabetPanel } from '@/components/lessons/AlphabetPanel';
 import { LessonGrid } from '@/components/lessons/LessonGrid';
 import { LessonsHero } from '@/components/lessons/LessonsHero';
-import { LessonsAlphabetProgressHeader } from '@/components/lessons/LessonsAlphabetProgressHeader';
 import { SpecialLessonLinks } from '@/components/lessons/SpecialLessonLinks';
 import { useAlphabetPanelState } from '@/components/lessons/useAlphabetPanelState';
 import { useLetterAudio } from '@/components/lessons/useLetterAudio';
@@ -153,7 +152,6 @@ export default function HomePage() {
               onSpeakLetter={speakLetter}
             />
             <div ref={lessonsWrapRef} className="relative z-[150] mx-auto w-full max-w-[980px] [@media(max-height:980px)]:max-w-[900px]">
-              <LessonsAlphabetProgressHeader letterStatusByChar={letterStatusByChar} />
               <LessonGrid
                 normalEpisodes={normalEpisodes}
                 progress={progress}
