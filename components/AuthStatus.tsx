@@ -2,6 +2,8 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import type { Route } from 'next';
 import { useAppStore } from '@/lib/appStore';
 import SettingsPanel from '@/components/SettingsPanel';
 import ProgressPanel from '@/components/ProgressPanel';
@@ -41,6 +43,8 @@ export default function AuthStatus() {
         setShowFeedback(false);
     }, [setProfileMenuOpen]);
     const menuLabel = 'Меню';
+    const supportHref = '/support' as Route;
+    const privacyHref = '/privacy' as Route;
     const focusRingClass =
         'focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2';
     const menuItemClass =
@@ -90,6 +94,8 @@ export default function AuthStatus() {
                 <button
                     onClick={toggleMenu}
                     aria-label="Открыть меню"
+                    aria-expanded={open}
+                    aria-haspopup="menu"
                     className={`header-control-btn header-control-btn--menu inline-flex items-center justify-center ${
                         open ? 'header-control-btn--active' : ''
                     }`}
@@ -154,6 +160,24 @@ export default function AuthStatus() {
                                 <span aria-hidden>💬</span>
                                 <span>Помощь и отзывы</span>
                             </button>
+
+                            <Link
+                                href={supportHref}
+                                className={menuItemClass}
+                                onClick={closeMenu}
+                            >
+                                <span aria-hidden>?</span>
+                                <span>Поддержка</span>
+                            </Link>
+
+                            <Link
+                                href={privacyHref}
+                                className={menuItemClass}
+                                onClick={closeMenu}
+                            >
+                                <span aria-hidden>i</span>
+                                <span>Приватность</span>
+                            </Link>
                         </div>
 
                         <div

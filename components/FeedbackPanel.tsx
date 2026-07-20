@@ -105,11 +105,18 @@ export default function FeedbackPanel({
                 </div>
 
                 <p className="pt-0.5 text-[clamp(10px,1.65vw,11px)] text-[var(--menu-text-muted)] leading-relaxed mb-1">
-                    Поделитесь, что можно улучшить 🤍
+                    Поделитесь, что можно улучшить.
                 </p>
 
                 <div className="space-y-1 mt-1.5">
+                    <label
+                        htmlFor="feedback-message"
+                        className="text-[clamp(10px,1.65vw,11px)] text-[var(--menu-text-muted)]"
+                    >
+                        Сообщение
+                    </label>
                     <textarea
+                        id="feedback-message"
                         className="w-full rounded-lg bg-[var(--menu-segment-bg)] border border-[var(--menu-segment-border)] px-2 py-1 text-[clamp(10px,1.65vw,11px)] text-[var(--menu-text)] outline-none focus:border-[var(--menu-segment-active)] focus:ring-1 focus:ring-[var(--menu-focus)] resize-none min-h-[96px]"
                         value={message}
                         onChange={e => {
@@ -122,10 +129,14 @@ export default function FeedbackPanel({
                 </div>
 
                 <div className="space-y-1">
-                    <label className="text-[clamp(10px,1.65vw,11px)] text-[var(--menu-text-muted)]">
+                    <label
+                        htmlFor="feedback-contact"
+                        className="text-[clamp(10px,1.65vw,11px)] text-[var(--menu-text-muted)]"
+                    >
                         Контакт (необязательно)
                     </label>
                     <input
+                        id="feedback-contact"
                         className="w-full rounded-lg bg-[var(--menu-segment-bg)] border border-[var(--menu-segment-border)] px-2 py-1 text-[clamp(10px,1.65vw,11px)] text-[var(--menu-text)] outline-none focus:border-[var(--menu-segment-active)] focus:ring-1 focus:ring-[var(--menu-focus)]"
                         value={contact}
                         onChange={e => {
@@ -145,7 +156,7 @@ export default function FeedbackPanel({
 
                 {success && (
                     <div className="text-[clamp(10px,1.65vw,11px)] text-emerald-500 animate-settings-bump">
-                        Спасибо! Сообщение отправлено 💌
+                        Спасибо. Сообщение отправлено.
                     </div>
                 )}
 

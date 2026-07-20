@@ -40,6 +40,7 @@ export default function GlobalAlphabetOverlay() {
   const pathname = usePathname();
   const isLessonsPage = pathname === '/lessons';
   const isStudyPage = pathname.startsWith('/study/');
+  const isServicePage = pathname === '/support' || pathname === '/privacy';
   const hydrate = useAppStore(state => state.hydrate);
   const progress = useAppStore(state => state.progressMap);
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
@@ -85,11 +86,10 @@ export default function GlobalAlphabetOverlay() {
   useEffect(() => {
     if (isLessonsPage) return;
     const nextOpen =
-      pathname !== '/' &&
-      !pathname.startsWith('/play/') &&
+      isStudyPage &&
       canAutoOpenAlphabet();
     setOpen(nextOpen);
-  }, [isLessonsPage, pathname]);
+  }, [isLessonsPage, isStudyPage, pathname]);
 
   useEffect(() => {
     if (isLessonsPage) return;
@@ -103,8 +103,8 @@ export default function GlobalAlphabetOverlay() {
   }, [isLessonsPage]);
 
   useEffect(() => {
-    setAlphabetOpen(!isLessonsPage && open && pathname !== '/');
-  }, [isLessonsPage, open, pathname, setAlphabetOpen]);
+    setAlphabetOpen(!isLessonsPage && !isServicePage && open && pathname !== '/');
+  }, [isLessonsPage, isServicePage, open, pathname, setAlphabetOpen]);
 
   useEffect(() => {
     if (isLessonsPage) return;
@@ -185,7 +185,7 @@ export default function GlobalAlphabetOverlay() {
     playingTimerRef.current = window.setTimeout(finish, 1600);
   };
 
-  if (pathname === '/' || isLessonsPage) return null;
+  if (pathname === '/' || isLessonsPage || isServicePage) return null;
 
   return (
     <div
