@@ -53,41 +53,41 @@ export function getMobileTextSizeClass(text: string, kind: 'ge' | 'ru') {
 export function getInfoNoteMeta(kind: InfoNoteKind) {
   if (kind === 'grammar') {
     return {
-      icon: '🧠',
+      icon: 'i',
       eyebrow: '',
       title: '',
-      cardClass: 'border-amber-200/80 bg-gradient-to-br from-amber-50 via-orange-50 to-white shadow-[0_10px_26px_rgba(245,158,11,0.10)] hover:border-amber-300/90 hover:shadow-[0_12px_30px_rgba(245,158,11,0.14)]',
-      iconClass: 'bg-white/85 text-[15px] shadow-[inset_0_0_0_1px_rgba(251,191,36,0.22)]',
-      eyebrowClass: 'text-amber-700/70',
-      chevronClass: 'text-amber-700/70',
-      innerClass: 'border-amber-100/80 bg-white/72',
+      cardClass: 'border-amber-200/70 bg-amber-50/55 shadow-[0_4px_14px_rgba(120,53,15,0.06)] hover:border-amber-300/80 hover:bg-amber-50/75',
+      iconClass: 'bg-amber-100/70 text-[11px] font-bold text-amber-700 shadow-[inset_0_0_0_1px_rgba(251,191,36,0.22)]',
+      eyebrowClass: 'text-amber-700/60',
+      chevronClass: 'text-amber-700/55',
+      innerClass: 'border-amber-100/70 bg-white/58',
       bulletClass: 'text-amber-600',
     };
   }
 
   if (kind === 'speech') {
     return {
-      icon: '💬',
+      icon: '“',
       eyebrow: 'Как Говорят',
       title: 'Как звучит в жизни',
-      cardClass: 'border-sky-200/80 bg-gradient-to-br from-sky-50 via-cyan-50 to-white shadow-[0_10px_26px_rgba(14,165,233,0.10)] hover:border-sky-300/90 hover:shadow-[0_12px_30px_rgba(14,165,233,0.14)]',
-      iconClass: 'bg-white/85 text-[15px] shadow-[inset_0_0_0_1px_rgba(56,189,248,0.22)]',
-      eyebrowClass: 'text-sky-700/70',
-      chevronClass: 'text-sky-700/70',
-      innerClass: 'border-sky-100/80 bg-white/72',
+      cardClass: 'border-sky-200/70 bg-sky-50/55 shadow-[0_4px_14px_rgba(12,74,110,0.06)] hover:border-sky-300/80 hover:bg-sky-50/75',
+      iconClass: 'bg-sky-100/70 text-[14px] font-bold text-sky-700 shadow-[inset_0_0_0_1px_rgba(56,189,248,0.22)]',
+      eyebrowClass: 'text-sky-700/60',
+      chevronClass: 'text-sky-700/55',
+      innerClass: 'border-sky-100/70 bg-white/58',
       bulletClass: 'text-sky-600',
     };
   }
 
   return {
-    icon: '⚠️',
+    icon: '!',
     eyebrow: 'Частая Ошибка',
     title: 'Что легко перепутать',
-    cardClass: 'border-rose-200/80 bg-gradient-to-br from-rose-50 via-orange-50 to-white shadow-[0_10px_26px_rgba(244,63,94,0.10)] hover:border-rose-300/90 hover:shadow-[0_12px_30px_rgba(244,63,94,0.14)]',
-    iconClass: 'bg-white/85 text-[15px] shadow-[inset_0_0_0_1px_rgba(251,113,133,0.22)]',
-    eyebrowClass: 'text-rose-700/70',
-    chevronClass: 'text-rose-700/70',
-    innerClass: 'border-rose-100/80 bg-white/72',
+    cardClass: 'border-rose-200/70 bg-rose-50/55 shadow-[0_4px_14px_rgba(136,19,55,0.06)] hover:border-rose-300/80 hover:bg-rose-50/75',
+    iconClass: 'bg-rose-100/70 text-[11px] font-bold text-rose-700 shadow-[inset_0_0_0_1px_rgba(251,113,133,0.22)]',
+    eyebrowClass: 'text-rose-700/60',
+    chevronClass: 'text-rose-700/55',
+    innerClass: 'border-rose-100/70 bg-white/58',
     bulletClass: 'text-rose-600',
   };
 }
