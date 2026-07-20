@@ -998,38 +998,38 @@ html[data-theme='light'] .header-control-btn {
 }
 
 html[data-theme='dark'] .header-control-btn {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(226, 232, 240, 0.08);
-    color: #dbe7e5;
+    background: rgba(255, 251, 235, 0.055);
+    border-color: rgba(190, 168, 132, 0.10);
+    color: #d8d0c2;
     box-shadow:
         0 12px 26px rgba(0, 0, 0, 0.22),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 html[data-theme='dark'] .header-control-btn--alphabet {
-    border-color: rgba(226, 232, 240, 0.08);
+    border-color: rgba(190, 168, 132, 0.10);
 }
 
 html[data-theme='dark'] .header-control-btn--alphabet-secondary {
-    background: rgba(255, 255, 255, 0.07);
-    color: #dbe7e5;
+    background: rgba(255, 251, 235, 0.055);
+    color: #d8d0c2;
 }
 
 html[data-theme='dark'] .header-control-btn--menu {
-    border-color: rgba(226, 232, 240, 0.08);
+    border-color: rgba(190, 168, 132, 0.10);
 }
 
 html[data-theme='dark'] .header-control-btn:hover {
-    background: rgba(255, 255, 255, 0.11);
-    border-color: rgba(45, 212, 191, 0.16);
-    color: #f8fafc;
+    background: rgba(255, 251, 235, 0.09);
+    border-color: rgba(198, 168, 116, 0.18);
+    color: #f4eadb;
     box-shadow:
         0 14px 28px rgba(0, 0, 0, 0.27),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 html[data-theme='dark'] .header-control-btn:active {
-    background: rgba(20, 184, 166, 0.13);
+    background: rgba(198, 168, 116, 0.13);
 }
 
 html[data-theme='dark'] .menu-panel-shell {
@@ -1038,9 +1038,9 @@ html[data-theme='dark'] .menu-panel-shell {
 }
 
 html[data-theme='dark'] .header-control-btn--active {
-    background: rgba(20, 184, 166, 0.13);
-    border-color: rgba(45, 212, 191, 0.18);
-    color: #99f6e4;
+    background: rgba(198, 168, 116, 0.13);
+    border-color: rgba(198, 168, 116, 0.20);
+    color: #ead9b8;
     box-shadow:
         0 12px 26px rgba(0, 0, 0, 0.24),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -1053,13 +1053,13 @@ html[data-theme='dark'] .header-control-btn--alphabet.header-control-btn--active
 }
 
 html[data-theme='dark'] .header-control-glyph {
-    color: #99f6e4;
+    color: #ead9b8;
 }
 
 html[data-theme='dark'] .study-action-pill {
-    border-color: rgba(226, 232, 240, 0.08);
-    background: rgba(255, 255, 255, 0.07);
-    color: #dbe7e5;
+    border-color: rgba(190, 168, 132, 0.10);
+    background: rgba(255, 251, 235, 0.055);
+    color: #d8d0c2;
     box-shadow:
         0 12px 26px rgba(0, 0, 0, 0.22),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
@@ -1067,18 +1067,18 @@ html[data-theme='dark'] .study-action-pill {
 
 html[data-theme='dark'] .study-action-pill:hover,
 html[data-theme='dark'] .study-action-pill:focus-visible {
-    border-color: rgba(45, 212, 191, 0.16);
-    background: rgba(255, 255, 255, 0.11);
-    color: #f8fafc;
+    border-color: rgba(198, 168, 116, 0.18);
+    background: rgba(255, 251, 235, 0.09);
+    color: #f4eadb;
     box-shadow:
         0 14px 28px rgba(0, 0, 0, 0.27),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 html[data-theme='dark'] .study-action-pill--primary {
-    border-color: rgba(45, 212, 191, 0.18);
-    background: rgba(20, 184, 166, 0.13);
-    color: #99f6e4;
+    border-color: rgba(198, 168, 116, 0.20);
+    background: rgba(198, 168, 116, 0.13);
+    color: #ead9b8;
 }
 
 .home-alphabet-panel {
@@ -1240,27 +1240,32 @@ button[aria-pressed='true'] {
 }
 
 html[data-theme='dark'] .blocks-grid-score {
-    border-color: rgba(45, 212, 191, 0.12);
-    background: rgba(255, 255, 255, 0.06);
-    color: #dbe7e5 !important;
+    border-color: rgba(190, 168, 132, 0.14);
+    background: rgba(31, 35, 32, 0.68);
+    color: #d8d0c2 !important;
     box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.20),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        0 8px 18px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
     text-shadow: none;
 }
 
 html[data-theme='dark'] .blocks-grid-cell {
-    background: var(--grid-cell) !important;
+    background: rgba(255, 251, 235, 0.055) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.035),
+        0 1px 1px rgba(0, 0, 0, 0.16);
 }
 
 html[data-theme='dark'] .blocks-grid-cell:hover {
-    background: var(--grid-cell-hover) !important;
+    background: rgba(203, 213, 186, 0.10) !important;
 }
 
 html[data-theme='dark'] .blocks-grid-hover-cell {
-    border: 1.5px solid rgba(226, 232, 240, 0.45) !important;
-    background: rgba(226, 232, 240, 0.08) !important;
-    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.28) !important;
+    border: 1.5px solid rgba(198, 168, 116, 0.42) !important;
+    background: rgba(198, 168, 116, 0.10) !important;
+    box-shadow:
+        0 0 0 1px rgba(20, 18, 14, 0.22),
+        0 0 16px rgba(198, 168, 116, 0.10) !important;
 }
 
 .blocks-grid-board {
@@ -1575,25 +1580,26 @@ html[data-theme='dark'] .blocks-grid-gameover-text {
 }
 
 html[data-theme='dark'] .blocks-grid-gameover-overlay {
-    background: rgba(2, 6, 23, 0.42) !important;
+    background: rgba(10, 12, 11, 0.46) !important;
 }
 
 html[data-theme='dark'] .blocks-grid-gameover-card {
-    background: rgba(37, 41, 50, 0.96) !important;
-    border-color: rgba(148, 163, 184, 0.2) !important;
+    background:
+        linear-gradient(145deg, rgba(38, 39, 36, 0.96), rgba(48, 40, 31, 0.92)) !important;
+    border-color: rgba(190, 168, 132, 0.16) !important;
     box-shadow:
-        0 20px 44px rgba(0, 0, 0, 0.42),
-        0 0 0 1px rgba(255, 255, 255, 0.03) !important;
+        0 20px 44px rgba(0, 0, 0, 0.40),
+        0 0 0 1px rgba(255, 255, 255, 0.025) !important;
 }
 
 html[data-theme='dark'] .blocks-grid-gameover-button {
-    background: rgba(20, 184, 166, 0.88) !important;
-    color: #052f2b !important;
-    box-shadow: 0 8px 18px rgba(20, 184, 166, 0.20) !important;
+    background: rgba(178, 155, 105, 0.90) !important;
+    color: #191a17 !important;
+    box-shadow: 0 8px 18px rgba(178, 155, 105, 0.18) !important;
 }
 
 html[data-theme='dark'] .blocks-grid-gameover-button:hover {
-    background: rgba(45, 212, 191, 0.94) !important;
+    background: rgba(205, 181, 124, 0.94) !important;
 }
 
 .home-lesson-card--complete {
@@ -1637,9 +1643,9 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 
 html[data-theme='dark'] .blocks-game-screen {
     background:
-        radial-gradient(circle at 14% 18%, rgba(251, 146, 60, 0.11), transparent 28%),
-        radial-gradient(circle at 88% 12%, rgba(20, 184, 166, 0.10), transparent 26%),
-        linear-gradient(180deg, #171817 0%, #1f211f 48%, var(--app-bg) 100%) !important;
+        radial-gradient(circle at 14% 18%, rgba(180, 118, 70, 0.12), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(112, 143, 119, 0.12), transparent 26%),
+        linear-gradient(180deg, #151714 0%, #1d201c 48%, #181a17 100%) !important;
 }
 
 html[data-theme='dark'] .blocks-game-screen::before {
@@ -2690,9 +2696,9 @@ html[data-theme='dark'] .flashcard-controls-compact {
 }
 
 html[data-theme='dark'] .blocks-answer-input:focus {
-    border-color: rgba(45, 212, 191, 0.36) !important;
+    border-color: rgba(198, 168, 116, 0.34) !important;
     box-shadow:
-        0 0 0 3px rgba(20, 184, 166, 0.13),
+        0 0 0 3px rgba(198, 168, 116, 0.11),
         inset 0 1px 0 rgba(255, 255, 255, 0.05),
         0 8px 18px rgba(0, 0, 0, 0.18) !important;
     outline: none !important;
@@ -2700,33 +2706,33 @@ html[data-theme='dark'] .blocks-answer-input:focus {
 
 .blocks-answer-input:focus-visible,
 html[data-theme='dark'] .blocks-answer-input:focus-visible {
-    border-color: rgba(45, 212, 191, 0.42) !important;
+    border-color: rgba(198, 168, 116, 0.42) !important;
     box-shadow:
-        0 0 0 3px rgba(20, 184, 166, 0.14),
+        0 0 0 3px rgba(198, 168, 116, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
     outline: none !important;
 }
 
 html[data-theme='dark'] .blocks-answer-input {
-    background: rgba(255, 255, 255, 0.07) !important;
-    border: 1px solid rgba(45, 212, 191, 0.12) !important;
-    color: #f3f7f5 !important;
+    background: rgba(255, 251, 235, 0.065) !important;
+    border: 1px solid rgba(190, 168, 132, 0.13) !important;
+    color: #ece5d8 !important;
 }
 
 html[data-theme='dark'] .blocks-answer-input::placeholder {
-    color: rgba(219, 231, 229, 0.60) !important;
+    color: rgba(216, 208, 194, 0.56) !important;
 }
 
 html[data-theme='dark'] .blocks-grid-board {
     background:
-        linear-gradient(145deg, rgba(45, 45, 48, 0.72), rgba(55, 43, 34, 0.56)),
-        radial-gradient(circle at 80% 12%, rgba(20, 184, 166, 0.12), transparent 36%) !important;
-    border: 1px solid rgba(45, 212, 191, 0.13) !important;
+        linear-gradient(145deg, rgba(34, 37, 33, 0.78), rgba(49, 41, 32, 0.60)),
+        radial-gradient(circle at 80% 12%, rgba(145, 126, 84, 0.12), transparent 36%) !important;
+    border: 1px solid rgba(190, 168, 132, 0.12) !important;
     border-radius: 28px;
     padding: 6px;
     box-shadow:
-        0 20px 48px rgba(0, 0, 0, 0.28),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        0 22px 52px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
 html[data-theme='dark'] .flashcard-main-card {
@@ -2893,9 +2899,9 @@ html[data-theme='light'] .blocks-refresh-btn {
 }
 
 html[data-theme='dark'] .blocks-refresh-btn {
-    border-color: rgba(45, 212, 191, 0.10) !important;
-    background: rgba(255, 255, 255, 0.06) !important;
-    color: #b9cac7 !important;
+    border-color: rgba(190, 168, 132, 0.11) !important;
+    background: rgba(255, 251, 235, 0.055) !important;
+    color: #c9c0ae !important;
     opacity: 1;
 }
 
@@ -2917,8 +2923,8 @@ html[data-theme='light'] .blocks-refresh-btn:active {
 
 html[data-theme='dark'] .blocks-refresh-btn:hover,
 html[data-theme='dark'] .blocks-refresh-btn:active {
-    background: rgba(20, 184, 166, 0.12) !important;
-    color: #99f6e4 !important;
+    background: rgba(198, 168, 116, 0.12) !important;
+    color: #ead9b8 !important;
 }
 
 .blocks-refresh-btn:active,
@@ -2971,23 +2977,23 @@ html[data-theme='dark'] .blocks-refresh-btn:active {
 }
 
 html[data-theme='dark'] .blocks-question-card {
-    border-color: rgba(45, 212, 191, 0.13);
+    border-color: rgba(190, 168, 132, 0.13);
     background:
-        linear-gradient(145deg, rgba(45, 45, 48, 0.72), rgba(55, 43, 34, 0.56)),
-        radial-gradient(circle at 88% 14%, rgba(20, 184, 166, 0.12), transparent 38%);
+        linear-gradient(145deg, rgba(34, 37, 33, 0.74), rgba(49, 41, 32, 0.58)),
+        radial-gradient(circle at 88% 14%, rgba(145, 126, 84, 0.12), transparent 38%);
     box-shadow:
         0 18px 42px rgba(0, 0, 0, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
 html[data-theme='dark'] .blocks-question-chip {
-    background: rgba(20, 184, 166, 0.13);
-    color: #99f6e4;
+    background: rgba(112, 143, 119, 0.14);
+    color: #c7d7bf;
 }
 
 html[data-theme='dark'] .blocks-question-chip--muted {
-    background: rgba(251, 146, 60, 0.12);
-    color: #fed7aa;
+    background: rgba(198, 168, 116, 0.12);
+    color: #ead9b8;
 }
 
 .blocks-answer-input {
@@ -3059,16 +3065,16 @@ html[data-theme='dark'] .blocks-question-chip--muted {
 }
 
 html[data-theme='dark'] .blocks-submit-btn {
-    border-color: rgba(45, 212, 191, 0.16);
-    background: rgba(20, 184, 166, 0.14);
-    color: #99f6e4;
+    border-color: rgba(198, 168, 116, 0.18);
+    background: rgba(198, 168, 116, 0.14);
+    color: #ead9b8;
     box-shadow:
         0 10px 22px rgba(0, 0, 0, 0.20),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
 }
 
 html[data-theme='dark'] .blocks-submit-btn:hover {
-    background: rgba(20, 184, 166, 0.20);
+    background: rgba(198, 168, 116, 0.20);
 }
 
 @media (max-width: 900px) {
@@ -3333,8 +3339,8 @@ a {
 }
 
 html[data-theme='dark'] .blocks-prompt-text {
-    color: #f3f4f6 !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+    color: #f1e8d8 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.34);
 }
 
 .animate-cat-happy {
