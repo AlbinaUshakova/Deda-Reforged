@@ -122,14 +122,13 @@ export function BlocksQuestionPanel({
         </form>
       </div>
 
-      <div className="mt-1 inline-flex w-full items-center gap-[clamp(6px,1.1vw,12px)] flex-wrap">
+      <div className="blocks-question-secondary-row mt-2 inline-flex w-full items-center gap-[clamp(8px,1.1vw,12px)] flex-wrap">
         <button
           type="button"
           onClick={onRevealTranslation}
-          className="blocks-refresh-btn inline-flex h-[clamp(28px,4vh,36px)] items-center gap-1 rounded-lg border border-transparent bg-transparent px-[clamp(4px,0.8vw,7px)] text-[clamp(11px,1.05vw,13px)] font-normal transition-all duration-150 focus:outline-none [-webkit-tap-highlight-color:transparent]"
+          className="blocks-translation-btn blocks-refresh-btn inline-flex h-[clamp(28px,4vh,36px)] items-center rounded-lg border border-transparent bg-transparent px-[clamp(6px,0.9vw,9px)] text-[clamp(11px,1.05vw,13px)] font-normal transition-all duration-150 focus:outline-none [-webkit-tap-highlight-color:transparent]"
           disabled={showCorrect}
         >
-          <span className="inline-block text-[clamp(11px,1.1vw,13px)] leading-none font-semibold">Aa</span>
           <span className="leading-none">Перевод</span>
         </button>
         {!isFavoritesEpisode && (

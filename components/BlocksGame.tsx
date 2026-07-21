@@ -487,7 +487,7 @@ export default function BlocksGame({
           className={
             (isNarrowLayout
               ? 'blocks-question-stage w-full max-w-[420px] shrink-0 ml-0 px-2'
-              : 'w-[clamp(200px,30vw,340px)] shrink-0 ml-0 md:ml-[-10px] lg:ml-[-18px] -mt-2 md:-mt-4 lg:-mt-6') +
+              : 'w-[clamp(240px,32vw,380px)] shrink-0 ml-0 md:ml-[-10px] lg:ml-[-18px] -mt-2 md:-mt-4 lg:-mt-6') +
             (showQuestionStage ? '' : ' hidden')
           }
         >

@@ -326,6 +326,14 @@ html[data-theme='dark'] .blocks-refresh-btn:active {
     line-height: 1;
 }
 
+.blocks-question-secondary-row {
+    padding-top: 2px;
+}
+
+.blocks-translation-btn {
+    min-width: 76px;
+}
+
 html[data-theme='dark'] .blocks-question-card {
     border-color: rgba(232, 238, 247, 0.11);
     background:
@@ -458,6 +466,10 @@ html[data-theme='dark'] .blocks-prompt-text {
         display: none;
     }
 
+    .blocks-question-secondary-row {
+        margin-top: 10px !important;
+    }
+
     .blocks-answer-stack {
         gap: 7px;
         width: min(100%, 640px);
@@ -486,6 +498,10 @@ html[data-theme='dark'] .blocks-prompt-text {
     .blocks-refresh-btn {
         min-height: 44px !important;
         padding-inline: 8px !important;
+    }
+
+    .blocks-translation-btn {
+        min-width: 88px;
     }
 
     .blocks-question-card button[aria-label='Добавить слово в избранное'],
