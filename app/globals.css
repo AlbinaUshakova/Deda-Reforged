@@ -318,6 +318,18 @@ body {
     box-shadow: 0 24px 48px rgba(32, 33, 35, 0.16);
 }
 
+.lessons-hero-card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+    border-radius: inherit;
+}
+
+.lessons-hero-card-link:focus-visible {
+    outline: 3px solid rgba(32, 33, 35, 0.20);
+    outline-offset: 4px;
+}
+
 .lessons-hero-card-glow {
     position: absolute;
     right: -40px;
@@ -377,6 +389,11 @@ body {
 }
 
 .lessons-hero-letters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(5px, 0.65vw, 8px);
+    flex-wrap: nowrap;
     color: #0f766e;
     font-size: clamp(30px, 3.4vw, 42px);
     font-weight: 760;
@@ -385,6 +402,43 @@ body {
     text-align: center;
     white-space: nowrap;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.74);
+}
+
+.lessons-hero-letter {
+    display: inline-flex;
+    pointer-events: auto;
+    min-width: clamp(30px, 3.25vw, 40px);
+    height: clamp(36px, 3.7vw, 46px);
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    border: 1px solid rgba(15, 118, 110, 0.10);
+    background: rgba(255, 255, 255, 0.34);
+    color: inherit;
+    font: inherit;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        transform 160ms ease,
+        background-color 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.lessons-hero-letter:hover {
+    transform: translateY(-2px);
+    border-color: rgba(15, 118, 110, 0.24);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 10px 18px rgba(15, 118, 110, 0.10);
+}
+
+.lessons-hero-letter:active {
+    transform: translateY(0) scale(0.96);
+}
+
+.lessons-hero-letter:focus-visible {
+    outline: 3px solid rgba(16, 163, 127, 0.26);
+    outline-offset: 2px;
 }
 
 .lessons-hero-letter-panel {
@@ -491,6 +545,13 @@ body {
 
     .lessons-hero-letters {
         font-size: clamp(24px, 8vw, 32px);
+        gap: 4px;
+    }
+
+    .lessons-hero-letter {
+        min-width: 29px;
+        height: 35px;
+        border-radius: 13px;
     }
 
     .lessons-hero-letter-panel {
@@ -639,6 +700,17 @@ html[data-theme='dark'] .lessons-hero-letter-panel {
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.06),
         0 10px 22px rgba(0, 0, 0, 0.16);
+}
+
+html[data-theme='dark'] .lessons-hero-letter {
+    border-color: rgba(94, 234, 212, 0.10);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme='dark'] .lessons-hero-letter:hover {
+    border-color: rgba(94, 234, 212, 0.22);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
 }
 
 html[data-theme='dark'] .lessons-hero-score {

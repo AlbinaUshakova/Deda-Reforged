@@ -11,6 +11,7 @@ type LessonsHeroProps = {
   recommendedLetters: string[];
   recommendedScore: number;
   lessonTargetScore: number;
+  onSpeakLetter: (letter: string) => void;
 };
 
 export function LessonsHero({
@@ -19,6 +20,7 @@ export function LessonsHero({
   recommendedLetters,
   recommendedScore,
   lessonTargetScore,
+  onSpeakLetter,
 }: LessonsHeroProps) {
   const lessonHref = (recommendedLesson ? `/study/${recommendedLesson.id}` : '/study/ep1') as Route;
   const lessonLabel = recommendedLessonNumber
@@ -43,10 +45,14 @@ export function LessonsHero({
         </div>
       </div>
 
-      <Link href={lessonHref} legacyBehavior>
-        <a className="lessons-hero-card group self-start">
+      <div className="lessons-hero-card group self-start">
+        <Link
+          href={lessonHref}
+          className="lessons-hero-card-link"
+          aria-label={`Открыть ${lessonLabel}`}
+        />
           <div className="lessons-hero-card-glow" aria-hidden="true" />
-          <div className="relative z-10 flex items-start justify-between gap-3">
+          <div className="pointer-events-none relative z-10 flex items-start justify-between gap-3">
             <div>
               <div className="lessons-hero-card-label">
                 Сейчас лучше пройти
@@ -66,19 +72,27 @@ export function LessonsHero({
             />
           </div>
 
-          <div className="lessons-hero-letter-panel relative z-10 mt-4 flex min-h-[62px] items-center justify-center rounded-[22px] bg-white/62 px-4 py-2.5">
-            <div
-              className="lessons-hero-letters"
-              style={{
-                fontFamily:
-                  "'Noto Sans Georgian','DejaVu Sans',system-ui,sans-serif",
-              }}
-            >
-              {recommendedLetters.length ? recommendedLetters.join(' ') : 'ა ი ს ო'}
+          <div className="lessons-hero-letter-panel pointer-events-none relative z-20 mt-4 flex min-h-[62px] items-center justify-center rounded-[22px] bg-white/62 px-4 py-2.5">
+            <div className="lessons-hero-letters" aria-label="Буквы рекомендованного урока">
+              {(recommendedLetters.length ? recommendedLetters : ['ა', 'ი', 'ს', 'ო']).map((letter) => (
+                <button
+                  key={letter}
+                  type="button"
+                  className="lessons-hero-letter"
+                  title={`Послушать букву ${letter}`}
+                  aria-label={`Послушать букву ${letter}`}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onSpeakLetter(letter);
+                  }}
+                >
+                  {letter}
+                </button>
+              ))}
             </div>
           </div>
 
-          <div className="lessons-hero-progress relative z-10 mt-3 flex items-center gap-3">
+          <div className="lessons-hero-progress pointer-events-none relative z-10 mt-3 flex items-center gap-3">
             <div className="h-2 flex-1 overflow-hidden rounded-full bg-orange-100">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-orange-400 to-emerald-400"
@@ -89,8 +103,7 @@ export function LessonsHero({
               {progressPercent}%
             </span>
           </div>
-        </a>
-      </Link>
+      </div>
     </section>
   );
 }
