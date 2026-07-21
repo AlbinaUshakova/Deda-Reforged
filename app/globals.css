@@ -277,6 +277,16 @@ body {
     text-wrap: balance;
 }
 
+.lessons-hero-subtitle--lead {
+    margin-top: 0;
+    max-width: 520px;
+    color: #202123;
+    font-size: clamp(24px, 2.55vw, 34px);
+    font-weight: 920;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+}
+
 .lessons-hero-card {
     position: relative;
     min-height: 194px;
@@ -595,6 +605,13 @@ body {
         line-height: 1.36;
     }
 
+    .lessons-hero-subtitle--lead {
+        margin-top: 0;
+        max-width: 290px;
+        font-size: clamp(24px, 7.3vw, 30px);
+        line-height: 1.04;
+    }
+
     .lessons-hero-card {
         min-height: 150px;
         border-radius: 22px;
@@ -758,6 +775,10 @@ html[data-theme='dark'] .lessons-hero-title {
 
 html[data-theme='dark'] .lessons-hero-subtitle {
     color: #cbd5e1;
+}
+
+html[data-theme='dark'] .lessons-hero-subtitle--lead {
+    color: #f8fafc;
 }
 
 html[data-theme='dark'] .lessons-hero-card {
