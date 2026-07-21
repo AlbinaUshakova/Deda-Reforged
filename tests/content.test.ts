@@ -32,6 +32,14 @@ test('loadEpisode returns 100 practical conversational phrases', async () => {
   assert.ok(episode.cards.every((card) => card.ru_meaning.trim().length > 0));
 });
 
+test('loadEpisode favorites includes conversational phrases', async () => {
+  const episode = await loadEpisode('favorites');
+
+  assert.ok(episode);
+  assert.equal(episode.id, 'favorites');
+  assert.ok(episode.cards.some((card) => card.ge_text === 'გამარჯობა'));
+});
+
 test('loadNewLettersPerEpisode returns letters for each numbered lesson', async () => {
   const lettersByEpisode = await loadNewLettersPerEpisode();
 

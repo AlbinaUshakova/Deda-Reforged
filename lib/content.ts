@@ -54,12 +54,15 @@ export async function loadEpisode(id: string): Promise<Episode | null> {
   }
 
   if (id === 'favorites') {
-    const all = await loadEpisode('all');
+    const [all, phrases] = await Promise.all([
+      loadEpisode('all'),
+      loadEpisode('phrases'),
+    ]);
     if (!all) return null;
     return {
       id: 'favorites',
       title: 'Избранное',
-      cards: all.cards,
+      cards: [...all.cards, ...(phrases?.cards ?? [])],
     };
   }
 
