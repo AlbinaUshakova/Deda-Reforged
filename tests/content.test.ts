@@ -50,6 +50,22 @@ test('loadEpisode generates short Russian variants for у меня есть answ
   assert.ok(tea.accepted_ru?.includes('есть чай'));
 });
 
+test('loadEpisode generates short Russian variants for хочу and нужен answers', async () => {
+  const lessonWithWant = await loadEpisode('ep9');
+  const phrases = await loadEpisode('phrases');
+
+  assert.ok(lessonWithWant);
+  assert.ok(phrases);
+
+  const water = lessonWithWant.cards.find((card) => card.ge_text === 'მე მინდა წყალი');
+  assert.ok(water);
+  assert.ok(water.accepted_ru?.includes('хочу воду'));
+
+  const doctor = phrases.cards.find((card) => card.ge_text === 'ექიმი მჭირდება');
+  assert.ok(doctor);
+  assert.ok(doctor.accepted_ru?.some((answer) => answer.toLowerCase() === 'нужен врач'));
+});
+
 test('loadEpisode favorites includes conversational phrases', async () => {
   const episode = await loadEpisode('favorites');
 

@@ -81,7 +81,11 @@
       "type": "word",
       "ge_text": "აი იას საათი",
       "reading": "ai ias saati",
-      "ru_meaning": "вот часы Ии"
+      "ru_meaning": "вот часы Ии",
+      "accepted_ru": [
+        "вот часы Ия",
+        "вот часы Ии"
+      ]
     },
     {
       "type": "word",
@@ -112,7 +116,9 @@
       "ge_text": "იას ოთხი ია",
       "ru_meaning": "у Ии четыре фиалки",
       "accepted_ru": [
-        "четыре фиалки у Ии"
+        "четыре фиалки у Ии",
+        "у Ия четыре фиалки",
+        "четыре фиалки у Ия"
       ]
     },
     {
@@ -221,7 +227,10 @@
       "type": "word",
       "ge_text": "აი თათიას საათი",
       "reading": "ai tatias saati",
-      "ru_meaning": "вот часы Татии"
+      "ru_meaning": "вот часы Татии",
+      "accepted_ru": [
+        "вот часы Татия"
+      ]
     },
     {
       "type": "word",

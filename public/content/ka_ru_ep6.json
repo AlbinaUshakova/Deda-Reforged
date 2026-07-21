@@ -15,9 +15,8 @@
     {
       "type": "word",
       "ge_text": "ქართველი",
-      "ru_meaning": "грузин / грузинка",
+      "ru_meaning": "грузин",
       "accepted_ru": [
-        "грузин",
         "грузинка"
       ],
       "audio_url": ""
