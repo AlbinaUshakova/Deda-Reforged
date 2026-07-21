@@ -39,7 +39,7 @@ export function LessonsHero({
       <div className="lessons-hero-copy relative z-10 flex min-w-0 flex-col justify-center gap-3">
         <div>
           <p className="lessons-hero-subtitle lessons-hero-subtitle--lead">
-            Учись читать по карточкам, закрепляй навык играя в «Блоки».
+            Вначале читай карточки урока, потом играй в Блоки.
           </p>
         </div>
       </div>
