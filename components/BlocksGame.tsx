@@ -447,10 +447,10 @@ export default function BlocksGame({
     ? (direction === 'ge-ru' ? question.ge : question.ru)
     : '';
   return (
-    <div className="flex w-full justify-center lg:justify-start mt-1 md:mt-2">
+    <div className="blocks-game-root flex w-full justify-center lg:justify-start mt-1 md:mt-2">
       <div
         className={
-          'relative flex w-full max-w-5xl rounded-[28px] bg-transparent px-1 sm:px-3 md:px-6 py-2 md:py-4 lg:py-5 ' +
+          'blocks-game-layout relative flex w-full max-w-5xl rounded-[28px] bg-transparent px-1 sm:px-3 md:px-6 py-2 md:py-4 lg:py-5 ' +
           (isNarrowLayout
             ? 'flex-col items-center gap-2'
             : 'flex-row items-start gap-1 sm:gap-1.5 md:gap-2 lg:gap-2 xl:gap-2')
@@ -460,7 +460,7 @@ export default function BlocksGame({
         <div
           className={
             (isNarrowLayout
-              ? 'w-full max-w-[420px] shrink-0 ml-0 px-2'
+              ? 'blocks-question-stage w-full max-w-[420px] shrink-0 ml-0 px-2'
               : 'w-[clamp(200px,30vw,340px)] shrink-0 ml-0 md:ml-[-10px] lg:ml-[-18px] -mt-2 md:-mt-4 lg:-mt-6') +
             (showQuestionStage ? '' : ' hidden')
           }
@@ -479,7 +479,7 @@ export default function BlocksGame({
                     : 'opacity-0 translate-y-16 pointer-events-none')
                 }
               >
-                <div className="flex flex-col items-start justify-start h-full px-2 pt-5">
+                <div className="blocks-question-stage-inner flex flex-col items-start justify-start h-full px-2 pt-5">
                   <BlocksQuestionPanel
                     hasWords={hasWords}
                     question={question}
@@ -518,7 +518,7 @@ export default function BlocksGame({
           className={
             'min-w-0 flex flex-col items-center ' +
             (isNarrowLayout
-              ? 'w-full max-w-[540px] px-2'
+              ? 'blocks-board-stage w-full max-w-[540px] px-2'
               : 'flex-1 justify-center lg:justify-start ml-0 lg:ml-0 xl:ml-0 -mt-2 md:-mt-4 lg:-mt-6') +
             (showBoardStage ? '' : ' hidden')
           }

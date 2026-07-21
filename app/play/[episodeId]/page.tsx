@@ -160,7 +160,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
     <main className="blocks-game-screen app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">
       <div className="study-screen-orb study-screen-orb--left" aria-hidden="true" />
       <div className="study-screen-orb study-screen-orb--right" aria-hidden="true" />
-      <div className="mx-auto h-full w-full overflow-hidden px-3 sm:px-4 md:px-6 py-8 lg:pl-[124px]">
+      <div className="blocks-screen-shell mx-auto h-full w-full overflow-hidden px-3 sm:px-4 md:px-6 py-8 lg:pl-[124px]">
         <div className="relative z-30 mb-2 mx-auto w-full max-w-[980px]">
           <div className="relative flex min-h-[52px] items-center justify-end">
             <div className="topButtons study-page-actions ml-auto flex flex-wrap justify-end gap-2 lg:pr-[112px]">

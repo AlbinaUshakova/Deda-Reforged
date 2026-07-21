@@ -3233,6 +3233,262 @@ html[data-theme='dark'] .blocks-submit-btn:hover {
     }
 }
 
+@media (max-width: 700px) {
+    .study-card-screen.app-screen-fixed,
+    .blocks-game-screen.app-screen-fixed {
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .study-card-screen,
+    .blocks-game-screen {
+        min-height: 100dvh;
+    }
+
+    .study-card-screen::before,
+    .blocks-game-screen::before {
+        top: 84px;
+        opacity: 0.72;
+    }
+
+    .study-screen-orb--left {
+        top: 176px;
+        left: -138px;
+        width: 210px;
+        height: 210px;
+    }
+
+    .study-screen-orb--right {
+        top: 70px;
+        right: -160px;
+        width: 240px;
+        height: 240px;
+    }
+
+    .study-screen-shell,
+    .blocks-screen-shell {
+        height: auto !important;
+        min-height: 100dvh;
+        overflow: visible !important;
+        padding-top: 14px !important;
+        padding-bottom: 22px !important;
+    }
+
+    .blocks-screen-shell {
+        padding-inline: 12px !important;
+    }
+
+    .study-page-actions {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    .study-action-pill {
+        min-height: 44px;
+        padding-inline: 14px;
+        font-size: 13px;
+    }
+
+    .flashcard-screen-root > .mb-1 {
+        margin-bottom: 0 !important;
+        gap: 4px !important;
+    }
+
+    .flashcard-counter {
+        font-size: 10px !important;
+        line-height: 1.1;
+    }
+
+    .flashcard-stage {
+        max-width: 100% !important;
+        padding: 2px 34px 18px !important;
+    }
+
+    .flashcard-lesson-letters,
+    .flashcard-card-shell,
+    .flashcard-main-card,
+    .flashcard-controls-wrap {
+        width: min(100%, 430px, 82vw) !important;
+        max-width: 430px !important;
+    }
+
+    .flashcard-lesson-letters {
+        margin-bottom: 8px;
+        gap: 6px;
+        border-radius: 20px;
+        padding: 7px 8px;
+    }
+
+    .flashcard-lesson-letters-kicker {
+        font-size: 10px;
+    }
+
+    .flashcard-lesson-letter {
+        min-width: 36px;
+        min-height: 38px;
+    }
+
+    .flashcard-main-card {
+        aspect-ratio: 13 / 10 !important;
+        max-height: min(43dvh, 320px);
+        border-radius: 26px !important;
+    }
+
+    .flashcard-content {
+        padding: 54px 15px 46px !important;
+    }
+
+    .flashcard-action-bar {
+        left: 10px !important;
+        right: 10px !important;
+        top: 10px !important;
+    }
+
+    .flashcard-mini-btn {
+        min-width: 40px !important;
+        min-height: 40px !important;
+        border-radius: 999px !important;
+        padding-inline: 10px !important;
+    }
+
+    .flashcard-hint-btn {
+        max-width: 40% !important;
+    }
+
+    .flashcard-nav-arrow {
+        min-width: 42px;
+        min-height: 42px;
+    }
+
+    .flashcard-controls-wrap {
+        height: 54px !important;
+        margin-top: 12px !important;
+    }
+
+    .flashcard-controls-compact {
+        height: 52px !important;
+        gap: 5px !important;
+        padding: 4px !important;
+    }
+
+    .flashcard-control-btn {
+        min-width: 48px;
+        min-height: 44px;
+        padding-inline: 12px;
+    }
+
+    .flashcard-cat-inline {
+        left: -38px;
+        top: 52%;
+        transform: translateY(-54%) scale(0.86);
+        transform-origin: left center;
+    }
+
+    .flashcard-speed-menu {
+        bottom: calc(100% + 8px);
+        top: auto;
+        right: -12px;
+        min-width: 148px;
+    }
+
+    .flashcard-speed-option {
+        min-height: 38px;
+        font-size: 13px;
+    }
+
+    .blocks-game-root {
+        margin-top: 0 !important;
+    }
+
+    .blocks-game-layout {
+        gap: 8px !important;
+        padding: 0 !important;
+    }
+
+    .blocks-question-stage,
+    .blocks-board-stage {
+        max-width: min(100%, 430px) !important;
+        padding-inline: 0 !important;
+    }
+
+    .blocks-question-stage-inner {
+        padding: 0 !important;
+    }
+
+    .blocks-question-card {
+        border-radius: 22px !important;
+        padding: 11px !important;
+    }
+
+    .blocks-question-meta {
+        margin-bottom: 7px !important;
+    }
+
+    .blocks-prompt-text {
+        font-size: clamp(20px, 6vw, 25px) !important;
+        line-height: 1.12 !important;
+    }
+
+    .blocks-answer-stack {
+        gap: 6px;
+    }
+
+    .blocks-answer-input {
+        min-height: 44px;
+        height: 44px;
+        font-size: 16px !important;
+        border-radius: 15px;
+    }
+
+    .blocks-submit-btn {
+        min-height: 44px;
+        font-size: 13px;
+    }
+
+    .blocks-grid-score-row {
+        margin-bottom: 5px !important;
+        justify-content: center !important;
+    }
+
+    .blocks-grid-score {
+        border: 1px solid rgba(15, 118, 110, 0.10);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.54);
+        padding: 5px 10px;
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+        opacity: 1 !important;
+    }
+
+    html[data-theme='dark'] .blocks-grid-score {
+        border-color: rgba(190, 168, 132, 0.12);
+        background: rgba(255, 251, 235, 0.055);
+    }
+}
+
+@media (max-width: 380px) {
+    .flashcard-stage {
+        padding-inline: 30px !important;
+    }
+
+    .flashcard-lesson-letters,
+    .flashcard-card-shell,
+    .flashcard-main-card,
+    .flashcard-controls-wrap {
+        width: min(100%, 410px, 80vw) !important;
+    }
+
+    .flashcard-lesson-letter {
+        min-width: 34px;
+    }
+
+    .flashcard-cat-inline {
+        left: -34px;
+        transform: translateY(-54%) scale(0.78);
+    }
+}
+
 html[data-theme='dark'] .flashcard-progress-track {
     background: #334155 !important;
 }
