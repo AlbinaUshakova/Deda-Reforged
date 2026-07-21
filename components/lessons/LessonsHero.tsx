@@ -52,7 +52,7 @@ export function LessonsHero({
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="lessons-hero-actions flex flex-wrap items-center gap-3">
           <Link href={lessonHref} legacyBehavior>
             <a className="lessons-hero-primary">
               {primaryLabel}
@@ -89,7 +89,7 @@ export function LessonsHero({
             />
           </div>
 
-          <div className="relative z-10 mt-4 flex min-h-[62px] items-center justify-center rounded-[22px] bg-white/62 px-4 py-2.5">
+          <div className="lessons-hero-letter-panel relative z-10 mt-4 flex min-h-[62px] items-center justify-center rounded-[22px] bg-white/62 px-4 py-2.5">
             <div
               className="lessons-hero-letters"
               style={{
@@ -101,7 +101,7 @@ export function LessonsHero({
             </div>
           </div>
 
-          <div className="relative z-10 mt-3 flex items-center gap-3">
+          <div className="lessons-hero-progress relative z-10 mt-3 flex items-center gap-3">
             <div className="h-2 flex-1 overflow-hidden rounded-full bg-orange-100">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-orange-400 to-emerald-400"

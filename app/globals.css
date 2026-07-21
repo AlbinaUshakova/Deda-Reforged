@@ -398,23 +398,60 @@ body {
     }
 
     .lessons-hero {
-        border-radius: 26px;
-        padding: 18px;
+        gap: 12px;
+        border-radius: 24px;
+        padding: 14px;
     }
 
     .lessons-hero::after {
-        inset: 8px;
-        border-radius: 20px;
+        inset: 6px;
+        border-radius: 18px;
+    }
+
+    .lessons-hero-kicker {
+        padding: 4px 8px;
+        font-size: 9px;
+        letter-spacing: 0.11em;
     }
 
     .lessons-hero-title {
-        margin-top: 12px;
-        font-size: clamp(32px, 10.4vw, 44px);
+        margin-top: 10px;
+        font-size: clamp(30px, 9.5vw, 38px);
+        line-height: 1;
+    }
+
+    .lessons-hero-copy {
+        gap: 12px;
     }
 
     .lessons-hero-subtitle {
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 1.36;
+    }
+
+    .lessons-hero-steps {
+        gap: 6px;
         margin-top: 12px;
-        font-size: 15px;
+    }
+
+    .lessons-hero-steps span {
+        min-height: 28px;
+        padding-inline: 9px;
+        font-size: 12px;
+    }
+
+    .lessons-hero-primary {
+        min-height: 46px;
+        padding-inline: 18px;
+    }
+
+    .lessons-hero-secondary {
+        min-height: 44px;
+    }
+
+    .lessons-hero-actions {
+        gap: 8px;
     }
 
     .lessons-hero-primary,
@@ -423,14 +460,30 @@ body {
     }
 
     .lessons-hero-card {
-        min-height: 176px;
-        border-radius: 22px;
-        padding: 15px;
+        min-height: 148px;
+        border-radius: 20px;
+        padding: 13px;
     }
 
     .lessons-hero-cat {
-        height: 66px;
-        width: 66px;
+        height: 54px;
+        width: 54px;
+    }
+
+    .lessons-hero-letters {
+        font-size: clamp(24px, 8vw, 32px);
+    }
+
+    .lessons-hero-letter-panel {
+        min-height: 48px !important;
+        margin-top: 10px !important;
+        border-radius: 16px !important;
+        padding: 8px 10px !important;
+    }
+
+    .lessons-hero-progress {
+        margin-top: 10px !important;
+        gap: 8px;
     }
 }
 
