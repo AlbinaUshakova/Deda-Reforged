@@ -93,6 +93,24 @@ export default function ProgressPanel({
           </button>
         </div>
 
+        <div
+          role="status"
+          aria-live="polite"
+          className={`rounded-xl border px-3 py-2 text-center text-[clamp(10px,1.7vw,12px)] font-semibold leading-snug transition ${
+            resetting
+              ? 'border-[var(--menu-segment-border)] bg-[var(--menu-hover)] text-[var(--menu-text)]'
+              : resetStatus === 'success'
+                ? 'border-emerald-300/70 bg-emerald-500/10 text-emerald-600'
+                : resetStatus === 'error'
+                  ? 'border-red-300/70 bg-red-500/10 text-red-500'
+                  : 'hidden'
+          }`}
+        >
+          {resetting && 'Очищаем прогресс…'}
+          {!resetting && resetStatus === 'success' && 'Прогресс очищен'}
+          {!resetting && resetStatus === 'error' && 'Не удалось очистить прогресс. Попробуйте ещё раз.'}
+        </div>
+
         <div className="space-y-1 pt-0.5">
           <div className="text-[clamp(10px,1.65vw,11px)] text-[var(--menu-text-muted)]">
             Освоено: {masteredCount} из {totalLessons || 0} уроков
@@ -159,24 +177,6 @@ export default function ProgressPanel({
           >
             Сбросить прогресс
           </button>
-          <div
-            role="status"
-            aria-live="polite"
-            className={`min-h-[22px] rounded-xl border px-3 py-1.5 text-center text-[clamp(10px,1.65vw,11px)] leading-snug transition ${
-              resetting
-                ? 'border-[var(--menu-segment-border)] bg-[var(--menu-hover)] text-[var(--menu-text)]'
-                : resetStatus === 'success'
-                  ? 'border-emerald-300/70 bg-emerald-500/10 text-emerald-600'
-                  : resetStatus === 'error'
-                    ? 'border-red-300/70 bg-red-500/10 text-red-500'
-                    : 'border-transparent text-transparent'
-            }`}
-          >
-            {resetting && 'Очищаем прогресс…'}
-            {!resetting && resetStatus === 'success' && 'Прогресс очищен'}
-            {!resetting && resetStatus === 'error' && 'Не удалось очистить прогресс. Попробуйте ещё раз.'}
-            {!resetting && resetStatus === 'idle' && ' '}
-          </div>
         </div>
 
       </div>
