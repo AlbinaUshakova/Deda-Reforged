@@ -17,9 +17,9 @@
 }
 
 html[data-theme='dark'] .blocks-grid-score {
-    border-color: rgba(190, 168, 132, 0.14);
-    background: rgba(31, 35, 32, 0.68);
-    color: #d8d0c2 !important;
+    border-color: rgba(128, 199, 178, 0.12);
+    background: rgba(24, 30, 26, 0.72);
+    color: #dce5dc !important;
     box-shadow:
         0 8px 18px rgba(0, 0, 0, 0.18),
         inset 0 1px 0 rgba(255, 255, 255, 0.035);
@@ -27,22 +27,22 @@ html[data-theme='dark'] .blocks-grid-score {
 }
 
 html[data-theme='dark'] .blocks-grid-cell {
-    background: rgba(255, 251, 235, 0.055) !important;
+    background: rgba(255, 255, 255, 0.055) !important;
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.035),
         0 1px 1px rgba(0, 0, 0, 0.16);
 }
 
 html[data-theme='dark'] .blocks-grid-cell:hover {
-    background: rgba(203, 213, 186, 0.10) !important;
+    background: rgba(128, 199, 178, 0.085) !important;
 }
 
 html[data-theme='dark'] .blocks-grid-hover-cell {
-    border: 1.5px solid rgba(198, 168, 116, 0.42) !important;
-    background: rgba(198, 168, 116, 0.10) !important;
+    border: 1.5px solid rgba(128, 199, 178, 0.34) !important;
+    background: rgba(128, 199, 178, 0.095) !important;
     box-shadow:
         0 0 0 1px rgba(20, 18, 14, 0.22),
-        0 0 16px rgba(198, 168, 116, 0.10) !important;
+        0 0 16px rgba(128, 199, 178, 0.08) !important;
 }
 
 .blocks-grid-board {
@@ -124,21 +124,21 @@ html[data-theme='dark'] .blocks-grid-gameover-overlay {
 
 html[data-theme='dark'] .blocks-grid-gameover-card {
     background:
-        linear-gradient(145deg, rgba(38, 39, 36, 0.96), rgba(48, 40, 31, 0.92)) !important;
-    border-color: rgba(190, 168, 132, 0.16) !important;
+        linear-gradient(145deg, rgba(28, 34, 30, 0.96), rgba(24, 29, 26, 0.94)) !important;
+    border-color: rgba(128, 199, 178, 0.14) !important;
     box-shadow:
         0 20px 44px rgba(0, 0, 0, 0.40),
         0 0 0 1px rgba(255, 255, 255, 0.025) !important;
 }
 
 html[data-theme='dark'] .blocks-grid-gameover-button {
-    background: rgba(178, 155, 105, 0.90) !important;
-    color: #191a17 !important;
-    box-shadow: 0 8px 18px rgba(178, 155, 105, 0.18) !important;
+    background: rgba(128, 199, 178, 0.88) !important;
+    color: #10231d !important;
+    box-shadow: 0 8px 18px rgba(128, 199, 178, 0.14) !important;
 }
 
 html[data-theme='dark'] .blocks-grid-gameover-button:hover {
-    background: rgba(205, 181, 124, 0.94) !important;
+    background: rgba(159, 217, 199, 0.94) !important;
 }
 
 .blocks-game-screen {
@@ -168,9 +168,9 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
 
 html[data-theme='dark'] .blocks-game-screen {
     background:
-        radial-gradient(circle at 14% 18%, rgba(180, 118, 70, 0.12), transparent 28%),
-        radial-gradient(circle at 88% 12%, rgba(112, 143, 119, 0.12), transparent 26%),
-        linear-gradient(180deg, #151714 0%, #1d201c 48%, #181a17 100%) !important;
+        radial-gradient(circle at 14% 18%, rgba(128, 199, 178, 0.11), transparent 30%),
+        radial-gradient(circle at 88% 12%, rgba(212, 155, 90, 0.085), transparent 28%),
+        linear-gradient(180deg, #111612 0%, #151a16 48%, #111412 100%) !important;
 }
 
 html[data-theme='dark'] .blocks-game-screen::before {
@@ -188,9 +188,9 @@ html[data-theme='dark'] .blocks-game-screen::before {
 }
 
 html[data-theme='dark'] .blocks-answer-input:focus {
-    border-color: rgba(198, 168, 116, 0.34) !important;
+    border-color: rgba(128, 199, 178, 0.34) !important;
     box-shadow:
-        0 0 0 3px rgba(198, 168, 116, 0.11),
+        0 0 0 3px rgba(128, 199, 178, 0.11),
         inset 0 1px 0 rgba(255, 255, 255, 0.05),
         0 8px 18px rgba(0, 0, 0, 0.18) !important;
     outline: none !important;
@@ -198,28 +198,28 @@ html[data-theme='dark'] .blocks-answer-input:focus {
 
 .blocks-answer-input:focus-visible,
 html[data-theme='dark'] .blocks-answer-input:focus-visible {
-    border-color: rgba(198, 168, 116, 0.42) !important;
+    border-color: rgba(128, 199, 178, 0.36) !important;
     box-shadow:
-        0 0 0 3px rgba(198, 168, 116, 0.12),
+        0 0 0 3px rgba(128, 199, 178, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
     outline: none !important;
 }
 
 html[data-theme='dark'] .blocks-answer-input {
-    background: rgba(255, 251, 235, 0.065) !important;
-    border: 1px solid rgba(190, 168, 132, 0.13) !important;
-    color: #ece5d8 !important;
+    background: rgba(255, 255, 255, 0.060) !important;
+    border: 1px solid rgba(226, 232, 240, 0.10) !important;
+    color: #edf3ec !important;
 }
 
 html[data-theme='dark'] .blocks-answer-input::placeholder {
-    color: rgba(216, 208, 194, 0.56) !important;
+    color: rgba(183, 193, 184, 0.56) !important;
 }
 
 html[data-theme='dark'] .blocks-grid-board {
     background:
-        linear-gradient(145deg, rgba(34, 37, 33, 0.78), rgba(49, 41, 32, 0.60)),
-        radial-gradient(circle at 80% 12%, rgba(145, 126, 84, 0.12), transparent 36%) !important;
-    border: 1px solid rgba(190, 168, 132, 0.12) !important;
+        linear-gradient(145deg, rgba(24, 31, 27, 0.82), rgba(18, 23, 20, 0.72)),
+        radial-gradient(circle at 80% 12%, rgba(128, 199, 178, 0.08), transparent 36%) !important;
+    border: 1px solid rgba(128, 199, 178, 0.10) !important;
     border-radius: 28px;
     padding: 6px;
     box-shadow:
@@ -235,9 +235,9 @@ html[data-theme='light'] .blocks-refresh-btn {
 }
 
 html[data-theme='dark'] .blocks-refresh-btn {
-    border-color: rgba(190, 168, 132, 0.11) !important;
-    background: rgba(255, 251, 235, 0.055) !important;
-    color: #c9c0ae !important;
+    border-color: rgba(226, 232, 240, 0.10) !important;
+    background: rgba(255, 255, 255, 0.055) !important;
+    color: #b7c1b8 !important;
     opacity: 1;
 }
 
@@ -259,8 +259,8 @@ html[data-theme='light'] .blocks-refresh-btn:active {
 
 html[data-theme='dark'] .blocks-refresh-btn:hover,
 html[data-theme='dark'] .blocks-refresh-btn:active {
-    background: rgba(198, 168, 116, 0.12) !important;
-    color: #ead9b8 !important;
+    background: rgba(128, 199, 178, 0.12) !important;
+    color: #d4f2e7 !important;
 }
 
 .blocks-refresh-btn:active,
@@ -327,28 +327,28 @@ html[data-theme='dark'] .blocks-refresh-btn:active {
 }
 
 html[data-theme='dark'] .blocks-question-card {
-    border-color: rgba(190, 168, 132, 0.13);
+    border-color: rgba(128, 199, 178, 0.12);
     background:
-        linear-gradient(145deg, rgba(34, 37, 33, 0.74), rgba(49, 41, 32, 0.58)),
-        radial-gradient(circle at 88% 14%, rgba(145, 126, 84, 0.12), transparent 38%);
+        linear-gradient(145deg, rgba(24, 31, 27, 0.78), rgba(18, 23, 20, 0.68)),
+        radial-gradient(circle at 88% 14%, rgba(128, 199, 178, 0.08), transparent 38%);
     box-shadow:
         0 18px 42px rgba(0, 0, 0, 0.24),
         inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
 html[data-theme='dark'] .blocks-question-chip {
-    background: rgba(112, 143, 119, 0.14);
-    color: #c7d7bf;
+    background: rgba(128, 199, 178, 0.13);
+    color: #d4f2e7;
 }
 
 html[data-theme='dark'] .blocks-question-chip--muted {
-    background: rgba(198, 168, 116, 0.12);
-    color: #ead9b8;
+    background: rgba(212, 155, 90, 0.11);
+    color: #e6c99e;
 }
 
 html[data-theme='dark'] .blocks-question-shortcut {
-    background: rgba(255, 251, 235, 0.035);
-    color: rgba(216, 208, 194, 0.48);
+    background: rgba(255, 255, 255, 0.040);
+    color: rgba(183, 193, 184, 0.50);
 }
 
 .blocks-answer-input {
@@ -420,21 +420,21 @@ html[data-theme='dark'] .blocks-question-shortcut {
 }
 
 html[data-theme='dark'] .blocks-submit-btn {
-    border-color: rgba(198, 168, 116, 0.18);
-    background: rgba(198, 168, 116, 0.14);
-    color: #ead9b8;
+    border-color: rgba(128, 199, 178, 0.20);
+    background: rgba(128, 199, 178, 0.14);
+    color: #d4f2e7;
     box-shadow:
         0 10px 22px rgba(0, 0, 0, 0.20),
         inset 0 1px 0 rgba(255, 255, 255, 0.045);
 }
 
 html[data-theme='dark'] .blocks-submit-btn:hover {
-    background: rgba(198, 168, 116, 0.20);
+    background: rgba(128, 199, 178, 0.20);
 }
 
 html[data-theme='dark'] .blocks-prompt-text {
-    color: #f1e8d8 !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.34);
+    color: #eef2ec !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 @media (max-width: 900px) {
@@ -587,7 +587,7 @@ html[data-theme='dark'] .blocks-prompt-text {
     }
 
     html[data-theme='dark'] .blocks-grid-score {
-        border-color: rgba(190, 168, 132, 0.12);
-        background: rgba(255, 251, 235, 0.055);
+        border-color: rgba(128, 199, 178, 0.12);
+        background: rgba(255, 255, 255, 0.055);
     }
 }

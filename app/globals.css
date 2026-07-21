@@ -77,70 +77,70 @@
 
 html[data-theme='dark'] {
     color-scheme: dark;
-    --bg-main: #1e1e1e;
-    --bg-card: #2d2d30;
-    --bg-card-hover: #343438;
-    --bg-panel: #252526;
-    --border-soft: #454545;
-    --shadow-soft: 0 4px 14px rgba(0, 0, 0, 0.25);
-    --text-primary: #d4d4d4;
-    --text-secondary: #a6a6a6;
-    --text-tertiary: #8f8f8f;
-    --accent: #f97316;
-    --accent-hover: #fb923c;
-    --ui-accent: #10a37f;
-    --focus-ring: rgba(16, 163, 127, 0.32);
-    --progress: #f97316;
-    --progress-good: #22c55e;
-    --progress-low: #ff7a00;
-    --progress-current: #facc15;
-    --progress-bg: #3a3a3c;
+    --bg-main: #111412;
+    --bg-card: #1b201d;
+    --bg-card-hover: #222923;
+    --bg-panel: #181d1a;
+    --border-soft: rgba(226, 232, 240, 0.10);
+    --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.32);
+    --text-primary: #eef2ec;
+    --text-secondary: #b7c1b8;
+    --text-tertiary: #88958c;
+    --accent: #d49b5a;
+    --accent-hover: #e5ad6f;
+    --ui-accent: #80c7b2;
+    --focus-ring: rgba(128, 199, 178, 0.24);
+    --progress: #d49b5a;
+    --progress-good: #8bc7a6;
+    --progress-low: #d8a15d;
+    --progress-current: #dcc783;
+    --progress-bg: rgba(226, 232, 240, 0.10);
     --alphabet-bg: var(--bg-panel);
     --alphabet-key: #333336;
     --alphabet-key-hover: #3c3c40;
-    --button-bg: #2d2d30;
-    --button-hover: #38383d;
-    --button-text: #ececec;
-    --menu-bg: #252526;
-    --menu-border: rgba(255, 255, 255, 0.1);
-    --menu-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
-    --menu-text: #ececec;
-    --menu-text-muted: #b4b4b4;
-    --menu-hover: #2a2d2e;
-    --menu-active: #31363a;
-    --menu-divider: rgba(255, 255, 255, 0.06);
-    --menu-focus: rgba(251, 146, 60, 0.42);
-    --menu-segment-bg: rgba(255, 255, 255, 0.06);
-    --menu-segment-border: rgba(255, 255, 255, 0.1);
-    --menu-segment-idle: #e5eaf3;
-    --menu-segment-idle-hover: rgba(255, 255, 255, 0.06);
-    --menu-segment-active: #3f3f3f;
+    --button-bg: rgba(255, 255, 255, 0.055);
+    --button-hover: rgba(255, 255, 255, 0.085);
+    --button-text: #eef2ec;
+    --menu-bg: rgba(24, 29, 26, 0.96);
+    --menu-border: rgba(226, 232, 240, 0.11);
+    --menu-shadow: 0 20px 56px rgba(0, 0, 0, 0.42);
+    --menu-text: #eef2ec;
+    --menu-text-muted: #a5b0a7;
+    --menu-hover: rgba(255, 255, 255, 0.065);
+    --menu-active: rgba(128, 199, 178, 0.13);
+    --menu-divider: rgba(226, 232, 240, 0.07);
+    --menu-focus: rgba(128, 199, 178, 0.30);
+    --menu-segment-bg: rgba(255, 255, 255, 0.055);
+    --menu-segment-border: rgba(226, 232, 240, 0.10);
+    --menu-segment-idle: #d8dfd6;
+    --menu-segment-idle-hover: rgba(255, 255, 255, 0.075);
+    --menu-segment-active: #eef2ec;
     --menu-segment-active-shadow: 0 2px 8px rgba(20, 30, 50, 0.22);
     --menu-stepper-bg: rgba(255, 255, 255, 0.04);
     --menu-stepper-border: rgba(255, 255, 255, 0.12);
-    --shape-orange: #d89247;
-    --shape-purple: #8a82bf;
-    --shape-green: #5ca08a;
-    --shape-blue: #6d90b7;
-    --shape-yellow: #facc15;
-    --grid-cell: #3d3d3d;
-    --grid-cell-hover: #4a4a4a;
-    --grid-bg: #252526;
+    --shape-orange: #bf8550;
+    --shape-purple: #8e8aba;
+    --shape-green: #78b99f;
+    --shape-blue: #7f9fbd;
+    --shape-yellow: #d8c36f;
+    --grid-cell: rgba(255, 255, 255, 0.065);
+    --grid-cell-hover: rgba(255, 255, 255, 0.10);
+    --grid-bg: #171c19;
     --app-bg: var(--bg-main);
     --app-text: var(--text-primary);
-    --header-bg: #252526;
-    --header-text: #ececec;
-    --header-border: #3c3c3c;
+    --header-bg: rgba(18, 22, 20, 0.96);
+    --header-text: #eef2ec;
+    --header-border: rgba(226, 232, 240, 0.08);
     --premium-gold: #e7c37a;
     --phrases-label: rgba(255, 255, 255, 0.92);
-    --btn-active-bg: rgba(249, 115, 22, 0.16);
-    --btn-active-border: rgba(251, 146, 60, 0.55);
-    --btn-active-text: #ffd8bc;
-    --btn-active-shadow: 0 0 0 2px rgba(249, 115, 22, 0.22);
+    --btn-active-bg: rgba(128, 199, 178, 0.13);
+    --btn-active-border: rgba(128, 199, 178, 0.34);
+    --btn-active-text: #d4f2e7;
+    --btn-active-shadow: 0 0 0 2px rgba(128, 199, 178, 0.13);
     --control-text: #e5e7eb;
     --control-text-hover: #f1f5f9;
     --dialog-question: #dbe6f7;
-    --dialog-answer: #f4b26a;
+    --dialog-answer: #d9aa72;
     --deda-bg: var(--app-bg);
     --deda-text: var(--app-text);
 }
@@ -712,16 +712,16 @@ body {
 
 html[data-theme='dark'] .lessons-screen {
     background:
-        radial-gradient(circle at 16% 14%, rgba(249, 115, 22, 0.18), transparent 28%),
-        radial-gradient(circle at 86% 6%, rgba(16, 163, 127, 0.12), transparent 26%),
-        linear-gradient(180deg, #2b211a 0%, #23211f 42%, var(--app-bg) 100%);
+        radial-gradient(circle at 16% 14%, rgba(128, 199, 178, 0.13), transparent 30%),
+        radial-gradient(circle at 86% 6%, rgba(212, 155, 90, 0.10), transparent 28%),
+        linear-gradient(180deg, #151915 0%, #121613 46%, var(--app-bg) 100%);
 }
 
 html[data-theme='dark'] .study-card-screen {
     background:
-        radial-gradient(circle at 14% 18%, rgba(249, 115, 22, 0.18), transparent 28%),
-        radial-gradient(circle at 88% 12%, rgba(16, 163, 127, 0.12), transparent 26%),
-        linear-gradient(180deg, #2b211a 0%, #23211f 44%, var(--app-bg) 100%) !important;
+        radial-gradient(circle at 14% 18%, rgba(128, 199, 178, 0.12), transparent 30%),
+        radial-gradient(circle at 88% 12%, rgba(212, 155, 90, 0.095), transparent 28%),
+        linear-gradient(180deg, #151915 0%, #121613 44%, var(--app-bg) 100%) !important;
 }
 
 html[data-theme='dark'] .lessons-screen::before {
@@ -733,14 +733,14 @@ html[data-theme='dark'] .study-card-screen::before {
 }
 
 html[data-theme='dark'] .lessons-hero {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(226, 232, 240, 0.09);
     background:
-        radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.08), transparent 24%),
-        radial-gradient(circle at 82% 18%, rgba(16, 163, 127, 0.16), transparent 34%),
-        radial-gradient(circle at 18% 96%, rgba(249, 115, 22, 0.14), transparent 36%),
-        linear-gradient(135deg, rgba(36, 31, 27, 0.96), rgba(27, 31, 31, 0.92));
+        radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.055), transparent 24%),
+        radial-gradient(circle at 82% 18%, rgba(128, 199, 178, 0.11), transparent 34%),
+        radial-gradient(circle at 18% 96%, rgba(212, 155, 90, 0.09), transparent 36%),
+        linear-gradient(135deg, rgba(29, 35, 31, 0.96), rgba(19, 24, 21, 0.94));
     box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.30),
+        0 24px 60px rgba(0, 0, 0, 0.28),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
@@ -764,11 +764,11 @@ html[data-theme='dark'] .lessons-hero-subtitle--lead {
 }
 
 html[data-theme='dark'] .lessons-hero-card {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(226, 232, 240, 0.10);
     background:
-        radial-gradient(circle at 86% 0%, rgba(250, 204, 21, 0.16), transparent 34%),
-        radial-gradient(circle at 8% 92%, rgba(16, 163, 127, 0.14), transparent 38%),
-        linear-gradient(145deg, rgba(47, 43, 39, 0.96), rgba(39, 38, 35, 0.92));
+        radial-gradient(circle at 86% 0%, rgba(212, 155, 90, 0.11), transparent 34%),
+        radial-gradient(circle at 8% 92%, rgba(128, 199, 178, 0.10), transparent 38%),
+        linear-gradient(145deg, rgba(31, 38, 34, 0.96), rgba(24, 29, 26, 0.94));
     box-shadow:
         0 18px 36px rgba(0, 0, 0, 0.26),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -780,7 +780,7 @@ html[data-theme='dark'] .lessons-hero-art {
 }
 
 html[data-theme='dark'] .lessons-hero-card-label {
-    color: rgba(254, 215, 170, 0.82);
+    color: rgba(216, 195, 147, 0.82);
 }
 
 html[data-theme='dark'] .lessons-hero-card-title {
@@ -788,9 +788,9 @@ html[data-theme='dark'] .lessons-hero-card-title {
 }
 
 html[data-theme='dark'] .lessons-hero-start {
-    background: #fff7ed;
-    color: #202123;
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+    background: #d7efe5;
+    color: #13211c;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
 }
 
 html[data-theme='dark'] .lessons-hero-card .bg-white\/62 {
@@ -798,9 +798,9 @@ html[data-theme='dark'] .lessons-hero-card .bg-white\/62 {
 }
 
 html[data-theme='dark'] .lessons-hero-mascot {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(226, 232, 240, 0.09);
     background:
-        radial-gradient(circle at 44% 28%, rgba(255, 255, 255, 0.12), rgba(45, 38, 34, 0.86) 58%, rgba(94, 234, 212, 0.08));
+        radial-gradient(circle at 44% 28%, rgba(255, 255, 255, 0.11), rgba(27, 34, 30, 0.90) 58%, rgba(128, 199, 178, 0.08));
     box-shadow:
         0 14px 26px rgba(0, 0, 0, 0.24),
         inset 0 1px 0 rgba(255, 255, 255, 0.07);
@@ -814,13 +814,13 @@ html[data-theme='dark'] .lessons-hero-letter-panel {
 }
 
 html[data-theme='dark'] .lessons-hero-letter {
-    border-color: rgba(94, 234, 212, 0.10);
-    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(128, 199, 178, 0.12);
+    background: rgba(255, 255, 255, 0.045);
 }
 
 html[data-theme='dark'] .lessons-hero-letter:hover {
-    border-color: rgba(94, 234, 212, 0.22);
-    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(128, 199, 178, 0.24);
+    background: rgba(128, 199, 178, 0.095);
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
 }
 
@@ -829,13 +829,13 @@ html[data-theme='dark'] .lessons-hero-letter-hint {
 }
 
 html[data-theme='dark'] .lessons-hero-letter::after {
-    background: rgba(94, 234, 212, 0.34);
+    background: rgba(128, 199, 178, 0.34);
 }
 
 html[data-theme='dark'] .lessons-hero-letter:hover::after,
 html[data-theme='dark'] .lessons-hero-letter:focus-visible::after {
-    background: #5eead4;
-    box-shadow: 0 0 0 3px rgba(94, 234, 212, 0.12);
+    background: #9fd9c7;
+    box-shadow: 0 0 0 3px rgba(128, 199, 178, 0.12);
 }
 
 html[data-theme='dark'] .lessons-hero-rule {
@@ -855,11 +855,11 @@ html[data-theme='dark'] .lessons-path-section::before {
 
 html[data-theme='dark'] .home-lesson-card--current {
     background:
-        linear-gradient(135deg, rgba(52, 52, 56, 0.98), rgba(58, 43, 32, 0.94)) !important;
-    border-color: rgba(251, 146, 60, 0.34) !important;
+        linear-gradient(135deg, rgba(31, 39, 35, 0.98), rgba(34, 31, 26, 0.95)) !important;
+    border-color: rgba(212, 155, 90, 0.26) !important;
     box-shadow:
-        0 16px 34px rgba(0, 0, 0, 0.32),
-        0 0 0 1px rgba(251, 146, 60, 0.08) !important;
+        0 16px 34px rgba(0, 0, 0, 0.30),
+        0 0 0 1px rgba(212, 155, 90, 0.07) !important;
 }
 
 .home-lesson-title {
@@ -1092,15 +1092,15 @@ html[data-theme='light'] .play-tab--secondary:hover {
 }
 
 html[data-theme='dark'] .play-tab--secondary {
-    border-color: rgba(255, 255, 255, 0.15) !important;
-    color: #ececec !important;
+    border-color: rgba(226, 232, 240, 0.12) !important;
+    color: var(--button-text) !important;
     background: var(--button-bg) !important;
 }
 
 html[data-theme='dark'] .play-tab--secondary:hover {
-    border-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(128, 199, 178, 0.22) !important;
     background: var(--button-hover) !important;
-    color: #fff !important;
+    color: var(--text-primary) !important;
 }
 
 @media (max-width: 900px) {
@@ -1129,12 +1129,14 @@ button[aria-pressed='true'] {
 html[data-theme='dark'] .home-lesson-card {
     background: var(--bg-card) !important;
     border-color: var(--border-soft) !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
 }
 
 html[data-theme='dark'] .home-lesson-card.lesson-card--interactive:hover {
-    background: #32353b !important;
-    border-color: #566072 !important;
+    background: #202721 !important;
+    border-color: rgba(128, 199, 178, 0.20) !important;
     transform: translateY(-1px);
 }
 
@@ -1147,11 +1149,11 @@ html[data-theme='dark'] .home-lesson-status--current {
 }
 
 html[data-theme='dark'] .home-lesson-status--almost {
-    color: #8e98a8 !important;
+    color: #9ca89f !important;
 }
 
 html[data-theme='dark'] .home-lesson-status--locked {
-    color: #a79f92 !important;
+    color: #899288 !important;
 }
 
 html[data-theme='dark'] .home-lesson-subtitle,
@@ -1160,7 +1162,7 @@ html[data-theme='dark'] .home-progress-score {
 }
 
 html[data-theme='dark'] .home-lesson-letter {
-    color: var(--accent) !important;
+    color: #d8ad78 !important;
     text-shadow: none;
 }
 
@@ -1181,24 +1183,24 @@ html[data-theme='dark'] .home-lesson-letter--locked {
 }
 
 html[data-theme='dark'] .home-lesson-card--locked {
-    background: #34363b !important;
-    border-color: #4a4d52 !important;
+    background: rgba(255, 255, 255, 0.045) !important;
+    border-color: rgba(226, 232, 240, 0.075) !important;
 }
 
 html[data-theme='dark'] .home-lesson-card--locked .home-lesson-title {
-    color: #c7c0b2 !important;
+    color: #aeb8b0 !important;
 }
 
 html[data-theme='dark'] .home-lesson-card--locked .home-lesson-letter--locked {
-    color: #a79f92 !important;
+    color: #7f8b82 !important;
 }
 
 html[data-theme='dark'] .home-lesson-card--locked .home-progress-score {
-    color: #aba395 !important;
+    color: #899288 !important;
 }
 
 html[data-theme='dark'] .home-lesson-lock {
-    color: #a79f92 !important;
+    color: #899288 !important;
 }
 
 html[data-theme='dark'] .home-lesson-letter--unknown {
