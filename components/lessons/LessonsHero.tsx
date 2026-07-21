@@ -37,27 +37,10 @@ export function LessonsHero({
     : 'Слова и фразы из этих и прошлых букв';
 
   return (
-    <section className="lessons-hero mx-auto grid w-full max-w-[1000px] grid-cols-[minmax(0,1fr)_minmax(280px,0.56fr)] items-stretch gap-4 rounded-[32px] px-5 py-5 md:px-7 md:py-6 [@media(max-width:820px)]:grid-cols-1">
+    <section className="lessons-hero mx-auto grid w-full max-w-[1040px] grid-cols-[minmax(420px,0.58fr)_minmax(240px,0.42fr)] items-stretch gap-4 rounded-[32px] px-5 py-5 md:px-7 md:py-6 [@media(max-width:820px)]:grid-cols-1">
       <div className="lessons-hero-art" aria-hidden="true">ა</div>
-      <div className="lessons-hero-copy relative z-10 flex min-w-0 flex-col justify-center gap-3">
-        <div>
-          <p className="lessons-hero-subtitle lessons-hero-subtitle--lead">
-            Вначале читай карточки урока, потом играй в Блоки.
-          </p>
-        </div>
-        <div className="lessons-hero-mascot" aria-hidden="true">
-          <Image
-            src="/images/deda-cat.png"
-            alt=""
-            width={92}
-            height={92}
-            className="lessons-hero-cat"
-            priority
-          />
-        </div>
-      </div>
 
-      <div className="lessons-hero-card group self-start">
+      <div className="lessons-hero-card group self-stretch">
         <Link
           href={lessonHref}
           className="lessons-hero-card-link"
@@ -116,6 +99,25 @@ export function LessonsHero({
               {progressPercent}%
             </span>
           </div>
+      </div>
+
+      <div className="lessons-hero-copy relative z-10 flex min-w-0 flex-col justify-center gap-3">
+        <div>
+          <div className="lessons-hero-kicker">Как проходить</div>
+          <p className="lessons-hero-subtitle lessons-hero-subtitle--lead">
+            Вначале читай карточки урока, потом играй в Блоки.
+          </p>
+        </div>
+        <div className="lessons-hero-mascot" aria-hidden="true">
+          <Image
+            src="/images/deda-cat.png"
+            alt=""
+            width={92}
+            height={92}
+            className="lessons-hero-cat"
+            priority
+          />
+        </div>
       </div>
     </section>
   );
