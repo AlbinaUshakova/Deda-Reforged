@@ -72,26 +72,37 @@ export function LessonsHero({
           </div>
 
           <div className="lessons-hero-letter-panel pointer-events-none relative z-20 mt-4 flex min-h-[62px] items-center justify-center rounded-[22px] bg-white/62 px-4 py-2.5">
-            <div className="lessons-hero-letters" aria-label="Буквы рекомендованного урока">
-              {(recommendedLetters.length ? recommendedLetters : ['ა', 'ი', 'ს', 'ო']).map((letter) => (
-                <button
-                  key={letter}
-                  type="button"
-                  className="lessons-hero-letter"
-                  title={`Послушать букву ${letter}`}
-                  aria-label={`Послушать букву ${letter}`}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    onSpeakLetter(letter);
-                  }}
-                >
-                  {letter}
-                </button>
-              ))}
+            <div className="w-full">
+              <div className="lessons-hero-listen-cue">
+                <span className="lessons-hero-listen-dot" aria-hidden="true" />
+                Нажми букву и послушай
+              </div>
+              <div className="lessons-hero-letters" aria-label="Буквы рекомендованного урока">
+                {(recommendedLetters.length ? recommendedLetters : ['ა', 'ი', 'ს', 'ო']).map((letter) => (
+                  <button
+                    key={letter}
+                    type="button"
+                    className="lessons-hero-letter"
+                    title={`Послушать букву ${letter}`}
+                    aria-label={`Послушать букву ${letter}`}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onSpeakLetter(letter);
+                    }}
+                  >
+                    <span>{letter}</span>
+                    <span className="lessons-hero-letter-sound" aria-hidden="true">♪</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="lessons-hero-progress pointer-events-none relative z-10 mt-3 flex items-center gap-3">
+          <div className="lessons-hero-rule pointer-events-none relative z-10 mt-2">
+            Слова только из этих и прошлых букв
+          </div>
+
+          <div className="lessons-hero-progress pointer-events-none relative z-10 mt-2.5 flex items-center gap-3">
             <div className="h-2 flex-1 overflow-hidden rounded-full bg-orange-100">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-orange-400 to-emerald-400"
