@@ -22,6 +22,14 @@ test('isSameAnswer accepts punctuation, line breaks, alternatives, and numbers',
   assert.equal(isSameAnswer('один два три', '1 2 3'), true);
 });
 
+test('isSameAnswer accepts the same words in a different order', () => {
+  assert.equal(isSameAnswer('спасибо не надо', 'Не надо, спасибо'), true);
+  assert.equal(isSameAnswer('стула 2', 'два стула'), true);
+  assert.equal(isSameAnswer('люблю тебя я', 'Я тебя люблю'), true);
+  assert.equal(isSameAnswer('тебя люблю', 'Я тебя люблю'), false);
+  assert.equal(isSameAnswer('я тебя очень люблю', 'Я тебя люблю'), false);
+});
+
 test('evaluateLetterCells marks exact and misplaced characters', () => {
   assert.deepEqual(evaluateLetterCells('кот', 'кто'), [
     { char: 'к', state: 'correct' },

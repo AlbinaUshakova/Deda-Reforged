@@ -180,6 +180,18 @@ function normalizeSentenceForCompare(str: string): string {
     .replace(/\s+/g, ' ');
 }
 
+function normalizeWordOrderForCompare(str: string): string | null {
+  const tokens = normalizeNumbersInText(str)
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (tokens.length < 2) return null;
+
+  return tokens.sort((a, b) => a.localeCompare(b)).join(' ');
+}
+
 function buildAcceptedAnswerVariants(correctAnswer: string): string[] {
   const rawParts = normalizeRu(correctAnswer)
     .split('/')
@@ -265,6 +277,12 @@ export function isSameAnswer(userInput: string, correctAnswer: string): boolean 
     const sentenceUser = normalizeSentenceForCompare(userInput);
     const sentenceCorrect = normalizeSentenceForCompare(variant);
     if (sentenceUser === sentenceCorrect) return true;
+
+    const unorderedUser = normalizeWordOrderForCompare(userInput);
+    const unorderedCorrect = normalizeWordOrderForCompare(variant);
+    if (unorderedUser && unorderedCorrect && unorderedUser === unorderedCorrect) {
+      return true;
+    }
 
     const sequenceUser = normalizeSimpleNumberSequence(userInput);
     const sequenceCorrect = normalizeSimpleNumberSequence(variant);
