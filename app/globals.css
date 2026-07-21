@@ -77,70 +77,70 @@
 
 html[data-theme='dark'] {
     color-scheme: dark;
-    --bg-main: #111412;
-    --bg-card: #1b201d;
-    --bg-card-hover: #222923;
-    --bg-panel: #181d1a;
-    --border-soft: rgba(226, 232, 240, 0.10);
-    --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.32);
-    --text-primary: #eef2ec;
-    --text-secondary: #b7c1b8;
-    --text-tertiary: #88958c;
-    --accent: #d49b5a;
-    --accent-hover: #e5ad6f;
-    --ui-accent: #80c7b2;
-    --focus-ring: rgba(128, 199, 178, 0.24);
-    --progress: #d49b5a;
-    --progress-good: #8bc7a6;
-    --progress-low: #d8a15d;
-    --progress-current: #dcc783;
-    --progress-bg: rgba(226, 232, 240, 0.10);
+    --bg-main: #0f1115;
+    --bg-card: #17191f;
+    --bg-card-hover: #20232b;
+    --bg-panel: #17191f;
+    --border-soft: rgba(232, 238, 247, 0.11);
+    --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.34);
+    --text-primary: #f2f4f8;
+    --text-secondary: #b8bec9;
+    --text-tertiary: #858c99;
+    --accent: #aeb7c8;
+    --accent-hover: #c5ccd8;
+    --ui-accent: #c7d0df;
+    --focus-ring: rgba(197, 205, 218, 0.24);
+    --progress: #c7d0df;
+    --progress-good: #c7d0df;
+    --progress-low: #aeb7c8;
+    --progress-current: #d7dce5;
+    --progress-bg: rgba(232, 238, 247, 0.10);
     --alphabet-bg: var(--bg-panel);
     --alphabet-key: #333336;
     --alphabet-key-hover: #3c3c40;
     --button-bg: rgba(255, 255, 255, 0.055);
-    --button-hover: rgba(255, 255, 255, 0.085);
-    --button-text: #eef2ec;
-    --menu-bg: rgba(24, 29, 26, 0.96);
-    --menu-border: rgba(226, 232, 240, 0.11);
+    --button-hover: rgba(255, 255, 255, 0.090);
+    --button-text: #f2f4f8;
+    --menu-bg: rgba(23, 25, 31, 0.97);
+    --menu-border: rgba(232, 238, 247, 0.11);
     --menu-shadow: 0 20px 56px rgba(0, 0, 0, 0.42);
-    --menu-text: #eef2ec;
-    --menu-text-muted: #a5b0a7;
+    --menu-text: #f2f4f8;
+    --menu-text-muted: #a8afbc;
     --menu-hover: rgba(255, 255, 255, 0.065);
-    --menu-active: rgba(128, 199, 178, 0.13);
-    --menu-divider: rgba(226, 232, 240, 0.07);
-    --menu-focus: rgba(128, 199, 178, 0.30);
+    --menu-active: rgba(232, 238, 247, 0.10);
+    --menu-divider: rgba(232, 238, 247, 0.07);
+    --menu-focus: rgba(197, 205, 218, 0.30);
     --menu-segment-bg: rgba(255, 255, 255, 0.055);
-    --menu-segment-border: rgba(226, 232, 240, 0.10);
-    --menu-segment-idle: #d8dfd6;
+    --menu-segment-border: rgba(232, 238, 247, 0.10);
+    --menu-segment-idle: #d8dde7;
     --menu-segment-idle-hover: rgba(255, 255, 255, 0.075);
-    --menu-segment-active: #eef2ec;
+    --menu-segment-active: #f2f4f8;
     --menu-segment-active-shadow: 0 2px 8px rgba(20, 30, 50, 0.22);
     --menu-stepper-bg: rgba(255, 255, 255, 0.04);
     --menu-stepper-border: rgba(255, 255, 255, 0.12);
-    --shape-orange: #bf8550;
-    --shape-purple: #8e8aba;
-    --shape-green: #78b99f;
-    --shape-blue: #7f9fbd;
-    --shape-yellow: #d8c36f;
+    --shape-orange: #b9c0cc;
+    --shape-purple: #aeb7c8;
+    --shape-green: #c7d0df;
+    --shape-blue: #9fa8b8;
+    --shape-yellow: #d7dce5;
     --grid-cell: rgba(255, 255, 255, 0.065);
     --grid-cell-hover: rgba(255, 255, 255, 0.10);
-    --grid-bg: #171c19;
+    --grid-bg: #17191f;
     --app-bg: var(--bg-main);
     --app-text: var(--text-primary);
-    --header-bg: rgba(18, 22, 20, 0.96);
-    --header-text: #eef2ec;
-    --header-border: rgba(226, 232, 240, 0.08);
-    --premium-gold: #e7c37a;
+    --header-bg: rgba(15, 17, 21, 0.96);
+    --header-text: #f2f4f8;
+    --header-border: rgba(232, 238, 247, 0.08);
+    --premium-gold: #d7dce5;
     --phrases-label: rgba(255, 255, 255, 0.92);
-    --btn-active-bg: rgba(128, 199, 178, 0.13);
-    --btn-active-border: rgba(128, 199, 178, 0.34);
-    --btn-active-text: #d4f2e7;
-    --btn-active-shadow: 0 0 0 2px rgba(128, 199, 178, 0.13);
+    --btn-active-bg: rgba(232, 238, 247, 0.10);
+    --btn-active-border: rgba(232, 238, 247, 0.24);
+    --btn-active-text: #f2f4f8;
+    --btn-active-shadow: 0 0 0 2px rgba(232, 238, 247, 0.10);
     --control-text: #e5e7eb;
     --control-text-hover: #f1f5f9;
-    --dialog-question: #dbe6f7;
-    --dialog-answer: #d9aa72;
+    --dialog-question: #e7ebf2;
+    --dialog-answer: #c7d0df;
     --deda-bg: var(--app-bg);
     --deda-text: var(--app-text);
 }
@@ -724,16 +724,16 @@ body {
 
 html[data-theme='dark'] .lessons-screen {
     background:
-        radial-gradient(circle at 16% 14%, rgba(128, 199, 178, 0.13), transparent 30%),
-        radial-gradient(circle at 86% 6%, rgba(212, 155, 90, 0.10), transparent 28%),
-        linear-gradient(180deg, #151915 0%, #121613 46%, var(--app-bg) 100%);
+        radial-gradient(circle at 16% 14%, rgba(232, 238, 247, 0.055), transparent 30%),
+        radial-gradient(circle at 86% 6%, rgba(232, 238, 247, 0.035), transparent 28%),
+        linear-gradient(180deg, #0f1115 0%, #11141a 46%, var(--app-bg) 100%);
 }
 
 html[data-theme='dark'] .study-card-screen {
     background:
-        radial-gradient(circle at 14% 18%, rgba(128, 199, 178, 0.12), transparent 30%),
-        radial-gradient(circle at 88% 12%, rgba(212, 155, 90, 0.095), transparent 28%),
-        linear-gradient(180deg, #151915 0%, #121613 44%, var(--app-bg) 100%) !important;
+        radial-gradient(circle at 14% 18%, rgba(232, 238, 247, 0.050), transparent 30%),
+        radial-gradient(circle at 88% 12%, rgba(232, 238, 247, 0.035), transparent 28%),
+        linear-gradient(180deg, #0f1115 0%, #11141a 44%, var(--app-bg) 100%) !important;
 }
 
 html[data-theme='dark'] .lessons-screen::before {
@@ -745,12 +745,12 @@ html[data-theme='dark'] .study-card-screen::before {
 }
 
 html[data-theme='dark'] .lessons-hero {
-    border-color: rgba(226, 232, 240, 0.09);
+    border-color: rgba(232, 238, 247, 0.10);
     background:
         radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.055), transparent 24%),
-        radial-gradient(circle at 82% 18%, rgba(128, 199, 178, 0.11), transparent 34%),
-        radial-gradient(circle at 18% 96%, rgba(212, 155, 90, 0.09), transparent 36%),
-        linear-gradient(135deg, rgba(29, 35, 31, 0.96), rgba(19, 24, 21, 0.94));
+        radial-gradient(circle at 82% 18%, rgba(232, 238, 247, 0.055), transparent 34%),
+        radial-gradient(circle at 18% 96%, rgba(232, 238, 247, 0.035), transparent 36%),
+        linear-gradient(135deg, rgba(23, 25, 31, 0.98), rgba(15, 17, 21, 0.96));
     box-shadow:
         0 24px 60px rgba(0, 0, 0, 0.28),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -776,11 +776,11 @@ html[data-theme='dark'] .lessons-hero-subtitle--lead {
 }
 
 html[data-theme='dark'] .lessons-hero-card {
-    border-color: rgba(226, 232, 240, 0.10);
+    border-color: rgba(232, 238, 247, 0.11);
     background:
-        radial-gradient(circle at 86% 0%, rgba(212, 155, 90, 0.11), transparent 34%),
-        radial-gradient(circle at 8% 92%, rgba(128, 199, 178, 0.10), transparent 38%),
-        linear-gradient(145deg, rgba(31, 38, 34, 0.96), rgba(24, 29, 26, 0.94));
+        radial-gradient(circle at 86% 0%, rgba(232, 238, 247, 0.060), transparent 34%),
+        radial-gradient(circle at 8% 92%, rgba(232, 238, 247, 0.040), transparent 38%),
+        linear-gradient(145deg, rgba(27, 30, 37, 0.98), rgba(20, 22, 28, 0.96));
     box-shadow:
         0 18px 36px rgba(0, 0, 0, 0.26),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -792,7 +792,7 @@ html[data-theme='dark'] .lessons-hero-art {
 }
 
 html[data-theme='dark'] .lessons-hero-card-label {
-    color: rgba(216, 195, 147, 0.82);
+    color: rgba(184, 190, 201, 0.86);
 }
 
 html[data-theme='dark'] .lessons-hero-card-title {
@@ -800,8 +800,8 @@ html[data-theme='dark'] .lessons-hero-card-title {
 }
 
 html[data-theme='dark'] .lessons-hero-start {
-    background: #d7efe5;
-    color: #13211c;
+    background: #f2f4f8;
+    color: #0f1115;
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
 }
 
@@ -810,9 +810,9 @@ html[data-theme='dark'] .lessons-hero-card .bg-white\/62 {
 }
 
 html[data-theme='dark'] .lessons-hero-mascot {
-    border-color: rgba(226, 232, 240, 0.09);
+    border-color: rgba(232, 238, 247, 0.10);
     background:
-        radial-gradient(circle at 44% 28%, rgba(255, 255, 255, 0.11), rgba(27, 34, 30, 0.90) 58%, rgba(128, 199, 178, 0.08));
+        radial-gradient(circle at 44% 28%, rgba(255, 255, 255, 0.11), rgba(23, 25, 31, 0.92) 58%, rgba(232, 238, 247, 0.05));
     box-shadow:
         0 14px 26px rgba(0, 0, 0, 0.24),
         inset 0 1px 0 rgba(255, 255, 255, 0.07);
@@ -826,13 +826,13 @@ html[data-theme='dark'] .lessons-hero-letter-panel {
 }
 
 html[data-theme='dark'] .lessons-hero-letter {
-    border-color: rgba(128, 199, 178, 0.12);
+    border-color: rgba(232, 238, 247, 0.11);
     background: rgba(255, 255, 255, 0.045);
 }
 
 html[data-theme='dark'] .lessons-hero-letter:hover {
-    border-color: rgba(128, 199, 178, 0.24);
-    background: rgba(128, 199, 178, 0.095);
+    border-color: rgba(232, 238, 247, 0.22);
+    background: rgba(255, 255, 255, 0.085);
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
 }
 
@@ -841,13 +841,13 @@ html[data-theme='dark'] .lessons-hero-letter-hint {
 }
 
 html[data-theme='dark'] .lessons-hero-letter::after {
-    background: rgba(128, 199, 178, 0.34);
+    background: rgba(232, 238, 247, 0.28);
 }
 
 html[data-theme='dark'] .lessons-hero-letter:hover::after,
 html[data-theme='dark'] .lessons-hero-letter:focus-visible::after {
-    background: #9fd9c7;
-    box-shadow: 0 0 0 3px rgba(128, 199, 178, 0.12);
+    background: #d7dce5;
+    box-shadow: 0 0 0 3px rgba(232, 238, 247, 0.10);
 }
 
 html[data-theme='dark'] .lessons-hero-rule {
@@ -867,11 +867,11 @@ html[data-theme='dark'] .lessons-path-section::before {
 
 html[data-theme='dark'] .home-lesson-card--current {
     background:
-        linear-gradient(135deg, rgba(31, 39, 35, 0.98), rgba(34, 31, 26, 0.95)) !important;
-    border-color: rgba(212, 155, 90, 0.26) !important;
+        linear-gradient(135deg, rgba(32, 35, 43, 0.98), rgba(23, 25, 31, 0.95)) !important;
+    border-color: rgba(232, 238, 247, 0.18) !important;
     box-shadow:
         0 16px 34px rgba(0, 0, 0, 0.30),
-        0 0 0 1px rgba(212, 155, 90, 0.07) !important;
+        0 0 0 1px rgba(232, 238, 247, 0.055) !important;
 }
 
 .home-lesson-title {
@@ -1110,7 +1110,7 @@ html[data-theme='dark'] .play-tab--secondary {
 }
 
 html[data-theme='dark'] .play-tab--secondary:hover {
-    border-color: rgba(128, 199, 178, 0.22) !important;
+    border-color: rgba(232, 238, 247, 0.18) !important;
     background: var(--button-hover) !important;
     color: var(--text-primary) !important;
 }
@@ -1147,8 +1147,8 @@ html[data-theme='dark'] .home-lesson-card {
 }
 
 html[data-theme='dark'] .home-lesson-card.lesson-card--interactive:hover {
-    background: #202721 !important;
-    border-color: rgba(128, 199, 178, 0.20) !important;
+    background: #20232b !important;
+    border-color: rgba(232, 238, 247, 0.18) !important;
     transform: translateY(-1px);
 }
 

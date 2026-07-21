@@ -340,7 +340,7 @@ html[data-theme='dark'] .header-control-btn--alphabet {
 
 html[data-theme='dark'] .header-control-btn--alphabet-secondary {
     background: rgba(255, 255, 255, 0.055);
-    color: #d8dfd6;
+    color: #d8dde7;
 }
 
 html[data-theme='dark'] .header-control-btn--menu {
@@ -348,16 +348,16 @@ html[data-theme='dark'] .header-control-btn--menu {
 }
 
 html[data-theme='dark'] .header-control-btn:hover {
-    background: rgba(128, 199, 178, 0.10);
-    border-color: rgba(128, 199, 178, 0.22);
-    color: #eef2ec;
+    background: rgba(255, 255, 255, 0.090);
+    border-color: rgba(232, 238, 247, 0.18);
+    color: #f2f4f8;
     box-shadow:
         0 14px 28px rgba(0, 0, 0, 0.27),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 html[data-theme='dark'] .header-control-btn:active {
-    background: rgba(128, 199, 178, 0.14);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 html[data-theme='dark'] .menu-panel-shell {
@@ -366,9 +366,9 @@ html[data-theme='dark'] .menu-panel-shell {
 }
 
 html[data-theme='dark'] .header-control-btn--active {
-    background: rgba(128, 199, 178, 0.13);
-    border-color: rgba(128, 199, 178, 0.24);
-    color: #d4f2e7;
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(232, 238, 247, 0.22);
+    color: #f2f4f8;
     box-shadow:
         0 12px 26px rgba(0, 0, 0, 0.24),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -381,13 +381,13 @@ html[data-theme='dark'] .header-control-btn--alphabet.header-control-btn--active
 }
 
 html[data-theme='dark'] .header-control-glyph {
-    color: #d4f2e7;
+    color: #f2f4f8;
 }
 
 html[data-theme='dark'] .study-action-pill {
     border-color: rgba(226, 232, 240, 0.10);
     background: rgba(255, 255, 255, 0.055);
-    color: #d8dfd6;
+    color: #d8dde7;
     box-shadow:
         0 12px 26px rgba(0, 0, 0, 0.22),
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
@@ -395,18 +395,18 @@ html[data-theme='dark'] .study-action-pill {
 
 html[data-theme='dark'] .study-action-pill:hover,
 html[data-theme='dark'] .study-action-pill:focus-visible {
-    border-color: rgba(128, 199, 178, 0.22);
-    background: rgba(128, 199, 178, 0.10);
-    color: #eef2ec;
+    border-color: rgba(232, 238, 247, 0.18);
+    background: rgba(255, 255, 255, 0.090);
+    color: #f2f4f8;
     box-shadow:
         0 14px 28px rgba(0, 0, 0, 0.27),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 html[data-theme='dark'] .study-action-pill--primary {
-    border-color: rgba(128, 199, 178, 0.24);
-    background: rgba(128, 199, 178, 0.13);
-    color: #d4f2e7;
+    border-color: rgba(232, 238, 247, 0.22);
+    background: rgba(255, 255, 255, 0.10);
+    color: #f2f4f8;
 }
 
 html[data-theme='dark'] .home-alphabet-panel {
