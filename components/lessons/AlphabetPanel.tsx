@@ -54,8 +54,8 @@ export function AlphabetPanel({
             type="button"
             onClick={onToggleAlphabet}
             className="home-alphabet-close relative top-px h-6 w-6 rounded-md text-[11px] transition-colors focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2"
-            aria-label="Скрыть алфавит"
-            title="Скрыть алфавит"
+            aria-label="Закрыть панель алфавита"
+            title="Закрыть панель алфавита"
           >
             ✕
           </button>

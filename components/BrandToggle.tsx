@@ -6,6 +6,7 @@ import { useAppStore } from '@/lib/appStore';
 export default function BrandToggle() {
   const alphabetOpen = useAppStore(state => state.alphabetOpen);
   const requestAlphabetToggle = useAppStore(state => state.requestAlphabetToggle);
+  const alphabetLabel = alphabetOpen ? 'Скрыть алфавит' : 'Открыть алфавит';
 
   return (
     <div className="header-brand-wrap inline-flex items-center gap-4">
@@ -18,8 +19,8 @@ export default function BrandToggle() {
           alphabetOpen ? 'header-control-btn--active' : ''
         }`}
         onClick={requestAlphabetToggle}
-        aria-label="Показать или скрыть грузинский алфавит"
-        title="Показать/скрыть алфавит"
+        aria-label={alphabetLabel}
+        title={alphabetLabel}
       >
         <span className="header-control-glyph" aria-hidden="true">ა</span>
         Алфавит

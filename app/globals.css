@@ -936,13 +936,21 @@ html[data-theme='light'] .header-control-btn {
         padding-inline: 14px !important;
     }
 
+    .header-control-btn--menu {
+        width: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+
     .home-alphabet-close {
+        width: 44px !important;
+        height: 44px !important;
         min-height: 44px !important;
         min-width: 44px !important;
     }
 
     .home-alphabet-key {
-        min-height: 40px !important;
+        min-height: 44px !important;
     }
 
     .home-alphabet-panel .grid-cols-6 {
