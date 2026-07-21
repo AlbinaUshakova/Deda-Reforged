@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import type { MouseEvent, Ref } from 'react';
+import { toGeorgianMtavruli } from '@/lib/georgianAlphabet';
 import type { LessonListItem, LessonStatus } from '@/lib/lessonProgress';
 
 export function LessonGrid({
@@ -110,14 +111,14 @@ export function LessonGrid({
                         className={`home-lesson-letter home-lesson-letter--${status ?? 'unknown'} flex flex-col items-center`}
                       >
                         <span
-                          className="block leading-[1.05] tracking-[0.015em] pb-[3px]"
+                          className="block leading-none tracking-[0.015em]"
                           style={{
                             fontSize: `${lessonLetterSizePx}px`,
                             fontFamily:
                               "'Noto Sans Georgian','DejaVu Sans',system-ui,sans-serif",
                           }}
                         >
-                          {ch}
+                          {toGeorgianMtavruli(ch)}
                         </span>
                       </div>
                     ))}

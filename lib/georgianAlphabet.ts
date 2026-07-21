@@ -13,6 +13,10 @@ export const GEORGIAN_ALPHABET_ROWS = [
   GEORGIAN_ALPHABET.slice(30),
 ];
 
+export function toGeorgianMtavruli(text: string): string {
+  return text.toLocaleUpperCase('ka-GE');
+}
+
 export const geLetterName: Record<string, string> = {
   'ა': 'ანი',
   'ბ': 'ბანი',
