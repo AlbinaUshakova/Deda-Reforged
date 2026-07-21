@@ -559,12 +559,12 @@ export default function LandingPage() {
         <div className="landing-hero-grid grid grid-cols-1 md:grid-cols-[minmax(0,1.08fr)_minmax(250px,0.92fr)]">
           <div className="landing-copy max-w-none md:col-start-1 md:row-start-1">
             <h1 className="landing-title max-w-[620px] text-[clamp(23px,3.8vw,47px)] font-semibold leading-[1.02] tracking-[-0.02em]">
-              Учимся читать
+              Учимся читать{' '}
               <br />
               по-грузински играя
             </h1>
             <p className="landing-subtitle mt-6 text-[clamp(15px,2vw,20px)] leading-[1.4] text-[var(--text-secondary)]">
-              Слушай буквы, читай карточки
+              Слушай буквы, читай карточки{' '}
               <br />
               и закрепляй чтение в игре.
             </p>

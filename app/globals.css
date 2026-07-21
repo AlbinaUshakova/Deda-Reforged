@@ -873,6 +873,35 @@ html[data-theme='light'] .header-control-btn {
         inset 0 1px 0 rgba(255, 255, 255, 0.82);
 }
 
+@media (max-width: 700px) {
+    .header-control-btn {
+        min-height: 44px;
+    }
+
+    .header-control-btn--alphabet {
+        min-height: 44px;
+        padding-inline: 14px !important;
+    }
+
+    .home-alphabet-close {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+
+    .home-alphabet-key {
+        min-height: 40px !important;
+    }
+
+    .home-alphabet-panel .grid-cols-6 {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+
+    .home-alphabet-panel .grid-cols-3 {
+        width: 100% !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+}
+
 .header-control-btn--alphabet.header-control-btn--active {
     box-shadow:
         0 12px 26px rgba(15, 118, 110, 0.13),
@@ -3094,11 +3123,28 @@ html[data-theme='dark'] .blocks-submit-btn:hover {
 }
 
 @media (max-width: 900px) {
+    .blocks-question-card {
+        border-radius: 24px !important;
+        padding: 12px !important;
+    }
+
+    .blocks-question-meta {
+        margin-bottom: 8px !important;
+        min-height: 22px;
+    }
+
+    .blocks-question-chip {
+        min-height: 22px;
+        padding-inline: 8px;
+        font-size: 10px;
+    }
+
     .blocks-question-shortcut {
         display: none;
     }
 
     .blocks-answer-stack {
+        gap: 7px;
         width: min(100%, 640px);
         max-width: 640px;
         align-items: stretch;
@@ -3107,8 +3153,8 @@ html[data-theme='dark'] .blocks-submit-btn:hover {
     .blocks-answer-input {
         width: 100%;
         max-width: 640px;
-        height: clamp(46px, 6vh, 56px);
-        min-height: clamp(46px, 6vh, 56px);
+        height: clamp(44px, 5.4vh, 52px);
+        min-height: clamp(44px, 5.4vh, 52px);
         padding-inline: clamp(14px, 2.4vw, 18px);
         padding-block: clamp(10px, 1.5vw, 12px);
         border-radius: clamp(12px, 2.2vw, 16px);
@@ -3120,6 +3166,17 @@ html[data-theme='dark'] .blocks-submit-btn:hover {
 
     .blocks-submit-btn {
         min-height: 44px;
+    }
+
+    .blocks-refresh-btn {
+        min-height: 44px !important;
+        padding-inline: 8px !important;
+    }
+
+    .blocks-question-card button[aria-label='Добавить слово в избранное'],
+    .blocks-question-card button[aria-label='Убрать слово из избранного'] {
+        min-height: 44px !important;
+        min-width: 44px !important;
     }
 }
 

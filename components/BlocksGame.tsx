@@ -429,7 +429,7 @@ export default function BlocksGame({
   const isGameOver = mode === 'gameOver';
   const shouldRenderQuestionPanel = !isGameOver && !hardGameOver;
   const showQuestionStage = !isNarrowLayout || (shouldRenderQuestionPanel && isQuestionVisible);
-  const showBoardStage = !isNarrowLayout || !isQuestionVisible;
+  const showBoardStage = !isNarrowLayout || !isQuestionVisible || shouldRenderQuestionPanel || isGameOver;
   const paletteSlotId = isNarrowLayout ? 'blocks-palette-slot-mobile' : 'blocks-palette-slot';
   const sidePaletteSlotStyle = isNarrowLayout
     ? undefined

@@ -50,6 +50,7 @@ export default function GlobalAlphabetOverlay() {
   const profileMenuOpen = useAppStore(state => state.profileMenuOpen);
   const setAlphabetOpen = useAppStore(state => state.setAlphabetOpen);
   const [open, setOpen] = useState(false);
+  const [canAutoOpenStudyAlphabet, setCanAutoOpenStudyAlphabet] = useState(false);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const [letterStatusByChar, setLetterStatusByChar] = useState<Record<string, AlphabetLetterStatus>>({});
   const [playingLetter, setPlayingLetter] = useState<string | null>(null);
@@ -83,8 +84,21 @@ export default function GlobalAlphabetOverlay() {
 
   useEffect(() => {
     if (isLessonsPage) return;
-    setOpen(isStudyPage);
-  }, [isLessonsPage, isStudyPage, pathname]);
+    setOpen(isStudyPage && canAutoOpenStudyAlphabet);
+  }, [canAutoOpenStudyAlphabet, isLessonsPage, isStudyPage, pathname]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(min-width: 768px)');
+    const syncAutoOpenMode = () => setCanAutoOpenStudyAlphabet(media.matches);
+    syncAutoOpenMode();
+    if (media.addEventListener) {
+      media.addEventListener('change', syncAutoOpenMode);
+      return () => media.removeEventListener('change', syncAutoOpenMode);
+    }
+    media.addListener(syncAutoOpenMode);
+    return () => media.removeListener(syncAutoOpenMode);
+  }, []);
 
   useEffect(() => {
     setAlphabetOpen(!isLessonsPage && !isServicePage && open && pathname !== '/');
