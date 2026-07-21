@@ -1,5 +1,6 @@
 import "./globals.css";
 import "./styles/header-alphabet.css";
+import "./styles/flashcards.css";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import AuthStatus from "@/components/AuthStatus";
