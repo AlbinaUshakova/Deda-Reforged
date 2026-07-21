@@ -11,7 +11,6 @@ type LessonsHeroProps = {
   recommendedLetters: string[];
   recommendedScore: number;
   lessonTargetScore: number;
-  phrasesLesson: LessonListItem;
 };
 
 export function LessonsHero({
@@ -20,50 +19,26 @@ export function LessonsHero({
   recommendedLetters,
   recommendedScore,
   lessonTargetScore,
-  phrasesLesson,
 }: LessonsHeroProps) {
   const lessonHref = (recommendedLesson ? `/study/${recommendedLesson.id}` : '/study/ep1') as Route;
-  const phrasesHref = `/study/${phrasesLesson.id}` as Route;
   const lessonLabel = recommendedLessonNumber
     ? `Урок ${recommendedLessonNumber}`
     : 'Первый урок';
-  const primaryLabel = recommendedLessonNumber
-    ? `Начать урок ${recommendedLessonNumber}`
-    : 'Начать первый урок';
   const progressPercent = lessonTargetScore > 0
     ? Math.min(Math.round((recommendedScore / lessonTargetScore) * 100), 100)
     : 0;
 
   return (
-    <section className="lessons-hero mx-auto grid w-full max-w-[1060px] grid-cols-[minmax(0,1.1fr)_minmax(280px,0.72fr)] items-stretch gap-5 rounded-[34px] px-5 py-5 md:px-7 md:py-6 [@media(max-width:820px)]:grid-cols-1">
-      <div className="lessons-hero-copy relative z-10 flex min-w-0 flex-col justify-between gap-5">
+    <section className="lessons-hero mx-auto grid w-full max-w-[980px] grid-cols-[minmax(0,1fr)_minmax(260px,0.58fr)] items-stretch gap-4 rounded-[30px] px-5 py-5 md:px-6 md:py-5 [@media(max-width:820px)]:grid-cols-1">
+      <div className="lessons-hero-copy relative z-10 flex min-w-0 flex-col justify-center gap-3">
         <div>
-          <div className="lessons-hero-kicker">Твой путь к чтению</div>
+          <div className="lessons-hero-kicker">Deda</div>
           <h1 className="lessons-hero-title">
-            Читай грузинские буквы играя
+            Читай по-грузински
           </h1>
           <p className="lessons-hero-subtitle">
-            Сначала карточки, потом игра. Если буква забыта — открой алфавит.
+            Буквы. Карточки. Игра.
           </p>
-          <div className="lessons-hero-steps" aria-label="Как устроено обучение">
-            <span>1. Слушай</span>
-            <span>2. Читай</span>
-            <span>3. Играй</span>
-          </div>
-        </div>
-
-        <div className="lessons-hero-actions flex flex-wrap items-center gap-3">
-          <Link href={lessonHref} legacyBehavior>
-            <a className="lessons-hero-primary">
-              {primaryLabel}
-              <span aria-hidden="true">→</span>
-            </a>
-          </Link>
-          <Link href={phrasesHref} legacyBehavior>
-            <a className="lessons-hero-secondary">
-              Разговорные фразы
-            </a>
-          </Link>
         </div>
       </div>
 

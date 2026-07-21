@@ -137,7 +137,6 @@ export default function HomePage() {
           recommendedLetters={recommendedLetters}
           recommendedScore={recommendedScore}
           lessonTargetScore={lessonTargetScore}
-          phrasesLesson={phrasesSpecial}
         />
         {/* алфавит + сетка эпизодов */}
         <section className="lessons-path-section mt-5 [@media(max-width:900px)]:mt-4 [@media(max-width:700px)]:mt-4 min-[1700px]:pl-10 min-[2200px]:pl-12">
