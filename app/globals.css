@@ -361,14 +361,16 @@ body {
 
 .lessons-hero-cat {
     position: absolute;
-    right: 54px;
-    top: 17px;
-    z-index: 2;
-    height: clamp(66px, 7vw, 82px);
-    width: clamp(66px, 7vw, 82px);
+    right: clamp(10px, 1.6vw, 18px);
+    bottom: clamp(28px, 3.6vw, 42px);
+    z-index: 0;
+    height: clamp(72px, 7.2vw, 94px);
+    width: clamp(72px, 7.2vw, 94px);
     object-fit: contain;
-    transform: rotate(7deg);
-    filter: drop-shadow(0 12px 18px rgba(120, 53, 15, 0.18));
+    opacity: 0.42;
+    transform: rotate(8deg);
+    filter: drop-shadow(0 14px 20px rgba(120, 53, 15, 0.16));
+    pointer-events: none;
 }
 
 .lessons-hero-letters {
@@ -597,10 +599,11 @@ body {
     }
 
     .lessons-hero-cat {
-        right: 48px;
-        top: 14px;
-        height: 54px;
-        width: 54px;
+        right: 10px;
+        bottom: 30px;
+        height: 62px;
+        width: 62px;
+        opacity: 0.34;
     }
 
     .lessons-hero-letters {
