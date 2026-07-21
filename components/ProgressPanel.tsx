@@ -17,6 +17,7 @@ export default function ProgressPanel({
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const [resetting, setResetting] = useState(false);
   const [confirmResetOpen, setConfirmResetOpen] = useState(false);
+  const [resetStatus, setResetStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [masteredCount, setMasteredCount] = useState(0);
   const [totalLessons, setTotalLessons] = useState(0);
 
@@ -51,10 +52,13 @@ export default function ProgressPanel({
 
   const handleResetProgress = async () => {
     setResetting(true);
+    setResetStatus('idle');
     try {
       await resetProgress();
       setConfirmResetOpen(false);
-      onClose();
+      setResetStatus('success');
+    } catch {
+      setResetStatus('error');
     } finally {
       setResetting(false);
     }
@@ -147,11 +151,32 @@ export default function ProgressPanel({
 
           <button
             className="mx-auto mt-1 w-full max-w-full rounded-xl px-3 py-1.5 text-[clamp(10px,1.65vw,11px)] leading-none font-semibold border border-red-300/70 text-red-500 hover:bg-red-500/10 active:scale-[0.99] transition disabled:opacity-60 focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2"
-            onClick={() => setConfirmResetOpen(true)}
+            onClick={() => {
+              setResetStatus('idle');
+              setConfirmResetOpen(true);
+            }}
             disabled={resetting}
           >
             Сбросить прогресс
           </button>
+          <div
+            role="status"
+            aria-live="polite"
+            className={`min-h-[22px] rounded-xl border px-3 py-1.5 text-center text-[clamp(10px,1.65vw,11px)] leading-snug transition ${
+              resetting
+                ? 'border-[var(--menu-segment-border)] bg-[var(--menu-hover)] text-[var(--menu-text)]'
+                : resetStatus === 'success'
+                  ? 'border-emerald-300/70 bg-emerald-500/10 text-emerald-600'
+                  : resetStatus === 'error'
+                    ? 'border-red-300/70 bg-red-500/10 text-red-500'
+                    : 'border-transparent text-transparent'
+            }`}
+          >
+            {resetting && 'Очищаем прогресс…'}
+            {!resetting && resetStatus === 'success' && 'Прогресс очищен'}
+            {!resetting && resetStatus === 'error' && 'Не удалось очистить прогресс. Попробуйте ещё раз.'}
+            {!resetting && resetStatus === 'idle' && ' '}
+          </div>
         </div>
 
       </div>
@@ -176,7 +201,7 @@ export default function ProgressPanel({
                 onClick={handleResetProgress}
                 disabled={resetting}
               >
-                {resetting ? 'Сброс…' : 'Сбросить'}
+                {resetting ? 'Очищаем…' : 'Сбросить'}
               </button>
             </div>
           </div>

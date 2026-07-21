@@ -19,6 +19,7 @@ const LS_KEY = 'deda_progress_v2';
 const LEGACY_LS_KEYS = ['deda_progress', 'deda_progress_v1'];
 const DEFAULT_EPISODE_IDS = Array.from({ length: 9 }, (_, i) => `ep${i + 1}`);
 const PROGRESS_CACHE_TTL_MS = 5000;
+const PROGRESS_RESET_REMOTE_TIMEOUT_MS = 8000;
 let progressMapCache: { value: ProgressMap; at: number } | null = null;
 let progressMapPromise: Promise<ProgressMap> | null = null;
 const progressListeners = new Set<ProgressListener>();
@@ -101,6 +102,25 @@ function notifyProgressListeners(progressMap: ProgressMap) {
   const nextMap = { ...progressMap };
   for (const listener of progressListeners) {
     listener(nextMap);
+  }
+}
+
+async function withProgressResetTimeout<T>(
+  promise: PromiseLike<T>,
+  label: string,
+): Promise<T | null> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const timeout = new Promise<null>(resolve => {
+    timer = setTimeout(() => {
+      console.warn(`${label} timed out`);
+      resolve(null);
+    }, PROGRESS_RESET_REMOTE_TIMEOUT_MS);
+  });
+
+  try {
+    return await Promise.race([Promise.resolve(promise), timeout]);
+  } finally {
+    if (timer) clearTimeout(timer);
   }
 }
 
@@ -290,46 +310,54 @@ export async function upsertProgress(episodeId: string, score: number) {
 export async function resetProgress() {
   // Перезаписываем локально дефолтные значения (все уроки = 0).
   const defaultLocalProgress = createDefaultLocalProgress();
+  const defaultProgressMap = toProgressMap(defaultLocalProgress);
   setLocalProgressArray(defaultLocalProgress);
   clearLegacyLocalProgress();
   invalidateProgressCache();
+  notifyProgressListeners(defaultProgressMap);
 
   // Если backend не подключен — достаточно локального сброса.
   if (!supabase) {
-    notifyProgressListeners(toProgressMap(defaultLocalProgress));
     return;
   }
 
-  const { data: userData, error: userErr } = await supabase.auth.getUser();
-  if (userErr || !userData.user) {
-    notifyProgressListeners(toProgressMap(defaultLocalProgress));
+  const userResponse = await withProgressResetTimeout(
+    supabase.auth.getUser(),
+    'reset progress get user',
+  );
+  if (!userResponse || userResponse.error || !userResponse.data.user) {
     return;
   }
 
-  const { error: deleteError } = await supabase
-    .from('progress')
-    .delete()
-    .eq('user_id', userData.user.id);
+  const deleteResponse = await withProgressResetTimeout(
+    supabase
+      .from('progress')
+      .delete()
+      .eq('user_id', userResponse.data.user.id),
+    'reset progress delete',
+  );
 
-  if (deleteError) {
-    console.error('reset progress delete error', deleteError);
+  if (deleteResponse?.error) {
+    console.error('reset progress delete error', deleteResponse.error);
   }
 
   // Жёсткая перезапись дефолта на сервере (на случай, если delete заблокирован политиками).
   const toUpsert = DEFAULT_EPISODE_IDS.map(episodeId => ({
-    user_id: userData.user.id,
+    user_id: userResponse.data.user.id,
     episode_id: episodeId,
     best: 0,
   }));
-  const { error: upsertError } = await supabase
-    .from('progress')
-    .upsert(toUpsert, { onConflict: 'user_id,episode_id' });
+  const upsertResponse = await withProgressResetTimeout(
+    supabase
+      .from('progress')
+      .upsert(toUpsert, { onConflict: 'user_id,episode_id' }),
+    'reset progress upsert',
+  );
 
-  if (upsertError) {
-    console.error('reset progress upsert error', upsertError);
+  if (upsertResponse?.error) {
+    console.error('reset progress upsert error', upsertResponse.error);
   }
 
-  // Обновляем UI только после попытки серверного удаления,
-  // чтобы не успевали вернуться старые значения.
-  notifyProgressListeners(toProgressMap(defaultLocalProgress));
+  invalidateProgressCache();
+  notifyProgressListeners(defaultProgressMap);
 }

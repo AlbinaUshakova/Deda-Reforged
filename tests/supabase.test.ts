@@ -3,9 +3,13 @@ import assert from 'node:assert/strict';
 
 import {
   createDefaultLocalProgress,
+  getLocalProgressMap,
   mergeProgressRows,
   normalizeProgressArray,
   normalizeProgressRow,
+  resetProgress,
+  setLocalProgress,
+  subscribeToProgress,
 } from '../lib/supabase.ts';
 
 test('createDefaultLocalProgress builds zeroed progress rows', () => {
@@ -61,4 +65,42 @@ test('normalizeProgressArray filters invalid local progress rows', () => {
       { episodeId: 'ep2', best: 5 },
     ],
   );
+});
+
+test('resetProgress clears local progress and notifies listeners', async () => {
+  const store = new Map<string, string>();
+  Object.defineProperty(globalThis, 'window', {
+    configurable: true,
+    value: globalThis,
+  });
+  Object.defineProperty(globalThis, 'localStorage', {
+    configurable: true,
+    value: {
+      getItem: (key: string) => store.get(key) ?? null,
+      setItem: (key: string, value: string) => {
+        store.set(key, value);
+      },
+      removeItem: (key: string) => {
+        store.delete(key);
+      },
+    },
+  });
+
+  setLocalProgress([
+    { episodeId: 'ep1', best: 12 },
+    { episodeId: 'ep2', best: 4 },
+  ]);
+
+  let notified: Record<string, number> = {};
+  const unsubscribe = subscribeToProgress(progressMap => {
+    notified = progressMap;
+  });
+
+  await resetProgress();
+  unsubscribe();
+
+  assert.equal(getLocalProgressMap().ep1, 0);
+  assert.equal(getLocalProgressMap().ep2, 0);
+  assert.equal(notified.ep1, 0);
+  assert.equal(notified.ep9, 0);
 });
