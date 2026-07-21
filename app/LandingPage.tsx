@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import LandingAlphabet from '@/components/LandingAlphabet';
 
 const lightInterfaceSlots: Array<{
@@ -105,9 +106,12 @@ export default function LandingPage() {
     }
 
     .landing-cta-btn {
+      position: relative;
+      z-index: 4;
       border-color: rgba(23, 21, 19, 0.12) !important;
       background: #171513 !important;
       color: #fffaf2 !important;
+      pointer-events: auto;
       box-shadow:
         0 16px 36px rgba(23, 21, 19, 0.18),
         inset 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -289,6 +293,8 @@ export default function LandingPage() {
     }
 
     .landing-cta-row {
+      position: relative;
+      z-index: 3;
       display: inline-flex;
       align-items: flex-end;
       flex-wrap: nowrap;
@@ -298,6 +304,7 @@ export default function LandingPage() {
     .landing-cta-cat {
       flex: 0 0 auto;
       transform: translateY(24px);
+      pointer-events: none;
     }
 
     html[data-theme='dark'] .landing-shell {
@@ -634,12 +641,12 @@ export default function LandingPage() {
                 priority
                 className="landing-cta-cat h-auto w-[114px] shrink-0 object-contain drop-shadow-[0_8px_18px_rgba(15,23,42,0.08)] sm:w-[128px] lg:w-[150px]"
               />
-              <a
+              <Link
                 href="/lessons"
                 className="landing-cta-btn inline-flex h-[54px] items-center justify-center rounded-2xl border border-[var(--accent)] bg-[var(--accent)] px-[14px] text-[18px] font-semibold text-white transition-opacity hover:opacity-90"
               >
                 Начать читать
-              </a>
+              </Link>
             </div>
           </div>
 
