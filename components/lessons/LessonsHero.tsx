@@ -32,6 +32,9 @@ export function LessonsHero({
   const progressPercent = lessonTargetScore > 0
     ? Math.min(Math.round((recommendedScore / lessonTargetScore) * 100), 100)
     : 0;
+  const lessonLettersRule = recommendedLessonNumber === 1
+    ? 'Слова и фразы только из этих букв'
+    : 'Слова и фразы из этих и прошлых букв';
 
   return (
     <section className="lessons-hero mx-auto grid w-full max-w-[1000px] grid-cols-[minmax(0,1fr)_minmax(280px,0.56fr)] items-stretch gap-4 rounded-[32px] px-5 py-5 md:px-7 md:py-6 [@media(max-width:820px)]:grid-cols-1">
@@ -99,7 +102,7 @@ export function LessonsHero({
           </div>
 
           <div className="lessons-hero-rule pointer-events-none relative z-10 mt-2">
-            Слова только из этих и прошлых букв
+            {lessonLettersRule}
           </div>
 
           <div className="lessons-hero-progress pointer-events-none relative z-10 mt-2.5 flex items-center gap-3">
