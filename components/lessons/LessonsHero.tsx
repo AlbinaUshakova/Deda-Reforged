@@ -35,7 +35,6 @@ export function LessonsHero({
       <div className="lessons-hero-art" aria-hidden="true">ა</div>
       <div className="lessons-hero-copy relative z-10 flex min-w-0 flex-col justify-center gap-3">
         <div>
-          <div className="lessons-hero-kicker">Deda</div>
           <h1 className="lessons-hero-title">
             Читай по-грузински и играй
           </h1>
