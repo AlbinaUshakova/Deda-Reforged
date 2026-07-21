@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Route } from 'next';
-import { toGeorgianMtavruli } from '@/lib/georgianAlphabet';
 import type { LessonListItem } from '@/lib/lessonProgress';
 import { geLetterToHint, type TransliterationMode } from '@/lib/transliteration';
 
@@ -75,7 +74,7 @@ export function LessonsHero({
                       onSpeakLetter(letter);
                   }}
                 >
-                    <span className="lessons-hero-letter-char">{toGeorgianMtavruli(letter)}</span>
+                    <span className="lessons-hero-letter-char">{letter}</span>
                     <span className="lessons-hero-letter-hint">
                       {geLetterToHint(letter, transliterationMode)}
                     </span>

@@ -6,7 +6,6 @@ import {
   GEORGIAN_ALPHABET_ROWS,
   geLetterAudioMap,
   geLetterName,
-  toGeorgianMtavruli,
 } from '../lib/georgianAlphabet.ts';
 
 test('Georgian alphabet metadata covers all letters', () => {
@@ -21,8 +20,4 @@ test('Georgian alphabet has known first and last letter metadata', () => {
   assert.equal(GEORGIAN_ALPHABET.at(-1), 'ჰ');
   assert.equal(geLetterName['ა'], 'ანი');
   assert.equal(geLetterAudioMap['ჰ'], '/audio/letters/33-hae.mp3');
-});
-
-test('toGeorgianMtavruli renders print-style Georgian letters', () => {
-  assert.equal(toGeorgianMtavruli('აბგდ'), 'ᲐᲑᲒᲓ');
 });

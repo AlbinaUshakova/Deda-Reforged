@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
-import { toGeorgianMtavruli } from '@/lib/georgianAlphabet';
 import { geLetterAudioMap } from '@/lib/georgianLetterAudio';
 import { playLetterAudio, stopLetterAudioPlayback } from '@/lib/playLetterAudio';
 import { geLetterToHint, type TransliterationMode } from '@/lib/transliteration';
@@ -75,7 +74,7 @@ export function FlashcardLessonLetters({ letters }: FlashcardLessonLettersProps)
             aria-label={`Озвучить букву ${letter}`}
             aria-pressed={playingLetter === letter}
           >
-            <span className="flashcard-lesson-letter-char">{toGeorgianMtavruli(letter)}</span>
+            <span className="flashcard-lesson-letter-char">{letter}</span>
             <span className="flashcard-lesson-letter-hint">
               {geLetterToHint(letter, transliterationMode)}
             </span>

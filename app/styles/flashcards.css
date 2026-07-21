@@ -157,13 +157,14 @@ html[data-theme='dark'] .flashcard-situation-badge {
 
 .flashcard-lesson-letter-char {
     display: flex;
-    min-height: 22px;
+    min-height: 23px;
     align-items: center;
     justify-content: center;
     font-family: 'Noto Sans Georgian', 'DejaVu Sans', system-ui, sans-serif;
     font-size: 21px;
     font-weight: 850;
     line-height: 1;
+    transform: translateY(-0.02em);
 }
 
 .flashcard-lesson-letter-hint {
