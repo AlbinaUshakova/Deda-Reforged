@@ -29,15 +29,16 @@ export function LessonsHero({
     : 0;
 
   return (
-    <section className="lessons-hero mx-auto grid w-full max-w-[980px] grid-cols-[minmax(0,1fr)_minmax(260px,0.58fr)] items-stretch gap-4 rounded-[30px] px-5 py-5 md:px-6 md:py-5 [@media(max-width:820px)]:grid-cols-1">
+    <section className="lessons-hero mx-auto grid w-full max-w-[1000px] grid-cols-[minmax(0,1fr)_minmax(280px,0.56fr)] items-stretch gap-4 rounded-[32px] px-5 py-5 md:px-7 md:py-6 [@media(max-width:820px)]:grid-cols-1">
+      <div className="lessons-hero-art" aria-hidden="true">ა</div>
       <div className="lessons-hero-copy relative z-10 flex min-w-0 flex-col justify-center gap-3">
         <div>
           <div className="lessons-hero-kicker">Deda</div>
           <h1 className="lessons-hero-title">
-            Читай по-грузински
+            Грузинский без зубрёжки
           </h1>
           <p className="lessons-hero-subtitle">
-            Буквы. Карточки. Игра.
+            3 минуты: буквы, карточки, игра.
           </p>
         </div>
       </div>
@@ -47,13 +48,14 @@ export function LessonsHero({
           <div className="lessons-hero-card-glow" aria-hidden="true" />
           <div className="relative z-10 flex items-start justify-between gap-3">
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-orange-700/70">
+              <div className="lessons-hero-card-label">
                 Сейчас лучше пройти
               </div>
-              <div className="mt-1 text-[clamp(22px,3vw,34px)] font-black leading-none tracking-[-0.04em] text-slate-900">
+              <div className="lessons-hero-card-title">
                 {lessonLabel}
               </div>
             </div>
+            <span className="lessons-hero-start" aria-hidden="true">→</span>
             <Image
               src="/images/deda-cat.png"
               alt=""
@@ -83,8 +85,8 @@ export function LessonsHero({
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
-            <span className="text-xs font-semibold text-slate-600">
-              {recommendedScore}/{lessonTargetScore}
+            <span className="lessons-hero-score">
+              {progressPercent}%
             </span>
           </div>
         </a>
