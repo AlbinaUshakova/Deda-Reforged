@@ -108,7 +108,7 @@ export default function LandingPage() {
     .landing-cta-btn {
       position: relative;
       z-index: 4;
-      border-color: rgba(23, 21, 19, 0.12) !important;
+      border-color: transparent !important;
       background: #171513 !important;
       color: #fffaf2 !important;
       pointer-events: auto;
@@ -208,6 +208,7 @@ export default function LandingPage() {
         0 24px 64px rgba(31, 28, 23, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.86);
       backdrop-filter: blur(22px) saturate(1.12);
+      border: 1px solid rgba(255, 255, 255, 0.26);
     }
 
     .landing-alpha-cat {
@@ -240,7 +241,7 @@ export default function LandingPage() {
       scroll-snap-stop: always;
       border-radius: 28px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.66);
+      border: 1px solid rgba(255, 255, 255, 0.28);
       background: rgba(255, 255, 255, 0.52);
       box-shadow:
         0 18px 46px rgba(31, 28, 23, 0.10),
@@ -326,7 +327,7 @@ export default function LandingPage() {
     }
 
     html[data-theme='dark'] .landing-screen-item {
-      border-color: rgba(231, 225, 216, 0.085);
+      border-color: rgba(231, 225, 216, 0.045);
       background: rgba(231, 225, 216, 0.042);
       box-shadow:
         0 22px 58px rgba(0, 0, 0, 0.30),
@@ -342,14 +343,14 @@ export default function LandingPage() {
     }
 
     html[data-theme='dark'] .landing-cta-btn {
-      border-color: rgba(231, 225, 216, 0.14) !important;
+      border-color: transparent !important;
       background: #d6c7b6 !important;
       color: #171513 !important;
       box-shadow: 0 18px 42px rgba(0, 0, 0, 0.26);
     }
 
     html[data-theme='dark'] .landing-alpha-card {
-      border: 1px solid rgba(231, 225, 216, 0.085);
+      border: 1px solid rgba(231, 225, 216, 0.045);
       background:
         linear-gradient(145deg, rgba(231, 225, 216, 0.055), rgba(231, 225, 216, 0.030)),
         radial-gradient(circle at 92% 8%, rgba(214, 199, 182, 0.038), transparent 36%);

@@ -1089,6 +1089,46 @@ html[data-theme='dark'] .flashcard-main-card:hover {
     box-shadow: 0 16px 46px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(231, 225, 216, 0.032) !important;
 }
 
+.flashcard-main-card,
+.flashcard-lesson-letters,
+.flashcard-control-btn,
+.flashcard-speed-menu,
+.flashcard-info-card,
+.flashcard-filter-chip {
+    border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+.flashcard-main-card {
+    box-shadow:
+        0 24px 58px rgba(31, 28, 23, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
+}
+
+.flashcard-control-btn:hover,
+.flashcard-filter-chip:hover {
+    border-color: rgba(255, 255, 255, 0.42) !important;
+}
+
+html[data-theme='dark'] .flashcard-main-card,
+html[data-theme='dark'] .flashcard-lesson-letters,
+html[data-theme='dark'] .flashcard-control-btn,
+html[data-theme='dark'] .flashcard-speed-menu,
+html[data-theme='dark'] .flashcard-info-card,
+html[data-theme='dark'] .flashcard-filter-chip {
+    border-color: rgba(231, 225, 216, 0.050) !important;
+}
+
+html[data-theme='dark'] .flashcard-main-card {
+    box-shadow:
+        0 18px 48px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(231, 225, 216, 0.020) !important;
+}
+
+html[data-theme='dark'] .flashcard-control-btn:hover,
+html[data-theme='dark'] .flashcard-filter-chip:hover {
+    border-color: rgba(231, 225, 216, 0.090) !important;
+}
+
 html[data-theme='dark'] .flashcard-main-card--hinted {
     border-color: rgba(232, 238, 247, 0.22) !important;
     box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(232, 238, 247, 0.08) !important;

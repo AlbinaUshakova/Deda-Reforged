@@ -77,7 +77,7 @@
     --deda-radius-lg: 24px;
     --deda-glass: rgba(255, 255, 255, 0.66);
     --deda-glass-strong: rgba(255, 255, 255, 0.84);
-    --deda-glass-border: rgba(255, 255, 255, 0.72);
+    --deda-glass-border: rgba(255, 255, 255, 0.38);
     --deda-ink-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
     --deda-elevation: 0 22px 70px rgba(31, 28, 23, 0.12);
     --deda-elevation-soft: 0 14px 38px rgba(31, 28, 23, 0.08);
@@ -160,7 +160,7 @@ html[data-theme='dark'] {
     --deda-radius-lg: 24px;
     --deda-glass: rgba(231, 225, 216, 0.050);
     --deda-glass-strong: rgba(231, 225, 216, 0.075);
-    --deda-glass-border: rgba(231, 225, 216, 0.090);
+    --deda-glass-border: rgba(231, 225, 216, 0.055);
     --deda-ink-shadow: 0 1px 0 rgba(231, 225, 216, 0.035);
     --deda-elevation: 0 24px 70px rgba(0, 0, 0, 0.32);
     --deda-elevation-soft: 0 16px 44px rgba(0, 0, 0, 0.24);
@@ -1901,4 +1901,62 @@ html[data-theme='dark'] .lessons-hero-card-title {
 html[data-theme='dark'] .lessons-hero-subtitle,
 html[data-theme='dark'] .lessons-hero-rule {
     color: rgba(185, 176, 166, 0.82);
+}
+
+/* Softer surface system: depth should come from light and shadow, not visible frames. */
+.lessons-hero,
+.lessons-hero-card,
+.home-lesson-card {
+    border-color: rgba(255, 255, 255, 0.30) !important;
+}
+
+.lessons-hero-card {
+    box-shadow:
+        0 24px 64px rgba(31, 28, 23, 0.11),
+        inset 0 1px 0 rgba(255, 255, 255, 0.52) !important;
+}
+
+.lessons-hero-card:hover,
+.home-lesson-card.lesson-card--interactive:hover {
+    border-color: rgba(255, 255, 255, 0.42) !important;
+}
+
+.lessons-hero-letter,
+.flashcard-lesson-letter {
+    border-color: rgba(255, 255, 255, 0.34) !important;
+    box-shadow:
+        0 10px 24px rgba(31, 28, 23, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.46) !important;
+}
+
+.lessons-path-section::before {
+    border-color: transparent !important;
+}
+
+.home-lesson-card {
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    box-shadow:
+        0 16px 42px rgba(31, 28, 23, 0.070),
+        inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
+}
+
+.home-lesson-card--current {
+    border-color: rgba(255, 107, 53, 0.18) !important;
+}
+
+html[data-theme='dark'] .lessons-hero,
+html[data-theme='dark'] .lessons-hero-card,
+html[data-theme='dark'] .home-lesson-card {
+    border-color: rgba(231, 225, 216, 0.048) !important;
+    box-shadow:
+        0 18px 48px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(231, 225, 216, 0.024) !important;
+}
+
+html[data-theme='dark'] .lessons-hero-letter,
+html[data-theme='dark'] .flashcard-lesson-letter {
+    border-color: rgba(231, 225, 216, 0.060) !important;
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(231, 225, 216, 0.022) !important;
 }

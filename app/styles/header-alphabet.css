@@ -409,6 +409,39 @@ html[data-theme='dark'] .study-action-pill--primary {
     color: #e7e1d8;
 }
 
+.header-control-btn,
+.study-action-pill,
+.home-alphabet-panel,
+.home-alphabet-key,
+.landing-alphabet-key {
+    border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+.header-control-btn:hover,
+.study-action-pill:hover,
+.home-alphabet-key:hover,
+.landing-alphabet-key:hover {
+    border-color: rgba(255, 255, 255, 0.42) !important;
+}
+
+html[data-theme='dark'] .header-control-btn,
+html[data-theme='dark'] .study-action-pill,
+html[data-theme='dark'] .home-alphabet-panel,
+html[data-theme='dark'] .home-alphabet-key,
+html[data-theme='dark'] .landing-alphabet-key {
+    border-color: rgba(231, 225, 216, 0.050) !important;
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(231, 225, 216, 0.018) !important;
+}
+
+html[data-theme='dark'] .header-control-btn:hover,
+html[data-theme='dark'] .study-action-pill:hover,
+html[data-theme='dark'] .home-alphabet-key:hover,
+html[data-theme='dark'] .landing-alphabet-key:hover {
+    border-color: rgba(231, 225, 216, 0.090) !important;
+}
+
 html[data-theme='dark'] .home-alphabet-panel {
     background: var(--menu-bg) !important;
     border-color: var(--menu-border) !important;

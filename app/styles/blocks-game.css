@@ -748,3 +748,61 @@ html[data-theme='dark'] .blocks-submit-btn:hover {
         background: rgba(255, 255, 255, 0.055);
     }
 }
+
+.blocks-question-card,
+.blocks-grid-board,
+.blocks-answer-input,
+.blocks-grid-score,
+.blocks-refresh-btn,
+.blocks-submit-btn,
+.blocks-grid-gameover-card {
+    border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+.blocks-question-card,
+.blocks-grid-board {
+    box-shadow:
+        0 24px 64px rgba(31, 28, 23, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
+}
+
+.blocks-answer-input:focus,
+.blocks-answer-input:focus-visible {
+    border-color: rgba(0, 168, 132, 0.18) !important;
+    box-shadow:
+        0 0 0 3px rgba(0, 168, 132, 0.075),
+        0 16px 38px rgba(31, 28, 23, 0.08) !important;
+}
+
+.blocks-grid-hover-cell {
+    border-color: rgba(0, 168, 132, 0.32) !important;
+}
+
+html[data-theme='dark'] .blocks-question-card,
+html[data-theme='dark'] .blocks-grid-board,
+html[data-theme='dark'] .blocks-answer-input,
+html[data-theme='dark'] .blocks-grid-score,
+html[data-theme='dark'] .blocks-refresh-btn,
+html[data-theme='dark'] .blocks-submit-btn,
+html[data-theme='dark'] .blocks-grid-gameover-card {
+    border-color: rgba(231, 225, 216, 0.050) !important;
+}
+
+html[data-theme='dark'] .blocks-question-card,
+html[data-theme='dark'] .blocks-grid-board {
+    box-shadow:
+        0 20px 54px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(231, 225, 216, 0.020) !important;
+}
+
+html[data-theme='dark'] .blocks-answer-input:focus,
+html[data-theme='dark'] .blocks-answer-input:focus-visible {
+    border-color: rgba(231, 225, 216, 0.10) !important;
+    box-shadow:
+        0 0 0 3px rgba(214, 199, 182, 0.060),
+        0 16px 38px rgba(0, 0, 0, 0.24) !important;
+}
+
+html[data-theme='dark'] .blocks-grid-hover-cell {
+    border-color: rgba(214, 199, 182, 0.18) !important;
+}
