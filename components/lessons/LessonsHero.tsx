@@ -40,7 +40,7 @@ export function LessonsHero({
             Читай по-грузински и играй
           </h1>
           <p className="lessons-hero-subtitle">
-            3 минуты: буквы, карточки, игра.
+            Учись читать по карточкам, закрепляй навык в «Блоках».
           </p>
         </div>
       </div>
