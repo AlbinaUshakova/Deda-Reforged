@@ -90,85 +90,85 @@
 
 html[data-theme='dark'] {
     color-scheme: dark;
-    --bg-main: #0f1115;
-    --bg-card: #17191f;
-    --bg-card-hover: #20232b;
-    --bg-panel: #17191f;
-    --border-soft: rgba(232, 238, 247, 0.11);
+    --bg-main: #101112;
+    --bg-card: #181715;
+    --bg-card-hover: #211f1b;
+    --bg-panel: #181715;
+    --border-soft: rgba(231, 225, 216, 0.10);
     --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.34);
-    --text-primary: #f2f4f8;
-    --text-secondary: #b8bec9;
-    --text-tertiary: #858c99;
-    --accent: #aeb7c8;
-    --accent-hover: #c5ccd8;
-    --ui-accent: #c7d0df;
-    --focus-ring: rgba(197, 205, 218, 0.24);
-    --progress: #c7d0df;
-    --progress-good: #c7d0df;
-    --progress-low: #aeb7c8;
-    --progress-current: #d7dce5;
-    --progress-bg: rgba(232, 238, 247, 0.10);
+    --text-primary: #e7e1d8;
+    --text-secondary: #b9b0a6;
+    --text-tertiary: #8f877d;
+    --accent: #d6c7b6;
+    --accent-hover: #eadccb;
+    --ui-accent: #c6b8a6;
+    --focus-ring: rgba(214, 199, 182, 0.22);
+    --progress: #d6c7b6;
+    --progress-good: #c6b8a6;
+    --progress-low: #b9a48f;
+    --progress-current: #e2d8cd;
+    --progress-bg: rgba(231, 225, 216, 0.085);
     --alphabet-bg: var(--bg-panel);
     --alphabet-key: #333336;
     --alphabet-key-hover: #3c3c40;
-    --button-bg: rgba(255, 255, 255, 0.055);
-    --button-hover: rgba(255, 255, 255, 0.090);
-    --button-text: #f2f4f8;
-    --menu-bg: rgba(23, 25, 31, 0.97);
-    --menu-border: rgba(232, 238, 247, 0.11);
+    --button-bg: rgba(231, 225, 216, 0.050);
+    --button-hover: rgba(231, 225, 216, 0.080);
+    --button-text: #e7e1d8;
+    --menu-bg: rgba(24, 23, 21, 0.97);
+    --menu-border: rgba(231, 225, 216, 0.10);
     --menu-shadow: 0 20px 56px rgba(0, 0, 0, 0.42);
-    --menu-text: #f2f4f8;
-    --menu-text-muted: #a8afbc;
-    --menu-hover: rgba(255, 255, 255, 0.065);
-    --menu-active: rgba(232, 238, 247, 0.10);
-    --menu-divider: rgba(232, 238, 247, 0.07);
-    --menu-focus: rgba(197, 205, 218, 0.30);
-    --menu-segment-bg: rgba(255, 255, 255, 0.055);
-    --menu-segment-border: rgba(232, 238, 247, 0.10);
-    --menu-segment-idle: #d8dde7;
-    --menu-segment-idle-hover: rgba(255, 255, 255, 0.075);
-    --menu-segment-active: #f2f4f8;
+    --menu-text: #e7e1d8;
+    --menu-text-muted: #aaa196;
+    --menu-hover: rgba(231, 225, 216, 0.060);
+    --menu-active: rgba(231, 225, 216, 0.085);
+    --menu-divider: rgba(231, 225, 216, 0.060);
+    --menu-focus: rgba(214, 199, 182, 0.28);
+    --menu-segment-bg: rgba(231, 225, 216, 0.050);
+    --menu-segment-border: rgba(231, 225, 216, 0.090);
+    --menu-segment-idle: #cfc6bb;
+    --menu-segment-idle-hover: rgba(231, 225, 216, 0.070);
+    --menu-segment-active: #ded4c8;
     --menu-segment-active-shadow: 0 2px 8px rgba(20, 30, 50, 0.22);
     --menu-stepper-bg: rgba(255, 255, 255, 0.04);
     --menu-stepper-border: rgba(255, 255, 255, 0.12);
-    --shape-orange: #b9c0cc;
-    --shape-purple: #aeb7c8;
-    --shape-green: #c7d0df;
-    --shape-blue: #9fa8b8;
-    --shape-yellow: #d7dce5;
-    --grid-cell: rgba(255, 255, 255, 0.065);
-    --grid-cell-hover: rgba(255, 255, 255, 0.10);
-    --grid-bg: #17191f;
+    --shape-orange: #b9a48f;
+    --shape-purple: #a69a90;
+    --shape-green: #c6b8a6;
+    --shape-blue: #9d9389;
+    --shape-yellow: #d0bfa9;
+    --grid-cell: rgba(231, 225, 216, 0.060);
+    --grid-cell-hover: rgba(231, 225, 216, 0.090);
+    --grid-bg: #181715;
     --app-bg: var(--bg-main);
     --app-text: var(--text-primary);
-    --header-bg: rgba(15, 17, 21, 0.96);
-    --header-text: #f2f4f8;
-    --header-border: rgba(232, 238, 247, 0.08);
-    --premium-gold: #d7dce5;
-    --phrases-label: rgba(255, 255, 255, 0.92);
-    --btn-active-bg: rgba(232, 238, 247, 0.10);
-    --btn-active-border: rgba(232, 238, 247, 0.24);
-    --btn-active-text: #f2f4f8;
-    --btn-active-shadow: 0 0 0 2px rgba(232, 238, 247, 0.10);
-    --control-text: #e5e7eb;
-    --control-text-hover: #f1f5f9;
-    --dialog-question: #e7ebf2;
-    --dialog-answer: #c7d0df;
+    --header-bg: rgba(16, 17, 18, 0.96);
+    --header-text: #e7e1d8;
+    --header-border: rgba(231, 225, 216, 0.075);
+    --premium-gold: #d0bfa9;
+    --phrases-label: rgba(231, 225, 216, 0.86);
+    --btn-active-bg: rgba(231, 225, 216, 0.085);
+    --btn-active-border: rgba(231, 225, 216, 0.18);
+    --btn-active-text: #e7e1d8;
+    --btn-active-shadow: 0 0 0 2px rgba(231, 225, 216, 0.075);
+    --control-text: #d9d0c5;
+    --control-text-hover: #e7e1d8;
+    --dialog-question: #d9d0c5;
+    --dialog-answer: #d0bfa9;
     --deda-bg: var(--app-bg);
     --deda-text: var(--app-text);
     --deda-radius-xl: 34px;
     --deda-radius-lg: 24px;
-    --deda-glass: rgba(255, 255, 255, 0.055);
-    --deda-glass-strong: rgba(255, 255, 255, 0.085);
-    --deda-glass-border: rgba(232, 238, 247, 0.10);
-    --deda-ink-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+    --deda-glass: rgba(231, 225, 216, 0.050);
+    --deda-glass-strong: rgba(231, 225, 216, 0.075);
+    --deda-glass-border: rgba(231, 225, 216, 0.090);
+    --deda-ink-shadow: 0 1px 0 rgba(231, 225, 216, 0.035);
     --deda-elevation: 0 24px 70px rgba(0, 0, 0, 0.32);
     --deda-elevation-soft: 0 16px 44px rgba(0, 0, 0, 0.24);
     --deda-gradient-aurora:
-        radial-gradient(circle at 12% 10%, rgba(232, 238, 247, 0.055), transparent 31%),
-        radial-gradient(circle at 78% 3%, rgba(232, 238, 247, 0.040), transparent 30%),
-        radial-gradient(circle at 72% 86%, rgba(232, 238, 247, 0.030), transparent 34%),
-        linear-gradient(180deg, #0f1115 0%, #11141a 48%, #0f1115 100%);
+        radial-gradient(circle at 12% 10%, rgba(214, 199, 182, 0.045), transparent 31%),
+        radial-gradient(circle at 78% 3%, rgba(154, 137, 120, 0.040), transparent 30%),
+        radial-gradient(circle at 72% 86%, rgba(209, 188, 162, 0.030), transparent 34%),
+        linear-gradient(180deg, #101112 0%, #151412 48%, #101112 100%);
 }
 
 html {
@@ -1887,18 +1887,18 @@ html[data-theme='dark'] .lessons-hero-card,
 html[data-theme='dark'] .home-lesson-card {
     border-color: var(--deda-glass-border) !important;
     background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
-        radial-gradient(circle at 86% 12%, rgba(232, 238, 247, 0.045), transparent 35%) !important;
+        linear-gradient(145deg, rgba(231, 225, 216, 0.055), rgba(231, 225, 216, 0.026)),
+        radial-gradient(circle at 86% 12%, rgba(214, 199, 182, 0.034), transparent 35%) !important;
     box-shadow: var(--deda-elevation-soft) !important;
 }
 
 html[data-theme='dark'] .lessons-hero-title,
 html[data-theme='dark'] .lessons-hero-card-title {
-    color: #f2f4f8;
+    color: rgba(231, 225, 216, 0.94);
     text-shadow: none;
 }
 
 html[data-theme='dark'] .lessons-hero-subtitle,
 html[data-theme='dark'] .lessons-hero-rule {
-    color: rgba(216, 221, 231, 0.78);
+    color: rgba(185, 176, 166, 0.82);
 }

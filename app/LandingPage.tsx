@@ -312,25 +312,25 @@ export default function LandingPage() {
     }
 
     html[data-theme='dark'] .landing-title {
-      color: rgba(249, 247, 242, 0.97);
+      color: rgba(231, 225, 216, 0.94);
     }
 
     html[data-theme='dark'] .landing-subtitle,
     html[data-theme='dark'] .landing-alphabet-hint {
-      color: rgba(224, 216, 206, 0.82);
+      color: rgba(185, 176, 166, 0.86);
     }
 
     html[data-theme='dark'] .landing-alphabet-hint::before {
-      background: rgba(251, 146, 60, 0.82);
-      box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.18);
+      background: rgba(214, 199, 182, 0.72);
+      box-shadow: 0 0 0 0 rgba(214, 199, 182, 0.12);
     }
 
     html[data-theme='dark'] .landing-screen-item {
-      border-color: rgba(232, 238, 247, 0.10);
-      background: rgba(255, 255, 255, 0.055);
+      border-color: rgba(231, 225, 216, 0.085);
+      background: rgba(231, 225, 216, 0.042);
       box-shadow:
         0 22px 58px rgba(0, 0, 0, 0.30),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        inset 0 1px 0 rgba(231, 225, 216, 0.035);
     }
 
     html[data-theme='dark'] .landing-screens-grid--light {
@@ -342,20 +342,20 @@ export default function LandingPage() {
     }
 
     html[data-theme='dark'] .landing-cta-btn {
-      border-color: rgba(232, 238, 247, 0.18) !important;
-      background: #f2f4f8 !important;
-      color: #0f1115 !important;
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.30);
+      border-color: rgba(231, 225, 216, 0.14) !important;
+      background: #d6c7b6 !important;
+      color: #171513 !important;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.26);
     }
 
     html[data-theme='dark'] .landing-alpha-card {
-      border: 1px solid rgba(232, 238, 247, 0.10);
+      border: 1px solid rgba(231, 225, 216, 0.085);
       background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.070), rgba(255, 255, 255, 0.038)),
-        radial-gradient(circle at 92% 8%, rgba(232, 238, 247, 0.045), transparent 36%);
+        linear-gradient(145deg, rgba(231, 225, 216, 0.055), rgba(231, 225, 216, 0.030)),
+        radial-gradient(circle at 92% 8%, rgba(214, 199, 182, 0.038), transparent 36%);
       box-shadow:
         0 22px 58px rgba(0, 0, 0, 0.30),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        inset 0 1px 0 rgba(231, 225, 216, 0.035);
     }
 
     html[data-theme='dark'] .landing-screens-grid {

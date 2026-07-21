@@ -558,29 +558,29 @@ html[data-theme='dark'] .blocks-game-screen::before {
 
 html[data-theme='dark'] .blocks-question-card,
 html[data-theme='dark'] .blocks-grid-board {
-    border-color: rgba(232, 238, 247, 0.10) !important;
+    border-color: rgba(231, 225, 216, 0.085) !important;
     background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.036)),
-        radial-gradient(circle at 82% 10%, rgba(232, 238, 247, 0.045), transparent 36%) !important;
+        linear-gradient(145deg, rgba(231, 225, 216, 0.055), rgba(231, 225, 216, 0.028)),
+        radial-gradient(circle at 82% 10%, rgba(214, 199, 182, 0.034), transparent 36%) !important;
     box-shadow:
         0 24px 68px rgba(0, 0, 0, 0.32),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+        inset 0 1px 0 rgba(231, 225, 216, 0.034) !important;
 }
 
 html[data-theme='dark'] .blocks-answer-input {
-    border-color: rgba(232, 238, 247, 0.12) !important;
-    background: rgba(255, 255, 255, 0.070) !important;
-    color: #f2f4f8 !important;
+    border-color: rgba(231, 225, 216, 0.10) !important;
+    background: rgba(231, 225, 216, 0.055) !important;
+    color: #e7e1d8 !important;
 }
 
 html[data-theme='dark'] .blocks-submit-btn {
-    border-color: rgba(232, 238, 247, 0.18) !important;
-    background: #f2f4f8 !important;
-    color: #0f1115 !important;
+    border-color: rgba(231, 225, 216, 0.14) !important;
+    background: #d6c7b6 !important;
+    color: #171513 !important;
 }
 
 html[data-theme='dark'] .blocks-submit-btn:hover {
-    background: #ffffff !important;
+    background: #e2d4c5 !important;
 }
 
 @media (max-width: 900px) {

@@ -931,66 +931,66 @@ html[data-theme='light'] .flashcard-controls-compact {
 }
 
 html[data-theme='dark'] .flashcard-control-btn {
-    border-color: rgba(226, 232, 240, 0.08) !important;
-    background: rgba(255, 255, 255, 0.07) !important;
+    border-color: rgba(231, 225, 216, 0.080) !important;
+    background: rgba(231, 225, 216, 0.055) !important;
     box-shadow:
         0 12px 26px rgba(0, 0, 0, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
-    color: #d8dde7 !important;
+        inset 0 1px 0 rgba(231, 225, 216, 0.032) !important;
+    color: #d9d0c5 !important;
 }
 
 html[data-theme='dark'] .flashcard-control-btn:hover,
 html[data-theme='dark'] .flashcard-control-btn:focus-visible {
-    border-color: rgba(232, 238, 247, 0.18) !important;
-    background: rgba(255, 255, 255, 0.11) !important;
+    border-color: rgba(231, 225, 216, 0.15) !important;
+    background: rgba(231, 225, 216, 0.085) !important;
     box-shadow:
         0 14px 28px rgba(0, 0, 0, 0.27),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-    color: #f8fafc !important;
+        inset 0 1px 0 rgba(231, 225, 216, 0.038) !important;
+    color: #e7e1d8 !important;
 }
 
 html[data-theme='dark'] .flashcard-shuffle-btn[aria-pressed='true'],
 html[data-theme='dark'] .flashcard-play-btn[aria-pressed='true'],
 html[data-theme='dark'] .flashcard-speed-btn[aria-expanded='true'] {
-    border-color: rgba(232, 238, 247, 0.22) !important;
-    background: rgba(255, 255, 255, 0.10) !important;
+    border-color: rgba(231, 225, 216, 0.17) !important;
+    background: rgba(231, 225, 216, 0.088) !important;
     box-shadow:
         0 12px 26px rgba(0, 0, 0, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-    color: #f2f4f8 !important;
+        inset 0 1px 0 rgba(231, 225, 216, 0.038) !important;
+    color: #e7e1d8 !important;
 }
 
 html[data-theme='dark'] .flashcard-speed-current {
-    background: rgba(255, 255, 255, 0.10);
-    color: #f2f4f8;
+    background: rgba(231, 225, 216, 0.080);
+    color: #e7e1d8;
 }
 
 html[data-theme='dark'] .flashcard-speed-menu {
-    border-color: rgba(232, 238, 247, 0.12);
-    background: rgba(23, 25, 31, 0.94);
+    border-color: rgba(231, 225, 216, 0.10);
+    background: rgba(24, 23, 21, 0.94);
     box-shadow:
         0 18px 34px rgba(0, 0, 0, 0.32),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        inset 0 1px 0 rgba(231, 225, 216, 0.035);
 }
 
 html[data-theme='dark'] .flashcard-speed-option {
-    color: #d8dde7 !important;
+    color: #d9d0c5 !important;
 }
 
 html[data-theme='dark'] .flashcard-speed-option:hover,
 html[data-theme='dark'] .flashcard-speed-option:focus-visible,
 html[data-theme='dark'] .flashcard-speed-option--active {
-    background: rgba(255, 255, 255, 0.090);
-    color: #f2f4f8 !important;
+    background: rgba(231, 225, 216, 0.078);
+    color: #e7e1d8 !important;
 }
 
 html[data-theme='dark'] .flashcard-speed-option--active::after {
-    color: #aab3c2;
+    color: #b9b0a6;
 }
 
 html[data-theme='dark'] .flashcard-controls-compact {
-    border-color: rgba(226, 232, 240, 0.08);
-    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(231, 225, 216, 0.075);
+    background: rgba(231, 225, 216, 0.044);
     box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
 }
 
@@ -1021,72 +1021,72 @@ html[data-theme='dark'] .flashcard-controls-compact {
 
 html[data-theme='dark'] .flashcard-main-card {
     background:
-        linear-gradient(145deg, rgba(27, 30, 37, 0.96), rgba(20, 22, 28, 0.92)),
-        radial-gradient(circle at 78% 10%, rgba(232, 238, 247, 0.050), transparent 36%) !important;
-    border-color: rgba(232, 238, 247, 0.11) !important;
-    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(255, 255, 255, 0.025) !important;
+        linear-gradient(145deg, rgba(30, 29, 26, 0.96), rgba(20, 20, 18, 0.92)),
+        radial-gradient(circle at 78% 10%, rgba(214, 199, 182, 0.040), transparent 36%) !important;
+    border-color: rgba(231, 225, 216, 0.095) !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(231, 225, 216, 0.020) !important;
 }
 
 html[data-theme='dark'] .flashcard-lesson-letters {
-    border-color: rgba(232, 238, 247, 0.10);
+    border-color: rgba(231, 225, 216, 0.085);
     background:
-        linear-gradient(135deg, rgba(23, 25, 31, 0.78), rgba(15, 17, 21, 0.68)),
-        radial-gradient(circle at 92% 50%, rgba(232, 238, 247, 0.040), transparent 38%);
+        linear-gradient(135deg, rgba(24, 23, 21, 0.78), rgba(16, 17, 18, 0.68)),
+        radial-gradient(circle at 92% 50%, rgba(214, 199, 182, 0.034), transparent 38%);
     box-shadow:
         0 12px 28px rgba(0, 0, 0, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+        inset 0 1px 0 rgba(231, 225, 216, 0.030);
 }
 
 html[data-theme='dark'] .flashcard-lesson-letters-kicker {
-    color: #f2f4f8;
+    color: #e7e1d8;
 }
 
 html[data-theme='dark'] .flashcard-lesson-letter-hint {
-    color: #9aa2b1;
+    color: #aaa196;
 }
 
 html[data-theme='dark'] .flashcard-lesson-letter {
-    border-color: rgba(232, 238, 247, 0.10);
+    border-color: rgba(231, 225, 216, 0.085);
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.040));
-    color: #f2f4f8;
+        linear-gradient(180deg, rgba(231, 225, 216, 0.055), rgba(231, 225, 216, 0.034));
+    color: #e7e1d8;
     box-shadow:
         0 8px 18px rgba(0, 0, 0, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+        inset 0 1px 0 rgba(231, 225, 216, 0.030);
 }
 
 html[data-theme='dark'] .flashcard-lesson-letter::after {
-    background: rgba(232, 238, 247, 0.28);
+    background: rgba(214, 199, 182, 0.22);
 }
 
 html[data-theme='dark'] .flashcard-lesson-letter:hover,
 html[data-theme='dark'] .flashcard-lesson-letter:focus-visible {
-    border-color: rgba(232, 238, 247, 0.22);
+    border-color: rgba(231, 225, 216, 0.16);
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.052));
+        linear-gradient(180deg, rgba(231, 225, 216, 0.082), rgba(231, 225, 216, 0.044));
     box-shadow:
         0 10px 22px rgba(0, 0, 0, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.045);
-    color: #ffffff;
+        inset 0 1px 0 rgba(231, 225, 216, 0.034);
+    color: #eee7dd;
 }
 
 html[data-theme='dark'] .flashcard-lesson-letter--active {
-    border-color: rgba(232, 238, 247, 0.26);
+    border-color: rgba(231, 225, 216, 0.18);
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.135), rgba(255, 255, 255, 0.060));
-    color: #ffffff;
+        linear-gradient(180deg, rgba(231, 225, 216, 0.100), rgba(231, 225, 216, 0.052));
+    color: #eee7dd;
 }
 
 html[data-theme='dark'] .flashcard-lesson-letter--active::after {
-    background: #d7dce5;
-    box-shadow: 0 0 0 3px rgba(232, 238, 247, 0.10);
+    background: #d0bfa9;
+    box-shadow: 0 0 0 3px rgba(214, 199, 182, 0.075);
 }
 
 html[data-theme='dark'] .flashcard-main-card:hover {
     background:
-        linear-gradient(145deg, rgba(32, 35, 43, 0.98), rgba(23, 25, 31, 0.94)),
-        radial-gradient(circle at 78% 10%, rgba(232, 238, 247, 0.065), transparent 36%) !important;
-    box-shadow: 0 16px 46px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(255, 255, 255, 0.04) !important;
+        linear-gradient(145deg, rgba(35, 33, 29, 0.98), rgba(24, 23, 21, 0.94)),
+        radial-gradient(circle at 78% 10%, rgba(214, 199, 182, 0.050), transparent 36%) !important;
+    box-shadow: 0 16px 46px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(231, 225, 216, 0.032) !important;
 }
 
 html[data-theme='dark'] .flashcard-main-card--hinted {
