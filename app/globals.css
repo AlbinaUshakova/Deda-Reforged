@@ -417,8 +417,8 @@ body {
 
 .lessons-hero-mascot {
     display: grid;
-    width: clamp(54px, 5.6vw, 70px);
-    height: clamp(54px, 5.6vw, 70px);
+    width: clamp(92px, 10vw, 128px);
+    height: clamp(92px, 10vw, 128px);
     place-items: center;
     border: 1px solid rgba(255, 255, 255, 0.78);
     border-radius: 999px;
@@ -432,8 +432,8 @@ body {
 }
 
 .lessons-hero-cat {
-    width: 86%;
-    height: 86%;
+    width: 92%;
+    height: 92%;
     object-fit: contain;
     transform: translateY(3%) rotate(3deg);
     filter: drop-shadow(0 8px 10px rgba(120, 53, 15, 0.16));
@@ -665,8 +665,8 @@ body {
     }
 
     .lessons-hero-mascot {
-        width: 54px;
-        height: 54px;
+        width: clamp(78px, 20vw, 96px);
+        height: clamp(78px, 20vw, 96px);
         box-shadow:
             0 10px 20px rgba(120, 53, 15, 0.10),
             inset 0 1px 0 rgba(255, 255, 255, 0.82);
