@@ -496,3 +496,108 @@ html[data-theme='dark'] .home-alphabet-letter--unknown {
 html[data-theme='dark'] .home-alphabet-translit {
     color: #8a93a1 !important;
 }
+
+/* --------- Deda 2026 header and alphabet refresh --------- */
+
+.header-brand-label {
+    font-size: clamp(18px, 2.4vw, 22px);
+    font-weight: 950;
+    letter-spacing: -0.045em;
+}
+
+.header-control-btn,
+.study-action-pill {
+    border-color: rgba(255, 255, 255, 0.66) !important;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.56)) !important;
+    color: #27231e !important;
+    box-shadow:
+        0 12px 30px rgba(31, 28, 23, 0.075),
+        inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+    backdrop-filter: blur(18px) saturate(1.12);
+}
+
+.header-control-btn:hover,
+.study-action-pill:hover,
+.study-action-pill:focus-visible {
+    border-color: rgba(255, 255, 255, 0.88) !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    color: #171513 !important;
+    transform: translateY(-2px);
+    box-shadow:
+        0 18px 42px rgba(31, 28, 23, 0.11),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92) !important;
+}
+
+.header-control-btn--active,
+.study-action-pill--primary {
+    border-color: rgba(0, 168, 132, 0.24) !important;
+    background:
+        linear-gradient(180deg, rgba(224, 255, 246, 0.92), rgba(255, 255, 255, 0.62)) !important;
+    color: #006b58 !important;
+}
+
+.header-control-glyph {
+    color: #00a884;
+}
+
+.home-alphabet-panel {
+    border-color: rgba(255, 255, 255, 0.70) !important;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.66)),
+        radial-gradient(circle at 90% 8%, rgba(0, 168, 132, 0.12), transparent 36%) !important;
+    box-shadow:
+        0 18px 46px rgba(31, 28, 23, 0.11),
+        inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(22px) saturate(1.12);
+}
+
+.home-alphabet-key {
+    border-color: rgba(255, 255, 255, 0.74) !important;
+    background: rgba(255, 255, 255, 0.74) !important;
+    box-shadow:
+        0 8px 18px rgba(31, 28, 23, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+}
+
+.home-alphabet-key:hover {
+    border-color: rgba(0, 168, 132, 0.24) !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.home-alphabet-key--active {
+    border-color: rgba(0, 168, 132, 0.34) !important;
+    background: rgba(224, 255, 246, 0.78) !important;
+    box-shadow:
+        0 0 0 1px rgba(0, 168, 132, 0.10),
+        0 10px 24px rgba(0, 168, 132, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+}
+
+html[data-theme='dark'] .header-control-btn,
+html[data-theme='dark'] .study-action-pill,
+html[data-theme='dark'] .home-alphabet-panel,
+html[data-theme='dark'] .home-alphabet-key {
+    border-color: rgba(232, 238, 247, 0.10) !important;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.070), rgba(255, 255, 255, 0.040)) !important;
+    color: #f2f4f8 !important;
+    box-shadow:
+        0 18px 44px rgba(0, 0, 0, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+html[data-theme='dark'] .header-control-btn:hover,
+html[data-theme='dark'] .study-action-pill:hover,
+html[data-theme='dark'] .home-alphabet-key:hover {
+    border-color: rgba(232, 238, 247, 0.18) !important;
+    background: rgba(255, 255, 255, 0.095) !important;
+}
+
+html[data-theme='dark'] .header-control-btn--active,
+html[data-theme='dark'] .study-action-pill--primary,
+html[data-theme='dark'] .home-alphabet-key--active {
+    border-color: rgba(232, 238, 247, 0.22) !important;
+    background: rgba(232, 238, 247, 0.10) !important;
+}

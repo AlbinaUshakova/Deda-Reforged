@@ -6,25 +6,25 @@
 
 :root {
     color-scheme: light;
-    --bg-main: #f3f3f3;
+    --bg-main: #f6f3ec;
     --bg-surface: #ffffff;
-    --bg-panel: #ffffff;
-    --bg-card: #ffffff;
-    --bg-card-hover: #f8f8f8;
-    --border-soft: #d4d4d4;
-    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --text-primary: #202123;
-    --text-secondary: #5f6368;
-    --text-tertiary: #8b8f97;
-    --accent: #f97316;
-    --accent-hover: #fb923c;
-    --ui-accent: #10a37f;
-    --focus-ring: rgba(16, 163, 127, 0.25);
-    --progress-bg: #e6e7eb;
-    --progress: #f97316;
+    --bg-panel: rgba(255, 255, 255, 0.74);
+    --bg-card: rgba(255, 255, 255, 0.78);
+    --bg-card-hover: rgba(255, 255, 255, 0.94);
+    --border-soft: rgba(38, 34, 28, 0.12);
+    --shadow-soft: 0 18px 50px rgba(31, 28, 23, 0.09);
+    --text-primary: #171513;
+    --text-secondary: #5f5a52;
+    --text-tertiary: #948d82;
+    --accent: #ff6b35;
+    --accent-hover: #ff875b;
+    --ui-accent: #00a884;
+    --focus-ring: rgba(0, 168, 132, 0.24);
+    --progress-bg: rgba(23, 21, 19, 0.10);
+    --progress: #ff6b35;
     --progress-good: #22c55e;
-    --progress-low: #ff7a00;
-    --progress-current: #facc15;
+    --progress-low: #ff9f1c;
+    --progress-current: #111827;
     --alphabet-bg: var(--bg-panel);
     --alphabet-key: #f5f5f5;
     --alphabet-key-hover: #ebebeb;
@@ -73,6 +73,19 @@
     --dialog-answer: #ff7a00;
     --deda-bg: var(--app-bg);
     --deda-text: var(--app-text);
+    --deda-radius-xl: 34px;
+    --deda-radius-lg: 24px;
+    --deda-glass: rgba(255, 255, 255, 0.66);
+    --deda-glass-strong: rgba(255, 255, 255, 0.84);
+    --deda-glass-border: rgba(255, 255, 255, 0.72);
+    --deda-ink-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
+    --deda-elevation: 0 22px 70px rgba(31, 28, 23, 0.12);
+    --deda-elevation-soft: 0 14px 38px rgba(31, 28, 23, 0.08);
+    --deda-gradient-aurora:
+        radial-gradient(circle at 12% 10%, rgba(255, 107, 53, 0.18), transparent 31%),
+        radial-gradient(circle at 78% 3%, rgba(0, 168, 132, 0.16), transparent 30%),
+        radial-gradient(circle at 72% 86%, rgba(255, 200, 87, 0.16), transparent 34%),
+        linear-gradient(180deg, #fbf7ef 0%, #f6f3ec 48%, #f2efe8 100%);
 }
 
 html[data-theme='dark'] {
@@ -143,6 +156,19 @@ html[data-theme='dark'] {
     --dialog-answer: #c7d0df;
     --deda-bg: var(--app-bg);
     --deda-text: var(--app-text);
+    --deda-radius-xl: 34px;
+    --deda-radius-lg: 24px;
+    --deda-glass: rgba(255, 255, 255, 0.055);
+    --deda-glass-strong: rgba(255, 255, 255, 0.085);
+    --deda-glass-border: rgba(232, 238, 247, 0.10);
+    --deda-ink-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+    --deda-elevation: 0 24px 70px rgba(0, 0, 0, 0.32);
+    --deda-elevation-soft: 0 16px 44px rgba(0, 0, 0, 0.24);
+    --deda-gradient-aurora:
+        radial-gradient(circle at 12% 10%, rgba(232, 238, 247, 0.055), transparent 31%),
+        radial-gradient(circle at 78% 3%, rgba(232, 238, 247, 0.040), transparent 30%),
+        radial-gradient(circle at 72% 86%, rgba(232, 238, 247, 0.030), transparent 34%),
+        linear-gradient(180deg, #0f1115 0%, #11141a 48%, #0f1115 100%);
 }
 
 html {
@@ -1700,4 +1726,179 @@ html[data-theme='dark'] .locked-lesson-tooltip-arrow {
 body {
     background-color: var(--app-bg);
     color: var(--app-text);
+}
+
+/* --------- Deda 2026 visual refresh --------- */
+
+body {
+    font-feature-settings: "ss01" 1, "cv01" 1;
+    letter-spacing: -0.01em;
+}
+
+.lessons-screen,
+html[data-theme='dark'] .lessons-screen,
+.study-card-screen,
+html[data-theme='dark'] .study-card-screen {
+    background: var(--deda-gradient-aurora) !important;
+}
+
+.lessons-screen::before {
+    top: 76px;
+    color: rgba(23, 21, 19, 0.045);
+    font-size: clamp(72px, 10vw, 148px);
+    font-weight: 950;
+    letter-spacing: 0.03em;
+}
+
+html[data-theme='dark'] .lessons-screen::before {
+    color: rgba(242, 244, 248, 0.035);
+}
+
+.lessons-hero {
+    border-radius: var(--deda-radius-xl) !important;
+    border-color: rgba(255, 255, 255, 0.72) !important;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.48)),
+        radial-gradient(circle at 86% 12%, rgba(0, 168, 132, 0.16), transparent 36%),
+        radial-gradient(circle at 7% 92%, rgba(255, 107, 53, 0.14), transparent 34%) !important;
+    box-shadow: var(--deda-elevation) !important;
+    backdrop-filter: blur(22px) saturate(1.12);
+}
+
+.lessons-hero::after {
+    inset: 12px;
+    border-radius: calc(var(--deda-radius-xl) - 8px);
+    background:
+        linear-gradient(90deg, rgba(23, 21, 19, 0.040) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(23, 21, 19, 0.032) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: linear-gradient(115deg, rgba(0, 0, 0, 0.58), transparent 76%);
+}
+
+.lessons-hero-kicker {
+    border-color: rgba(0, 168, 132, 0.18);
+    background: rgba(255, 255, 255, 0.56);
+    color: #006b58;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.80);
+}
+
+.lessons-hero-title,
+.lessons-hero-card-title {
+    letter-spacing: -0.075em;
+}
+
+.lessons-hero-title {
+    color: #171513;
+    text-shadow: var(--deda-ink-shadow);
+}
+
+.lessons-hero-subtitle,
+.lessons-hero-rule {
+    color: rgba(62, 55, 47, 0.82);
+}
+
+.lessons-hero-card {
+    border-radius: calc(var(--deda-radius-xl) - 4px) !important;
+    border-color: rgba(255, 255, 255, 0.76) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.58)),
+        radial-gradient(circle at 90% 0%, rgba(255, 200, 87, 0.28), transparent 34%),
+        radial-gradient(circle at 10% 100%, rgba(0, 168, 132, 0.16), transparent 38%) !important;
+    box-shadow:
+        0 24px 64px rgba(31, 28, 23, 0.13),
+        inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+    backdrop-filter: blur(18px) saturate(1.12);
+}
+
+.lessons-hero-card:hover {
+    border-color: rgba(255, 255, 255, 0.92) !important;
+    transform: translateY(-4px) rotate(-0.35deg) scale(1.01);
+    box-shadow:
+        0 30px 78px rgba(31, 28, 23, 0.17),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92) !important;
+}
+
+.lessons-hero-start {
+    background: #171513;
+    color: #fffaf2;
+    box-shadow:
+        0 14px 30px rgba(31, 28, 23, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.lessons-hero-letter,
+.flashcard-lesson-letter {
+    border-color: rgba(255, 255, 255, 0.72);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.46)) !important;
+    box-shadow:
+        0 10px 24px rgba(31, 28, 23, 0.065),
+        inset 0 1px 0 rgba(255, 255, 255, 0.82) !important;
+}
+
+.lessons-hero-letter:hover,
+.flashcard-lesson-letter:hover {
+    border-color: rgba(0, 168, 132, 0.22);
+    background: rgba(255, 255, 255, 0.88) !important;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.lessons-path-section::before {
+    background: rgba(255, 255, 255, 0.34);
+    border-color: rgba(255, 255, 255, 0.54);
+    backdrop-filter: blur(18px);
+}
+
+.home-lesson-card {
+    border-radius: 28px !important;
+    border-color: rgba(255, 255, 255, 0.64) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.54)) !important;
+    box-shadow:
+        0 16px 42px rgba(31, 28, 23, 0.075),
+        inset 0 1px 0 rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(14px) saturate(1.08);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.home-lesson-card.lesson-card--interactive:hover {
+    background: rgba(255, 255, 255, 0.88) !important;
+    border-color: rgba(255, 255, 255, 0.86) !important;
+    transform: translateY(-4px);
+    box-shadow:
+        0 24px 62px rgba(31, 28, 23, 0.11),
+        inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+}
+
+.home-lesson-card--current {
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 248, 236, 0.72)),
+        radial-gradient(circle at 86% 12%, rgba(255, 107, 53, 0.18), transparent 34%) !important;
+    border-color: rgba(255, 107, 53, 0.28) !important;
+}
+
+.home-special-btn {
+    border-radius: 999px !important;
+    backdrop-filter: blur(12px);
+}
+
+html[data-theme='dark'] .lessons-hero,
+html[data-theme='dark'] .lessons-hero-card,
+html[data-theme='dark'] .home-lesson-card {
+    border-color: var(--deda-glass-border) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
+        radial-gradient(circle at 86% 12%, rgba(232, 238, 247, 0.045), transparent 35%) !important;
+    box-shadow: var(--deda-elevation-soft) !important;
+}
+
+html[data-theme='dark'] .lessons-hero-title,
+html[data-theme='dark'] .lessons-hero-card-title {
+    color: #f2f4f8;
+    text-shadow: none;
+}
+
+html[data-theme='dark'] .lessons-hero-subtitle,
+html[data-theme='dark'] .lessons-hero-rule {
+    color: rgba(216, 221, 231, 0.78);
 }

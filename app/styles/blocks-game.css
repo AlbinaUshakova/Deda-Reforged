@@ -445,6 +445,144 @@ html[data-theme='dark'] .blocks-prompt-text {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+/* --------- Deda 2026 game refresh --------- */
+
+.blocks-game-screen,
+html[data-theme='dark'] .blocks-game-screen {
+    background: var(--deda-gradient-aurora) !important;
+}
+
+.blocks-game-screen::before {
+    top: 92px;
+    color: rgba(23, 21, 19, 0.045);
+    font-size: clamp(84px, 12vw, 170px);
+    letter-spacing: 0.035em;
+}
+
+html[data-theme='dark'] .blocks-game-screen::before {
+    color: rgba(242, 244, 248, 0.032);
+}
+
+.blocks-question-card {
+    border-radius: 34px !important;
+    border-color: rgba(255, 255, 255, 0.74) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.56)),
+        radial-gradient(circle at 88% 12%, rgba(0, 168, 132, 0.12), transparent 36%),
+        radial-gradient(circle at 8% 92%, rgba(255, 107, 53, 0.10), transparent 34%) !important;
+    box-shadow:
+        0 26px 70px rgba(31, 28, 23, 0.13),
+        inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+    backdrop-filter: blur(22px) saturate(1.12);
+}
+
+.blocks-question-chip,
+.blocks-question-shortcut,
+.blocks-refresh-btn {
+    border-color: rgba(255, 255, 255, 0.68) !important;
+    background: rgba(255, 255, 255, 0.58) !important;
+    color: rgba(39, 35, 30, 0.74) !important;
+    box-shadow:
+        0 8px 20px rgba(31, 28, 23, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.84) !important;
+    backdrop-filter: blur(14px) saturate(1.08);
+}
+
+.blocks-question-chip {
+    color: #006b58 !important;
+    background: rgba(224, 255, 246, 0.74) !important;
+}
+
+.blocks-answer-input {
+    border-color: rgba(255, 255, 255, 0.72) !important;
+    background: rgba(255, 255, 255, 0.76) !important;
+    color: #171513 !important;
+    box-shadow:
+        0 14px 34px rgba(31, 28, 23, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
+}
+
+.blocks-answer-input:focus,
+.blocks-answer-input:focus-visible {
+    border-color: rgba(0, 168, 132, 0.34) !important;
+    box-shadow:
+        0 0 0 4px rgba(0, 168, 132, 0.12),
+        0 16px 38px rgba(31, 28, 23, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92) !important;
+}
+
+.blocks-submit-btn {
+    border-color: rgba(23, 21, 19, 0.12) !important;
+    background: #171513 !important;
+    color: #fffaf2 !important;
+    box-shadow:
+        0 16px 36px rgba(23, 21, 19, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+.blocks-submit-btn:hover {
+    background: #28231e !important;
+    transform: translateY(-2px);
+}
+
+.blocks-grid-board {
+    border: 1px solid rgba(255, 255, 255, 0.72) !important;
+    border-radius: 30px;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.48)),
+        radial-gradient(circle at 82% 10%, rgba(0, 168, 132, 0.10), transparent 36%) !important;
+    box-shadow:
+        0 26px 70px rgba(31, 28, 23, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(18px) saturate(1.08);
+}
+
+.blocks-grid-cell {
+    background: rgba(23, 21, 19, 0.075) !important;
+}
+
+.blocks-grid-cell:hover {
+    background: rgba(0, 168, 132, 0.13) !important;
+}
+
+.blocks-grid-score {
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.66);
+    background: rgba(255, 255, 255, 0.58);
+    padding: 6px 12px;
+    box-shadow:
+        0 10px 24px rgba(31, 28, 23, 0.070),
+        inset 0 1px 0 rgba(255, 255, 255, 0.84);
+    backdrop-filter: blur(14px);
+}
+
+html[data-theme='dark'] .blocks-question-card,
+html[data-theme='dark'] .blocks-grid-board {
+    border-color: rgba(232, 238, 247, 0.10) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.036)),
+        radial-gradient(circle at 82% 10%, rgba(232, 238, 247, 0.045), transparent 36%) !important;
+    box-shadow:
+        0 24px 68px rgba(0, 0, 0, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+html[data-theme='dark'] .blocks-answer-input {
+    border-color: rgba(232, 238, 247, 0.12) !important;
+    background: rgba(255, 255, 255, 0.070) !important;
+    color: #f2f4f8 !important;
+}
+
+html[data-theme='dark'] .blocks-submit-btn {
+    border-color: rgba(232, 238, 247, 0.18) !important;
+    background: #f2f4f8 !important;
+    color: #0f1115 !important;
+}
+
+html[data-theme='dark'] .blocks-submit-btn:hover {
+    background: #ffffff !important;
+}
+
 @media (max-width: 900px) {
     .blocks-question-card {
         border-radius: 24px !important;

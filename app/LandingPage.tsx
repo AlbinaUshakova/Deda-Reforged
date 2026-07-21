@@ -73,6 +73,7 @@ export default function LandingPage() {
 
     .landing-shell {
       overflow-x: clip;
+      background: var(--deda-gradient-aurora) !important;
     }
 
     .landing-hero-grid {
@@ -82,6 +83,8 @@ export default function LandingPage() {
 
     .landing-copy {
       max-width: min(100%, 620px);
+      position: relative;
+      z-index: 1;
     }
 
     .landing-copy p {
@@ -91,6 +94,33 @@ export default function LandingPage() {
     .landing-subtitle {
       max-width: 560px;
       text-wrap: balance;
+    }
+
+    .landing-title {
+      max-width: 640px;
+      color: var(--text-primary);
+      font-weight: 950;
+      letter-spacing: -0.07em;
+      text-wrap: balance;
+    }
+
+    .landing-cta-btn {
+      border-color: rgba(23, 21, 19, 0.12) !important;
+      background: #171513 !important;
+      color: #fffaf2 !important;
+      box-shadow:
+        0 16px 36px rgba(23, 21, 19, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .landing-cta-btn:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+      background: #28231e !important;
+      box-shadow:
+        0 22px 48px rgba(23, 21, 19, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .landing-alphabet-hint {
@@ -165,6 +195,15 @@ export default function LandingPage() {
       width: 100%;
       max-width: clamp(290px, 31vw, 440px);
       margin-inline: auto;
+      border-radius: 28px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.46)),
+        radial-gradient(circle at 92% 8%, rgba(0, 168, 132, 0.13), transparent 36%);
+      padding: 10px;
+      box-shadow:
+        0 24px 64px rgba(31, 28, 23, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(22px) saturate(1.12);
     }
 
     .landing-alpha-cat {
@@ -195,11 +234,14 @@ export default function LandingPage() {
       width: fit-content;
       scroll-snap-align: start;
       scroll-snap-stop: always;
-      border-radius: 24px;
+      border-radius: 28px;
       overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.34);
-      background: transparent;
-      box-shadow: none;
+      border: 1px solid rgba(255, 255, 255, 0.66);
+      background: rgba(255, 255, 255, 0.52);
+      box-shadow:
+        0 18px 46px rgba(31, 28, 23, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px) saturate(1.08);
     }
 
     .landing-screen-item--crop-frame {
@@ -259,7 +301,7 @@ export default function LandingPage() {
     }
 
     html[data-theme='dark'] .landing-shell {
-      background: var(--app-bg);
+      background: var(--deda-gradient-aurora) !important;
     }
 
     html[data-theme='dark'] .landing-title {
@@ -277,9 +319,11 @@ export default function LandingPage() {
     }
 
     html[data-theme='dark'] .landing-screen-item {
-      border-color: rgba(148, 163, 184, 0.22);
-      background: rgba(30, 32, 38, 0.34);
-      box-shadow: 0 10px 24px rgba(2, 6, 23, 0.14);
+      border-color: rgba(232, 238, 247, 0.10);
+      background: rgba(255, 255, 255, 0.055);
+      box-shadow:
+        0 22px 58px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 
     html[data-theme='dark'] .landing-screens-grid--light {
@@ -291,7 +335,20 @@ export default function LandingPage() {
     }
 
     html[data-theme='dark'] .landing-cta-btn {
-      box-shadow: 0 8px 16px rgba(249, 115, 22, 0.1);
+      border-color: rgba(232, 238, 247, 0.18) !important;
+      background: #f2f4f8 !important;
+      color: #0f1115 !important;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.30);
+    }
+
+    html[data-theme='dark'] .landing-alpha-card {
+      border: 1px solid rgba(232, 238, 247, 0.10);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.070), rgba(255, 255, 255, 0.038)),
+        radial-gradient(circle at 92% 8%, rgba(232, 238, 247, 0.045), transparent 36%);
+      box-shadow:
+        0 22px 58px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 
     html[data-theme='dark'] .landing-screens-grid {
