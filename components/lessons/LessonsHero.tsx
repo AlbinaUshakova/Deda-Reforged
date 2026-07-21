@@ -37,7 +37,7 @@ export function LessonsHero({
         <div>
           <div className="lessons-hero-kicker">Deda</div>
           <h1 className="lessons-hero-title">
-            Грузинский без зубрёжки
+            Читай по-грузински и играй
           </h1>
           <p className="lessons-hero-subtitle">
             3 минуты: буквы, карточки, игра.
