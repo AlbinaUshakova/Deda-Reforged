@@ -18,6 +18,8 @@ export type EpisodeCard = {
   type: 'word' | 'phrase' | 'letter';
   ge_text: string;
   ru_meaning: string;
+  accepted_ru?: string[];
+  accepted_ge?: string[];
   info_notes?: CardInfoNote[];
   audio_url?: string;
   topic?: string;
@@ -70,11 +72,13 @@ function phrase(
   ge_text: string,
   ru_meaning: string,
   note?: string,
+  accepted_ru?: string[],
 ): EpisodeCard {
   return {
     type: 'word',
     ge_text,
     ru_meaning,
+    ...(accepted_ru?.length ? { accepted_ru } : {}),
     ...(note ? { info_notes: [{ kind: 'grammar' as const, text: note }] } : {}),
   };
 }
@@ -92,26 +96,26 @@ export const PHRASES_EPISODE: Episode = {
     phrase('შევხვდებით', 'Увидимся'),
     phrase('კარგად იყავი', 'Пока / будь здоров(а)', 'Неформально → одному человеку на “ты”.'),
     phrase('კარგად ბრძანდებოდეთ', 'До свидания / всего доброго', 'Вежливо → одному человеку или группе на “вы”.'),
-    phrase('მადლობა', 'Спасибо'),
-    phrase('გმადლობთ', 'Спасибо', 'Вежливо → лучше с незнакомыми людьми.'),
-    phrase('დიდი მადლობა', 'Большое спасибо'),
-    phrase('მადლობა დახმარებისთვის', 'Спасибо за помощь'),
+    phrase('მადლობა', 'Спасибо', undefined, ['Благодарю']),
+    phrase('გმადლობთ', 'Спасибо', 'Вежливо → лучше с незнакомыми людьми.', ['Благодарю']),
+    phrase('დიდი მადლობა', 'Большое спасибо', undefined, ['Огромное спасибо', 'Спасибо большое']),
+    phrase('მადლობა დახმარებისთვის', 'Спасибо за помощь', undefined, ['Благодарю за помощь']),
     phrase('არაფრის', 'Не за что'),
     phrase('ბოდიში', 'Извините / простите'),
     phrase('უკაცრავად', 'Извините / простите', 'Удобно, когда нужно привлечь внимание или пройти.'),
     phrase('მაპატიეთ', 'Простите'),
-    phrase('არაუშავს', 'Ничего страшного / всё нормально'),
+    phrase('არაუშავს', 'Ничего страшного / всё нормально', undefined, ['Ничего', 'Все хорошо']),
     phrase('თუ შეიძლება', 'Пожалуйста / если можно'),
     phrase('კი', 'Да'),
     phrase('დიახ', 'Да', 'Вежливо → более формальное “да”.'),
     phrase('არა', 'Нет'),
-    phrase('კარგი', 'Хорошо / ладно'),
-    phrase('კარგია', 'Хорошо / это хорошо'),
-    phrase('რა თქმა უნდა', 'Конечно'),
-    phrase('პრობლემა არ არის', 'Нет проблем'),
-    phrase('არ ვიცი', 'Я не знаю'),
-    phrase('მესმის', 'Я понимаю'),
-    phrase('არ მესმის', 'Я не понимаю'),
+    phrase('კარგი', 'Хорошо / ладно', undefined, ['Ок', 'Окей']),
+    phrase('კარგია', 'Хорошо / это хорошо', undefined, ['Нормально', 'Это нормально']),
+    phrase('რა თქმა უნდა', 'Конечно', undefined, ['Разумеется']),
+    phrase('პრობლემა არ არის', 'Нет проблем', undefined, ['Без проблем']),
+    phrase('არ ვიცი', 'Я не знаю', undefined, ['Не знаю']),
+    phrase('მესმის', 'Я понимаю', undefined, ['Понимаю']),
+    phrase('არ მესმის', 'Я не понимаю', undefined, ['Не понимаю']),
     phrase('გასაგებია', 'Понятно'),
     phrase('ვერ გავიგე', 'Я не понял(а)'),
     phrase('გაიმეორეთ, თუ შეიძლება', 'Повторите, пожалуйста'),
@@ -139,9 +143,9 @@ export const PHRASES_EPISODE: Episode = {
     phrase('ეს ქართულად როგორ არის?', 'Как это по-грузински?'),
     phrase('რა ჰქვია ამას?', 'Как это называется?'),
     phrase('რას ნიშნავს?', 'Что это значит?'),
-    phrase('დამეხმარეთ, თუ შეიძლება', 'Помогите, пожалуйста'),
-    phrase('შეგიძლიათ დამეხმაროთ?', 'Вы можете мне помочь?'),
-    phrase('დახმარება მჭირდება', 'Мне нужна помощь'),
+    phrase('დამეხმარეთ, თუ შეიძლება', 'Помогите, пожалуйста', undefined, ['Помогите пожалуйста']),
+    phrase('შეგიძლიათ დამეხმაროთ?', 'Вы можете мне помочь?', undefined, ['Можете помочь?', 'Можете мне помочь?']),
+    phrase('დახმარება მჭირდება', 'Мне нужна помощь', undefined, ['Нужна помощь']),
     phrase('სად არის ...?', 'Где ...?'),
     phrase('სად არის ტუალეტი?', 'Где туалет?'),
     phrase('სად არის გაჩერება?', 'Где остановка?'),
@@ -153,7 +157,7 @@ export const PHRASES_EPISODE: Episode = {
     phrase('მარცხნივ', 'Налево'),
     phrase('პირდაპირ', 'Прямо'),
     phrase('აქ გააჩერეთ', 'Остановите здесь'),
-    phrase('ტაქსი მინდა', 'Мне нужно такси'),
+    phrase('ტაქსი მინდა', 'Мне нужно такси', undefined, ['Нужно такси', 'Я хочу такси']),
     phrase('აეროპორტში მივდივარ', 'Я еду в аэропорт'),
     phrase('სასტუმროში მივდივარ', 'Я еду в отель'),
     phrase('დავიკარგე', 'Я потерялся / потерялась'),
@@ -164,13 +168,13 @@ export const PHRASES_EPISODE: Episode = {
     phrase('ბარათით შეიძლება?', 'Можно картой?'),
     phrase('ნაღდით გადავიხდი', 'Я заплачу наличными'),
     phrase('ქვითარი მინდა', 'Мне нужен чек'),
-    phrase('ეს მინდა', 'Я хочу это'),
-    phrase('ეს არ მინდა', 'Я не хочу это'),
+    phrase('ეს მინდა', 'Я хочу это', undefined, ['Хочу это']),
+    phrase('ეს არ მინდა', 'Я не хочу это', undefined, ['Не хочу это']),
     phrase('ერთი, თუ შეიძლება', 'Один / одну, пожалуйста'),
     phrase('ორი, თუ შეიძლება', 'Два / две, пожалуйста'),
-    phrase('წყალი მინდა', 'Я хочу воды'),
-    phrase('ყავა მინდა', 'Я хочу кофе'),
-    phrase('ჩაი მინდა', 'Я хочу чай'),
+    phrase('წყალი მინდა', 'Я хочу воды', undefined, ['Хочу воды', 'Мне воды']),
+    phrase('ყავა მინდა', 'Я хочу кофе', undefined, ['Хочу кофе', 'Мне кофе']),
+    phrase('ჩაი მინდა', 'Я хочу чай', undefined, ['Хочу чай', 'Мне чай']),
     phrase('მენიუ, თუ შეიძლება', 'Меню, пожалуйста'),
     phrase('ანგარიში, თუ შეიძლება', 'Счёт, пожалуйста'),
     phrase('გემრიელია', 'Вкусно'),
@@ -194,13 +198,25 @@ export function normalizeGeorgianText(text: string): string {
   return text;
 }
 
+function normalizeAcceptedAnswers(value: string[] | undefined): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const answers = value.map((answer) => answer.trim()).filter(Boolean);
+  return answers.length ? answers : undefined;
+}
+
 export function normalizeEpisode(episode: Episode): Episode {
   return {
     ...episode,
-    cards: episode.cards.map((card) => ({
-      ...card,
-      ge_text: normalizeGeorgianText(card.ge_text),
-    })),
+    cards: episode.cards.map((card) => {
+      const acceptedRu = normalizeAcceptedAnswers(card.accepted_ru);
+      const acceptedGe = normalizeAcceptedAnswers(card.accepted_ge);
+      return {
+        ...card,
+        ge_text: normalizeGeorgianText(card.ge_text),
+        ...(acceptedRu ? { accepted_ru: acceptedRu } : {}),
+        ...(acceptedGe ? { accepted_ge: acceptedGe } : {}),
+      };
+    }),
   };
 }
 

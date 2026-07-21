@@ -7,7 +7,7 @@ import { useAppStore } from '@/lib/appStore';
 import type { EpisodeCard } from '@/lib/clientContentCache';
 import BlocksGame from '@/components/BlocksGame';
 
-type Word = { ge: string; ru: string; audio?: string };
+type Word = { ge: string; ru: string; acceptedRu?: string[]; acceptedGe?: string[]; audio?: string };
 type Card = EpisodeCard;
 type Episode = { id: string; title: string; cards: Card[] };
 
@@ -23,7 +23,11 @@ function isEpisodeCard(value: unknown): value is Card {
     typeof card.ge_text === 'string' &&
     typeof card.ru_meaning === 'string' &&
     (card.audio_url === undefined || typeof card.audio_url === 'string') &&
-    (card.topic === undefined || typeof card.topic === 'string')
+    (card.topic === undefined || typeof card.topic === 'string') &&
+    (card.accepted_ru === undefined ||
+      (Array.isArray(card.accepted_ru) && card.accepted_ru.every(value => typeof value === 'string'))) &&
+    (card.accepted_ge === undefined ||
+      (Array.isArray(card.accepted_ge) && card.accepted_ge.every(value => typeof value === 'string')))
   );
 }
 
@@ -123,6 +127,8 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
         const ws: Word[] = cards.map((c) => ({
           ge: c.ge_text,
           ru: c.ru_meaning,
+          acceptedRu: c.accepted_ru,
+          acceptedGe: c.accepted_ge,
           audio: c.audio_url,
         }));
         setWords(ws);

@@ -40,6 +40,8 @@ const NUMBER_WORDS: Record<string, number> = {
   ...NUMBER_WORDS_GE,
 };
 
+const OPTIONAL_RU_WORDS = new Set(['я', 'мне', 'меня']);
+
 function normalizeGeorgianCase(str: string) {
   return Array.from(str)
     .map(ch => {
@@ -192,13 +194,26 @@ function normalizeWordOrderForCompare(str: string): string | null {
   return tokens.sort((a, b) => a.localeCompare(b)).join(' ');
 }
 
-function buildAcceptedAnswerVariants(correctAnswer: string): string[] {
-  const rawParts = normalizeRu(correctAnswer)
+function normalizeMeaningfulWordOrderForCompare(str: string): string | null {
+  const tokens = normalizeNumbersInText(str)
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter(token => token && !OPTIONAL_RU_WORDS.has(token));
+
+  if (tokens.length < 1) return null;
+
+  return tokens.sort((a, b) => a.localeCompare(b)).join(' ');
+}
+
+function buildAcceptedAnswerVariants(correctAnswers: string | string[]): string[] {
+  const answers = Array.isArray(correctAnswers) ? correctAnswers : [correctAnswers];
+  const rawParts = answers.flatMap(answer => normalizeRu(answer)
     .split('/')
     .map(part => part.trim())
-    .filter(Boolean);
+    .filter(Boolean));
 
-  if (!rawParts.length) return [correctAnswer];
+  if (!rawParts.length) return answers;
 
   const variants = new Set<string>();
   rawParts.forEach(part => variants.add(part));
@@ -252,7 +267,7 @@ export function evaluateLetterCells(
   return guess.map((char, i) => ({ char, state: states[i] }));
 }
 
-export function isSameAnswer(userInput: string, correctAnswer: string): boolean {
+export function isSameAnswer(userInput: string, correctAnswer: string | string[]): boolean {
   const nu = normalizeRu(userInput);
 
   if (!nu) return false;
@@ -281,6 +296,12 @@ export function isSameAnswer(userInput: string, correctAnswer: string): boolean 
     const unorderedUser = normalizeWordOrderForCompare(userInput);
     const unorderedCorrect = normalizeWordOrderForCompare(variant);
     if (unorderedUser && unorderedCorrect && unorderedUser === unorderedCorrect) {
+      return true;
+    }
+
+    const meaningfulUser = normalizeMeaningfulWordOrderForCompare(userInput);
+    const meaningfulCorrect = normalizeMeaningfulWordOrderForCompare(variant);
+    if (meaningfulUser && meaningfulCorrect && meaningfulUser === meaningfulCorrect) {
       return true;
     }
 

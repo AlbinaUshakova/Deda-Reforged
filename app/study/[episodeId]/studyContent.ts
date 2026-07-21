@@ -9,6 +9,8 @@ export type StudyCard = {
   type: 'word' | 'letter';
   ge_text: string;
   ru_meaning: string;
+  accepted_ru?: string[];
+  accepted_ge?: string[];
   info_notes?: CardInfoNote[];
   audio_url?: string;
   topic?: string;
@@ -46,6 +48,8 @@ type RawStudyCard = {
   type?: unknown;
   ge_text?: unknown;
   ru_meaning?: unknown;
+  accepted_ru?: unknown;
+  accepted_ge?: unknown;
   info_notes?: unknown;
   audio_url?: unknown;
   topic?: unknown;
@@ -89,6 +93,15 @@ function normalizeInfoNotes(value: unknown): CardInfoNote[] | undefined {
   return notes.length ? notes : undefined;
 }
 
+function normalizeAcceptedAnswers(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const answers = value
+    .map(answer => (typeof answer === 'string' ? answer.trim() : ''))
+    .filter(Boolean);
+
+  return answers.length ? answers : undefined;
+}
+
 function normalizeStudyCards(cards: unknown[]): StudyCard[] {
   return cards
     .map((card): StudyCard | null => {
@@ -98,6 +111,8 @@ function normalizeStudyCards(cards: unknown[]): StudyCard[] {
       if (!geText) return null;
 
       const ruMeaning = String(legacyCard.ru_meaning ?? '').trim();
+      const acceptedRu = normalizeAcceptedAnswers(legacyCard.accepted_ru);
+      const acceptedGe = normalizeAcceptedAnswers(legacyCard.accepted_ge);
       const infoNotes = normalizeInfoNotes(legacyCard.info_notes);
       const audioUrl =
         typeof legacyCard.audio_url === 'string' ? legacyCard.audio_url : undefined;
@@ -107,6 +122,8 @@ function normalizeStudyCards(cards: unknown[]): StudyCard[] {
           type: 'letter',
           ge_text: geText,
           ru_meaning: ruMeaning,
+          ...(acceptedRu ? { accepted_ru: acceptedRu } : {}),
+          ...(acceptedGe ? { accepted_ge: acceptedGe } : {}),
           info_notes: infoNotes,
           audio_url: audioUrl,
         };
@@ -116,6 +133,8 @@ function normalizeStudyCards(cards: unknown[]): StudyCard[] {
         type: 'word',
         ge_text: geText,
         ru_meaning: ruMeaning,
+        ...(acceptedRu ? { accepted_ru: acceptedRu } : {}),
+        ...(acceptedGe ? { accepted_ge: acceptedGe } : {}),
         info_notes: infoNotes,
         audio_url: audioUrl,
         topic: typeof legacyCard.topic === 'string' ? legacyCard.topic : undefined,

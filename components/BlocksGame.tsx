@@ -16,7 +16,7 @@ import {
 import { readFavoriteWords, toggleFavoriteWord } from '@/lib/studyPreferences';
 import { upsertProgress } from '@/lib/supabase';
 
-type Word = { ge: string; ru: string; audio?: string };
+type Word = { ge: string; ru: string; acceptedRu?: string[]; acceptedGe?: string[]; audio?: string };
 
 type BlocksGameProps = {
   words: Word[];
@@ -29,6 +29,8 @@ type BlocksGameProps = {
 type Question = {
   ge: string;
   ru: string;
+  acceptedRu?: string[];
+  acceptedGe?: string[];
 };
 
 type Mode = 'question' | 'pieces' | 'gameOver';
@@ -38,6 +40,15 @@ type QuestionPanelStyleVars = React.CSSProperties & {
   '--input-size': string;
   '--prompt-size': string;
 };
+
+function createQuestionFromWord(word: Word): Question {
+  return {
+    ge: word.ge,
+    ru: word.ru,
+    acceptedRu: word.acceptedRu,
+    acceptedGe: word.acceptedGe,
+  };
+}
 
 export default function BlocksGame({
   words,
@@ -224,7 +235,7 @@ export default function BlocksGame({
 
         setCurrentWordIndex(nextIdx);
         rememberRecentWord(nextIdx);
-        setQuestion({ ge: w.ge, ru: w.ru });
+        setQuestion(createQuestionFromWord(w));
         setAnswer('');
         setError(false);
         setAnswerState('idle');
@@ -273,7 +284,7 @@ export default function BlocksGame({
 
       setCurrentWordIndex(firstIdx);
       rememberRecentWord(firstIdx);
-      setQuestion({ ge: w.ge, ru: w.ru });
+      setQuestion(createQuestionFromWord(w));
       setQueue(rest);
       setHardSet(newHard);
 
@@ -318,7 +329,9 @@ export default function BlocksGame({
 
     if (!normalizeRu(answer)) return;
 
-    const correctAnswer = direction === 'ge-ru' ? question.ru : question.ge;
+    const correctAnswer = direction === 'ge-ru'
+      ? [question.ru, ...(question.acceptedRu ?? [])]
+      : [question.ge, ...(question.acceptedGe ?? [])];
     const isCorrect = isSameAnswer(answer, correctAnswer);
 
     if (isCorrect) {
@@ -357,7 +370,7 @@ export default function BlocksGame({
             revealTimeoutRef.current = setTimeout(() => {
               setShowCorrect(true);
               if (question) {
-                setAnswer(correctAnswer);
+                setAnswer(direction === 'ge-ru' ? question.ru : question.ge);
               }
               setError(false);
               setAnswerState('idle');
@@ -385,7 +398,9 @@ export default function BlocksGame({
       if (answerState !== 'idle') setAnswerState('idle');
       return;
     }
-    const correctAnswer = direction === 'ge-ru' ? question.ru : question.ge;
+    const correctAnswer = direction === 'ge-ru'
+      ? [question.ru, ...(question.acceptedRu ?? [])]
+      : [question.ge, ...(question.acceptedGe ?? [])];
     const liveCorrect = isSameAnswer(nextValue, correctAnswer);
     setAnswerState(liveCorrect ? 'correct' : 'idle');
   };

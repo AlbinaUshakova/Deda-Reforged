@@ -26,8 +26,19 @@ test('isSameAnswer accepts the same words in a different order', () => {
   assert.equal(isSameAnswer('спасибо не надо', 'Не надо, спасибо'), true);
   assert.equal(isSameAnswer('стула 2', 'два стула'), true);
   assert.equal(isSameAnswer('люблю тебя я', 'Я тебя люблю'), true);
-  assert.equal(isSameAnswer('тебя люблю', 'Я тебя люблю'), false);
+  assert.equal(isSameAnswer('тебя люблю', 'Я тебя люблю'), true);
   assert.equal(isSameAnswer('я тебя очень люблю', 'Я тебя люблю'), false);
+});
+
+test('isSameAnswer accepts explicit semantic variants', () => {
+  assert.equal(isSameAnswer('благодарю', ['Спасибо', 'Благодарю']), true);
+  assert.equal(isSameAnswer('не нужно', ['Не надо, спасибо', 'Не нужно']), true);
+});
+
+test('isSameAnswer tolerates safe omitted Russian pronouns only', () => {
+  assert.equal(isSameAnswer('хочу кофе', 'Я хочу кофе'), true);
+  assert.equal(isSameAnswer('нужна помощь', 'Мне нужна помощь'), true);
+  assert.equal(isSameAnswer('фиалка', 'Вот фиалка'), false);
 });
 
 test('evaluateLetterCells marks exact and misplaced characters', () => {
