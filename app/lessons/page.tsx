@@ -33,7 +33,6 @@ export default function HomePage() {
   const viewportWidth = useViewportWidth();
   const { audioError, speakLetter } = useLetterAudio();
   const recommendedLessonRef = useRef<HTMLAnchorElement | null>(null);
-  const mobileRecommendedScrolledRef = useRef(false);
   const lettersByEpCount = Object.keys(lettersByEp).length;
   const {
     alphabetRef,
@@ -105,24 +104,6 @@ export default function HomePage() {
     } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lettersByEp, lessonTargetScore, progress]);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (mobileRecommendedScrolledRef.current) return;
-    if (!recommendedEpId) return;
-    if (window.innerWidth > 700) return;
-    if (!recommendedLessonRef.current) return;
-
-    mobileRecommendedScrolledRef.current = true;
-    window.requestAnimationFrame(() => {
-      recommendedLessonRef.current?.scrollIntoView({
-        block: 'start',
-        inline: 'nearest',
-        behavior: 'auto',
-      });
-      window.scrollBy({ top: -84, left: 0, behavior: 'auto' });
-    });
-  }, [recommendedEpId, eps.length, progress]);
 
   return (
     <main
