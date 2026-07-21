@@ -31,9 +31,9 @@
     },
     {
       "type": "word",
-      "ge_text": "სოსო",
-      "reading": "soso",
-      "ru_meaning": "Сосо"
+      "ge_text": "თასი",
+      "reading": "tasi",
+      "ru_meaning": "чаша"
     },
     {
       "type": "word",
@@ -49,8 +49,8 @@
     },
     {
       "type": "word",
-      "ge_text": "სოსოს",
-      "ru_meaning": "Сосо (чей?)",
+      "ge_text": "თასის",
+      "ru_meaning": "чаши (чей?)",
       "playable": false
     },
     {
@@ -73,8 +73,8 @@
     },
     {
       "type": "word",
-      "ge_text": "იას",
-      "ru_meaning": "Ии (чей?)",
+      "ge_text": "თათის",
+      "ru_meaning": "лапки (чей?)",
       "playable": false
     },
     {
@@ -83,8 +83,7 @@
       "reading": "ai ias saati",
       "ru_meaning": "вот часы Ии",
       "accepted_ru": [
-        "вот часы Ия",
-        "вот часы Ии"
+        "вот часы Ия"
       ]
     },
     {
@@ -204,14 +203,14 @@
     },
     {
       "type": "word",
-      "ge_text": "თათია",
-      "reading": "tatia",
-      "ru_meaning": "Татия"
+      "ge_text": "თათი",
+      "reading": "tati",
+      "ru_meaning": "лапка"
     },
     {
       "type": "word",
-      "ge_text": "თათიას",
-      "ru_meaning": "Татии (чей?)",
+      "ge_text": "ოთახის",
+      "ru_meaning": "комнаты (чей?)",
       "playable": false
     },
     {

@@ -10,18 +10,14 @@
   "cards": [
     {
       "type": "word",
-      "ge_text": "გიორგი",
-      "reading": "giorgi",
-      "ru_meaning": "Гиорги",
-      "accepted_ru": [
-        "Георгий",
-        "Гиоргий"
-      ]
+      "ge_text": "გემი",
+      "reading": "gemi",
+      "ru_meaning": "корабль"
     },
     {
       "type": "word",
-      "ge_text": "გიორგის",
-      "ru_meaning": "Гиорги (чей?)",
+      "ge_text": "გემის",
+      "ru_meaning": "корабля (чей?)",
       "playable": false
     },
     {
