@@ -73,10 +73,6 @@ export function LessonsHero({
 
           <div className="lessons-hero-letter-panel pointer-events-none relative z-20 mt-4 flex min-h-[62px] items-center justify-center rounded-[22px] bg-white/62 px-4 py-2.5">
             <div className="w-full">
-              <div className="lessons-hero-listen-cue">
-                <span className="lessons-hero-listen-dot" aria-hidden="true" />
-                Нажми букву и послушай
-              </div>
               <div className="lessons-hero-letters" aria-label="Буквы рекомендованного урока">
                 {(recommendedLetters.length ? recommendedLetters : ['ა', 'ი', 'ს', 'ო']).map((letter) => (
                   <button
@@ -94,7 +90,6 @@ export function LessonsHero({
                     <span className="lessons-hero-letter-hint">
                       {geLetterToHint(letter, transliterationMode)}
                     </span>
-                    <span className="lessons-hero-letter-sound" aria-hidden="true">♪</span>
                   </button>
                 ))}
               </div>
