@@ -437,9 +437,11 @@ body {
     display: inline-flex;
     pointer-events: auto;
     min-width: clamp(30px, 3.25vw, 40px);
-    height: clamp(36px, 3.7vw, 46px);
+    min-height: clamp(46px, 4.55vw, 56px);
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 3px;
     border-radius: 16px;
     border: 1px solid rgba(15, 118, 110, 0.10);
     background: rgba(255, 255, 255, 0.34);
@@ -453,6 +455,22 @@ body {
         background-color 160ms ease,
         border-color 160ms ease,
         box-shadow 160ms ease;
+}
+
+.lessons-hero-letter-char {
+    display: block;
+    line-height: 0.92;
+}
+
+.lessons-hero-letter-hint {
+    display: block;
+    color: rgba(71, 85, 105, 0.58);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(9px, 1vw, 11px);
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1;
+    text-shadow: none;
 }
 
 .lessons-hero-letter:hover {
@@ -619,8 +637,13 @@ body {
 
     .lessons-hero-letter {
         min-width: 29px;
-        height: 35px;
+        min-height: 43px;
         border-radius: 13px;
+        gap: 2px;
+    }
+
+    .lessons-hero-letter-hint {
+        font-size: 8px;
     }
 
     .lessons-hero-letter-sound {
@@ -632,7 +655,7 @@ body {
     }
 
     .lessons-hero-letter-panel {
-        min-height: 66px !important;
+        min-height: 74px !important;
         margin-top: 10px !important;
         border-radius: 16px !important;
         padding: 8px 10px 9px !important;
@@ -800,6 +823,10 @@ html[data-theme='dark'] .lessons-hero-letter:hover {
     border-color: rgba(94, 234, 212, 0.22);
     background: rgba(255, 255, 255, 0.08);
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+}
+
+html[data-theme='dark'] .lessons-hero-letter-hint {
+    color: rgba(203, 213, 225, 0.62);
 }
 
 html[data-theme='dark'] .lessons-hero-letter-sound {

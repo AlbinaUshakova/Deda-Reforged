@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Route } from 'next';
 import type { LessonListItem } from '@/lib/lessonProgress';
+import { geLetterToHint, type TransliterationMode } from '@/lib/transliteration';
 
 type LessonsHeroProps = {
   recommendedLesson?: LessonListItem;
@@ -11,6 +12,7 @@ type LessonsHeroProps = {
   recommendedLetters: string[];
   recommendedScore: number;
   lessonTargetScore: number;
+  transliterationMode: TransliterationMode;
   onSpeakLetter: (letter: string) => void;
 };
 
@@ -20,6 +22,7 @@ export function LessonsHero({
   recommendedLetters,
   recommendedScore,
   lessonTargetScore,
+  transliterationMode,
   onSpeakLetter,
 }: LessonsHeroProps) {
   const lessonHref = (recommendedLesson ? `/study/${recommendedLesson.id}` : '/study/ep1') as Route;
@@ -88,9 +91,12 @@ export function LessonsHero({
                     onClick={(event) => {
                       event.stopPropagation();
                       onSpeakLetter(letter);
-                    }}
-                  >
-                    <span>{letter}</span>
+                  }}
+                >
+                    <span className="lessons-hero-letter-char">{letter}</span>
+                    <span className="lessons-hero-letter-hint">
+                      {geLetterToHint(letter, transliterationMode)}
+                    </span>
                     <span className="lessons-hero-letter-sound" aria-hidden="true">♪</span>
                   </button>
                 ))}

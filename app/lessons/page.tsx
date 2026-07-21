@@ -137,6 +137,7 @@ export default function HomePage() {
           recommendedLetters={recommendedLetters}
           recommendedScore={recommendedScore}
           lessonTargetScore={lessonTargetScore}
+          transliterationMode={transliterationMode}
           onSpeakLetter={speakLetter}
         />
         {/* алфавит + сетка эпизодов */}
