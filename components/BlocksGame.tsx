@@ -368,14 +368,7 @@ export default function BlocksGame({
             setIsRevealing(true);
 
             revealTimeoutRef.current = setTimeout(() => {
-              setShowCorrect(true);
-              if (question) {
-                setAnswer(direction === 'ge-ru' ? question.ru : question.ge);
-              }
-              setError(false);
-              setAnswerState('idle');
-              setIsRevealing(false);
-              revealTimeoutRef.current = null;
+              revealCorrectAnswer();
             }, 2000);
           }
         } else {
@@ -405,9 +398,27 @@ export default function BlocksGame({
     setAnswerState(liveCorrect ? 'correct' : 'idle');
   };
 
-  const handleSkipQuestion = () => {
-    if (!hasWords || hardGameOver) return;
-    gotoNextFromQueue(true);
+  const revealCorrectAnswer = () => {
+    if (!question) return;
+    clearRevealTimer();
+    clearCorrectTimer();
+    if (currentWordIndex !== null) {
+      setHardSet(prev => {
+        const next = new Set(prev);
+        next.add(currentWordIndex);
+        return next;
+      });
+    }
+    setAttempts(3);
+    setError(false);
+    setAnswerState('idle');
+    setShowCorrect(true);
+    setAnswer(direction === 'ge-ru' ? question.ru : question.ge);
+  };
+
+  const handleRevealTranslation = () => {
+    if (!hasWords || hardGameOver || showCorrect || isRevealing) return;
+    revealCorrectAnswer();
   };
 
   const handleRoundFinished = () => {
@@ -510,7 +521,7 @@ export default function BlocksGame({
                     panelStyle={questionPanelStyle}
                     onSubmit={handleSubmit}
                     onAnswerChange={handleAnswerChange}
-                    onSkipQuestion={handleSkipQuestion}
+                    onRevealTranslation={handleRevealTranslation}
                     onToggleFavorite={toggleFavorite}
                   />
                 </div>

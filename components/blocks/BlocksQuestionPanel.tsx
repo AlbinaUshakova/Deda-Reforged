@@ -29,7 +29,7 @@ type BlocksQuestionPanelProps = {
   panelStyle: QuestionPanelStyleVars;
   onSubmit: (event: React.FormEvent) => void;
   onAnswerChange: (value: string) => void;
-  onSkipQuestion: () => void;
+  onRevealTranslation: () => void;
   onToggleFavorite: (ge: string) => void;
 };
 
@@ -48,7 +48,7 @@ export function BlocksQuestionPanel({
   panelStyle,
   onSubmit,
   onAnswerChange,
-  onSkipQuestion,
+  onRevealTranslation,
   onToggleFavorite,
 }: BlocksQuestionPanelProps) {
   if (!hasWords) {
@@ -125,12 +125,12 @@ export function BlocksQuestionPanel({
       <div className="mt-1 inline-flex w-full items-center gap-[clamp(6px,1.1vw,12px)] flex-wrap">
         <button
           type="button"
-          onClick={onSkipQuestion}
+          onClick={onRevealTranslation}
           className="blocks-refresh-btn inline-flex h-[clamp(28px,4vh,36px)] items-center gap-1 rounded-lg border border-transparent bg-transparent px-[clamp(4px,0.8vw,7px)] text-[clamp(11px,1.05vw,13px)] font-normal transition-all duration-150 focus:outline-none [-webkit-tap-highlight-color:transparent]"
           disabled={showCorrect}
         >
-          <span className="inline-block -translate-y-[1px] text-[clamp(15px,1.6vw,18px)] leading-none font-normal">↻</span>
-          <span className="leading-none">Следующее</span>
+          <span className="inline-block text-[clamp(11px,1.1vw,13px)] leading-none font-semibold">Aa</span>
+          <span className="leading-none">Перевод</span>
         </button>
         {!isFavoritesEpisode && (
           <button
