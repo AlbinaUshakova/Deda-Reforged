@@ -15,6 +15,7 @@ export type StudyCard = {
   audio_url?: string;
   topic?: string;
   translit?: string;
+  playable?: boolean;
 };
 
 export type StudyEpisode = {
@@ -55,6 +56,7 @@ type RawStudyCard = {
   topic?: unknown;
   reading?: unknown;
   translit?: unknown;
+  playable?: unknown;
 };
 
 type RawStudyEpisode = {
@@ -116,6 +118,8 @@ function normalizeStudyCards(cards: unknown[]): StudyCard[] {
       const infoNotes = normalizeInfoNotes(legacyCard.info_notes);
       const audioUrl =
         typeof legacyCard.audio_url === 'string' ? legacyCard.audio_url : undefined;
+      const playable =
+        typeof legacyCard.playable === 'boolean' ? legacyCard.playable : undefined;
 
       if (legacyCard.type === 'letter') {
         return {
@@ -126,6 +130,7 @@ function normalizeStudyCards(cards: unknown[]): StudyCard[] {
           ...(acceptedGe ? { accepted_ge: acceptedGe } : {}),
           info_notes: infoNotes,
           audio_url: audioUrl,
+          ...(playable === false ? { playable: false } : {}),
         };
       }
 
@@ -139,6 +144,7 @@ function normalizeStudyCards(cards: unknown[]): StudyCard[] {
         audio_url: audioUrl,
         topic: typeof legacyCard.topic === 'string' ? legacyCard.topic : undefined,
         translit: String(legacyCard.translit ?? legacyCard.reading ?? '').trim() || undefined,
+        ...(playable === false ? { playable: false } : {}),
       };
     })
     .filter((card): card is StudyCard => card !== null);

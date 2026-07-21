@@ -16,6 +16,10 @@
       "type": "word",
       "ge_text": "ქართველი",
       "ru_meaning": "грузин / грузинка",
+      "accepted_ru": [
+        "грузин",
+        "грузинка"
+      ],
       "audio_url": ""
     },
     {
@@ -69,7 +73,7 @@
     {
       "type": "word",
       "ge_text": "სახლები",
-      "ru_meaning": "дома (мн. число)",
+      "ru_meaning": "дома",
       "audio_url": ""
     },
     {
@@ -93,7 +97,7 @@
     {
       "type": "word",
       "ge_text": "სახლში",
-      "ru_meaning": "дома (у себя)",
+      "ru_meaning": "дома",
       "audio_url": ""
     },
     {

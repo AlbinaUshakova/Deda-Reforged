@@ -39,7 +39,7 @@
     {
       "type": "word",
       "ge_text": "მაქვს",
-      "ru_meaning": "у меня есть (вещи)"
+      "ru_meaning": "у меня есть"
     },
     {
       "type": "word",
@@ -128,7 +128,10 @@
     {
       "type": "word",
       "ge_text": "კი, მაქვს ჩაი",
-      "ru_meaning": "да, у меня есть чай"
+      "ru_meaning": "да, у меня есть чай",
+      "accepted_ru": [
+        "да есть чай"
+      ]
     },
     {
       "type": "word",
@@ -156,7 +159,10 @@
     {
       "type": "word",
       "ge_text": "კი, მაქვს კაბა",
-      "ru_meaning": "да, у меня есть платье"
+      "ru_meaning": "да, у меня есть платье",
+      "accepted_ru": [
+        "да есть платье"
+      ]
     },
     {
       "type": "word",
@@ -191,7 +197,10 @@
       "type": "word",
       "ge_text": "მე მქვია დათო",
       "reading": "me mkvia dato",
-      "ru_meaning": "меня зовут Дато"
+      "ru_meaning": "меня зовут Дато",
+      "accepted_ru": [
+        "я Дато"
+      ]
     },
     {
       "type": "word",
@@ -202,7 +211,11 @@
       "type": "word",
       "ge_text": "რა გქვია?",
       "reading": "ra gkvia?",
-      "ru_meaning": "как тебя зовут?"
+      "ru_meaning": "как тебя зовут?",
+      "accepted_ru": [
+        "как зовут?",
+        "твое имя?"
+      ]
     }
   ]
 }

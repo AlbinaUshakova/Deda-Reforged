@@ -32,6 +32,24 @@ test('loadEpisode returns 100 practical conversational phrases', async () => {
   assert.ok(episode.cards.every((card) => card.ru_meaning.trim().length > 0));
 });
 
+test('loadEpisode marks fill-in conversational templates as non-playable', async () => {
+  const episode = await loadEpisode('phrases');
+
+  assert.ok(episode);
+  const templates = episode.cards.filter((card) => card.ru_meaning.includes('...'));
+  assert.ok(templates.length > 0);
+  assert.ok(templates.every((card) => card.playable === false));
+});
+
+test('loadEpisode generates short Russian variants for у меня есть answers', async () => {
+  const episode = await loadEpisode('ep4');
+
+  assert.ok(episode);
+  const tea = episode.cards.find((card) => card.ge_text === 'მე მაქვს ჩაი');
+  assert.ok(tea);
+  assert.ok(tea.accepted_ru?.includes('есть чай'));
+});
+
 test('loadEpisode favorites includes conversational phrases', async () => {
   const episode = await loadEpisode('favorites');
 

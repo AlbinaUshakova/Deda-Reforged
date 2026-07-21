@@ -17,7 +17,8 @@
     {
       "type": "word",
       "ge_text": "გიორგის",
-      "ru_meaning": "Гиорги (чей?)"
+      "ru_meaning": "Гиорги (чей?)",
+      "playable": false
     },
     {
       "type": "word",
@@ -35,7 +36,11 @@
       "type": "word",
       "ge_text": "დათო გიორგის მეგობარია",
       "reading": "dato giorgis megobaria",
-      "ru_meaning": "Дато — друг Гиорги"
+      "ru_meaning": "Дато — друг Гиорги",
+      "accepted_ru": [
+        "Дато друг Георгия",
+        "Дато друг Гиоргия"
+      ]
     },
     {
       "type": "word",
@@ -59,7 +64,10 @@
       "type": "word",
       "ge_text": "ეს დედის ვარდია",
       "reading": "es dedis vardia",
-      "ru_meaning": "это мамина роза"
+      "ru_meaning": "это мамина роза",
+      "accepted_ru": [
+        "это роза мамы"
+      ]
     },
     {
       "type": "word",
@@ -76,19 +84,26 @@
     {
       "type": "word",
       "ge_text": "მამის",
-      "ru_meaning": "папы (чей?)"
+      "ru_meaning": "папы (чей?)",
+      "playable": false
     },
     {
       "type": "word",
       "ge_text": "აი დედის მაგიდა",
       "reading": "ai dedis magida",
-      "ru_meaning": "вот мамин стол"
+      "ru_meaning": "вот мамин стол",
+      "accepted_ru": [
+        "вот стол мамы"
+      ]
     },
     {
       "type": "word",
       "ge_text": "აი მამის მაგიდა",
       "reading": "ai mamis magida",
-      "ru_meaning": "вот папин стол"
+      "ru_meaning": "вот папин стол",
+      "accepted_ru": [
+        "вот стол папы"
+      ]
     },
     {
       "type": "word",
@@ -111,13 +126,17 @@
     {
       "type": "word",
       "ge_text": "გოგოს",
-      "ru_meaning": "девочки (чей?)"
+      "ru_meaning": "девочки (чей?)",
+      "playable": false
     },
     {
       "type": "word",
       "ge_text": "აი გოგოს ოთხი ბარათი",
       "reading": "ai gogos otkhi barati",
-      "ru_meaning": "вот четыре карточки девочки"
+      "ru_meaning": "вот четыре карточки девочки",
+      "accepted_ru": [
+        "вот у девочки четыре карточки"
+      ]
     },
     {
       "type": "word",
@@ -134,13 +153,20 @@
       "type": "word",
       "ge_text": "მე გიორგი ვარ",
       "reading": "me giorgi var",
-      "ru_meaning": "я Гиорги"
+      "ru_meaning": "я Гиорги",
+      "accepted_ru": [
+        "меня зовут Гиорги"
+      ]
     },
     {
       "type": "word",
       "ge_text": "შოთი",
       "reading": "shoti",
-      "ru_meaning": "шоти (хлеб)"
+      "ru_meaning": "шоти",
+      "accepted_ru": [
+        "хлеб шоти",
+        "шоти хлеб"
+      ]
     },
     {
       "type": "word",
@@ -183,22 +209,36 @@
     {
       "type": "word",
       "ge_text": "ეს დათოს ვარდია",
-      "ru_meaning": "это роза Дато"
+      "ru_meaning": "это роза Дато",
+      "accepted_ru": [
+        "это Датова роза"
+      ]
     },
     {
       "type": "word",
       "ge_text": "ეს გიორგის მეგობარია",
-      "ru_meaning": "это друг Гиорги"
+      "ru_meaning": "это друг Гиорги",
+      "accepted_ru": [
+        "это друг Георгия",
+        "это друг Гиоргия"
+      ]
     },
     {
       "type": "word",
       "ge_text": "გიორგის ვარდი",
-      "ru_meaning": "роза Гиорги"
+      "ru_meaning": "роза Гиорги",
+      "accepted_ru": [
+        "роза Георгия",
+        "роза Гиоргия"
+      ]
     },
     {
       "type": "word",
       "ge_text": "მამის ვარდი",
-      "ru_meaning": "папина роза"
+      "ru_meaning": "папина роза",
+      "accepted_ru": [
+        "роза папы"
+      ]
     },
     {
       "type": "word",

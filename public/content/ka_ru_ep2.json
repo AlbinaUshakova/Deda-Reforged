@@ -42,7 +42,7 @@
       "type": "word",
       "ge_text": "არის",
       "reading": "aris",
-      "ru_meaning": "есть (он / она / это)"
+      "ru_meaning": "есть"
     },
     {
       "type": "word",
@@ -60,7 +60,11 @@
       "type": "word",
       "ge_text": "და",
       "reading": "da",
-      "ru_meaning": "и / сестра"
+      "ru_meaning": "и / сестра",
+      "accepted_ru": [
+        "и",
+        "сестра"
+      ]
     },
     {
       "type": "word",
@@ -89,12 +93,14 @@
     {
       "type": "word",
       "ge_text": "დედის",
-      "ru_meaning": "мамы (чей?)"
+      "ru_meaning": "мамы (чей?)",
+      "playable": false
     },
     {
       "type": "word",
       "ge_text": "დის",
-      "ru_meaning": "сестры (чей?)"
+      "ru_meaning": "сестры (чей?)",
+      "playable": false
     },
     {
       "type": "word",
@@ -174,7 +180,10 @@
       "type": "word",
       "ge_text": "აი სოსოს ორი თარო",
       "reading": "ai sosos ori taro",
-      "ru_meaning": "вот две полки Сосо"
+      "ru_meaning": "вот две полки Сосо",
+      "accepted_ru": [
+        "вот у Сосо две полки"
+      ]
     },
     {
       "type": "word",

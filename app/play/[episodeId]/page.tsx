@@ -12,7 +12,7 @@ type Card = EpisodeCard;
 type Episode = { id: string; title: string; cards: Card[] };
 
 function isPlayableCard(card: Card): card is Card & { type: 'word' | 'phrase' } {
-  return card.type === 'word' || card.type === 'phrase';
+  return (card.type === 'word' || card.type === 'phrase') && card.playable !== false;
 }
 
 function isEpisodeCard(value: unknown): value is Card {
@@ -24,6 +24,7 @@ function isEpisodeCard(value: unknown): value is Card {
     typeof card.ru_meaning === 'string' &&
     (card.audio_url === undefined || typeof card.audio_url === 'string') &&
     (card.topic === undefined || typeof card.topic === 'string') &&
+    (card.playable === undefined || typeof card.playable === 'boolean') &&
     (card.accepted_ru === undefined ||
       (Array.isArray(card.accepted_ru) && card.accepted_ru.every(value => typeof value === 'string'))) &&
     (card.accepted_ge === undefined ||

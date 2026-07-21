@@ -5,7 +5,13 @@ import { useEffect, useState } from 'react';
 import MatchGame from '@/components/MatchGame';
 
 type Word = { ge: string; ru: string; audio?: string };
-type Card = { type: 'word' | 'phrase'; ge_text: string; ru_meaning: string; audio_url?: string };
+type Card = {
+  type: 'word' | 'phrase';
+  ge_text: string;
+  ru_meaning: string;
+  audio_url?: string;
+  playable?: boolean;
+};
 type Episode = { id: string; title: string; cards: Card[] };
 type EpisodeApiResponse = { ok: boolean; episode?: Episode };
 
@@ -29,7 +35,9 @@ export default function MatchPage({ params }: { params: { episodeId: string } })
       const ep = await loadEpisodeById(params.episodeId);
       if (!ep) { router.replace('/'); return; }
       setTitle(ep.title);
-      const ws: Word[] = ep.cards.filter(c => c.type === 'word').map(c => ({ ge: c.ge_text, ru: c.ru_meaning || '', audio: c.audio_url }));
+      const ws: Word[] = ep.cards
+        .filter(c => c.type === 'word' && c.playable !== false)
+        .map(c => ({ ge: c.ge_text, ru: c.ru_meaning || '', audio: c.audio_url }));
       setWords(ws.length ? ws : []);
     })();
   }, [params.episodeId, router]);

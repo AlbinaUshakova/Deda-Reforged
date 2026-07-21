@@ -50,7 +50,8 @@
     {
       "type": "word",
       "ge_text": "სოსოს",
-      "ru_meaning": "Сосо (чей?)"
+      "ru_meaning": "Сосо (чей?)",
+      "playable": false
     },
     {
       "type": "word",
@@ -73,7 +74,8 @@
     {
       "type": "word",
       "ge_text": "იას",
-      "ru_meaning": "Ии (чей?)"
+      "ru_meaning": "Ии (чей?)",
+      "playable": false
     },
     {
       "type": "word",
@@ -108,13 +110,19 @@
     {
       "type": "word",
       "ge_text": "იას ოთხი ია",
-      "ru_meaning": "у Ии четыре фиалки"
+      "ru_meaning": "у Ии четыре фиалки",
+      "accepted_ru": [
+        "четыре фиалки у Ии"
+      ]
     },
     {
       "type": "word",
       "ge_text": "ხუთი საათია",
       "reading": "khuti saatia",
-      "ru_meaning": "сейчас пять часов"
+      "ru_meaning": "сейчас пять часов",
+      "accepted_ru": [
+        "пять часов"
+      ]
     },
     {
       "type": "word",
@@ -138,13 +146,19 @@
       "type": "word",
       "ge_text": "ათი საათია",
       "reading": "ati saatia",
-      "ru_meaning": "сейчас десять часов"
+      "ru_meaning": "сейчас десять часов",
+      "accepted_ru": [
+        "десять часов"
+      ]
     },
     {
       "type": "word",
       "ge_text": "სოსოს ათი თხა",
       "reading": "sosos ati tkha",
-      "ru_meaning": "у Сосо десять коз"
+      "ru_meaning": "у Сосо десять коз",
+      "accepted_ru": [
+        "десять коз у Сосо"
+      ]
     },
     {
       "type": "word",
@@ -191,13 +205,17 @@
     {
       "type": "word",
       "ge_text": "თათიას",
-      "ru_meaning": "Татии (чей?)"
+      "ru_meaning": "Татии (чей?)",
+      "playable": false
     },
     {
       "type": "word",
       "ge_text": "აი თათიას ათი თხა",
       "reading": "ai tatias ati tkha",
-      "ru_meaning": "вот десять коз Татии"
+      "ru_meaning": "вот десять коз Татии",
+      "accepted_ru": [
+        "вот у Татии десять коз"
+      ]
     },
     {
       "type": "word",

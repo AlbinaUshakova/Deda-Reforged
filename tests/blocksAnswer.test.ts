@@ -33,6 +33,10 @@ test('isSameAnswer accepts the same words in a different order', () => {
 test('isSameAnswer accepts explicit semantic variants', () => {
   assert.equal(isSameAnswer('благодарю', ['Спасибо', 'Благодарю']), true);
   assert.equal(isSameAnswer('не нужно', ['Не надо, спасибо', 'Не нужно']), true);
+  assert.equal(isSameAnswer('дайте чек', ['Мне нужен чек', 'Дайте чек']), true);
+  assert.equal(isSameAnswer('хочу есть', ['Я голоден / голодна', 'Хочу есть']), true);
+  assert.equal(isSameAnswer('хлеб шоти', ['шоти', 'хлеб шоти']), true);
+  assert.equal(isSameAnswer('грузинка', 'грузин / грузинка'), true);
 });
 
 test('isSameAnswer tolerates safe omitted Russian pronouns only', () => {
