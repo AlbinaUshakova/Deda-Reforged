@@ -42,6 +42,16 @@ export function LessonsHero({
             Вначале читай карточки урока, потом играй в Блоки.
           </p>
         </div>
+        <div className="lessons-hero-mascot" aria-hidden="true">
+          <Image
+            src="/images/deda-cat.png"
+            alt=""
+            width={92}
+            height={92}
+            className="lessons-hero-cat"
+            priority
+          />
+        </div>
       </div>
 
       <div className="lessons-hero-card group self-start">
@@ -62,14 +72,6 @@ export function LessonsHero({
             </div>
             <span className="lessons-hero-start" aria-hidden="true">→</span>
           </div>
-          <Image
-            src="/images/deda-cat.png"
-            alt=""
-            width={92}
-            height={92}
-            className="lessons-hero-cat"
-            priority
-          />
 
           <div className="lessons-hero-letter-panel pointer-events-none relative z-20 mt-4 flex min-h-[62px] items-center justify-center rounded-[22px] bg-white/62 px-4 py-2.5">
             <div className="w-full">
