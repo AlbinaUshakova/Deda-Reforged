@@ -517,7 +517,7 @@ export default function LandingPage() {
             <h1 className="landing-title max-w-[620px] text-[clamp(23px,3.8vw,47px)] font-semibold leading-[1.1] tracking-[-0.025em]">
               <span className="block">Учимся читать</span>
               {' '}
-              <span className="mt-1 block">по-грузински, играя</span>
+              <span className="mt-1 block">по - грузински, играя</span>
             </h1>
             <p className="landing-subtitle mt-6 text-[clamp(15px,2vw,20px)] leading-[1.4] text-[var(--text-secondary)]">
               Слушай буквы, читай карточки{' '}
