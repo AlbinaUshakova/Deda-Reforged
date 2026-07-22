@@ -9,6 +9,7 @@ export default function LandingAlphabet() {
   const transliterationMode = useAppStore(state => state.settings.transliterationMode);
   const courseId = useAppStore(state => state.settings.courseId);
   const course = getCourse(courseId);
+  const alphabetColumnCount = Math.max(...course.alphabetRows.map(row => row.length));
 
   const speakLetter = (letter: string) => {
     void playLetterAudio({
@@ -25,7 +26,7 @@ export default function LandingAlphabet() {
           <div
             key={`landing-alphabet-row-${rowIdx}`}
             className="landing-alphabet-grid grid gap-[clamp(1px,0.34vw,4px)]"
-            style={{ gridTemplateColumns: `repeat(${row.length}, minmax(0, 1fr))` }}
+            style={{ gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))` }}
           >
             {row.map((ch, index) => (
               <button
