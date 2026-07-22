@@ -11,6 +11,12 @@ export type Course = {
   alphabetTitle: string;
   alphabet: string[];
   alphabetRows: string[][];
+  alphabetSections: Array<{
+    title: string;
+    description?: string;
+    letters: string[];
+    rows: string[][];
+  }>;
   letterNames: Record<string, string>;
   letterHints: {
     ru: Record<string, string>;
@@ -141,6 +147,15 @@ const SERBIAN_ALPHABET = [
   'С', 'Т', 'Ћ', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Џ', 'Ш',
 ];
 
+const SERBIAN_CORE_LETTERS = [
+  'А', 'Б', 'В', 'Г', 'Д', 'Е', 'З', 'И', 'К', 'Л',
+  'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х',
+];
+
+const SERBIAN_SPECIAL_SOUNDS = [
+  'Ђ', 'Ж', 'Ј', 'Љ', 'Њ', 'Ћ', 'Ц', 'Ч', 'Џ', 'Ш',
+];
+
 const SERBIAN_RU_HINTS: Record<string, string> = {
   'А': 'а',
   'Б': 'б',
@@ -213,6 +228,14 @@ const TURKISH_ALPHABET = [
   'R', 'S', 'Ş', 'T', 'U', 'Ü', 'V', 'Y', 'Z',
 ];
 
+const TURKISH_CORE_LETTERS = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U',
+  'V', 'Y', 'Z',
+];
+
+const TURKISH_SPECIAL_LETTERS = ['Ç', 'Ğ', 'İ', 'Ö', 'Ş', 'Ü'];
+
 const TURKISH_RU_HINTS: Record<string, string> = {
   A: 'а',
   B: 'б',
@@ -283,6 +306,14 @@ const SPANISH_ALPHABET = [
   'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 ];
 
+const SPANISH_CORE_LETTERS = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+  'U', 'V', 'W', 'X', 'Y', 'Z',
+];
+
+const SPANISH_SPECIAL_LETTERS = ['Ñ'];
+
 const SPANISH_RU_HINTS: Record<string, string> = {
   A: 'а',
   B: 'б',
@@ -348,6 +379,14 @@ const GERMAN_ALPHABET = [
   'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
   'U', 'V', 'W', 'X', 'Y', 'Z', 'Ä', 'Ö', 'Ü', 'ẞ',
 ];
+
+const GERMAN_CORE_LETTERS = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+  'U', 'V', 'W', 'X', 'Y', 'Z',
+];
+
+const GERMAN_SPECIAL_LETTERS = ['Ä', 'Ö', 'Ü', 'ẞ'];
 
 const GERMAN_RU_HINTS: Record<string, string> = {
   A: 'а',
@@ -423,6 +462,15 @@ function rows(alphabet: string[], size: number): string[][] {
   return result;
 }
 
+function section(title: string, letters: string[], description?: string) {
+  return {
+    title,
+    description,
+    letters,
+    rows: rows(letters, 6),
+  };
+}
+
 export const COURSES: Record<CourseId, Course> = {
   ka: {
     id: 'ka',
@@ -433,6 +481,9 @@ export const COURSES: Record<CourseId, Course> = {
     alphabetTitle: 'ანბანი',
     alphabet: GEORGIAN_ALPHABET,
     alphabetRows: rows(GEORGIAN_ALPHABET, 6),
+    alphabetSections: [
+      section('Буквы', GEORGIAN_ALPHABET),
+    ],
     letterNames: GEORGIAN_LETTER_NAMES,
     letterHints: {
       ru: GEORGIAN_RU_HINTS,
@@ -451,6 +502,10 @@ export const COURSES: Record<CourseId, Course> = {
     alphabetTitle: 'Азбука',
     alphabet: SERBIAN_ALPHABET,
     alphabetRows: rows(SERBIAN_ALPHABET, 6),
+    alphabetSections: [
+      section('Базовые буквы', SERBIAN_CORE_LETTERS),
+      section('Сербские звуки', SERBIAN_SPECIAL_SOUNDS, 'Отдельные буквы для звуков, которых легко не заметить.'),
+    ],
     letterNames: Object.fromEntries(SERBIAN_ALPHABET.map(letter => [letter, letter])),
     letterHints: {
       ru: SERBIAN_RU_HINTS,
@@ -469,6 +524,10 @@ export const COURSES: Record<CourseId, Course> = {
     alphabetTitle: 'Alfabe',
     alphabet: TURKISH_ALPHABET,
     alphabetRows: rows(TURKISH_ALPHABET, 6),
+    alphabetSections: [
+      section('Базовые буквы', TURKISH_CORE_LETTERS),
+      section('Особые буквы', TURKISH_SPECIAL_LETTERS, 'Точки и хвостики меняют звук.'),
+    ],
     letterNames: Object.fromEntries(TURKISH_ALPHABET.map(letter => [letter, letter])),
     letterHints: {
       ru: TURKISH_RU_HINTS,
@@ -487,6 +546,10 @@ export const COURSES: Record<CourseId, Course> = {
     alphabetTitle: 'Alfabeto',
     alphabet: SPANISH_ALPHABET,
     alphabetRows: rows(SPANISH_ALPHABET, 6),
+    alphabetSections: [
+      section('Буквы', SPANISH_CORE_LETTERS),
+      section('Особая буква', SPANISH_SPECIAL_LETTERS, 'Ñ читается как отдельный звук.'),
+    ],
     letterNames: Object.fromEntries(SPANISH_ALPHABET.map(letter => [letter, letter])),
     letterHints: {
       ru: SPANISH_RU_HINTS,
@@ -505,6 +568,10 @@ export const COURSES: Record<CourseId, Course> = {
     alphabetTitle: 'Alphabet',
     alphabet: GERMAN_ALPHABET,
     alphabetRows: rows(GERMAN_ALPHABET, 6),
+    alphabetSections: [
+      section('A-Z', GERMAN_CORE_LETTERS),
+      section('Умлауты и ß', GERMAN_SPECIAL_LETTERS, 'Это не продолжение ряда A-Z, а отдельные знаки чтения.'),
+    ],
     letterNames: Object.fromEntries(GERMAN_ALPHABET.map(letter => [letter, letter])),
     letterHints: {
       ru: GERMAN_RU_HINTS,

@@ -34,7 +34,6 @@ export function AlphabetPanel({
   onSpeakLetter: (letter: string) => void;
 }) {
   const course = getCourse(courseId);
-  const alphabetColumnCount = Math.max(...course.alphabetRows.map(row => row.length));
 
   return (
     <aside
@@ -64,30 +63,52 @@ export function AlphabetPanel({
           </span>
           <span>Нажми на букву</span>
         </div>
-        <div className="mt-1 space-y-[clamp(1px,0.45vw,4px)]">
-          {course.alphabetRows.map((row, rowIdx) => (
-            <div
-              key={`home-alpha-row-${rowIdx}`}
-              className="grid gap-x-[clamp(3px,0.8vw,7px)] gap-y-[clamp(3px,0.8vw,6px)]"
-              style={{ gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))` }}
-            >
-              {row.map((ch) => (
-                <button
-                  key={ch}
-                  type="button"
-                  onClick={() => onSpeakLetter(ch)}
-                  className="home-alphabet-key cursor-pointer rounded-lg border border-slate-200/75 bg-white/90 py-[3px] text-center shadow-sm transition-all hover:bg-slate-50"
-                  title={`Озвучить букву ${ch}`}
-                  aria-label={`Озвучить букву ${ch}`}
-                >
-                  <div className="home-alphabet-letter translate-y-[-1px] text-[clamp(14px,2.7vw,19px)] leading-none text-black">{ch}</div>
-                  <div className="home-alphabet-translit mt-[2px] text-[clamp(6px,1.2vw,8px)] leading-none text-slate-400">
-                    {letterToHint(ch, transliterationMode, courseId)}
+        <div className="mt-1 space-y-[clamp(5px,0.9vw,8px)]">
+          {course.alphabetSections.map((section) => {
+            const alphabetColumnCount = Math.max(...section.rows.map(row => row.length));
+
+            return (
+              <section key={`home-alpha-section-${section.title}`} className="min-w-0">
+                {course.alphabetSections.length > 1 && (
+                  <div className="mb-1 flex items-center justify-between gap-2 px-1">
+                    <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                      {section.title}
+                    </span>
+                    {section.description && (
+                      <span className="max-w-[128px] truncate text-[8.5px] text-slate-400" title={section.description}>
+                        {section.description}
+                      </span>
+                    )}
                   </div>
-                </button>
-              ))}
-            </div>
-          ))}
+                )}
+                <div className="space-y-[clamp(1px,0.45vw,4px)]">
+                  {section.rows.map((row, rowIdx) => (
+                    <div
+                      key={`home-alpha-row-${section.title}-${rowIdx}`}
+                      className="grid gap-x-[clamp(3px,0.8vw,7px)] gap-y-[clamp(3px,0.8vw,6px)]"
+                      style={{ gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))` }}
+                    >
+                      {row.map((ch) => (
+                        <button
+                          key={ch}
+                          type="button"
+                          onClick={() => onSpeakLetter(ch)}
+                          className="home-alphabet-key cursor-pointer rounded-lg border border-slate-200/75 bg-white/90 py-[3px] text-center shadow-sm transition-all hover:bg-slate-50"
+                          title={`Озвучить букву ${ch}`}
+                          aria-label={`Озвучить букву ${ch}`}
+                        >
+                          <div className="home-alphabet-letter translate-y-[-1px] text-[clamp(14px,2.7vw,19px)] leading-none text-black">{ch}</div>
+                          <div className="home-alphabet-translit mt-[2px] text-[clamp(6px,1.2vw,8px)] leading-none text-slate-400">
+                            {letterToHint(ch, transliterationMode, courseId)}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
         {audioError && (
           <div className="mt-2 text-[11px] text-red-500">
