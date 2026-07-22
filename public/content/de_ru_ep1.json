@@ -1,0 +1,22 @@
+{
+  "id": "ep1",
+  "title": "Урок 1",
+  "letters": ["A", "E", "I", "O", "U", "M", "N", "S", "T", "R", "L"],
+  "cards": [
+    { "type": "word", "ge_text": "am", "ru_meaning": "у" },
+    { "type": "word", "ge_text": "an", "ru_meaning": "на" },
+    { "type": "word", "ge_text": "im", "ru_meaning": "в" },
+    { "type": "word", "ge_text": "in", "ru_meaning": "в" },
+    { "type": "word", "ge_text": "ist", "ru_meaning": "есть" },
+    { "type": "word", "ge_text": "mit", "ru_meaning": "с" },
+    { "type": "word", "ge_text": "mein", "ru_meaning": "мой" },
+    { "type": "word", "ge_text": "nein", "ru_meaning": "нет" },
+    { "type": "word", "ge_text": "eins", "ru_meaning": "один" },
+    { "type": "word", "ge_text": "rot", "ru_meaning": "красный" },
+    { "type": "word", "ge_text": "laut", "ru_meaning": "громко" },
+    { "type": "word", "ge_text": "leer", "ru_meaning": "пустой" },
+    { "type": "word", "ge_text": "arm", "ru_meaning": "бедный" },
+    { "type": "word", "ge_text": "Name", "ru_meaning": "имя" },
+    { "type": "word", "ge_text": "lernen", "ru_meaning": "учить" }
+  ]
+}

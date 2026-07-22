@@ -1,0 +1,22 @@
+{
+  "id": "ep5",
+  "title": "Урок 5",
+  "letters": ["Ä", "Ö", "Ü", "ẞ"],
+  "cards": [
+    { "type": "word", "ge_text": "für", "ru_meaning": "для" },
+    { "type": "word", "ge_text": "Tür", "ru_meaning": "дверь" },
+    { "type": "word", "ge_text": "grün", "ru_meaning": "зелёный", "accepted_ru": ["зеленый"] },
+    { "type": "word", "ge_text": "über", "ru_meaning": "над" },
+    { "type": "word", "ge_text": "Müll", "ru_meaning": "мусор" },
+    { "type": "word", "ge_text": "Öl", "ru_meaning": "масло" },
+    { "type": "word", "ge_text": "hören", "ru_meaning": "слышать" },
+    { "type": "word", "ge_text": "schön", "ru_meaning": "красиво" },
+    { "type": "word", "ge_text": "Köln", "ru_meaning": "Кёльн", "accepted_ru": ["Кельн"] },
+    { "type": "word", "ge_text": "März", "ru_meaning": "март" },
+    { "type": "word", "ge_text": "spät", "ru_meaning": "поздно" },
+    { "type": "word", "ge_text": "Käse", "ru_meaning": "сыр" },
+    { "type": "word", "ge_text": "heiß", "ru_meaning": "горячий" },
+    { "type": "word", "ge_text": "Straße", "ru_meaning": "улица" },
+    { "type": "word", "ge_text": "groß", "ru_meaning": "большой" }
+  ]
+}

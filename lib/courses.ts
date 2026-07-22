@@ -1,6 +1,6 @@
 import { geLetterAudioMap } from './georgianLetterAudio.ts';
 
-export type CourseId = 'ka' | 'sr' | 'tr' | 'es';
+export type CourseId = 'ka' | 'sr' | 'tr' | 'es' | 'de';
 
 export type Course = {
   id: CourseId;
@@ -343,6 +343,78 @@ const SPANISH_LATIN_HINTS: Record<string, string> = {
   Z: 'z',
 };
 
+const GERMAN_ALPHABET = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+  'U', 'V', 'W', 'X', 'Y', 'Z', 'Ä', 'Ö', 'Ü', 'ẞ',
+];
+
+const GERMAN_RU_HINTS: Record<string, string> = {
+  A: 'а',
+  B: 'б',
+  C: 'ц/к',
+  D: 'д',
+  E: 'э',
+  F: 'ф',
+  G: 'г',
+  H: 'х/долг.',
+  I: 'и',
+  J: 'й',
+  K: 'к',
+  L: 'л',
+  M: 'м',
+  N: 'н',
+  O: 'о',
+  P: 'п',
+  Q: 'кв',
+  R: 'р',
+  S: 'з/с',
+  T: 'т',
+  U: 'у',
+  V: 'ф/в',
+  W: 'в',
+  X: 'кс',
+  Y: 'ю/и',
+  Z: 'ц',
+  'Ä': 'э',
+  'Ö': 'ё',
+  'Ü': 'ю',
+  'ẞ': 'с',
+};
+
+const GERMAN_LATIN_HINTS: Record<string, string> = {
+  A: 'a',
+  B: 'b',
+  C: 'c',
+  D: 'd',
+  E: 'e',
+  F: 'f',
+  G: 'g',
+  H: 'h',
+  I: 'i',
+  J: 'j',
+  K: 'k',
+  L: 'l',
+  M: 'm',
+  N: 'n',
+  O: 'o',
+  P: 'p',
+  Q: 'q',
+  R: 'r',
+  S: 's',
+  T: 't',
+  U: 'u',
+  V: 'v',
+  W: 'w',
+  X: 'x',
+  Y: 'y',
+  Z: 'z',
+  'Ä': 'ä',
+  'Ö': 'ö',
+  'Ü': 'ü',
+  'ẞ': 'ß',
+};
+
 function rows(alphabet: string[], size: number): string[][] {
   const result: string[][] = [];
   for (let index = 0; index < alphabet.length; index += size) {
@@ -424,13 +496,33 @@ export const COURSES: Record<CourseId, Course> = {
     speechLang: 'es-ES',
     locale: 'es',
   },
+  de: {
+    id: 'de',
+    title: 'Немецкий',
+    shortTitle: 'Немецкий',
+    sourceLanguageLabel: '🇩🇪',
+    targetLanguageLabel: '🇷🇺',
+    alphabetTitle: 'Alphabet',
+    alphabet: GERMAN_ALPHABET,
+    alphabetRows: rows(GERMAN_ALPHABET, 6),
+    letterNames: Object.fromEntries(GERMAN_ALPHABET.map(letter => [letter, letter])),
+    letterHints: {
+      ru: GERMAN_RU_HINTS,
+      latin: GERMAN_LATIN_HINTS,
+    },
+    letterAudioMap: {},
+    speechLang: 'de-DE',
+    locale: 'de',
+  },
 };
 
 export const DEFAULT_COURSE_ID: CourseId = 'ka';
 export const COURSE_IDS = Object.keys(COURSES) as CourseId[];
 
 export function normalizeCourseId(value: unknown): CourseId {
-  return value === 'sr' || value === 'tr' || value === 'es' ? value : DEFAULT_COURSE_ID;
+  return value === 'sr' || value === 'tr' || value === 'es' || value === 'de'
+    ? value
+    : DEFAULT_COURSE_ID;
 }
 
 export function getCourse(courseId: unknown): Course {

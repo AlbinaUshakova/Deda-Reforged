@@ -1,0 +1,22 @@
+{
+  "id": "ep3",
+  "title": "Урок 3",
+  "letters": ["B", "F", "W", "Z"],
+  "cards": [
+    { "type": "word", "ge_text": "bitte", "ru_meaning": "пожалуйста" },
+    { "type": "word", "ge_text": "Brot", "ru_meaning": "хлеб" },
+    { "type": "word", "ge_text": "Bahn", "ru_meaning": "поезд" },
+    { "type": "word", "ge_text": "bin", "ru_meaning": "есть" },
+    { "type": "word", "ge_text": "Bus", "ru_meaning": "автобус" },
+    { "type": "word", "ge_text": "Fisch", "ru_meaning": "рыба" },
+    { "type": "word", "ge_text": "fragen", "ru_meaning": "спрашивать" },
+    { "type": "word", "ge_text": "finden", "ru_meaning": "находить" },
+    { "type": "word", "ge_text": "Wasser", "ru_meaning": "вода" },
+    { "type": "word", "ge_text": "was", "ru_meaning": "что" },
+    { "type": "word", "ge_text": "wo", "ru_meaning": "где" },
+    { "type": "word", "ge_text": "wer", "ru_meaning": "кто" },
+    { "type": "word", "ge_text": "Zeit", "ru_meaning": "время" },
+    { "type": "word", "ge_text": "Zug", "ru_meaning": "поезд" },
+    { "type": "word", "ge_text": "zwei", "ru_meaning": "два" }
+  ]
+}

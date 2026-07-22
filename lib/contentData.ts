@@ -31,6 +31,13 @@ import esEp3Json from '../public/content/es_ru_ep3.json' with { type: 'json' };
 import esEp4Json from '../public/content/es_ru_ep4.json' with { type: 'json' };
 import esEp5Json from '../public/content/es_ru_ep5.json' with { type: 'json' };
 import esEp6Json from '../public/content/es_ru_ep6.json' with { type: 'json' };
+import deStaticEpisodes from '../public/content/episodes_de.json' with { type: 'json' };
+import deEp1Json from '../public/content/de_ru_ep1.json' with { type: 'json' };
+import deEp2Json from '../public/content/de_ru_ep2.json' with { type: 'json' };
+import deEp3Json from '../public/content/de_ru_ep3.json' with { type: 'json' };
+import deEp4Json from '../public/content/de_ru_ep4.json' with { type: 'json' };
+import deEp5Json from '../public/content/de_ru_ep5.json' with { type: 'json' };
+import deEp6Json from '../public/content/de_ru_ep6.json' with { type: 'json' };
 import { DEFAULT_COURSE_ID, getCourse, isCourseLetter, normalizeCourseId, type CourseId } from './courses.ts';
 
 export type CardInfoNote = {
@@ -106,6 +113,14 @@ const RAW_EPISODES_BY_COURSE: Record<CourseId, RawEpisode[]> = {
     esEp5Json as RawEpisode,
     esEp6Json as RawEpisode,
   ],
+  de: [
+    deEp1Json as RawEpisode,
+    deEp2Json as RawEpisode,
+    deEp3Json as RawEpisode,
+    deEp4Json as RawEpisode,
+    deEp5Json as RawEpisode,
+    deEp6Json as RawEpisode,
+  ],
 };
 
 const RAW_BY_COURSE_AND_ID: Record<CourseId, Record<string, RawEpisode>> = {
@@ -113,6 +128,7 @@ const RAW_BY_COURSE_AND_ID: Record<CourseId, Record<string, RawEpisode>> = {
   sr: Object.fromEntries(RAW_EPISODES_BY_COURSE.sr.map((episode) => [episode.id, episode])),
   tr: Object.fromEntries(RAW_EPISODES_BY_COURSE.tr.map((episode) => [episode.id, episode])),
   es: Object.fromEntries(RAW_EPISODES_BY_COURSE.es.map((episode) => [episode.id, episode])),
+  de: Object.fromEntries(RAW_EPISODES_BY_COURSE.de.map((episode) => [episode.id, episode])),
 };
 
 const COMMON_SPECIAL_EPISODES: EpisodesListItem[] = [
@@ -150,6 +166,10 @@ const STATIC_EPISODES_BY_COURSE: Record<CourseId, EpisodesListItem[]> = {
     title: episode.title,
   })).concat(SPECIAL_EPISODES_WITH_PHRASES),
   es: (esStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
+    id: episode.id,
+    title: episode.title,
+  })).concat(SPECIAL_EPISODES_WITH_PHRASES),
+  de: (deStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
   })).concat(SPECIAL_EPISODES_WITH_PHRASES),
@@ -390,11 +410,49 @@ const SPANISH_PHRASES_EPISODE: Episode = {
   ],
 };
 
+const GERMAN_PHRASES_EPISODE: Episode = {
+  id: 'phrases',
+  title: 'Разговорные фразы',
+  cards: [
+    phrase('Hallo', 'Привет'),
+    phrase('Guten Morgen', 'Доброе утро'),
+    phrase('Guten Tag', 'Добрый день'),
+    phrase('Guten Abend', 'Добрый вечер'),
+    phrase('Gute Nacht', 'Спокойной ночи'),
+    phrase('Auf Wiedersehen', 'До свидания'),
+    phrase('Bis später', 'Увидимся позже'),
+    phrase('Bitte', 'Пожалуйста'),
+    phrase('Danke', 'Спасибо'),
+    phrase('Vielen Dank', 'Большое спасибо', undefined, ['Спасибо большое']),
+    phrase('Gern geschehen', 'Не за что'),
+    phrase('Entschuldigung', 'Извините', 'Вежливо: чтобы привлечь внимание или извиниться.', ['Простите']),
+    phrase('Es tut mir leid', 'Мне жаль'),
+    phrase('Ja', 'Да'),
+    phrase('Nein', 'Нет'),
+    phrase('In Ordnung', 'Хорошо', undefined, ['Ладно', 'Ок', 'Окей']),
+    phrase('Ich verstehe nicht', 'Я не понимаю', undefined, ['Не понимаю']),
+    phrase('Ich verstehe', 'Я понимаю', undefined, ['Понимаю']),
+    phrase('Sprechen Sie Englisch?', 'Вы говорите по-английски?'),
+    phrase('Ich bin Tourist', 'Я турист'),
+    phrase('Wie heißen Sie?', 'Как вас зовут?'),
+    phrase('Freut mich', 'Приятно познакомиться'),
+    phrase('Wo ist die Toilette?', 'Где туалет?'),
+    phrase('Hilfe', 'Помощь'),
+    phrase('Ich brauche Hilfe', 'Мне нужна помощь', undefined, ['Нужна помощь']),
+    phrase('Wie viel kostet das?', 'Сколько стоит?'),
+    phrase('Ich möchte das', 'Я хочу это', undefined, ['Хочу это']),
+    phrase('Wasser, bitte', 'Воду, пожалуйста', undefined, ['Вода пожалуйста']),
+    phrase('Die Rechnung, bitte', 'Счёт, пожалуйста', undefined, ['Счет пожалуйста']),
+    phrase('Wo ist die Apotheke?', 'Где аптека?'),
+  ],
+};
+
 export const PHRASES_EPISODE_BY_COURSE: Record<CourseId, Episode | null> = {
   ka: PHRASES_EPISODE,
   sr: SERBIAN_PHRASES_EPISODE,
   tr: TURKISH_PHRASES_EPISODE,
   es: SPANISH_PHRASES_EPISODE,
+  de: GERMAN_PHRASES_EPISODE,
 };
 
 export function normalizeGeorgianText(text: string): string {

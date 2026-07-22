@@ -1,0 +1,22 @@
+{
+  "id": "ep4",
+  "title": "Урок 4",
+  "letters": ["P", "V", "J"],
+  "cards": [
+    { "type": "word", "ge_text": "ja", "ru_meaning": "да" },
+    { "type": "word", "ge_text": "Jahr", "ru_meaning": "год" },
+    { "type": "word", "ge_text": "jung", "ru_meaning": "молодой" },
+    { "type": "word", "ge_text": "jetzt", "ru_meaning": "сейчас" },
+    { "type": "word", "ge_text": "Person", "ru_meaning": "человек" },
+    { "type": "word", "ge_text": "Plan", "ru_meaning": "план" },
+    { "type": "word", "ge_text": "Post", "ru_meaning": "почта" },
+    { "type": "word", "ge_text": "Park", "ru_meaning": "парк" },
+    { "type": "word", "ge_text": "Apfel", "ru_meaning": "яблоко" },
+    { "type": "word", "ge_text": "viel", "ru_meaning": "много" },
+    { "type": "word", "ge_text": "vier", "ru_meaning": "четыре" },
+    { "type": "word", "ge_text": "von", "ru_meaning": "от" },
+    { "type": "word", "ge_text": "vor", "ru_meaning": "перед" },
+    { "type": "word", "ge_text": "Vater", "ru_meaning": "отец" },
+    { "type": "word", "ge_text": "Problem", "ru_meaning": "проблема" }
+  ]
+}
