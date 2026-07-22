@@ -1,6 +1,4 @@
 'use client';
-
-import Image from 'next/image';
 import type { RefObject } from 'react';
 import { FLASHCARD_AUTO_SPEED_OPTIONS } from '@/lib/studyPreferences';
 
@@ -67,66 +65,64 @@ export function FlashcardControls({
 }) {
   const currentSpeedLabel =
     FLASHCARD_AUTO_SPEED_OPTIONS.find(option => option.value === autoSpeedMs)?.label ?? '1.5x';
+  const modeSummary = [
+    shuffled ? 'Микс' : null,
+    auto ? 'Авто' : null,
+    currentSpeedLabel,
+  ].filter(Boolean).join(' · ');
 
   return (
-    <div className="flashcard-controls-wrap relative h-[clamp(44px,8vw,64px)] min-w-0">
-      <div className="flashcard-cat-inline pointer-events-none absolute z-[20] select-none">
-        <Image
-          src="/images/deda-cat_2.png"
-          alt="Deda cat"
-          width={160}
-          height={107}
-          priority
-          className="flashcard-cat drop-shadow-[0_2px_8px_rgba(15,23,42,0.06)]"
-          style={{ filter: 'saturate(0.9) brightness(1)' }}
-        />
-      </div>
-
-      <div className="flashcard-controls-compact absolute left-1/2 top-1/2 inline-flex h-[clamp(44px,8vw,64px)] -translate-x-1/2 -translate-y-1/2 items-center">
+    <div className="flashcard-controls-wrap relative min-w-0">
+      <div className="flashcard-mode-control relative" ref={speedMenuRef}>
         <button
-          onClick={onShuffle}
-          className={`flashcard-shuffle-btn ${shuffleControl}`}
-          title="Перемешать карточки"
-          aria-pressed={shuffled}
-          aria-label={shuffled ? 'Перемешивание включено' : 'Перемешать карточки'}
+          type="button"
+          onClick={onToggleSpeedMenu}
+          className="flashcard-mode-trigger"
+          aria-label="Режим карточек"
+          aria-haspopup="menu"
+          aria-expanded={speedMenuOpen}
+          title={`Режим: ${modeSummary}`}
         >
           <span className="flashcard-control-glyph">
-            <ShuffleIcon />
+            <SpeedIcon />
           </span>
-          <span className="flashcard-control-label">Микс</span>
+          <span>Режим</span>
+          <span className="flashcard-mode-summary">{modeSummary}</span>
         </button>
 
-        <button
-          onClick={onToggleAuto}
-          className={`flashcard-play-btn ${playControl}`}
-          title={auto ? 'Остановить автопрокрутку' : 'Запустить автопрокрутку'}
-          aria-pressed={auto}
-          aria-label={auto ? 'Автопрокрутка включена' : 'Запустить автопрокрутку'}
-        >
-          <span className="flashcard-control-glyph">
-            <PlayIcon active={auto} />
-          </span>
-          <span className="flashcard-control-label">Авто</span>
-        </button>
+        {speedMenuOpen && (
+          <div className="flashcard-mode-menu absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2">
+            <div className="flashcard-mode-toggles">
+              <button
+                type="button"
+                onClick={onShuffle}
+                className={`flashcard-shuffle-btn ${shuffleControl}`}
+                title="Перемешать карточки"
+                aria-pressed={shuffled}
+                aria-label={shuffled ? 'Перемешивание включено' : 'Перемешать карточки'}
+              >
+                <span className="flashcard-control-glyph">
+                  <ShuffleIcon />
+                </span>
+                <span className="flashcard-control-label">Микс</span>
+              </button>
 
-        <div className="relative flex items-center justify-center" ref={speedMenuRef}>
-          <button
-            type="button"
-            onClick={onToggleSpeedMenu}
-            className="flashcard-speed-btn flashcard-control-btn"
-            aria-label="Скорость автопрокрутки"
-            title={`Скорость: ${currentSpeedLabel}`}
-            aria-haspopup="menu"
-            aria-expanded={speedMenuOpen}
-          >
-            <span className="flashcard-control-glyph">
-              <SpeedIcon />
-            </span>
-            <span className="flashcard-control-label">Скорость</span>
-            <span className="flashcard-speed-current">{currentSpeedLabel}</span>
-          </button>
-          {speedMenuOpen && (
-            <div className="flashcard-speed-menu absolute right-0 top-full z-50 mt-2 flex flex-col items-stretch gap-1">
+              <button
+                type="button"
+                onClick={onToggleAuto}
+                className={`flashcard-play-btn ${playControl}`}
+                title={auto ? 'Остановить автопрокрутку' : 'Запустить автопрокрутку'}
+                aria-pressed={auto}
+                aria-label={auto ? 'Автопрокрутка включена' : 'Запустить автопрокрутку'}
+              >
+                <span className="flashcard-control-glyph">
+                  <PlayIcon active={auto} />
+                </span>
+                <span className="flashcard-control-label">Авто</span>
+              </button>
+            </div>
+
+            <div className="flashcard-mode-speed-list" aria-label="Скорость автопрокрутки">
               {FLASHCARD_AUTO_SPEED_OPTIONS.map(option => (
                 <button
                   key={option.value}
@@ -143,8 +139,8 @@ export function FlashcardControls({
                 </button>
               ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

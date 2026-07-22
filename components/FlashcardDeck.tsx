@@ -513,6 +513,19 @@ export default function FlashcardDeck({
           </div>
         </div>
 
+        {/* Secondary modes: quieter than the main card navigation. */}
+        <FlashcardControls
+          shuffled={shuffled}
+          auto={auto}
+          autoSpeedMs={autoSpeedMs}
+          speedMenuOpen={speedMenuOpen}
+          speedMenuRef={speedMenuRef}
+          onShuffle={toggleShuffle}
+          onToggleAuto={() => setAuto(currentAuto => !currentAuto)}
+          onToggleSpeedMenu={() => setSpeedMenuOpen(open => !open)}
+          onSelectSpeed={selectAutoSpeed}
+        />
+
         <nav className="flashcard-nav-bar" aria-label="Навигация по карточкам">
           <button
             type="button"
@@ -538,19 +551,6 @@ export default function FlashcardDeck({
             <span className="flashcard-nav-icon" aria-hidden="true">›</span>
           </button>
         </nav>
-
-        {/* Controls: below card, centered by the card wrapper */}
-        <FlashcardControls
-          shuffled={shuffled}
-          auto={auto}
-          autoSpeedMs={autoSpeedMs}
-          speedMenuOpen={speedMenuOpen}
-          speedMenuRef={speedMenuRef}
-          onShuffle={toggleShuffle}
-          onToggleAuto={() => setAuto(currentAuto => !currentAuto)}
-          onToggleSpeedMenu={() => setSpeedMenuOpen(open => !open)}
-          onSelectSpeed={selectAutoSpeed}
-        />
       </div>
     </div>
   );
