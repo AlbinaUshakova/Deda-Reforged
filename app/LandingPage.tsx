@@ -15,48 +15,19 @@ const lightInterfaceSlots: Array<{
     src: '/landing/deda-light-screen-panel.png',
   },
   {
-    title: 'Светлая карточка',
-    description: 'Светлый экран карточек',
+    title: 'Карточка',
+    description: 'Экран карточек',
     src: '/landing/deda-light-card-batumi.png',
   },
   {
-    title: 'Светлая игра',
-    description: 'Светлый экран игры с вводом слова',
+    title: 'Игра',
+    description: 'Экран игры с вводом слова',
     src: '/landing/deda-mar19-screen-7.png',
   },
   {
-    title: 'Светлые фигуры',
-    description: 'Светлый экран игры с фигурами',
+    title: 'Фигуры',
+    description: 'Экран игры с фигурами',
     src: '/landing/deda-mar19-screen-6.png',
-  },
-];
-
-const darkInterfaceSlots: Array<{
-  title: string;
-  description: string;
-  src: string;
-  cropFrame?: boolean;
-  mobileContain?: boolean;
-}> = [
-  {
-    title: 'Тёмные уроки 1',
-    description: 'Тёмный экран уроков',
-    src: '/landing/deda-dark-screen-panel-2.png',
-  },
-  {
-    title: 'Тёмная карточка',
-    description: 'Тёмный экран карточек',
-    src: '/landing/deda-mar19-screen-2.png',
-  },
-  {
-    title: 'Скрин 2',
-    description: 'Тёмный экран игры',
-    src: '/landing/deda-mar19-screen-4.png',
-  },
-  {
-    title: 'Скрин 4',
-    description: 'Тёмный экран игры',
-    src: '/landing/deda-mar19-screen-3.png',
   },
 ];
 
@@ -231,10 +202,6 @@ export default function LandingPage() {
       -webkit-overflow-scrolling: touch;
     }
 
-    .landing-screens-grid--dark {
-      display: none;
-    }
-
     .landing-screen-item {
       width: fit-content;
       scroll-snap-align: start;
@@ -306,73 +273,6 @@ export default function LandingPage() {
       flex: 0 0 auto;
       transform: translateY(24px);
       pointer-events: none;
-    }
-
-    html[data-theme='dark'] .landing-shell {
-      background: var(--deda-gradient-aurora) !important;
-    }
-
-    html[data-theme='dark'] .landing-title {
-      color: rgba(231, 225, 216, 0.94);
-    }
-
-    html[data-theme='dark'] .landing-subtitle,
-    html[data-theme='dark'] .landing-alphabet-hint {
-      color: rgba(185, 176, 166, 0.86);
-    }
-
-    html[data-theme='dark'] .landing-alphabet-hint::before {
-      background: rgba(214, 199, 182, 0.72);
-      box-shadow: 0 0 0 0 rgba(214, 199, 182, 0.12);
-    }
-
-    html[data-theme='dark'] .landing-screen-item {
-      border-color: rgba(231, 225, 216, 0.045);
-      background: rgba(231, 225, 216, 0.042);
-      box-shadow:
-        0 22px 58px rgba(0, 0, 0, 0.30),
-        inset 0 1px 0 rgba(231, 225, 216, 0.035);
-    }
-
-    html[data-theme='dark'] .landing-screens-grid--light {
-      display: none;
-    }
-
-    html[data-theme='dark'] .landing-screens-grid--dark {
-      display: grid;
-    }
-
-    html[data-theme='dark'] .landing-cta-btn {
-      border-color: transparent !important;
-      background: #d6c7b6 !important;
-      color: #171513 !important;
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.26);
-    }
-
-    html[data-theme='dark'] .landing-alpha-card {
-      border: 1px solid rgba(231, 225, 216, 0.045);
-      background:
-        linear-gradient(145deg, rgba(231, 225, 216, 0.055), rgba(231, 225, 216, 0.030)),
-        radial-gradient(circle at 92% 8%, rgba(214, 199, 182, 0.038), transparent 36%);
-      box-shadow:
-        0 22px 58px rgba(0, 0, 0, 0.30),
-        inset 0 1px 0 rgba(231, 225, 216, 0.035);
-    }
-
-    html[data-theme='dark'] .landing-screens-grid {
-      filter: saturate(0.96) contrast(1.03);
-    }
-
-    html[data-theme='dark'] .landing-screens-grid + .landing-screens-grid {
-      filter: saturate(0.98) contrast(1.04);
-    }
-
-    html[data-theme='dark'] .landing-showcase-section {
-      margin-top: 12px;
-    }
-
-    html[data-theme='dark'] .landing-showcase-title {
-      color: rgba(238, 232, 224, 0.88);
     }
 
     @media (min-width: 768px) {
@@ -513,12 +413,6 @@ export default function LandingPage() {
         aspect-ratio: 296 / 214;
         border-color: rgba(148, 163, 184, 0.22);
         background: rgba(255, 255, 255, 0.6);
-        box-shadow: none;
-      }
-
-      html[data-theme='dark'] .landing-screen-item {
-        border-color: rgba(148, 163, 184, 0.2);
-        background: rgba(31, 34, 40, 0.3);
         box-shadow: none;
       }
 
@@ -694,23 +588,6 @@ export default function LandingPage() {
           ))}
         </div>
 
-        <div className="landing-screens-grid landing-screens-grid--dark mt-10 sm:mt-6">
-          {darkInterfaceSlots.map(slot => (
-            <div
-              key={slot.src}
-              className={`landing-screen-item${slot.cropFrame ? ' landing-screen-item--crop-frame' : ''}`}
-            >
-              <Image
-                src={slot.src}
-                alt={slot.title}
-                width={800}
-                height={1600}
-                loading="lazy"
-                className={`landing-screen-media${slot.mobileContain ? ' landing-screen-media--contain-mobile' : ''}`}
-              />
-            </div>
-          ))}
-        </div>
       </section>
     </main>
   );

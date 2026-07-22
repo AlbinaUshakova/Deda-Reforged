@@ -16,35 +16,6 @@
     backdrop-filter: blur(10px);
 }
 
-html[data-theme='dark'] .blocks-grid-score {
-    border-color: rgba(232, 238, 247, 0.11);
-    background: rgba(23, 25, 31, 0.74);
-    color: #e7ebf2 !important;
-    box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.035);
-    text-shadow: none;
-}
-
-html[data-theme='dark'] .blocks-grid-cell {
-    background: rgba(255, 255, 255, 0.055) !important;
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.035),
-        0 1px 1px rgba(0, 0, 0, 0.16);
-}
-
-html[data-theme='dark'] .blocks-grid-cell:hover {
-    background: rgba(255, 255, 255, 0.085) !important;
-}
-
-html[data-theme='dark'] .blocks-grid-hover-cell {
-    border: 1.5px solid rgba(232, 238, 247, 0.24) !important;
-    background: rgba(255, 255, 255, 0.095) !important;
-    box-shadow:
-        0 0 0 1px rgba(20, 18, 14, 0.22),
-        0 0 16px rgba(232, 238, 247, 0.06) !important;
-}
-
 .blocks-grid-board {
     border: 1px solid rgba(15, 118, 110, 0.10) !important;
     border-radius: 28px !important;
@@ -108,39 +79,6 @@ html[data-theme='dark'] .blocks-grid-hover-cell {
     background: rgba(45, 212, 191, 0.96) !important;
 }
 
-html[data-theme='dark'] .blocks-grid-gameover-title {
-    color: #f3f7f5 !important;
-    text-shadow: none !important;
-}
-
-html[data-theme='dark'] .blocks-grid-gameover-text {
-    color: #c9d8d5 !important;
-    text-shadow: none !important;
-}
-
-html[data-theme='dark'] .blocks-grid-gameover-overlay {
-    background: rgba(10, 12, 11, 0.46) !important;
-}
-
-html[data-theme='dark'] .blocks-grid-gameover-card {
-    background:
-        linear-gradient(145deg, rgba(27, 30, 37, 0.98), rgba(20, 22, 28, 0.96)) !important;
-    border-color: rgba(232, 238, 247, 0.12) !important;
-    box-shadow:
-        0 20px 44px rgba(0, 0, 0, 0.40),
-        0 0 0 1px rgba(255, 255, 255, 0.025) !important;
-}
-
-html[data-theme='dark'] .blocks-grid-gameover-button {
-    background: #f2f4f8 !important;
-    color: #0f1115 !important;
-    box-shadow: 0 8px 18px rgba(232, 238, 247, 0.10) !important;
-}
-
-html[data-theme='dark'] .blocks-grid-gameover-button:hover {
-    background: #ffffff !important;
-}
-
 .blocks-game-screen {
     min-height: 760px;
     position: relative;
@@ -166,18 +104,7 @@ html[data-theme='dark'] .blocks-grid-gameover-button:hover {
     pointer-events: none;
 }
 
-html[data-theme='dark'] .blocks-game-screen {
-    background:
-        radial-gradient(circle at 14% 18%, rgba(232, 238, 247, 0.050), transparent 30%),
-        radial-gradient(circle at 88% 12%, rgba(232, 238, 247, 0.035), transparent 28%),
-        linear-gradient(180deg, #0f1115 0%, #11141a 48%, #0f1115 100%) !important;
-}
-
-html[data-theme='dark'] .blocks-game-screen::before {
-    color: rgba(255, 255, 255, 0.035);
-}
-
-/* Game input focus in light theme */
+/* Game input focus */
 .blocks-answer-input:focus {
     border-color: rgba(15, 118, 110, 0.28) !important;
     box-shadow:
@@ -187,57 +114,10 @@ html[data-theme='dark'] .blocks-game-screen::before {
     outline: none !important;
 }
 
-html[data-theme='dark'] .blocks-answer-input:focus {
-    border-color: rgba(232, 238, 247, 0.28) !important;
-    box-shadow:
-        0 0 0 3px rgba(232, 238, 247, 0.10),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-        0 8px 18px rgba(0, 0, 0, 0.18) !important;
-    outline: none !important;
-}
-
-.blocks-answer-input:focus-visible,
-html[data-theme='dark'] .blocks-answer-input:focus-visible {
-    border-color: rgba(232, 238, 247, 0.30) !important;
-    box-shadow:
-        0 0 0 3px rgba(232, 238, 247, 0.10),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-    outline: none !important;
-}
-
-html[data-theme='dark'] .blocks-answer-input {
-    background: rgba(255, 255, 255, 0.060) !important;
-    border: 1px solid rgba(232, 238, 247, 0.10) !important;
-    color: #f2f4f8 !important;
-}
-
-html[data-theme='dark'] .blocks-answer-input::placeholder {
-    color: rgba(184, 190, 201, 0.56) !important;
-}
-
-html[data-theme='dark'] .blocks-grid-board {
-    background:
-        linear-gradient(145deg, rgba(23, 25, 31, 0.88), rgba(15, 17, 21, 0.78)),
-        radial-gradient(circle at 80% 12%, rgba(232, 238, 247, 0.045), transparent 36%) !important;
-    border: 1px solid rgba(232, 238, 247, 0.10) !important;
-    border-radius: 28px;
-    padding: 6px;
-    box-shadow:
-        0 22px 52px rgba(0, 0, 0, 0.30),
-        inset 0 1px 0 rgba(255, 255, 255, 0.035);
-}
-
-html[data-theme='light'] .blocks-refresh-btn {
+.blocks-refresh-btn {
     border-color: rgba(15, 118, 110, 0.08) !important;
     background: rgba(255, 255, 255, 0.52) !important;
     color: #557069 !important;
-    opacity: 1;
-}
-
-html[data-theme='dark'] .blocks-refresh-btn {
-    border-color: rgba(232, 238, 247, 0.10) !important;
-    background: rgba(255, 255, 255, 0.055) !important;
-    color: #b8bec9 !important;
     opacity: 1;
 }
 
@@ -251,22 +131,10 @@ html[data-theme='dark'] .blocks-refresh-btn {
     transition: color 140ms ease, opacity 140ms ease, background 140ms ease, transform 140ms ease !important;
 }
 
-html[data-theme='light'] .blocks-refresh-btn:hover,
-html[data-theme='light'] .blocks-refresh-btn:active {
+.blocks-refresh-btn:hover,
+.blocks-refresh-btn:active {
     background: rgba(236, 253, 245, 0.70) !important;
     color: #0f766e !important;
-}
-
-html[data-theme='dark'] .blocks-refresh-btn:hover,
-html[data-theme='dark'] .blocks-refresh-btn:active {
-    background: rgba(255, 255, 255, 0.10) !important;
-    color: #f2f4f8 !important;
-}
-
-.blocks-refresh-btn:active,
-html[data-theme='light'] .blocks-refresh-btn:active,
-html[data-theme='dark'] .blocks-refresh-btn:active {
-    transform: translateY(1px);
 }
 
 .blocks-answer-stack {
@@ -332,31 +200,6 @@ html[data-theme='dark'] .blocks-refresh-btn:active {
 
 .blocks-translation-btn {
     min-width: 76px;
-}
-
-html[data-theme='dark'] .blocks-question-card {
-    border-color: rgba(232, 238, 247, 0.11);
-    background:
-        linear-gradient(145deg, rgba(23, 25, 31, 0.86), rgba(15, 17, 21, 0.76)),
-        radial-gradient(circle at 88% 14%, rgba(232, 238, 247, 0.045), transparent 38%);
-    box-shadow:
-        0 18px 42px rgba(0, 0, 0, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.035);
-}
-
-html[data-theme='dark'] .blocks-question-chip {
-    background: rgba(255, 255, 255, 0.070);
-    color: #e7ebf2;
-}
-
-html[data-theme='dark'] .blocks-question-chip--muted {
-    background: rgba(255, 255, 255, 0.055);
-    color: #b8bec9;
-}
-
-html[data-theme='dark'] .blocks-question-shortcut {
-    background: rgba(255, 255, 255, 0.040);
-    color: rgba(184, 190, 201, 0.52);
 }
 
 .blocks-answer-input {
@@ -427,40 +270,11 @@ html[data-theme='dark'] .blocks-question-shortcut {
     transform: none;
 }
 
-html[data-theme='dark'] .blocks-submit-btn {
-    border-color: rgba(232, 238, 247, 0.16);
-    background: rgba(255, 255, 255, 0.075);
-    color: #f2f4f8;
-    box-shadow:
-        0 10px 22px rgba(0, 0, 0, 0.20),
-        inset 0 1px 0 rgba(255, 255, 255, 0.045);
-}
-
-html[data-theme='dark'] .blocks-submit-btn:hover {
-    background: rgba(255, 255, 255, 0.11);
-}
-
-html[data-theme='dark'] .blocks-prompt-text {
-    color: #f2f4f8 !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-/* --------- Deda 2026 game refresh --------- */
-
-.blocks-game-screen,
-html[data-theme='dark'] .blocks-game-screen {
-    background: var(--deda-gradient-aurora) !important;
-}
-
 .blocks-game-screen::before {
     top: 92px;
     color: rgba(23, 21, 19, 0.045);
     font-size: clamp(84px, 12vw, 170px);
     letter-spacing: 0.035em;
-}
-
-html[data-theme='dark'] .blocks-game-screen::before {
-    color: rgba(242, 244, 248, 0.032);
 }
 
 .blocks-question-card {
@@ -554,33 +368,6 @@ html[data-theme='dark'] .blocks-game-screen::before {
         0 10px 24px rgba(31, 28, 23, 0.070),
         inset 0 1px 0 rgba(255, 255, 255, 0.84);
     backdrop-filter: blur(14px);
-}
-
-html[data-theme='dark'] .blocks-question-card,
-html[data-theme='dark'] .blocks-grid-board {
-    border-color: rgba(231, 225, 216, 0.085) !important;
-    background:
-        linear-gradient(145deg, rgba(231, 225, 216, 0.055), rgba(231, 225, 216, 0.028)),
-        radial-gradient(circle at 82% 10%, rgba(214, 199, 182, 0.034), transparent 36%) !important;
-    box-shadow:
-        0 24px 68px rgba(0, 0, 0, 0.32),
-        inset 0 1px 0 rgba(231, 225, 216, 0.034) !important;
-}
-
-html[data-theme='dark'] .blocks-answer-input {
-    border-color: rgba(231, 225, 216, 0.10) !important;
-    background: rgba(231, 225, 216, 0.055) !important;
-    color: #e7e1d8 !important;
-}
-
-html[data-theme='dark'] .blocks-submit-btn {
-    border-color: rgba(231, 225, 216, 0.14) !important;
-    background: #d6c7b6 !important;
-    color: #171513 !important;
-}
-
-html[data-theme='dark'] .blocks-submit-btn:hover {
-    background: #e2d4c5 !important;
 }
 
 @media (max-width: 900px) {
@@ -742,11 +529,6 @@ html[data-theme='dark'] .blocks-submit-btn:hover {
         box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
         opacity: 1 !important;
     }
-
-    html[data-theme='dark'] .blocks-grid-score {
-        border-color: rgba(232, 238, 247, 0.11);
-        background: rgba(255, 255, 255, 0.055);
-    }
 }
 
 .blocks-question-card,
@@ -776,33 +558,4 @@ html[data-theme='dark'] .blocks-submit-btn:hover {
 
 .blocks-grid-hover-cell {
     border-color: rgba(0, 168, 132, 0.32) !important;
-}
-
-html[data-theme='dark'] .blocks-question-card,
-html[data-theme='dark'] .blocks-grid-board,
-html[data-theme='dark'] .blocks-answer-input,
-html[data-theme='dark'] .blocks-grid-score,
-html[data-theme='dark'] .blocks-refresh-btn,
-html[data-theme='dark'] .blocks-submit-btn,
-html[data-theme='dark'] .blocks-grid-gameover-card {
-    border-color: rgba(231, 225, 216, 0.050) !important;
-}
-
-html[data-theme='dark'] .blocks-question-card,
-html[data-theme='dark'] .blocks-grid-board {
-    box-shadow:
-        0 20px 54px rgba(0, 0, 0, 0.28),
-        inset 0 1px 0 rgba(231, 225, 216, 0.020) !important;
-}
-
-html[data-theme='dark'] .blocks-answer-input:focus,
-html[data-theme='dark'] .blocks-answer-input:focus-visible {
-    border-color: rgba(231, 225, 216, 0.10) !important;
-    box-shadow:
-        0 0 0 3px rgba(214, 199, 182, 0.060),
-        0 16px 38px rgba(0, 0, 0, 0.24) !important;
-}
-
-html[data-theme='dark'] .blocks-grid-hover-cell {
-    border-color: rgba(214, 199, 182, 0.18) !important;
 }

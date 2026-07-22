@@ -88,89 +88,6 @@
         linear-gradient(180deg, #fbf7ef 0%, #f6f3ec 48%, #f2efe8 100%);
 }
 
-html[data-theme='dark'] {
-    color-scheme: dark;
-    --bg-main: #101112;
-    --bg-card: #181715;
-    --bg-card-hover: #211f1b;
-    --bg-panel: #181715;
-    --border-soft: rgba(231, 225, 216, 0.10);
-    --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.34);
-    --text-primary: #e7e1d8;
-    --text-secondary: #b9b0a6;
-    --text-tertiary: #8f877d;
-    --accent: #d6c7b6;
-    --accent-hover: #eadccb;
-    --ui-accent: #c6b8a6;
-    --focus-ring: rgba(214, 199, 182, 0.22);
-    --progress: #d6c7b6;
-    --progress-good: #c6b8a6;
-    --progress-low: #b9a48f;
-    --progress-current: #e2d8cd;
-    --progress-bg: rgba(231, 225, 216, 0.085);
-    --alphabet-bg: var(--bg-panel);
-    --alphabet-key: #333336;
-    --alphabet-key-hover: #3c3c40;
-    --button-bg: rgba(231, 225, 216, 0.050);
-    --button-hover: rgba(231, 225, 216, 0.080);
-    --button-text: #e7e1d8;
-    --menu-bg: rgba(24, 23, 21, 0.97);
-    --menu-border: rgba(231, 225, 216, 0.10);
-    --menu-shadow: 0 20px 56px rgba(0, 0, 0, 0.42);
-    --menu-text: #e7e1d8;
-    --menu-text-muted: #aaa196;
-    --menu-hover: rgba(231, 225, 216, 0.060);
-    --menu-active: rgba(231, 225, 216, 0.085);
-    --menu-divider: rgba(231, 225, 216, 0.060);
-    --menu-focus: rgba(214, 199, 182, 0.28);
-    --menu-segment-bg: rgba(231, 225, 216, 0.050);
-    --menu-segment-border: rgba(231, 225, 216, 0.090);
-    --menu-segment-idle: #cfc6bb;
-    --menu-segment-idle-hover: rgba(231, 225, 216, 0.070);
-    --menu-segment-active: #ded4c8;
-    --menu-segment-active-shadow: 0 2px 8px rgba(20, 30, 50, 0.22);
-    --menu-stepper-bg: rgba(255, 255, 255, 0.04);
-    --menu-stepper-border: rgba(255, 255, 255, 0.12);
-    --shape-orange: #b9a48f;
-    --shape-purple: #a69a90;
-    --shape-green: #c6b8a6;
-    --shape-blue: #9d9389;
-    --shape-yellow: #d0bfa9;
-    --grid-cell: rgba(231, 225, 216, 0.060);
-    --grid-cell-hover: rgba(231, 225, 216, 0.090);
-    --grid-bg: #181715;
-    --app-bg: var(--bg-main);
-    --app-text: var(--text-primary);
-    --header-bg: rgba(16, 17, 18, 0.96);
-    --header-text: #e7e1d8;
-    --header-border: rgba(231, 225, 216, 0.075);
-    --premium-gold: #d0bfa9;
-    --phrases-label: rgba(231, 225, 216, 0.86);
-    --btn-active-bg: rgba(231, 225, 216, 0.085);
-    --btn-active-border: rgba(231, 225, 216, 0.18);
-    --btn-active-text: #e7e1d8;
-    --btn-active-shadow: 0 0 0 2px rgba(231, 225, 216, 0.075);
-    --control-text: #d9d0c5;
-    --control-text-hover: #e7e1d8;
-    --dialog-question: #d9d0c5;
-    --dialog-answer: #d0bfa9;
-    --deda-bg: var(--app-bg);
-    --deda-text: var(--app-text);
-    --deda-radius-xl: 34px;
-    --deda-radius-lg: 24px;
-    --deda-glass: rgba(231, 225, 216, 0.050);
-    --deda-glass-strong: rgba(231, 225, 216, 0.075);
-    --deda-glass-border: rgba(231, 225, 216, 0.055);
-    --deda-ink-shadow: 0 1px 0 rgba(231, 225, 216, 0.035);
-    --deda-elevation: 0 24px 70px rgba(0, 0, 0, 0.32);
-    --deda-elevation-soft: 0 16px 44px rgba(0, 0, 0, 0.24);
-    --deda-gradient-aurora:
-        radial-gradient(circle at 12% 10%, rgba(214, 199, 182, 0.045), transparent 31%),
-        radial-gradient(circle at 78% 3%, rgba(154, 137, 120, 0.040), transparent 30%),
-        radial-gradient(circle at 72% 86%, rgba(209, 188, 162, 0.030), transparent 34%),
-        linear-gradient(180deg, #101112 0%, #151412 48%, #101112 100%);
-}
-
 html {
     overflow-y: scroll;
 }
@@ -754,154 +671,6 @@ body {
         inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
 }
 
-html[data-theme='dark'] .lessons-screen {
-    background:
-        radial-gradient(circle at 16% 14%, rgba(232, 238, 247, 0.055), transparent 30%),
-        radial-gradient(circle at 86% 6%, rgba(232, 238, 247, 0.035), transparent 28%),
-        linear-gradient(180deg, #0f1115 0%, #11141a 46%, var(--app-bg) 100%);
-}
-
-html[data-theme='dark'] .study-card-screen {
-    background:
-        radial-gradient(circle at 14% 18%, rgba(232, 238, 247, 0.050), transparent 30%),
-        radial-gradient(circle at 88% 12%, rgba(232, 238, 247, 0.035), transparent 28%),
-        linear-gradient(180deg, #0f1115 0%, #11141a 44%, var(--app-bg) 100%) !important;
-}
-
-html[data-theme='dark'] .lessons-screen::before {
-    color: rgba(255, 247, 237, 0.055);
-}
-
-html[data-theme='dark'] .study-card-screen::before {
-    color: rgba(255, 247, 237, 0.045);
-}
-
-html[data-theme='dark'] .lessons-hero {
-    border-color: rgba(232, 238, 247, 0.10);
-    background:
-        radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.055), transparent 24%),
-        radial-gradient(circle at 82% 18%, rgba(232, 238, 247, 0.055), transparent 34%),
-        radial-gradient(circle at 18% 96%, rgba(232, 238, 247, 0.035), transparent 36%),
-        linear-gradient(135deg, rgba(23, 25, 31, 0.98), rgba(15, 17, 21, 0.96));
-    box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.28),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-html[data-theme='dark'] .lessons-hero::after {
-    border-color: rgba(255, 255, 255, 0.06);
-    background:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-}
-
-html[data-theme='dark'] .lessons-hero-title {
-    color: #f8fafc;
-}
-
-html[data-theme='dark'] .lessons-hero-subtitle {
-    color: #cbd5e1;
-}
-
-html[data-theme='dark'] .lessons-hero-subtitle--lead {
-    color: #f8fafc;
-}
-
-html[data-theme='dark'] .lessons-hero-card {
-    border-color: rgba(232, 238, 247, 0.11);
-    background:
-        radial-gradient(circle at 86% 0%, rgba(232, 238, 247, 0.060), transparent 34%),
-        radial-gradient(circle at 8% 92%, rgba(232, 238, 247, 0.040), transparent 38%),
-        linear-gradient(145deg, rgba(27, 30, 37, 0.98), rgba(20, 22, 28, 0.96));
-    box-shadow:
-        0 18px 36px rgba(0, 0, 0, 0.26),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
-}
-
-html[data-theme='dark'] .lessons-hero-art {
-    color: rgba(255, 255, 255, 0.07);
-    text-shadow: 0 22px 55px rgba(16, 163, 127, 0.10);
-}
-
-html[data-theme='dark'] .lessons-hero-card-label {
-    color: rgba(184, 190, 201, 0.86);
-}
-
-html[data-theme='dark'] .lessons-hero-card-title {
-    color: #f8fafc;
-}
-
-html[data-theme='dark'] .lessons-hero-start {
-    background: #f2f4f8;
-    color: #0f1115;
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
-}
-
-html[data-theme='dark'] .lessons-hero-card .bg-white\/62 {
-    background: transparent !important;
-}
-
-html[data-theme='dark'] .lessons-hero-mascot {
-    border-color: transparent;
-    background: transparent;
-    box-shadow: none;
-}
-
-html[data-theme='dark'] .lessons-hero-letter-panel {
-    border-color: transparent;
-    background: transparent !important;
-    box-shadow: none;
-}
-
-html[data-theme='dark'] .lessons-hero-letter {
-    border-color: rgba(232, 238, 247, 0.11);
-    background: rgba(255, 255, 255, 0.045);
-}
-
-html[data-theme='dark'] .lessons-hero-letter:hover {
-    border-color: rgba(232, 238, 247, 0.22);
-    background: rgba(255, 255, 255, 0.085);
-    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
-}
-
-html[data-theme='dark'] .lessons-hero-letter-hint {
-    color: rgba(203, 213, 225, 0.62);
-}
-
-html[data-theme='dark'] .lessons-hero-letter::after {
-    background: rgba(232, 238, 247, 0.28);
-}
-
-html[data-theme='dark'] .lessons-hero-letter:hover::after,
-html[data-theme='dark'] .lessons-hero-letter:focus-visible::after {
-    background: #d7dce5;
-    box-shadow: 0 0 0 3px rgba(232, 238, 247, 0.10);
-}
-
-html[data-theme='dark'] .lessons-hero-rule {
-    border-color: rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.05);
-    color: rgba(226, 232, 240, 0.84);
-}
-
-html[data-theme='dark'] .lessons-hero-score {
-    color: #cbd5e1;
-}
-
-html[data-theme='dark'] .lessons-path-section::before {
-    background: rgba(255, 255, 255, 0.035);
-    border-color: rgba(255, 255, 255, 0.05);
-}
-
-html[data-theme='dark'] .home-lesson-card--current {
-    background:
-        linear-gradient(135deg, rgba(32, 35, 43, 0.98), rgba(23, 25, 31, 0.95)) !important;
-    border-color: rgba(232, 238, 247, 0.18) !important;
-    box-shadow:
-        0 16px 34px rgba(0, 0, 0, 0.30),
-        0 0 0 1px rgba(232, 238, 247, 0.055) !important;
-}
-
 .home-lesson-title {
     color: var(--text-primary) !important;
 }
@@ -1062,7 +831,7 @@ html[data-theme='dark'] .home-lesson-card--current {
     box-shadow: var(--shadow-soft) !important;
 }
 
-html[data-theme='light'] .home-special-btn {
+.home-special-btn {
     background: #ffffff !important;
     border: 1px solid #d9dee6 !important;
     box-shadow:
@@ -1122,11 +891,11 @@ html[data-theme='light'] .home-special-btn {
     background: transparent !important;
 }
 
-html[data-theme='light'] .play-tab--secondary {
+.play-tab--secondary {
     border-color: #e6e8ed !important;
 }
 
-html[data-theme='light'] .play-tab--secondary:hover {
+.play-tab--secondary:hover {
     border-color: #dde1e8 !important;
 }
 
@@ -1141,18 +910,6 @@ html[data-theme='light'] .play-tab--secondary:hover {
     box-shadow: var(--btn-active-shadow) !important;
 }
 
-html[data-theme='dark'] .play-tab--secondary {
-    border-color: rgba(226, 232, 240, 0.12) !important;
-    color: var(--button-text) !important;
-    background: var(--button-bg) !important;
-}
-
-html[data-theme='dark'] .play-tab--secondary:hover {
-    border-color: rgba(232, 238, 247, 0.18) !important;
-    background: var(--button-hover) !important;
-    color: var(--text-primary) !important;
-}
-
 @media (max-width: 900px) {
     .topButtons button,
     .topButtons .play-tab--secondary {
@@ -1162,170 +919,11 @@ html[data-theme='dark'] .play-tab--secondary:hover {
 
 }
 
-html[data-theme='dark'] .play-tab--primary {
-    background: var(--btn-active-bg) !important;
-    border-color: var(--btn-active-border) !important;
-    color: var(--btn-active-text) !important;
-    box-shadow: var(--btn-active-shadow) !important;
-}
-
 button[aria-pressed='true'] {
     background: var(--btn-active-bg) !important;
     border-color: var(--btn-active-border) !important;
     color: var(--btn-active-text) !important;
     box-shadow: var(--btn-active-shadow) !important;
-}
-
-html[data-theme='dark'] .home-lesson-card {
-    background: var(--bg-card) !important;
-    border-color: var(--border-soft) !important;
-    box-shadow:
-        0 10px 24px rgba(0, 0, 0, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
-}
-
-html[data-theme='dark'] .home-lesson-card.lesson-card--interactive:hover {
-    background: #20232b !important;
-    border-color: rgba(232, 238, 247, 0.18) !important;
-    transform: translateY(-1px);
-}
-
-html[data-theme='dark'] .home-lesson-title {
-    color: var(--text-primary) !important;
-}
-
-html[data-theme='dark'] .home-lesson-status--current {
-    color: #f1f5f9 !important;
-}
-
-html[data-theme='dark'] .home-lesson-status--almost {
-    color: #9ca89f !important;
-}
-
-html[data-theme='dark'] .home-lesson-status--locked {
-    color: #899288 !important;
-}
-
-html[data-theme='dark'] .home-lesson-subtitle,
-html[data-theme='dark'] .home-progress-score {
-    color: var(--text-secondary) !important;
-}
-
-html[data-theme='dark'] .home-lesson-letter {
-    color: #d8ad78 !important;
-    text-shadow: none;
-}
-
-html[data-theme='dark'] .home-lesson-letter--mastered {
-    color: var(--progress-good) !important;
-}
-
-html[data-theme='dark'] .home-lesson-letter--almost {
-    color: var(--progress-low) !important;
-}
-
-html[data-theme='dark'] .home-lesson-letter--current {
-    color: var(--progress-current) !important;
-}
-
-html[data-theme='dark'] .home-lesson-letter--locked {
-    color: var(--text-tertiary) !important;
-}
-
-html[data-theme='dark'] .home-lesson-card--locked {
-    background: rgba(255, 255, 255, 0.045) !important;
-    border-color: rgba(226, 232, 240, 0.075) !important;
-}
-
-html[data-theme='dark'] .home-lesson-card--locked .home-lesson-title {
-    color: #aeb8b0 !important;
-}
-
-html[data-theme='dark'] .home-lesson-card--locked .home-lesson-letter--locked {
-    color: #7f8b82 !important;
-}
-
-html[data-theme='dark'] .home-lesson-card--locked .home-progress-score {
-    color: #899288 !important;
-}
-
-html[data-theme='dark'] .home-lesson-lock {
-    color: #899288 !important;
-}
-
-html[data-theme='dark'] .home-lesson-letter--unknown {
-    color: var(--ui-accent) !important;
-}
-
-html[data-theme='dark'] .home-progress-bg {
-    background: var(--progress-bg) !important;
-}
-
-html[data-theme='dark'] .home-progress-fill--good {
-    background: var(--progress-good) !important;
-}
-
-html[data-theme='dark'] .home-progress-fill--low {
-    background: var(--progress-low) !important;
-}
-
-html[data-theme='dark'] .home-progress-fill--normal {
-    background: var(--progress) !important;
-}
-
-html[data-theme='dark'] .home-progress-fill--mastered {
-    background: var(--progress-good) !important;
-}
-
-html[data-theme='dark'] .home-progress-fill--almost {
-    background: var(--progress-low) !important;
-}
-
-html[data-theme='dark'] .home-progress-fill--current {
-    background: var(--progress-current) !important;
-}
-
-html[data-theme='dark'] .home-progress-fill--locked {
-    background: var(--text-tertiary) !important;
-}
-
-html[data-theme='dark'] .home-progress-fill--unknown {
-    background: var(--ui-accent) !important;
-}
-
-html[data-theme='dark'] .home-recommended-paw {
-    color: #ffffff !important;
-    font-size: 22px;
-    line-height: 1;
-    opacity: 1;
-    text-shadow: none;
-    filter: grayscale(1) brightness(2.2) contrast(1.1);
-}
-
-html[data-theme='dark'] .home-special-btn {
-    background: #2f333a !important;
-    border-color: #495160 !important;
-    color: var(--button-text) !important;
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-}
-
-html[data-theme='dark'] .home-special-btn:hover {
-    background: #383d46 !important;
-    border-color: #5e6a7e !important;
-}
-
-html[data-theme='dark'] .home-alphabet-mascot-wrap {
-    transform: translateY(-10px);
-}
-
-html[data-theme='dark'] .home-alphabet-mascot {
-    opacity: 0.9;
-}
-
-html[data-theme='dark'] .header-lesson-title {
-    color: var(--text-primary) !important;
 }
 
 .home-lesson-card--complete {
@@ -1711,17 +1309,6 @@ a {
     }
 }
 
-html[data-theme='dark'] .locked-lesson-tooltip {
-    background: #2c2c2e;
-    color: #ffffff;
-    border-color: transparent;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-}
-
-html[data-theme='dark'] .locked-lesson-tooltip-arrow {
-    border-bottom-color: #2c2c2e;
-}
-
 body {
     background-color: var(--app-bg);
     color: var(--app-text);
@@ -1734,23 +1321,12 @@ body {
     letter-spacing: -0.01em;
 }
 
-.lessons-screen,
-html[data-theme='dark'] .lessons-screen,
-.study-card-screen,
-html[data-theme='dark'] .study-card-screen {
-    background: var(--deda-gradient-aurora) !important;
-}
-
 .lessons-screen::before {
     top: 76px;
     color: rgba(23, 21, 19, 0.045);
     font-size: clamp(72px, 10vw, 148px);
     font-weight: 950;
     letter-spacing: 0.03em;
-}
-
-html[data-theme='dark'] .lessons-screen::before {
-    color: rgba(242, 244, 248, 0.035);
 }
 
 .lessons-hero {
@@ -1881,27 +1457,6 @@ html[data-theme='dark'] .lessons-screen::before {
     backdrop-filter: blur(12px);
 }
 
-html[data-theme='dark'] .lessons-hero,
-html[data-theme='dark'] .lessons-hero-card,
-html[data-theme='dark'] .home-lesson-card {
-    border-color: var(--deda-glass-border) !important;
-    background:
-        linear-gradient(145deg, rgba(231, 225, 216, 0.055), rgba(231, 225, 216, 0.026)),
-        radial-gradient(circle at 86% 12%, rgba(214, 199, 182, 0.034), transparent 35%) !important;
-    box-shadow: var(--deda-elevation-soft) !important;
-}
-
-html[data-theme='dark'] .lessons-hero-title,
-html[data-theme='dark'] .lessons-hero-card-title {
-    color: rgba(231, 225, 216, 0.94);
-    text-shadow: none;
-}
-
-html[data-theme='dark'] .lessons-hero-subtitle,
-html[data-theme='dark'] .lessons-hero-rule {
-    color: rgba(185, 176, 166, 0.82);
-}
-
 /* Softer surface system: depth should come from light and shadow, not visible frames. */
 .lessons-hero,
 .lessons-hero-card,
@@ -1941,21 +1496,4 @@ html[data-theme='dark'] .lessons-hero-rule {
 
 .home-lesson-card--current {
     border-color: rgba(255, 107, 53, 0.18) !important;
-}
-
-html[data-theme='dark'] .lessons-hero,
-html[data-theme='dark'] .lessons-hero-card,
-html[data-theme='dark'] .home-lesson-card {
-    border-color: rgba(231, 225, 216, 0.048) !important;
-    box-shadow:
-        0 18px 48px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(231, 225, 216, 0.024) !important;
-}
-
-html[data-theme='dark'] .lessons-hero-letter,
-html[data-theme='dark'] .flashcard-lesson-letter {
-    border-color: rgba(231, 225, 216, 0.060) !important;
-    box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.16),
-        inset 0 1px 0 rgba(231, 225, 216, 0.022) !important;
 }

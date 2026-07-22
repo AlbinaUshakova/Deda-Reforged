@@ -5,7 +5,6 @@ type SettingsListener = (settings: Settings) => void;
 export type Settings = {
   lessonTargetScore: number;
   translationDirection: 'ge-ru' | 'ru-ge';
-  theme: 'light' | 'dark';
   transliterationMode: 'ru' | 'latin';
 };
 
@@ -13,7 +12,6 @@ const KEY = 'deda_settings_v1';
 export const DEFAULT_SETTINGS: Settings = {
   lessonTargetScore: 25,
   translationDirection: 'ge-ru',
-  theme: 'light',
   transliterationMode: 'ru',
 };
 
@@ -30,10 +28,6 @@ function normalizeTranslationDirection(value: unknown): Settings['translationDir
   return value === 'ru-ge' ? 'ru-ge' : 'ge-ru';
 }
 
-function normalizeTheme(value: unknown): Settings['theme'] {
-  return value === 'dark' ? 'dark' : 'light';
-}
-
 function normalizeTransliterationMode(value: unknown): Settings['transliterationMode'] {
   return value === 'latin' ? 'latin' : 'ru';
 }
@@ -47,14 +41,8 @@ export function normalizeSettings(
     translationDirection: normalizeTranslationDirection(
       raw?.translationDirection ?? legacyDirection,
     ),
-    theme: normalizeTheme(raw?.theme),
     transliterationMode: normalizeTransliterationMode(raw?.transliterationMode),
   };
-}
-
-export function applyThemeToDocument(theme: Settings['theme']) {
-  if (typeof document === 'undefined') return;
-  document.documentElement.setAttribute('data-theme', normalizeTheme(theme));
 }
 
 export function getSettings(): Settings {
@@ -74,7 +62,6 @@ export function setSettings(s: Partial<Settings>) {
   const normalized = normalizeSettings({ ...current, ...s });
   localStorage.setItem(KEY, JSON.stringify(normalized));
   localStorage.setItem('deda_translation_direction', normalized.translationDirection);
-  applyThemeToDocument(normalized.theme);
   for (const listener of settingsListeners) {
     listener(normalized);
   }

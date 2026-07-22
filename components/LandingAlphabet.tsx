@@ -89,41 +89,6 @@ export default function LandingAlphabet() {
         ))}
       </div>
       <style jsx>{`
-        :global(html[data-theme='dark']) .landing-alphabet-shell {
-          border-color: rgba(148, 163, 184, 0.16);
-          background: linear-gradient(180deg, rgba(47, 45, 49, 0.58), rgba(31, 32, 36, 0.7));
-          box-shadow: 0 12px 24px rgba(2, 6, 23, 0.14);
-          backdrop-filter: blur(10px);
-        }
-
-        :global(html[data-theme='dark']) .landing-alphabet-key {
-          border-color: rgba(148, 163, 184, 0.16) !important;
-          background: rgba(58, 56, 62, 0.68) !important;
-          box-shadow: 0 1px 4px rgba(2, 6, 23, 0.14) !important;
-        }
-
-        :global(html[data-theme='dark']) .landing-alphabet-key.home-alphabet-key--active {
-          border-color: rgba(108, 139, 255, 0.33) !important;
-          background: rgba(108, 139, 255, 0.055) !important;
-          box-shadow:
-            0 0 0 1px rgba(108, 139, 255, 0.14),
-            0 3px 8px rgba(108, 139, 255, 0.08),
-            inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
-        }
-
-        :global(html[data-theme='dark']) .landing-alphabet-key:hover {
-          border-color: rgba(249, 115, 22, 0.22) !important;
-          background: rgba(64, 62, 70, 0.88) !important;
-        }
-
-        :global(html[data-theme='dark']) .landing-alphabet-letter {
-          color: #f8fafc !important;
-        }
-
-        :global(html[data-theme='dark']) .landing-alphabet-translit {
-          color: rgba(203, 213, 225, 0.72) !important;
-        }
-
         @media (max-width: 767px) {
           .landing-alphabet-shell {
             width: 86%;

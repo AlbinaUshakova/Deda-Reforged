@@ -18,7 +18,7 @@
     backdrop-filter: blur(12px);
 }
 
-html[data-theme='light'] .header-control-btn {
+.header-control-btn {
     background: #f0f1f4 !important;
 }
 
@@ -325,90 +325,6 @@ html[data-theme='light'] .header-control-btn {
     }
 }
 
-html[data-theme='dark'] .header-control-btn {
-    background: rgba(231, 225, 216, 0.050);
-    border-color: rgba(231, 225, 216, 0.085);
-    color: #d9d0c5;
-    box-shadow:
-        0 12px 26px rgba(0, 0, 0, 0.22),
-        inset 0 1px 0 rgba(231, 225, 216, 0.032);
-}
-
-html[data-theme='dark'] .header-control-btn--alphabet {
-    border-color: rgba(231, 225, 216, 0.085);
-}
-
-html[data-theme='dark'] .header-control-btn--alphabet-secondary {
-    background: rgba(231, 225, 216, 0.050);
-    color: #d9d0c5;
-}
-
-html[data-theme='dark'] .header-control-btn--menu {
-    border-color: rgba(231, 225, 216, 0.085);
-}
-
-html[data-theme='dark'] .header-control-btn:hover {
-    background: rgba(231, 225, 216, 0.078);
-    border-color: rgba(231, 225, 216, 0.15);
-    color: #e7e1d8;
-    box-shadow:
-        0 14px 28px rgba(0, 0, 0, 0.27),
-        inset 0 1px 0 rgba(231, 225, 216, 0.040);
-}
-
-html[data-theme='dark'] .header-control-btn:active {
-    background: rgba(231, 225, 216, 0.095);
-}
-
-html[data-theme='dark'] .menu-panel-shell {
-    border-color: color-mix(in srgb, var(--menu-border) 66%, transparent 34%) !important;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.32) !important;
-}
-
-html[data-theme='dark'] .header-control-btn--active {
-    background: rgba(231, 225, 216, 0.090);
-    border-color: rgba(231, 225, 216, 0.17);
-    color: #e7e1d8;
-    box-shadow:
-        0 12px 26px rgba(0, 0, 0, 0.24),
-        inset 0 1px 0 rgba(231, 225, 216, 0.038);
-}
-
-html[data-theme='dark'] .header-control-btn--alphabet.header-control-btn--active {
-    box-shadow:
-        0 12px 26px rgba(0, 0, 0, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-html[data-theme='dark'] .header-control-glyph {
-    color: #e7e1d8;
-}
-
-html[data-theme='dark'] .study-action-pill {
-    border-color: rgba(231, 225, 216, 0.085);
-    background: rgba(231, 225, 216, 0.050);
-    color: #d9d0c5;
-    box-shadow:
-        0 12px 26px rgba(0, 0, 0, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-html[data-theme='dark'] .study-action-pill:hover,
-html[data-theme='dark'] .study-action-pill:focus-visible {
-    border-color: rgba(231, 225, 216, 0.15);
-    background: rgba(231, 225, 216, 0.078);
-    color: #e7e1d8;
-    box-shadow:
-        0 14px 28px rgba(0, 0, 0, 0.27),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-html[data-theme='dark'] .study-action-pill--primary {
-    border-color: rgba(231, 225, 216, 0.17);
-    background: rgba(231, 225, 216, 0.090);
-    color: #e7e1d8;
-}
-
 .header-control-btn,
 .study-action-pill,
 .home-alphabet-panel,
@@ -422,112 +338,6 @@ html[data-theme='dark'] .study-action-pill--primary {
 .home-alphabet-key:hover,
 .landing-alphabet-key:hover {
     border-color: rgba(255, 255, 255, 0.42) !important;
-}
-
-html[data-theme='dark'] .header-control-btn,
-html[data-theme='dark'] .study-action-pill,
-html[data-theme='dark'] .home-alphabet-panel,
-html[data-theme='dark'] .home-alphabet-key,
-html[data-theme='dark'] .landing-alphabet-key {
-    border-color: rgba(231, 225, 216, 0.050) !important;
-    box-shadow:
-        0 10px 24px rgba(0, 0, 0, 0.22),
-        inset 0 1px 0 rgba(231, 225, 216, 0.018) !important;
-}
-
-html[data-theme='dark'] .header-control-btn:hover,
-html[data-theme='dark'] .study-action-pill:hover,
-html[data-theme='dark'] .home-alphabet-key:hover,
-html[data-theme='dark'] .landing-alphabet-key:hover {
-    border-color: rgba(231, 225, 216, 0.090) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-panel {
-    background: var(--menu-bg) !important;
-    border-color: var(--menu-border) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28) !important;
-}
-
-html[data-theme='dark'] .home-top-alphabet-strip {
-    background: var(--bg-card) !important;
-    border-color: var(--border-soft) !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-title {
-    color: #e6e9ef !important;
-}
-
-html[data-theme='dark'] .home-alphabet-close {
-    background: transparent !important;
-    border: 0 !important;
-    border-width: 0 !important;
-    color: var(--menu-text-muted) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-close:hover {
-    background: transparent !important;
-    color: var(--menu-text) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-key {
-    background: #2d3138 !important;
-    border-color: rgba(84, 95, 112, 0.56) !important;
-    box-shadow:
-        0 1px 5px rgba(0, 0, 0, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-key .home-alphabet-letter {
-    color: #f2f4f7 !important;
-}
-
-html[data-theme='dark'] .home-alphabet-key:hover {
-    background: #373c45 !important;
-    transform: translateY(-2px);
-}
-
-html[data-theme='dark'] .home-alphabet-key--active {
-    border-color: rgba(108, 139, 255, 0.33) !important;
-    background: rgba(108, 139, 255, 0.055) !important;
-    box-shadow:
-        0 0 0 1px rgba(108, 139, 255, 0.14),
-        0 3px 8px rgba(108, 139, 255, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-key:active,
-html[data-theme='dark'] .home-alphabet-key:focus-visible {
-    border-color: #6c8bff !important;
-    outline: none;
-    box-shadow:
-        0 0 0 1px rgba(108, 139, 255, 0.35),
-        0 2px 6px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-letter--mastered {
-    color: var(--progress-good) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-letter--almost {
-    color: var(--progress-low) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-letter--current {
-    color: var(--progress-current) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-letter--locked {
-    color: #9a9a9a !important;
-}
-
-html[data-theme='dark'] .home-alphabet-letter--unknown {
-    color: var(--ui-accent) !important;
-}
-
-html[data-theme='dark'] .home-alphabet-translit {
-    color: #8a93a1 !important;
 }
 
 /* --------- Deda 2026 header and alphabet refresh --------- */
@@ -606,31 +416,4 @@ html[data-theme='dark'] .home-alphabet-translit {
         0 0 0 1px rgba(0, 168, 132, 0.10),
         0 10px 24px rgba(0, 168, 132, 0.10),
         inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
-}
-
-html[data-theme='dark'] .header-control-btn,
-html[data-theme='dark'] .study-action-pill,
-html[data-theme='dark'] .home-alphabet-panel,
-html[data-theme='dark'] .home-alphabet-key {
-    border-color: rgba(232, 238, 247, 0.10) !important;
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.070), rgba(255, 255, 255, 0.040)) !important;
-    color: #f2f4f8 !important;
-    box-shadow:
-        0 18px 44px rgba(0, 0, 0, 0.26),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-}
-
-html[data-theme='dark'] .header-control-btn:hover,
-html[data-theme='dark'] .study-action-pill:hover,
-html[data-theme='dark'] .home-alphabet-key:hover {
-    border-color: rgba(232, 238, 247, 0.18) !important;
-    background: rgba(255, 255, 255, 0.095) !important;
-}
-
-html[data-theme='dark'] .header-control-btn--active,
-html[data-theme='dark'] .study-action-pill--primary,
-html[data-theme='dark'] .home-alphabet-key--active {
-    border-color: rgba(232, 238, 247, 0.22) !important;
-    background: rgba(232, 238, 247, 0.10) !important;
 }

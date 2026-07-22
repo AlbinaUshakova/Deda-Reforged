@@ -10,7 +10,6 @@ import ProgressPanel from '@/components/ProgressPanel';
 import FeedbackPanel from '@/components/FeedbackPanel';
 
 export default function AuthStatus() {
-    const theme = useAppStore(state => state.settings.theme);
     const transliterationMode = useAppStore(state => state.settings.transliterationMode);
     const alphabetOpen = useAppStore(state => state.alphabetOpen);
     const updateSettings = useAppStore(state => state.updateSettings);
@@ -178,61 +177,6 @@ export default function AuthStatus() {
                                 <span aria-hidden>i</span>
                                 <span>Приватность</span>
                             </Link>
-                        </div>
-
-                        <div
-                            className="mt-0.5 border-t pt-1"
-                            style={{ borderColor: 'color-mix(in srgb, var(--menu-divider) 68%, transparent 32%)' }}
-                        >
-                            <div className="mb-1 px-1 text-[clamp(9px,1.55vw,11px)] font-semibold uppercase tracking-[0.08em] text-[var(--menu-text-muted)]">
-                                Тема
-                            </div>
-                            <div className="grid grid-cols-2 gap-1 rounded-xl border border-[var(--menu-segment-border)] bg-[var(--menu-segment-bg)] p-[3px]">
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        updateSettings({ theme: 'light' });
-                                    }}
-                                    aria-pressed={theme === 'light'}
-                                    className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,12px)] font-medium transition ${focusRingClass} ${
-                                        theme === 'light'
-                                            ? 'text-[var(--btn-active-text)] border shadow-none'
-                                            : 'bg-transparent text-[var(--menu-segment-idle)] hover:bg-[var(--menu-segment-idle-hover)]'
-                                    }`}
-                                    style={
-                                        theme === 'light'
-                                            ? {
-                                                background: 'color-mix(in srgb, var(--btn-active-bg) 72%, white 28%)',
-                                                borderColor: 'color-mix(in srgb, var(--btn-active-border) 48%, transparent 52%)',
-                                            }
-                                            : undefined
-                                    }
-                                >
-                                    Светлая
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        updateSettings({ theme: 'dark' });
-                                    }}
-                                    aria-pressed={theme === 'dark'}
-                                    className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,12px)] font-medium transition ${focusRingClass} ${
-                                        theme === 'dark'
-                                            ? 'text-[var(--btn-active-text)] border shadow-none'
-                                            : 'bg-transparent text-[var(--menu-segment-idle)] hover:bg-[var(--menu-segment-idle-hover)]'
-                                    }`}
-                                    style={
-                                        theme === 'dark'
-                                            ? {
-                                                background: 'color-mix(in srgb, var(--btn-active-bg) 72%, white 28%)',
-                                                borderColor: 'color-mix(in srgb, var(--btn-active-border) 48%, transparent 52%)',
-                                            }
-                                            : undefined
-                                    }
-                                >
-                                    Тёмная
-                                </button>
-                            </div>
                         </div>
 
                         <div

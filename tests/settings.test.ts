@@ -7,14 +7,12 @@ test('normalizeSettings clamps and sanitizes values', () => {
   const normalized = normalizeSettings({
     lessonTargetScore: 999,
     translationDirection: 'bad-value',
-    theme: 'bad-theme',
     transliterationMode: 'latin',
   });
 
   assert.deepEqual(normalized, {
     lessonTargetScore: 100,
     translationDirection: 'ge-ru',
-    theme: 'light',
     transliterationMode: 'latin',
   });
 });
