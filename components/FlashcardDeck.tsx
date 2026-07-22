@@ -21,7 +21,7 @@ import {
   splitDialogLines,
 } from '@/components/flashcards/flashcardText';
 import { useFlashcardKeyboardShortcuts } from '@/components/flashcards/useFlashcardKeyboardShortcuts';
-import { geTextToHint, type TransliterationMode } from '@/lib/transliteration';
+import { textToHint, type TransliterationMode } from '@/lib/transliteration';
 import { getEpisodesDataSync } from '@/lib/clientContentCache';
 import { getCourse } from '@/lib/courses';
 
@@ -229,8 +229,8 @@ export default function FlashcardDeck({
     if (transliterationMode === 'latin' && card.translit && card.translit.trim()) {
       return card.translit;
     }
-    return geTextToHint(card.ge_text, transliterationMode);
-  }, [card, transliterationMode]);
+    return textToHint(card.ge_text, transliterationMode, courseId);
+  }, [card, courseId, transliterationMode]);
 
   const translitDialogLines = splitDialogLines(
     cardTranslit,
