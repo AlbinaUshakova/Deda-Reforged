@@ -1,0 +1,22 @@
+{
+  "id": "ep3",
+  "title": "Урок 3",
+  "letters": ["B", "V", "Y", "H", "F"],
+  "cards": [
+    { "type": "word", "ge_text": "hola", "ru_meaning": "привет" },
+    { "type": "word", "ge_text": "hoy", "ru_meaning": "сегодня" },
+    { "type": "word", "ge_text": "hay", "ru_meaning": "есть" },
+    { "type": "word", "ge_text": "voy", "ru_meaning": "иду" },
+    { "type": "word", "ge_text": "vino", "ru_meaning": "вино" },
+    { "type": "word", "ge_text": "vivir", "ru_meaning": "жить" },
+    { "type": "word", "ge_text": "bueno", "ru_meaning": "хорошо" },
+    { "type": "word", "ge_text": "bien", "ru_meaning": "хорошо" },
+    { "type": "word", "ge_text": "vida", "ru_meaning": "жизнь" },
+    { "type": "word", "ge_text": "boca", "ru_meaning": "рот" },
+    { "type": "word", "ge_text": "bebe", "ru_meaning": "пьёт", "accepted_ru": ["пьет"] },
+    { "type": "word", "ge_text": "favor", "ru_meaning": "услуга" },
+    { "type": "word", "ge_text": "frio", "ru_meaning": "холодно" },
+    { "type": "word", "ge_text": "fila", "ru_meaning": "очередь" },
+    { "type": "word", "ge_text": "hora", "ru_meaning": "час" }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "ep6",
+  "title": "Урок 6",
+  "letters": ["K", "W"],
+  "cards": [
+    { "type": "word", "ge_text": "kiwi", "ru_meaning": "киви" },
+    { "type": "word", "ge_text": "kilo", "ru_meaning": "кило" },
+    { "type": "word", "ge_text": "karaoke", "ru_meaning": "караоке" },
+    { "type": "word", "ge_text": "wifi", "ru_meaning": "вайфай" },
+    { "type": "word", "ge_text": "web", "ru_meaning": "сайт" },
+    { "type": "word", "ge_text": "ok", "ru_meaning": "ок" },
+    { "type": "phrase", "ge_text": "buenos dias", "ru_meaning": "доброе утро" },
+    { "type": "phrase", "ge_text": "buenas tardes", "ru_meaning": "добрый день" },
+    { "type": "phrase", "ge_text": "buenas noches", "ru_meaning": "добрый вечер" },
+    { "type": "phrase", "ge_text": "por favor", "ru_meaning": "пожалуйста" },
+    { "type": "phrase", "ge_text": "muchas gracias", "ru_meaning": "большое спасибо" },
+    { "type": "phrase", "ge_text": "donde esta", "ru_meaning": "где находится" },
+    { "type": "phrase", "ge_text": "cuanto cuesta", "ru_meaning": "сколько стоит" },
+    { "type": "phrase", "ge_text": "agua por favor", "ru_meaning": "воду пожалуйста" },
+    { "type": "phrase", "ge_text": "la cuenta", "ru_meaning": "счёт", "accepted_ru": ["счет"] }
+  ]
+}

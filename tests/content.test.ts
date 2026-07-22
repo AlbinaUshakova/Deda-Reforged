@@ -82,7 +82,7 @@ test('loadNewLettersPerEpisode returns letters for each numbered lesson', async 
 });
 
 test('non-Georgian courses load separate lessons plus conversational phrases', async () => {
-  for (const courseId of ['sr', 'tr'] as const) {
+  for (const courseId of ['sr', 'tr', 'es'] as const) {
     const episodes = await listEpisodes(courseId);
     const ids = episodes.map((episode) => episode.id);
 
@@ -93,8 +93,8 @@ test('non-Georgian courses load separate lessons plus conversational phrases', a
   }
 });
 
-test('Serbian and Turkish phrases contain 30 essential tourist phrases', async () => {
-  for (const courseId of ['sr', 'tr'] as const) {
+test('non-Georgian phrases contain 30 essential tourist phrases', async () => {
+  for (const courseId of ['sr', 'tr', 'es'] as const) {
     const episode = await loadEpisode('phrases', courseId);
 
     assert.ok(episode);
@@ -106,18 +106,21 @@ test('Serbian and Turkish phrases contain 30 essential tourist phrases', async (
   }
 });
 
-test('Serbian and Turkish favorites include conversational phrases', async () => {
+test('non-Georgian favorites include conversational phrases', async () => {
   const serbianFavorites = await loadEpisode('favorites', 'sr');
   const turkishFavorites = await loadEpisode('favorites', 'tr');
+  const spanishFavorites = await loadEpisode('favorites', 'es');
 
   assert.ok(serbianFavorites);
   assert.ok(turkishFavorites);
+  assert.ok(spanishFavorites);
   assert.ok(serbianFavorites.cards.some((card) => card.ge_text === 'Здраво'));
   assert.ok(turkishFavorites.cards.some((card) => card.ge_text === 'Merhaba'));
+  assert.ok(spanishFavorites.cards.some((card) => card.ge_text === 'Hola'));
 });
 
-test('Serbian and Turkish numbered lessons contain 15 cards each', async () => {
-  for (const courseId of ['sr', 'tr'] as const) {
+test('non-Georgian numbered lessons contain 15 cards each', async () => {
+  for (const courseId of ['sr', 'tr', 'es'] as const) {
     const episodes = await listEpisodes(courseId);
     const numberedLessons = episodes.filter((episode) => /^ep\d+$/.test(episode.id));
 
@@ -132,8 +135,8 @@ test('Serbian and Turkish numbered lessons contain 15 cards each', async () => {
   }
 });
 
-test('Serbian and Turkish lesson cards use only current and previous lesson letters', async () => {
-  for (const courseId of ['sr', 'tr'] as const) {
+test('non-Georgian lesson cards use only current and previous lesson letters', async () => {
+  for (const courseId of ['sr', 'tr', 'es'] as const) {
     const lettersByEpisode = await loadNewLettersPerEpisode(courseId);
     const seen = new Set<string>();
 

@@ -1,0 +1,22 @@
+{
+  "id": "ep2",
+  "title": "Урок 2",
+  "letters": ["P", "T", "R", "C", "D"],
+  "cards": [
+    { "type": "word", "ge_text": "pan", "ru_meaning": "хлеб" },
+    { "type": "word", "ge_text": "papa", "ru_meaning": "папа" },
+    { "type": "word", "ge_text": "tapa", "ru_meaning": "крышка" },
+    { "type": "word", "ge_text": "pera", "ru_meaning": "груша" },
+    { "type": "word", "ge_text": "pero", "ru_meaning": "но" },
+    { "type": "word", "ge_text": "perro", "ru_meaning": "собака" },
+    { "type": "word", "ge_text": "caro", "ru_meaning": "дорого" },
+    { "type": "word", "ge_text": "casa", "ru_meaning": "дом" },
+    { "type": "word", "ge_text": "cosa", "ru_meaning": "вещь" },
+    { "type": "word", "ge_text": "todo", "ru_meaning": "всё", "accepted_ru": ["все"] },
+    { "type": "word", "ge_text": "tarde", "ru_meaning": "поздно" },
+    { "type": "word", "ge_text": "carta", "ru_meaning": "письмо" },
+    { "type": "word", "ge_text": "cuatro", "ru_meaning": "четыре" },
+    { "type": "word", "ge_text": "pista", "ru_meaning": "трек" },
+    { "type": "word", "ge_text": "puerta", "ru_meaning": "дверь" }
+  ]
+}

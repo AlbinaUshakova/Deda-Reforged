@@ -1,0 +1,22 @@
+{
+  "id": "ep1",
+  "title": "Урок 1",
+  "letters": ["A", "E", "I", "O", "U", "M", "N", "S", "L"],
+  "cards": [
+    { "type": "word", "ge_text": "si", "ru_meaning": "да" },
+    { "type": "word", "ge_text": "no", "ru_meaning": "нет" },
+    { "type": "word", "ge_text": "mama", "ru_meaning": "мама" },
+    { "type": "word", "ge_text": "mano", "ru_meaning": "рука" },
+    { "type": "word", "ge_text": "mesa", "ru_meaning": "стол" },
+    { "type": "word", "ge_text": "luna", "ru_meaning": "луна" },
+    { "type": "word", "ge_text": "sol", "ru_meaning": "солнце" },
+    { "type": "word", "ge_text": "sal", "ru_meaning": "соль" },
+    { "type": "word", "ge_text": "miel", "ru_meaning": "мёд", "accepted_ru": ["мед"] },
+    { "type": "word", "ge_text": "uno", "ru_meaning": "один" },
+    { "type": "word", "ge_text": "una", "ru_meaning": "одна" },
+    { "type": "word", "ge_text": "malo", "ru_meaning": "плохой" },
+    { "type": "word", "ge_text": "sano", "ru_meaning": "здоровый" },
+    { "type": "word", "ge_text": "sale", "ru_meaning": "выходит" },
+    { "type": "word", "ge_text": "suma", "ru_meaning": "сумма" }
+  ]
+}

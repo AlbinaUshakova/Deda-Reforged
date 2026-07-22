@@ -8,6 +8,7 @@ const courseFlag: Record<CourseId, string> = {
   ka: '🇬🇪',
   sr: '🇷🇸',
   tr: '🇹🇷',
+  es: '🇪🇸',
 };
 
 export function LandingCourseTitle() {

@@ -1,6 +1,6 @@
 import { geLetterAudioMap } from './georgianLetterAudio.ts';
 
-export type CourseId = 'ka' | 'sr' | 'tr';
+export type CourseId = 'ka' | 'sr' | 'tr' | 'es';
 
 export type Course = {
   id: CourseId;
@@ -277,6 +277,72 @@ const TURKISH_LATIN_HINTS: Record<string, string> = {
   Z: 'z',
 };
 
+const SPANISH_ALPHABET = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S',
+  'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+];
+
+const SPANISH_RU_HINTS: Record<string, string> = {
+  A: 'а',
+  B: 'б',
+  C: 'к/с',
+  D: 'д',
+  E: 'э',
+  F: 'ф',
+  G: 'г/х',
+  H: 'нем.',
+  I: 'и',
+  J: 'х',
+  K: 'к',
+  L: 'л',
+  M: 'м',
+  N: 'н',
+  'Ñ': 'нь',
+  O: 'о',
+  P: 'п',
+  Q: 'к',
+  R: 'р',
+  S: 'с',
+  T: 'т',
+  U: 'у',
+  V: 'б/в',
+  W: 'в',
+  X: 'кс',
+  Y: 'й/и',
+  Z: 'с',
+};
+
+const SPANISH_LATIN_HINTS: Record<string, string> = {
+  A: 'a',
+  B: 'b',
+  C: 'c',
+  D: 'd',
+  E: 'e',
+  F: 'f',
+  G: 'g',
+  H: 'h',
+  I: 'i',
+  J: 'j',
+  K: 'k',
+  L: 'l',
+  M: 'm',
+  N: 'n',
+  'Ñ': 'ñ',
+  O: 'o',
+  P: 'p',
+  Q: 'q',
+  R: 'r',
+  S: 's',
+  T: 't',
+  U: 'u',
+  V: 'v',
+  W: 'w',
+  X: 'x',
+  Y: 'y',
+  Z: 'z',
+};
+
 function rows(alphabet: string[], size: number): string[][] {
   const result: string[][] = [];
   for (let index = 0; index < alphabet.length; index += size) {
@@ -340,13 +406,31 @@ export const COURSES: Record<CourseId, Course> = {
     speechLang: 'tr-TR',
     locale: 'tr',
   },
+  es: {
+    id: 'es',
+    title: 'Испанский',
+    shortTitle: 'Испанский',
+    sourceLanguageLabel: '🇪🇸',
+    targetLanguageLabel: '🇷🇺',
+    alphabetTitle: 'Alfabeto',
+    alphabet: SPANISH_ALPHABET,
+    alphabetRows: rows(SPANISH_ALPHABET, 6),
+    letterNames: Object.fromEntries(SPANISH_ALPHABET.map(letter => [letter, letter])),
+    letterHints: {
+      ru: SPANISH_RU_HINTS,
+      latin: SPANISH_LATIN_HINTS,
+    },
+    letterAudioMap: {},
+    speechLang: 'es-ES',
+    locale: 'es',
+  },
 };
 
 export const DEFAULT_COURSE_ID: CourseId = 'ka';
 export const COURSE_IDS = Object.keys(COURSES) as CourseId[];
 
 export function normalizeCourseId(value: unknown): CourseId {
-  return value === 'sr' || value === 'tr' ? value : DEFAULT_COURSE_ID;
+  return value === 'sr' || value === 'tr' || value === 'es' ? value : DEFAULT_COURSE_ID;
 }
 
 export function getCourse(courseId: unknown): Course {

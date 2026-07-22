@@ -24,6 +24,13 @@ import trEp3Json from '../public/content/tr_ru_ep3.json' with { type: 'json' };
 import trEp4Json from '../public/content/tr_ru_ep4.json' with { type: 'json' };
 import trEp5Json from '../public/content/tr_ru_ep5.json' with { type: 'json' };
 import trEp6Json from '../public/content/tr_ru_ep6.json' with { type: 'json' };
+import esStaticEpisodes from '../public/content/episodes_es.json' with { type: 'json' };
+import esEp1Json from '../public/content/es_ru_ep1.json' with { type: 'json' };
+import esEp2Json from '../public/content/es_ru_ep2.json' with { type: 'json' };
+import esEp3Json from '../public/content/es_ru_ep3.json' with { type: 'json' };
+import esEp4Json from '../public/content/es_ru_ep4.json' with { type: 'json' };
+import esEp5Json from '../public/content/es_ru_ep5.json' with { type: 'json' };
+import esEp6Json from '../public/content/es_ru_ep6.json' with { type: 'json' };
 import { DEFAULT_COURSE_ID, getCourse, isCourseLetter, normalizeCourseId, type CourseId } from './courses.ts';
 
 export type CardInfoNote = {
@@ -91,12 +98,21 @@ const RAW_EPISODES_BY_COURSE: Record<CourseId, RawEpisode[]> = {
     trEp5Json as RawEpisode,
     trEp6Json as RawEpisode,
   ],
+  es: [
+    esEp1Json as RawEpisode,
+    esEp2Json as RawEpisode,
+    esEp3Json as RawEpisode,
+    esEp4Json as RawEpisode,
+    esEp5Json as RawEpisode,
+    esEp6Json as RawEpisode,
+  ],
 };
 
 const RAW_BY_COURSE_AND_ID: Record<CourseId, Record<string, RawEpisode>> = {
   ka: Object.fromEntries(RAW_EPISODES_BY_COURSE.ka.map((episode) => [episode.id, episode])),
   sr: Object.fromEntries(RAW_EPISODES_BY_COURSE.sr.map((episode) => [episode.id, episode])),
   tr: Object.fromEntries(RAW_EPISODES_BY_COURSE.tr.map((episode) => [episode.id, episode])),
+  es: Object.fromEntries(RAW_EPISODES_BY_COURSE.es.map((episode) => [episode.id, episode])),
 };
 
 const COMMON_SPECIAL_EPISODES: EpisodesListItem[] = [
@@ -130,6 +146,10 @@ const STATIC_EPISODES_BY_COURSE: Record<CourseId, EpisodesListItem[]> = {
     title: episode.title,
   })).concat(SPECIAL_EPISODES_WITH_PHRASES),
   tr: (trStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
+    id: episode.id,
+    title: episode.title,
+  })).concat(SPECIAL_EPISODES_WITH_PHRASES),
+  es: (esStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
   })).concat(SPECIAL_EPISODES_WITH_PHRASES),
@@ -333,10 +353,48 @@ const TURKISH_PHRASES_EPISODE: Episode = {
   ],
 };
 
+const SPANISH_PHRASES_EPISODE: Episode = {
+  id: 'phrases',
+  title: 'Разговорные фразы',
+  cards: [
+    phrase('Hola', 'Привет'),
+    phrase('Buenos días', 'Доброе утро'),
+    phrase('Buenas tardes', 'Добрый день'),
+    phrase('Buenas noches', 'Добрый вечер'),
+    phrase('Adiós', 'До свидания'),
+    phrase('Hasta luego', 'Увидимся'),
+    phrase('Por favor', 'Пожалуйста'),
+    phrase('Gracias', 'Спасибо'),
+    phrase('Muchas gracias', 'Большое спасибо', undefined, ['Спасибо большое']),
+    phrase('De nada', 'Не за что'),
+    phrase('Perdón', 'Извините', undefined, ['Простите']),
+    phrase('Lo siento', 'Мне жаль'),
+    phrase('Sí', 'Да'),
+    phrase('No', 'Нет'),
+    phrase('Está bien', 'Хорошо', undefined, ['Ладно', 'Ок', 'Окей']),
+    phrase('No entiendo', 'Я не понимаю', undefined, ['Не понимаю']),
+    phrase('Entiendo', 'Я понимаю', undefined, ['Понимаю']),
+    phrase('¿Habla inglés?', 'Вы говорите по-английски?'),
+    phrase('Soy turista', 'Я турист'),
+    phrase('¿Cómo se llama?', 'Как вас зовут?'),
+    phrase('Mucho gusto', 'Приятно познакомиться'),
+    phrase('¿Dónde está el baño?', 'Где туалет?'),
+    phrase('Ayuda', 'Помощь'),
+    phrase('Necesito ayuda', 'Мне нужна помощь', undefined, ['Нужна помощь']),
+    phrase('¿Cuánto cuesta?', 'Сколько стоит?'),
+    phrase('Quiero esto', 'Я хочу это', undefined, ['Хочу это']),
+    phrase('Agua, por favor', 'Воду, пожалуйста', undefined, ['Вода пожалуйста']),
+    phrase('La cuenta, por favor', 'Счёт, пожалуйста', undefined, ['Счет пожалуйста']),
+    phrase('¿Dónde está la farmacia?', 'Где аптека?'),
+    phrase('Necesito un taxi', 'Мне нужно такси', undefined, ['Нужно такси']),
+  ],
+};
+
 export const PHRASES_EPISODE_BY_COURSE: Record<CourseId, Episode | null> = {
   ka: PHRASES_EPISODE,
   sr: SERBIAN_PHRASES_EPISODE,
   tr: TURKISH_PHRASES_EPISODE,
+  es: SPANISH_PHRASES_EPISODE,
 };
 
 export function normalizeGeorgianText(text: string): string {
