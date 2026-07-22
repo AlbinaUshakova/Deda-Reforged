@@ -36,7 +36,7 @@ const TOPIC_CONFIG: Record<string, { label: string; description: string }> = {
 };
 
 const chipBase =
-  'h-8 px-3 rounded-full flex items-center justify-center text-xs md:text-sm font-semibold transition transform duration-200';
+  'flashcard-filter-chip h-8 px-3 rounded-full flex items-center justify-center text-xs md:text-sm font-semibold transition transform duration-200';
 const chipPassive =
   'bg-white border border-slate-300 text-[var(--text-secondary)] hover:bg-slate-50 hover:text-[var(--text-primary)]';
 const chipActive =

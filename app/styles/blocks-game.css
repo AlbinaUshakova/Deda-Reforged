@@ -559,3 +559,24 @@
 .blocks-grid-hover-cell {
     border-color: rgba(0, 168, 132, 0.32) !important;
 }
+
+/* Game controls use outline/ghost styling instead of filled buttons. */
+.blocks-submit-btn,
+.blocks-refresh-btn,
+.blocks-translation-btn,
+.blocks-grid-gameover-button,
+.blocks-question-card button[aria-label='Добавить слово в избранное'],
+.blocks-question-card button[aria-label='Убрать слово из избранного'] {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.blocks-submit-btn:hover,
+.blocks-refresh-btn:hover,
+.blocks-translation-btn:hover,
+.blocks-grid-gameover-button:hover,
+.blocks-question-card button[aria-label='Добавить слово в избранное']:hover,
+.blocks-question-card button[aria-label='Убрать слово из избранного']:hover {
+    background: rgba(0, 168, 132, 0.055) !important;
+    box-shadow: none !important;
+}

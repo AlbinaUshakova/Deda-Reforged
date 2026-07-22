@@ -1535,3 +1535,68 @@ body {
 .home-lesson-card--current {
     border-color: rgba(255, 107, 53, 0.18) !important;
 }
+
+/* Minimal clickable controls: no filled button backgrounds. */
+.landing-cta-btn,
+.home-special-btn,
+.play-tab--primary,
+.play-tab--secondary,
+.study-action-pill,
+.header-control-btn,
+.home-alphabet-key,
+.landing-alphabet-key,
+.blocks-submit-btn,
+.blocks-refresh-btn,
+.blocks-translation-btn,
+.blocks-grid-gameover-button,
+.flashcard-mini-btn,
+.flashcard-control-btn,
+.flashcard-speed-option,
+.flashcard-next-btn,
+.flashcard-nav-arrow,
+.menu-panel-shell button:not(.menu-stepper-input) {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.landing-cta-btn:hover,
+.home-special-btn:hover,
+.play-tab--primary:hover,
+.play-tab--secondary:hover,
+.study-action-pill:hover,
+.study-action-pill:focus-visible,
+.header-control-btn:hover,
+.header-control-btn:focus-visible,
+.home-alphabet-key:hover,
+.landing-alphabet-key:hover,
+.blocks-submit-btn:hover,
+.blocks-refresh-btn:hover,
+.blocks-translation-btn:hover,
+.blocks-grid-gameover-button:hover,
+.flashcard-mini-btn:hover,
+.flashcard-control-btn:hover,
+.flashcard-control-btn:focus-visible,
+.flashcard-speed-option:hover,
+.flashcard-speed-option:focus-visible,
+.flashcard-next-btn:hover,
+.flashcard-nav-arrow:hover,
+.menu-panel-shell button:not(.menu-stepper-input):hover {
+    background: rgba(0, 168, 132, 0.055) !important;
+    box-shadow: none !important;
+}
+
+.play-tab--primary,
+.study-action-pill--primary,
+.header-control-btn--active,
+.home-alphabet-key--active,
+.flashcard-control-btn--primary,
+.flashcard-shuffle-btn[aria-pressed='true'],
+.flashcard-play-btn[aria-pressed='true'],
+.flashcard-speed-btn[aria-expanded='true'],
+.flashcard-hint-btn[aria-pressed='true'],
+.flashcard-favorite-btn[aria-pressed='true'],
+.flashcard-translit-btn[aria-pressed='true'],
+.menu-panel-shell button[aria-pressed='true'] {
+    background: transparent !important;
+    box-shadow: none !important;
+}

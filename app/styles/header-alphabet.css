@@ -417,3 +417,32 @@
         0 10px 24px rgba(0, 168, 132, 0.10),
         inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
 }
+
+/* Clickable controls stay light: no filled button surfaces. */
+.header-control-btn,
+.study-action-pill,
+.home-alphabet-key,
+.landing-alphabet-key,
+.menu-panel-shell button:not(.menu-stepper-input) {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.header-control-btn:hover,
+.header-control-btn:focus-visible,
+.study-action-pill:hover,
+.study-action-pill:focus-visible,
+.home-alphabet-key:hover,
+.landing-alphabet-key:hover,
+.menu-panel-shell button:not(.menu-stepper-input):hover {
+    background: rgba(0, 168, 132, 0.055) !important;
+    box-shadow: none !important;
+}
+
+.header-control-btn--active,
+.study-action-pill--primary,
+.home-alphabet-key--active,
+.menu-panel-shell button[aria-pressed='true'] {
+    background: transparent !important;
+    box-shadow: none !important;
+}

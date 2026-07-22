@@ -1136,3 +1136,45 @@
         linear-gradient(180deg, rgba(224, 255, 246, 0.92), rgba(255, 255, 255, 0.62)) !important;
     color: #006b58 !important;
 }
+
+/* Keep controls consistent with lesson letters: clickable, but not filled. */
+.flashcard-mini-btn,
+.flashcard-translit-btn,
+.flashcard-hint-btn,
+.flashcard-favorite-btn,
+.flashcard-control-btn,
+.flashcard-filter-chip,
+.flashcard-speed-option,
+.flashcard-next-btn,
+.flashcard-nav-arrow {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.flashcard-mini-btn:hover,
+.flashcard-translit-btn:hover,
+.flashcard-hint-btn:hover,
+.flashcard-favorite-btn:hover,
+.flashcard-control-btn:hover,
+.flashcard-control-btn:focus-visible,
+.flashcard-filter-chip:hover,
+.flashcard-filter-chip:focus-visible,
+.flashcard-speed-option:hover,
+.flashcard-speed-option:focus-visible,
+.flashcard-next-btn:hover,
+.flashcard-nav-arrow:hover {
+    background: rgba(0, 168, 132, 0.055) !important;
+    box-shadow: none !important;
+}
+
+.flashcard-control-btn--primary,
+.flashcard-shuffle-btn[aria-pressed='true'],
+.flashcard-play-btn[aria-pressed='true'],
+.flashcard-speed-btn[aria-expanded='true'],
+.flashcard-hint-btn[aria-pressed='true'],
+.flashcard-favorite-btn[aria-pressed='true'],
+.flashcard-translit-btn[aria-pressed='true'],
+.flashcard-filter-chip {
+    background: transparent !important;
+    box-shadow: none !important;
+}

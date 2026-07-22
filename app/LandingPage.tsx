@@ -79,23 +79,20 @@ export default function LandingPage() {
     .landing-cta-btn {
       position: relative;
       z-index: 4;
-      border-color: transparent !important;
-      background: #171513 !important;
-      color: #fffaf2 !important;
+      border-color: rgba(0, 168, 132, 0.26) !important;
+      background: transparent !important;
+      color: var(--text-primary) !important;
       pointer-events: auto;
-      box-shadow:
-        0 16px 36px rgba(23, 21, 19, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
-      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      box-shadow: none !important;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
     }
 
     .landing-cta-btn:hover {
       opacity: 1;
       transform: translateY(-2px);
-      background: #28231e !important;
-      box-shadow:
-        0 22px 48px rgba(23, 21, 19, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      border-color: rgba(0, 168, 132, 0.42) !important;
+      background: rgba(0, 168, 132, 0.055) !important;
+      box-shadow: none !important;
     }
 
     .landing-alphabet-hint {
