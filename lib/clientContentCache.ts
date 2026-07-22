@@ -20,7 +20,7 @@ export type EpisodesData = {
 
 export type EpisodeData = Episode | null;
 
-const EPISODES_DATA_CACHE_KEY_PREFIX = 'deda:episodes-data-cache:v4';
+const EPISODES_DATA_CACHE_KEY_PREFIX = 'deda:episodes-data-cache:v5';
 const RAW_CONTENT_KEY = 'deda_content_json';
 
 const episodesDataCache = new Map<CourseId, EpisodesData>();
@@ -138,7 +138,7 @@ export async function getEpisodesDataCached(
   const promise = (async () => {
     try {
       const res = await fetch(`/api/content/episodes?course=${encodeURIComponent(normalizedCourseId)}`, {
-        cache: 'force-cache',
+        cache: forceRefresh ? 'no-store' : 'force-cache',
       });
       if (!res.ok) throw new Error('Failed to load episodes');
 
