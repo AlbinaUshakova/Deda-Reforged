@@ -1,0 +1,15 @@
+{
+  "id": "ep7",
+  "title": "Урок 7",
+  "letters": ["Ц", "Х", "Ћ"],
+  "cards": [
+    { "type": "word", "ge_text": "цена", "ru_meaning": "цена" },
+    { "type": "word", "ge_text": "цар", "ru_meaning": "царь" },
+    { "type": "word", "ge_text": "црн", "ru_meaning": "чёрный", "accepted_ru": ["черный"] },
+    { "type": "word", "ge_text": "хлеб", "ru_meaning": "хлеб" },
+    { "type": "word", "ge_text": "храна", "ru_meaning": "еда" },
+    { "type": "word", "ge_text": "хоћу", "ru_meaning": "хочу" },
+    { "type": "word", "ge_text": "кућа", "ru_meaning": "дом" },
+    { "type": "word", "ge_text": "ноћ", "ru_meaning": "ночь" }
+  ]
+}

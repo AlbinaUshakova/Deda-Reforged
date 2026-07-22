@@ -1,0 +1,16 @@
+{
+  "id": "ep8",
+  "title": "Урок 8",
+  "letters": ["Ж", "Ш", "Ђ", "Џ", "Ф"],
+  "cards": [
+    { "type": "word", "ge_text": "живот", "ru_meaning": "жизнь" },
+    { "type": "word", "ge_text": "жена", "ru_meaning": "женщина" },
+    { "type": "word", "ge_text": "школа", "ru_meaning": "школа" },
+    { "type": "word", "ge_text": "шта", "ru_meaning": "что" },
+    { "type": "word", "ge_text": "шећер", "ru_meaning": "сахар" },
+    { "type": "word", "ge_text": "ђак", "ru_meaning": "ученик" },
+    { "type": "word", "ge_text": "џеп", "ru_meaning": "карман" },
+    { "type": "word", "ge_text": "кафа", "ru_meaning": "кофе" },
+    { "type": "word", "ge_text": "флаша", "ru_meaning": "бутылка" }
+  ]
+}

@@ -14,6 +14,9 @@ import srEp2Json from '../public/content/sr_ru_ep2.json' with { type: 'json' };
 import srEp3Json from '../public/content/sr_ru_ep3.json' with { type: 'json' };
 import srEp4Json from '../public/content/sr_ru_ep4.json' with { type: 'json' };
 import srEp5Json from '../public/content/sr_ru_ep5.json' with { type: 'json' };
+import srEp6Json from '../public/content/sr_ru_ep6.json' with { type: 'json' };
+import srEp7Json from '../public/content/sr_ru_ep7.json' with { type: 'json' };
+import srEp8Json from '../public/content/sr_ru_ep8.json' with { type: 'json' };
 import { DEFAULT_COURSE_ID, getCourse, isCourseLetter, normalizeCourseId, type CourseId } from './courses.ts';
 
 export type CardInfoNote = {
@@ -69,6 +72,9 @@ const RAW_EPISODES_BY_COURSE: Record<CourseId, RawEpisode[]> = {
     srEp3Json as RawEpisode,
     srEp4Json as RawEpisode,
     srEp5Json as RawEpisode,
+    srEp6Json as RawEpisode,
+    srEp7Json as RawEpisode,
+    srEp8Json as RawEpisode,
   ],
 };
 

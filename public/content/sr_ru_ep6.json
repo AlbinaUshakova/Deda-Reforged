@@ -1,0 +1,15 @@
+{
+  "id": "ep6",
+  "title": "Урок 6",
+  "letters": ["Љ", "Њ"],
+  "cards": [
+    { "type": "word", "ge_text": "људи", "ru_meaning": "люди" },
+    { "type": "word", "ge_text": "љубав", "ru_meaning": "любовь" },
+    { "type": "word", "ge_text": "бољи", "ru_meaning": "лучше" },
+    { "type": "word", "ge_text": "њен", "ru_meaning": "её" },
+    { "type": "word", "ge_text": "њега", "ru_meaning": "его" },
+    { "type": "word", "ge_text": "коњ", "ru_meaning": "конь", "accepted_ru": ["лошадь"] },
+    { "type": "word", "ge_text": "мањи", "ru_meaning": "меньше" },
+    { "type": "word", "ge_text": "љуто", "ru_meaning": "остро" }
+  ]
+}
