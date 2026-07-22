@@ -176,7 +176,8 @@
 .flashcard-controls-wrap {
     position: relative;
     z-index: 45;
-    margin-top: clamp(10px, 1.7vh, 16px);
+    margin-top: clamp(6px, 1vh, 10px);
+    margin-bottom: clamp(8px, 1.35vh, 12px);
     width: min(100%, 420px, 84vw);
     max-width: 420px;
     display: flex;
@@ -224,7 +225,8 @@
     }
 
     .flashcard-controls-wrap {
-        margin-top: 10px;
+        margin-top: 8px;
+        margin-bottom: 10px;
         width: min(100%, 420px, 86vw);
         max-width: 420px;
     }
@@ -530,7 +532,7 @@
 
 .flashcard-nav-bar {
     width: min(100%, 420px);
-    margin-top: clamp(12px, 2vh, 18px);
+    margin-top: clamp(8px, 1.4vh, 12px);
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;

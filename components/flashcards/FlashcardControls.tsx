@@ -91,7 +91,7 @@ export function FlashcardControls({
         </button>
 
         {speedMenuOpen && (
-          <div className="flashcard-mode-menu absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2">
+          <div className="flashcard-mode-menu absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2">
             <div className="flashcard-mode-toggles">
               <button
                 type="button"

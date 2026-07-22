@@ -449,6 +449,19 @@ export default function FlashcardDeck({
       <div className="flashcard-stage relative mx-auto flex w-full max-w-[900px] flex-col items-center justify-center px-[clamp(14px,3.6vw,40px)] pt-[clamp(8px,1.4vh,18px)] pb-[clamp(24px,4vh,44px)]">
         <FlashcardLessonLetters letters={currentLessonLettersList} />
 
+        {/* Secondary modes: settings, not the primary card action. */}
+        <FlashcardControls
+          shuffled={shuffled}
+          auto={auto}
+          autoSpeedMs={autoSpeedMs}
+          speedMenuOpen={speedMenuOpen}
+          speedMenuRef={speedMenuRef}
+          onShuffle={toggleShuffle}
+          onToggleAuto={() => setAuto(currentAuto => !currentAuto)}
+          onToggleSpeedMenu={() => setSpeedMenuOpen(open => !open)}
+          onSelectSpeed={selectAutoSpeed}
+        />
+
         <div className="flashcard-card-shell relative mx-auto">
           <div
             className={`flashcard-main-card group relative z-10 mx-auto cursor-pointer rounded-3xl border border-slate-200 bg-white ${
@@ -512,19 +525,6 @@ export default function FlashcardDeck({
 
           </div>
         </div>
-
-        {/* Secondary modes: quieter than the main card navigation. */}
-        <FlashcardControls
-          shuffled={shuffled}
-          auto={auto}
-          autoSpeedMs={autoSpeedMs}
-          speedMenuOpen={speedMenuOpen}
-          speedMenuRef={speedMenuRef}
-          onShuffle={toggleShuffle}
-          onToggleAuto={() => setAuto(currentAuto => !currentAuto)}
-          onToggleSpeedMenu={() => setSpeedMenuOpen(open => !open)}
-          onSelectSpeed={selectAutoSpeed}
-        />
 
         <nav className="flashcard-nav-bar" aria-label="Навигация по карточкам">
           <button
