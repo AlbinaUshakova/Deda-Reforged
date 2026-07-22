@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import LandingAlphabet from '@/components/LandingAlphabet';
+import { LandingAlphabetTitle, LandingCourseTitle } from '@/components/LandingCourseTitle';
 
 const lightInterfaceSlots: Array<{
   title: string;
@@ -32,9 +33,9 @@ const lightInterfaceSlots: Array<{
 ];
 
 export const landingMetadata = {
-  title: 'Deda - учимся читать по-грузински, играя.',
+  title: 'Deda - учимся читать играя.',
   description:
-    'Слушай буквы, читай карточки и играй, чтобы довести чтение по-грузински до автоматизма.',
+    'Слушай буквы, читай карточки и играй, чтобы довести чтение до автоматизма.',
 };
 
 export default function LandingPage() {
@@ -74,6 +75,50 @@ export default function LandingPage() {
       font-weight: 950;
       letter-spacing: -0.07em;
       text-wrap: balance;
+    }
+
+    .landing-course-flags {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.56);
+      padding: 4px;
+      box-shadow:
+        0 12px 28px rgba(31, 28, 23, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.76);
+      vertical-align: middle;
+      backdrop-filter: blur(12px);
+    }
+
+    .landing-course-flag {
+      display: inline-flex;
+      width: clamp(34px, 4vw, 46px);
+      height: clamp(34px, 4vw, 46px);
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-size: clamp(18px, 2.3vw, 26px);
+      line-height: 1;
+      transition:
+        transform 160ms ease,
+        background 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+    }
+
+    .landing-course-flag:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.62);
+      border-color: rgba(23, 21, 19, 0.08);
+    }
+
+    .landing-course-flag--active {
+      background: #171513;
+      border-color: rgba(23, 21, 19, 0.16);
+      box-shadow: 0 8px 18px rgba(23, 21, 19, 0.16);
     }
 
     .landing-cta-btn {
@@ -515,9 +560,7 @@ export default function LandingPage() {
         <div className="landing-hero-grid grid grid-cols-1 md:grid-cols-[minmax(0,1.08fr)_minmax(250px,0.92fr)]">
           <div className="landing-copy max-w-none md:col-start-1 md:row-start-1">
             <h1 className="landing-title max-w-[620px] text-[clamp(23px,3.8vw,47px)] font-semibold leading-[1.1] tracking-[-0.025em]">
-              <span className="block">Учимся читать</span>
-              {' '}
-              <span className="mt-1 block">по - грузински, играя</span>
+              <LandingCourseTitle />
             </h1>
             <p className="landing-subtitle mt-6 text-[clamp(15px,2vw,20px)] leading-[1.4] text-[var(--text-secondary)]">
               Слушай буквы, читай карточки{' '}
@@ -545,7 +588,7 @@ export default function LandingPage() {
           <div className="relative mt-12 w-full max-w-[458px] md:col-start-2 md:row-span-2 md:row-start-1 md:mt-8 md:-ml-[52px] md:justify-self-start lg:-ml-[64px] lg:max-w-[540px]">
             <div className="flex flex-col items-center gap-1">
               <div className="text-[14px] font-semibold tracking-[-0.01em] text-[var(--text-primary)]">
-                Грузинский алфавит
+                <LandingAlphabetTitle />
               </div>
               <div className="landing-alphabet-hint self-center">
                 <div>
