@@ -1,0 +1,15 @@
+{
+  "id": "ep5",
+  "title": "Урок 5",
+  "letters": ["Б", "Г", "З", "Ч"],
+  "cards": [
+    { "type": "word", "ge_text": "бог", "ru_meaning": "бог" },
+    { "type": "word", "ge_text": "без", "ru_meaning": "без" },
+    { "type": "word", "ge_text": "брзо", "ru_meaning": "быстро" },
+    { "type": "word", "ge_text": "човек", "ru_meaning": "человек" },
+    { "type": "word", "ge_text": "због", "ru_meaning": "из-за" },
+    { "type": "word", "ge_text": "град", "ru_meaning": "город" },
+    { "type": "phrase", "ge_text": "добро јутро", "ru_meaning": "доброе утро" },
+    { "type": "phrase", "ge_text": "добро вече", "ru_meaning": "добрый вечер" }
+  ]
+}

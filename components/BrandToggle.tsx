@@ -2,10 +2,13 @@
 
 import Link from 'next/link';
 import { useAppStore } from '@/lib/appStore';
+import { getCourse } from '@/lib/courses';
 
 export default function BrandToggle() {
   const alphabetOpen = useAppStore(state => state.alphabetOpen);
+  const courseId = useAppStore(state => state.settings.courseId);
   const requestAlphabetToggle = useAppStore(state => state.requestAlphabetToggle);
+  const course = getCourse(courseId);
   const alphabetLabel = alphabetOpen ? 'Скрыть алфавит' : 'Открыть алфавит';
 
   return (
@@ -22,7 +25,7 @@ export default function BrandToggle() {
         aria-label={alphabetLabel}
         title={alphabetLabel}
       >
-        <span className="header-control-glyph" aria-hidden="true">ა</span>
+        <span className="header-control-glyph" aria-hidden="true">{course.alphabet[0]}</span>
         Алфавит
       </button>
     </div>

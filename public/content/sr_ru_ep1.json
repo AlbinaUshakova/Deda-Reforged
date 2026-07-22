@@ -1,0 +1,14 @@
+{
+  "id": "ep1",
+  "title": "Урок 1",
+  "letters": ["А", "М", "Т", "О", "И"],
+  "cards": [
+    { "type": "word", "ge_text": "мама", "ru_meaning": "мама" },
+    { "type": "word", "ge_text": "тата", "ru_meaning": "папа", "accepted_ru": ["отец"] },
+    { "type": "word", "ge_text": "има", "ru_meaning": "есть" },
+    { "type": "word", "ge_text": "ти", "ru_meaning": "ты" },
+    { "type": "word", "ge_text": "ми", "ru_meaning": "мы" },
+    { "type": "word", "ge_text": "то", "ru_meaning": "это" },
+    { "type": "word", "ge_text": "тамо", "ru_meaning": "там" }
+  ]
+}

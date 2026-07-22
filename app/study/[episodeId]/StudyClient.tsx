@@ -5,6 +5,9 @@ import type { Route } from 'next';
 import FlashcardDeck from '@/components/FlashcardDeck';
 import StudyPageActions from '@/components/study/StudyPageActions';
 import type { Episode } from '@/lib/content';
+import { getEpisodeByIdCached } from '@/lib/clientContentCache';
+import { DEFAULT_COURSE_ID } from '@/lib/courses';
+import { useAppStore } from '@/lib/appStore';
 import { getStudyDeckCards, resolveStudyEpisode } from './studyContent';
 
 export default function StudyClient({
@@ -14,7 +17,10 @@ export default function StudyClient({
   episodeId: string;
   bundled: Episode | null;
 }) {
-  const ep = useMemo(() => resolveStudyEpisode(bundled, episodeId), [bundled, episodeId]);
+  const courseId = useAppStore(state => state.settings.courseId);
+  const hydrate = useAppStore(state => state.hydrate);
+  const [courseEpisode, setCourseEpisode] = useState<Episode | null>(bundled);
+  const ep = useMemo(() => resolveStudyEpisode(courseEpisode, episodeId), [courseEpisode, episodeId]);
   const words = useMemo(() => getStudyDeckCards(ep), [ep]);
 
   const hasEpisode = Boolean(ep);
@@ -27,6 +33,30 @@ export default function StudyClient({
     topicForPlay && hasWords
       ? `/play/${episodeId}?topic=${encodeURIComponent(topicForPlay)}`
       : `/play/${episodeId}`;
+
+  useEffect(() => {
+    void hydrate();
+  }, [hydrate]);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (courseId === DEFAULT_COURSE_ID) {
+      setCourseEpisode(bundled);
+      return;
+    }
+
+    getEpisodeByIdCached(episodeId, courseId)
+      .then(episode => {
+        if (!cancelled) setCourseEpisode(episode);
+      })
+      .catch(() => {
+        if (!cancelled) setCourseEpisode(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [bundled, courseId, episodeId]);
 
   useEffect(() => {
     document.documentElement.classList.add('app-no-page-scroll');

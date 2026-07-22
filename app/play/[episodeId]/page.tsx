@@ -5,6 +5,7 @@ import type { Route } from 'next';
 import { useEffect, useState, useMemo } from 'react';
 import { useAppStore } from '@/lib/appStore';
 import type { EpisodeCard } from '@/lib/clientContentCache';
+import { progressKeyForEpisode } from '@/lib/courses';
 import BlocksGame from '@/components/BlocksGame';
 
 type Word = { ge: string; ru: string; acceptedRu?: string[]; acceptedGe?: string[]; audio?: string };
@@ -62,8 +63,8 @@ function getEpisodeFallbackTitle(episodeId: string): string {
   return episodeId;
 }
 
-async function loadEpisodeById(episodeId: string): Promise<Episode | null> {
-  const res = await fetch(`/api/content/episode?id=${encodeURIComponent(episodeId)}`, {
+async function loadEpisodeById(episodeId: string, courseId: string): Promise<Episode | null> {
+  const res = await fetch(`/api/content/episode?id=${encodeURIComponent(episodeId)}&course=${encodeURIComponent(courseId)}`, {
     cache: 'no-store',
   });
   if (res.status === 404) return null;
@@ -75,6 +76,8 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
   const { episodeId } = params;
   const hydrate = useAppStore(state => state.hydrate);
   const progressMap = useAppStore(state => state.progressMap);
+  const courseId = useAppStore(state => state.settings.courseId);
+  const progressEpisodeId = progressKeyForEpisode(courseId, episodeId);
 
   const [title, setTitle] = useState<string>('');
   const [words, setWords] = useState<Word[]>([]);
@@ -86,8 +89,8 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
   }, [hydrate]);
 
   useEffect(() => {
-    setInitialBest(progressMap[episodeId] ?? 0);
-  }, [episodeId, progressMap]);
+    setInitialBest(progressMap[progressEpisodeId] ?? 0);
+  }, [progressEpisodeId, progressMap]);
 
   useEffect(() => {
     let cancelled = false;
@@ -95,7 +98,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
 
     (async () => {
       try {
-        const ep = await loadEpisodeById(episodeId);
+        const ep = await loadEpisodeById(episodeId, courseId);
         if (cancelled) return;
 
         if (!ep) {
@@ -148,7 +151,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
     return () => {
       cancelled = true;
     };
-  }, [episodeId]);
+  }, [courseId, episodeId]);
 
   const hasWords = useMemo(() => words.length > 0, [words]);
   const studyHref = `/study/${episodeId}` as Route;
@@ -196,7 +199,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
             <>
               <BlocksGame
                 words={words}
-                episodeId={episodeId}
+                episodeId={progressEpisodeId}
                 initialBest={initialBest}
               />
             </>

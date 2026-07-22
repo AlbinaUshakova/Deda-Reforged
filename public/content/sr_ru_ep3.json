@@ -1,0 +1,15 @@
+{
+  "id": "ep3",
+  "title": "Урок 3",
+  "letters": ["Р", "К", "У", "В"],
+  "cards": [
+    { "type": "word", "ge_text": "рука", "ru_meaning": "рука" },
+    { "type": "word", "ge_text": "море", "ru_meaning": "море" },
+    { "type": "word", "ge_text": "време", "ru_meaning": "время" },
+    { "type": "word", "ge_text": "уста", "ru_meaning": "рот" },
+    { "type": "word", "ge_text": "ко", "ru_meaning": "кто" },
+    { "type": "word", "ge_text": "како", "ru_meaning": "как" },
+    { "type": "word", "ge_text": "ово", "ru_meaning": "это" },
+    { "type": "phrase", "ge_text": "ко си ти", "ru_meaning": "кто ты" }
+  ]
+}

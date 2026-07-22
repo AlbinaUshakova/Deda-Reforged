@@ -1,0 +1,15 @@
+{
+  "id": "ep2",
+  "title": "Урок 2",
+  "letters": ["Е", "Н", "С"],
+  "cards": [
+    { "type": "word", "ge_text": "не", "ru_meaning": "нет" },
+    { "type": "word", "ge_text": "он", "ru_meaning": "он" },
+    { "type": "word", "ge_text": "она", "ru_meaning": "она" },
+    { "type": "word", "ge_text": "они", "ru_meaning": "они" },
+    { "type": "word", "ge_text": "мени", "ru_meaning": "мне" },
+    { "type": "word", "ge_text": "нос", "ru_meaning": "нос" },
+    { "type": "word", "ge_text": "месо", "ru_meaning": "мясо" },
+    { "type": "word", "ge_text": "место", "ru_meaning": "место" }
+  ]
+}

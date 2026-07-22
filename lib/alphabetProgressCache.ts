@@ -1,8 +1,10 @@
 'use client';
 
 import type { AlphabetLetterStatus } from './lessonProgress';
+import { DEFAULT_COURSE_ID, normalizeCourseId, type CourseId } from './courses.ts';
 
 export const ALPHABET_STATUS_CACHE_KEY = 'deda:alphabet-letter-status-cache:v1';
+const ALPHABET_STATUS_CACHE_KEY_PREFIX = 'deda:alphabet-letter-status-cache:v2';
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem'>;
 
@@ -22,12 +24,21 @@ function isAlphabetLetterStatus(value: unknown): value is AlphabetLetterStatus {
 }
 
 export function readAlphabetStatusCache(
-  storage: StorageLike | null = getBrowserStorage(),
+  courseOrStorage: CourseId | StorageLike | null = DEFAULT_COURSE_ID,
+  maybeStorage?: StorageLike | null,
 ): Record<string, AlphabetLetterStatus> {
+  const courseId =
+    typeof courseOrStorage === 'string' ? normalizeCourseId(courseOrStorage) : DEFAULT_COURSE_ID;
+  const storage =
+    typeof courseOrStorage === 'string' || courseOrStorage === null
+      ? maybeStorage ?? getBrowserStorage()
+      : courseOrStorage;
   if (!storage) return {};
 
   try {
-    const raw = storage.getItem(ALPHABET_STATUS_CACHE_KEY);
+    const raw =
+      storage.getItem(`${ALPHABET_STATUS_CACHE_KEY_PREFIX}:${normalizeCourseId(courseId)}`) ??
+      (courseId === DEFAULT_COURSE_ID ? storage.getItem(ALPHABET_STATUS_CACHE_KEY) : null);
     if (!raw) return {};
 
     const parsed = JSON.parse(raw) as unknown;
@@ -47,8 +58,21 @@ export function readAlphabetStatusCache(
 
 export function writeAlphabetStatusCache(
   statusByLetter: Record<string, AlphabetLetterStatus>,
-  storage: StorageLike | null = getBrowserStorage(),
+  courseOrStorage: CourseId | StorageLike | null = DEFAULT_COURSE_ID,
+  maybeStorage?: StorageLike | null,
 ) {
+  const courseId =
+    typeof courseOrStorage === 'string' ? normalizeCourseId(courseOrStorage) : DEFAULT_COURSE_ID;
+  const storage =
+    typeof courseOrStorage === 'string' || courseOrStorage === null
+      ? maybeStorage ?? getBrowserStorage()
+      : courseOrStorage;
   if (!storage) return;
-  storage.setItem(ALPHABET_STATUS_CACHE_KEY, JSON.stringify(statusByLetter));
+  storage.setItem(
+    `${ALPHABET_STATUS_CACHE_KEY_PREFIX}:${normalizeCourseId(courseId)}`,
+    JSON.stringify(statusByLetter),
+  );
+  if (courseId === DEFAULT_COURSE_ID) {
+    storage.setItem(ALPHABET_STATUS_CACHE_KEY, JSON.stringify(statusByLetter));
+  }
 }

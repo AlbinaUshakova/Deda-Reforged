@@ -8,7 +8,7 @@ export type DerivedLessonState = {
   normalEpisodes: LessonListItem[];
   allLessonsSpecial?: LessonListItem;
   favoritesSpecial?: LessonListItem;
-  phrasesSpecial: LessonListItem;
+  phrasesSpecial?: LessonListItem;
   allLessonsReady: boolean;
   unlockedById: Record<string, boolean>;
   recommendedEpId?: string;
@@ -33,10 +33,7 @@ export function deriveLessonState({
   const specials = episodes.filter((episode) => !/^ep\d+$/.test(episode.id));
   const allLessonsSpecial = specials.find((episode) => episode.id === 'all');
   const favoritesSpecial = specials.find((episode) => episode.id === 'favorites');
-  const phrasesSpecial = specials.find((episode) => episode.id === 'phrases') ?? {
-    id: 'phrases',
-    title: 'Разговорные фразы',
-  };
+  const phrasesSpecial = specials.find((episode) => episode.id === 'phrases');
 
   const allLessonsReady =
     normalEpisodes.length > 0 &&

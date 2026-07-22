@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
-import { geLetterAudioMap } from '@/lib/georgianLetterAudio';
+import { getCourse } from '@/lib/courses';
 import { playLetterAudio, stopLetterAudioPlayback } from '@/lib/playLetterAudio';
-import { geLetterToHint, type TransliterationMode } from '@/lib/transliteration';
+import { letterToHint, type TransliterationMode } from '@/lib/transliteration';
 
 type FlashcardLessonLettersProps = {
   letters: string[];
@@ -14,6 +14,8 @@ export function FlashcardLessonLetters({ letters }: FlashcardLessonLettersProps)
   const transliterationMode = useAppStore(
     state => state.settings.transliterationMode,
   ) as TransliterationMode;
+  const courseId = useAppStore(state => state.settings.courseId);
+  const course = getCourse(courseId);
   const [playingLetter, setPlayingLetter] = useState<string | null>(null);
   const playingTimerRef = useRef<number | null>(null);
 
@@ -47,8 +49,9 @@ export function FlashcardLessonLetters({ letters }: FlashcardLessonLettersProps)
     };
 
     void playLetterAudio({
-      audioSrc: geLetterAudioMap[letter],
-      fallbackText: letter,
+      audioSrc: course.letterAudioMap[letter],
+      fallbackText: course.letterNames[letter] ?? letter,
+      speechLang: course.speechLang,
       onEnd: finish,
       onError: finish,
     });
@@ -76,7 +79,7 @@ export function FlashcardLessonLetters({ letters }: FlashcardLessonLettersProps)
           >
             <span className="flashcard-lesson-letter-char">{letter}</span>
             <span className="flashcard-lesson-letter-hint">
-              {geLetterToHint(letter, transliterationMode)}
+              {letterToHint(letter, transliterationMode, courseId)}
             </span>
           </button>
         ))}

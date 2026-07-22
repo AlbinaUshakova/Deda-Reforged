@@ -14,11 +14,14 @@ import { useViewportWidth } from '@/components/lessons/useViewportWidth';
 import {
   writeAlphabetStatusCache,
 } from '@/lib/alphabetProgressCache';
+import { COURSES, progressKeyForEpisode, type CourseId } from '@/lib/courses';
 import { deriveLessonState } from '@/lib/lessonProgress';
 
 export default function HomePage() {
   const hydrate = useAppStore(state => state.hydrate);
   const progress = useAppStore(state => state.progressMap);
+  const courseId = useAppStore(state => state.settings.courseId);
+  const updateSettings = useAppStore(state => state.updateSettings);
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const transliterationMode = useAppStore(state => state.settings.transliterationMode);
   const alphabetToggleRequest = useAppStore(state => state.alphabetToggleRequest);
@@ -29,9 +32,9 @@ export default function HomePage() {
     lettersByEp,
     cachedLetterStatusByChar,
     setCachedLetterStatusByChar,
-  } = useLessonsData(hydrate);
+  } = useLessonsData(hydrate, courseId);
   const viewportWidth = useViewportWidth();
-  const { audioError, speakLetter } = useLetterAudio();
+  const { audioError, speakLetter } = useLetterAudio(courseId);
   const recommendedLessonRef = useRef<HTMLAnchorElement | null>(null);
   const lettersByEpCount = Object.keys(lettersByEp).length;
   const {
@@ -52,6 +55,17 @@ export default function HomePage() {
     scheduleLockedLessonTooltip,
     showLockedLessonTooltipNow,
   } = useLockedLessonTooltip();
+  const courseProgress = useMemo(
+    () =>
+      Object.fromEntries(
+        Object.entries(progress).flatMap(([key, value]) => {
+          if (courseId === 'ka') return [[key, value]];
+          const prefix = `${courseId}:`;
+          return key.startsWith(prefix) ? [[key.slice(prefix.length), value]] : [];
+        }),
+      ),
+    [courseId, progress],
+  );
 
   const {
     normalEpisodes,
@@ -66,12 +80,12 @@ export default function HomePage() {
     () =>
       deriveLessonState({
         episodes: eps,
-        progress,
+        progress: courseProgress,
         lessonTargetScore,
         lettersByEpisode: lettersByEp,
         cachedLetterStatusByChar,
       }),
-    [cachedLetterStatusByChar, eps, lessonTargetScore, lettersByEp, progress],
+    [cachedLetterStatusByChar, courseProgress, eps, lessonTargetScore, lettersByEp],
   );
 
   const lessonLetterSizePx =
@@ -93,17 +107,17 @@ export default function HomePage() {
     ? lettersByEp[recommendedLesson.id] ?? []
     : [];
   const recommendedScore = recommendedLesson
-    ? progress[recommendedLesson.id] ?? 0
+    ? progress[progressKeyForEpisode(courseId, recommendedLesson.id)] ?? 0
     : 0;
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
-      writeAlphabetStatusCache(letterStatusByChar);
+      writeAlphabetStatusCache(letterStatusByChar, courseId);
       setCachedLetterStatusByChar(letterStatusByChar);
     } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lettersByEp, lessonTargetScore, progress]);
+  }, [courseId, lettersByEp, lessonTargetScore, progress]);
 
   return (
     <main
@@ -112,6 +126,25 @@ export default function HomePage() {
       <div className="lessons-screen-orb lessons-screen-orb--left" aria-hidden="true" />
       <div className="lessons-screen-orb lessons-screen-orb--right" aria-hidden="true" />
       <div className="relative mx-auto w-full flex-1 [@media(max-width:700px)]:flex-none flex flex-col justify-start pb-[clamp(32px,4.5vh,40px)] [@media(max-width:700px)]:pb-3">
+        <div className="relative z-[170] mx-auto mb-3 flex w-full max-w-[1040px] justify-end">
+          <div className="inline-flex rounded-full border border-slate-200/70 bg-white/58 p-1 shadow-[0_10px_24px_rgba(15,23,42,0.055)] backdrop-blur">
+            {Object.values(COURSES).map(course => (
+              <button
+                key={course.id}
+                type="button"
+                onClick={() => updateSettings({ courseId: course.id as CourseId })}
+                aria-pressed={courseId === course.id}
+                className={`rounded-full px-3.5 py-1.5 text-[12px] font-semibold tracking-[-0.01em] transition ${
+                  courseId === course.id
+                    ? 'bg-[#18201d] text-white shadow-sm'
+                    : 'text-slate-500 hover:text-slate-900'
+                }`}
+              >
+                {course.shortTitle}
+              </button>
+            ))}
+          </div>
+        </div>
         <LessonsHero
           recommendedLesson={recommendedLesson}
           recommendedLessonNumber={recommendedLessonNumber}
@@ -119,6 +152,7 @@ export default function HomePage() {
           recommendedScore={recommendedScore}
           lessonTargetScore={lessonTargetScore}
           transliterationMode={transliterationMode}
+          courseId={courseId}
           onSpeakLetter={speakLetter}
         />
         {/* алфавит + сетка эпизодов */}
@@ -129,6 +163,7 @@ export default function HomePage() {
               alphabetOverlapsLessons={alphabetOverlapsLessons}
               showAlphabet={showAlphabet}
               transliterationMode={transliterationMode}
+              courseId={courseId}
               audioError={audioError}
               onToggleAlphabet={toggleAlphabet}
               onSpeakLetter={speakLetter}
@@ -136,7 +171,7 @@ export default function HomePage() {
             <div ref={lessonsWrapRef} className="relative z-[150] mx-auto w-full max-w-[980px] [@media(max-height:980px)]:max-w-[900px]">
               <LessonGrid
                 normalEpisodes={normalEpisodes}
-                progress={progress}
+                progress={courseProgress}
                 lettersByEp={lettersByEp}
                 lessonTargetScore={lessonTargetScore}
                 lessonLetterSizePx={lessonLetterSizePx}

@@ -2,17 +2,9 @@
 
 import type { Ref } from 'react';
 import type { TransliterationMode } from '@/lib/transliteration';
-import { geLetterToHint } from '@/lib/transliteration';
+import { letterToHint } from '@/lib/transliteration';
+import { getCourse, type CourseId } from '@/lib/courses';
 import type { AlphabetLetterStatus } from '@/lib/lessonProgress';
-
-const GEORGIAN_ALPHABET_ROWS = [
-  ['ა', 'ბ', 'გ', 'დ', 'ე', 'ვ'],
-  ['ზ', 'თ', 'ი', 'კ', 'ლ', 'მ'],
-  ['ნ', 'ო', 'პ', 'ჟ', 'რ', 'ს'],
-  ['ტ', 'უ', 'ფ', 'ქ', 'ღ', 'ყ'],
-  ['შ', 'ჩ', 'ც', 'ძ', 'წ', 'ჭ'],
-  ['ხ', 'ჯ', 'ჰ'],
-] as const;
 
 const alphabetLetterColorByStatus: Record<AlphabetLetterStatus, string> = {
   mastered: 'text-[var(--progress-good)]',
@@ -27,6 +19,7 @@ export function AlphabetPanel({
   alphabetOverlapsLessons,
   showAlphabet,
   transliterationMode,
+  courseId,
   audioError,
   onToggleAlphabet,
   onSpeakLetter,
@@ -35,10 +28,13 @@ export function AlphabetPanel({
   alphabetOverlapsLessons: boolean;
   showAlphabet: boolean;
   transliterationMode: TransliterationMode;
+  courseId: CourseId;
   audioError: string;
   onToggleAlphabet: () => void;
   onSpeakLetter: (letter: string) => void;
 }) {
+  const course = getCourse(courseId);
+
   return (
     <aside
       ref={alphabetRef}
@@ -49,7 +45,7 @@ export function AlphabetPanel({
         aria-hidden={!showAlphabet}
       >
         <div className="flex items-center justify-between gap-2">
-          <h3 className="home-alphabet-title text-sm font-medium tracking-[-0.01em] text-slate-700">ანბანი</h3>
+          <h3 className="home-alphabet-title text-sm font-medium tracking-[-0.01em] text-slate-700">{course.alphabetTitle}</h3>
           <button
             type="button"
             onClick={onToggleAlphabet}
@@ -68,7 +64,7 @@ export function AlphabetPanel({
           <span>Нажми на букву</span>
         </div>
         <div className="mt-1 space-y-[clamp(1px,0.45vw,4px)]">
-          {GEORGIAN_ALPHABET_ROWS.map((row, rowIdx) => (
+          {course.alphabetRows.map((row, rowIdx) => (
             <div
               key={`home-alpha-row-${rowIdx}`}
               className={`grid gap-x-[clamp(3px,0.8vw,7px)] gap-y-[clamp(3px,0.8vw,6px)] ${
@@ -86,7 +82,7 @@ export function AlphabetPanel({
                 >
                   <div className="home-alphabet-letter translate-y-[-1px] text-[clamp(14px,2.7vw,19px)] leading-none text-black">{ch}</div>
                   <div className="home-alphabet-translit mt-[2px] text-[clamp(6px,1.2vw,8px)] leading-none text-slate-400">
-                    {geLetterToHint(ch, transliterationMode)}
+                    {letterToHint(ch, transliterationMode, courseId)}
                   </div>
                 </button>
               ))}

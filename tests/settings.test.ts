@@ -11,6 +11,7 @@ test('normalizeSettings clamps and sanitizes values', () => {
   });
 
   assert.deepEqual(normalized, {
+    courseId: 'ka',
     lessonTargetScore: 100,
     translationDirection: 'ge-ru',
     transliterationMode: 'latin',

@@ -80,6 +80,7 @@ export default function FlashcardDeck({
   const transliterationMode = useAppStore(
     state => state.settings.transliterationMode,
   ) as TransliterationMode;
+  const courseId = useAppStore(state => state.settings.courseId);
   const [revealCount, setRevealCount] = useState(0);
   const [auto, setAuto] = useState(false);
   const [autoSpeedMs, setAutoSpeedMs] = useState(1500);
@@ -98,9 +99,9 @@ export default function FlashcardDeck({
 
   const currentLessonLetters = useMemo(() => {
     if (!episodeId) return new Set<string>();
-    const { lettersByEpisode } = getEpisodesDataSync();
+    const { lettersByEpisode } = getEpisodesDataSync(courseId);
     return new Set(lettersByEpisode[episodeId] ?? []);
-  }, [episodeId]);
+  }, [courseId, episodeId]);
   const currentLessonLettersList = useMemo(
     () => Array.from(currentLessonLetters),
     [currentLessonLetters],
@@ -109,10 +110,11 @@ export default function FlashcardDeck({
   const renderLessonLetterHighlight = useCallback(
     (text: string) => {
       if (!text || currentLessonLetters.size === 0) return text;
-      return Array.from(text).map((ch, idx) =>
-        ch === '\u00AD' ? (
+      return Array.from(text).map((ch, idx) => {
+        const normalizedChar = ch.toLocaleUpperCase(courseId === 'sr' ? 'sr' : 'ka');
+        return ch === '\u00AD' ? (
           <span key={`${idx}-shy`}>{ch}</span>
-        ) : currentLessonLetters.has(ch) ? (
+        ) : currentLessonLetters.has(normalizedChar) ? (
           <span
             key={`${ch}-${idx}`}
             className="text-[var(--accent)]"
@@ -121,10 +123,10 @@ export default function FlashcardDeck({
           </span>
         ) : (
           <span key={`${ch}-${idx}`}>{ch}</span>
-        ),
-      );
+        );
+      });
     },
-    [currentLessonLetters],
+    [courseId, currentLessonLetters],
   );
 
   const renderCardText = useCallback(

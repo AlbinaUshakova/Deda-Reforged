@@ -3,6 +3,7 @@
 type PlayLetterAudioOptions = {
   audioSrc?: string;
   fallbackText: string;
+  speechLang?: string;
   preferredVoices?: SpeechSynthesisVoice[];
   onStart?: (mode: 'audio' | 'speech') => void;
   onEnd?: () => void;
@@ -43,6 +44,7 @@ export function stopLetterAudioPlayback() {
 export async function playLetterAudio({
   audioSrc,
   fallbackText,
+  speechLang = 'ka-GE',
   preferredVoices,
   onStart,
   onEnd,
@@ -70,12 +72,14 @@ export async function playLetterAudio({
 
     const utterance = new SpeechSynthesisUtterance(fallbackText);
     const voices = preferredVoices?.length ? preferredVoices : synth.getVoices();
-    const geVoice = voices.find(v => v.lang?.toLowerCase().startsWith('ka'));
+    const preferredVoice = voices.find(v =>
+      v.lang?.toLowerCase().startsWith(speechLang.toLowerCase().split('-')[0]),
+    );
 
-    utterance.lang = 'ka-GE';
-    if (geVoice) {
-      utterance.voice = geVoice;
-      utterance.lang = geVoice.lang;
+    utterance.lang = speechLang;
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+      utterance.lang = preferredVoice.lang;
     }
     utterance.rate = 0.9;
     utterance.onend = finish;

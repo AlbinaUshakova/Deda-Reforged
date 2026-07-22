@@ -7,26 +7,11 @@ import {
   readAlphabetStatusCache,
   writeAlphabetStatusCache,
 } from '@/lib/alphabetProgressCache';
-import { geLetterToHint } from '@/lib/transliteration';
+import { letterToHint } from '@/lib/transliteration';
 import { getEpisodesDataCached } from '@/lib/clientContentCache';
 import { deriveLessonState, type AlphabetLetterStatus } from '@/lib/lessonProgress';
-import { geLetterAudioMap } from '@/lib/georgianLetterAudio';
+import { getCourse } from '@/lib/courses';
 import { playLetterAudio, stopLetterAudioPlayback } from '@/lib/playLetterAudio';
-
-const GEORGIAN_ALPHABET = [
-  'ა', 'ბ', 'გ', 'დ', 'ე', 'ვ', 'ზ', 'თ', 'ი', 'კ', 'ლ',
-  'მ', 'ნ', 'ო', 'პ', 'ჟ', 'რ', 'ს', 'ტ', 'უ', 'ფ', 'ქ',
-  'ღ', 'ყ', 'შ', 'ჩ', 'ც', 'ძ', 'წ', 'ჭ', 'ხ', 'ჯ', 'ჰ',
-];
-
-const GEORGIAN_ALPHABET_ROWS = [
-  GEORGIAN_ALPHABET.slice(0, 6),
-  GEORGIAN_ALPHABET.slice(6, 12),
-  GEORGIAN_ALPHABET.slice(12, 18),
-  GEORGIAN_ALPHABET.slice(18, 24),
-  GEORGIAN_ALPHABET.slice(24, 30),
-  GEORGIAN_ALPHABET.slice(30),
-];
 
 const alphabetLetterColorByStatus: Record<AlphabetLetterStatus, string> = {
   mastered: 'text-[var(--progress-good)]',
@@ -44,6 +29,8 @@ export default function GlobalAlphabetOverlay() {
   const isServicePage = pathname === '/support' || pathname === '/privacy';
   const hydrate = useAppStore(state => state.hydrate);
   const progress = useAppStore(state => state.progressMap);
+  const courseId = useAppStore(state => state.settings.courseId);
+  const course = getCourse(courseId);
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const transliterationMode = useAppStore(state => state.settings.transliterationMode);
   const alphabetToggleRequest = useAppStore(state => state.alphabetToggleRequest);
@@ -133,22 +120,29 @@ export default function GlobalAlphabetOverlay() {
     let cancelled = false;
 
     const load = async (forceRefresh = false) => {
-      const cachedLetterStatusByChar = readAlphabetStatusCache();
+      const cachedLetterStatusByChar = readAlphabetStatusCache(courseId);
       setLetterStatusByChar(cachedLetterStatusByChar);
 
-      const { episodes, lettersByEpisode } = await getEpisodesDataCached(forceRefresh);
+      const { episodes, lettersByEpisode } = await getEpisodesDataCached(forceRefresh, courseId);
       if (cancelled) return;
+      const courseProgress = Object.fromEntries(
+        Object.entries(progress).flatMap(([key, value]) => {
+          if (courseId === 'ka') return [[key, value]];
+          const prefix = `${courseId}:`;
+          return key.startsWith(prefix) ? [[key.slice(prefix.length), value]] : [];
+        }),
+      );
 
       const { letterStatusByChar } = deriveLessonState({
         episodes,
-        progress,
+        progress: courseProgress,
         lessonTargetScore,
         lettersByEpisode,
         cachedLetterStatusByChar,
       });
       setLetterStatusByChar(letterStatusByChar);
       try {
-        writeAlphabetStatusCache(letterStatusByChar);
+        writeAlphabetStatusCache(letterStatusByChar, courseId);
       } catch {}
     };
 
@@ -156,7 +150,7 @@ export default function GlobalAlphabetOverlay() {
     return () => {
       cancelled = true;
     };
-  }, [isGamePage, isLessonsPage, isStudyPage, lessonTargetScore, pathname, progress]);
+  }, [courseId, isGamePage, isLessonsPage, isStudyPage, lessonTargetScore, pathname, progress]);
 
   const speakLetter = (letter: string) => {
     if (typeof window === 'undefined') return;
@@ -174,8 +168,9 @@ export default function GlobalAlphabetOverlay() {
     };
 
     void playLetterAudio({
-      audioSrc: geLetterAudioMap[letter],
-      fallbackText: letter,
+      audioSrc: course.letterAudioMap[letter],
+      fallbackText: course.letterNames[letter] ?? letter,
+      speechLang: course.speechLang,
       onEnd: finish,
       onError: finish,
     });
@@ -197,7 +192,7 @@ export default function GlobalAlphabetOverlay() {
     >
       <div className="home-alphabet-panel max-h-[calc(100dvh-102px)] overflow-y-auto rounded-[clamp(20px,3vw,30px)] border border-slate-200/75 bg-gradient-to-b from-[#f6f8fe]/88 via-[#f1f4fc]/86 to-[#edf1f9]/84 px-[clamp(7px,1.2vw,10px)] pt-[clamp(5px,0.8vw,7px)] pb-[clamp(4px,0.7vw,6px)] shadow-[0_6px_14px_rgba(15,23,42,0.09)]">
         <div className="flex items-center justify-between gap-2">
-          <h3 className="home-alphabet-title text-sm font-medium tracking-[-0.01em] text-slate-700">ანბანი</h3>
+          <h3 className="home-alphabet-title text-sm font-medium tracking-[-0.01em] text-slate-700">{course.alphabetTitle}</h3>
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -216,7 +211,7 @@ export default function GlobalAlphabetOverlay() {
           <span>Нажми букву, чтобы услышать, как она звучит</span>
         </div>
         <div className="mt-1 flex flex-col gap-y-[clamp(1px,0.45vw,4px)]">
-          {GEORGIAN_ALPHABET_ROWS.map((row, rowIdx) => (
+          {course.alphabetRows.map((row, rowIdx) => (
             <div
               key={`alphabet-row-${rowIdx}`}
               className={row.length === 6 ? 'grid grid-cols-6 gap-x-[clamp(3px,0.8vw,7px)]' : 'grid grid-cols-3 gap-x-[clamp(3px,0.8vw,7px)] mx-auto w-[calc(50%-4px)]'}
@@ -233,7 +228,7 @@ export default function GlobalAlphabetOverlay() {
                   aria-label={`Озвучить букву ${ch}`}
                 >
                   <div className="home-alphabet-letter translate-y-[-1px] text-[clamp(14px,2.7vw,19px)] leading-none text-black">{ch}</div>
-                  <div className="home-alphabet-translit mt-[2px] text-[clamp(6px,1.2vw,8px)] leading-none text-slate-400">{geLetterToHint(ch, transliterationMode)}</div>
+                  <div className="home-alphabet-translit mt-[2px] text-[clamp(6px,1.2vw,8px)] leading-none text-slate-400">{letterToHint(ch, transliterationMode, courseId)}</div>
                 </button>
               ))}
             </div>

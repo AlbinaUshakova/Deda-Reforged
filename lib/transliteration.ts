@@ -1,3 +1,5 @@
+import { getLetterHint } from './courses.ts';
+
 export type TransliterationMode = 'ru' | 'latin';
 
 const GEORGIAN_TO_LATIN: Record<string, string> = {
@@ -16,6 +18,14 @@ const GEORGIAN_TO_RU: Record<string, string> = {
 
 export function geLetterToHint(ch: string, mode: TransliterationMode): string {
   return (mode === 'latin' ? GEORGIAN_TO_LATIN : GEORGIAN_TO_RU)[ch] ?? '';
+}
+
+export function letterToHint(
+  ch: string,
+  mode: TransliterationMode,
+  courseId: unknown,
+): string {
+  return getLetterHint(ch, mode, courseId) || geLetterToHint(ch, mode);
 }
 
 export function geTextToHint(text: string, mode: TransliterationMode): string {

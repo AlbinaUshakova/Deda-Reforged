@@ -3,13 +3,14 @@
 import {
   buildLettersByEpisode,
   getStaticLettersByEpisode,
+  listStaticEpisodes,
   normalizeEpisode,
-  STATIC_EPISODES_FALLBACK,
   type CardInfoNote,
   type Episode,
   type EpisodeCard,
   type EpisodesListItem,
 } from './contentData.ts';
+import { DEFAULT_COURSE_ID, normalizeCourseId, type CourseId } from './courses.ts';
 export type { CardInfoNote, EpisodeCard, EpisodesListItem } from './contentData.ts';
 
 export type EpisodesData = {
@@ -19,26 +20,33 @@ export type EpisodesData = {
 
 export type EpisodeData = Episode | null;
 
-const EPISODES_DATA_CACHE_KEY = 'deda:episodes-data-cache:v3';
+const EPISODES_DATA_CACHE_KEY_PREFIX = 'deda:episodes-data-cache:v4';
 const RAW_CONTENT_KEY = 'deda_content_json';
 
-let episodesDataCache: EpisodesData | null = null;
-let episodesDataPromise: Promise<EpisodesData> | null = null;
+const episodesDataCache = new Map<CourseId, EpisodesData>();
+const episodesDataPromise = new Map<CourseId, Promise<EpisodesData>>();
 
 const episodeCache = new Map<string, EpisodeData>();
 const episodePromiseCache = new Map<string, Promise<EpisodeData>>();
 
-const STATIC_LETTERS_BY_EPISODE = getStaticLettersByEpisode();
+function getEpisodesCacheKey(courseId: CourseId): string {
+  return `${EPISODES_DATA_CACHE_KEY_PREFIX}:${courseId}`;
+}
+
+function getEpisodeCacheKey(courseId: CourseId, episodeId: string): string {
+  return `${courseId}:${episodeId}`;
+}
 
 function hasNumberedLessons(episodes: EpisodesListItem[]): boolean {
   return episodes.some((episode) => /^ep\d+$/i.test(String(episode.id ?? '')));
 }
 
-function readEpisodesFromLocalStorageCache(): EpisodesData {
+function readEpisodesFromLocalStorageCache(courseId: CourseId): EpisodesData {
   if (typeof window === 'undefined') return { episodes: [], lettersByEpisode: {} };
 
   try {
-    const raw = window.localStorage.getItem(EPISODES_DATA_CACHE_KEY);
+    const cacheKey = getEpisodesCacheKey(courseId);
+    const raw = window.localStorage.getItem(cacheKey);
     if (!raw) return { episodes: [], lettersByEpisode: {} };
 
     const parsed = JSON.parse(raw) as {
@@ -54,7 +62,7 @@ function readEpisodesFromLocalStorageCache(): EpisodesData {
 
     if (!hasNumberedLessons(episodes)) {
       try {
-        window.localStorage.removeItem(EPISODES_DATA_CACHE_KEY);
+        window.localStorage.removeItem(cacheKey);
       } catch {}
       return { episodes: [], lettersByEpisode: {} };
     }
@@ -68,26 +76,27 @@ function readEpisodesFromLocalStorageCache(): EpisodesData {
   }
 }
 
-function parseRawContentEpisodes(): Episode[] {
+function parseRawContentEpisodes(courseId: CourseId): Episode[] {
   if (typeof window === 'undefined') return [];
+  if (courseId !== DEFAULT_COURSE_ID) return [];
 
   try {
     const raw = window.localStorage.getItem(RAW_CONTENT_KEY);
     if (!raw) return [];
 
     const parsed = JSON.parse(raw) as { episodes?: Episode[] };
-    return (parsed.episodes ?? []).map((episode) => normalizeEpisode(episode));
+    return (parsed.episodes ?? []).map((episode) => normalizeEpisode(episode, courseId));
   } catch {
     return [];
   }
 }
 
-function readEpisodesFallbackFromRawContent(): EpisodesData {
-  const normalizedEpisodes = parseRawContentEpisodes();
+function readEpisodesFallbackFromRawContent(courseId: CourseId): EpisodesData {
+  const normalizedEpisodes = parseRawContentEpisodes(courseId);
   if (normalizedEpisodes.length === 0) {
     return {
-      episodes: STATIC_EPISODES_FALLBACK,
-      lettersByEpisode: STATIC_LETTERS_BY_EPISODE,
+      episodes: listStaticEpisodes(courseId),
+      lettersByEpisode: getStaticLettersByEpisode(courseId),
     };
   }
 
@@ -96,31 +105,41 @@ function readEpisodesFallbackFromRawContent(): EpisodesData {
       id: episode.id,
       title: episode.title ?? episode.id,
     })),
-    lettersByEpisode: buildLettersByEpisode(normalizedEpisodes),
+    lettersByEpisode: buildLettersByEpisode(normalizedEpisodes, courseId),
   };
 }
 
-export function getEpisodesDataSync(): EpisodesData {
-  if (episodesDataCache) return episodesDataCache;
+export function getEpisodesDataSync(courseId: CourseId = DEFAULT_COURSE_ID): EpisodesData {
+  const normalizedCourseId = normalizeCourseId(courseId);
+  const cachedForCourse = episodesDataCache.get(normalizedCourseId);
+  if (cachedForCourse) return cachedForCourse;
 
-  const cached = readEpisodesFromLocalStorageCache();
+  const cached = readEpisodesFromLocalStorageCache(normalizedCourseId);
   if (cached.episodes.length > 0) {
-    episodesDataCache = cached;
+    episodesDataCache.set(normalizedCourseId, cached);
     return cached;
   }
 
-  const fallback = readEpisodesFallbackFromRawContent();
-  episodesDataCache = fallback;
+  const fallback = readEpisodesFallbackFromRawContent(normalizedCourseId);
+  episodesDataCache.set(normalizedCourseId, fallback);
   return fallback;
 }
 
-export async function getEpisodesDataCached(forceRefresh = false): Promise<EpisodesData> {
-  if (!forceRefresh && episodesDataCache) return episodesDataCache;
-  if (!forceRefresh && episodesDataPromise) return episodesDataPromise;
+export async function getEpisodesDataCached(
+  forceRefresh = false,
+  courseId: CourseId = DEFAULT_COURSE_ID,
+): Promise<EpisodesData> {
+  const normalizedCourseId = normalizeCourseId(courseId);
+  const cachedForCourse = episodesDataCache.get(normalizedCourseId);
+  if (!forceRefresh && cachedForCourse) return cachedForCourse;
+  const pendingForCourse = episodesDataPromise.get(normalizedCourseId);
+  if (!forceRefresh && pendingForCourse) return pendingForCourse;
 
-  episodesDataPromise = (async () => {
+  const promise = (async () => {
     try {
-      const res = await fetch('/api/content/episodes', { cache: 'force-cache' });
+      const res = await fetch(`/api/content/episodes?course=${encodeURIComponent(normalizedCourseId)}`, {
+        cache: 'force-cache',
+      });
       if (!res.ok) throw new Error('Failed to load episodes');
 
       const json = (await res.json()) as {
@@ -134,43 +153,52 @@ export async function getEpisodesDataCached(forceRefresh = false): Promise<Episo
         lettersByEpisode: json.lettersByEpisode ?? {},
       };
 
-      episodesDataCache = data;
+      episodesDataCache.set(normalizedCourseId, data);
       try {
-        window.localStorage.setItem(EPISODES_DATA_CACHE_KEY, JSON.stringify(data));
+        window.localStorage.setItem(getEpisodesCacheKey(normalizedCourseId), JSON.stringify(data));
       } catch {}
 
       return data;
     } catch {
-      const fallback = getEpisodesDataSync();
-      episodesDataCache = fallback;
+      const fallback = getEpisodesDataSync(normalizedCourseId);
+      episodesDataCache.set(normalizedCourseId, fallback);
       return fallback;
     } finally {
-      episodesDataPromise = null;
+      episodesDataPromise.delete(normalizedCourseId);
     }
   })();
 
-  return episodesDataPromise;
+  episodesDataPromise.set(normalizedCourseId, promise);
+  return promise;
 }
 
-function readEpisodeFromRawContent(episodeId: string): EpisodeData {
-  const episodes = parseRawContentEpisodes();
+function readEpisodeFromRawContent(episodeId: string, courseId: CourseId): EpisodeData {
+  const episodes = parseRawContentEpisodes(courseId);
   return episodes.find((episode) => episode.id === episodeId) ?? null;
 }
 
-export async function getEpisodeByIdCached(episodeId: string): Promise<EpisodeData> {
-  if (episodeCache.has(episodeId)) return episodeCache.get(episodeId) ?? null;
+export async function getEpisodeByIdCached(
+  episodeId: string,
+  courseId: CourseId = DEFAULT_COURSE_ID,
+): Promise<EpisodeData> {
+  const normalizedCourseId = normalizeCourseId(courseId);
+  const cacheKey = getEpisodeCacheKey(normalizedCourseId, episodeId);
+  if (episodeCache.has(cacheKey)) return episodeCache.get(cacheKey) ?? null;
 
-  const pending = episodePromiseCache.get(episodeId);
+  const pending = episodePromiseCache.get(cacheKey);
   if (pending) return pending;
 
   const req = (async () => {
     try {
-      const res = await fetch(`/api/content/episode?id=${encodeURIComponent(episodeId)}`, {
+      const res = await fetch(
+        `/api/content/episode?id=${encodeURIComponent(episodeId)}&course=${encodeURIComponent(normalizedCourseId)}`,
+        {
         cache: 'force-cache',
-      });
+        },
+      );
 
       if (res.status === 404) {
-        episodeCache.set(episodeId, null);
+        episodeCache.set(cacheKey, null);
         return null;
       }
 
@@ -178,17 +206,17 @@ export async function getEpisodeByIdCached(episodeId: string): Promise<EpisodeDa
 
       const json = (await res.json()) as { ok: boolean; episode?: EpisodeData };
       const episode = json.episode ?? null;
-      episodeCache.set(episodeId, episode);
+      episodeCache.set(cacheKey, episode);
       return episode;
     } catch {
-      const fallback = readEpisodeFromRawContent(episodeId);
-      episodeCache.set(episodeId, fallback);
+      const fallback = readEpisodeFromRawContent(episodeId, normalizedCourseId);
+      episodeCache.set(cacheKey, fallback);
       return fallback;
     } finally {
-      episodePromiseCache.delete(episodeId);
+      episodePromiseCache.delete(cacheKey);
     }
   })();
 
-  episodePromiseCache.set(episodeId, req);
+  episodePromiseCache.set(cacheKey, req);
   return req;
 }

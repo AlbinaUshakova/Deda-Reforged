@@ -4,7 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Route } from 'next';
 import type { LessonListItem } from '@/lib/lessonProgress';
-import { geLetterToHint, type TransliterationMode } from '@/lib/transliteration';
+import { getCourse, type CourseId } from '@/lib/courses';
+import { letterToHint, type TransliterationMode } from '@/lib/transliteration';
 
 type LessonsHeroProps = {
   recommendedLesson?: LessonListItem;
@@ -13,6 +14,7 @@ type LessonsHeroProps = {
   recommendedScore: number;
   lessonTargetScore: number;
   transliterationMode: TransliterationMode;
+  courseId: CourseId;
   onSpeakLetter: (letter: string) => void;
 };
 
@@ -23,8 +25,10 @@ export function LessonsHero({
   recommendedScore,
   lessonTargetScore,
   transliterationMode,
+  courseId,
   onSpeakLetter,
 }: LessonsHeroProps) {
+  const course = getCourse(courseId);
   const lessonHref = (recommendedLesson ? `/study/${recommendedLesson.id}` : '/study/ep1') as Route;
   const lessonLabel = recommendedLessonNumber
     ? `Урок ${recommendedLessonNumber}`
@@ -38,7 +42,7 @@ export function LessonsHero({
 
   return (
     <section className="lessons-hero mx-auto grid w-full max-w-[1040px] grid-cols-[minmax(420px,0.58fr)_minmax(240px,0.42fr)] items-stretch gap-4 rounded-[32px] px-5 py-5 md:px-7 md:py-6 [@media(max-width:820px)]:grid-cols-1">
-      <div className="lessons-hero-art" aria-hidden="true">ა</div>
+      <div className="lessons-hero-art" aria-hidden="true">{course.alphabet[0]}</div>
 
       <div className="lessons-hero-card group self-stretch">
         <Link
@@ -62,7 +66,7 @@ export function LessonsHero({
           <div className="lessons-hero-letter-panel pointer-events-none relative z-20 mt-4 flex min-h-[62px] items-center justify-center rounded-[22px] bg-white/62 px-4 py-2.5">
             <div className="w-full">
               <div className="lessons-hero-letters" aria-label="Буквы рекомендованного урока">
-                {(recommendedLetters.length ? recommendedLetters : ['ა', 'ი', 'ს', 'ო']).map((letter) => (
+                {(recommendedLetters.length ? recommendedLetters : course.alphabet.slice(0, 4)).map((letter) => (
                   <button
                     key={letter}
                     type="button"
@@ -76,7 +80,7 @@ export function LessonsHero({
                 >
                     <span className="lessons-hero-letter-char">{letter}</span>
                     <span className="lessons-hero-letter-hint">
-                      {geLetterToHint(letter, transliterationMode)}
+                      {letterToHint(letter, transliterationMode, courseId)}
                     </span>
                   </button>
                 ))}

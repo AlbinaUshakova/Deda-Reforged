@@ -3,6 +3,7 @@
 
 import {
   buildLettersByEpisode,
+  listStaticEpisodes,
   listStaticEpisodeIds,
   loadSingleStaticEpisode,
   normalizeEpisode,
@@ -11,6 +12,7 @@ import {
   type CardInfoNote,
   type Episode,
 } from './contentData.ts';
+import { DEFAULT_COURSE_ID, normalizeCourseId, type CourseId } from './courses.ts';
 export type { CardInfoNote, Episode } from './contentData.ts';
 
 function mergeEpisodes(newId: string, title: string, episodes: Array<Episode | null>): Episode | null {
@@ -24,23 +26,32 @@ function mergeEpisodes(newId: string, title: string, episodes: Array<Episode | n
   };
 }
 
-export async function loadNewLettersPerEpisode(): Promise<Record<string, string[]>> {
-  const episodes = listStaticEpisodeIds()
-    .map((id) => loadSingleStaticEpisode(id))
+export async function loadNewLettersPerEpisode(
+  courseId: CourseId = DEFAULT_COURSE_ID,
+): Promise<Record<string, string[]>> {
+  const normalizedCourseId = normalizeCourseId(courseId);
+  const episodes = listStaticEpisodeIds(normalizedCourseId)
+    .map((id) => loadSingleStaticEpisode(id, normalizedCourseId))
     .filter((episode): episode is Episode => episode !== null);
 
-  return buildLettersByEpisode(episodes);
+  return buildLettersByEpisode(episodes, normalizedCourseId);
 }
 
-export async function loadEpisode(id: string): Promise<Episode | null> {
+export async function loadEpisode(
+  id: string,
+  courseId: CourseId = DEFAULT_COURSE_ID,
+): Promise<Episode | null> {
+  const normalizedCourseId = normalizeCourseId(courseId);
+
   if (id === 'phrases') {
-    return normalizeEpisode(PHRASES_EPISODE);
+    if (normalizedCourseId !== 'ka') return null;
+    return normalizeEpisode(PHRASES_EPISODE, normalizedCourseId);
   }
 
   if (id === 'all') {
-    const episodeIds = listStaticEpisodeIds();
+    const episodeIds = listStaticEpisodeIds(normalizedCourseId);
     const allEpisodes = episodeIds
-      .map((episodeId) => loadSingleStaticEpisode(episodeId))
+      .map((episodeId) => loadSingleStaticEpisode(episodeId, normalizedCourseId))
       .filter((episode): episode is Episode => episode !== null)
       .map((episode, index) => ({ ...episode, id: episodeIds[index] }));
 
@@ -55,8 +66,8 @@ export async function loadEpisode(id: string): Promise<Episode | null> {
 
   if (id === 'favorites') {
     const [all, phrases] = await Promise.all([
-      loadEpisode('all'),
-      loadEpisode('phrases'),
+      loadEpisode('all', normalizedCourseId),
+      loadEpisode('phrases', normalizedCourseId),
     ]);
     if (!all) return null;
     return {
@@ -68,32 +79,34 @@ export async function loadEpisode(id: string): Promise<Episode | null> {
 
   if (id === 'ep1_2') {
     return mergeEpisodes('ep1_2', 'Эпизод 1–2', [
-      loadSingleStaticEpisode('ep1'),
-      loadSingleStaticEpisode('ep2'),
+      loadSingleStaticEpisode('ep1', normalizedCourseId),
+      loadSingleStaticEpisode('ep2', normalizedCourseId),
     ]);
   }
 
   if (id === 'ep3_4') {
     return mergeEpisodes('ep3_4', 'Эпизод 3–4', [
-      loadSingleStaticEpisode('ep3'),
-      loadSingleStaticEpisode('ep4'),
+      loadSingleStaticEpisode('ep3', normalizedCourseId),
+      loadSingleStaticEpisode('ep4', normalizedCourseId),
     ]);
   }
 
   if (id === 'ep5_6') {
     return mergeEpisodes('ep5_6', 'Эпизод 5–6', [
-      loadSingleStaticEpisode('ep5'),
-      loadSingleStaticEpisode('ep6'),
+      loadSingleStaticEpisode('ep5', normalizedCourseId),
+      loadSingleStaticEpisode('ep6', normalizedCourseId),
     ]);
   }
 
   if (/^ep\d+$/.test(id)) {
-    return loadSingleStaticEpisode(id);
+    return loadSingleStaticEpisode(id, normalizedCourseId);
   }
 
   return null;
 }
 
-export async function listEpisodes(): Promise<Array<{ id: string; title: string }>> {
-  return STATIC_EPISODES_FALLBACK;
+export async function listEpisodes(
+  courseId: CourseId = DEFAULT_COURSE_ID,
+): Promise<Array<{ id: string; title: string }>> {
+  return listStaticEpisodes(normalizeCourseId(courseId));
 }

@@ -1,12 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { geLetterAudioMap, geLetterName } from '@/lib/georgianAlphabet';
+import { getCourse, type CourseId } from '@/lib/courses';
 import { playLetterAudio } from '@/lib/playLetterAudio';
 
-export function useLetterAudio() {
+export function useLetterAudio(courseId: CourseId) {
   const [ttsVoices, setTtsVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [audioError, setAudioError] = useState('');
+  const course = getCourse(courseId);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
@@ -24,8 +25,9 @@ export function useLetterAudio() {
     setAudioError('');
 
     void playLetterAudio({
-      audioSrc: geLetterAudioMap[letter],
-      fallbackText: geLetterName[letter] ?? letter,
+      audioSrc: course.letterAudioMap[letter],
+      fallbackText: course.letterNames[letter] ?? letter,
+      speechLang: course.speechLang,
       preferredVoices: ttsVoices,
       onStart: () => setAudioError(''),
       onError: () => {
@@ -33,7 +35,7 @@ export function useLetterAudio() {
         setAudioError(
           hasSpeech
             ? 'Озвучка недоступна на этом устройстве'
-            : 'Грузинская озвучка недоступна в этом браузере',
+            : 'Озвучка недоступна в этом браузере',
         );
       },
     });

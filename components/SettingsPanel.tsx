@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
+import { COURSES, type CourseId } from '@/lib/courses';
 
 export default function SettingsPanel({
     onClose,
@@ -15,17 +16,20 @@ export default function SettingsPanel({
     const updateSettings = useAppStore(state => state.updateSettings);
     const [lessonTargetScoreInput, setLessonTargetScoreInput] = useState('25');
     const [translationDirection, setTranslationDirection] = useState<'ge-ru' | 'ru-ge'>('ge-ru');
+    const [courseId, setCourseId] = useState<CourseId>('ka');
 
     useEffect(() => {
         setLessonTargetScoreInput(String(settings.lessonTargetScore));
         setTranslationDirection(settings.translationDirection);
-    }, [settings.lessonTargetScore, settings.translationDirection]);
+        setCourseId(settings.courseId);
+    }, [settings.courseId, settings.lessonTargetScore, settings.translationDirection]);
 
     const applyAndExit = (afterApply: () => void) => {
         const parsed = Number(lessonTargetScoreInput);
         const safe = Number.isFinite(parsed) ? parsed : 25;
         const next = Math.max(10, Math.min(100, Math.round(safe)));
         updateSettings({
+            courseId,
             lessonTargetScore: next,
             translationDirection,
         });
@@ -76,6 +80,36 @@ export default function SettingsPanel({
                     </button>
                 </div>
                 <div className="pt-2.5">
+                    <div className="mb-2 text-[clamp(10px,1.8vw,12px)] text-[var(--menu-text)]">Курс</div>
+                    <div className="grid grid-cols-2 gap-2">
+                        {Object.values(COURSES).map(course => (
+                            <button
+                                key={course.id}
+                                type="button"
+                                onClick={() => setCourseId(course.id)}
+                                aria-pressed={courseId === course.id}
+                                className={`relative rounded-[10px] border px-2 py-1.5 text-[clamp(10px,1.65vw,11px)] font-medium transition-colors ${courseId === course.id
+                                    ? 'text-[var(--btn-active-text)] shadow-none'
+                                    : 'border-[#3E4B5E] bg-transparent text-[#A8B3C7] hover:bg-white/5 hover:border-[#6C6CFF] hover:text-[var(--menu-text)]'
+                                    }`}
+                                style={
+                                    courseId === course.id
+                                        ? {
+                                            background: 'color-mix(in srgb, var(--btn-active-bg) 72%, white 28%)',
+                                            borderColor: 'color-mix(in srgb, var(--btn-active-border) 48%, transparent 52%)',
+                                        }
+                                        : undefined
+                                }
+                            >
+                                {course.shortTitle}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="-mx-2.5 mt-2.5 border-t border-[var(--menu-divider)]" />
+
+                <div className="pt-2.5">
                     <div className="mb-2 text-[clamp(10px,1.8vw,12px)] text-[var(--menu-text)]">Направление перевода</div>
                     <div className="grid grid-cols-2 gap-2">
                         <button
@@ -97,7 +131,7 @@ export default function SettingsPanel({
                                     : undefined
                             }
                         >
-                            <div>🇬🇪 → 🇷🇺</div>
+                            <div>{COURSES[courseId].sourceLanguageLabel} → {COURSES[courseId].targetLanguageLabel}</div>
                         </button>
                         <button
                             type="button"
@@ -118,7 +152,7 @@ export default function SettingsPanel({
                                     : undefined
                             }
                         >
-                            <div>🇷🇺 → 🇬🇪</div>
+                            <div>{COURSES[courseId].targetLanguageLabel} → {COURSES[courseId].sourceLanguageLabel}</div>
                         </button>
                     </div>
                 </div>

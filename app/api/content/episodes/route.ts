@@ -1,15 +1,20 @@
 import { NextResponse } from 'next/server';
 import { listEpisodes, loadNewLettersPerEpisode } from '@/lib/content';
+import { normalizeCourseId } from '@/lib/courses';
 
-export async function GET() {
+export const dynamic = 'force-dynamic';
+
+export async function GET(req: Request) {
   try {
+    const courseId = normalizeCourseId(new URL(req.url).searchParams.get('course'));
     const [episodes, lettersByEpisode] = await Promise.all([
-      listEpisodes(),
-      loadNewLettersPerEpisode(),
+      listEpisodes(courseId),
+      loadNewLettersPerEpisode(courseId),
     ]);
 
     return NextResponse.json({
       ok: true,
+      courseId,
       episodes,
       lettersByEpisode,
     });

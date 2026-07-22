@@ -1,0 +1,15 @@
+{
+  "id": "ep4",
+  "title": "Урок 4",
+  "letters": ["Л", "Д", "П", "Ј"],
+  "cards": [
+    { "type": "word", "ge_text": "да", "ru_meaning": "да" },
+    { "type": "word", "ge_text": "дан", "ru_meaning": "день" },
+    { "type": "word", "ge_text": "један", "ru_meaning": "один" },
+    { "type": "word", "ge_text": "јело", "ru_meaning": "еда" },
+    { "type": "word", "ge_text": "једе", "ru_meaning": "ест" },
+    { "type": "word", "ge_text": "пут", "ru_meaning": "путь" },
+    { "type": "word", "ge_text": "лепо", "ru_meaning": "красиво" },
+    { "type": "phrase", "ge_text": "дан је леп", "ru_meaning": "день хороший", "accepted_ru": ["хороший день"] }
+  ]
+}

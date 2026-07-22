@@ -1,4 +1,5 @@
 import staticEpisodes from '../public/content/episodes.json' with { type: 'json' };
+import srStaticEpisodes from '../public/content/episodes_sr.json' with { type: 'json' };
 import ep1Json from '../public/content/ka_ru_ep1.json' with { type: 'json' };
 import ep2Json from '../public/content/ka_ru_ep2.json' with { type: 'json' };
 import ep3Json from '../public/content/ka_ru_ep3.json' with { type: 'json' };
@@ -8,6 +9,12 @@ import ep6Json from '../public/content/ka_ru_ep6.json' with { type: 'json' };
 import ep7Json from '../public/content/ka_ru_ep7.json' with { type: 'json' };
 import ep8Json from '../public/content/ka_ru_ep8.json' with { type: 'json' };
 import ep9Json from '../public/content/ka_ru_ep9.json' with { type: 'json' };
+import srEp1Json from '../public/content/sr_ru_ep1.json' with { type: 'json' };
+import srEp2Json from '../public/content/sr_ru_ep2.json' with { type: 'json' };
+import srEp3Json from '../public/content/sr_ru_ep3.json' with { type: 'json' };
+import srEp4Json from '../public/content/sr_ru_ep4.json' with { type: 'json' };
+import srEp5Json from '../public/content/sr_ru_ep5.json' with { type: 'json' };
+import { DEFAULT_COURSE_ID, getCourse, isCourseLetter, normalizeCourseId, type CourseId } from './courses.ts';
 
 export type CardInfoNote = {
   kind: 'grammar' | 'speech' | 'mistake';
@@ -54,20 +61,48 @@ const RAW_EPISODES: RawEpisode[] = [
   ep9Json as RawEpisode,
 ];
 
-const RAW_BY_ID: Record<string, RawEpisode> = Object.fromEntries(
-  RAW_EPISODES.map((episode) => [episode.id, episode]),
-);
+const RAW_EPISODES_BY_COURSE: Record<CourseId, RawEpisode[]> = {
+  ka: RAW_EPISODES,
+  sr: [
+    srEp1Json as RawEpisode,
+    srEp2Json as RawEpisode,
+    srEp3Json as RawEpisode,
+    srEp4Json as RawEpisode,
+    srEp5Json as RawEpisode,
+  ],
+};
 
-export const STATIC_EPISODES_FALLBACK: EpisodesListItem[] = (
-  staticEpisodes as Array<{ id: string; title: string }>
-).map((episode) => ({
-  id: episode.id,
-  title: episode.title,
-})).concat([
+const RAW_BY_COURSE_AND_ID: Record<CourseId, Record<string, RawEpisode>> = {
+  ka: Object.fromEntries(RAW_EPISODES_BY_COURSE.ka.map((episode) => [episode.id, episode])),
+  sr: Object.fromEntries(RAW_EPISODES_BY_COURSE.sr.map((episode) => [episode.id, episode])),
+};
+
+const COMMON_SPECIAL_EPISODES: EpisodesListItem[] = [
   { id: 'favorites', title: '⭐ Избранное' },
   { id: 'all', title: 'Все уроки' },
+];
+
+const KA_SPECIAL_EPISODES: EpisodesListItem[] = [
+  ...COMMON_SPECIAL_EPISODES,
   { id: 'phrases', title: 'Разговорные фразы' },
-]);
+];
+
+const staticLessonItems = (staticEpisodes as Array<{ id: string; title: string }>)
+  .filter(episode => /^ep\d+$/i.test(episode.id))
+  .map((episode) => ({
+    id: episode.id,
+    title: episode.title,
+  }));
+
+export const STATIC_EPISODES_FALLBACK: EpisodesListItem[] = staticLessonItems.concat(KA_SPECIAL_EPISODES);
+
+const STATIC_EPISODES_BY_COURSE: Record<CourseId, EpisodesListItem[]> = {
+  ka: STATIC_EPISODES_FALLBACK,
+  sr: (srStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
+    id: episode.id,
+    title: episode.title,
+  })).concat(COMMON_SPECIAL_EPISODES),
+};
 
 function phrase(
   ge_text: string,
@@ -201,6 +236,11 @@ export function normalizeGeorgianText(text: string): string {
   return text;
 }
 
+export function normalizeSourceText(text: string, courseId: CourseId = DEFAULT_COURSE_ID): string {
+  if (courseId === 'ka') return normalizeGeorgianText(text);
+  return text;
+}
+
 function normalizeAcceptedAnswers(value: string[] | undefined): string[] | undefined {
   if (!Array.isArray(value)) return undefined;
   const seen = new Set<string>();
@@ -251,7 +291,10 @@ function getGeneratedRussianAnswers(card: EpisodeCard): string[] {
   return variants;
 }
 
-export function normalizeEpisode(episode: Episode): Episode {
+export function normalizeEpisode(
+  episode: Episode,
+  courseId: CourseId = DEFAULT_COURSE_ID,
+): Episode {
   return {
     ...episode,
     cards: episode.cards.map((card) => {
@@ -262,7 +305,7 @@ export function normalizeEpisode(episode: Episode): Episode {
       const acceptedGe = normalizeAcceptedAnswers(card.accepted_ge);
       return {
         ...card,
-        ge_text: normalizeGeorgianText(card.ge_text),
+        ge_text: normalizeSourceText(card.ge_text, courseId),
         ...(acceptedRu ? { accepted_ru: acceptedRu } : {}),
         ...(acceptedGe ? { accepted_ge: acceptedGe } : {}),
       };
@@ -270,8 +313,12 @@ export function normalizeEpisode(episode: Episode): Episode {
   };
 }
 
-export function loadSingleStaticEpisode(id: string): Episode | null {
-  const raw = RAW_BY_ID[id];
+export function loadSingleStaticEpisode(
+  id: string,
+  courseId: CourseId = DEFAULT_COURSE_ID,
+): Episode | null {
+  const normalizedCourseId = normalizeCourseId(courseId);
+  const raw = RAW_BY_COURSE_AND_ID[normalizedCourseId][id];
   if (!raw) return null;
 
   return normalizeEpisode({
@@ -279,11 +326,12 @@ export function loadSingleStaticEpisode(id: string): Episode | null {
     title: raw.title,
     letters: raw.letters,
     cards: raw.cards.map((card) => ({ ...card })),
-  });
+  }, normalizedCourseId);
 }
 
-export function listStaticEpisodeIds(): string[] {
-  return RAW_EPISODES
+export function listStaticEpisodeIds(courseId: CourseId = DEFAULT_COURSE_ID): string[] {
+  const normalizedCourseId = normalizeCourseId(courseId);
+  return RAW_EPISODES_BY_COURSE[normalizedCourseId]
     .map((episode) => episode.id)
     .filter((id): id is string => /^ep\d+$/.test(id))
     .sort((a, b) => Number(a.replace('ep', '')) - Number(b.replace('ep', '')));
@@ -291,8 +339,9 @@ export function listStaticEpisodeIds(): string[] {
 
 export function buildLettersByEpisode(
   episodes: Array<Pick<Episode, 'id' | 'letters' | 'cards'>>,
+  courseId: CourseId = DEFAULT_COURSE_ID,
 ): Record<string, string[]> {
-  const isGeorgianLetter = (character: string) => /[\u10D0-\u10FF]/.test(character);
+  const course = getCourse(courseId);
   const seen = new Set<string>();
   const result: Record<string, string[]> = {};
 
@@ -307,14 +356,16 @@ export function buildLettersByEpisode(
 
     for (const card of episode.cards) {
       for (const character of String(card.ge_text ?? '')) {
-        if (!isGeorgianLetter(character)) continue;
-        if (!seen.has(character)) {
-          local.add(character);
+        const normalizedCharacter = character.toLocaleUpperCase(course.locale);
+        if (!isCourseLetter(normalizedCharacter, courseId)) continue;
+        if (!seen.has(normalizedCharacter)) {
+          local.add(normalizedCharacter);
         }
       }
     }
 
-    const letters = Array.from(local).sort((a, b) => a.localeCompare(b, 'ka'));
+    const order = new Map(course.alphabet.map((letter, index) => [letter, index]));
+    const letters = Array.from(local).sort((a, b) => (order.get(a) ?? 999) - (order.get(b) ?? 999));
     result[episode.id] = letters;
     letters.forEach((character) => seen.add(character));
   }
@@ -322,10 +373,15 @@ export function buildLettersByEpisode(
   return result;
 }
 
-export function getStaticLettersByEpisode(): Record<string, string[]> {
-  const episodes = listStaticEpisodeIds()
-    .map((id) => loadSingleStaticEpisode(id))
+export function getStaticLettersByEpisode(courseId: CourseId = DEFAULT_COURSE_ID): Record<string, string[]> {
+  const normalizedCourseId = normalizeCourseId(courseId);
+  const episodes = listStaticEpisodeIds(normalizedCourseId)
+    .map((id) => loadSingleStaticEpisode(id, normalizedCourseId))
     .filter((episode): episode is Episode => episode !== null);
 
-  return buildLettersByEpisode(episodes);
+  return buildLettersByEpisode(episodes, normalizedCourseId);
+}
+
+export function listStaticEpisodes(courseId: CourseId = DEFAULT_COURSE_ID): EpisodesListItem[] {
+  return STATIC_EPISODES_BY_COURSE[normalizeCourseId(courseId)];
 }

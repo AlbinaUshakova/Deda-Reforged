@@ -1,8 +1,11 @@
 'use client';
 
+import { DEFAULT_COURSE_ID, normalizeCourseId, type CourseId } from './courses.ts';
+
 type SettingsListener = (settings: Settings) => void;
 
 export type Settings = {
+  courseId: CourseId;
   lessonTargetScore: number;
   translationDirection: 'ge-ru' | 'ru-ge';
   transliterationMode: 'ru' | 'latin';
@@ -10,6 +13,7 @@ export type Settings = {
 
 const KEY = 'deda_settings_v1';
 export const DEFAULT_SETTINGS: Settings = {
+  courseId: DEFAULT_COURSE_ID,
   lessonTargetScore: 25,
   translationDirection: 'ge-ru',
   transliterationMode: 'ru',
@@ -37,6 +41,7 @@ export function normalizeSettings(
   legacyDirection?: unknown,
 ): Settings {
   return {
+    courseId: normalizeCourseId(raw?.courseId),
     lessonTargetScore: normalizeLessonTargetScore(raw?.lessonTargetScore),
     translationDirection: normalizeTranslationDirection(
       raw?.translationDirection ?? legacyDirection,

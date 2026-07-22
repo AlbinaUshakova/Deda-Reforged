@@ -80,3 +80,37 @@ test('loadNewLettersPerEpisode returns letters for each numbered lesson', async 
   assert.ok(Array.isArray(lettersByEpisode.ep1));
   assert.ok(Array.isArray(lettersByEpisode.ep9));
 });
+
+test('serbian course loads separate lessons without Georgian phrases section', async () => {
+  const episodes = await listEpisodes('sr');
+  const ids = episodes.map((episode) => episode.id);
+
+  assert.ok(ids.includes('ep1'));
+  assert.ok(ids.includes('ep5'));
+  assert.ok(ids.includes('all'));
+  assert.ok(!ids.includes('phrases'));
+});
+
+test('serbian lesson cards use only current and previous lesson letters', async () => {
+  const lettersByEpisode = await loadNewLettersPerEpisode('sr');
+  const seen = new Set<string>();
+
+  for (const episodeId of Object.keys(lettersByEpisode).sort()) {
+    for (const letter of lettersByEpisode[episodeId]) {
+      seen.add(letter);
+      seen.add(letter.toLocaleLowerCase('sr'));
+    }
+
+    const episode = await loadEpisode(episodeId, 'sr');
+    assert.ok(episode);
+
+    for (const card of episode.cards) {
+      for (const character of card.ge_text.replace(/\s|-/g, '')) {
+        assert.ok(
+          seen.has(character),
+          `${episodeId}: ${card.ge_text} uses unopened letter ${character}`,
+        );
+      }
+    }
+  }
+});

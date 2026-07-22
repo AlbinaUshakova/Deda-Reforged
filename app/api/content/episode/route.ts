@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { loadEpisode } from '@/lib/content';
+import { normalizeCourseId } from '@/lib/courses';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   const id = req.nextUrl.searchParams.get('id')?.trim() || '';
@@ -11,7 +14,8 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const episode = await loadEpisode(id);
+    const courseId = normalizeCourseId(req.nextUrl.searchParams.get('course'));
+    const episode = await loadEpisode(id, courseId);
     if (!episode) {
       return NextResponse.json(
         { ok: false, error: 'Episode not found' },
@@ -19,7 +23,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    return NextResponse.json({ ok: true, episode });
+    return NextResponse.json({ ok: true, courseId, episode });
   } catch (error) {
     console.error('content episode error', error);
     return NextResponse.json(

@@ -11,7 +11,7 @@ export function SpecialLessonLinks({
 }: {
   allLessonsSpecial?: LessonListItem;
   favoritesSpecial?: LessonListItem;
-  phrasesSpecial: LessonListItem;
+  phrasesSpecial?: LessonListItem;
   allLessonsReady: boolean;
 }) {
   if (!allLessonsSpecial && !favoritesSpecial && !phrasesSpecial) {
@@ -50,11 +50,13 @@ export function SpecialLessonLinks({
           </Link>
         )}
 
-        <Link href={`/study/${phrasesSpecial.id}`} legacyBehavior>
-          <a className="home-special-btn h-9 min-w-[152px] px-3 text-[12px] [@media(max-width:900px)]:h-8 [@media(max-width:900px)]:min-w-[136px] [@media(max-width:900px)]:px-2.5 [@media(max-width:900px)]:text-[11px] [@media(max-width:720px)]:h-7.5 [@media(max-width:720px)]:min-w-[120px] [@media(max-width:720px)]:px-2 [@media(max-width:720px)]:text-[10px] [@media(max-width:480px)]:min-w-[112px] [@media(max-width:480px)]:px-2 rounded-2xl border border-slate-200/80 bg-transparent text-[var(--text-secondary)] flex items-center justify-center gap-1.5 transition-all duration-200 hover:bg-[var(--button-hover)] hover:text-[var(--text-primary)] shadow-[0_8px_18px_rgba(15,23,42,0.1)] [@media(max-width:700px)]:shadow-[0_5px_12px_rgba(15,23,42,0.07)]">
-            <span>{phrasesSpecial.title}</span>
-          </a>
-        </Link>
+        {phrasesSpecial && (
+          <Link href={`/study/${phrasesSpecial.id}`} legacyBehavior>
+            <a className="home-special-btn h-9 min-w-[152px] px-3 text-[12px] [@media(max-width:900px)]:h-8 [@media(max-width:900px)]:min-w-[136px] [@media(max-width:900px)]:px-2.5 [@media(max-width:900px)]:text-[11px] [@media(max-width:720px)]:h-7.5 [@media(max-width:720px)]:min-w-[120px] [@media(max-width:720px)]:px-2 [@media(max-width:720px)]:text-[10px] [@media(max-width:480px)]:min-w-[112px] [@media(max-width:480px)]:px-2 rounded-2xl border border-slate-200/80 bg-transparent text-[var(--text-secondary)] flex items-center justify-center gap-1.5 transition-all duration-200 hover:bg-[var(--button-hover)] hover:text-[var(--text-primary)] shadow-[0_8px_18px_rgba(15,23,42,0.1)] [@media(max-width:700px)]:shadow-[0_5px_12px_rgba(15,23,42,0.07)]">
+              <span>{phrasesSpecial.title}</span>
+            </a>
+          </Link>
+        )}
       </div>
     </section>
   );
