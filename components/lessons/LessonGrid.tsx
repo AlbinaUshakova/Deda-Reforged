@@ -46,6 +46,7 @@ export function LessonGrid({
           const status = statusById[ep.id];
           const isRecommended = status === 'current';
           const progressTone = `home-progress-fill--${status ?? 'unknown'}`;
+          const hasLetters = letters.length > 0;
 
           return (
             <div
@@ -104,7 +105,7 @@ export function LessonGrid({
                   </div>
 
                   <div className="row-start-2 mx-auto flex h-full min-h-0 w-full -translate-y-[8px] [@media(max-width:1200px)]:-translate-y-[4px] [@media(max-width:900px)]:translate-y-0 flex-wrap content-center justify-center gap-0.5 sm:gap-1 overflow-visible px-2 [@media(max-width:560px)]:px-1 py-1.5 [@media(max-width:560px)]:py-1 text-center">
-                    {letters.map((ch) => (
+                    {hasLetters && letters.map((ch) => (
                       <div
                         key={ch}
                         className={`home-lesson-letter home-lesson-letter--${status ?? 'unknown'} flex flex-col items-center`}
@@ -120,9 +121,9 @@ export function LessonGrid({
                         </span>
                       </div>
                     ))}
-                    {!letters.length && (
-                      <span className="text-xs text-slate-400">
-                        без новых букв
+                    {!hasLetters && (
+                      <span className="max-w-[86%] text-[clamp(15px,1.65vw,22px)] font-medium leading-[1.08] tracking-[-0.035em] text-slate-800">
+                        {ep.title}
                       </span>
                     )}
                   </div>

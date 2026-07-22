@@ -123,27 +123,9 @@ const RAW_EPISODES_BY_COURSE: Record<CourseId, RawEpisode[]> = {
   ],
 };
 
-const RAW_BY_COURSE_AND_ID: Record<CourseId, Record<string, RawEpisode>> = {
-  ka: Object.fromEntries(RAW_EPISODES_BY_COURSE.ka.map((episode) => [episode.id, episode])),
-  sr: Object.fromEntries(RAW_EPISODES_BY_COURSE.sr.map((episode) => [episode.id, episode])),
-  tr: Object.fromEntries(RAW_EPISODES_BY_COURSE.tr.map((episode) => [episode.id, episode])),
-  es: Object.fromEntries(RAW_EPISODES_BY_COURSE.es.map((episode) => [episode.id, episode])),
-  de: Object.fromEntries(RAW_EPISODES_BY_COURSE.de.map((episode) => [episode.id, episode])),
-};
-
 const COMMON_SPECIAL_EPISODES: EpisodesListItem[] = [
   { id: 'favorites', title: '⭐ Избранное' },
   { id: 'all', title: 'Все уроки' },
-];
-
-const KA_SPECIAL_EPISODES: EpisodesListItem[] = [
-  ...COMMON_SPECIAL_EPISODES,
-  { id: 'phrases', title: 'Разговорные фразы' },
-];
-
-const SPECIAL_EPISODES_WITH_PHRASES: EpisodesListItem[] = [
-  ...COMMON_SPECIAL_EPISODES,
-  { id: 'phrases', title: 'Разговорные фразы' },
 ];
 
 const staticLessonItems = (staticEpisodes as Array<{ id: string; title: string }>)
@@ -153,26 +135,26 @@ const staticLessonItems = (staticEpisodes as Array<{ id: string; title: string }
     title: episode.title,
   }));
 
-export const STATIC_EPISODES_FALLBACK: EpisodesListItem[] = staticLessonItems.concat(KA_SPECIAL_EPISODES);
+export const STATIC_EPISODES_FALLBACK: EpisodesListItem[] = staticLessonItems.concat(COMMON_SPECIAL_EPISODES);
 
-const STATIC_EPISODES_BY_COURSE: Record<CourseId, EpisodesListItem[]> = {
-  ka: STATIC_EPISODES_FALLBACK,
+const STATIC_LESSON_ITEMS_BY_COURSE: Record<CourseId, EpisodesListItem[]> = {
+  ka: staticLessonItems,
   sr: (srStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
-  })).concat(SPECIAL_EPISODES_WITH_PHRASES),
+  })),
   tr: (trStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
-  })).concat(SPECIAL_EPISODES_WITH_PHRASES),
+  })),
   es: (esStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
-  })).concat(SPECIAL_EPISODES_WITH_PHRASES),
+  })),
   de: (deStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
-  })).concat(SPECIAL_EPISODES_WITH_PHRASES),
+  })),
 };
 
 function phrase(
@@ -455,6 +437,202 @@ export const PHRASES_EPISODE_BY_COURSE: Record<CourseId, Episode | null> = {
   de: GERMAN_PHRASES_EPISODE,
 };
 
+const SHOPPING_EPISODE_BY_COURSE: Record<CourseId, Episode> = {
+  ka: {
+    id: 'shopping',
+    title: 'Счёт и покупки',
+    cards: [
+      phrase('ერთი', 'один'),
+      phrase('ორი', 'два'),
+      phrase('სამი', 'три'),
+      phrase('ოთხი', 'четыре'),
+      phrase('ხუთი', 'пять'),
+      phrase('ექვსი', 'шесть'),
+      phrase('შვიდი', 'семь'),
+      phrase('რვა', 'восемь'),
+      phrase('ცხრა', 'девять'),
+      phrase('ათი', 'десять'),
+      phrase('ოცი', 'двадцать'),
+      phrase('ორმოცდაათი', 'пятьдесят'),
+      phrase('ასი', 'сто'),
+      phrase('ათასი', 'тысяча'),
+      phrase('ლარი', 'лари'),
+      phrase('თეთრი', 'тетри'),
+      phrase('რამდენი ღირს?', 'Сколько стоит?'),
+      phrase('ეს მინდა', 'Я хочу это', undefined, ['Хочу это']),
+      phrase('ერთი კილო მინდა', 'Мне один килограмм', undefined, ['Один килограмм пожалуйста', 'Один килограмм']),
+      phrase('ნახევარი კილო მინდა', 'Мне полкило', undefined, ['Полкило пожалуйста', 'Половину килограмма']),
+      phrase('ორასი გრამი მინდა', 'Мне двести грамм', undefined, ['Двести грамм пожалуйста']),
+      phrase('აწონეთ, თუ შეიძლება', 'Взвесьте, пожалуйста', undefined, ['Взвесьте пожалуйста']),
+      phrase('ბარათით შეიძლება?', 'Можно картой?', undefined, ['Оплата картой?']),
+      phrase('ქვითარი მინდა', 'Мне нужен чек', undefined, ['Чек пожалуйста', 'Дайте чек']),
+      phrase('პარკი მინდა', 'Мне нужен пакет', undefined, ['Пакет пожалуйста']),
+    ],
+  },
+  sr: {
+    id: 'shopping',
+    title: 'Счёт и покупки',
+    cards: [
+      phrase('Један', 'один'),
+      phrase('Два', 'два'),
+      phrase('Три', 'три'),
+      phrase('Четири', 'четыре'),
+      phrase('Пет', 'пять'),
+      phrase('Шест', 'шесть'),
+      phrase('Седам', 'семь'),
+      phrase('Осам', 'восемь'),
+      phrase('Девет', 'девять'),
+      phrase('Десет', 'десять'),
+      phrase('Двадесет', 'двадцать'),
+      phrase('Педесет', 'пятьдесят'),
+      phrase('Сто', 'сто'),
+      phrase('Хиљаду', 'тысяча'),
+      phrase('Динар', 'динар'),
+      phrase('Колико кошта?', 'Сколько стоит?'),
+      phrase('Желим ово', 'Я хочу это', undefined, ['Хочу это']),
+      phrase('Један килограм, молим', 'Один килограмм, пожалуйста', undefined, ['Один килограмм']),
+      phrase('Пола килограма, молим', 'Полкило, пожалуйста', undefined, ['Полкило', 'Половину килограмма']),
+      phrase('Двеста грама, молим', 'Двести грамм, пожалуйста', undefined, ['Двести грамм']),
+      phrase('Измерите, молим', 'Взвесьте, пожалуйста', undefined, ['Взвесьте пожалуйста']),
+      phrase('Могу ли картицом?', 'Можно картой?', undefined, ['Оплата картой?']),
+      phrase('Имам готовину', 'У меня есть наличные', undefined, ['Есть наличные']),
+      phrase('Рачун, молим', 'Чек, пожалуйста', undefined, ['Дайте чек', 'Чек пожалуйста']),
+      phrase('Кеса, молим', 'Пакет, пожалуйста', undefined, ['Пакет']),
+    ],
+  },
+  tr: {
+    id: 'shopping',
+    title: 'Счёт и покупки',
+    cards: [
+      phrase('Bir', 'один'),
+      phrase('İki', 'два'),
+      phrase('Üç', 'три'),
+      phrase('Dört', 'четыре'),
+      phrase('Beş', 'пять'),
+      phrase('Altı', 'шесть'),
+      phrase('Yedi', 'семь'),
+      phrase('Sekiz', 'восемь'),
+      phrase('Dokuz', 'девять'),
+      phrase('On', 'десять'),
+      phrase('Yirmi', 'двадцать'),
+      phrase('Elli', 'пятьдесят'),
+      phrase('Yüz', 'сто'),
+      phrase('Bin', 'тысяча'),
+      phrase('Lira', 'лира'),
+      phrase('Ne kadar?', 'Сколько стоит?'),
+      phrase('Bunu istiyorum', 'Я хочу это', undefined, ['Хочу это']),
+      phrase('Bir kilo lütfen', 'Один килограмм, пожалуйста', undefined, ['Один килограмм']),
+      phrase('Yarım kilo lütfen', 'Полкило, пожалуйста', undefined, ['Полкило', 'Половину килограмма']),
+      phrase('İki yüz gram lütfen', 'Двести грамм, пожалуйста', undefined, ['Двести грамм']),
+      phrase('Tartın lütfen', 'Взвесьте, пожалуйста', undefined, ['Взвесьте пожалуйста']),
+      phrase('Kartla ödeyebilir miyim?', 'Можно картой?', undefined, ['Оплата картой?']),
+      phrase('Nakit var', 'У меня есть наличные', undefined, ['Есть наличные']),
+      phrase('Fiş lütfen', 'Чек, пожалуйста', undefined, ['Дайте чек', 'Чек пожалуйста']),
+      phrase('Poşet lütfen', 'Пакет, пожалуйста', undefined, ['Пакет']),
+    ],
+  },
+  es: {
+    id: 'shopping',
+    title: 'Счёт и покупки',
+    cards: [
+      phrase('Uno', 'один'),
+      phrase('Dos', 'два'),
+      phrase('Tres', 'три'),
+      phrase('Cuatro', 'четыре'),
+      phrase('Cinco', 'пять'),
+      phrase('Seis', 'шесть'),
+      phrase('Siete', 'семь'),
+      phrase('Ocho', 'восемь'),
+      phrase('Nueve', 'девять'),
+      phrase('Diez', 'десять'),
+      phrase('Veinte', 'двадцать'),
+      phrase('Cincuenta', 'пятьдесят'),
+      phrase('Cien', 'сто'),
+      phrase('Mil', 'тысяча'),
+      phrase('Euro', 'евро'),
+      phrase('¿Cuánto cuesta?', 'Сколько стоит?'),
+      phrase('Quiero esto', 'Я хочу это', undefined, ['Хочу это']),
+      phrase('Un kilo, por favor', 'Один килограмм, пожалуйста', undefined, ['Один килограмм']),
+      phrase('Medio kilo, por favor', 'Полкило, пожалуйста', undefined, ['Полкило', 'Половину килограмма']),
+      phrase('Doscientos gramos, por favor', 'Двести грамм, пожалуйста', undefined, ['Двести грамм']),
+      phrase('¿Puede pesarlo?', 'Можете взвесить?', undefined, ['Взвесьте пожалуйста']),
+      phrase('¿Puedo pagar con tarjeta?', 'Можно картой?', undefined, ['Оплата картой?']),
+      phrase('Tengo efectivo', 'У меня есть наличные', undefined, ['Есть наличные']),
+      phrase('El recibo, por favor', 'Чек, пожалуйста', undefined, ['Дайте чек', 'Чек пожалуйста']),
+      phrase('Una bolsa, por favor', 'Пакет, пожалуйста', undefined, ['Пакет']),
+    ],
+  },
+  de: {
+    id: 'shopping',
+    title: 'Счёт и покупки',
+    cards: [
+      phrase('Eins', 'один'),
+      phrase('Zwei', 'два'),
+      phrase('Drei', 'три'),
+      phrase('Vier', 'четыре'),
+      phrase('Fünf', 'пять'),
+      phrase('Sechs', 'шесть'),
+      phrase('Sieben', 'семь'),
+      phrase('Acht', 'восемь'),
+      phrase('Neun', 'девять'),
+      phrase('Zehn', 'десять'),
+      phrase('Zwanzig', 'двадцать'),
+      phrase('Fünfzig', 'пятьдесят'),
+      phrase('Hundert', 'сто'),
+      phrase('Tausend', 'тысяча'),
+      phrase('Euro', 'евро'),
+      phrase('Wie viel kostet das?', 'Сколько стоит?'),
+      phrase('Ich möchte das', 'Я хочу это', undefined, ['Хочу это']),
+      phrase('Ein Kilo, bitte', 'Один килограмм, пожалуйста', undefined, ['Один килограмм']),
+      phrase('Ein halbes Kilo, bitte', 'Полкило, пожалуйста', undefined, ['Полкило', 'Половину килограмма']),
+      phrase('Zweihundert Gramm, bitte', 'Двести грамм, пожалуйста', undefined, ['Двести грамм']),
+      phrase('Bitte wiegen Sie das', 'Взвесьте, пожалуйста', undefined, ['Взвесьте пожалуйста']),
+      phrase('Kann ich mit Karte zahlen?', 'Можно картой?', undefined, ['Оплата картой?']),
+      phrase('Ich habe Bargeld', 'У меня есть наличные', undefined, ['Есть наличные']),
+      phrase('Die Rechnung, bitte', 'Чек, пожалуйста', undefined, ['Дайте чек', 'Чек пожалуйста']),
+      phrase('Eine Tüte, bitte', 'Пакет, пожалуйста', undefined, ['Пакет']),
+    ],
+  },
+};
+
+const EXTRA_LESSON_IDS_BY_COURSE: Record<CourseId, { phrases: string; shopping: string }> = {
+  ka: { phrases: 'ep10', shopping: 'ep11' },
+  sr: { phrases: 'ep9', shopping: 'ep10' },
+  tr: { phrases: 'ep7', shopping: 'ep8' },
+  es: { phrases: 'ep7', shopping: 'ep8' },
+  de: { phrases: 'ep7', shopping: 'ep8' },
+};
+
+function toRawLesson(episode: Episode, id: string): RawEpisode {
+  return {
+    id,
+    title: episode.title,
+    letters: [],
+    cards: episode.cards.map((card) => ({ ...card })),
+  };
+}
+
+function getExtraLessons(courseId: CourseId): RawEpisode[] {
+  const ids = EXTRA_LESSON_IDS_BY_COURSE[courseId];
+  const phrasesEpisode = PHRASES_EPISODE_BY_COURSE[courseId];
+  return [
+    ...(phrasesEpisode ? [toRawLesson(phrasesEpisode, ids.phrases)] : []),
+    toRawLesson(SHOPPING_EPISODE_BY_COURSE[courseId], ids.shopping),
+  ];
+}
+
+function getStaticCourseEpisodes(courseId: CourseId): RawEpisode[] {
+  return [
+    ...RAW_EPISODES_BY_COURSE[courseId],
+    ...getExtraLessons(courseId),
+  ];
+}
+
+function resolveLegacyEpisodeId(id: string, courseId: CourseId): string {
+  if (id === 'phrases') return EXTRA_LESSON_IDS_BY_COURSE[courseId].phrases;
+  return id;
+}
+
 export function normalizeGeorgianText(text: string): string {
   if (!text) return text;
   if (/[\u10D0-\u10FF]/.test(text)) {
@@ -545,7 +723,9 @@ export function loadSingleStaticEpisode(
   courseId: CourseId = DEFAULT_COURSE_ID,
 ): Episode | null {
   const normalizedCourseId = normalizeCourseId(courseId);
-  const raw = RAW_BY_COURSE_AND_ID[normalizedCourseId][id];
+  const resolvedId = resolveLegacyEpisodeId(id, normalizedCourseId);
+  const raw = getStaticCourseEpisodes(normalizedCourseId)
+    .find((episode) => episode.id === resolvedId);
   if (!raw) return null;
 
   return normalizeEpisode({
@@ -558,7 +738,7 @@ export function loadSingleStaticEpisode(
 
 export function listStaticEpisodeIds(courseId: CourseId = DEFAULT_COURSE_ID): string[] {
   const normalizedCourseId = normalizeCourseId(courseId);
-  return RAW_EPISODES_BY_COURSE[normalizedCourseId]
+  return getStaticCourseEpisodes(normalizedCourseId)
     .map((episode) => episode.id)
     .filter((id): id is string => /^ep\d+$/.test(id))
     .sort((a, b) => Number(a.replace('ep', '')) - Number(b.replace('ep', '')));
@@ -573,7 +753,7 @@ export function buildLettersByEpisode(
   const result: Record<string, string[]> = {};
 
   for (const episode of episodes) {
-    if (Array.isArray(episode.letters) && episode.letters.length > 0) {
+    if (Array.isArray(episode.letters)) {
       result[episode.id] = episode.letters;
       episode.letters.forEach((character) => seen.add(character));
       continue;
@@ -610,5 +790,11 @@ export function getStaticLettersByEpisode(courseId: CourseId = DEFAULT_COURSE_ID
 }
 
 export function listStaticEpisodes(courseId: CourseId = DEFAULT_COURSE_ID): EpisodesListItem[] {
-  return STATIC_EPISODES_BY_COURSE[normalizeCourseId(courseId)];
+  const normalizedCourseId = normalizeCourseId(courseId);
+  return STATIC_LESSON_ITEMS_BY_COURSE[normalizedCourseId]
+    .concat(getExtraLessons(normalizedCourseId).map((episode) => ({
+      id: episode.id,
+      title: episode.title,
+    })))
+    .concat(COMMON_SPECIAL_EPISODES);
 }

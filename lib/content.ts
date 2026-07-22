@@ -6,8 +6,6 @@ import {
   listStaticEpisodes,
   listStaticEpisodeIds,
   loadSingleStaticEpisode,
-  normalizeEpisode,
-  PHRASES_EPISODE_BY_COURSE,
   type Episode,
 } from './contentData.ts';
 import { DEFAULT_COURSE_ID, normalizeCourseId, type CourseId } from './courses.ts';
@@ -42,8 +40,7 @@ export async function loadEpisode(
   const normalizedCourseId = normalizeCourseId(courseId);
 
   if (id === 'phrases') {
-    const phrasesEpisode = PHRASES_EPISODE_BY_COURSE[normalizedCourseId];
-    return phrasesEpisode ? normalizeEpisode(phrasesEpisode, normalizedCourseId) : null;
+    return loadSingleStaticEpisode(id, normalizedCourseId);
   }
 
   if (id === 'all') {
@@ -63,15 +60,12 @@ export async function loadEpisode(
   }
 
   if (id === 'favorites') {
-    const [all, phrases] = await Promise.all([
-      loadEpisode('all', normalizedCourseId),
-      loadEpisode('phrases', normalizedCourseId),
-    ]);
+    const all = await loadEpisode('all', normalizedCourseId);
     if (!all) return null;
     return {
       id: 'favorites',
       title: 'Избранное',
-      cards: [...all.cards, ...(phrases?.cards ?? [])],
+      cards: all.cards,
     };
   }
 

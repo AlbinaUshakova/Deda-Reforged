@@ -20,7 +20,7 @@ export type EpisodesData = {
 
 export type EpisodeData = Episode | null;
 
-const EPISODES_DATA_CACHE_KEY_PREFIX = 'deda:episodes-data-cache:v5';
+const EPISODES_DATA_CACHE_KEY_PREFIX = 'deda:episodes-data-cache:v6';
 const RAW_CONTENT_KEY = 'deda_content_json';
 
 const episodesDataCache = new Map<CourseId, EpisodesData>();
