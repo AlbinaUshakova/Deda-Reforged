@@ -14,7 +14,7 @@ import { useViewportWidth } from '@/components/lessons/useViewportWidth';
 import {
   writeAlphabetStatusCache,
 } from '@/lib/alphabetProgressCache';
-import { COURSES, progressKeyForEpisode, type CourseId } from '@/lib/courses';
+import { COURSES, COURSE_IDS, progressKeyForEpisode, type CourseId } from '@/lib/courses';
 import { deriveLessonState } from '@/lib/lessonProgress';
 
 export default function HomePage() {
@@ -128,21 +128,25 @@ export default function HomePage() {
       <div className="relative mx-auto w-full flex-1 [@media(max-width:700px)]:flex-none flex flex-col justify-start pb-[clamp(32px,4.5vh,40px)] [@media(max-width:700px)]:pb-3">
         <div className="relative z-[170] mx-auto mb-3 flex w-full max-w-[1040px] justify-end">
           <div className="inline-flex rounded-full border border-slate-200/70 bg-white/58 p-1 shadow-[0_10px_24px_rgba(15,23,42,0.055)] backdrop-blur">
-            {Object.values(COURSES).map(course => (
-              <button
-                key={course.id}
-                type="button"
-                onClick={() => updateSettings({ courseId: course.id as CourseId })}
-                aria-pressed={courseId === course.id}
-                className={`rounded-full px-3.5 py-1.5 text-[12px] font-semibold tracking-[-0.01em] transition ${
-                  courseId === course.id
-                    ? 'bg-[#18201d] text-white shadow-sm'
-                    : 'text-slate-500 hover:text-slate-900'
-                }`}
-              >
-                {course.shortTitle}
-              </button>
-            ))}
+            {COURSE_IDS.map(id => {
+              const course = COURSES[id];
+
+              return (
+                <button
+                  key={course.id}
+                  type="button"
+                  onClick={() => updateSettings({ courseId: course.id as CourseId })}
+                  aria-pressed={courseId === course.id}
+                  className={`rounded-full px-3.5 py-1.5 text-[12px] font-semibold tracking-[-0.01em] transition ${
+                    courseId === course.id
+                      ? 'bg-[#18201d] text-white shadow-sm'
+                      : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                >
+                  {course.shortTitle}
+                </button>
+              );
+            })}
           </div>
         </div>
         <LessonsHero

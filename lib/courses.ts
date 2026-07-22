@@ -2,6 +2,8 @@ import { geLetterAudioMap } from './georgianLetterAudio.ts';
 
 export type CourseId = 'ka' | 'sr' | 'tr' | 'es' | 'de';
 
+export const COURSE_ORDER: CourseId[] = ['ka', 'es', 'de', 'sr', 'tr'];
+
 export type Course = {
   id: CourseId;
   title: string;
@@ -584,7 +586,7 @@ export const COURSES: Record<CourseId, Course> = {
 };
 
 export const DEFAULT_COURSE_ID: CourseId = 'ka';
-export const COURSE_IDS = Object.keys(COURSES) as CourseId[];
+export const COURSE_IDS = COURSE_ORDER;
 
 export function normalizeCourseId(value: unknown): CourseId {
   return value === 'sr' || value === 'tr' || value === 'es' || value === 'de'

@@ -7,7 +7,7 @@ import {
   geLetterAudioMap,
   geLetterName,
 } from '../lib/georgianAlphabet.ts';
-import { COURSES } from '../lib/courses.ts';
+import { COURSES, COURSE_IDS } from '../lib/courses.ts';
 
 test('Georgian alphabet metadata covers all letters', () => {
   assert.equal(GEORGIAN_ALPHABET.length, 33);
@@ -47,4 +47,12 @@ test('courses with teaching-specific signs expose a separate visual section', ()
   assert.deepEqual(COURSES.tr.alphabetSections.at(-1)?.letters, ['Ç', 'Ğ', 'İ', 'Ö', 'Ş', 'Ü']);
   assert.equal(COURSES.es.alphabetSections.at(-1)?.title, 'Особая буква');
   assert.deepEqual(COURSES.es.alphabetSections.at(-1)?.letters, ['Ñ']);
+});
+
+test('course list order matches product language switcher order', () => {
+  assert.deepEqual(COURSE_IDS, ['ka', 'es', 'de', 'sr', 'tr']);
+  assert.deepEqual(
+    COURSE_IDS.map(courseId => COURSES[courseId].sourceLanguageLabel),
+    ['🇬🇪', '🇪🇸', '🇩🇪', '🇷🇸', '🇹🇷'],
+  );
 });
