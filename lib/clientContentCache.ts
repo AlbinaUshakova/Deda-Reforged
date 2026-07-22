@@ -180,20 +180,21 @@ function readEpisodeFromRawContent(episodeId: string, courseId: CourseId): Episo
 export async function getEpisodeByIdCached(
   episodeId: string,
   courseId: CourseId = DEFAULT_COURSE_ID,
+  forceRefresh = false,
 ): Promise<EpisodeData> {
   const normalizedCourseId = normalizeCourseId(courseId);
   const cacheKey = getEpisodeCacheKey(normalizedCourseId, episodeId);
-  if (episodeCache.has(cacheKey)) return episodeCache.get(cacheKey) ?? null;
+  if (!forceRefresh && episodeCache.has(cacheKey)) return episodeCache.get(cacheKey) ?? null;
 
   const pending = episodePromiseCache.get(cacheKey);
-  if (pending) return pending;
+  if (!forceRefresh && pending) return pending;
 
   const req = (async () => {
     try {
       const res = await fetch(
         `/api/content/episode?id=${encodeURIComponent(episodeId)}&course=${encodeURIComponent(normalizedCourseId)}`,
         {
-        cache: 'force-cache',
+          cache: forceRefresh ? 'no-store' : 'force-cache',
         },
       );
 

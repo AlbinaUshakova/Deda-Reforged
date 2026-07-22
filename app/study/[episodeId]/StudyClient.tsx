@@ -45,7 +45,7 @@ export default function StudyClient({
       return;
     }
 
-    getEpisodeByIdCached(episodeId, courseId)
+    getEpisodeByIdCached(episodeId, courseId, true)
       .then(episode => {
         if (!cancelled) setCourseEpisode(episode);
       })
