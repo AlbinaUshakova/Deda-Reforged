@@ -7,9 +7,7 @@ import {
   listStaticEpisodeIds,
   loadSingleStaticEpisode,
   normalizeEpisode,
-  PHRASES_EPISODE,
-  STATIC_EPISODES_FALLBACK,
-  type CardInfoNote,
+  PHRASES_EPISODE_BY_COURSE,
   type Episode,
 } from './contentData.ts';
 import { DEFAULT_COURSE_ID, normalizeCourseId, type CourseId } from './courses.ts';
@@ -44,8 +42,8 @@ export async function loadEpisode(
   const normalizedCourseId = normalizeCourseId(courseId);
 
   if (id === 'phrases') {
-    if (normalizedCourseId !== 'ka') return null;
-    return normalizeEpisode(PHRASES_EPISODE, normalizedCourseId);
+    const phrasesEpisode = PHRASES_EPISODE_BY_COURSE[normalizedCourseId];
+    return phrasesEpisode ? normalizeEpisode(phrasesEpisode, normalizedCourseId) : null;
   }
 
   if (id === 'all') {

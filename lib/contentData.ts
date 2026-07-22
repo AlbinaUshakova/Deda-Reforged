@@ -109,6 +109,11 @@ const KA_SPECIAL_EPISODES: EpisodesListItem[] = [
   { id: 'phrases', title: 'Разговорные фразы' },
 ];
 
+const SPECIAL_EPISODES_WITH_PHRASES: EpisodesListItem[] = [
+  ...COMMON_SPECIAL_EPISODES,
+  { id: 'phrases', title: 'Разговорные фразы' },
+];
+
 const staticLessonItems = (staticEpisodes as Array<{ id: string; title: string }>)
   .filter(episode => /^ep\d+$/i.test(episode.id))
   .map((episode) => ({
@@ -123,11 +128,11 @@ const STATIC_EPISODES_BY_COURSE: Record<CourseId, EpisodesListItem[]> = {
   sr: (srStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
-  })).concat(COMMON_SPECIAL_EPISODES),
+  })).concat(SPECIAL_EPISODES_WITH_PHRASES),
   tr: (trStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
-  })).concat(COMMON_SPECIAL_EPISODES),
+  })).concat(SPECIAL_EPISODES_WITH_PHRASES),
 };
 
 function phrase(
@@ -252,6 +257,86 @@ export const PHRASES_EPISODE: Episode = {
     phrase('მწყურია', 'Я хочу пить', undefined, ['Хочу пить', 'Мне хочется пить']),
     phrase('რომელი საათია?', 'Который час?'),
   ],
+};
+
+const SERBIAN_PHRASES_EPISODE: Episode = {
+  id: 'phrases',
+  title: 'Разговорные фразы',
+  cards: [
+    phrase('Здраво', 'Привет'),
+    phrase('Добар дан', 'Добрый день'),
+    phrase('Добро јутро', 'Доброе утро'),
+    phrase('Добро вече', 'Добрый вечер'),
+    phrase('Лаку ноћ', 'Спокойной ночи'),
+    phrase('Довиђења', 'До свидания'),
+    phrase('Видимо се', 'Увидимся'),
+    phrase('Молим', 'Пожалуйста'),
+    phrase('Хвала', 'Спасибо'),
+    phrase('Хвала пуно', 'Большое спасибо', undefined, ['Спасибо большое']),
+    phrase('Нема на чему', 'Не за что'),
+    phrase('Извините', 'Извините', 'Вежливо: к незнакомым людям и в общественных местах.', ['Простите']),
+    phrase('Жао ми је', 'Мне жаль'),
+    phrase('Да', 'Да'),
+    phrase('Не', 'Нет'),
+    phrase('У реду', 'Хорошо', undefined, ['Ладно', 'Ок', 'Окей']),
+    phrase('Не разумем', 'Я не понимаю', undefined, ['Не понимаю']),
+    phrase('Разумем', 'Я понимаю', undefined, ['Понимаю']),
+    phrase('Говорите ли енглески?', 'Вы говорите по-английски?'),
+    phrase('Ја сам туриста', 'Я турист'),
+    phrase('Како се зовете?', 'Как вас зовут?'),
+    phrase('Драго ми је', 'Приятно познакомиться'),
+    phrase('Где је тоалет?', 'Где туалет?'),
+    phrase('Помоћ', 'Помощь'),
+    phrase('Треба ми помоћ', 'Мне нужна помощь', undefined, ['Нужна помощь']),
+    phrase('Колико кошта?', 'Сколько стоит?'),
+    phrase('Желим ово', 'Я хочу это', undefined, ['Хочу это']),
+    phrase('Вода, молим', 'Воду, пожалуйста', undefined, ['Вода пожалуйста']),
+    phrase('Рачун, молим', 'Счёт, пожалуйста', undefined, ['Счет пожалуйста']),
+    phrase('Где је апотека?', 'Где аптека?'),
+  ],
+};
+
+const TURKISH_PHRASES_EPISODE: Episode = {
+  id: 'phrases',
+  title: 'Разговорные фразы',
+  cards: [
+    phrase('Merhaba', 'Привет'),
+    phrase('Günaydın', 'Доброе утро'),
+    phrase('İyi günler', 'Добрый день'),
+    phrase('İyi akşamlar', 'Добрый вечер'),
+    phrase('İyi geceler', 'Спокойной ночи'),
+    phrase('Hoşça kal', 'Пока'),
+    phrase('Görüşürüz', 'Увидимся'),
+    phrase('Lütfen', 'Пожалуйста'),
+    phrase('Teşekkür ederim', 'Спасибо'),
+    phrase('Çok teşekkürler', 'Большое спасибо', undefined, ['Спасибо большое']),
+    phrase('Rica ederim', 'Не за что'),
+    phrase('Afedersiniz', 'Извините', 'Вежливо: чтобы привлечь внимание или пройти.', ['Простите']),
+    phrase('Özür dilerim', 'Простите', undefined, ['Извините']),
+    phrase('Evet', 'Да'),
+    phrase('Hayır', 'Нет'),
+    phrase('Tamam', 'Хорошо', undefined, ['Ладно', 'Ок', 'Окей']),
+    phrase('Anlamıyorum', 'Я не понимаю', undefined, ['Не понимаю']),
+    phrase('Anlıyorum', 'Я понимаю', undefined, ['Понимаю']),
+    phrase('İngilizce biliyor musunuz?', 'Вы говорите по-английски?'),
+    phrase('Ben turistim', 'Я турист'),
+    phrase('Adınız ne?', 'Как вас зовут?'),
+    phrase('Memnun oldum', 'Приятно познакомиться'),
+    phrase('Tuvalet nerede?', 'Где туалет?'),
+    phrase('Yardım', 'Помощь'),
+    phrase('Yardıma ihtiyacım var', 'Мне нужна помощь', undefined, ['Нужна помощь']),
+    phrase('Ne kadar?', 'Сколько стоит?'),
+    phrase('Bunu istiyorum', 'Я хочу это', undefined, ['Хочу это']),
+    phrase('Su, lütfen', 'Воду, пожалуйста', undefined, ['Вода пожалуйста']),
+    phrase('Hesap, lütfen', 'Счёт, пожалуйста', undefined, ['Счет пожалуйста']),
+    phrase('Eczane nerede?', 'Где аптека?'),
+  ],
+};
+
+export const PHRASES_EPISODE_BY_COURSE: Record<CourseId, Episode | null> = {
+  ka: PHRASES_EPISODE,
+  sr: SERBIAN_PHRASES_EPISODE,
+  tr: TURKISH_PHRASES_EPISODE,
 };
 
 export function normalizeGeorgianText(text: string): string {

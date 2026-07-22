@@ -81,7 +81,7 @@ test('loadNewLettersPerEpisode returns letters for each numbered lesson', async 
   assert.ok(Array.isArray(lettersByEpisode.ep9));
 });
 
-test('non-Georgian courses load separate lessons without Georgian phrases section', async () => {
+test('non-Georgian courses load separate lessons plus conversational phrases', async () => {
   for (const courseId of ['sr', 'tr'] as const) {
     const episodes = await listEpisodes(courseId);
     const ids = episodes.map((episode) => episode.id);
@@ -89,8 +89,31 @@ test('non-Georgian courses load separate lessons without Georgian phrases sectio
     assert.ok(ids.includes('ep1'), `${courseId} should include ep1`);
     assert.ok(ids.includes('all'), `${courseId} should include all lessons`);
     assert.ok(ids.includes('favorites'), `${courseId} should include favorites`);
-    assert.ok(!ids.includes('phrases'), `${courseId} should not include Georgian phrases`);
+    assert.ok(ids.includes('phrases'), `${courseId} should include conversational phrases`);
   }
+});
+
+test('Serbian and Turkish phrases contain 30 essential tourist phrases', async () => {
+  for (const courseId of ['sr', 'tr'] as const) {
+    const episode = await loadEpisode('phrases', courseId);
+
+    assert.ok(episode);
+    assert.equal(episode.id, 'phrases');
+    assert.equal(episode.cards.length, 30, `${courseId} phrases should contain 30 cards`);
+    assert.ok(episode.cards.every((card) => card.type === 'word'));
+    assert.ok(episode.cards.every((card) => card.ge_text.trim().length > 0));
+    assert.ok(episode.cards.every((card) => card.ru_meaning.trim().length > 0));
+  }
+});
+
+test('Serbian and Turkish favorites include conversational phrases', async () => {
+  const serbianFavorites = await loadEpisode('favorites', 'sr');
+  const turkishFavorites = await loadEpisode('favorites', 'tr');
+
+  assert.ok(serbianFavorites);
+  assert.ok(turkishFavorites);
+  assert.ok(serbianFavorites.cards.some((card) => card.ge_text === 'Здраво'));
+  assert.ok(turkishFavorites.cards.some((card) => card.ge_text === 'Merhaba'));
 });
 
 test('Serbian and Turkish numbered lessons contain 15 cards each', async () => {
