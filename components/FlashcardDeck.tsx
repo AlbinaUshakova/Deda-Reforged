@@ -15,7 +15,6 @@ import { FlashcardCardContent } from '@/components/flashcards/FlashcardCardConte
 import { FlashcardControls } from '@/components/flashcards/FlashcardControls';
 import { FlashcardFilters } from '@/components/flashcards/FlashcardFilters';
 import { FlashcardLessonLetters } from '@/components/flashcards/FlashcardLessonLetters';
-import { FlashcardNavArrow } from '@/components/flashcards/FlashcardNavArrow';
 import {
   getMobileTextSizeClass,
   insertSoftHyphens,
@@ -433,12 +432,6 @@ export default function FlashcardDeck({
     <div className="flashcard-screen-root relative w-full min-w-0">
       {/* Верх: счётчик и заголовок */}
       <div className="mb-1 flex w-full flex-col items-center justify-center gap-1.5">
-        <div className="w-full max-w-[860px] px-3 sm:px-4 md:px-0">
-          <div className="flashcard-counter text-center text-xs max-[900px]:text-[11px] tracking-wide text-[var(--text-secondary)] opacity-70">
-            {counter}
-          </div>
-        </div>
-
         <FlashcardFilters
           hasTopics={hasTopics}
           hasLevels={hasLevels}
@@ -457,14 +450,6 @@ export default function FlashcardDeck({
         <FlashcardLessonLetters letters={currentLessonLettersList} />
 
         <div className="flashcard-card-shell relative mx-auto">
-          {canPrev && (
-            <FlashcardNavArrow direction="prev" placement="outside" onClick={onPrev} />
-          )}
-
-          {canNext && (
-            <FlashcardNavArrow direction="next" placement="outside" onClick={onNext} />
-          )}
-
           <div
             className={`flashcard-main-card group relative z-10 mx-auto cursor-pointer rounded-3xl border border-slate-200 bg-white ${
               flipped ? 'flashcard-main-card--flipped' : ''
@@ -479,14 +464,6 @@ export default function FlashcardDeck({
               }
             }}
           >
-          {canPrev && (
-            <FlashcardNavArrow direction="prev" placement="inside" onClick={onPrev} />
-          )}
-
-          {canNext && (
-            <FlashcardNavArrow direction="next" placement="inside" onClick={onNext} />
-          )}
-
           {hasCard && (
             <FlashcardCardActions
               hintText={hintText}
@@ -535,6 +512,32 @@ export default function FlashcardDeck({
 
           </div>
         </div>
+
+        <nav className="flashcard-nav-bar" aria-label="Навигация по карточкам">
+          <button
+            type="button"
+            className="flashcard-nav-step flashcard-nav-step--prev"
+            onClick={onPrev}
+            disabled={!canPrev}
+          >
+            <span className="flashcard-nav-icon" aria-hidden="true">‹</span>
+            <span>Назад</span>
+          </button>
+
+          <div className="flashcard-nav-progress" aria-live="polite">
+            {counter}
+          </div>
+
+          <button
+            type="button"
+            className="flashcard-nav-step flashcard-nav-step--next"
+            onClick={onNext}
+            disabled={!canNext}
+          >
+            <span>Дальше</span>
+            <span className="flashcard-nav-icon" aria-hidden="true">›</span>
+          </button>
+        </nav>
 
         {/* Controls: below card, centered by the card wrapper */}
         <FlashcardControls

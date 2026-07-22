@@ -526,6 +526,94 @@
     box-shadow: none !important;
 }
 
+.flashcard-nav-bar {
+    width: min(100%, 420px);
+    margin-top: clamp(12px, 2vh, 18px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 12px);
+}
+
+.flashcard-nav-step {
+    min-height: 46px;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 17px;
+    font-size: clamp(13px, 1.35vw, 15px);
+    font-weight: 850;
+    letter-spacing: -0.02em;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
+    transition:
+        transform 150ms ease,
+        border-color 150ms ease,
+        background 150ms ease,
+        color 150ms ease,
+        box-shadow 150ms ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.flashcard-nav-step--prev {
+    color: var(--text-secondary);
+}
+
+.flashcard-nav-step--next {
+    border-color: rgba(0, 168, 132, 0.18);
+    background:
+        linear-gradient(180deg, rgba(236, 253, 245, 0.94), rgba(255, 255, 255, 0.76));
+    color: #006b58;
+}
+
+.flashcard-nav-step:hover:not(:disabled),
+.flashcard-nav-step:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(0, 168, 132, 0.22);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.10);
+    outline: none;
+}
+
+.flashcard-nav-step--next:hover:not(:disabled),
+.flashcard-nav-step--next:focus-visible {
+    background: rgba(236, 253, 245, 0.96);
+}
+
+.flashcard-nav-step:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.07);
+}
+
+.flashcard-nav-step:disabled {
+    cursor: default;
+    opacity: 0.38;
+    box-shadow: none;
+}
+
+.flashcard-nav-icon {
+    font-size: 22px;
+    line-height: 1;
+    transform: translateY(-1px);
+}
+
+.flashcard-nav-progress {
+    min-width: 64px;
+    border-radius: 999px;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.52);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-align: center;
+}
+
 @media (hover: hover) and (pointer: fine) {
 }
 
