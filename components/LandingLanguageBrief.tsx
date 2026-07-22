@@ -73,7 +73,7 @@ export function LandingLanguageBrief() {
   }, [hydrate]);
 
   return (
-    <section className="landing-language-brief mx-auto mt-12 w-full max-w-[1240px] px-4 pb-12 pt-0 sm:mt-4 sm:px-6 sm:pb-16 sm:pt-0 lg:mt-6 lg:px-8 lg:pb-20 lg:pt-1">
+    <section className="landing-language-brief mx-auto mt-10 w-full max-w-[1240px] px-4 pb-10 pt-0 sm:mt-8 sm:px-6 sm:pb-12 sm:pt-0 lg:mt-10 lg:px-8 lg:pb-14 lg:pt-0">
       <div className="landing-language-card">
         <div className="landing-language-kicker">Перед первым уроком</div>
         <h2 className="landing-language-title">{brief.title}</h2>
