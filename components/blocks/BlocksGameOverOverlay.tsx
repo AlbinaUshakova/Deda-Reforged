@@ -7,7 +7,7 @@ type BlocksGameOverOverlayProps = {
 export function BlocksGameOverOverlay({ onRestart }: BlocksGameOverOverlayProps) {
   return (
     <div className="absolute inset-0 rounded-3xl flex items-center justify-center pointer-events-none">
-      <div className="blocks-grid-gameover-overlay absolute inset-0 rounded-3xl bg-slate-900/24" />
+      <div className="blocks-grid-gameover-overlay absolute inset-0 rounded-3xl" />
       <div className="blocks-grid-gameover-card pointer-events-auto relative mx-4 w-[min(100%,286px)] rounded-[24px] border border-white/80 bg-white px-5 py-4 text-center shadow-[0_16px_34px_rgba(15,23,42,0.16)]">
         <div className="blocks-grid-gameover-title text-slate-800 text-[19px] font-semibold tracking-[-0.02em]">
           Ходов больше нет
