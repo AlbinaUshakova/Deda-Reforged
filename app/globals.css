@@ -1483,6 +1483,19 @@ body {
         inset 0 1px 0 rgba(255, 255, 255, 0.46) !important;
 }
 
+.lessons-hero-letter {
+    border-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.lessons-hero-letter:hover,
+.lessons-hero-letter:focus-visible {
+    border-color: transparent !important;
+    background: rgba(0, 168, 132, 0.060) !important;
+    box-shadow: none !important;
+}
+
 .lessons-path-section::before {
     border-color: transparent !important;
 }
