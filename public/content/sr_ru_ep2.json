@@ -10,6 +10,13 @@
     { "type": "word", "ge_text": "мени", "ru_meaning": "мне" },
     { "type": "word", "ge_text": "нос", "ru_meaning": "нос" },
     { "type": "word", "ge_text": "месо", "ru_meaning": "мясо" },
-    { "type": "word", "ge_text": "место", "ru_meaning": "место" }
+    { "type": "word", "ge_text": "место", "ru_meaning": "место" },
+    { "type": "word", "ge_text": "сан", "ru_meaning": "сон" },
+    { "type": "word", "ge_text": "семе", "ru_meaning": "семя" },
+    { "type": "word", "ge_text": "сати", "ru_meaning": "часы" },
+    { "type": "word", "ge_text": "осам", "ru_meaning": "восемь" },
+    { "type": "word", "ge_text": "мост", "ru_meaning": "мост" },
+    { "type": "word", "ge_text": "исти", "ru_meaning": "такой же" },
+    { "type": "word", "ge_text": "сто", "ru_meaning": "стол", "accepted_ru": ["сто"] }
   ]
 }

@@ -91,6 +91,20 @@ test('serbian course loads separate lessons without Georgian phrases section', a
   assert.ok(!ids.includes('phrases'));
 });
 
+test('serbian numbered lessons contain 15 cards each', async () => {
+  const episodes = await listEpisodes('sr');
+  const numberedLessons = episodes.filter((episode) => /^ep\d+$/.test(episode.id));
+
+  assert.equal(numberedLessons.length, 8);
+
+  for (const episode of numberedLessons) {
+    const content = await loadEpisode(episode.id, 'sr');
+
+    assert.ok(content);
+    assert.equal(content.cards.length, 15, `${episode.id} should contain 15 cards`);
+  }
+});
+
 test('serbian lesson cards use only current and previous lesson letters', async () => {
   const lettersByEpisode = await loadNewLettersPerEpisode('sr');
   const seen = new Set<string>();

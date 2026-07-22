@@ -10,6 +10,13 @@
     { "type": "word", "ge_text": "због", "ru_meaning": "из-за" },
     { "type": "word", "ge_text": "град", "ru_meaning": "город" },
     { "type": "phrase", "ge_text": "добро јутро", "ru_meaning": "доброе утро" },
-    { "type": "phrase", "ge_text": "добро вече", "ru_meaning": "добрый вечер" }
+    { "type": "phrase", "ge_text": "добро вече", "ru_meaning": "добрый вечер" },
+    { "type": "word", "ge_text": "здраво", "ru_meaning": "привет" },
+    { "type": "word", "ge_text": "где", "ru_meaning": "где" },
+    { "type": "word", "ge_text": "брат", "ru_meaning": "брат" },
+    { "type": "word", "ge_text": "добар", "ru_meaning": "хороший" },
+    { "type": "word", "ge_text": "зима", "ru_meaning": "зима" },
+    { "type": "word", "ge_text": "бело", "ru_meaning": "белое" },
+    { "type": "word", "ge_text": "брод", "ru_meaning": "корабль" }
   ]
 }

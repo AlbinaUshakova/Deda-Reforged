@@ -10,6 +10,13 @@
     { "type": "word", "ge_text": "једе", "ru_meaning": "ест" },
     { "type": "word", "ge_text": "пут", "ru_meaning": "путь" },
     { "type": "word", "ge_text": "лепо", "ru_meaning": "красиво" },
-    { "type": "phrase", "ge_text": "дан је леп", "ru_meaning": "день хороший", "accepted_ru": ["хороший день"] }
+    { "type": "phrase", "ge_text": "дан је леп", "ru_meaning": "день хороший", "accepted_ru": ["хороший день"] },
+    { "type": "word", "ge_text": "деда", "ru_meaning": "дедушка" },
+    { "type": "word", "ge_text": "папа", "ru_meaning": "папа" },
+    { "type": "word", "ge_text": "вода", "ru_meaning": "вода" },
+    { "type": "word", "ge_text": "лево", "ru_meaning": "налево" },
+    { "type": "word", "ge_text": "доле", "ru_meaning": "внизу" },
+    { "type": "word", "ge_text": "овде", "ru_meaning": "здесь" },
+    { "type": "word", "ge_text": "ради", "ru_meaning": "работает" }
   ]
 }

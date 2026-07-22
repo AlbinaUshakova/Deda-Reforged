@@ -11,6 +11,12 @@
     { "type": "word", "ge_text": "ђак", "ru_meaning": "ученик" },
     { "type": "word", "ge_text": "џеп", "ru_meaning": "карман" },
     { "type": "word", "ge_text": "кафа", "ru_meaning": "кофе" },
-    { "type": "word", "ge_text": "флаша", "ru_meaning": "бутылка" }
+    { "type": "word", "ge_text": "флаша", "ru_meaning": "бутылка" },
+    { "type": "word", "ge_text": "жедан", "ru_meaning": "хочу пить" },
+    { "type": "word", "ge_text": "желим", "ru_meaning": "хочу" },
+    { "type": "word", "ge_text": "шетам", "ru_meaning": "гуляю" },
+    { "type": "word", "ge_text": "ђумбир", "ru_meaning": "имбирь" },
+    { "type": "word", "ge_text": "џем", "ru_meaning": "джем" },
+    { "type": "word", "ge_text": "филм", "ru_meaning": "фильм" }
   ]
 }

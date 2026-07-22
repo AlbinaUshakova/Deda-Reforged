@@ -9,6 +9,14 @@
     { "type": "word", "ge_text": "ти", "ru_meaning": "ты" },
     { "type": "word", "ge_text": "ми", "ru_meaning": "мы" },
     { "type": "word", "ge_text": "то", "ru_meaning": "это" },
-    { "type": "word", "ge_text": "тамо", "ru_meaning": "там" }
+    { "type": "word", "ge_text": "тамо", "ru_meaning": "там" },
+    { "type": "word", "ge_text": "мати", "ru_meaning": "мать" },
+    { "type": "word", "ge_text": "тама", "ru_meaning": "темнота" },
+    { "type": "word", "ge_text": "мито", "ru_meaning": "взятка" },
+    { "type": "word", "ge_text": "мото", "ru_meaning": "девиз" },
+    { "type": "word", "ge_text": "атом", "ru_meaning": "атом" },
+    { "type": "word", "ge_text": "тим", "ru_meaning": "команда" },
+    { "type": "word", "ge_text": "мимо", "ru_meaning": "мимо" },
+    { "type": "word", "ge_text": "имати", "ru_meaning": "иметь" }
   ]
 }

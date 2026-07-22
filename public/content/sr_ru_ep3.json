@@ -10,6 +10,13 @@
     { "type": "word", "ge_text": "ко", "ru_meaning": "кто" },
     { "type": "word", "ge_text": "како", "ru_meaning": "как" },
     { "type": "word", "ge_text": "ово", "ru_meaning": "это" },
-    { "type": "phrase", "ge_text": "ко си ти", "ru_meaning": "кто ты" }
+    { "type": "phrase", "ge_text": "ко си ти", "ru_meaning": "кто ты" },
+    { "type": "word", "ge_text": "вук", "ru_meaning": "волк" },
+    { "type": "word", "ge_text": "сок", "ru_meaning": "сок" },
+    { "type": "word", "ge_text": "коса", "ru_meaning": "волосы" },
+    { "type": "word", "ge_text": "мрак", "ru_meaning": "темнота" },
+    { "type": "word", "ge_text": "вера", "ru_meaning": "вера" },
+    { "type": "word", "ge_text": "увек", "ru_meaning": "всегда" },
+    { "type": "word", "ge_text": "крема", "ru_meaning": "крем" }
   ]
 }

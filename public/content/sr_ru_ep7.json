@@ -10,6 +10,13 @@
     { "type": "word", "ge_text": "храна", "ru_meaning": "еда" },
     { "type": "word", "ge_text": "хоћу", "ru_meaning": "хочу" },
     { "type": "word", "ge_text": "кућа", "ru_meaning": "дом" },
-    { "type": "word", "ge_text": "ноћ", "ru_meaning": "ночь" }
+    { "type": "word", "ge_text": "ноћ", "ru_meaning": "ночь" },
+    { "type": "word", "ge_text": "хвала", "ru_meaning": "спасибо" },
+    { "type": "word", "ge_text": "цвет", "ru_meaning": "цветок" },
+    { "type": "word", "ge_text": "хотел", "ru_meaning": "отель" },
+    { "type": "word", "ge_text": "црква", "ru_meaning": "церковь" },
+    { "type": "word", "ge_text": "срећа", "ru_meaning": "счастье" },
+    { "type": "word", "ge_text": "већ", "ru_meaning": "уже" },
+    { "type": "word", "ge_text": "моћ", "ru_meaning": "сила" }
   ]
 }
