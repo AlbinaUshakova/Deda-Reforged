@@ -72,10 +72,7 @@ export function FlashcardCardContent({
       <div key={`front-${idx}`} className="flex -translate-y-[14px] flex-col items-center justify-center gap-3">
         <div
           className={`flashcard-ge-text mx-auto w-full max-w-[20ch] max-[640px]:max-w-full whitespace-normal break-normal text-[clamp(34px,5vw,56px)] ${geMobileTextClass} ${geMobileLayoutClass} leading-[1.12] text-slate-800`}
-          style={{
-            fontFamily:
-              "'Noto Sans Georgian','DejaVu Sans',system-ui,sans-serif",
-          }}
+          style={{ fontFamily: 'var(--font-georgian)' }}
         >
           {isGeDialog ? (
             <div className="flex flex-col items-center gap-2">

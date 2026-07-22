@@ -118,10 +118,7 @@ export function AlphabetProgressRow({
             key={`progress-alpha-${ch}`}
             className={`alphabet-writing-letter text-[clamp(11px,1.55vw,19px)] leading-none ${alphabetLetterColorByStatus[letterStatusByChar[ch] ?? 'unknown']}`}
             aria-label={`Буква ${ch}`}
-            style={{
-              fontFamily:
-                "'Noto Sans Georgian','DejaVu Sans',system-ui,sans-serif",
-            }}
+            style={{ fontFamily: 'var(--font-georgian)' }}
           >
             {ch}
           </span>

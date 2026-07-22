@@ -1,5 +1,5 @@
 .home-alphabet-letter {
-    font-family: 'Noto Sans Georgian', 'DejaVu Sans', system-ui, sans-serif;
+    font-family: var(--font-georgian);
 }
 
 .header-control-btn {
@@ -106,7 +106,7 @@
     align-items: center;
     justify-content: center;
     color: #0f766e;
-    font-family: 'Noto Sans Georgian', 'DejaVu Sans', system-ui, sans-serif;
+    font-family: var(--font-georgian);
     font-size: 15px;
     font-weight: 850;
     line-height: 1;

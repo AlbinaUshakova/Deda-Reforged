@@ -5,7 +5,7 @@
  * Toggle between Printed (Mkhedruli) and Handwritten (stroke-order images).
  *
  * Printed:
- *   - By default renders with a Georgian-capable font (Noto Sans Georgian).
+ *   - By default renders with the app's Georgian-capable font stack.
  *   - If you add per-letter images to /public/print/mkhedruli/<LETTER>.svg,
  *     set `preferPrintedImages` = true to render printed via images instead of font.
  *
@@ -116,7 +116,7 @@ export default function DualScriptGeorgian({
           ) : (
             <div
               className="text-3xl"
-              style={{ fontFamily: `'Noto Sans Georgian', 'DejaVu Sans', system-ui, sans-serif` }}
+              style={{ fontFamily: 'var(--font-georgian)' }}
             >
               {word}
             </div>

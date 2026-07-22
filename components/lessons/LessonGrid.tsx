@@ -113,8 +113,7 @@ export function LessonGrid({
                           className="block leading-[1.05] tracking-[0.015em] pb-[3px]"
                           style={{
                             fontSize: `${lessonLetterSizePx}px`,
-                            fontFamily:
-                              "'Noto Sans Georgian','DejaVu Sans',system-ui,sans-serif",
+                            fontFamily: 'var(--font-georgian)',
                           }}
                         >
                           {ch}

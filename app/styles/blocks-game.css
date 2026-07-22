@@ -96,7 +96,7 @@
     left: 50%;
     transform: translateX(-50%);
     color: rgba(120, 113, 108, 0.06);
-    font-family: 'Noto Sans Georgian', 'DejaVu Sans', system-ui, sans-serif;
+    font-family: var(--font-georgian);
     font-size: clamp(76px, 13vw, 180px);
     font-weight: 900;
     letter-spacing: 0.08em;
