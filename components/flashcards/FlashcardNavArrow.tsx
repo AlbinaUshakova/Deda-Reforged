@@ -39,7 +39,7 @@ export function FlashcardNavArrow({
       }}
       className={`flashcard-nav-arrow ${
         !isPrev ? 'flashcard-next-btn ' : ''
-      }flashcard-nav-arrow--${placement} absolute top-1/2 z-20 ${visibilityClass} ${sizeClass} -translate-y-1/2 items-center justify-center rounded-full border-0 bg-transparent text-[var(--text-secondary)] shadow-none transition-all duration-150 ease-out hover:scale-[1.04] active:scale-[0.98] ${sideClass}`}
+      }flashcard-nav-arrow--${placement} absolute top-1/2 z-20 ${visibilityClass} ${sizeClass} -translate-y-1/2 items-center justify-center rounded-full border-0 bg-transparent text-[var(--text-secondary)] shadow-none transition-colors duration-150 ease-out ${sideClass}`}
       style={style}
       title={title}
       aria-label={title}
