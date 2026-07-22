@@ -32,7 +32,7 @@ const lightInterfaceSlots: Array<{
 ];
 
 export const landingMetadata = {
-  title: 'Deda - учимся читать по-грузински играя.',
+  title: 'Deda - учимся читать по-грузински, играя.',
   description:
     'Слушай буквы, читай карточки и играй, чтобы довести чтение по-грузински до автоматизма.',
 };
@@ -514,10 +514,10 @@ export default function LandingPage() {
       <section className="mx-auto flex w-full max-w-[1240px] flex-col justify-center px-4 pt-12 sm:px-6 sm:pt-20 lg:px-8 lg:pt-24">
         <div className="landing-hero-grid grid grid-cols-1 md:grid-cols-[minmax(0,1.08fr)_minmax(250px,0.92fr)]">
           <div className="landing-copy max-w-none md:col-start-1 md:row-start-1">
-            <h1 className="landing-title max-w-[620px] text-[clamp(23px,3.8vw,47px)] font-semibold leading-[1.02] tracking-[-0.02em]">
-              Учимся читать{' '}
-              <br />
-              по-грузински играя
+            <h1 className="landing-title max-w-[620px] text-[clamp(23px,3.8vw,47px)] font-semibold leading-[1.1] tracking-[-0.025em]">
+              <span className="block">Учимся читать</span>
+              {' '}
+              <span className="mt-1 block">по-грузински, играя</span>
             </h1>
             <p className="landing-subtitle mt-6 text-[clamp(15px,2vw,20px)] leading-[1.4] text-[var(--text-secondary)]">
               Слушай буквы, читай карточки{' '}
