@@ -2,35 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import LandingAlphabet from '@/components/LandingAlphabet';
 import { LandingAlphabetTitle, LandingCourseTitle } from '@/components/LandingCourseTitle';
-
-const lightInterfaceSlots: Array<{
-  title: string;
-  description: string;
-  src: string;
-  cropFrame?: boolean;
-  mobileContain?: boolean;
-}> = [
-  {
-    title: 'Скрин 7',
-    description: 'Новый экран',
-    src: '/landing/deda-light-screen-panel.png',
-  },
-  {
-    title: 'Карточка',
-    description: 'Экран карточек',
-    src: '/landing/deda-light-card-batumi.png',
-  },
-  {
-    title: 'Игра',
-    description: 'Экран игры с вводом слова',
-    src: '/landing/deda-mar19-screen-7.png',
-  },
-  {
-    title: 'Фигуры',
-    description: 'Экран игры с фигурами',
-    src: '/landing/deda-mar19-screen-6.png',
-  },
-];
+import { LandingLanguageBrief } from '@/components/LandingLanguageBrief';
 
 export const landingMetadata = {
   title: 'Deda - учимся читать играя.',
@@ -603,32 +575,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-showcase-section mx-auto mt-12 w-full max-w-[1240px] px-4 pb-12 pt-0 sm:mt-4 sm:px-6 sm:pb-16 sm:pt-0 lg:mt-6 lg:px-8 lg:pb-20 lg:pt-1">
-        <div className="max-w-[760px]">
-          <div className="landing-showcase-title text-[20px] font-bold tracking-[-0.015em] text-[var(--text-primary)]">
-            Что внутри Deda
-          </div>
-        </div>
-
-        <div className="landing-screens-grid landing-screens-grid--light mt-10 sm:mt-6">
-          {lightInterfaceSlots.map(slot => (
-            <div
-              key={slot.src}
-              className={`landing-screen-item${slot.cropFrame ? ' landing-screen-item--crop-frame' : ''}`}
-            >
-              <Image
-                src={slot.src}
-                alt={slot.title}
-                width={800}
-                height={1600}
-                loading="lazy"
-                className={`landing-screen-media${slot.mobileContain ? ' landing-screen-media--contain-mobile' : ''}`}
-              />
-            </div>
-          ))}
-        </div>
-
-      </section>
+      <LandingLanguageBrief />
     </main>
   );
 }
