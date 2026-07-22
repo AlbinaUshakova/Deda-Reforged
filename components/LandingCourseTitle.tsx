@@ -7,6 +7,7 @@ import { COURSES, type CourseId } from '@/lib/courses';
 const courseFlag: Record<CourseId, string> = {
   ka: '🇬🇪',
   sr: '🇷🇸',
+  tr: '🇹🇷',
 };
 
 export function LandingCourseTitle() {

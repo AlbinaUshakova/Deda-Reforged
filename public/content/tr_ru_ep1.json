@@ -1,0 +1,22 @@
+{
+  "id": "ep1",
+  "title": "Урок 1",
+  "letters": ["A", "B", "E", "H", "İ", "L", "M", "N", "R", "S", "T"],
+  "cards": [
+    { "type": "word", "ge_text": "merhaba", "ru_meaning": "привет" },
+    { "type": "word", "ge_text": "ben", "ru_meaning": "я" },
+    { "type": "word", "ge_text": "sen", "ru_meaning": "ты" },
+    { "type": "word", "ge_text": "bir", "ru_meaning": "один" },
+    { "type": "word", "ge_text": "ne", "ru_meaning": "что" },
+    { "type": "word", "ge_text": "anne", "ru_meaning": "мама" },
+    { "type": "word", "ge_text": "el", "ru_meaning": "рука" },
+    { "type": "word", "ge_text": "elma", "ru_meaning": "яблоко" },
+    { "type": "word", "ge_text": "bana", "ru_meaning": "мне" },
+    { "type": "word", "ge_text": "sana", "ru_meaning": "тебе" },
+    { "type": "word", "ge_text": "tamam", "ru_meaning": "хорошо", "accepted_ru": ["ладно", "ок"] },
+    { "type": "word", "ge_text": "hemen", "ru_meaning": "сейчас" },
+    { "type": "word", "ge_text": "beni", "ru_meaning": "меня" },
+    { "type": "word", "ge_text": "seni", "ru_meaning": "тебя" },
+    { "type": "word", "ge_text": "sabah", "ru_meaning": "утро" }
+  ]
+}

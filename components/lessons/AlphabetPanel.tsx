@@ -34,6 +34,7 @@ export function AlphabetPanel({
   onSpeakLetter: (letter: string) => void;
 }) {
   const course = getCourse(courseId);
+  const alphabetColumnCount = Math.max(...course.alphabetRows.map(row => row.length));
 
   return (
     <aside
@@ -67,9 +68,8 @@ export function AlphabetPanel({
           {course.alphabetRows.map((row, rowIdx) => (
             <div
               key={`home-alpha-row-${rowIdx}`}
-              className={`grid gap-x-[clamp(3px,0.8vw,7px)] gap-y-[clamp(3px,0.8vw,6px)] ${
-                row.length < 6 ? 'mx-auto w-[calc(50%-4px)] grid-cols-3' : 'grid-cols-6'
-              }`}
+              className="grid gap-x-[clamp(3px,0.8vw,7px)] gap-y-[clamp(3px,0.8vw,6px)]"
+              style={{ gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))` }}
             >
               {row.map((ch) => (
                 <button

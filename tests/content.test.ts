@@ -81,49 +81,55 @@ test('loadNewLettersPerEpisode returns letters for each numbered lesson', async 
   assert.ok(Array.isArray(lettersByEpisode.ep9));
 });
 
-test('serbian course loads separate lessons without Georgian phrases section', async () => {
-  const episodes = await listEpisodes('sr');
-  const ids = episodes.map((episode) => episode.id);
+test('non-Georgian courses load separate lessons without Georgian phrases section', async () => {
+  for (const courseId of ['sr', 'tr'] as const) {
+    const episodes = await listEpisodes(courseId);
+    const ids = episodes.map((episode) => episode.id);
 
-  assert.ok(ids.includes('ep1'));
-  assert.ok(ids.includes('ep5'));
-  assert.ok(ids.includes('all'));
-  assert.ok(!ids.includes('phrases'));
-});
-
-test('serbian numbered lessons contain 15 cards each', async () => {
-  const episodes = await listEpisodes('sr');
-  const numberedLessons = episodes.filter((episode) => /^ep\d+$/.test(episode.id));
-
-  assert.equal(numberedLessons.length, 8);
-
-  for (const episode of numberedLessons) {
-    const content = await loadEpisode(episode.id, 'sr');
-
-    assert.ok(content);
-    assert.equal(content.cards.length, 15, `${episode.id} should contain 15 cards`);
+    assert.ok(ids.includes('ep1'), `${courseId} should include ep1`);
+    assert.ok(ids.includes('all'), `${courseId} should include all lessons`);
+    assert.ok(ids.includes('favorites'), `${courseId} should include favorites`);
+    assert.ok(!ids.includes('phrases'), `${courseId} should not include Georgian phrases`);
   }
 });
 
-test('serbian lesson cards use only current and previous lesson letters', async () => {
-  const lettersByEpisode = await loadNewLettersPerEpisode('sr');
-  const seen = new Set<string>();
+test('Serbian and Turkish numbered lessons contain 15 cards each', async () => {
+  for (const courseId of ['sr', 'tr'] as const) {
+    const episodes = await listEpisodes(courseId);
+    const numberedLessons = episodes.filter((episode) => /^ep\d+$/.test(episode.id));
 
-  for (const episodeId of Object.keys(lettersByEpisode).sort()) {
-    for (const letter of lettersByEpisode[episodeId]) {
-      seen.add(letter);
-      seen.add(letter.toLocaleLowerCase('sr'));
+    assert.ok(numberedLessons.length > 0);
+
+    for (const episode of numberedLessons) {
+      const content = await loadEpisode(episode.id, courseId);
+
+      assert.ok(content);
+      assert.equal(content.cards.length, 15, `${courseId}:${episode.id} should contain 15 cards`);
     }
+  }
+});
 
-    const episode = await loadEpisode(episodeId, 'sr');
-    assert.ok(episode);
+test('Serbian and Turkish lesson cards use only current and previous lesson letters', async () => {
+  for (const courseId of ['sr', 'tr'] as const) {
+    const lettersByEpisode = await loadNewLettersPerEpisode(courseId);
+    const seen = new Set<string>();
 
-    for (const card of episode.cards) {
-      for (const character of card.ge_text.replace(/\s|-/g, '')) {
-        assert.ok(
-          seen.has(character),
-          `${episodeId}: ${card.ge_text} uses unopened letter ${character}`,
-        );
+    for (const episodeId of Object.keys(lettersByEpisode).sort()) {
+      for (const letter of lettersByEpisode[episodeId]) {
+        seen.add(letter);
+        seen.add(letter.toLocaleLowerCase(courseId));
+      }
+
+      const episode = await loadEpisode(episodeId, courseId);
+      assert.ok(episode);
+
+      for (const card of episode.cards) {
+        for (const character of card.ge_text.replace(/\s|-/g, '')) {
+          assert.ok(
+            seen.has(character),
+            `${courseId}:${episodeId}: ${card.ge_text} uses unopened letter ${character}`,
+          );
+        }
       }
     }
   }

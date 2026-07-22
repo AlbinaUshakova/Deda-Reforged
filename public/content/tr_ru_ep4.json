@@ -1,0 +1,22 @@
+{
+  "id": "ep4",
+  "title": "Урок 4",
+  "letters": ["C", "Ç", "G", "Ğ", "Ş"],
+  "cards": [
+    { "type": "word", "ge_text": "çok", "ru_meaning": "много" },
+    { "type": "word", "ge_text": "geç", "ru_meaning": "поздно" },
+    { "type": "word", "ge_text": "gece", "ru_meaning": "ночь" },
+    { "type": "word", "ge_text": "çocuk", "ru_meaning": "ребёнок", "accepted_ru": ["ребенок"] },
+    { "type": "word", "ge_text": "aç", "ru_meaning": "голодный" },
+    { "type": "word", "ge_text": "açık", "ru_meaning": "открыто" },
+    { "type": "word", "ge_text": "şimdi", "ru_meaning": "сейчас" },
+    { "type": "word", "ge_text": "ağaç", "ru_meaning": "дерево" },
+    { "type": "word", "ge_text": "çay", "ru_meaning": "чай" },
+    { "type": "word", "ge_text": "yağmur", "ru_meaning": "дождь" },
+    { "type": "word", "ge_text": "sağ", "ru_meaning": "правый" },
+    { "type": "word", "ge_text": "değil", "ru_meaning": "не" },
+    { "type": "word", "ge_text": "iş", "ru_meaning": "работа" },
+    { "type": "word", "ge_text": "beş", "ru_meaning": "пять" },
+    { "type": "word", "ge_text": "kaç", "ru_meaning": "сколько" }
+  ]
+}

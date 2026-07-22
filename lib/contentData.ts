@@ -17,6 +17,13 @@ import srEp5Json from '../public/content/sr_ru_ep5.json' with { type: 'json' };
 import srEp6Json from '../public/content/sr_ru_ep6.json' with { type: 'json' };
 import srEp7Json from '../public/content/sr_ru_ep7.json' with { type: 'json' };
 import srEp8Json from '../public/content/sr_ru_ep8.json' with { type: 'json' };
+import trStaticEpisodes from '../public/content/episodes_tr.json' with { type: 'json' };
+import trEp1Json from '../public/content/tr_ru_ep1.json' with { type: 'json' };
+import trEp2Json from '../public/content/tr_ru_ep2.json' with { type: 'json' };
+import trEp3Json from '../public/content/tr_ru_ep3.json' with { type: 'json' };
+import trEp4Json from '../public/content/tr_ru_ep4.json' with { type: 'json' };
+import trEp5Json from '../public/content/tr_ru_ep5.json' with { type: 'json' };
+import trEp6Json from '../public/content/tr_ru_ep6.json' with { type: 'json' };
 import { DEFAULT_COURSE_ID, getCourse, isCourseLetter, normalizeCourseId, type CourseId } from './courses.ts';
 
 export type CardInfoNote = {
@@ -76,11 +83,20 @@ const RAW_EPISODES_BY_COURSE: Record<CourseId, RawEpisode[]> = {
     srEp7Json as RawEpisode,
     srEp8Json as RawEpisode,
   ],
+  tr: [
+    trEp1Json as RawEpisode,
+    trEp2Json as RawEpisode,
+    trEp3Json as RawEpisode,
+    trEp4Json as RawEpisode,
+    trEp5Json as RawEpisode,
+    trEp6Json as RawEpisode,
+  ],
 };
 
 const RAW_BY_COURSE_AND_ID: Record<CourseId, Record<string, RawEpisode>> = {
   ka: Object.fromEntries(RAW_EPISODES_BY_COURSE.ka.map((episode) => [episode.id, episode])),
   sr: Object.fromEntries(RAW_EPISODES_BY_COURSE.sr.map((episode) => [episode.id, episode])),
+  tr: Object.fromEntries(RAW_EPISODES_BY_COURSE.tr.map((episode) => [episode.id, episode])),
 };
 
 const COMMON_SPECIAL_EPISODES: EpisodesListItem[] = [
@@ -105,6 +121,10 @@ export const STATIC_EPISODES_FALLBACK: EpisodesListItem[] = staticLessonItems.co
 const STATIC_EPISODES_BY_COURSE: Record<CourseId, EpisodesListItem[]> = {
   ka: STATIC_EPISODES_FALLBACK,
   sr: (srStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
+    id: episode.id,
+    title: episode.title,
+  })).concat(COMMON_SPECIAL_EPISODES),
+  tr: (trStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
   })).concat(COMMON_SPECIAL_EPISODES),

@@ -31,6 +31,7 @@ export default function GlobalAlphabetOverlay() {
   const progress = useAppStore(state => state.progressMap);
   const courseId = useAppStore(state => state.settings.courseId);
   const course = getCourse(courseId);
+  const alphabetColumnCount = Math.max(...course.alphabetRows.map(row => row.length));
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const transliterationMode = useAppStore(state => state.settings.transliterationMode);
   const alphabetToggleRequest = useAppStore(state => state.alphabetToggleRequest);
@@ -214,7 +215,8 @@ export default function GlobalAlphabetOverlay() {
           {course.alphabetRows.map((row, rowIdx) => (
             <div
               key={`alphabet-row-${rowIdx}`}
-              className={row.length === 6 ? 'grid grid-cols-6 gap-x-[clamp(3px,0.8vw,7px)]' : 'grid grid-cols-3 gap-x-[clamp(3px,0.8vw,7px)] mx-auto w-[calc(50%-4px)]'}
+              className="grid gap-x-[clamp(3px,0.8vw,7px)]"
+              style={{ gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))` }}
             >
               {row.map(ch => (
                 <button

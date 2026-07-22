@@ -1,0 +1,22 @@
+{
+  "id": "ep2",
+  "title": "Урок 2",
+  "letters": ["D", "K", "O", "U", "Y"],
+  "cards": [
+    { "type": "word", "ge_text": "burada", "ru_meaning": "здесь" },
+    { "type": "word", "ge_text": "orada", "ru_meaning": "там" },
+    { "type": "word", "ge_text": "nerede", "ru_meaning": "где" },
+    { "type": "word", "ge_text": "okul", "ru_meaning": "школа" },
+    { "type": "word", "ge_text": "oda", "ru_meaning": "комната" },
+    { "type": "word", "ge_text": "kedi", "ru_meaning": "кот" },
+    { "type": "word", "ge_text": "su", "ru_meaning": "вода" },
+    { "type": "word", "ge_text": "yemek", "ru_meaning": "еда" },
+    { "type": "word", "ge_text": "yok", "ru_meaning": "нет" },
+    { "type": "word", "ge_text": "kim", "ru_meaning": "кто" },
+    { "type": "word", "ge_text": "konu", "ru_meaning": "тема" },
+    { "type": "word", "ge_text": "doktor", "ru_meaning": "доктор" },
+    { "type": "word", "ge_text": "dolu", "ru_meaning": "полный" },
+    { "type": "word", "ge_text": "uyku", "ru_meaning": "сон" },
+    { "type": "word", "ge_text": "dur", "ru_meaning": "стой" }
+  ]
+}

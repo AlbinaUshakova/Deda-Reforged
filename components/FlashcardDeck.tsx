@@ -23,6 +23,7 @@ import {
 import { useFlashcardKeyboardShortcuts } from '@/components/flashcards/useFlashcardKeyboardShortcuts';
 import { geTextToHint, type TransliterationMode } from '@/lib/transliteration';
 import { getEpisodesDataSync } from '@/lib/clientContentCache';
+import { getCourse } from '@/lib/courses';
 
 type Card = {
   id?: string;
@@ -81,6 +82,7 @@ export default function FlashcardDeck({
     state => state.settings.transliterationMode,
   ) as TransliterationMode;
   const courseId = useAppStore(state => state.settings.courseId);
+  const course = getCourse(courseId);
   const [revealCount, setRevealCount] = useState(0);
   const [auto, setAuto] = useState(false);
   const [autoSpeedMs, setAutoSpeedMs] = useState(1500);
@@ -111,7 +113,7 @@ export default function FlashcardDeck({
     (text: string) => {
       if (!text || currentLessonLetters.size === 0) return text;
       return Array.from(text).map((ch, idx) => {
-        const normalizedChar = ch.toLocaleUpperCase(courseId === 'sr' ? 'sr' : 'ka');
+        const normalizedChar = ch.toLocaleUpperCase(course.locale);
         return ch === '\u00AD' ? (
           <span key={`${idx}-shy`}>{ch}</span>
         ) : currentLessonLetters.has(normalizedChar) ? (
@@ -126,7 +128,7 @@ export default function FlashcardDeck({
         );
       });
     },
-    [courseId, currentLessonLetters],
+    [course.locale, currentLessonLetters],
   );
 
   const renderCardText = useCallback(

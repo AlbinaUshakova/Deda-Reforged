@@ -1,0 +1,22 @@
+{
+  "id": "ep5",
+  "title": "Урок 5",
+  "letters": ["F", "Ö", "Ü"],
+  "cards": [
+    { "type": "word", "ge_text": "lütfen", "ru_meaning": "пожалуйста" },
+    { "type": "word", "ge_text": "gün", "ru_meaning": "день" },
+    { "type": "word", "ge_text": "bugün", "ru_meaning": "сегодня" },
+    { "type": "word", "ge_text": "üzüm", "ru_meaning": "виноград" },
+    { "type": "word", "ge_text": "süt", "ru_meaning": "молоко" },
+    { "type": "word", "ge_text": "kötü", "ru_meaning": "плохо" },
+    { "type": "word", "ge_text": "güzel", "ru_meaning": "красиво" },
+    { "type": "word", "ge_text": "söz", "ru_meaning": "слово" },
+    { "type": "word", "ge_text": "göz", "ru_meaning": "глаз" },
+    { "type": "word", "ge_text": "dört", "ru_meaning": "четыре" },
+    { "type": "word", "ge_text": "ödev", "ru_meaning": "задание" },
+    { "type": "word", "ge_text": "öyle", "ru_meaning": "так" },
+    { "type": "word", "ge_text": "türk", "ru_meaning": "турок" },
+    { "type": "word", "ge_text": "küçük", "ru_meaning": "маленький" },
+    { "type": "word", "ge_text": "film", "ru_meaning": "фильм" }
+  ]
+}

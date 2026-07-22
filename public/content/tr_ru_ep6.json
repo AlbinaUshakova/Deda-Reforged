@@ -1,0 +1,22 @@
+{
+  "id": "ep6",
+  "title": "Урок 6",
+  "letters": ["J"],
+  "cards": [
+    { "type": "word", "ge_text": "evet", "ru_meaning": "да" },
+    { "type": "word", "ge_text": "hayır", "ru_meaning": "нет" },
+    { "type": "phrase", "ge_text": "hoşça kal", "ru_meaning": "пока" },
+    { "type": "phrase", "ge_text": "görüşürüz", "ru_meaning": "увидимся" },
+    { "type": "phrase", "ge_text": "afiyet olsun", "ru_meaning": "приятного аппетита" },
+    { "type": "word", "ge_text": "nerelisin", "ru_meaning": "откуда ты" },
+    { "type": "phrase", "ge_text": "tuvalet nerede", "ru_meaning": "где туалет" },
+    { "type": "phrase", "ge_text": "hesap lütfen", "ru_meaning": "счёт пожалуйста", "accepted_ru": ["счет пожалуйста"] },
+    { "type": "word", "ge_text": "yardım", "ru_meaning": "помощь" },
+    { "type": "phrase", "ge_text": "özür dilerim", "ru_meaning": "извините" },
+    { "type": "phrase", "ge_text": "iyi geceler", "ru_meaning": "спокойной ночи" },
+    { "type": "phrase", "ge_text": "iyi günler", "ru_meaning": "хорошего дня" },
+    { "type": "phrase", "ge_text": "çay istiyorum", "ru_meaning": "хочу чай" },
+    { "type": "phrase", "ge_text": "su istiyorum", "ru_meaning": "хочу воду" },
+    { "type": "phrase", "ge_text": "problem değil", "ru_meaning": "не проблема" }
+  ]
+}
