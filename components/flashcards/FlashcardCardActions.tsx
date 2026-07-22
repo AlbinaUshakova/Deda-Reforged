@@ -1,10 +1,13 @@
 'use client';
 
+import type { ReactNode } from 'react';
+
 type FlashcardCardActionsProps = {
   hintText: string;
   revealCount: number;
   isFavorite: boolean;
   showTranslit: boolean;
+  modeControl?: ReactNode;
   onRevealHint: () => void;
   onResetHint: () => void;
   onToggleFavorite: () => void;
@@ -19,6 +22,7 @@ export function FlashcardCardActions({
   revealCount,
   isFavorite,
   showTranslit,
+  modeControl,
   onRevealHint,
   onResetHint,
   onToggleFavorite,
@@ -76,6 +80,7 @@ export function FlashcardCardActions({
           <span className="flashcard-action-icon" aria-hidden="true">Aa</span>
           <span className="flashcard-action-label ml-1">Транскрипция</span>
         </button>
+        {modeControl}
       </div>
     </div>
   );

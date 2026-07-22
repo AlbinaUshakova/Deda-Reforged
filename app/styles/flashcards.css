@@ -173,17 +173,6 @@
     padding-bottom: 46px;
 }
 
-.flashcard-controls-wrap {
-    position: relative;
-    z-index: 45;
-    margin-top: clamp(6px, 1vh, 10px);
-    margin-bottom: clamp(8px, 1.35vh, 12px);
-    width: min(100%, 420px, 84vw);
-    max-width: 420px;
-    display: flex;
-    justify-content: center;
-}
-
 @media (max-width: 900px) {
     .flashcard-stage {
         padding-left: clamp(44px, 12vw, 72px) !important;
@@ -222,13 +211,6 @@
         padding: 24px;
         padding-top: 76px;
         padding-bottom: 40px;
-    }
-
-    .flashcard-controls-wrap {
-        margin-top: 8px;
-        margin-bottom: 10px;
-        width: min(100%, 420px, 86vw);
-        max-width: 420px;
     }
 
     .flashcard-cat {
@@ -624,7 +606,7 @@
 }
 
 .flashcard-mode-trigger {
-    min-height: 34px;
+    min-height: 32px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -633,8 +615,8 @@
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.46);
     color: #36564f;
-    padding: 0 12px;
-    font-size: 12px;
+    padding: 0 10px;
+    font-size: 11px;
     font-weight: 800;
     letter-spacing: -0.02em;
     box-shadow: 0 8px 18px rgba(15, 23, 42, 0.045);
@@ -661,14 +643,12 @@
     transform: translateY(1px);
 }
 
-.flashcard-mode-summary {
-    color: #7b8b85;
-    font-size: 11px;
-    font-weight: 800;
+.flashcard-mode-label {
+    white-space: nowrap;
 }
 
 .flashcard-mode-menu {
-    min-width: 248px;
+    min-width: 236px;
     border: 1px solid rgba(15, 118, 110, 0.10);
     border-radius: 22px;
     background:
@@ -1050,6 +1030,16 @@
 }
 
 @media (max-width: 560px) {
+    .flashcard-mode-trigger {
+        width: 34px;
+        min-width: 34px;
+        padding: 0 !important;
+    }
+
+    .flashcard-mode-label {
+        display: none;
+    }
+
     .flashcard-control-btn {
         min-width: 46px;
         gap: 0;
