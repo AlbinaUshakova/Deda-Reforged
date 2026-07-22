@@ -9,7 +9,9 @@ export default function BrandToggle() {
   const courseId = useAppStore(state => state.settings.courseId);
   const requestAlphabetToggle = useAppStore(state => state.requestAlphabetToggle);
   const course = getCourse(courseId);
-  const alphabetLabel = alphabetOpen ? 'Скрыть алфавит' : 'Открыть алфавит';
+  const alphabetLabel = alphabetOpen
+    ? `Скрыть ${course.alphabetTitle}`
+    : `Открыть ${course.alphabetTitle}`;
 
   return (
     <div className="header-brand-wrap inline-flex items-center gap-4">
@@ -26,7 +28,7 @@ export default function BrandToggle() {
         title={alphabetLabel}
       >
         <span className="header-control-glyph" aria-hidden="true">{course.alphabet[0]}</span>
-        Алфавит
+        {course.alphabetTitle}
       </button>
     </div>
   );
