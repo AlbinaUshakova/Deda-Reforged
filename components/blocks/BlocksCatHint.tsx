@@ -34,7 +34,7 @@ export function BlocksCatHint({
       aria-label="Подсказка по выбору языка"
       className="absolute left-0 z-[60] select-none"
       style={{
-        top: placement === 'bottom' ? -cellSize * 1.18 : -cellSize * 1.48,
+        top: placement === 'bottom' ? -cellSize * 0.92 : -cellSize * 1.16,
         left: placement === 'bottom' ? cellSize * 0.08 : -cellSize * 0.02,
         width: placement === 'bottom' ? cellSize * 1.95 : cellSize * 2.2,
         transform: undefined,
