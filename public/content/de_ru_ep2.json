@@ -1,22 +1,25 @@
 {
   "id": "ep2",
-  "title": "Урок 2",
-  "letters": ["D", "H", "C", "K", "G"],
+  "title": "Урок 4",
+  "letters": ["C", "G", "M"],
   "cards": [
     { "type": "word", "ge_text": "ich", "ru_meaning": "я" },
+    { "type": "word", "ge_text": "mich", "ru_meaning": "меня" },
     { "type": "word", "ge_text": "dich", "ru_meaning": "тебя" },
-    { "type": "word", "ge_text": "doch", "ru_meaning": "же" },
-    { "type": "word", "ge_text": "danke", "ru_meaning": "спасибо" },
-    { "type": "word", "ge_text": "Tag", "ru_meaning": "день" },
-    { "type": "word", "ge_text": "Guten", "ru_meaning": "добрый" },
     { "type": "word", "ge_text": "machen", "ru_meaning": "делать" },
-    { "type": "word", "ge_text": "kommen", "ru_meaning": "приходить" },
+    { "type": "word", "ge_text": "gut", "ru_meaning": "хорошо" },
+    { "type": "word", "ge_text": "Mann", "ru_meaning": "мужчина" },
+    { "type": "word", "ge_text": "Mama", "ru_meaning": "мама" },
+    { "type": "word", "ge_text": "Name", "ru_meaning": "имя" },
+    { "type": "word", "ge_text": "genug", "ru_meaning": "достаточно" },
     { "type": "word", "ge_text": "gehen", "ru_meaning": "идти" },
-    { "type": "word", "ge_text": "denken", "ru_meaning": "думать" },
-    { "type": "word", "ge_text": "Haus", "ru_meaning": "дом" },
-    { "type": "word", "ge_text": "Auto", "ru_meaning": "машина" },
-    { "type": "word", "ge_text": "Karte", "ru_meaning": "карта" },
-    { "type": "word", "ge_text": "Kind", "ru_meaning": "ребёнок", "accepted_ru": ["ребенок"] },
-    { "type": "word", "ge_text": "Geld", "ru_meaning": "деньги" }
+    { "type": "word", "ge_text": "gern", "ru_meaning": "охотно" },
+    { "type": "word", "ge_text": "Milch", "ru_meaning": "молоко" },
+    { "type": "word", "ge_text": "Tisch", "ru_meaning": "стол" },
+    { "type": "word", "ge_text": "Gans", "ru_meaning": "гусь" },
+    { "type": "word", "ge_text": "Maus", "ru_meaning": "мышь" },
+    { "type": "word", "ge_text": "Ich mag dich", "ru_meaning": "ты мне нравишься" },
+    { "type": "word", "ge_text": "Mach mit", "ru_meaning": "делай вместе" },
+    { "type": "word", "ge_text": "Ich mache es", "ru_meaning": "я сделаю это" }
   ]
 }

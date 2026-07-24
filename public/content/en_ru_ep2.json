@@ -1,0 +1,23 @@
+{
+  "id": "ep2",
+  "title": "Урок 2",
+  "letters": ["N", "I", "R"],
+  "cards": [
+    { "type": "word", "ge_text": "in", "translit": "ин", "ru_meaning": "в" },
+    { "type": "word", "ge_text": "is", "translit": "из", "ru_meaning": "есть" },
+    { "type": "word", "ge_text": "it", "translit": "ит", "ru_meaning": "это" },
+    { "type": "word", "ge_text": "on", "translit": "он", "ru_meaning": "на" },
+    { "type": "word", "ge_text": "no", "translit": "ноу", "ru_meaning": "нет" },
+    { "type": "word", "ge_text": "not", "translit": "нот", "ru_meaning": "не" },
+    { "type": "word", "ge_text": "ten", "translit": "тен", "ru_meaning": "десять" },
+    { "type": "word", "ge_text": "near", "translit": "ниэр", "ru_meaning": "рядом" },
+    { "type": "word", "ge_text": "one", "translit": "уан", "ru_meaning": "один" },
+    { "type": "word", "ge_text": "tree", "translit": "три", "ru_meaning": "дерево" },
+    { "type": "word", "ge_text": "rain", "translit": "рейн", "ru_meaning": "дождь" },
+    { "type": "word", "ge_text": "train", "translit": "трейн", "ru_meaning": "поезд" },
+    { "type": "word", "ge_text": "store", "translit": "стор", "ru_meaning": "магазин" },
+    { "type": "word", "ge_text": "sister", "translit": "систер", "ru_meaning": "сестра" },
+    { "type": "word", "ge_text": "No rain", "translit": "ноу рейн", "ru_meaning": "нет дождя" },
+    { "type": "word", "ge_text": "I ran", "translit": "ай рэн", "ru_meaning": "я побежал" }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "ep3",
+  "title": "Урок 3",
+  "letters": ["H", "L", "D"],
+  "cards": [
+    { "type": "word", "ge_text": "he", "translit": "хи", "ru_meaning": "он" },
+    { "type": "word", "ge_text": "she", "translit": "ши", "ru_meaning": "она" },
+    { "type": "word", "ge_text": "his", "translit": "хиз", "ru_meaning": "его" },
+    { "type": "word", "ge_text": "her", "translit": "хёр", "ru_meaning": "её", "accepted_ru": ["ее"] },
+    { "type": "word", "ge_text": "the", "translit": "зэ", "ru_meaning": "этот" },
+    { "type": "word", "ge_text": "this", "translit": "зис", "ru_meaning": "это" },
+    { "type": "word", "ge_text": "that", "translit": "зэт", "ru_meaning": "то" },
+    { "type": "word", "ge_text": "and", "translit": "энд", "ru_meaning": "и" },
+    { "type": "word", "ge_text": "old", "translit": "оулд", "ru_meaning": "старый" },
+    { "type": "word", "ge_text": "land", "translit": "лэнд", "ru_meaning": "земля" },
+    { "type": "word", "ge_text": "hand", "translit": "хэнд", "ru_meaning": "рука" },
+    { "type": "word", "ge_text": "hotel", "translit": "хоутел", "ru_meaning": "отель" },
+    { "type": "word", "ge_text": "listen", "translit": "лисен", "ru_meaning": "слушать" },
+    { "type": "word", "ge_text": "island", "translit": "айленд", "ru_meaning": "остров" },
+    { "type": "word", "ge_text": "She is here", "translit": "ши из хиэр", "ru_meaning": "она здесь" },
+    { "type": "word", "ge_text": "Hold it", "translit": "хоулд ит", "ru_meaning": "держи это" },
+    { "type": "word", "ge_text": "Let her in", "translit": "лет хер ин", "ru_meaning": "впусти её", "accepted_ru": ["впусти ее"] }
+  ]
+}

@@ -1,13 +1,10 @@
 'use client';
 
-import type { ReactNode } from 'react';
-
 type FlashcardCardActionsProps = {
   hintText: string;
   revealCount: number;
   isFavorite: boolean;
   showTranslit: boolean;
-  modeControl?: ReactNode;
   onRevealHint: () => void;
   onResetHint: () => void;
   onToggleFavorite: () => void;
@@ -22,7 +19,6 @@ export function FlashcardCardActions({
   revealCount,
   isFavorite,
   showTranslit,
-  modeControl,
   onRevealHint,
   onResetHint,
   onToggleFavorite,
@@ -40,14 +36,15 @@ export function FlashcardCardActions({
           e.preventDefault();
           onResetHint();
         }}
-        title="Подсказка по переводу"
+        title={revealCount > 0 ? `Перевод: ${hintText}` : 'Показать перевод'}
+        aria-label={revealCount > 0 ? `Перевод: ${hintText}` : 'Показать перевод'}
         aria-pressed={revealCount > 0}
       >
         <span className="flashcard-action-icon" aria-hidden="true">?</span>
-        {revealCount === 0 ? (
-          <span className="flashcard-hint-label ml-1">Подсказка</span>
+        {revealCount > 0 ? (
+          <span className="flashcard-hint-value">{hintText}</span>
         ) : (
-          <span className="flashcard-hint-value ml-1">Перевод: {hintText}</span>
+          <span className="flashcard-hint-label">Подсказка</span>
         )}
       </button>
 
@@ -58,14 +55,11 @@ export function FlashcardCardActions({
             e.stopPropagation();
             onToggleFavorite();
           }}
-          title={isFavorite ? 'Убрать из избранного' : 'В избранное'}
+          title={isFavorite ? 'Убрать сохранение' : 'Сохранить карточку'}
           aria-pressed={isFavorite}
         >
           <span className="flashcard-action-icon" aria-hidden="true">
             {isFavorite ? '★' : '☆'}
-          </span>
-          <span className="flashcard-action-label ml-1">
-            {isFavorite ? 'В избранном' : 'Избранное'}
           </span>
         </button>
         <button
@@ -74,13 +68,11 @@ export function FlashcardCardActions({
             e.stopPropagation();
             onToggleTranslit();
           }}
-          title="Показать транскрипцию"
+          title="Показать чтение"
           aria-pressed={showTranslit}
         >
           <span className="flashcard-action-icon" aria-hidden="true">Aa</span>
-          <span className="flashcard-action-label ml-1">Транскрипция</span>
         </button>
-        {modeControl}
       </div>
     </div>
   );

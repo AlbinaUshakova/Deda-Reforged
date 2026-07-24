@@ -1,0 +1,24 @@
+{
+  "id": "ep6",
+  "title": "Урок 6",
+  "letters": ["Y", "W", "F"],
+  "cards": [
+    { "type": "word", "ge_text": "we", "translit": "уи", "ru_meaning": "мы" },
+    { "type": "word", "ge_text": "way", "translit": "уэй", "ru_meaning": "путь" },
+    { "type": "word", "ge_text": "why", "translit": "уай", "ru_meaning": "почему" },
+    { "type": "word", "ge_text": "new", "translit": "нью", "ru_meaning": "новый" },
+    { "type": "word", "ge_text": "you", "translit": "ю", "ru_meaning": "ты" },
+    { "type": "word", "ge_text": "yes", "translit": "йес", "ru_meaning": "да" },
+    { "type": "word", "ge_text": "day", "translit": "дэй", "ru_meaning": "день" },
+    { "type": "word", "ge_text": "few", "translit": "фью", "ru_meaning": "несколько" },
+    { "type": "word", "ge_text": "food", "translit": "фуд", "ru_meaning": "еда" },
+    { "type": "word", "ge_text": "fish", "translit": "фиш", "ru_meaning": "рыба" },
+    { "type": "word", "ge_text": "story", "translit": "стори", "ru_meaning": "история" },
+    { "type": "word", "ge_text": "family", "translit": "фэмили", "ru_meaning": "семья" },
+    { "type": "word", "ge_text": "friend", "translit": "френд", "ru_meaning": "друг" },
+    { "type": "word", "ge_text": "yesterday", "translit": "йестердэй", "ru_meaning": "вчера" },
+    { "type": "word", "ge_text": "My friend is here", "translit": "май френд из хиэр", "ru_meaning": "мой друг здесь" },
+    { "type": "word", "ge_text": "We feel safe", "translit": "ви фил сейф", "ru_meaning": "мы чувствуем себя в безопасности" },
+    { "type": "word", "ge_text": "You can fly", "translit": "ю кэн флай", "ru_meaning": "ты можешь летать" }
+  ]
+}

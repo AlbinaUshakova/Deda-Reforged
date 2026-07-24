@@ -2,23 +2,6 @@
 
 export const FAVORITE_WORDS_KEY = 'deda_fav_ge';
 export const LEGACY_FAVORITE_WORDS_KEY = 'deda_favorite_words';
-export const FLASHCARD_AUTO_PLAY_KEY = 'deda_auto_play';
-export const FLASHCARD_AUTO_SPEED_KEY = 'deda_auto_speed_ms';
-
-export const DEFAULT_FLASHCARD_AUTO_SPEED_MS = 1500;
-export const FLASHCARD_AUTO_SPEED_OPTIONS_MS = [1500, 2500, 4000] as const;
-export const FLASHCARD_AUTO_SPEED_OPTIONS = [
-  { value: 1500, label: '1.5x' },
-  { value: 2500, label: '2.5x' },
-  { value: 4000, label: '4x' },
-] as const;
-
-export type FlashcardAutoSpeedMs = (typeof FLASHCARD_AUTO_SPEED_OPTIONS_MS)[number];
-
-export type FlashcardPreferences = {
-  autoPlay: boolean;
-  autoSpeedMs: FlashcardAutoSpeedMs;
-};
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
 
@@ -93,43 +76,4 @@ export function toggleFavoriteWord(
   }
   writeFavoriteWords(next, storage);
   return next;
-}
-
-export function normalizeFlashcardAutoSpeed(value: unknown): FlashcardAutoSpeedMs {
-  const numericValue = Number(value);
-  return FLASHCARD_AUTO_SPEED_OPTIONS_MS.includes(numericValue as FlashcardAutoSpeedMs)
-    ? (numericValue as FlashcardAutoSpeedMs)
-    : DEFAULT_FLASHCARD_AUTO_SPEED_MS;
-}
-
-export function readFlashcardPreferences(
-  storage: StorageLike | null = getBrowserStorage(),
-): FlashcardPreferences {
-  if (!storage) {
-    return {
-      autoPlay: false,
-      autoSpeedMs: DEFAULT_FLASHCARD_AUTO_SPEED_MS,
-    };
-  }
-
-  return {
-    autoPlay: storage.getItem(FLASHCARD_AUTO_PLAY_KEY) === '1',
-    autoSpeedMs: normalizeFlashcardAutoSpeed(storage.getItem(FLASHCARD_AUTO_SPEED_KEY)),
-  };
-}
-
-export function writeFlashcardAutoPlay(
-  autoPlay: boolean,
-  storage: StorageLike | null = getBrowserStorage(),
-) {
-  if (!storage) return;
-  storage.setItem(FLASHCARD_AUTO_PLAY_KEY, autoPlay ? '1' : '0');
-}
-
-export function writeFlashcardAutoSpeed(
-  autoSpeedMs: number,
-  storage: StorageLike | null = getBrowserStorage(),
-) {
-  if (!storage) return;
-  storage.setItem(FLASHCARD_AUTO_SPEED_KEY, String(normalizeFlashcardAutoSpeed(autoSpeedMs)));
 }

@@ -14,7 +14,7 @@ export default function TopBar() {
   const [showFeedback, setShowFeedback] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  // загрузка пользователя
+  // загрузка аккаунта
   useEffect(() => {
     if (!supabase) return;
 
@@ -40,7 +40,7 @@ export default function TopBar() {
   const username =
     user?.user_metadata?.name ||
     user?.email?.split('@')[0] ||
-    'User';
+    'Гость';
 
   return (
     <>
@@ -52,7 +52,7 @@ export default function TopBar() {
         {/* если НЕ залогинен */}
         {!user && (
           <Link href="/login" className="text-sm hover:text-blue-300">
-            Log in
+            Войти
           </Link>
         )}
 

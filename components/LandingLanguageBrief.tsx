@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect } from 'react';
 import { useAppStore } from '@/lib/appStore';
 import { type CourseId } from '@/lib/courses';
@@ -7,60 +8,76 @@ import { type CourseId } from '@/lib/courses';
 type LanguageBrief = {
   title: string;
   subtitle: string;
-  points: string[];
+  points: Array<{
+    label: string;
+    text: string;
+  }>;
 };
 
 const languageBriefs: Record<CourseId, LanguageBrief> = {
   ka: {
-    title: 'Мини-урок: грузинский',
-    subtitle: 'В грузинском 33 буквы: 5 гласных и 28 согласных. Буквы непривычные, но читаются честно: видишь букву — произносишь звук.',
+    title: 'Грузинский: главное для чтения',
+    subtitle: 'Грузинский алфавит не похож ни на латиницу, ни на кириллицу, но читается довольно последовательно.',
     points: [
-      'Читаем слева направо, как в русском. Скрытых букв почти нет.',
-      'Заглавных букв нет: в начале слова буква выглядит так же, как в середине.',
-      'Пять гласных очень важны: ა, ე, ი, ო, უ. Если узнал их, слово уже легче собрать.',
-      'Есть похожие пары: კ/ქ, ც/წ, ჩ/ჭ. Сначала просто слушай их рядом, ухо привыкнет.',
+      { label: 'Почти одна буква — один звук', text: '33 буквы мхедрули, без заглавных и строчных форм. Выучил букву — обычно узнаешь её в любом слове.' },
+      { label: 'Есть резкие согласные', text: 'კ, პ, ტ произносятся коротко и резко. Таких звуков нет в русском — их проще освоить на слух.' },
+      { label: 'Одно слово может заменить фразу', text: 'Глагол может передавать действие и его участников. Поэтому длинная форма часто оказывается очень ёмкой.' },
     ],
   },
-  sr: {
-    title: 'Мини-урок: сербский',
-    subtitle: 'В сербской кириллице 30 букв: 5 гласных и 25 согласных. Главное правило простое: как написано, так и читаем.',
+  en: {
+    title: 'Английский: главное для чтения',
+    subtitle: 'Английское написание хранит историю языка, поэтому буквы часто звучат по-разному.',
     points: [
-      'Не ищем подвох: одна буква обычно даёт один звук.',
-      'Гласные простые и знакомые: А, Е, И, О, У. Они держат слово, как бусины на нитке.',
-      'Особые буквы Љ, Њ, Ћ, Ђ, Џ читаются одним звуком, не по частям.',
-      'Многие слова похожи на русские, но произносить их нужно по-сербски, буква за буквой.',
-    ],
-  },
-  tr: {
-    title: 'Мини-урок: турецкий',
-    subtitle: 'В турецком 29 букв: 8 гласных и 21 согласная. Чтение очень аккуратное: каждая буква любит свой звук.',
-    points: [
-      'Самая важная пара: I читается ближе к “ы”, а İ — как “и”. Точка меняет звук.',
-      'Ç всегда помогает сказать “ч”, Ş — “ш”. Это не украшения, а подсказки для чтения.',
-      'Ö и Ü — особые гласные. Сначала слушай их, потом повторяй коротко.',
-      'Ğ почти не звучит резко: она как мягкая пауза, которая растягивает соседний звук.',
+      { label: 'Одна буква — несколько звуков', text: 'A звучит по-разному в cat, car, cake и about. Это свойство языка, а не твоя ошибка.' },
+      { label: 'Ударение может менять роль слова', text: 'Record бывает существительным и глаголом: меняется ударение — меняется роль слова.' },
+      { label: 'Сочетания проще учить целиком', text: 'Sh, th, ch, ee и oo часто удобнее запоминать как готовые кусочки.' },
     ],
   },
   es: {
-    title: 'Мини-урок: испанский',
-    subtitle: 'В испанском 27 букв: 5 гласных и 22 согласные. Буквы знакомые, но несколько правил лучше запомнить сразу.',
+    title: 'Испанский: главное для чтения',
+    subtitle: 'Испанское чтение довольно регулярное: освоив несколько правил, большинство слов можно прочитать с первого раза.',
     points: [
-      'Пять гласных звучат ясно: A, E, I, O, U. Они не прячутся и не меняются сильно.',
-      'H молчит. В слове hola первую букву видим, но не произносим.',
-      'C и G смотрят на соседей: перед E и I они могут звучать иначе.',
-      'Ñ — отдельная буква, она звучит как мягкое “нь”. Это буква, а не просто N с хвостиком.',
+      { label: '27 букв и понятные правила', text: 'Многие слова можно увидеть впервые и правильно произнести после нескольких базовых правил.' },
+      { label: 'Ударение обычно предсказуемо', text: 'Без значка действует правило по последней букве. Знак ударения показывает исключение.' },
+      { label: 'Глагол часто показывает, кто действует', text: 'Hablo уже значит “я говорю”: местоимение нередко можно опустить.' },
     ],
   },
   de: {
-    title: 'Мини-урок: немецкий',
-    subtitle: 'В немецком 26 основных букв, 5 главных гласных и 21 согласная. Ещё есть особые знаки: Ä, Ö, Ü и ß.',
+    title: 'Немецкий: главное для чтения',
+    subtitle: 'В немецком многие буквы и сочетания читаются предсказуемо.',
     points: [
-      'Ä, Ö, Ü — это не украшенные буквы, а отдельные звуки. Слушаем их отдельно.',
-      'ß читается как “сс”. Если видишь Straße, не пугаемся: читаем спокойно по кусочкам.',
-      'W часто звучит как “в”, V часто как “ф”, Z — как “ц”. Это три быстрых ключа к чтению.',
-      'Сочетания лучше учить целиком: sch — “ш”, ch — “х”, ei — “ай”, ie — долгий “и”.',
+      { label: 'Многие буквы читаются стабильно', text: '26 основных букв плюс Ä, Ö, Ü и ß. Умлауты лучше сразу услышать отдельно.' },
+      { label: 'Несколько букв читаются не по-английски', text: 'W звучит как “в”, V часто как “ф”, а Z — как “ц”.' },
+      { label: 'Читай готовыми сочетаниями', text: 'Sch, ch, ei и ie удобнее узнавать целиком — они повторяются во многих словах.' },
     ],
   },
+  sr: {
+    title: 'Сербский: главное для чтения',
+    subtitle: 'Сербская кириллица устроена последовательно: одна буква обычно передаёт один звук.',
+    points: [
+      { label: 'Чтение почти без скрытых правил', text: '30 букв: 5 гласных и 25 согласных. Обычно слово читается так, как написано.' },
+      { label: 'Некоторые звуки имеют отдельные буквы', text: 'Љ, Њ и Џ — самостоятельные знаки, каждый читается как единое целое.' },
+      { label: 'Знакомые буквы могут звучать иначе', text: 'Похожее на русское слово иногда обманывает. Читай по-сербски, буква за буквой.' },
+    ],
+  },
+  tr: {
+    title: 'Турецкий: главное для чтения',
+    subtitle: 'Современный турецкий алфавит создали на основе латиницы в 1928 году и подстроили под звуки языка.',
+    points: [
+      { label: '29 букв и немного исключений', text: 'Большинство букв читается стабильно: выучи звук — и узнавай его в словах.' },
+      { label: 'Гласные влияют на окончания', text: 'Суффиксы меняют гласную под корень. Так работает гармония гласных.' },
+      { label: 'Слова собираются из частей', text: 'К корню добавляются суффиксы, каждый со своим смыслом: evlerimden = ev + ler + im + den.' },
+    ],
+  },
+};
+
+const nationalCatByCourse: Record<CourseId, string> = {
+  ka: '/images/cats/national/deda-ka.png',
+  es: '/images/cats/national/deda-es.png',
+  de: '/images/cats/national/deda-de.png',
+  en: '/images/cats/national/deda-en.png',
+  sr: '/images/cats/national/deda-sr.png',
+  tr: '/images/cats/national/deda-tr.png',
 };
 
 export function LandingLanguageBrief() {
@@ -73,18 +90,35 @@ export function LandingLanguageBrief() {
   }, [hydrate]);
 
   return (
-    <section className="landing-language-brief mx-auto mt-10 w-full max-w-[1240px] px-4 pb-10 pt-0 sm:mt-8 sm:px-6 sm:pb-12 sm:pt-0 lg:mt-10 lg:px-8 lg:pb-14 lg:pt-0">
+    <section className="landing-language-brief mx-auto mt-4 w-full max-w-[1240px] px-4 pb-10 pt-0 sm:mt-5 sm:px-6 sm:pb-12 sm:pt-0 lg:mt-6 lg:px-8 lg:pb-14 lg:pt-0">
       <div className="landing-language-card">
-        <div className="landing-language-kicker">Перед первым уроком</div>
-        <h2 className="landing-language-title">{brief.title}</h2>
-        <p className="landing-language-subtitle">{brief.subtitle}</p>
-        <div className="landing-language-points" aria-label="Особенности чтения">
-          {brief.points.map((point, index) => (
-            <div key={point} className="landing-language-point">
-              <span className="landing-language-index">{index + 1}</span>
-              <span>{point}</span>
-            </div>
-          ))}
+        <div className="landing-language-content">
+          <div className="landing-language-copy">
+            <div className="landing-language-kicker">Перед первым уроком</div>
+            <h2 className="landing-language-title">{brief.title}</h2>
+            <p className="landing-language-subtitle">{brief.subtitle}</p>
+          </div>
+          <div className="landing-language-cat-wrap" aria-hidden="true">
+            <Image
+              src={nationalCatByCourse[courseId]}
+              alt=""
+              width={190}
+              height={224}
+              className="landing-language-cat"
+              priority={false}
+            />
+          </div>
+          <div className="landing-language-points" aria-label="Особенности чтения">
+            {brief.points.map((point, index) => (
+              <div key={point.label} className="landing-language-point">
+                <span className="landing-language-index">{index + 1}</span>
+                <span className="landing-language-point-copy">
+                  <span className="landing-language-point-label">{point.label}</span>
+                  <span className="landing-language-point-text">{point.text}</span>
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <style jsx>{`
@@ -100,6 +134,35 @@ export function LandingLanguageBrief() {
             0 24px 70px rgba(31, 28, 23, 0.10),
             inset 0 1px 0 rgba(255, 255, 255, 0.86);
           backdrop-filter: blur(16px);
+        }
+
+        .landing-language-content {
+          position: relative;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(150px, 230px);
+          column-gap: clamp(18px, 4vw, 44px);
+          align-items: center;
+        }
+
+        .landing-language-copy {
+          min-width: 0;
+        }
+
+        .landing-language-cat-wrap {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          align-self: end;
+          justify-content: center;
+          margin-bottom: -12px;
+        }
+
+        .landing-language-cat {
+          width: clamp(132px, 16vw, 212px);
+          height: auto;
+          object-fit: contain;
+          filter: drop-shadow(0 18px 30px rgba(120, 53, 15, 0.14));
         }
 
         .landing-language-card::after {
@@ -145,10 +208,10 @@ export function LandingLanguageBrief() {
           position: relative;
           z-index: 1;
           margin-top: 16px;
-          max-width: 700px;
+          max-width: 680px;
           color: var(--text-secondary);
-          font-size: clamp(15px, 1.8vw, 20px);
-          line-height: 1.42;
+          font-size: clamp(16px, 1.9vw, 21px);
+          line-height: 1.36;
           letter-spacing: -0.018em;
           text-wrap: balance;
         }
@@ -157,24 +220,29 @@ export function LandingLanguageBrief() {
           position: relative;
           z-index: 1;
           margin-top: clamp(22px, 3.5vw, 34px);
+          grid-column: 1 / -1;
           display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 12px;
         }
 
         .landing-language-point {
           display: grid;
           grid-template-columns: auto minmax(0, 1fr);
-          gap: 11px;
+          gap: 12px;
           align-items: start;
-          border-radius: 22px;
-          background: rgba(255, 255, 255, 0.58);
-          padding: 14px;
+          min-height: 132px;
+          border-radius: 24px;
+          background:
+            linear-gradient(145deg, rgba(255, 255, 255, 0.74), rgba(255, 249, 240, 0.5));
+          padding: 16px;
           color: var(--text-primary);
-          font-size: clamp(13px, 1.55vw, 16px);
-          line-height: 1.36;
+          font-size: clamp(13px, 1.35vw, 15px);
+          line-height: 1.34;
           letter-spacing: -0.012em;
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.78),
+            0 10px 24px rgba(31, 28, 23, 0.045);
         }
 
         .landing-language-index {
@@ -191,7 +259,63 @@ export function LandingLanguageBrief() {
           line-height: 1;
         }
 
+        .landing-language-point-copy {
+          display: grid;
+          gap: 7px;
+          min-width: 0;
+        }
+
+        .landing-language-point-label {
+          color: var(--text-primary);
+          font-size: clamp(14px, 1.4vw, 17px);
+          font-weight: 860;
+          letter-spacing: -0.035em;
+          line-height: 1.02;
+        }
+
+        .landing-language-point-text {
+          color: var(--text-secondary);
+          font-weight: 540;
+        }
+
+        @media (max-width: 1023px) {
+          .landing-language-points {
+            grid-template-columns: 1fr;
+          }
+
+          .landing-language-point {
+            min-height: 0;
+          }
+        }
+
         @media (max-width: 767px) {
+          .landing-language-content {
+            grid-template-columns: minmax(0, 1fr);
+            column-gap: 0;
+            align-items: start;
+          }
+
+          .landing-language-copy {
+            padding-right: clamp(74px, 24vw, 120px);
+          }
+
+          .landing-language-title {
+            max-width: 100%;
+            font-size: clamp(29px, 9.8vw, 44px);
+            letter-spacing: -0.06em;
+          }
+
+          .landing-language-cat-wrap {
+            position: absolute;
+            top: -6px;
+            right: -2px;
+            margin: 0;
+          }
+
+          .landing-language-cat {
+            width: clamp(84px, 25vw, 124px);
+          }
+
           .landing-language-points {
             grid-template-columns: 1fr;
           }

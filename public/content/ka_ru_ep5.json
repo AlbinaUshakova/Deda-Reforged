@@ -1,206 +1,22 @@
 {
   "id": "ep5",
-  "title": "Урок 5",
-  "letters": [
-    "ტ",
-    "ზ",
-    "ც",
-    "ნ"
-  ],
+  "title": "Урок 6",
+  "letters": ["პ", "ხ", "ქ"],
   "cards": [
-    {
-      "type": "word",
-      "ge_text": "ხორცი",
-      "reading": "khortsi",
-      "ru_meaning": "мясо"
-    },
-    {
-      "type": "word",
-      "ge_text": "თევზი",
-      "reading": "tevzi",
-      "ru_meaning": "рыба"
-    },
-    {
-      "type": "word",
-      "ge_text": "ზეთი",
-      "reading": "zeti",
-      "ru_meaning": "масло"
-    },
-    {
-      "type": "word",
-      "ge_text": "ეზო",
-      "reading": "ezo",
-      "ru_meaning": "двор"
-    },
-    {
-      "type": "word",
-      "ge_text": "გზა",
-      "reading": "gza",
-      "ru_meaning": "дорога"
-    },
-    {
-      "type": "word",
-      "ge_text": "ხატი",
-      "reading": "khati",
-      "ru_meaning": "икона"
-    },
-    {
-      "type": "word",
-      "ge_text": "ნაზი",
-      "ru_meaning": "нежный"
-    },
-    {
-      "type": "word",
-      "ge_text": "მინდა",
-      "ru_meaning": "хочу"
-    },
-    {
-      "type": "word",
-      "ge_text": "არ მინდა",
-      "ru_meaning": "не хочу"
-    },
-    {
-      "type": "word",
-      "ge_text": "ცხრა",
-      "reading": "tskhra",
-      "ru_meaning": "девять"
-    },
-    {
-      "type": "word",
-      "ge_text": "ერთი ორი სამი ოთხი ხუთი ექვსი შვიდი რვა ცხრა",
-      "ru_meaning": "1 2 3 4 5 6 7 8 9",
-      "audio_url": "",
-      "playable": false
-    },
-    {
-      "type": "word",
-      "ge_text": "ეს არის ხორცი",
-      "ru_meaning": "это мясо"
-    },
-    {
-      "type": "word",
-      "ge_text": "ეს არის თევზი",
-      "ru_meaning": "это рыба"
-    },
-    {
-      "type": "word",
-      "ge_text": "ეს არ არის ხორცი",
-      "ru_meaning": "это не мясо"
-    },
-    {
-      "type": "word",
-      "ge_text": "ხორცი და თევზი",
-      "ru_meaning": "мясо и рыба"
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მინდა თევზი",
-      "reading": "me minda tevzi",
-      "ru_meaning": "я хочу рыбу"
-    },
-    {
-      "type": "word",
-      "ge_text": "არ მინდა თევზი",
-      "ru_meaning": "я не хочу рыбу"
-    },
-    {
-      "type": "word",
-      "ge_text": "აი ცხრა ქათამი",
-      "reading": "ai tskhra katami",
-      "ru_meaning": "вот девять кур"
-    },
-    {
-      "type": "word",
-      "ge_text": "ცხრა გოგო",
-      "ru_meaning": "девять девочек"
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მაქვს ცხრა სკამი და ორი მაგიდა",
-      "ru_meaning": "у меня есть девять стульев и два стола",
-      "accepted_ru": [
-        "у меня есть 9 стульев и 2 стола",
-        "есть девять стульев и два стола",
-        "есть 9 стульев и 2 стола"
-      ]
-    },
-    {
-      "type": "word",
-      "ge_text": "ნანას ეზო",
-      "ru_meaning": "двор Наны"
-    },
-    {
-      "type": "word",
-      "ge_text": "ეზოშია",
-      "ru_meaning": "во дворе"
-    },
-    {
-      "type": "word",
-      "ge_text": "გოგო ეზოშია",
-      "reading": "gogo ezoshia",
-      "ru_meaning": "девочка во дворе"
-    },
-    {
-      "type": "word",
-      "ge_text": "დედა ეზოშია",
-      "reading": "deda ezoshia",
-      "ru_meaning": "мама во дворе"
-    },
-    {
-      "type": "word",
-      "ge_text": "გზა შორია",
-      "ru_meaning": "дорога далёкая"
-    },
-    {
-      "type": "word",
-      "ge_text": "ტორტი",
-      "ru_meaning": "торт"
-    },
-    {
-      "type": "word",
-      "ge_text": "ეს ტორტია",
-      "ru_meaning": "это торт"
-    },
-    {
-      "type": "word",
-      "ge_text": "ტორტი მაგიდაზეა",
-      "ru_meaning": "торт на столе"
-    },
-    {
-      "type": "word",
-      "ge_text": "ანანასი მაგიდაზეა",
-      "ru_meaning": "ананас на столе"
-    },
-    {
-      "type": "word",
-      "ge_text": "დიდი თევზი მაგიდაზეა",
-      "ru_meaning": "большая рыба на столе"
-    },
-    {
-      "type": "word",
-      "ge_text": "ზეთი მაგიდაზეა",
-      "ru_meaning": "масло на столе"
-    },
-    {
-      "type": "word",
-      "ge_text": "სკამზეა",
-      "ru_meaning": "на стуле"
-    },
-    {
-      "type": "word",
-      "ge_text": "გოგო სკამზეა",
-      "reading": "gogo sk’amzea",
-      "ru_meaning": "девочка на стуле"
-    },
-    {
-      "type": "word",
-      "ge_text": "ხატი ოთახშია",
-      "ru_meaning": "икона в комнате"
-    },
-    {
-      "type": "word",
-      "ge_text": "ანანასი კარგია",
-      "ru_meaning": "ананас хороший"
-    }
+    { "type": "word", "ge_text": "ხე", "ru_meaning": "дерево" },
+    { "type": "word", "ge_text": "ხუთი", "ru_meaning": "пять" },
+    { "type": "word", "ge_text": "ექვსი", "ru_meaning": "шесть" },
+    { "type": "word", "ge_text": "ქუდი", "ru_meaning": "шапка" },
+    { "type": "word", "ge_text": "ქათამი", "ru_meaning": "курица" },
+    { "type": "word", "ge_text": "პური", "ru_meaning": "хлеб" },
+    { "type": "word", "ge_text": "პარკი", "ru_meaning": "парк" },
+    { "type": "word", "ge_text": "პალტო", "ru_meaning": "пальто" },
+    { "type": "word", "ge_text": "პომიდორი", "ru_meaning": "помидор" },
+    { "type": "word", "ge_text": "ქარი", "ru_meaning": "ветер" },
+    { "type": "word", "ge_text": "ქალაქი", "ru_meaning": "город" },
+    { "type": "word", "ge_text": "კაპიკი", "ru_meaning": "копейка" },
+    { "type": "word", "ge_text": "ეს პურია", "ru_meaning": "это хлеб" },
+    { "type": "word", "ge_text": "პური მინდა", "ru_meaning": "хочу хлеб" },
+    { "type": "word", "ge_text": "ქუდი მინდა", "ru_meaning": "хочу шапку" }
   ]
 }

@@ -1,9 +1,8 @@
 'use client';
 
 import type { Ref } from 'react';
-import type { TransliterationMode } from '@/lib/transliteration';
-import { letterToHint } from '@/lib/transliteration';
-import { getCourse, type CourseId } from '@/lib/courses';
+import { letterToHint, type TransliterationMode } from '@/lib/transliteration';
+import { getCourse, getLetterKind, getLetterSoundLabel, type CourseId } from '@/lib/courses';
 import type { AlphabetLetterStatus } from '@/lib/lessonProgress';
 
 const alphabetLetterColorByStatus: Record<AlphabetLetterStatus, string> = {
@@ -34,18 +33,23 @@ export function AlphabetPanel({
   onSpeakLetter: (letter: string) => void;
 }) {
   const course = getCourse(courseId);
+  const letterFontClass = courseId === 'ka' ? 'alphabet-letter--georgian' : 'alphabet-letter--latin';
+  const visibleAlphabetSections = course.alphabetSections.filter(section => section.title !== 'Запомни отдельно');
+  const alphabetColumnCount = Math.max(
+    1,
+    ...visibleAlphabetSections.flatMap(section => section.rows.map(row => row.length)),
+  );
 
   return (
     <aside
       ref={alphabetRef}
-      className={`block fixed left-2 sm:left-3 md:left-4 top-[68px] ${alphabetOverlapsLessons ? 'z-[220]' : 'z-[140]'} h-fit w-[clamp(202px,31vw,244px)] pointer-events-none`}
+      className={`block fixed left-2 sm:left-3 md:left-4 top-[68px] ${alphabetOverlapsLessons ? 'z-[220]' : 'z-[140]'} h-fit w-[clamp(184px,31vw,244px)] pointer-events-none`}
     >
       <div
-        className={`home-alphabet-panel max-h-[calc(100dvh-102px)] overflow-y-auto rounded-[clamp(20px,3vw,30px)] border border-slate-200/75 bg-gradient-to-b from-[#f6f8fe]/88 via-[#f1f4fc]/86 to-[#edf1f9]/84 px-[clamp(7px,1.2vw,10px)] pt-[clamp(5px,0.8vw,7px)] pb-[clamp(4px,0.7vw,6px)] shadow-[0_6px_14px_rgba(15,23,42,0.09)] transition-all duration-200 ${showAlphabet ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none select-none'}`}
+        className={`home-alphabet-panel menu-panel-size max-h-[calc(100dvh-102px)] overflow-y-auto rounded-[clamp(18px,2.4vw,24px)] border border-slate-200/75 bg-gradient-to-b from-[#f6f8fe]/88 via-[#f1f4fc]/86 to-[#edf1f9]/84 px-[clamp(5px,0.9vw,8px)] pt-[clamp(4px,0.7vw,6px)] pb-[clamp(4px,0.6vw,5px)] shadow-[0_6px_14px_rgba(15,23,42,0.09)] transition-all duration-200 ${showAlphabet ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none select-none'}`}
         aria-hidden={!showAlphabet}
       >
-        <div className="flex items-center justify-between gap-2">
-          <h3 className="home-alphabet-title text-sm font-medium tracking-[-0.01em] text-slate-700">{course.alphabetTitle}</h3>
+        <div className="flex justify-end">
           <button
             type="button"
             onClick={onToggleAlphabet}
@@ -56,53 +60,47 @@ export function AlphabetPanel({
             ✕
           </button>
         </div>
-        <div className="mt-px flex items-center gap-1.5 text-[clamp(9px,1.55vw,11px)] text-slate-500">
-          <span className="relative inline-flex h-1.5 w-1.5" aria-hidden="true">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#aab8ff] opacity-45" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#97a6ff]" />
-          </span>
-          <span>Нажми на букву</span>
-        </div>
         <div className="mt-1 space-y-[clamp(5px,0.9vw,8px)]">
-          {course.alphabetSections.map((section) => {
-            const alphabetColumnCount = Math.max(...section.rows.map(row => row.length));
-
+          {visibleAlphabetSections.map((section) => {
             return (
-              <section key={`home-alpha-section-${section.title}`} className="min-w-0">
-                {course.alphabetSections.length > 1 && (
-                  <div className="mb-1 flex items-center justify-between gap-2 px-1">
-                    <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500">
-                      {section.title}
-                    </span>
-                    {section.description && (
-                      <span className="max-w-[128px] truncate text-[8.5px] text-slate-400" title={section.description}>
-                        {section.description}
-                      </span>
-                    )}
-                  </div>
-                )}
+              <section
+                key={`home-alpha-section-${section.title}`}
+                className="min-w-0"
+              >
                 <div className="space-y-[clamp(1px,0.45vw,4px)]">
                   {section.rows.map((row, rowIdx) => (
                     <div
                       key={`home-alpha-row-${section.title}-${rowIdx}`}
-                      className="grid gap-x-[clamp(3px,0.8vw,7px)] gap-y-[clamp(3px,0.8vw,6px)]"
-                      style={{ gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))` }}
+                      className="grid gap-x-[clamp(2px,0.6vw,5px)] gap-y-[clamp(2px,0.6vw,5px)]"
+                      style={{
+                        gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))`,
+                      }}
                     >
-                      {row.map((ch) => (
-                        <button
-                          key={ch}
-                          type="button"
-                          onClick={() => onSpeakLetter(ch)}
-                          className="home-alphabet-key cursor-pointer rounded-lg border border-slate-200/75 bg-white/90 py-[3px] text-center shadow-sm transition-all hover:bg-slate-50"
-                          title={`Озвучить букву ${ch}`}
-                          aria-label={`Озвучить букву ${ch}`}
-                        >
-                          <div className="home-alphabet-letter translate-y-[-1px] text-[clamp(14px,2.7vw,19px)] leading-none text-black">{ch}</div>
-                          <div className="home-alphabet-translit mt-[2px] text-[clamp(6px,1.2vw,8px)] leading-none text-slate-400">
-                            {letterToHint(ch, transliterationMode, courseId)}
-                          </div>
-                        </button>
-                      ))}
+                      {row.map((ch) => {
+                        const soundLabel = getLetterSoundLabel(ch, courseId);
+                        const letterKind = getLetterKind(ch, courseId);
+                        const readingHint = letterToHint(ch, transliterationMode, courseId) || ch;
+                        const audioLabel = courseId === 'en'
+                          ? `Прослушать название буквы ${ch}`
+                          : `Прослушать произношение буквы ${ch}`;
+                        const isHighlightedLetter = course.alphabetHighlightedLetters?.includes(ch) ?? false;
+
+                        return (
+                          <button
+                            key={ch}
+                            type="button"
+                            onClick={() => onSpeakLetter(ch)}
+                            className={`home-alphabet-key home-alphabet-key--${letterKind} ${isHighlightedLetter ? 'home-alphabet-key--highlighted' : ''} cursor-pointer rounded-lg border border-slate-200/75 bg-white/90 py-[3px] text-center shadow-sm transition-all hover:bg-slate-50`}
+                            title={`Озвучить букву ${ch}. Звучит как: ${soundLabel}`}
+                            aria-label={audioLabel}
+                          >
+                            <div className={`home-alphabet-letter ${letterFontClass} translate-y-[-1px] leading-none`}>{ch}</div>
+                            <div className="home-alphabet-translit mt-[2px] leading-none">
+                              {String(readingHint).toLowerCase()}
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
                   ))}
                 </div>

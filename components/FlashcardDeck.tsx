@@ -1,18 +1,15 @@
 // components/FlashcardDeck.tsx
 'use client';
 
-import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import Image from 'next/image';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import { useAppStore } from '@/lib/appStore';
 import {
   readFavoriteWordMap,
-  readFlashcardPreferences,
   toggleFavoriteWord,
-  writeFlashcardAutoPlay,
-  writeFlashcardAutoSpeed,
 } from '@/lib/studyPreferences';
 import { FlashcardCardActions } from '@/components/flashcards/FlashcardCardActions';
 import { FlashcardCardContent } from '@/components/flashcards/FlashcardCardContent';
-import { FlashcardControls } from '@/components/flashcards/FlashcardControls';
 import { FlashcardFilters } from '@/components/flashcards/FlashcardFilters';
 import { FlashcardLessonLetters } from '@/components/flashcards/FlashcardLessonLetters';
 import {
@@ -22,7 +19,7 @@ import {
 } from '@/components/flashcards/flashcardText';
 import { useFlashcardKeyboardShortcuts } from '@/components/flashcards/useFlashcardKeyboardShortcuts';
 import { textToHint, type TransliterationMode } from '@/lib/transliteration';
-import { getEpisodesDataSync } from '@/lib/clientContentCache';
+import { getEpisodesDataCached, getEpisodesDataSync } from '@/lib/clientContentCache';
 import { getCourse } from '@/lib/courses';
 
 type Card = {
@@ -31,29 +28,17 @@ type Card = {
   translit?: string;
   ru_meaning?: string;
   info_notes?: Array<{ kind: 'grammar' | 'speech' | 'mistake'; text: string }>;
-  image_url?: string;
   type?: 'word' | 'letter';
   level?: number; // 1–3 сложность (используем, если нет topic)
   topic?: string; // тема фразы (location_movement, questions и т.п.)
 };
 
-function shuffleArr<T>(arr: T[]) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
 export default function FlashcardDeck({
   cards,
-  lessonTitle,
   episodeId,
   onTopicChange,
 }: {
   cards: Card[];
-  lessonTitle?: string;
   episodeId?: string;
   onTopicChange?: (topic: string | null) => void;
 }) {
@@ -83,43 +68,53 @@ export default function FlashcardDeck({
   ) as TransliterationMode;
   const courseId = useAppStore(state => state.settings.courseId);
   const course = getCourse(courseId);
+  const [lessonLetters, setLessonLetters] = useState<string[]>([]);
   const [revealCount, setRevealCount] = useState(0);
-  const [auto, setAuto] = useState(false);
-  const [autoSpeedMs, setAutoSpeedMs] = useState(1500);
-  const [prefsHydrated, setPrefsHydrated] = useState(false);
-  const [speedMenuOpen, setSpeedMenuOpen] = useState(false);
-  const [shuffled, setShuffled] = useState(false);
   const [expandedInfoKinds, setExpandedInfoKinds] = useState<Record<string, boolean>>({});
-
-  const autoRef = useRef<number | null>(null);
-  const speedMenuRef = useRef<HTMLDivElement | null>(null);
 
   const hasTopics = useMemo(
     () => cards.some(c => !!c.topic),
     [cards],
   );
 
-  const currentLessonLetters = useMemo(() => {
-    if (!episodeId) return new Set<string>();
+  useEffect(() => {
+    let cancelled = false;
     const { lettersByEpisode } = getEpisodesDataSync(courseId);
-    return new Set(lettersByEpisode[episodeId] ?? []);
+    const syncLetters = episodeId ? (lettersByEpisode[episodeId] ?? []) : [];
+    setLessonLetters(syncLetters);
+
+    if (!episodeId) return;
+
+    void getEpisodesDataCached(false, courseId).then((data) => {
+      if (cancelled) return;
+      setLessonLetters(data.lettersByEpisode[episodeId] ?? []);
+    });
+
+    return () => {
+      cancelled = true;
+    };
   }, [courseId, episodeId]);
-  const currentLessonLettersList = useMemo(
-    () => Array.from(currentLessonLetters),
-    [currentLessonLetters],
+
+  const currentLessonLetters = useMemo(
+    () => new Set(lessonLetters),
+    [lessonLetters],
   );
+  const currentLessonLettersList = lessonLetters;
 
   const renderLessonLetterHighlight = useCallback(
     (text: string) => {
       if (!text || currentLessonLetters.size === 0) return text;
       return Array.from(text).map((ch, idx) => {
         const normalizedChar = ch.toLocaleUpperCase(course.locale);
+        const normalizedSharpS = ch === 'ß' ? 'ẞ' : normalizedChar;
         return ch === '\u00AD' ? (
           <span key={`${idx}-shy`}>{ch}</span>
-        ) : currentLessonLetters.has(normalizedChar) ? (
+        ) : currentLessonLetters.has(ch) ||
+          currentLessonLetters.has(normalizedChar) ||
+          currentLessonLetters.has(normalizedSharpS) ? (
           <span
             key={`${ch}-${idx}`}
-            className="text-[var(--accent)]"
+            className="flashcard-new-letter"
           >
             {ch}
           </span>
@@ -196,7 +191,6 @@ export default function FlashcardDeck({
     setFlipped(false);
     setShowTranslit(false);
     setRevealCount(0);
-    setShuffled(false);
   }, [visible]);
 
   const card = visible[order[idx]];
@@ -226,8 +220,12 @@ export default function FlashcardDeck({
   const infoNotes = card?.info_notes ?? [];
   const cardTranslit = useMemo(() => {
     if (!card) return '';
-    if (transliterationMode === 'latin' && card.translit && card.translit.trim()) {
-      return card.translit;
+    const manualTranslit = card.translit?.trim();
+    if (courseId === 'en' && manualTranslit) {
+      return manualTranslit;
+    }
+    if (transliterationMode === 'latin' && manualTranslit) {
+      return manualTranslit;
     }
     return textToHint(card.ge_text, transliterationMode, courseId);
   }, [card, courseId, transliterationMode]);
@@ -293,64 +291,6 @@ export default function FlashcardDeck({
     onToggleFavorite: toggleFav,
   });
 
-  useEffect(() => {
-    if (!auto || !visible.length) {
-      if (autoRef.current !== null) {
-        clearInterval(autoRef.current);
-        autoRef.current = null;
-      }
-      return;
-    }
-    autoRef.current = window.setInterval(() => {
-      onNext();
-    }, autoSpeedMs);
-    return () => {
-      if (autoRef.current !== null) {
-        clearInterval(autoRef.current);
-        autoRef.current = null;
-      }
-    };
-  }, [auto, visible.length, autoSpeedMs, onNext]);
-
-  useEffect(() => {
-    try {
-      const prefs = readFlashcardPreferences();
-      setAuto(prefs.autoPlay);
-      setAutoSpeedMs(prefs.autoSpeedMs);
-    } catch { }
-    setPrefsHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!prefsHydrated) return;
-    try {
-      writeFlashcardAutoPlay(auto);
-    } catch { }
-  }, [auto, prefsHydrated]);
-
-  useEffect(() => {
-    if (!prefsHydrated) return;
-    try {
-      writeFlashcardAutoSpeed(autoSpeedMs);
-    } catch { }
-  }, [autoSpeedMs, prefsHydrated]);
-
-  useEffect(() => {
-    if (!prefsHydrated) return;
-    setSpeedMenuOpen(false);
-  }, [prefsHydrated]);
-
-  useEffect(() => {
-    const onDocClick = (e: MouseEvent) => {
-      if (!speedMenuRef.current) return;
-      if (!speedMenuRef.current.contains(e.target as Node)) {
-        setSpeedMenuOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', onDocClick);
-    return () => document.removeEventListener('mousedown', onDocClick);
-  }, []);
-
   const hintText = useMemo(() => {
     if (!card) return '';
     const t = (card.ru_meaning || '').trim();
@@ -398,19 +338,6 @@ export default function FlashcardDeck({
     setLevelInfo(prev => (prev === level ? null : level));
   }, []);
 
-  const toggleShuffle = useCallback(() => {
-    setShuffled(shuffleEnabled => {
-      const next = !shuffleEnabled;
-      setOrder(next ? shuffleArr(order) : visible.map((_, index) => index));
-      return next;
-    });
-  }, [order, visible]);
-
-  const selectAutoSpeed = useCallback((speedMs: number) => {
-    setAutoSpeedMs(speedMs);
-    setSpeedMenuOpen(false);
-  }, []);
-
   const toggleInfoNote = useCallback((noteKey: string) => {
     setExpandedInfoKinds(prev => ({
       ...prev,
@@ -451,9 +378,24 @@ export default function FlashcardDeck({
 
       {/* Карточка */}
       <div className="flashcard-stage relative mx-auto flex w-full max-w-[900px] flex-col items-center justify-center px-[clamp(14px,3.6vw,40px)] pt-[clamp(8px,1.4vh,18px)] pb-[clamp(24px,4vh,44px)]">
-        <FlashcardLessonLetters letters={currentLessonLettersList} />
+        <FlashcardLessonLetters
+          letters={currentLessonLettersList}
+          kind="letters"
+          title="Буквы урока"
+        />
 
         <div className="flashcard-card-shell relative mx-auto">
+          <div className="flashcard-cat-peek pointer-events-none absolute z-20" aria-hidden="true">
+            <Image
+              src="/images/cats/deda-flashcards-writing.png"
+              alt=""
+              width={132}
+              height={170}
+              className="select-none object-contain drop-shadow-[0_12px_22px_rgba(120,53,15,0.12)]"
+              priority={false}
+            />
+          </div>
+
           <div
             className={`flashcard-main-card group relative z-10 mx-auto cursor-pointer rounded-3xl border border-slate-200 bg-white ${
               flipped ? 'flashcard-main-card--flipped' : ''
@@ -478,19 +420,6 @@ export default function FlashcardDeck({
               onResetHint={() => setRevealCount(0)}
               onToggleFavorite={toggleCurrentFavorite}
               onToggleTranslit={() => setShowTranslit(v => !v)}
-              modeControl={
-                <FlashcardControls
-                  shuffled={shuffled}
-                  auto={auto}
-                  autoSpeedMs={autoSpeedMs}
-                  speedMenuOpen={speedMenuOpen}
-                  speedMenuRef={speedMenuRef}
-                  onShuffle={toggleShuffle}
-                  onToggleAuto={() => setAuto(currentAuto => !currentAuto)}
-                  onToggleSpeedMenu={() => setSpeedMenuOpen(open => !open)}
-                  onSelectSpeed={selectAutoSpeed}
-                />
-              }
             />
           )}
 

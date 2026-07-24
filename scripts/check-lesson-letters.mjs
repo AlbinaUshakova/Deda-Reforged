@@ -3,11 +3,13 @@ import path from 'node:path';
 
 const contentDir = path.join(process.cwd(), 'public', 'content');
 const files = fs.readdirSync(contentDir)
-  .filter(name => /^ka_ru_ep\d+\.json$/.test(name))
+  .filter(name => /^ka_ru_ep\d+[a-z]*\.json$/.test(name))
   .sort((a, b) => {
-    const aNum = Number(a.match(/\d+/)?.[0] ?? 0);
-    const bNum = Number(b.match(/\d+/)?.[0] ?? 0);
-    return aNum - bNum;
+    const [, aNumRaw = '0', aSuffix = ''] = a.match(/^ka_ru_ep(\d+)([a-z]*)\.json$/) ?? [];
+    const [, bNumRaw = '0', bSuffix = ''] = b.match(/^ka_ru_ep(\d+)([a-z]*)\.json$/) ?? [];
+    const numberDiff = Number(aNumRaw) - Number(bNumRaw);
+    if (numberDiff !== 0) return numberDiff;
+    return aSuffix.localeCompare(bSuffix);
   });
 
 const isGeorgianLetter = ch => /[\u10D0-\u10FF]/.test(ch);

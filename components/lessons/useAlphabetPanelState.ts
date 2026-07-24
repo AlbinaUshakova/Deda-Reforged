@@ -19,7 +19,6 @@ export function useAlphabetPanelState({
   const [alphabetOverlapsLessons, setAlphabetOverlapsLessons] = useState(false);
   const alphabetRef = useRef<HTMLElement | null>(null);
   const lessonsWrapRef = useRef<HTMLDivElement | null>(null);
-  const alphabetUserToggledRef = useRef(false);
   const handledAlphabetToggleRef = useRef(alphabetToggleRequest);
 
   useEffect(() => {
@@ -43,7 +42,6 @@ export function useAlphabetPanelState({
   useEffect(() => {
     if (handledAlphabetToggleRef.current === alphabetToggleRequest) return;
     handledAlphabetToggleRef.current = alphabetToggleRequest;
-    alphabetUserToggledRef.current = true;
     setShowAlphabet(v => !v);
   }, [alphabetToggleRequest]);
 
@@ -76,7 +74,6 @@ export function useAlphabetPanelState({
   }, [setAlphabetOpen, showAlphabet]);
 
   const toggleAlphabet = () => {
-    alphabetUserToggledRef.current = true;
     setShowAlphabet(v => !v);
   };
 

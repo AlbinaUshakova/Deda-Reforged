@@ -1,7 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getCourse, type CourseId } from '@/lib/courses';
+import {
+  getCourse,
+  getLetterSpeechLang,
+  getLetterSpeechText,
+  type CourseId,
+} from '@/lib/courses';
 import { playLetterAudio } from '@/lib/playLetterAudio';
 
 export function useLetterAudio(courseId: CourseId) {
@@ -26,8 +31,8 @@ export function useLetterAudio(courseId: CourseId) {
 
     void playLetterAudio({
       audioSrc: course.letterAudioMap[letter],
-      fallbackText: course.letterNames[letter] ?? letter,
-      speechLang: course.speechLang,
+      fallbackText: getLetterSpeechText(letter, courseId),
+      speechLang: getLetterSpeechLang(courseId),
       preferredVoices: ttsVoices,
       onStart: () => setAudioError(''),
       onError: () => {

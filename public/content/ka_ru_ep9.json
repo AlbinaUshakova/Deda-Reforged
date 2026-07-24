@@ -1,227 +1,25 @@
 {
   "id": "ep9",
-  "title": "Урок 9",
-  "letters": [
-    "წ",
-    "ჰ",
-    "ჭ"
-  ],
+  "title": "Урок 10",
+  "letters": ["ჯ", "ჰ", "ზ", "ფ"],
   "cards": [
-    {
-      "type": "word",
-      "ge_text": "ჰო",
-      "ru_meaning": "да",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მჭირდება",
-      "ru_meaning": "мне нужен",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მჭირდება ტელეფონი",
-      "ru_meaning": "мне нужен телефон",
-      "accepted_ru": [
-        "нужен телефон"
-      ],
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "წვენი",
-      "ru_meaning": "сок",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "წყალი",
-      "ru_meaning": "вода",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მწვადი",
-      "ru_meaning": "шашлык",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჰალვა",
-      "ru_meaning": "халва",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჰამბურგერი",
-      "ru_meaning": "гамбургер",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჭაჭა",
-      "ru_meaning": "чача",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ხაჭო",
-      "ru_meaning": "творог",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ხაჭაპური",
-      "ru_meaning": "хачапури",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჭკვიანი კატა",
-      "ru_meaning": "умная кошка",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჰო, მინდა",
-      "ru_meaning": "да, хочу",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მინდა წვენი",
-      "ru_meaning": "я хочу сок",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მინდა წყალი",
-      "ru_meaning": "я хочу воду",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მინდა ჭაჭა",
-      "ru_meaning": "я хочу чачу",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მინდა ხაჭაპური",
-      "ru_meaning": "я хочу хачапури",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მინდა ჰამბურგერი",
-      "ru_meaning": "я хочу гамбургер",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მინდა მწვადი",
-      "ru_meaning": "я хочу шашлык",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მინდა ჰალვა",
-      "ru_meaning": "я хочу халву",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მინდა ხაჭო",
-      "ru_meaning": "я хочу творог",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჰო, მინდა წყალი",
-      "ru_meaning": "да, хочу воду",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჰო, ტელეფონი მჭირდება",
-      "ru_meaning": "да, мне нужен телефон",
-      "accepted_ru": [
-        "да нужен телефон"
-      ],
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ეს ჰალვაა",
-      "ru_meaning": "это халва",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ეს წყალია",
-      "ru_meaning": "это вода",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ეს წვენია",
-      "ru_meaning": "это сок",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჰო, ეს სასტუმროა",
-      "ru_meaning": "да, это отель",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჰო, სასტუმროში ვარ",
-      "ru_meaning": "да, я в отеле",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მიყვარს მწვადი",
-      "ru_meaning": "я люблю шашлык",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მწვადი კარგია",
-      "ru_meaning": "шашлык хороший",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჭკვიანი კატები",
-      "ru_meaning": "умные кошки",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მიყვარს ჭკვიანი კატები",
-      "ru_meaning": "я люблю умных кошек",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ხაჭაპური კარგია",
-      "ru_meaning": "хачапури хороший",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "ჰამბურგერი ძვირია",
-      "ru_meaning": "гамбургер дорогой",
-      "audio_url": ""
-    },
-    {
-      "type": "word",
-      "ge_text": "მე არ მიყვარს ხაჭო",
-      "ru_meaning": "я не люблю творог",
-      "audio_url": ""
-    }
+    { "type": "word", "ge_text": "ჰო", "ru_meaning": "да" },
+    { "type": "word", "ge_text": "ჯემი", "ru_meaning": "джем" },
+    { "type": "word", "ge_text": "ზეთი", "ru_meaning": "масло" },
+    { "type": "word", "ge_text": "ეზო", "ru_meaning": "двор" },
+    { "type": "word", "ge_text": "გზა", "ru_meaning": "дорога" },
+    { "type": "word", "ge_text": "ფული", "ru_meaning": "деньги" },
+    { "type": "word", "ge_text": "ფანქარი", "ru_meaning": "карандаш" },
+    { "type": "word", "ge_text": "კაფე", "ru_meaning": "кафе" },
+    { "type": "word", "ge_text": "ოფისი", "ru_meaning": "офис" },
+    { "type": "word", "ge_text": "ფაფა", "ru_meaning": "каша" },
+    { "type": "word", "ge_text": "ფორთოხალი", "ru_meaning": "апельсин" },
+    { "type": "word", "ge_text": "ჰო, გამარჯობა", "ru_meaning": "да, здравствуйте", "accepted_ru": ["да привет", "да добрый день"] },
+    { "type": "word", "ge_text": "ჰამბურგერი", "ru_meaning": "гамбургер" },
+    { "type": "word", "ge_text": "ტელეფონი", "ru_meaning": "телефон" },
+    { "type": "word", "ge_text": "ფასი", "ru_meaning": "цена" },
+    { "type": "word", "ge_text": "გამარჯობა", "ru_meaning": "здравствуйте", "accepted_ru": ["привет", "добрый день"] },
+    { "type": "word", "ge_text": "ფული მინდა", "ru_meaning": "мне нужны деньги" },
+    { "type": "word", "ge_text": "რა ფასია", "ru_meaning": "какая цена" }
   ]
 }

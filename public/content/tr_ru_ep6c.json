@@ -1,0 +1,25 @@
+{
+  "id": "ep6c",
+  "title": "Урок 9",
+  "letters": ["Ğ", "F", "J"],
+  "cards": [
+    { "type": "word", "ge_text": "yağ", "ru_meaning": "масло" },
+    { "type": "word", "ge_text": "sağ", "ru_meaning": "правый" },
+    { "type": "word", "ge_text": "ağaç", "ru_meaning": "дерево" },
+    { "type": "word", "ge_text": "yağmur", "ru_meaning": "дождь" },
+    { "type": "word", "ge_text": "değil", "ru_meaning": "не" },
+    { "type": "word", "ge_text": "soğuk", "ru_meaning": "холодный" },
+    { "type": "word", "ge_text": "film", "ru_meaning": "фильм" },
+    { "type": "word", "ge_text": "fiyat", "ru_meaning": "цена" },
+    { "type": "word", "ge_text": "fazla", "ru_meaning": "слишком много" },
+    { "type": "word", "ge_text": "fena", "ru_meaning": "плохо" },
+    { "type": "word", "ge_text": "firma", "ru_meaning": "фирма" },
+    { "type": "word", "ge_text": "jet", "ru_meaning": "реактивный самолёт", "accepted_ru": ["самолет", "реактивный самолет"] },
+    { "type": "word", "ge_text": "Japon", "ru_meaning": "японец" },
+    { "type": "word", "ge_text": "jilet", "ru_meaning": "лезвие" },
+    { "type": "word", "ge_text": "mesaj", "ru_meaning": "сообщение" },
+    { "type": "word", "ge_text": "afiyet olsun", "ru_meaning": "приятного аппетита" },
+    { "type": "word", "ge_text": "foto çek", "ru_meaning": "сделай фото" },
+    { "type": "word", "ge_text": "doğru mu", "ru_meaning": "это правильно" }
+  ]
+}

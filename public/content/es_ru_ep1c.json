@@ -1,0 +1,24 @@
+{
+  "id": "ep1c",
+  "title": "Урок 2",
+  "letters": ["N", "I", "D"],
+  "cards": [
+    { "type": "word", "ge_text": "en", "ru_meaning": "в" },
+    { "type": "word", "ge_text": "no", "ru_meaning": "нет" },
+    { "type": "word", "ge_text": "si", "ru_meaning": "если" },
+    { "type": "word", "ge_text": "sin", "ru_meaning": "без" },
+    { "type": "word", "ge_text": "son", "ru_meaning": "они есть" },
+    { "type": "word", "ge_text": "dos", "ru_meaning": "два" },
+    { "type": "word", "ge_text": "donde", "ru_meaning": "где" },
+    { "type": "word", "ge_text": "dinero", "ru_meaning": "деньги" },
+    { "type": "word", "ge_text": "nada", "ru_meaning": "ничего" },
+    { "type": "word", "ge_text": "dios", "ru_meaning": "бог" },
+    { "type": "word", "ge_text": "orden", "ru_meaning": "порядок" },
+    { "type": "word", "ge_text": "nido", "ru_meaning": "гнездо" },
+    { "type": "word", "ge_text": "sano", "ru_meaning": "здоровый" },
+    { "type": "word", "ge_text": "andar", "ru_meaning": "ходить" },
+    { "type": "word", "ge_text": "sandia", "ru_meaning": "арбуз" },
+    { "type": "word", "ge_text": "No es nada", "ru_meaning": "ничего страшного" },
+    { "type": "word", "ge_text": "No es serio", "ru_meaning": "это не серьёзно", "accepted_ru": ["это не серьезно"] }
+  ]
+}

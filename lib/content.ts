@@ -7,6 +7,7 @@ import {
   listStaticEpisodeIds,
   loadSingleStaticEpisode,
   type Episode,
+  type EpisodesListItem,
 } from './contentData.ts';
 import { DEFAULT_COURSE_ID, normalizeCourseId, type CourseId } from './courses.ts';
 export type { CardInfoNote, Episode } from './contentData.ts';
@@ -20,6 +21,48 @@ function mergeEpisodes(newId: string, title: string, episodes: Array<Episode | n
     title,
     cards: validEpisodes.flatMap((episode) => episode.cards),
   };
+}
+
+function isReadingLesson(episode: Episode): boolean {
+  return /^ep\d+[a-z]*$/i.test(episode.id) && /^Урок /.test(episode.title);
+}
+
+function getReadingLessonTargets(index: number): { total: number; phrases: number } {
+  if (index < 2) return { total: 8, phrases: 2 };
+  if (index < 5) return { total: 10, phrases: 3 };
+  return { total: 13, phrases: 3 };
+}
+
+function isPhraseCard(card: Episode['cards'][number]): boolean {
+  return /\s/.test(card.ge_text.trim());
+}
+
+function compactReadingLesson(episode: Episode, index: number): Episode {
+  const { total, phrases: phraseTarget } = getReadingLessonTargets(index);
+  const phraseCards = episode.cards.filter(isPhraseCard);
+  const wordCards = episode.cards.filter((card) => !isPhraseCard(card));
+  const selectedPhrases = phraseCards.slice(0, phraseTarget);
+  const selectedWords = wordCards.slice(0, Math.max(0, total - selectedPhrases.length));
+  const selected = selectedWords.concat(selectedPhrases).slice(0, total);
+
+  return {
+    ...episode,
+    cards: selected.length > 0 ? selected : episode.cards.slice(0, total),
+  };
+}
+
+function loadCompactReadingLesson(episodeId: string, courseId: CourseId): Episode | null {
+  const episodes = listStaticEpisodeIds(courseId)
+    .map((id) => loadSingleStaticEpisode(id, courseId))
+    .filter((episode): episode is Episode => episode !== null);
+  const targetIndex = episodes.findIndex((episode) => episode.id === episodeId);
+  const targetEpisode = targetIndex >= 0 ? episodes[targetIndex] : null;
+
+  if (!targetEpisode || !isReadingLesson(targetEpisode)) {
+    return targetEpisode;
+  }
+
+  return compactReadingLesson(targetEpisode, targetIndex);
 }
 
 export async function loadNewLettersPerEpisode(
@@ -90,8 +133,8 @@ export async function loadEpisode(
     ]);
   }
 
-  if (/^ep\d+$/.test(id)) {
-    return loadSingleStaticEpisode(id, normalizedCourseId);
+  if (/^ep\d+[a-z]*$/i.test(id)) {
+    return loadCompactReadingLesson(id, normalizedCourseId);
   }
 
   return null;
@@ -99,6 +142,6 @@ export async function loadEpisode(
 
 export async function listEpisodes(
   courseId: CourseId = DEFAULT_COURSE_ID,
-): Promise<Array<{ id: string; title: string }>> {
+): Promise<EpisodesListItem[]> {
   return listStaticEpisodes(normalizeCourseId(courseId));
 }

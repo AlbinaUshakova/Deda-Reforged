@@ -1,22 +1,25 @@
 {
   "id": "ep8",
   "title": "Урок 8",
-  "letters": ["Ж", "Ш", "Ђ", "Џ", "Ф"],
+  "letters": ["Ђ", "Ћ", "Џ"],
   "cards": [
-    { "type": "word", "ge_text": "живот", "ru_meaning": "жизнь" },
-    { "type": "word", "ge_text": "жена", "ru_meaning": "женщина" },
-    { "type": "word", "ge_text": "школа", "ru_meaning": "школа" },
-    { "type": "word", "ge_text": "шта", "ru_meaning": "что" },
-    { "type": "word", "ge_text": "шећер", "ru_meaning": "сахар" },
     { "type": "word", "ge_text": "ђак", "ru_meaning": "ученик" },
+    { "type": "word", "ge_text": "леђа", "ru_meaning": "спина" },
+    { "type": "word", "ge_text": "дођи", "ru_meaning": "подойди" },
+    { "type": "word", "ge_text": "свиђа", "ru_meaning": "нравится" },
+    { "type": "word", "ge_text": "такође", "ru_meaning": "тоже" },
+    { "type": "word", "ge_text": "млађи", "ru_meaning": "младший" },
+    { "type": "word", "ge_text": "нећу", "ru_meaning": "не хочу" },
+    { "type": "word", "ge_text": "моћи", "ru_meaning": "мочь" },
+    { "type": "word", "ge_text": "кућа", "ru_meaning": "дом" },
+    { "type": "word", "ge_text": "ноћ", "ru_meaning": "ночь" },
+    { "type": "word", "ge_text": "хоћу", "ru_meaning": "хочу" },
+    { "type": "word", "ge_text": "кући", "ru_meaning": "домой" },
     { "type": "word", "ge_text": "џеп", "ru_meaning": "карман" },
-    { "type": "word", "ge_text": "кафа", "ru_meaning": "кофе" },
-    { "type": "word", "ge_text": "флаша", "ru_meaning": "бутылка" },
-    { "type": "word", "ge_text": "жедан", "ru_meaning": "хочу пить" },
-    { "type": "word", "ge_text": "желим", "ru_meaning": "хочу" },
-    { "type": "word", "ge_text": "шетам", "ru_meaning": "гуляю" },
-    { "type": "word", "ge_text": "ђумбир", "ru_meaning": "имбирь" },
     { "type": "word", "ge_text": "џем", "ru_meaning": "джем" },
-    { "type": "word", "ge_text": "филм", "ru_meaning": "фильм" }
+    { "type": "word", "ge_text": "џемпер", "ru_meaning": "свитер" },
+    { "type": "word", "ge_text": "ђак је ту", "ru_meaning": "ученик здесь" },
+    { "type": "word", "ge_text": "хоћу чај", "ru_meaning": "хочу чай" },
+    { "type": "word", "ge_text": "џем је ту", "ru_meaning": "джем здесь" }
   ]
 }

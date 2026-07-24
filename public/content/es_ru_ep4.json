@@ -1,22 +1,24 @@
 {
   "id": "ep4",
-  "title": "Урок 4",
-  "letters": ["G", "J", "Q", "Z"],
+  "title": "Урок 6",
+  "letters": ["Y", "Q", "H"],
   "cards": [
-    { "type": "word", "ge_text": "gracias", "ru_meaning": "спасибо" },
-    { "type": "word", "ge_text": "gente", "ru_meaning": "люди" },
-    { "type": "word", "ge_text": "agua", "ru_meaning": "вода" },
-    { "type": "word", "ge_text": "amigo", "ru_meaning": "друг" },
-    { "type": "word", "ge_text": "juego", "ru_meaning": "игра" },
-    { "type": "word", "ge_text": "caja", "ru_meaning": "коробка" },
-    { "type": "word", "ge_text": "rojo", "ru_meaning": "красный" },
+    { "type": "word", "ge_text": "ayer", "ru_meaning": "вчера" },
+    { "type": "word", "ge_text": "ya", "ru_meaning": "уже" },
+    { "type": "word", "ge_text": "yo", "ru_meaning": "я" },
+    { "type": "word", "ge_text": "hay", "ru_meaning": "есть" },
+    { "type": "word", "ge_text": "hoy", "ru_meaning": "сегодня" },
+    { "type": "word", "ge_text": "hola", "ru_meaning": "привет" },
+    { "type": "word", "ge_text": "hora", "ru_meaning": "час" },
+    { "type": "word", "ge_text": "hielo", "ru_meaning": "лёд", "accepted_ru": ["лед"] },
     { "type": "word", "ge_text": "queso", "ru_meaning": "сыр" },
     { "type": "word", "ge_text": "aqui", "ru_meaning": "здесь" },
     { "type": "word", "ge_text": "quiero", "ru_meaning": "хочу" },
-    { "type": "word", "ge_text": "quizas", "ru_meaning": "возможно" },
-    { "type": "word", "ge_text": "zona", "ru_meaning": "зона" },
-    { "type": "word", "ge_text": "azul", "ru_meaning": "синий" },
-    { "type": "word", "ge_text": "diez", "ru_meaning": "десять" },
-    { "type": "word", "ge_text": "joven", "ru_meaning": "молодой" }
+    { "type": "word", "ge_text": "quince", "ru_meaning": "пятнадцать" },
+    { "type": "word", "ge_text": "que", "ru_meaning": "что" },
+    { "type": "word", "ge_text": "quedo", "ru_meaning": "остаюсь" },
+    { "type": "word", "ge_text": "hay queso", "ru_meaning": "есть сыр" },
+    { "type": "word", "ge_text": "Hay agua", "ru_meaning": "есть вода" },
+    { "type": "word", "ge_text": "Quiero queso", "ru_meaning": "хочу сыр" }
   ]
 }

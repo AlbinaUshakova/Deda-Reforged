@@ -1,11 +1,12 @@
 import type { ProgressMap } from './supabase';
 
-export type LessonListItem = { id: string; title: string; best?: number };
+export type LessonListItem = { id: string; title: string; best?: number; cardCount?: number };
 export type LessonStatus = 'mastered' | 'almost' | 'current' | 'locked';
 export type AlphabetLetterStatus = LessonStatus | 'unknown';
 
 export type DerivedLessonState = {
   normalEpisodes: LessonListItem[];
+  practicalSpecials: LessonListItem[];
   allLessonsSpecial?: LessonListItem;
   favoritesSpecial?: LessonListItem;
   phrasesSpecial?: LessonListItem;
@@ -15,6 +16,19 @@ export type DerivedLessonState = {
   statusById: Record<string, LessonStatus>;
   letterStatusByChar: Record<string, AlphabetLetterStatus>;
 };
+
+function isLessonEpisodeId(id: string): boolean {
+  return /^ep\d+[a-z]*$/i.test(id);
+}
+
+function getEpisodeOrderValue(id: string): number {
+  const [, numberRaw = '0', suffix = ''] = id.match(/^ep(\d+)([a-z]*)$/i) ?? [];
+  const base = Number(numberRaw);
+  const suffixOffset = suffix
+    ? suffix.toLocaleLowerCase('en-US').charCodeAt(0) - 96
+    : 0;
+  return base + suffixOffset / 100;
+}
 
 export function deriveLessonState({
   episodes,
@@ -29,11 +43,22 @@ export function deriveLessonState({
   lettersByEpisode: Record<string, string[]>;
   cachedLetterStatusByChar: Record<string, AlphabetLetterStatus>;
 }): DerivedLessonState {
-  const normalEpisodes = episodes.filter((episode) => /^ep\d+$/.test(episode.id));
+  const numberedEpisodes = episodes.filter((episode) => isLessonEpisodeId(episode.id));
+  const normalEpisodes = numberedEpisodes.filter(
+    (episode) => (lettersByEpisode[episode.id] ?? []).length > 0,
+  );
+  const practicalSpecials = numberedEpisodes.filter(
+    (episode) => (lettersByEpisode[episode.id] ?? []).length === 0,
+  ).map(episode => ({
+    ...episode,
+    best: progress[episode.id] ?? 0,
+  }));
   const specials = episodes.filter((episode) => !/^ep\d+$/.test(episode.id));
   const allLessonsSpecial = specials.find((episode) => episode.id === 'all');
   const favoritesSpecial = specials.find((episode) => episode.id === 'favorites');
-  const phrasesSpecial = specials.find((episode) => episode.id === 'phrases');
+  const phrasesSpecial =
+    specials.find((episode) => episode.id === 'phrases') ??
+    practicalSpecials.find((episode) => episode.title === 'Вежливые фразы');
 
   const allLessonsReady =
     normalEpisodes.length > 0 &&
@@ -61,7 +86,7 @@ export function deriveLessonState({
       const aBest = progress[a.id] ?? 0;
       const bBest = progress[b.id] ?? 0;
       if (aBest !== bBest) return aBest - bBest;
-      return Number(a.id.replace('ep', '')) - Number(b.id.replace('ep', ''));
+      return getEpisodeOrderValue(a.id) - getEpisodeOrderValue(b.id);
     })[0]?.id;
 
   const statusById: Record<string, LessonStatus> = {};
@@ -94,6 +119,7 @@ export function deriveLessonState({
 
   return {
     normalEpisodes,
+    practicalSpecials,
     allLessonsSpecial,
     favoritesSpecial,
     phrasesSpecial,

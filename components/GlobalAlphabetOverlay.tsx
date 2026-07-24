@@ -7,11 +7,17 @@ import {
   readAlphabetStatusCache,
   writeAlphabetStatusCache,
 } from '@/lib/alphabetProgressCache';
-import { letterToHint } from '@/lib/transliteration';
 import { getEpisodesDataCached } from '@/lib/clientContentCache';
 import { deriveLessonState, type AlphabetLetterStatus } from '@/lib/lessonProgress';
-import { getCourse } from '@/lib/courses';
+import {
+  getCourse,
+  getLetterKind,
+  getLetterSoundLabel,
+  getLetterSpeechLang,
+  getLetterSpeechText,
+} from '@/lib/courses';
 import { playLetterAudio, stopLetterAudioPlayback } from '@/lib/playLetterAudio';
+import { letterToHint, type TransliterationMode } from '@/lib/transliteration';
 
 const alphabetLetterColorByStatus: Record<AlphabetLetterStatus, string> = {
   mastered: 'text-[var(--progress-good)]',
@@ -30,14 +36,19 @@ export default function GlobalAlphabetOverlay() {
   const hydrate = useAppStore(state => state.hydrate);
   const progress = useAppStore(state => state.progressMap);
   const courseId = useAppStore(state => state.settings.courseId);
+  const transliterationMode = useAppStore(state => state.settings.transliterationMode) as TransliterationMode;
   const course = getCourse(courseId);
+  const letterFontClass = courseId === 'ka' ? 'alphabet-letter--georgian' : 'alphabet-letter--latin';
+  const visibleAlphabetSections = course.alphabetSections.filter(section => section.title !== 'Запомни отдельно');
+  const alphabetColumnCount = Math.max(
+    1,
+    ...visibleAlphabetSections.flatMap(section => section.rows.map(row => row.length)),
+  );
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
-  const transliterationMode = useAppStore(state => state.settings.transliterationMode);
   const alphabetToggleRequest = useAppStore(state => state.alphabetToggleRequest);
   const profileMenuOpen = useAppStore(state => state.profileMenuOpen);
   const setAlphabetOpen = useAppStore(state => state.setAlphabetOpen);
   const [open, setOpen] = useState(false);
-  const [canAutoOpenStudyAlphabet, setCanAutoOpenStudyAlphabet] = useState(false);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const [letterStatusByChar, setLetterStatusByChar] = useState<Record<string, AlphabetLetterStatus>>({});
   const [playingLetter, setPlayingLetter] = useState<string | null>(null);
@@ -51,6 +62,11 @@ export default function GlobalAlphabetOverlay() {
     if (pathname === '/') return;
     setOpen(v => !v);
   }, [alphabetToggleRequest, isLessonsPage, pathname]);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
 
   useEffect(() => {
     return () => {
@@ -68,24 +84,6 @@ export default function GlobalAlphabetOverlay() {
       setOpen(false);
     }
   }, [isLessonsPage, profileMenuOpen]);
-
-  useEffect(() => {
-    if (isLessonsPage) return;
-    setOpen(isStudyPage && canAutoOpenStudyAlphabet);
-  }, [canAutoOpenStudyAlphabet, isLessonsPage, isStudyPage, pathname]);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const media = window.matchMedia('(min-width: 768px)');
-    const syncAutoOpenMode = () => setCanAutoOpenStudyAlphabet(media.matches);
-    syncAutoOpenMode();
-    if (media.addEventListener) {
-      media.addEventListener('change', syncAutoOpenMode);
-      return () => media.removeEventListener('change', syncAutoOpenMode);
-    }
-    media.addListener(syncAutoOpenMode);
-    return () => media.removeListener(syncAutoOpenMode);
-  }, []);
 
   useEffect(() => {
     setAlphabetOpen(!isLessonsPage && !isServicePage && open && pathname !== '/');
@@ -143,7 +141,7 @@ export default function GlobalAlphabetOverlay() {
       setLetterStatusByChar(letterStatusByChar);
       try {
         writeAlphabetStatusCache(letterStatusByChar, courseId);
-      } catch {}
+      } catch { }
     };
 
     void load();
@@ -169,8 +167,8 @@ export default function GlobalAlphabetOverlay() {
 
     void playLetterAudio({
       audioSrc: course.letterAudioMap[letter],
-      fallbackText: course.letterNames[letter] ?? letter,
-      speechLang: course.speechLang,
+      fallbackText: getLetterSpeechText(letter, courseId),
+      speechLang: getLetterSpeechLang(courseId),
       onEnd: finish,
       onError: finish,
     });
@@ -183,16 +181,14 @@ export default function GlobalAlphabetOverlay() {
   return (
     <div
       ref={overlayRef}
-      className={`block fixed left-2 sm:left-3 md:left-4 top-[68px] z-[140] w-[clamp(184px,31vw,244px)] transition-all duration-200 ease-out ${
-        open
-          ? 'opacity-100 translate-y-0 scale-100'
-          : 'opacity-0 -translate-y-1 scale-[0.98] pointer-events-none select-none'
-      }`}
+      className={`block fixed left-2 sm:left-3 md:left-4 top-[68px] z-[140] w-[clamp(184px,31vw,244px)] transition-all duration-200 ease-out ${open
+        ? 'opacity-100 translate-y-0 scale-100'
+        : 'opacity-0 -translate-y-1 scale-[0.98] pointer-events-none select-none'
+        }`}
       aria-hidden={!open}
     >
-      <div className="home-alphabet-panel max-h-[calc(100dvh-102px)] overflow-y-auto rounded-[clamp(20px,3vw,30px)] border border-slate-200/75 bg-gradient-to-b from-[#f6f8fe]/88 via-[#f1f4fc]/86 to-[#edf1f9]/84 px-[clamp(7px,1.2vw,10px)] pt-[clamp(5px,0.8vw,7px)] pb-[clamp(4px,0.7vw,6px)] shadow-[0_6px_14px_rgba(15,23,42,0.09)]">
-        <div className="flex items-center justify-between gap-2">
-          <h3 className="home-alphabet-title text-sm font-medium tracking-[-0.01em] text-slate-700">{course.alphabetTitle}</h3>
+      <div className="home-alphabet-panel menu-panel-size max-h-[calc(100dvh-102px)] overflow-y-auto rounded-[clamp(18px,2.4vw,24px)] border border-slate-200/75 bg-gradient-to-b from-[#f6f8fe]/88 via-[#f1f4fc]/86 to-[#edf1f9]/84 px-[clamp(5px,0.9vw,8px)] pt-[clamp(4px,0.7vw,6px)] pb-[clamp(4px,0.6vw,5px)] shadow-[0_6px_14px_rgba(15,23,42,0.09)]">
+        <div className="flex justify-end">
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -203,53 +199,46 @@ export default function GlobalAlphabetOverlay() {
             ✕
           </button>
         </div>
-        <div className="mt-px flex items-center gap-1.5 text-[clamp(9px,1.55vw,11px)] text-[var(--text-secondary)]">
-          <span className="relative inline-flex h-1.5 w-1.5" aria-hidden="true">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#aab8ff] opacity-45" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#aab8ff]" />
-          </span>
-          <span>Нажми букву, чтобы услышать, как она звучит</span>
-        </div>
         <div className="mt-1 flex flex-col gap-y-[clamp(5px,0.9vw,8px)]">
-          {course.alphabetSections.map((section) => {
-            const alphabetColumnCount = Math.max(...section.rows.map(row => row.length));
-
+          {visibleAlphabetSections.map((section) => {
             return (
-              <section key={`alphabet-section-${section.title}`} className="min-w-0">
-                {course.alphabetSections.length > 1 && (
-                  <div className="mb-1 flex items-center justify-between gap-2 px-1">
-                    <span className="text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-500">
-                      {section.title}
-                    </span>
-                    {section.description && (
-                      <span className="max-w-[128px] truncate text-[8.5px] text-slate-400" title={section.description}>
-                        {section.description}
-                      </span>
-                    )}
-                  </div>
-                )}
+              <section
+                key={`alphabet-section-${section.title}`}
+                className="min-w-0"
+              >
                 <div className="flex flex-col gap-y-[clamp(1px,0.45vw,4px)]">
                   {section.rows.map((row, rowIdx) => (
                     <div
                       key={`alphabet-row-${section.title}-${rowIdx}`}
-                      className="grid gap-x-[clamp(3px,0.8vw,7px)]"
-                      style={{ gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))` }}
+                      className="grid gap-x-[clamp(2px,0.6vw,5px)] gap-y-[clamp(2px,0.6vw,5px)]"
+                      style={{
+                        gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))`,
+                      }}
                     >
-                      {row.map(ch => (
-                        <button
-                          key={ch}
-                          type="button"
-                          onClick={() => speakLetter(ch)}
-                          className={`home-alphabet-key rounded-lg border border-slate-200/75 bg-white/90 py-[3px] text-center shadow-sm hover:bg-slate-50 transition-all ${
-                            playingLetter === ch ? 'home-alphabet-key--active' : ''
-                          }`}
-                          title={`Озвучить букву ${ch}`}
-                          aria-label={`Озвучить букву ${ch}`}
-                        >
-                          <div className="home-alphabet-letter translate-y-[-1px] text-[clamp(14px,2.7vw,19px)] leading-none text-black">{ch}</div>
-                          <div className="home-alphabet-translit mt-[2px] text-[clamp(6px,1.2vw,8px)] leading-none text-slate-400">{letterToHint(ch, transliterationMode, courseId)}</div>
-                        </button>
-                      ))}
+                      {row.map(ch => {
+                        const soundLabel = getLetterSoundLabel(ch, courseId);
+                        const letterKind = getLetterKind(ch, courseId);
+                        const readingHint = letterToHint(ch, transliterationMode, courseId) || ch;
+                        const audioLabel = courseId === 'en'
+                          ? `Прослушать название буквы ${ch}`
+                          : `Прослушать произношение буквы ${ch}`;
+                        const isHighlightedLetter = course.alphabetHighlightedLetters?.includes(ch) ?? false;
+
+                        return (
+                          <button
+                            key={ch}
+                            type="button"
+                            onClick={() => speakLetter(ch)}
+                            className={`home-alphabet-key home-alphabet-key--${letterKind} ${isHighlightedLetter ? 'home-alphabet-key--highlighted' : ''} rounded-lg border border-slate-200/75 bg-white/90 py-[3px] text-center shadow-sm hover:bg-slate-50 transition-all ${playingLetter === ch ? 'home-alphabet-key--active' : ''
+                              }`}
+                            title={`Озвучить букву ${ch}. Звучит как: ${soundLabel}`}
+                            aria-label={audioLabel}
+                          >
+                            <div className={`home-alphabet-letter ${letterFontClass} translate-y-[-1px] leading-none`}>{ch}</div>
+                            <div className="home-alphabet-translit mt-[2px] leading-none">{String(readingHint).toLowerCase()}</div>
+                          </button>
+                        );
+                      })}
                     </div>
                   ))}
                 </div>

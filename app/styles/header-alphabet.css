@@ -1,5 +1,21 @@
 .home-alphabet-letter {
+    color: #171513 !important;
+    font-size: clamp(12px, 1.85vw, 16px) !important;
+    font-weight: 660;
+    letter-spacing: -0.018em;
+    line-height: 1 !important;
+}
+
+.alphabet-letter--georgian {
     font-family: var(--font-georgian);
+    font-weight: 630;
+    letter-spacing: -0.005em;
+}
+
+.alphabet-letter--latin {
+    font-family: var(--font-display);
+    font-weight: 660;
+    letter-spacing: -0.022em;
 }
 
 .header-control-btn {
@@ -231,6 +247,30 @@
     transform: translateY(-1px);
 }
 
+.home-alphabet-key--vowel {
+    position: relative;
+    border-color: rgba(245, 158, 11, 0.22) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 251, 235, 0.96), rgba(254, 243, 199, 0.68)) !important;
+}
+
+.home-alphabet-key--consonant {
+    position: relative;
+    border-color: rgba(56, 189, 248, 0.18) !important;
+    background:
+        linear-gradient(145deg, rgba(248, 250, 252, 0.96), rgba(224, 242, 254, 0.52)) !important;
+}
+
+.home-alphabet-key--vowel:hover {
+    background:
+        linear-gradient(145deg, rgba(255, 247, 237, 1), rgba(253, 230, 138, 0.74)) !important;
+}
+
+.home-alphabet-key--consonant:hover {
+    background:
+        linear-gradient(145deg, rgba(248, 250, 252, 1), rgba(186, 230, 253, 0.62)) !important;
+}
+
 .home-alphabet-key--active {
     border-color: rgba(108, 139, 255, 0.33) !important;
     background: rgba(108, 139, 255, 0.055) !important;
@@ -260,8 +300,46 @@
 }
 
 .home-alphabet-translit {
-    color: var(--text-tertiary) !important;
-    font-size: 10px;
+    color: #4b5563 !important;
+    font-size: clamp(7px, 0.85vw, 8px) !important;
+    font-weight: 680;
+    letter-spacing: -0.01em;
+}
+
+.home-alphabet-legend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding-inline: 3px;
+    color: #4b5563;
+    font-size: 9px;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.home-alphabet-legend-dot {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: #e89136;
+    box-shadow: 0 0 0 3px rgba(232, 145, 54, 0.12);
+}
+
+.home-alphabet-note {
+    margin-top: 6px;
+    padding-inline: 3px;
+    color: #4b5563;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.28;
+}
+
+.home-alphabet-memory-section {
+    margin-top: 8px;
 }
 
 @media (max-width: 900px) {
@@ -396,11 +474,30 @@
 }
 
 .home-alphabet-key {
+    display: flex;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2px !important;
     border-color: rgba(255, 255, 255, 0.74) !important;
     background: rgba(255, 255, 255, 0.74) !important;
     box-shadow:
         0 8px 18px rgba(31, 28, 23, 0.055),
         inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+}
+
+.landing-alphabet-key {
+    display: flex;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2px !important;
 }
 
 .home-alphabet-key:hover {
@@ -418,31 +515,61 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.90) !important;
 }
 
-/* Clickable controls stay light: no filled button surfaces. */
-.header-control-btn,
-.study-action-pill,
-.home-alphabet-key,
-.landing-alphabet-key,
-.menu-panel-shell button:not(.menu-stepper-input) {
-    background: transparent !important;
-    box-shadow: none !important;
+.home-alphabet-key.home-alphabet-key--vowel,
+.landing-alphabet-key.landing-alphabet-key--vowel {
+    position: relative;
+    border-color: rgba(232, 145, 54, 0.22) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 250, 242, 0.98), rgba(255, 231, 199, 0.62)) !important;
+    box-shadow:
+        0 8px 18px rgba(232, 145, 54, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
 }
 
-.header-control-btn:hover,
-.header-control-btn:focus-visible,
-.study-action-pill:hover,
-.study-action-pill:focus-visible,
-.home-alphabet-key:hover,
-.landing-alphabet-key:hover,
-.menu-panel-shell button:not(.menu-stepper-input):hover {
-    background: rgba(0, 168, 132, 0.055) !important;
-    box-shadow: none !important;
+.home-alphabet-key.home-alphabet-key--consonant,
+.landing-alphabet-key.landing-alphabet-key--consonant {
+    border-color: rgba(0, 168, 132, 0.16) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(225, 246, 238, 0.54)) !important;
+    box-shadow:
+        0 8px 18px rgba(0, 168, 132, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
 }
 
-.header-control-btn--active,
-.study-action-pill--primary,
-.home-alphabet-key--active,
-.menu-panel-shell button[aria-pressed='true'] {
-    background: transparent !important;
-    box-shadow: none !important;
+.home-alphabet-key.home-alphabet-key--diacritic,
+.landing-alphabet-key.landing-alphabet-key--diacritic {
+    border-color: rgba(107, 114, 128, 0.20) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(244, 244, 245, 0.66)) !important;
+    box-shadow:
+        0 6px 14px rgba(31, 28, 23, 0.035),
+        inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
+}
+
+.home-alphabet-key.home-alphabet-key--diacritic::after,
+.landing-alphabet-key.landing-alphabet-key--diacritic::after {
+    background: rgba(107, 114, 128, 0.46);
+}
+
+.home-alphabet-key.home-alphabet-key--highlighted,
+.landing-alphabet-key.landing-alphabet-key--highlighted {
+    border-color: rgba(54, 86, 79, 0.34) !important;
+    box-shadow:
+        0 0 0 1px rgba(54, 86, 79, 0.12),
+        0 8px 18px rgba(54, 86, 79, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
+}
+
+.home-alphabet-key.home-alphabet-key--vowel:hover,
+.landing-alphabet-key.landing-alphabet-key--vowel:hover {
+    border-color: rgba(232, 145, 54, 0.32) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 250, 242, 1), rgba(255, 220, 178, 0.72)) !important;
+}
+
+.home-alphabet-key.home-alphabet-key--consonant:hover,
+.landing-alphabet-key.landing-alphabet-key--consonant:hover {
+    border-color: rgba(0, 168, 132, 0.26) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(204, 241, 228, 0.64)) !important;
 }

@@ -1,22 +1,24 @@
 {
   "id": "ep1",
   "title": "Урок 1",
-  "letters": ["A", "E", "I", "O", "U", "M", "N", "S", "T", "R", "L"],
+  "letters": ["E", "N", "I", "S", "T"],
   "cards": [
-    { "type": "word", "ge_text": "am", "ru_meaning": "у" },
-    { "type": "word", "ge_text": "an", "ru_meaning": "на" },
-    { "type": "word", "ge_text": "im", "ru_meaning": "в" },
     { "type": "word", "ge_text": "in", "ru_meaning": "в" },
     { "type": "word", "ge_text": "ist", "ru_meaning": "есть" },
-    { "type": "word", "ge_text": "mit", "ru_meaning": "с" },
-    { "type": "word", "ge_text": "mein", "ru_meaning": "мой" },
-    { "type": "word", "ge_text": "nein", "ru_meaning": "нет" },
+    { "type": "word", "ge_text": "ein", "ru_meaning": "один" },
     { "type": "word", "ge_text": "eins", "ru_meaning": "один" },
-    { "type": "word", "ge_text": "rot", "ru_meaning": "красный" },
-    { "type": "word", "ge_text": "laut", "ru_meaning": "громко" },
-    { "type": "word", "ge_text": "leer", "ru_meaning": "пустой" },
-    { "type": "word", "ge_text": "arm", "ru_meaning": "бедный" },
-    { "type": "word", "ge_text": "Name", "ru_meaning": "имя" },
-    { "type": "word", "ge_text": "lernen", "ru_meaning": "учить" }
+    { "type": "word", "ge_text": "sein", "ru_meaning": "быть" },
+    { "type": "word", "ge_text": "sie", "ru_meaning": "она" },
+    { "type": "word", "ge_text": "nie", "ru_meaning": "никогда" },
+    { "type": "word", "ge_text": "Tee", "ru_meaning": "чай" },
+    { "type": "word", "ge_text": "See", "ru_meaning": "озеро" },
+    { "type": "word", "ge_text": "Eis", "ru_meaning": "мороженое" },
+    { "type": "word", "ge_text": "Nest", "ru_meaning": "гнездо" },
+    { "type": "word", "ge_text": "nett", "ru_meaning": "милый" },
+    { "type": "word", "ge_text": "Test", "ru_meaning": "тест" },
+    { "type": "word", "ge_text": "Seite", "ru_meaning": "страница" },
+    { "type": "word", "ge_text": "essen", "ru_meaning": "есть" },
+    { "type": "word", "ge_text": "Sie ist nett", "ru_meaning": "она милая" },
+    { "type": "word", "ge_text": "Sie essen", "ru_meaning": "они едят" }
   ]
 }

@@ -1,13 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import AuthStatus from '@/components/AuthStatus';
 import LandingAlphabet from '@/components/LandingAlphabet';
-import { LandingAlphabetTitle, LandingCourseTitle } from '@/components/LandingCourseTitle';
-import { LandingLanguageBrief } from '@/components/LandingLanguageBrief';
+import {
+  LandingAlphabetTitle,
+  LandingCourseTitle,
+  LandingFinalCtaTitle,
+  LandingLanguagePicker,
+  LandingRestaurantBill,
+  LandingReadingReasons,
+} from '@/components/LandingCourseTitle';
 
 export const landingMetadata = {
   title: 'Deda - учимся читать на разных языках играя.',
   description:
-    'Грузинский, испанский, немецкий, сербский и турецкий: слушай буквы, читай карточки и закрепляй чтение в игре.',
+    'Грузинский, английский, испанский, немецкий, сербский и турецкий: слушай буквы, читай карточки и закрепляй чтение в игре.',
 };
 
 export default function LandingPage() {
@@ -21,9 +28,42 @@ export default function LandingPage() {
       background: var(--deda-gradient-aurora) !important;
     }
 
+    .landing-section {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding-inline: 16px;
+    }
+
+    .landing-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .landing-brand {
+      color: #171513;
+      font-size: clamp(24px, 2.4vw, 30px);
+      font-weight: 880;
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .landing-topbar .header-control-btn--menu {
+      width: 44px;
+      min-height: 44px;
+      color: #171513;
+      background: rgba(255, 255, 255, 0.72) !important;
+      box-shadow:
+        0 12px 26px rgba(31, 28, 23, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    }
+
     .landing-hero-grid {
-      align-items: start;
-      gap: clamp(24px, 4vw, 58px);
+      align-items: center;
+      gap: clamp(26px, 4.2vw, 64px);
+      min-height: clamp(560px, 70vh, 720px);
     }
 
     .landing-copy {
@@ -38,61 +78,101 @@ export default function LandingPage() {
     }
 
     .landing-subtitle {
-      max-width: 560px;
-      text-wrap: balance;
-      margin-top: clamp(18px, 2.2vw, 28px) !important;
+      max-width: 620px;
+      text-wrap: pretty;
+      margin-top: clamp(16px, 1.8vw, 22px) !important;
     }
 
     .landing-title {
-      max-width: 640px;
+      max-width: 620px;
       color: var(--text-primary);
-      font-weight: 950;
-      letter-spacing: -0.07em;
+      font-weight: 900;
+      letter-spacing: -0.055em;
       text-wrap: balance;
     }
 
-    .landing-course-flags {
+    .landing-title-accent {
+      color: #f26d2d;
+    }
+
+    .landing-title-play {
+      white-space: nowrap;
+    }
+
+    .landing-course-label {
+      margin-top: clamp(22px, 2.6vw, 30px);
+      color: #171513;
+      font-size: 15px;
+      font-weight: 720;
+      letter-spacing: -0.025em;
+    }
+
+    .landing-course-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: min(100%, 560px);
+      margin-top: 12px;
+    }
+
+    .landing-course-button {
+      position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.56);
-      padding: 4px;
+      justify-content: flex-start;
+      gap: 8px;
+      min-height: 48px;
+      border-radius: 17px;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.72);
+      padding: 0 13px;
+      color: #28231e;
+      font-size: 14px;
+      font-weight: 740;
+      letter-spacing: -0.02em;
       box-shadow:
-        0 12px 28px rgba(31, 28, 23, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.76);
-      vertical-align: middle;
+        0 10px 22px rgba(31, 28, 23, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.78);
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
       backdrop-filter: blur(12px);
     }
 
-    .landing-course-flag {
-      display: inline-flex;
-      width: clamp(34px, 4vw, 46px);
-      height: clamp(34px, 4vw, 46px);
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: transparent;
-      font-size: clamp(18px, 2.3vw, 26px);
-      line-height: 1;
-      transition:
-        transform 160ms ease,
-        background 160ms ease,
-        border-color 160ms ease,
-        box-shadow 160ms ease;
-    }
-
-    .landing-course-flag:hover {
+    .landing-course-button:hover {
       transform: translateY(-1px);
-      background: rgba(255, 255, 255, 0.62);
-      border-color: rgba(23, 21, 19, 0.08);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow:
+        0 14px 28px rgba(31, 28, 23, 0.075),
+        inset 0 1px 0 rgba(255, 255, 255, 0.86);
     }
 
-    .landing-course-flag--active {
-      background: #171513;
-      border-color: rgba(23, 21, 19, 0.16);
-      box-shadow: 0 8px 18px rgba(23, 21, 19, 0.16);
+    .landing-course-button--active {
+      border-color: rgba(242, 109, 45, 0.72);
+      background: rgba(255, 250, 244, 0.92);
+      box-shadow:
+        0 12px 26px rgba(242, 109, 45, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.86);
+    }
+
+    .landing-course-button--active::after {
+      content: '✓';
+      position: absolute;
+      right: -5px;
+      top: -6px;
+      display: grid;
+      width: 19px;
+      height: 19px;
+      place-items: center;
+      border-radius: 999px;
+      background: #ff7138;
+      color: #fffaf2;
+      font-size: 11px;
+      font-weight: 780;
+      box-shadow: 0 7px 14px rgba(255, 113, 56, 0.22);
+    }
+
+    .landing-course-button-flag {
+      font-size: 21px;
+      line-height: 1;
     }
 
     .landing-cta-btn {
@@ -119,28 +199,26 @@ export default function LandingPage() {
 
     .landing-alphabet-hint {
       position: relative;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
-      padding-left: 18px;
-      max-width: 680px;
+      gap: 9px;
+      width: 100%;
+      margin: 0 0 10px;
       font-size: 14px;
-      line-height: 1.42;
+      line-height: 1.15;
       color: var(--text-secondary);
       letter-spacing: -0.01em;
-      text-align: center;
+      text-align: left;
     }
 
     .landing-alphabet-hint::before {
       content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
+      position: static;
       width: 8px;
       height: 8px;
+      flex: 0 0 auto;
       border-radius: 999px;
-      transform: translateY(-50%);
       background: var(--accent);
       box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.28);
       animation: landingHintPulse 1.4s ease-in-out infinite;
@@ -187,13 +265,13 @@ export default function LandingPage() {
     .landing-alpha-card {
       position: relative;
       width: 100%;
-      max-width: clamp(306px, 32vw, 456px);
+      max-width: clamp(300px, 30vw, 430px);
       margin-inline: auto;
       border-radius: 28px;
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.46)),
         radial-gradient(circle at 92% 8%, rgba(0, 168, 132, 0.13), transparent 36%);
-      padding: 10px;
+      padding: 12px;
       box-shadow:
         0 24px 64px rgba(31, 28, 23, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.86);
@@ -201,17 +279,40 @@ export default function LandingPage() {
       border: 1px solid rgba(255, 255, 255, 0.26);
     }
 
+    .landing-alpha-title {
+      margin: 0 0 10px;
+      padding-inline: 6px;
+      color: #191817;
+      font-size: 14px;
+      font-weight: 760;
+      letter-spacing: -0.018em;
+      line-height: 1.1;
+    }
+
     .landing-alphabet-column {
       justify-self: end;
-      width: min(100%, 520px);
-      padding-top: clamp(0px, 1.2vw, 18px);
+      width: min(100%, 460px);
+      align-self: center;
+      padding-top: 0;
     }
 
     .landing-alpha-cat {
       position: absolute;
-      right: 10px;
-      bottom: -88px;
+      left: clamp(-178px, -11vw, -146px);
+      bottom: -18px;
+      z-index: 3;
+      width: clamp(162px, 12.8vw, 196px);
+      height: auto;
       pointer-events: none;
+      filter: drop-shadow(0 16px 26px rgba(120, 53, 15, 0.18));
+    }
+
+    .landing-learning-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(14px, 2vw, 24px);
+      align-items: stretch;
+      padding-bottom: clamp(14px, 2vw, 22px);
     }
 
     .landing-screens-grid {
@@ -282,7 +383,7 @@ export default function LandingPage() {
 
     .landing-cta-btn {
       width: fit-content;
-      min-width: 154px;
+      min-width: 260px;
     }
 
     .landing-cta-row {
@@ -291,27 +392,535 @@ export default function LandingPage() {
       display: inline-flex;
       align-items: flex-end;
       flex-wrap: nowrap;
-      gap: 2px;
-      margin-top: clamp(12px, 1.8vw, 22px) !important;
+      gap: 0;
+      margin-top: clamp(26px, 3vw, 36px) !important;
     }
 
     .landing-cta-cat {
-      flex: 0 0 auto;
-      transform: translateY(24px);
+      display: none;
+    }
+
+    .landing-hero-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+      color: rgba(36, 28, 20, 0.84);
+      font-size: 13px;
+      font-weight: 720;
+      letter-spacing: -0.01em;
+    }
+
+    .landing-hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .landing-hero-meta span::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #f59e0b;
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.10);
+    }
+
+    .landing-preview-card {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      border-radius: clamp(28px, 3.4vw, 38px);
+      background: rgba(255, 255, 255, 0.62);
+      padding: clamp(22px, 2.8vw, 32px);
+      box-shadow:
+        0 22px 60px rgba(31, 28, 23, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.80);
+      backdrop-filter: blur(16px);
+    }
+
+    .landing-preview-title {
+      color: #171513;
+      font-size: clamp(22px, 2.2vw, 30px);
+      font-weight: 820;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .landing-preview-title--receipt {
+      max-width: 420px;
+      color: #2f2b26;
+      font-size: clamp(19px, 1.7vw, 24px);
+      font-weight: 720;
+      letter-spacing: -0.032em;
+      line-height: 1.08;
+    }
+
+    .landing-bill-frame {
+      width: 100%;
+      max-width: 430px;
+      margin-top: clamp(18px, 2.2vw, 26px);
+      cursor: pointer;
+      perspective: 1200px;
+      outline: none;
+    }
+
+    .landing-bill-flip {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 520ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .landing-bill-frame--flipped .landing-bill-flip {
+      transform: rotateY(180deg);
+    }
+
+    .landing-bill-frame:focus-visible .landing-bill,
+    .landing-bill-frame:hover .landing-bill {
+      box-shadow:
+        0 0 0 3px rgba(249, 115, 22, 0.12),
+        0 22px 54px rgba(31, 28, 23, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.88);
+    }
+
+    .landing-bill {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      min-height: 336px;
+      border-radius: 18px;
+      background:
+        repeating-linear-gradient(0deg, rgba(23, 21, 19, 0.018) 0 1px, transparent 1px 18px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 250, 244, 0.88));
+      padding: 22px clamp(16px, 2vw, 22px);
+      color: #171513;
+      font-variant-numeric: tabular-nums;
+      box-shadow:
+        0 18px 44px rgba(31, 28, 23, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.88);
+      backface-visibility: hidden;
+      transform: rotateY(0deg);
+      transition: box-shadow 180ms ease, transform 180ms ease;
+    }
+
+    .landing-bill-face--back {
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, rgba(23, 21, 19, 0.016) 0 1px, transparent 1px 18px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(239, 250, 246, 0.88));
+      transform: rotateY(180deg);
+    }
+
+    .landing-bill-hint {
+      margin-top: 10px;
+      color: rgba(62, 55, 47, 0.48);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-align: center;
+    }
+
+    .landing-bill-edge {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background:
+        radial-gradient(circle at 6px -1px, transparent 7px, rgba(255, 255, 255, 0.95) 7.5px) 0 0 / 16px 8px repeat-x;
+    }
+
+    .landing-bill-edge--bottom {
+      top: auto;
+      bottom: 0;
+      transform: rotate(180deg);
+    }
+
+    .landing-bill-top,
+    .landing-bill-meta,
+    .landing-bill-line,
+    .landing-bill-total,
+    .landing-bill-payment {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .landing-bill-top {
+      padding-bottom: 8px;
+      color: #171513;
+      font-size: 16px;
+      font-weight: 760;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .landing-bill-top span {
+      color: rgba(62, 55, 47, 0.56);
+      font-size: 12px;
+      font-weight: 660;
+      letter-spacing: 0.04em;
+    }
+
+    .landing-bill-meta {
+      border-top: 1px dashed rgba(31, 28, 23, 0.18);
+      border-bottom: 1px dashed rgba(31, 28, 23, 0.18);
+      padding: 10px 0;
+      color: rgba(62, 55, 47, 0.58);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .landing-bill-lines {
+      display: grid;
+      gap: 11px;
+      padding: 16px 0;
+    }
+
+    .landing-bill-line {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 10px;
+      font-size: clamp(16px, 1.45vw, 19px);
+      font-weight: 680;
+      letter-spacing: -0.025em;
+    }
+
+    .landing-bill-qty {
+      color: rgba(62, 55, 47, 0.46);
+      font-size: 12px;
+      font-weight: 640;
+      line-height: 1.45;
+    }
+
+    .landing-bill-line strong {
+      display: block;
+    }
+
+    .landing-bill-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px 14px;
+      border-top: 1px dashed rgba(31, 28, 23, 0.18);
+      padding: 12px 0;
+      color: rgba(62, 55, 47, 0.62);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.012em;
+    }
+
+    .landing-bill-total {
+      border-top: 2px solid rgba(31, 28, 23, 0.14);
+      padding-top: 13px;
+      font-size: clamp(18px, 1.8vw, 24px);
+      font-weight: 820;
+      letter-spacing: -0.03em;
+    }
+
+    .landing-bill-payment {
+      margin-top: 14px;
+      border-radius: 14px;
+      background: rgba(23, 21, 19, 0.055);
+      padding: 9px 11px;
+      color: rgba(62, 55, 47, 0.66);
+      font-size: 12px;
+      font-weight: 620;
+      letter-spacing: 0.02em;
+    }
+
+    .landing-reasons-section {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 16px clamp(14px, 2vw, 22px);
+    }
+
+    .landing-reasons-card {
+      height: 100%;
+      border-radius: clamp(28px, 3.4vw, 38px);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255, 240, 229, 0.86), transparent 36%),
+        radial-gradient(circle at 92% 12%, rgba(234, 247, 241, 0.82), transparent 34%),
+        rgba(255, 255, 255, 0.66);
+      padding: clamp(22px, 2.8vw, 32px);
+      box-shadow:
+        0 22px 60px rgba(31, 28, 23, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.80);
+      backdrop-filter: blur(16px);
+    }
+
+    .landing-reasons-kicker {
+      width: fit-content;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      background: rgba(25, 24, 23, 0.08);
+      padding: 7px 12px;
+      color: #706c67;
+      font-size: 12px;
+      font-weight: 620;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    .landing-reasons-subtitle {
+      max-width: 720px;
+      margin-top: 12px;
+      color: #706c67;
+      font-size: clamp(15px, 1.35vw, 18px);
+      font-weight: 520;
+      letter-spacing: -0.016em;
+      line-height: 1.38;
+      text-wrap: balance;
+    }
+
+    .landing-reasons-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: clamp(22px, 2.6vw, 30px);
+    }
+
+    .landing-reason {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      min-height: 0;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.52);
+      padding: 14px;
+      border-left: 0;
+    }
+
+    .landing-reason:first-child {
+      padding-left: 14px;
+    }
+
+    .landing-reason-index {
+      display: grid;
+      width: 58px;
+      height: 58px;
+      place-items: center;
+      border-radius: 999px;
+      background: linear-gradient(145deg, rgba(255, 240, 229, 0.96), rgba(234, 247, 241, 0.76));
+      color: #ff7138;
+      font-size: 25px;
+      font-weight: 760;
+      box-shadow:
+        0 10px 24px rgba(31, 28, 23, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.86);
+    }
+
+    .landing-reason:nth-child(2) .landing-reason-index {
+      color: #3a9e8f;
+      background: rgba(234, 247, 241, 0.92);
+    }
+
+    .landing-reason-copy {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .landing-reason-title {
+      color: #191817;
+      font-size: clamp(15px, 1.25vw, 18px);
+      font-weight: 720;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+    }
+
+    .landing-reason-text {
+      color: #706c67;
+      font-size: clamp(13px, 1.05vw, 15px);
+      font-weight: 520;
+      letter-spacing: -0.012em;
+      line-height: 1.38;
+    }
+
+    .landing-feature-strip {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: clamp(9px, 1.2vw, 14px);
+      align-items: stretch;
+      justify-content: start;
+      overflow: visible;
+      padding-bottom: 0;
+      scrollbar-width: none;
+    }
+
+    .landing-feature-strip::before {
+      content: '';
+      position: absolute;
+      left: clamp(20px, 2vw, 30px);
+      right: clamp(20px, 2vw, 30px);
+      top: 50%;
+      height: 1px;
+      background: rgba(255, 138, 61, 0.10);
+      transform: translateY(-50%);
+      z-index: 0;
       pointer-events: none;
+    }
+
+    .landing-feature-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .landing-feature {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 14px;
+      align-content: space-between;
+      min-height: 112px;
+      border-radius: 24px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.42)),
+        radial-gradient(circle at 100% 0%, rgba(0, 168, 132, 0.10), transparent 44%);
+      padding: clamp(14px, 1.6vw, 18px);
+      box-shadow:
+        0 14px 34px rgba(31, 28, 23, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.82);
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .landing-feature:hover {
+      transform: translateY(-2px);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.52)),
+        radial-gradient(circle at 100% 0%, rgba(255, 138, 61, 0.14), transparent 46%);
+      box-shadow:
+        0 20px 44px rgba(31, 28, 23, 0.085),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .landing-feature:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      width: 24px;
+      height: 1px;
+      background: rgba(255, 138, 61, 0.16);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .landing-feature:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-top: 1px solid rgba(255, 138, 61, 0.18);
+      border-right: 1px solid rgba(255, 138, 61, 0.18);
+      transform: translateY(-50%) rotate(45deg);
+      pointer-events: none;
+    }
+
+    .landing-feature-icon {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border-radius: 16px;
+      background:
+        linear-gradient(145deg, rgba(255, 238, 218, 0.92), rgba(229, 248, 241, 0.72));
+      color: #de672d;
+      font-size: 17px;
+      font-weight: 820;
+      letter-spacing: -0.04em;
+    }
+
+    .landing-feature-title {
+      display: block;
+      color: #171513;
+      font-size: clamp(16px, 1.35vw, 19px);
+      font-weight: 780;
+      letter-spacing: -0.035em;
+      line-height: 1.02;
+    }
+
+    .landing-feature-copy {
+      display: block;
+      margin-top: 6px;
+      color: rgba(62, 55, 47, 0.62);
+      font-size: clamp(11px, 0.9vw, 13px);
+      font-weight: 590;
+      letter-spacing: -0.014em;
+      line-height: 1.28;
+      text-wrap: balance;
+    }
+
+    .landing-info-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: clamp(16px, 1.8vw, 22px);
+    }
+
+    .landing-info-kicker {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 9px;
+      border-radius: 999px;
+      background: rgba(255, 238, 218, 0.72);
+      padding: 7px 12px;
+      color: #a24f1f;
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: -0.015em;
+    }
+
+    .landing-info-lead {
+      max-width: 360px;
+      color: rgba(62, 55, 47, 0.68);
+      font-size: clamp(13px, 1.05vw, 15px);
+      font-weight: 600;
+      letter-spacing: -0.014em;
+      line-height: 1.36;
+      text-wrap: balance;
+    }
+
+    .landing-final-cta {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: clamp(16px, 2.8vw, 34px);
+      background:
+        linear-gradient(90deg, rgba(255, 238, 218, 0.76), rgba(255, 255, 255, 0.66));
+    }
+
+    .landing-final-cat {
+      width: clamp(90px, 10vw, 142px);
+      height: auto;
+      align-self: end;
+      margin-bottom: -32px;
+      filter: drop-shadow(0 14px 24px rgba(120, 53, 15, 0.13));
     }
 
     .landing-info-section {
       width: 100%;
       max-width: 1240px;
       margin: 0 auto;
-      padding: 0 16px clamp(36px, 5vw, 64px);
+      padding: clamp(4px, 0.8vw, 10px) 16px clamp(36px, 5vw, 64px);
     }
 
     .landing-info-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: clamp(14px, 2.4vw, 26px);
+      max-width: 1160px;
+      margin-inline: auto;
     }
 
     .landing-info-card,
@@ -327,29 +936,23 @@ export default function LandingPage() {
     }
 
     .landing-info-card {
+      position: relative;
+      overflow: hidden;
       padding: clamp(20px, 3.4vw, 34px);
+      animation: landingSectionIn 420ms ease both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
     }
 
-    .landing-info-kicker {
-      width: fit-content;
-      border-radius: 999px;
-      background: rgba(23, 21, 19, 0.08);
-      padding: 7px 11px;
-      color: var(--text-secondary);
-      font-size: 12px;
-      font-weight: 760;
-      letter-spacing: -0.01em;
-    }
-
-    .landing-info-title {
-      margin-top: 15px;
-      max-width: 680px;
-      color: var(--text-primary);
-      font-size: clamp(26px, 4vw, 46px);
-      font-weight: 920;
-      letter-spacing: -0.06em;
-      line-height: 0.98;
-      text-wrap: balance;
+    @keyframes landingSectionIn {
+      from {
+        opacity: 0.72;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .landing-info-copy {
@@ -361,98 +964,39 @@ export default function LandingPage() {
       text-wrap: balance;
     }
 
-    .landing-step-list {
-      margin-top: 22px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .landing-step {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 12px;
-      align-items: start;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.56);
-      padding: 13px 14px;
-      color: var(--text-primary);
-      font-size: 14px;
-      line-height: 1.36;
-      letter-spacing: -0.01em;
-    }
-
-    .landing-step strong {
-      display: block;
-      margin-bottom: 2px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .landing-step-index {
-      display: inline-flex;
-      width: 27px;
-      height: 27px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      background: #171513;
-      color: #fffaf2;
-      font-size: 12px;
-      font-weight: 820;
-      line-height: 1;
-    }
-
-    .landing-mini-grid {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .landing-mini-card {
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.54);
-      padding: 14px;
-      color: var(--text-primary);
-      font-size: 14px;
-      line-height: 1.34;
-      letter-spacing: -0.012em;
-    }
-
-    .landing-mini-card strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 15px;
-      font-weight: 820;
-      letter-spacing: -0.025em;
-    }
-
     .landing-footer-wrap {
       width: 100%;
       max-width: 1240px;
       margin: 0 auto;
-      padding: 0 16px 28px;
+      padding: 0 16px 22px;
     }
 
     .landing-footer {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) repeat(3, minmax(120px, 0.35fr));
-      gap: clamp(18px, 3vw, 34px);
-      padding: clamp(22px, 3.6vw, 34px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 0 8px;
       color: var(--text-secondary);
       font-size: 13px;
       line-height: 1.5;
       letter-spacing: -0.01em;
+      background: transparent !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
     }
 
     .landing-footer-brand {
-      max-width: 360px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      max-width: none;
     }
 
     .landing-footer-logo {
       color: var(--text-primary);
       font-size: 22px;
-      font-weight: 920;
+      font-weight: 820;
       letter-spacing: -0.06em;
       line-height: 1;
     }
@@ -466,8 +1010,9 @@ export default function LandingPage() {
     }
 
     .landing-footer-links {
-      display: grid;
-      gap: 6px;
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 3vw, 42px);
     }
 
     .landing-footer a {
@@ -492,6 +1037,50 @@ export default function LandingPage() {
         gap: clamp(34px, 4vw, 58px);
         grid-template-columns: minmax(0, 1.02fr) minmax(330px, 0.98fr);
       }
+
+    }
+
+    @media (max-width: 1023px) {
+      .landing-learning-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .landing-feature-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .landing-feature:not(:last-child)::after {
+        width: 1px;
+        height: 20px;
+        left: 50%;
+        right: auto;
+        top: calc(100% + 8px);
+        transform: translateX(-50%);
+      }
+
+      .landing-feature:not(:last-child)::before {
+        width: 8px;
+        height: 8px;
+        left: 50%;
+        right: auto;
+        top: calc(100% + 28px);
+        border-top: 0;
+        border-right: 0;
+        border-left: 1px solid rgba(255, 138, 61, 0.18);
+        border-bottom: 1px solid rgba(255, 138, 61, 0.18);
+        transform: translateX(-50%) rotate(-45deg);
+      }
+
+      .landing-info-header {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .landing-feature-strip {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (min-width: 1280px) {
@@ -503,6 +1092,24 @@ export default function LandingPage() {
       .landing-screens-grid {
         grid-auto-columns: max-content;
       }
+
+    }
+
+    @media (min-width: 1024px) and (max-width: 1180px) {
+      .landing-alpha-cat {
+        display: none;
+      }
+
+      .landing-feature-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1440px) {
+      .landing-info-grid {
+        max-width: min(100%, 1180px);
+      }
+
     }
 
     @media (min-width: 1600px) {
@@ -512,14 +1119,15 @@ export default function LandingPage() {
       }
 
       .landing-alpha-card {
-        max-width: 500px;
+        max-width: 540px;
       }
     }
 
     @media (max-width: 767px) {
       .landing-hero-grid {
         justify-items: center;
-        gap: 24px;
+        gap: 18px;
+        min-height: 0;
       }
 
       .landing-copy {
@@ -557,6 +1165,15 @@ export default function LandingPage() {
         text-align: center;
       }
 
+      .landing-topbar {
+        margin-bottom: 26px;
+      }
+
+      .landing-course-buttons {
+        justify-content: center;
+        margin-inline: auto;
+      }
+
       .landing-alphabet-hint {
         max-width: min(100%, 360px);
         justify-content: center;
@@ -569,7 +1186,9 @@ export default function LandingPage() {
       }
 
       .landing-alpha-card {
-        max-width: min(100%, 392px);
+        max-width: min(100%, 330px);
+        padding: 8px;
+        border-radius: 24px;
       }
 
       .landing-alpha-cat {
@@ -581,22 +1200,25 @@ export default function LandingPage() {
       }
 
       .landing-cta-btn {
-        width: 100%;
+        width: min(100%, 320px);
         min-width: 0;
       }
 
       .landing-cta-row {
         display: flex;
-        width: 100%;
+        width: fit-content;
+        max-width: 100%;
+        margin-inline: auto;
         justify-content: center;
         align-items: flex-end;
         flex-wrap: nowrap;
-        gap: 3px;
+        gap: 0;
       }
 
       .landing-cta-cat {
-        margin-right: -6px;
-        transform: translateY(24px);
+        width: 116px !important;
+        margin-right: -2px;
+        transform: translateY(16px);
       }
 
       .landing-screens-grid {
@@ -661,11 +1283,8 @@ export default function LandingPage() {
         display: none;
       }
 
-      .landing-method-section {
-        display: none;
-      }
-
       .landing-info-section {
+        padding-top: 2px;
         padding-bottom: 34px;
       }
 
@@ -673,13 +1292,42 @@ export default function LandingPage() {
         grid-template-columns: 1fr;
       }
 
-      .landing-mini-grid {
+      .landing-learning-grid {
         grid-template-columns: 1fr;
       }
 
-      .landing-footer {
+      .landing-feature-strip {
         grid-template-columns: 1fr;
-        border-radius: 28px;
+      }
+
+      .landing-reasons-list {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .landing-reason,
+      .landing-reason:first-child {
+        border-left: 0;
+        padding: 14px;
+      }
+
+      .landing-final-cta {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .landing-final-cat {
+        display: none;
+      }
+
+      .landing-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .landing-footer-brand,
+      .landing-footer-links {
+        flex-wrap: wrap;
       }
 
       .landing-screens-grid {
@@ -689,7 +1337,7 @@ export default function LandingPage() {
 
     @media (max-width: 479px) {
       .landing-hero-grid {
-        gap: 18px;
+        gap: 14px;
       }
 
       .landing-alphabet-hint {
@@ -698,7 +1346,35 @@ export default function LandingPage() {
       }
 
       .landing-alpha-card {
-        max-width: 100%;
+        max-width: min(100%, 342px);
+      }
+
+      .landing-course-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .landing-subtitle {
+        max-width: 360px;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .landing-subtitle {
+        max-width: 320px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .landing-subtitle {
+        white-space: nowrap;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .landing-bill-flip {
+        transition: none;
       }
     }
 
@@ -738,46 +1414,54 @@ export default function LandingPage() {
   return (
     <main className="landing-shell min-h-screen bg-[var(--app-bg)] text-[var(--app-text)]">
       <style dangerouslySetInnerHTML={{ __html: landingStyles }} />
-      <section className="mx-auto flex w-full max-w-[1240px] flex-col justify-center px-4 pt-9 sm:px-6 sm:pt-14 lg:px-8 lg:pt-16">
+      <section id="languages" className="mx-auto flex w-full max-w-[1240px] flex-col justify-center px-4 pt-6 sm:px-6 sm:pt-8 lg:px-8 lg:pt-9">
+        <div className="landing-topbar">
+          <div className="landing-brand">Deda</div>
+          <AuthStatus />
+        </div>
         <div className="landing-hero-grid grid grid-cols-1 md:grid-cols-[minmax(0,1.08fr)_minmax(250px,0.92fr)]">
           <div className="landing-copy max-w-none md:col-start-1 md:row-start-1">
-            <h1 className="landing-title max-w-[620px] text-[clamp(23px,3.8vw,47px)] font-semibold leading-[1.02] tracking-[-0.02em]">
+            <h1 className="landing-title max-w-[620px] text-[clamp(42px,5.7vw,74px)] font-semibold leading-[0.98] tracking-[-0.02em]">
               <LandingCourseTitle />
             </h1>
-            <p className="landing-subtitle mt-6 text-[clamp(15px,2vw,20px)] leading-[1.4] text-[var(--text-secondary)]">
-              Слушай буквы, читай карточки{' '}
-              <br />
-              и закрепляй чтение в игре.
+            <p className="landing-subtitle mt-6 text-[clamp(18px,1.8vw,22px)] leading-[1.42] text-[var(--text-secondary)]">
+              Слушай буквы, читай слова, закрепляй в игре.
             </p>
+            <div className="landing-course-label">Какой язык будем учить?</div>
+            <LandingLanguagePicker />
             <div className="landing-cta-row mt-3">
-              <Image
-                src="/images/deda-cat.png"
-                alt="Deda cat"
-                width={136}
-                height={136}
-                priority
-                className="landing-cta-cat h-auto w-[114px] shrink-0 object-contain drop-shadow-[0_8px_18px_rgba(15,23,42,0.08)] sm:w-[128px] lg:w-[150px]"
-              />
               <Link
                 href="/lessons"
-                className="landing-cta-btn inline-flex h-[54px] items-center justify-center rounded-2xl border border-[var(--accent)] bg-[var(--accent)] px-[14px] text-[18px] font-semibold text-white transition-opacity hover:opacity-90"
+                className="landing-cta-btn inline-flex h-[64px] items-center justify-center rounded-[20px] border border-[var(--accent)] bg-[var(--accent)] px-7 text-[20px] font-semibold text-white transition-opacity hover:opacity-90"
               >
-                Начать читать
+                Начать первый урок <span className="ml-3 text-[26px] leading-none">→</span>
               </Link>
+            </div>
+            <div className="landing-hero-meta" aria-label="Условия старта">
+              <span>Бесплатно</span>
+              <span>Займёт около 5 минут</span>
             </div>
           </div>
 
-          <div className="landing-alphabet-column relative mt-8 w-full max-w-[458px] md:col-start-2 md:row-span-2 md:row-start-1 md:mt-0 lg:max-w-[540px]">
-            <div className="flex flex-col items-center gap-1">
-              <div className="text-[14px] font-semibold tracking-[-0.01em] text-[var(--text-primary)]">
-                <LandingAlphabetTitle />
-              </div>
-              <div className="landing-alphabet-hint self-center">
-                <div>
-                  Нажми на букву и послушай звук
-                </div>
-              </div>
+          <div className="landing-alphabet-column relative mt-8 w-full max-w-[430px] md:col-start-2 md:row-span-2 md:row-start-1 md:mt-0 lg:max-w-[470px]">
+            <Image
+              src="/images/cats/deda-reading-clean.png"
+              alt=""
+              width={180}
+              height={180}
+              priority
+              className="landing-alpha-cat"
+            />
+            <div className="flex flex-col items-start">
               <div className="landing-alpha-card min-w-0 self-center">
+                <div className="landing-alpha-title">
+                  <LandingAlphabetTitle />
+                </div>
+                <div className="landing-alphabet-hint">
+                  <span>
+                    Нажми на букву и послушай, как она звучит
+                  </span>
+                </div>
                 <LandingAlphabet />
               </div>
             </div>
@@ -785,46 +1469,69 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <div id="languages">
-        <LandingLanguageBrief />
-      </div>
+      <section className="landing-section">
+        <div className="landing-learning-grid">
+          <div className="landing-preview-card">
+            <h2 className="landing-preview-title landing-preview-title--receipt">Скоро ты сможешь прочитать счёт и легко разделить его с друзьями — без переводчика.</h2>
+            <LandingRestaurantBill />
+          </div>
 
-      <section id="how-it-works" className="landing-info-section" aria-labelledby="landing-how-title">
+          <LandingReadingReasons />
+        </div>
+      </section>
+
+      <section className="landing-info-section" aria-label="Что внутри Deda">
         <div className="landing-info-grid">
           <div className="landing-info-card">
-            <div className="landing-info-kicker">Метод Deda</div>
-            <h2 id="landing-how-title" className="landing-info-title">Сначала читать, потом играть</h2>
-            <p className="landing-info-copy">
-              Deda не просит зубрить списки. Пользователь слышит букву, читает короткие карточки и закрепляет навык в игре «Блоки».
-            </p>
-            <div className="landing-step-list">
-              <div className="landing-step">
-                <span className="landing-step-index">1</span>
-                <span><strong>Слушай буквы</strong>Открой алфавит, нажми букву и запомни звук.</span>
+            <div className="landing-info-header">
+              <div>
+                <span className="landing-info-kicker">Внутри Deda</span>
+                <h2 className="landing-preview-title">От первой буквы до первых фраз</h2>
               </div>
-              <div className="landing-step">
-                <span className="landing-step-index">2</span>
-                <span><strong>Читай карточки</strong>Слова собраны из букв урока и уже знакомых букв.</span>
+              <p className="landing-info-lead">
+                Слушай, читай, закрепляй и начинай говорить.
+              </p>
+            </div>
+            <div className="landing-feature-strip">
+              <div className="landing-feature">
+                <span className="landing-feature-icon" aria-hidden="true">1</span>
+                <span><span className="landing-feature-title">Слушай</span><span className="landing-feature-copy">Нажми и услышь звук буквы.</span></span>
               </div>
-              <div className="landing-step">
-                <span className="landing-step-index">3</span>
-                <span><strong>Закрепляй в игре</strong>Переводи слова и фразы, чтобы чтение стало автоматическим.</span>
+              <div className="landing-feature">
+                <span className="landing-feature-icon" aria-hidden="true">2</span>
+                <span><span className="landing-feature-title">Читай</span><span className="landing-feature-copy">Сразу читай знакомые слова.</span></span>
+              </div>
+              <div className="landing-feature">
+                <span className="landing-feature-icon" aria-hidden="true">3</span>
+                <span><span className="landing-feature-title">Играй</span><span className="landing-feature-copy">Понял слово — сделал ход.</span></span>
+              </div>
+              <div className="landing-feature">
+                <span className="landing-feature-icon" aria-hidden="true">4</span>
+                <span><span className="landing-feature-title">Говори</span><span className="landing-feature-copy">Фразы, которые пригодятся сразу.</span></span>
+              </div>
+              <div className="landing-feature">
+                <span className="landing-feature-icon" aria-hidden="true">✓</span>
+                <span><span className="landing-feature-title">Расти</span><span className="landing-feature-copy">Очки, серии и новые уровни.</span></span>
               </div>
             </div>
           </div>
-
-          <div className="landing-info-card">
-            <div className="landing-info-kicker">Что внутри</div>
-            <h2 className="landing-info-title">Для поездок, учёбы и первого контакта с языком</h2>
-            <p className="landing-info-copy">
-              Сейчас доступны грузинский, испанский, немецкий, сербский и турецкий. В каждом курсе есть алфавит, уроки чтения, разговорные фразы, счёт и покупки.
-            </p>
-            <div className="landing-mini-grid">
-              <div className="landing-mini-card"><strong>Без регистрации</strong>Можно начать сразу и сохранить прогресс на устройстве.</div>
-              <div className="landing-mini-card"><strong>Для новичков</strong>Карточки идут от простого к сложному.</div>
-              <div className="landing-mini-card"><strong>Практичные темы</strong>Приветствия, покупки, вес, оплата, базовые просьбы.</div>
-              <div className="landing-mini-card"><strong>Мобильный формат</strong>Короткие уроки удобно проходить с телефона.</div>
+          <div className="landing-info-card landing-final-cta">
+            <Image
+              src="/images/cats/deda-landing-curious.png"
+              alt=""
+              width={140}
+              height={140}
+              className="landing-final-cat"
+            />
+            <div>
+              <h2 className="landing-preview-title"><LandingFinalCtaTitle /></h2>
+              <p className="landing-info-copy mt-2">
+                Первый урок займёт несколько минут.
+              </p>
             </div>
+            <Link href="/lessons" className="landing-cta-btn inline-flex h-[58px] items-center justify-center rounded-[18px] px-7 text-[18px] font-semibold">
+              Начать первый урок <span className="ml-3 text-[24px] leading-none">→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -833,36 +1540,12 @@ export default function LandingPage() {
         <div className="landing-footer">
           <div className="landing-footer-brand">
             <div className="landing-footer-logo">Deda</div>
-            <p className="mt-3">
-              Мини-приложение для первого чтения на новом языке: буквы, карточки, игра и практичные фразы для жизни и поездок.
-            </p>
-            <p className="mt-3">© 2026 Deda. Учимся читать играя.</p>
+            <p>© 2026 Deda. Учимся читать играя.</p>
           </div>
-          <div>
-            <div className="landing-footer-title">Продукт</div>
-            <div className="landing-footer-links">
-              <Link href="/lessons">Начать уроки</Link>
-              <a href="#how-it-works">Как работает</a>
-              <a href="#languages">Языки</a>
-            </div>
-          </div>
-          <div>
-            <div className="landing-footer-title">Курсы</div>
-            <div className="landing-footer-links">
-              <span>Грузинский</span>
-              <span>Испанский</span>
-              <span>Немецкий</span>
-              <span>Сербский</span>
-              <span>Турецкий</span>
-            </div>
-          </div>
-          <div>
-            <div className="landing-footer-title">Помощь</div>
-            <div className="landing-footer-links">
-              <Link href="/support">Поддержка</Link>
-              <Link href="/privacy">Конфиденциальность</Link>
-              <span>Прогресс хранится локально и в аккаунте, если пользователь вошёл.</span>
-            </div>
+          <div className="landing-footer-links">
+            <a href="#languages">Языки</a>
+            <Link href="/support">Поддержка</Link>
+            <Link href="/privacy">Конфиденциальность</Link>
           </div>
         </div>
       </footer>

@@ -2,8 +2,6 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import type { Route } from 'next';
 import { useAppStore } from '@/lib/appStore';
 import SettingsPanel from '@/components/SettingsPanel';
 import ProgressPanel from '@/components/ProgressPanel';
@@ -42,8 +40,6 @@ export default function AuthStatus() {
         setShowFeedback(false);
     }, [setProfileMenuOpen]);
     const menuLabel = 'Меню';
-    const supportHref = '/support' as Route;
-    const privacyHref = '/privacy' as Route;
     const focusRingClass =
         'focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2';
     const menuItemClass =
@@ -95,9 +91,8 @@ export default function AuthStatus() {
                     aria-label="Открыть меню"
                     aria-expanded={open}
                     aria-haspopup="menu"
-                    className={`header-control-btn header-control-btn--menu inline-flex items-center justify-center ${
-                        open ? 'header-control-btn--active' : ''
-                    }`}
+                    className={`header-control-btn header-control-btn--menu inline-flex items-center justify-center ${open ? 'header-control-btn--active' : ''
+                        }`}
                 >
                     <span className="header-burger-lines flex flex-col items-center justify-center gap-[3px]" aria-hidden>
                         <span className="header-burger-line block h-[1.5px] w-[13px] rounded-full bg-current" />
@@ -160,23 +155,6 @@ export default function AuthStatus() {
                                 <span>Помощь и отзывы</span>
                             </button>
 
-                            <Link
-                                href={supportHref}
-                                className={menuItemClass}
-                                onClick={closeMenu}
-                            >
-                                <span aria-hidden>?</span>
-                                <span>Поддержка</span>
-                            </Link>
-
-                            <Link
-                                href={privacyHref}
-                                className={menuItemClass}
-                                onClick={closeMenu}
-                            >
-                                <span aria-hidden>i</span>
-                                <span>Приватность</span>
-                            </Link>
                         </div>
 
                         <div
@@ -184,7 +162,7 @@ export default function AuthStatus() {
                             style={{ borderColor: 'color-mix(in srgb, var(--menu-divider) 68%, transparent 32%)' }}
                         >
                             <div className="mb-1 px-1 text-[clamp(9px,1.55vw,11px)] font-semibold uppercase tracking-[0.08em] text-[var(--menu-text-muted)]">
-                                Транскрипция
+                                Запись звуков
                             </div>
                             <div className="grid grid-cols-2 gap-1 rounded-xl border border-[var(--menu-segment-border)] bg-[var(--menu-segment-bg)] p-[3px]">
                                 <button
@@ -193,11 +171,10 @@ export default function AuthStatus() {
                                         updateSettings({ transliterationMode: 'ru' });
                                     }}
                                     aria-pressed={transliterationMode === 'ru'}
-                                    className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,12px)] font-medium transition ${focusRingClass} ${
-                                        transliterationMode === 'ru'
+                                    className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,12px)] font-medium transition ${focusRingClass} ${transliterationMode === 'ru'
                                             ? 'text-[var(--btn-active-text)] border shadow-none'
                                             : 'bg-transparent text-[var(--menu-segment-idle)] hover:bg-[var(--menu-segment-idle-hover)]'
-                                    }`}
+                                        }`}
                                     style={
                                         transliterationMode === 'ru'
                                             ? {
@@ -207,7 +184,7 @@ export default function AuthStatus() {
                                             : undefined
                                     }
                                 >
-                                    Русский
+                                    Кириллицей
                                 </button>
                                 <button
                                     type="button"
@@ -215,11 +192,10 @@ export default function AuthStatus() {
                                         updateSettings({ transliterationMode: 'latin' });
                                     }}
                                     aria-pressed={transliterationMode === 'latin'}
-                                    className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,11.5px)] font-medium transition ${focusRingClass} ${
-                                        transliterationMode === 'latin'
+                                    className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,11.5px)] font-medium transition ${focusRingClass} ${transliterationMode === 'latin'
                                             ? 'text-[var(--btn-active-text)] border shadow-none'
                                             : 'bg-transparent text-[var(--menu-segment-idle)] hover:bg-[var(--menu-segment-idle-hover)]'
-                                    }`}
+                                        }`}
                                     style={
                                         transliterationMode === 'latin'
                                             ? {
@@ -229,7 +205,7 @@ export default function AuthStatus() {
                                             : undefined
                                     }
                                 >
-                                    Английский
+                                    Латиницей
                                 </button>
                             </div>
                         </div>

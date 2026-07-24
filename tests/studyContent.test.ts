@@ -74,6 +74,47 @@ test('resolveStudyEpisode ignores malformed cached cards', () => {
   assert.equal(episode?.cards[0]?.ru_meaning, 'дом');
 });
 
+test('resolveStudyEpisode prefers bundled order over equally sized stale cache', () => {
+  const storage = new MemoryStorage();
+  storage.setItem(
+    RAW_CONTENT_KEY,
+    JSON.stringify({
+      episodes: [
+        {
+          id: 'en-ep1',
+          title: 'Cached',
+          letters: ['A', 'T', 'E', 'S', 'O'],
+          cards: [
+            { type: 'word', ge_text: 'Eat toast', ru_meaning: 'ешь тост' },
+            { type: 'word', ge_text: 'at', ru_meaning: 'у' },
+          ],
+        },
+      ],
+    }),
+  );
+  Object.defineProperty(globalThis, 'window', {
+    configurable: true,
+    value: { localStorage: storage },
+  });
+
+  const episode = resolveStudyEpisode(
+    {
+      id: 'en-ep1',
+      title: 'Bundled',
+      letters: ['A', 'T', 'E', 'S', 'O'],
+      cards: [
+        { type: 'word', ge_text: 'at', ru_meaning: 'у' },
+        { type: 'word', ge_text: 'Eat toast', ru_meaning: 'ешь тост' },
+      ],
+    },
+    'en-ep1',
+  );
+
+  assert.equal(episode?.title, 'Bundled');
+  assert.equal(getStudyDeckCards(episode)[0]?.ge_text, 'at');
+  assert.equal(getStudyDeckCards(episode).at(-1)?.ge_text, 'Eat toast');
+});
+
 test('getStudyDeckCards returns flashcard-compatible cards only', () => {
   const cards = getStudyDeckCards({
     id: 'ep',
@@ -85,4 +126,19 @@ test('getStudyDeckCards returns flashcard-compatible cards only', () => {
   });
 
   assert.equal(cards.length, 2);
+});
+
+test('getStudyDeckCards preserves manual pronunciation hints', () => {
+  const cards = getStudyDeckCards({
+    id: 'en-ep',
+    title: 'English',
+    letters: ['T', 'E'],
+    cards: [
+      { type: 'word', ge_text: 'tea', ru_meaning: 'чай', translit: 'ти' },
+      { type: 'word', ge_text: 'eat', ru_meaning: 'есть', translit: 'ит' },
+    ],
+  });
+
+  assert.equal(cards[0]?.translit, 'ти');
+  assert.equal(cards[1]?.translit, 'ит');
 });

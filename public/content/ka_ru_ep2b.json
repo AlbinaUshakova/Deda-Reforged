@@ -1,0 +1,22 @@
+{
+  "id": "ep2b",
+  "title": "Урок 3",
+  "letters": ["ნ", "დ", "უ"],
+  "cards": [
+    { "type": "word", "ge_text": "დედა", "ru_meaning": "мама" },
+    { "type": "word", "ge_text": "და", "ru_meaning": "и / сестра" },
+    { "type": "word", "ge_text": "სად", "ru_meaning": "где" },
+    { "type": "word", "ge_text": "სად არის", "ru_meaning": "где находится" },
+    { "type": "word", "ge_text": "ეს უნდა", "ru_meaning": "это нужно" },
+    { "type": "word", "ge_text": "არ უნდა", "ru_meaning": "не нужно" },
+    { "type": "word", "ge_text": "მინდა", "ru_meaning": "хочу" },
+    { "type": "word", "ge_text": "არ მინდა", "ru_meaning": "не хочу" },
+    { "type": "word", "ge_text": "ეს მინდა", "ru_meaning": "я хочу это" },
+    { "type": "word", "ge_text": "ორი მინდა", "ru_meaning": "хочу два" },
+    { "type": "word", "ge_text": "სუნი", "ru_meaning": "запах" },
+    { "type": "word", "ge_text": "დარი", "ru_meaning": "погода" },
+    { "type": "word", "ge_text": "დედა სად არის", "ru_meaning": "где мама" },
+    { "type": "word", "ge_text": "დრო", "ru_meaning": "время" },
+    { "type": "word", "ge_text": "უნდა", "ru_meaning": "нужно / хочет" }
+  ]
+}

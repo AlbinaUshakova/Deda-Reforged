@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef } from 'react';
+import Link from 'next/link';
 import { useAppStore } from '@/lib/appStore';
 import { AlphabetPanel } from '@/components/lessons/AlphabetPanel';
 import { LessonGrid } from '@/components/lessons/LessonGrid';
@@ -14,14 +15,13 @@ import { useViewportWidth } from '@/components/lessons/useViewportWidth';
 import {
   writeAlphabetStatusCache,
 } from '@/lib/alphabetProgressCache';
-import { COURSES, COURSE_IDS, progressKeyForEpisode, type CourseId } from '@/lib/courses';
+import { progressKeyForEpisode } from '@/lib/courses';
 import { deriveLessonState } from '@/lib/lessonProgress';
 
 export default function HomePage() {
   const hydrate = useAppStore(state => state.hydrate);
   const progress = useAppStore(state => state.progressMap);
   const courseId = useAppStore(state => state.settings.courseId);
-  const updateSettings = useAppStore(state => state.updateSettings);
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const transliterationMode = useAppStore(state => state.settings.transliterationMode);
   const alphabetToggleRequest = useAppStore(state => state.alphabetToggleRequest);
@@ -69,10 +69,9 @@ export default function HomePage() {
 
   const {
     normalEpisodes,
-    allLessonsSpecial,
+    practicalSpecials,
     favoritesSpecial,
     phrasesSpecial,
-    allLessonsReady,
     recommendedEpId,
     statusById,
     letterStatusByChar,
@@ -126,29 +125,6 @@ export default function HomePage() {
       <div className="lessons-screen-orb lessons-screen-orb--left" aria-hidden="true" />
       <div className="lessons-screen-orb lessons-screen-orb--right" aria-hidden="true" />
       <div className="relative mx-auto w-full flex-1 [@media(max-width:700px)]:flex-none flex flex-col justify-start pb-[clamp(32px,4.5vh,40px)] [@media(max-width:700px)]:pb-3">
-        <div className="relative z-[170] mx-auto mb-3 flex w-full max-w-[1040px] justify-end">
-          <div className="inline-flex rounded-full border border-slate-200/70 bg-white/58 p-1 shadow-[0_10px_24px_rgba(15,23,42,0.055)] backdrop-blur">
-            {COURSE_IDS.map(id => {
-              const course = COURSES[id];
-
-              return (
-                <button
-                  key={course.id}
-                  type="button"
-                  onClick={() => updateSettings({ courseId: course.id as CourseId })}
-                  aria-pressed={courseId === course.id}
-                  className={`rounded-full px-3.5 py-1.5 text-[12px] font-semibold tracking-[-0.01em] transition ${
-                    courseId === course.id
-                      ? 'bg-[#18201d] text-white shadow-sm'
-                      : 'text-slate-500 hover:text-slate-900'
-                  }`}
-                >
-                  {course.shortTitle}
-                </button>
-              );
-            })}
-          </div>
-        </div>
         <LessonsHero
           recommendedLesson={recommendedLesson}
           recommendedLessonNumber={recommendedLessonNumber}
@@ -172,8 +148,17 @@ export default function HomePage() {
               onToggleAlphabet={toggleAlphabet}
               onSpeakLetter={speakLetter}
             />
-            <div ref={lessonsWrapRef} className="relative z-[150] mx-auto w-full max-w-[980px] [@media(max-height:980px)]:max-w-[900px]">
+            <div ref={lessonsWrapRef} className="relative z-[150] mx-auto w-full max-w-[1160px] [@media(max-height:980px)]:max-w-[1040px]">
+              <div className="lessons-grid-heading">
+                <h2>Уроки</h2>
+                {favoritesSpecial && (
+                  <Link href={`/study/${favoritesSpecial.id}`} className="lessons-favorites-link">
+                    ☆ Избранное
+                  </Link>
+                )}
+              </div>
               <LessonGrid
+                courseId={courseId}
                 normalEpisodes={normalEpisodes}
                 progress={courseProgress}
                 lettersByEp={lettersByEp}
@@ -189,18 +174,14 @@ export default function HomePage() {
                   event.preventDefault();
                   showLockedLessonTooltipNow(episodeId);
                 }}
-                allLessonsSpecial={allLessonsSpecial}
-                allLessonsReady={allLessonsReady}
               />
             </div>
           </div>
         </section>
 
         <SpecialLessonLinks
-          allLessonsSpecial={allLessonsSpecial}
-          favoritesSpecial={favoritesSpecial}
+          practicalSpecials={practicalSpecials}
           phrasesSpecial={phrasesSpecial}
-          allLessonsReady={allLessonsReady}
         />
 
       </div>

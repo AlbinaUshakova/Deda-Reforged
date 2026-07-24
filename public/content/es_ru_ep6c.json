@@ -1,0 +1,24 @@
+{
+  "id": "ep6c",
+  "title": "Урок 9",
+  "letters": ["K", "W"],
+  "cards": [
+    { "type": "word", "ge_text": "kiwi", "ru_meaning": "киви" },
+    { "type": "word", "ge_text": "kilo", "ru_meaning": "килограмм" },
+    { "type": "word", "ge_text": "karaoke", "ru_meaning": "караоке" },
+    { "type": "word", "ge_text": "kayak", "ru_meaning": "каяк" },
+    { "type": "word", "ge_text": "koala", "ru_meaning": "коала" },
+    { "type": "word", "ge_text": "kebab", "ru_meaning": "кебаб" },
+    { "type": "word", "ge_text": "wifi", "ru_meaning": "вайфай" },
+    { "type": "word", "ge_text": "web", "ru_meaning": "сайт" },
+    { "type": "word", "ge_text": "whisky", "ru_meaning": "виски" },
+    { "type": "word", "ge_text": "kiosko", "ru_meaning": "киоск" },
+    { "type": "word", "ge_text": "show", "ru_meaning": "шоу" },
+    { "type": "word", "ge_text": "wifi ok", "ru_meaning": "вайфай работает" },
+    { "type": "word", "ge_text": "wok", "ru_meaning": "вок" },
+    { "type": "word", "ge_text": "wiki", "ru_meaning": "вики" },
+    { "type": "word", "ge_text": "weekend", "ru_meaning": "выходные" },
+    { "type": "word", "ge_text": "Kiwi fresco", "ru_meaning": "свежий киви" },
+    { "type": "word", "ge_text": "Web gratis", "ru_meaning": "бесплатный сайт" }
+  ]
+}

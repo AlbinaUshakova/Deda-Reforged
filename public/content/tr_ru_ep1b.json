@@ -1,0 +1,24 @@
+{
+  "id": "ep1b",
+  "title": "Урок 2",
+  "letters": ["B", "V", "Y"],
+  "cards": [
+    { "type": "word", "ge_text": "ben", "ru_meaning": "я" },
+    { "type": "word", "ge_text": "beni", "ru_meaning": "меня" },
+    { "type": "word", "ge_text": "bina", "ru_meaning": "здание" },
+    { "type": "word", "ge_text": "bir", "ru_meaning": "один" },
+    { "type": "word", "ge_text": "biri", "ru_meaning": "кто-то" },
+    { "type": "word", "ge_text": "bayan", "ru_meaning": "женщина" },
+    { "type": "word", "ge_text": "ver", "ru_meaning": "дай" },
+    { "type": "word", "ge_text": "var", "ru_meaning": "есть" },
+    { "type": "word", "ge_text": "yeni", "ru_meaning": "новый" },
+    { "type": "word", "ge_text": "yer", "ru_meaning": "место" },
+    { "type": "word", "ge_text": "yine", "ru_meaning": "снова" },
+    { "type": "word", "ge_text": "bey", "ru_meaning": "господин" },
+    { "type": "word", "ge_text": "biber", "ru_meaning": "перец" },
+    { "type": "word", "ge_text": "bira", "ru_meaning": "пиво" },
+    { "type": "word", "ge_text": "ay", "ru_meaning": "месяц" },
+    { "type": "word", "ge_text": "ne var", "ru_meaning": "что есть" },
+    { "type": "word", "ge_text": "bana ver", "ru_meaning": "дай мне" }
+  ]
+}

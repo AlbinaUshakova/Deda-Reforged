@@ -12,6 +12,10 @@ function getLessonLettersInText(text: string, lessonLetters: Set<string>) {
   return found;
 }
 
+function isPhrase(text: string) {
+  return /\s/.test(String(text || '').trim());
+}
+
 export function orderLessonCardsByLetterProgression<T extends LessonCard>(
   cards: T[],
   letters?: string[],
@@ -22,10 +26,18 @@ export function orderLessonCardsByLetterProgression<T extends LessonCard>(
 
   const lessonLetters = new Set(letters);
   const letterToIndex = new Map(letters.map((letter, index) => [letter, index]));
+  const wordEntries: Array<{ card: T }> = [];
+  const phraseEntries: Array<{ card: T }> = [];
+
+  cards.forEach((card) => {
+    (isPhrase(card.ge_text) ? phraseEntries : wordEntries).push({ card });
+  });
+
+  const sortableCards = wordEntries.map(entry => entry.card);
   const ordered: T[] = [];
   const used = new Set<number>();
 
-  const meta = cards.map(card => {
+  const meta = sortableCards.map(card => {
     const presentLetters = getLessonLettersInText(card.ge_text, lessonLetters);
     const sortedIndexes = Array.from(presentLetters)
       .map(letter => letterToIndex.get(letter))
@@ -60,5 +72,5 @@ export function orderLessonCardsByLetterProgression<T extends LessonCard>(
     ordered.push(entry.card);
   });
 
-  return ordered;
+  return ordered.concat(phraseEntries.map(entry => entry.card));
 }

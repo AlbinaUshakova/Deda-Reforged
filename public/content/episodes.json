@@ -10,39 +10,44 @@
     "idx": 2
   },
   {
-    "id": "ep3",
+    "id": "ep2b",
     "title": "Урок 3",
     "idx": 3
   },
   {
-    "id": "ep4",
+    "id": "ep3",
     "title": "Урок 4",
     "idx": 4
   },
   {
-    "id": "ep5",
+    "id": "ep4",
     "title": "Урок 5",
     "idx": 5
   },
   {
-    "id": "ep6",
+    "id": "ep5",
     "title": "Урок 6",
     "idx": 6
   },
   {
-    "id": "ep7",
+    "id": "ep6",
     "title": "Урок 7",
     "idx": 7
   },
   {
-    "id": "ep8",
+    "id": "ep7",
     "title": "Урок 8",
     "idx": 8
   },
   {
-    "id": "ep9",
+    "id": "ep8",
     "title": "Урок 9",
     "idx": 9
+  },
+  {
+    "id": "ep9",
+    "title": "Урок 10",
+    "idx": 10
   },
   {
     "id": "favorites",
@@ -54,6 +59,6 @@
   },
   {
     "id": "phrases",
-    "title": "Разговорные фразы"
+    "title": "Вежливые фразы"
   }
 ]

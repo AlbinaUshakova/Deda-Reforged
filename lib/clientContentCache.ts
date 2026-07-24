@@ -20,7 +20,7 @@ export type EpisodesData = {
 
 export type EpisodeData = Episode | null;
 
-const EPISODES_DATA_CACHE_KEY_PREFIX = 'deda:episodes-data-cache:v6';
+const EPISODES_DATA_CACHE_KEY_PREFIX = 'deda:episodes-data-cache:v15';
 const RAW_CONTENT_KEY = 'deda_content_json';
 
 const episodesDataCache = new Map<CourseId, EpisodesData>();
@@ -39,6 +39,15 @@ function getEpisodeCacheKey(courseId: CourseId, episodeId: string): string {
 
 function hasNumberedLessons(episodes: EpisodesListItem[]): boolean {
   return episodes.some((episode) => /^ep\d+$/i.test(String(episode.id ?? '')));
+}
+
+function episodeListSignature(episodes: EpisodesListItem[]): string {
+  return episodes.map(episode => `${episode.id}:${episode.title}`).join('|');
+}
+
+function isEpisodesDataCurrent(courseId: CourseId, data: EpisodesData): boolean {
+  const expectedEpisodes = listStaticEpisodes(courseId);
+  return episodeListSignature(data.episodes) === episodeListSignature(expectedEpisodes);
 }
 
 function readEpisodesFromLocalStorageCache(courseId: CourseId): EpisodesData {
@@ -67,10 +76,19 @@ function readEpisodesFromLocalStorageCache(courseId: CourseId): EpisodesData {
       return { episodes: [], lettersByEpisode: {} };
     }
 
-    return {
+    const data = {
       episodes,
       lettersByEpisode,
     };
+
+    if (!isEpisodesDataCurrent(courseId, data)) {
+      try {
+        window.localStorage.removeItem(cacheKey);
+      } catch {}
+      return { episodes: [], lettersByEpisode: {} };
+    }
+
+    return data;
   } catch {
     return { episodes: [], lettersByEpisode: {} };
   }
@@ -112,7 +130,12 @@ function readEpisodesFallbackFromRawContent(courseId: CourseId): EpisodesData {
 export function getEpisodesDataSync(courseId: CourseId = DEFAULT_COURSE_ID): EpisodesData {
   const normalizedCourseId = normalizeCourseId(courseId);
   const cachedForCourse = episodesDataCache.get(normalizedCourseId);
-  if (cachedForCourse) return cachedForCourse;
+  if (cachedForCourse) {
+    if (isEpisodesDataCurrent(normalizedCourseId, cachedForCourse)) {
+      return cachedForCourse;
+    }
+    episodesDataCache.delete(normalizedCourseId);
+  }
 
   const cached = readEpisodesFromLocalStorageCache(normalizedCourseId);
   if (cached.episodes.length > 0) {

@@ -1,22 +1,22 @@
 {
   "id": "ep1",
   "title": "Урок 1",
-  "letters": ["A", "B", "E", "H", "İ", "L", "M", "N", "R", "S", "T"],
+  "letters": ["A", "E", "İ", "N", "R"],
   "cards": [
-    { "type": "word", "ge_text": "merhaba", "ru_meaning": "привет" },
-    { "type": "word", "ge_text": "ben", "ru_meaning": "я" },
-    { "type": "word", "ge_text": "sen", "ru_meaning": "ты" },
-    { "type": "word", "ge_text": "bir", "ru_meaning": "один" },
     { "type": "word", "ge_text": "ne", "ru_meaning": "что" },
     { "type": "word", "ge_text": "anne", "ru_meaning": "мама" },
-    { "type": "word", "ge_text": "el", "ru_meaning": "рука" },
-    { "type": "word", "ge_text": "elma", "ru_meaning": "яблоко" },
-    { "type": "word", "ge_text": "bana", "ru_meaning": "мне" },
-    { "type": "word", "ge_text": "sana", "ru_meaning": "тебе" },
-    { "type": "word", "ge_text": "tamam", "ru_meaning": "хорошо", "accepted_ru": ["ладно", "ок"] },
-    { "type": "word", "ge_text": "hemen", "ru_meaning": "сейчас" },
-    { "type": "word", "ge_text": "beni", "ru_meaning": "меня" },
-    { "type": "word", "ge_text": "seni", "ru_meaning": "тебя" },
-    { "type": "word", "ge_text": "sabah", "ru_meaning": "утро" }
+    { "type": "word", "ge_text": "nane", "ru_meaning": "мята" },
+    { "type": "word", "ge_text": "ara", "ru_meaning": "позвони" },
+    { "type": "word", "ge_text": "anne ne", "ru_meaning": "мама, что?" },
+    { "type": "word", "ge_text": "nar", "ru_meaning": "гранат" },
+    { "type": "word", "ge_text": "anne ara", "ru_meaning": "позови маму" },
+    { "type": "word", "ge_text": "ne ara", "ru_meaning": "что ищешь?" },
+    { "type": "word", "ge_text": "ninni", "ru_meaning": "колыбельная" },
+    { "type": "word", "ge_text": "nine", "ru_meaning": "бабушка" },
+    { "type": "word", "ge_text": "annene", "ru_meaning": "твоей маме" },
+    { "type": "word", "ge_text": "nene", "ru_meaning": "бабушка" },
+    { "type": "word", "ge_text": "nane ara", "ru_meaning": "найди мяту" },
+    { "type": "word", "ge_text": "ne ne", "ru_meaning": "что-что?" },
+    { "type": "word", "ge_text": "anneanne", "ru_meaning": "бабушка" }
   ]
 }

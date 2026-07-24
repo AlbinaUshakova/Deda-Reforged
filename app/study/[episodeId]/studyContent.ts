@@ -28,6 +28,7 @@ export type StudyEpisode = {
 export type FlashcardDeckCard = {
   ge_text: string;
   ru_meaning?: string;
+  translit?: string;
   info_notes?: CardInfoNote[];
   type: 'word' | 'letter';
   topic?: string;
@@ -178,6 +179,10 @@ function getCompatibleCardCount(episode: StudyEpisode | null): number {
   return episode.cards.filter(isFlashcardDeckCompatibleCard).length;
 }
 
+function isReadingLessonEpisode(episode: StudyEpisode | null): boolean {
+  return !!episode && /^ep\d+[a-z]*$/i.test(episode.id) && /^Урок /.test(episode.title);
+}
+
 export function resolveStudyEpisode(
   bundled: Episode | null,
   episodeId: string,
@@ -185,6 +190,10 @@ export function resolveStudyEpisode(
   let resolvedEpisode: StudyEpisode | null = bundled
     ? normalizeStudyEpisode(bundled)
     : null;
+
+  if (isReadingLessonEpisode(resolvedEpisode)) {
+    return resolvedEpisode;
+  }
 
   if (typeof window === 'undefined') {
     return resolvedEpisode;
@@ -207,7 +216,7 @@ export function resolveStudyEpisode(
 
     if (
       !resolvedEpisode ||
-      cachedCardCount >= getCompatibleCardCount(resolvedEpisode)
+      cachedCardCount > getCompatibleCardCount(resolvedEpisode)
     ) {
       resolvedEpisode = cachedEpisode;
     }

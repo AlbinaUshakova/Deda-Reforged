@@ -1,23 +1,9 @@
 import { DEFAULT_COURSE_ID, getCourse, getLetterHint } from './courses.ts';
 
 export type TransliterationMode = 'ru' | 'latin';
-
-const GEORGIAN_TO_LATIN: Record<string, string> = {
-  'ა': 'a', 'ბ': 'b', 'გ': 'g', 'დ': 'd', 'ე': 'e', 'ვ': 'v', 'ზ': 'z', 'თ': 't',
-  'ი': 'i', 'კ': "k'", 'ლ': 'l', 'მ': 'm', 'ნ': 'n', 'ო': 'o', 'პ': "p'", 'ჟ': 'zh',
-  'რ': 'r', 'ს': 's', 'ტ': "t'", 'უ': 'u', 'ფ': 'p', 'ქ': 'k', 'ღ': 'gh', 'ყ': "q'",
-  'შ': 'sh', 'ჩ': 'ch', 'ც': 'ts', 'ძ': 'dz', 'წ': "ts'", 'ჭ': "ch'", 'ხ': 'kh', 'ჯ': 'j', 'ჰ': 'h',
-};
-
-const GEORGIAN_TO_RU: Record<string, string> = {
-  'ა': 'а', 'ბ': 'б', 'გ': 'г', 'დ': 'д', 'ე': 'э', 'ვ': 'в', 'ზ': 'з', 'თ': 'т',
-  'ი': 'и', 'კ': 'к', 'ლ': 'л', 'მ': 'м', 'ნ': 'н', 'ო': 'о', 'პ': 'п', 'ჟ': 'ж',
-  'რ': 'р', 'ს': 'с', 'ტ': 'т', 'უ': 'у', 'ფ': 'ф', 'ქ': 'к', 'ღ': 'гх', 'ყ': 'к',
-  'შ': 'ш', 'ჩ': 'ч', 'ც': 'ц', 'ძ': 'дз', 'წ': 'ц', 'ჭ': 'ч', 'ხ': 'х', 'ჯ': 'дж', 'ჰ': 'х',
-};
-
+// In this app, `ru` is the sound written in Cyrillic, and `latin` is the same sound written in Latin.
 export function geLetterToHint(ch: string, mode: TransliterationMode): string {
-  return (mode === 'latin' ? GEORGIAN_TO_LATIN : GEORGIAN_TO_RU)[ch] ?? '';
+  return getLetterHint(ch, mode, DEFAULT_COURSE_ID);
 }
 
 export function letterToHint(
@@ -29,8 +15,7 @@ export function letterToHint(
 }
 
 export function geTextToHint(text: string, mode: TransliterationMode): string {
-  const map = mode === 'latin' ? GEORGIAN_TO_LATIN : GEORGIAN_TO_RU;
-  return Array.from(text).map(ch => map[ch] ?? ch).join('');
+  return Array.from(text).map(ch => geLetterToHint(ch, mode) || ch).join('');
 }
 
 const SERBIAN_CYRILLIC_TO_LATIN: Record<string, string> = {
@@ -60,7 +45,7 @@ const TURKISH_TO_EN: Record<string, string> = {
 };
 
 const SPANISH_TO_RU: Record<string, string> = {
-  a: 'а', á: 'а', b: 'б', d: 'д', e: 'е', é: 'е', f: 'ф', i: 'и', í: 'и',
+  a: 'а', á: 'а', b: 'б', d: 'д', e: 'э', é: 'э', f: 'ф', i: 'и', í: 'и',
   j: 'х', k: 'к', l: 'л', m: 'м', n: 'н', ñ: 'нь', o: 'о', ó: 'о', p: 'п',
   r: 'р', s: 'с', t: 'т', u: 'у', ú: 'у', ü: 'у', v: 'в', w: 'в', x: 'кс',
   y: 'й', z: 'с',
@@ -104,7 +89,25 @@ function serbianTextToHint(text: string, mode: TransliterationMode): string {
 
 function turkishTextToHint(text: string, mode: TransliterationMode): string {
   if (mode === 'latin') return mapCharacters(text, TURKISH_TO_EN, 'tr');
-  return mapCharacters(text, TURKISH_TO_RU, 'tr');
+
+  const lower = text.toLocaleLowerCase('tr');
+  let result = '';
+  for (let index = 0; index < lower.length; index += 1) {
+    const ch = lower[index];
+    const prev = lower[index - 1] ?? '';
+    const next = lower[index + 1] ?? '';
+
+    if (ch === 'ğ') {
+      if (/[aeıioöuü]/.test(prev) && !/[aeıioöuü]/.test(next)) {
+        result += TURKISH_TO_RU[prev] ?? '';
+      }
+      continue;
+    }
+
+    result += TURKISH_TO_RU[ch] ?? ch;
+  }
+
+  return result;
 }
 
 function spanishTextToHint(text: string, mode: TransliterationMode): string {
@@ -151,7 +154,13 @@ function spanishTextToHint(text: string, mode: TransliterationMode): string {
       continue;
     }
 
-    if (ch === 'h') continue;
+    if (ch === 'h') {
+      if (next === 'i' && /[aeiouáéíóúü]/.test(lower[index + 2] ?? '')) {
+        result += 'й';
+        index += 1;
+      }
+      continue;
+    }
 
     result += SPANISH_TO_RU[ch] ?? ch;
   }
@@ -161,6 +170,11 @@ function spanishTextToHint(text: string, mode: TransliterationMode): string {
 
 function germanTextToHint(text: string, mode: TransliterationMode): string {
   const lower = text.toLocaleLowerCase('de');
+  if (text.length === 1) {
+    const upper = text === 'ß' ? 'ẞ' : text.toLocaleUpperCase('de');
+    return getLetterHint(upper, mode, 'de') || text;
+  }
+
   if (mode === 'latin') return mapCharacters(lower, GERMAN_TO_EN, 'de');
 
   let result = '';
@@ -174,6 +188,12 @@ function germanTextToHint(text: string, mode: TransliterationMode): string {
     if (triple === 'sch') {
       result += 'ш';
       index += 2;
+      continue;
+    }
+
+    if (pair === 'qu') {
+      result += 'кв';
+      index += 1;
       continue;
     }
 
@@ -214,6 +234,11 @@ function germanTextToHint(text: string, mode: TransliterationMode): string {
     }
 
     if (ch === 'h' && /[aeiouäöü]/.test(lower[index - 1] ?? '')) continue;
+
+    if (startsWord && ch === 's' && /[aeiouäöü]/.test(next)) {
+      result += 'з';
+      continue;
+    }
 
     result += GERMAN_TO_RU[ch] ?? ch;
   }

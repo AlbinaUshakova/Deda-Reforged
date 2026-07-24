@@ -80,7 +80,6 @@ export default function StudyClient({
           <div className="relative z-0 mt-[clamp(2px,0.8vh,10px)]">
             <FlashcardDeck
               cards={words}
-              lessonTitle={ep?.title ?? episodeId}
               episodeId={episodeId}
               onTopicChange={setTopicForPlay}
             />

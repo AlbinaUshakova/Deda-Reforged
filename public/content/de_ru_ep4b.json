@@ -1,0 +1,25 @@
+{
+  "id": "ep4b",
+  "title": "Урок 9",
+  "letters": ["ẞ", "Ä"],
+  "cards": [
+    { "type": "word", "ge_text": "Käse", "ru_meaning": "сыр" },
+    { "type": "word", "ge_text": "März", "ru_meaning": "март" },
+    { "type": "word", "ge_text": "spät", "ru_meaning": "поздно" },
+    { "type": "word", "ge_text": "Bär", "ru_meaning": "медведь" },
+    { "type": "word", "ge_text": "Hände", "ru_meaning": "руки" },
+    { "type": "word", "ge_text": "heiß", "ru_meaning": "горячий" },
+    { "type": "word", "ge_text": "Straße", "ru_meaning": "улица" },
+    { "type": "word", "ge_text": "groß", "ru_meaning": "большой" },
+    { "type": "word", "ge_text": "weiß", "ru_meaning": "белый" },
+    { "type": "word", "ge_text": "Spaß", "ru_meaning": "веселье" },
+    { "type": "word", "ge_text": "Fuß", "ru_meaning": "нога" },
+    { "type": "word", "ge_text": "heiße", "ru_meaning": "зовусь" },
+    { "type": "word", "ge_text": "Mädchen", "ru_meaning": "девочка" },
+    { "type": "word", "ge_text": "nächste", "ru_meaning": "следующий" },
+    { "type": "word", "ge_text": "draußen", "ru_meaning": "снаружи" },
+    { "type": "word", "ge_text": "Das ist heiß", "ru_meaning": "это горячее" },
+    { "type": "word", "ge_text": "Äpfel, bitte", "ru_meaning": "яблоки, пожалуйста" },
+    { "type": "word", "ge_text": "Ich heiße Anna", "ru_meaning": "меня зовут Анна" }
+  ]
+}

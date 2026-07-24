@@ -1,22 +1,22 @@
 {
   "id": "ep1",
   "title": "Урок 1",
-  "letters": ["A", "E", "I", "O", "U", "M", "N", "S", "L"],
+  "letters": ["A", "E", "O", "S", "R"],
   "cards": [
-    { "type": "word", "ge_text": "si", "ru_meaning": "да" },
-    { "type": "word", "ge_text": "no", "ru_meaning": "нет" },
-    { "type": "word", "ge_text": "mama", "ru_meaning": "мама" },
-    { "type": "word", "ge_text": "mano", "ru_meaning": "рука" },
-    { "type": "word", "ge_text": "mesa", "ru_meaning": "стол" },
-    { "type": "word", "ge_text": "luna", "ru_meaning": "луна" },
-    { "type": "word", "ge_text": "sol", "ru_meaning": "солнце" },
-    { "type": "word", "ge_text": "sal", "ru_meaning": "соль" },
-    { "type": "word", "ge_text": "miel", "ru_meaning": "мёд", "accepted_ru": ["мед"] },
-    { "type": "word", "ge_text": "uno", "ru_meaning": "один" },
-    { "type": "word", "ge_text": "una", "ru_meaning": "одна" },
-    { "type": "word", "ge_text": "malo", "ru_meaning": "плохой" },
-    { "type": "word", "ge_text": "sano", "ru_meaning": "здоровый" },
-    { "type": "word", "ge_text": "sale", "ru_meaning": "выходит" },
-    { "type": "word", "ge_text": "suma", "ru_meaning": "сумма" }
+    { "type": "word", "ge_text": "eso", "ru_meaning": "это" },
+    { "type": "word", "ge_text": "eres", "ru_meaning": "ты есть" },
+    { "type": "word", "ge_text": "es", "ru_meaning": "есть" },
+    { "type": "word", "ge_text": "sea", "ru_meaning": "пусть будет" },
+    { "type": "word", "ge_text": "ser", "ru_meaning": "быть" },
+    { "type": "word", "ge_text": "oso", "ru_meaning": "медведь" },
+    { "type": "word", "ge_text": "rosa", "ru_meaning": "роза" },
+    { "type": "word", "ge_text": "oro", "ru_meaning": "золото" },
+    { "type": "word", "ge_text": "aseo", "ru_meaning": "туалет" },
+    { "type": "word", "ge_text": "raro", "ru_meaning": "странный" },
+    { "type": "word", "ge_text": "error", "ru_meaning": "ошибка" },
+    { "type": "word", "ge_text": "esa", "ru_meaning": "та" },
+    { "type": "word", "ge_text": "ese", "ru_meaning": "тот" },
+    { "type": "word", "ge_text": "a eso", "ru_meaning": "к этому" },
+    { "type": "word", "ge_text": "ese oso", "ru_meaning": "этот медведь" }
   ]
 }

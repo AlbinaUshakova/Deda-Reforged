@@ -1,22 +1,24 @@
 {
   "id": "ep2",
   "title": "Урок 2",
-  "letters": ["Е", "Н", "С"],
+  "letters": ["Р", "С", "Т", "У", "К", "Л"],
   "cards": [
-    { "type": "word", "ge_text": "не", "ru_meaning": "нет" },
-    { "type": "word", "ge_text": "он", "ru_meaning": "он" },
-    { "type": "word", "ge_text": "она", "ru_meaning": "она" },
-    { "type": "word", "ge_text": "они", "ru_meaning": "они" },
-    { "type": "word", "ge_text": "мени", "ru_meaning": "мне" },
+    { "type": "word", "ge_text": "рука", "ru_meaning": "рука" },
+    { "type": "word", "ge_text": "уста", "ru_meaning": "рот" },
+    { "type": "word", "ge_text": "ко", "ru_meaning": "кто" },
+    { "type": "word", "ge_text": "како", "ru_meaning": "как" },
+    { "type": "word", "ge_text": "сок", "ru_meaning": "сок" },
+    { "type": "word", "ge_text": "коса", "ru_meaning": "волосы" },
     { "type": "word", "ge_text": "нос", "ru_meaning": "нос" },
-    { "type": "word", "ge_text": "месо", "ru_meaning": "мясо" },
-    { "type": "word", "ge_text": "место", "ru_meaning": "место" },
     { "type": "word", "ge_text": "сан", "ru_meaning": "сон" },
-    { "type": "word", "ge_text": "семе", "ru_meaning": "семя" },
-    { "type": "word", "ge_text": "сати", "ru_meaning": "часы" },
-    { "type": "word", "ge_text": "осам", "ru_meaning": "восемь" },
-    { "type": "word", "ge_text": "мост", "ru_meaning": "мост" },
-    { "type": "word", "ge_text": "исти", "ru_meaning": "такой же" },
-    { "type": "word", "ge_text": "сто", "ru_meaning": "стол", "accepted_ru": ["сто"] }
+    { "type": "word", "ge_text": "сто", "ru_meaning": "сто / стол" },
+    { "type": "word", "ge_text": "село", "ru_meaning": "село" },
+    { "type": "word", "ge_text": "лес", "ru_meaning": "лес" },
+    { "type": "word", "ge_text": "лист", "ru_meaning": "лист" },
+    { "type": "word", "ge_text": "стена", "ru_meaning": "стена" },
+    { "type": "word", "ge_text": "стан", "ru_meaning": "квартира" },
+    { "type": "word", "ge_text": "сестра", "ru_meaning": "сестра" },
+    { "type": "word", "ge_text": "ко си ти", "ru_meaning": "кто ты" },
+    { "type": "word", "ge_text": "она носи", "ru_meaning": "она носит" }
   ]
 }

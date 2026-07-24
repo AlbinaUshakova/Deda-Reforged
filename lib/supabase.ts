@@ -202,7 +202,7 @@ export async function loadProgressMap(): Promise<ProgressMap> {
   // 2) если нет supabase — всё, выходим
   if (!supabase) return map;
 
-  // 3) берём текущего пользователя
+  // 3) берём текущий аккаунт
   const { data: userData, error: userErr } = await supabase.auth.getUser();
   if (userErr || !userData.user) {
     return map;
@@ -306,7 +306,7 @@ export async function upsertProgress(episodeId: string, score: number) {
   }
 }
 
-// сброс прогресса: локально всегда, на сервере — если есть авторизованный пользователь
+// сброс прогресса: локально всегда, на сервере — если есть авторизованный аккаунт
 export async function resetProgress() {
   // Перезаписываем локально дефолтные значения (все уроки = 0).
   const defaultLocalProgress = createDefaultLocalProgress();

@@ -1,221 +1,24 @@
 {
   "id": "ep4",
-  "title": "Урок 4",
-  "letters": [
-    "კ",
-    "ჩ",
-    "ქ"
-  ],
+  "title": "Урок 5",
+  "letters": ["ბ", "თ", "ტ"],
   "cards": [
-    {
-      "type": "word",
-      "ge_text": "კი",
-      "reading": "k’i",
-      "ru_meaning": "да"
-    },
-    {
-      "type": "word",
-      "ge_text": "კაბა",
-      "reading": "k’aba",
-      "ru_meaning": "платье"
-    },
-    {
-      "type": "word",
-      "ge_text": "კარგი",
-      "reading": "k’argi",
-      "ru_meaning": "хороший"
-    },
-    {
-      "type": "word",
-      "ge_text": "სკამი",
-      "reading": "sk’ami",
-      "ru_meaning": "стул"
-    },
-    {
-      "type": "word",
-      "ge_text": "ჩაი",
-      "ru_meaning": "чай"
-    },
-    {
-      "type": "word",
-      "ge_text": "მაქვს",
-      "ru_meaning": "у меня есть"
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მაქვს",
-      "reading": "me makvs",
-      "ru_meaning": "у меня есть"
-    },
-    {
-      "type": "word",
-      "ge_text": "შაქარი",
-      "reading": "shakari",
-      "ru_meaning": "сахар"
-    },
-    {
-      "type": "word",
-      "ge_text": "ქათამი",
-      "reading": "katami",
-      "ru_meaning": "курица"
-    },
-    {
-      "type": "word",
-      "ge_text": "ექვსი",
-      "reading": "ekvsi",
-      "ru_meaning": "шесть"
-    },
-    {
-      "type": "word",
-      "ge_text": "ქუდი",
-      "ru_meaning": "шапка"
-    },
-    {
-      "type": "word",
-      "ge_text": "კიევი",
-      "reading": "k’ievi",
-      "ru_meaning": "Киев"
-    },
-    {
-      "type": "word",
-      "ge_text": "მოსკოვი",
-      "reading": "mosk’ovi",
-      "ru_meaning": "Москва"
-    },
-    {
-      "type": "word",
-      "ge_text": "მქვია",
-      "ru_meaning": "меня зовут"
-    },
-    {
-      "type": "word",
-      "ge_text": "გქვია",
-      "ru_meaning": "тебя зовут"
-    },
-    {
-      "type": "word",
-      "ge_text": "კარგი კაბა",
-      "ru_meaning": "хорошее платье"
-    },
-    {
-      "type": "word",
-      "ge_text": "კარგი სკამი",
-      "ru_meaning": "хороший стул"
-    },
-    {
-      "type": "word",
-      "ge_text": "ეს ქუდია",
-      "ru_meaning": "это шапка"
-    },
-    {
-      "type": "word",
-      "ge_text": "ეს კარგი გოგოა",
-      "reading": "es k’argi gogoa",
-      "ru_meaning": "это хорошая девочка"
-    },
-    {
-      "type": "word",
-      "ge_text": "მე ვარ კარგი დედა",
-      "reading": "me var k’argi deda",
-      "ru_meaning": "я хорошая мама"
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მაქვს ჩაი",
-      "reading": "me makvs chai",
-      "ru_meaning": "у меня есть чай"
-    },
-    {
-      "type": "word",
-      "ge_text": "კი, მაქვს ჩაი",
-      "ru_meaning": "да, у меня есть чай",
-      "accepted_ru": [
-        "да есть чай"
-      ]
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მაქვს შაქარი",
-      "reading": "me makvs shakari",
-      "ru_meaning": "у меня есть сахар"
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მაქვს ქათამი",
-      "ru_meaning": "у меня есть курица"
-    },
-    {
-      "type": "word",
-      "ge_text": "აი სამი სკამი",
-      "reading": "ai sami sk’ami",
-      "ru_meaning": "вот три стула"
-    },
-    {
-      "type": "word",
-      "ge_text": "აი ექვსი ქათამი",
-      "reading": "ai ekvsi katami",
-      "ru_meaning": "вот шесть кур"
-    },
-    {
-      "type": "word",
-      "ge_text": "კი, მაქვს კაბა",
-      "ru_meaning": "да, у меня есть платье",
-      "accepted_ru": [
-        "да есть платье"
-      ]
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მაქვს ექვსი კაბა",
-      "reading": "me makvs ekvsi k’aba",
-      "ru_meaning": "у меня есть шесть платьев"
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მაქვს კარგი კაბა",
-      "reading": "me makvs k’argi k’aba",
-      "ru_meaning": "у меня есть хорошее платье"
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მაქვს მაგიდა",
-      "reading": "me makvs magida",
-      "ru_meaning": "у меня есть стол"
-    },
-    {
-      "type": "word",
-      "ge_text": "კიევი და მოსკოვი",
-      "ru_meaning": "Киев и Москва"
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მქვია",
-      "reading": "me mkvia",
-      "ru_meaning": "меня зовут"
-    },
-    {
-      "type": "word",
-      "ge_text": "მე მქვია დათო",
-      "reading": "me mkvia dato",
-      "ru_meaning": "меня зовут Дато",
-      "accepted_ru": [
-        "я Дато"
-      ]
-    },
-    {
-      "type": "word",
-      "ge_text": "კი, მე დათო ვარ",
-      "ru_meaning": "да, я Дато"
-    },
-    {
-      "type": "word",
-      "ge_text": "რა გქვია?",
-      "reading": "ra gkvia?",
-      "ru_meaning": "как тебя зовут?",
-      "accepted_ru": [
-        "как зовут?",
-        "твое имя?"
-      ]
-    }
+    { "type": "word", "ge_text": "ერთი", "ru_meaning": "один" },
+    { "type": "word", "ge_text": "ათი", "ru_meaning": "десять" },
+    { "type": "word", "ge_text": "ბარათი", "ru_meaning": "карта" },
+    { "type": "word", "ge_text": "ბებია", "ru_meaning": "бабушка" },
+    { "type": "word", "ge_text": "ბაბუა", "ru_meaning": "дедушка" },
+    { "type": "word", "ge_text": "თარო", "ru_meaning": "полка" },
+    { "type": "word", "ge_text": "თითი", "ru_meaning": "палец" },
+    { "type": "word", "ge_text": "თათი", "ru_meaning": "лапа" },
+    { "type": "word", "ge_text": "ტომატი", "ru_meaning": "томат" },
+    { "type": "word", "ge_text": "ტორტი", "ru_meaning": "торт" },
+    { "type": "word", "ge_text": "ბათუმი", "ru_meaning": "Батуми" },
+    { "type": "word", "ge_text": "ტბა", "ru_meaning": "озеро" },
+    { "type": "word", "ge_text": "თბილი", "ru_meaning": "тёплый", "accepted_ru": ["теплый"] },
+    { "type": "word", "ge_text": "ბილეთი", "ru_meaning": "билет" },
+    { "type": "word", "ge_text": "ეს ბილეთია", "ru_meaning": "это билет" },
+    { "type": "word", "ge_text": "მე მინდა ბილეთი", "ru_meaning": "я хочу билет" },
+    { "type": "word", "ge_text": "ეს თბილია", "ru_meaning": "это тёплое", "accepted_ru": ["это теплое"] }
   ]
 }

@@ -1,0 +1,24 @@
+{
+  "id": "ep4",
+  "title": "Урок 4",
+  "letters": ["C", "U", "M"],
+  "cards": [
+    { "type": "word", "ge_text": "me", "translit": "ми", "ru_meaning": "меня" },
+    { "type": "word", "ge_text": "am", "translit": "эм", "ru_meaning": "есть" },
+    { "type": "word", "ge_text": "us", "translit": "ас", "ru_meaning": "нас" },
+    { "type": "word", "ge_text": "can", "translit": "кэн", "ru_meaning": "могу" },
+    { "type": "word", "ge_text": "cat", "translit": "кэт", "ru_meaning": "кот" },
+    { "type": "word", "ge_text": "cut", "translit": "кат", "ru_meaning": "резать" },
+    { "type": "word", "ge_text": "cute", "translit": "кьют", "ru_meaning": "милый" },
+    { "type": "word", "ge_text": "much", "translit": "мач", "ru_meaning": "много" },
+    { "type": "word", "ge_text": "must", "translit": "маст", "ru_meaning": "должен" },
+    { "type": "word", "ge_text": "music", "translit": "мьюзик", "ru_meaning": "музыка" },
+    { "type": "word", "ge_text": "menu", "translit": "меню", "ru_meaning": "меню" },
+    { "type": "word", "ge_text": "count", "translit": "каунт", "ru_meaning": "считать" },
+    { "type": "word", "ge_text": "human", "translit": "хьюман", "ru_meaning": "человек" },
+    { "type": "word", "ge_text": "return", "translit": "ритёрн", "ru_meaning": "вернуться" },
+    { "type": "word", "ge_text": "I can count", "translit": "ай кэн каунт", "ru_meaning": "я могу считать" },
+    { "type": "word", "ge_text": "Come in", "translit": "кам ин", "ru_meaning": "заходи" },
+    { "type": "word", "ge_text": "Much more", "translit": "мач мор", "ru_meaning": "намного больше" }
+  ]
+}

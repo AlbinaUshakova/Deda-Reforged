@@ -5,7 +5,7 @@ export type BlocksWordLite = {
   ru: string;
 };
 
-export const RECENT_WORD_GAP = 4;
+export const RECENT_WORD_GAP = 6;
 
 const NUMBER_WORDS_RU: Record<string, number> = {
   'ноль': 0, 'один': 1, 'одна': 1, 'одно': 1, 'два': 2, 'две': 2, 'три': 3, 'четыре': 4, 'пять': 5,
@@ -342,6 +342,26 @@ export function wordKey(word: BlocksWordLite): string {
   return `${normalizeRu(word.ge)}|${normalizeRu(word.ru)}`;
 }
 
+function getRecentPenalty(
+  idx: number,
+  key: string,
+  recentIndices: number[],
+  recentKeys: string[],
+): number {
+  const recentIndexPosition = recentIndices.lastIndexOf(idx);
+  const recentKeyPosition = recentKeys.lastIndexOf(key);
+  let penalty = 0;
+
+  if (recentIndexPosition !== -1) {
+    penalty += recentIndices.length - recentIndexPosition;
+  }
+  if (recentKeyPosition !== -1) {
+    penalty += recentKeys.length - recentKeyPosition;
+  }
+
+  return penalty;
+}
+
 export function pickNextIndexFromQueue(
   queue: number[],
   words: BlocksWordLite[],
@@ -382,10 +402,12 @@ export function pickNextIndexFromQueue(
         const w = words[idx];
         if (!w) continue;
         const key = wordKey(w);
-        let score = 0;
-        if (!recentIdxSet.has(idx)) score += 2;
-        if (!recentKeySet.has(key)) score += 3;
-        if (lastKey && key !== lastKey) score += 4;
+        const recentPenalty = getRecentPenalty(idx, key, recentIndices, recentKeys);
+        let score = -recentPenalty * 4;
+        if (!recentIdxSet.has(idx)) score += 3;
+        if (!recentKeySet.has(key)) score += 5;
+        if (lastKey && key !== lastKey) score += 8;
+        if (lastKey && key === lastKey) score -= 20;
         if (score > bestScore) {
           bestScore = score;
           bestPos = i;

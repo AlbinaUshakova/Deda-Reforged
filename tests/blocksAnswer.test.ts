@@ -76,3 +76,44 @@ test('pickNextIndexFromQueue avoids recent words when possible', () => {
 
   assert.deepEqual(picked, { nextIdx: 2, rest: [0, 1] });
 });
+
+test('pickNextIndexFromQueue keeps a wider gap before repeating words', () => {
+  const words = [
+    { ge: 'ა', ru: 'а' },
+    { ge: 'ბ', ru: 'б' },
+    { ge: 'გ', ru: 'в' },
+    { ge: 'დ', ru: 'г' },
+    { ge: 'ე', ru: 'д' },
+    { ge: 'ვ', ru: 'е' },
+    { ge: 'ზ', ru: 'ж' },
+    { ge: 'თ', ru: 'з' },
+  ];
+  const picked = pickNextIndexFromQueue(
+    [0, 6, 7],
+    words,
+    [0, 1, 2, 3, 4, 5],
+    [0, 1, 2, 3, 4, 5].map(idx => wordKey(words[idx])),
+  );
+
+  assert.deepEqual(picked, { nextIdx: 6, rest: [0, 7] });
+});
+
+test('pickNextIndexFromQueue delays hard-word duplicates when fresh words exist', () => {
+  const words = [
+    { ge: 'ა', ru: 'а' },
+    { ge: 'ბ', ru: 'б' },
+    { ge: 'გ', ru: 'в' },
+    { ge: 'დ', ru: 'г' },
+    { ge: 'ე', ru: 'д' },
+    { ge: 'ვ', ru: 'е' },
+    { ge: 'ზ', ru: 'ж' },
+  ];
+  const picked = pickNextIndexFromQueue(
+    [0, 1, 0, 2],
+    words,
+    [3, 4, 0, 5, 6],
+    [3, 4, 0, 5, 6].map(idx => wordKey(words[idx])),
+  );
+
+  assert.deepEqual(picked, { nextIdx: 1, rest: [0, 0, 2] });
+});

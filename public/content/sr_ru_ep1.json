@@ -1,22 +1,22 @@
 {
   "id": "ep1",
   "title": "Урок 1",
-  "letters": ["А", "М", "Т", "О", "И"],
+  "letters": ["А", "О", "Е", "И", "Н"],
   "cards": [
-    { "type": "word", "ge_text": "мама", "ru_meaning": "мама" },
-    { "type": "word", "ge_text": "тата", "ru_meaning": "папа", "accepted_ru": ["отец"] },
-    { "type": "word", "ge_text": "има", "ru_meaning": "есть" },
-    { "type": "word", "ge_text": "ти", "ru_meaning": "ты" },
-    { "type": "word", "ge_text": "ми", "ru_meaning": "мы" },
-    { "type": "word", "ge_text": "то", "ru_meaning": "это" },
-    { "type": "word", "ge_text": "тамо", "ru_meaning": "там" },
-    { "type": "word", "ge_text": "мати", "ru_meaning": "мать" },
-    { "type": "word", "ge_text": "тама", "ru_meaning": "темнота" },
-    { "type": "word", "ge_text": "мито", "ru_meaning": "взятка" },
-    { "type": "word", "ge_text": "мото", "ru_meaning": "девиз" },
-    { "type": "word", "ge_text": "атом", "ru_meaning": "атом" },
-    { "type": "word", "ge_text": "тим", "ru_meaning": "команда" },
-    { "type": "word", "ge_text": "мимо", "ru_meaning": "мимо" },
-    { "type": "word", "ge_text": "имати", "ru_meaning": "иметь" }
+    { "type": "word", "ge_text": "она не", "ru_meaning": "она не" },
+    { "type": "word", "ge_text": "они не", "ru_meaning": "они не" },
+    { "type": "word", "ge_text": "не", "ru_meaning": "нет / не" },
+    { "type": "word", "ge_text": "он", "ru_meaning": "он" },
+    { "type": "word", "ge_text": "она", "ru_meaning": "она" },
+    { "type": "word", "ge_text": "они", "ru_meaning": "они" },
+    { "type": "word", "ge_text": "оно", "ru_meaning": "оно" },
+    { "type": "word", "ge_text": "не он", "ru_meaning": "не он" },
+    { "type": "word", "ge_text": "не оно", "ru_meaning": "не оно" },
+    { "type": "word", "ge_text": "и она", "ru_meaning": "и она" },
+    { "type": "word", "ge_text": "он и она", "ru_meaning": "он и она" },
+    { "type": "word", "ge_text": "она и он", "ru_meaning": "она и он" },
+    { "type": "word", "ge_text": "не она", "ru_meaning": "не она" },
+    { "type": "word", "ge_text": "не они", "ru_meaning": "не они" },
+    { "type": "word", "ge_text": "они и она", "ru_meaning": "они и она" }
   ]
 }
