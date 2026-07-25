@@ -2,6 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* --------- ЕДИНАЯ СИСТЕМА КНОПОК --------- */
+
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-[15px] font-semibold text-white transition-all duration-150 active:scale-[0.98];
+        background: var(--accent);
+        box-shadow: 0 12px 28px rgba(255, 107, 53, 0.24);
+    }
+
+    .btn-primary:hover {
+        background: var(--accent-hover);
+        transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled {
+        background: rgba(23, 21, 19, 0.06);
+        color: var(--text-tertiary);
+        box-shadow: none;
+        transform: none;
+        cursor: not-allowed;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 rounded-2xl border px-5 py-3 text-[15px] font-medium transition-all duration-150 active:scale-[0.98];
+        border-color: var(--border-soft);
+        background: var(--bg-surface);
+        color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(23, 21, 19, 0.04);
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-[14px] font-medium transition-all duration-150;
+        color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover {
+        background: rgba(23, 21, 19, 0.05);
+        color: var(--text-primary);
+    }
+
+    .btn-primary:focus-visible,
+    .btn-secondary:focus-visible,
+    .btn-ghost:focus-visible {
+        outline: 3px solid rgba(255, 107, 53, 0.4);
+        outline-offset: 2px;
+    }
+}
+
 /* --------- БАЗОВЫЕ НАСТРОЙКИ --------- */
 
 :root {
@@ -847,6 +898,43 @@ h3,
     opacity: 0.95;
 }
 
+.home-lesson-badge {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 27px;
+    height: 27px;
+    border-radius: 9px;
+    background: var(--progress-bg);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 780;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.home-lesson-badge--current {
+    background: rgba(255, 107, 53, 0.14);
+    color: #d8541f;
+}
+
+.home-lesson-badge--mastered {
+    background: rgba(34, 197, 94, 0.15);
+    color: #1a8f4a;
+}
+
+.home-lesson-badge--locked {
+    background: rgba(23, 21, 19, 0.05);
+    color: #9a938a;
+}
+
+.home-lesson-status-inline {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
 .home-lesson-status--mastered {
     color: var(--progress-good) !important;
 }
@@ -1462,14 +1550,6 @@ button[aria-pressed='true'] {
 
 /* --------- УТИЛИТНЫЕ КОМПОНЕНТЫ --------- */
 
-.card {
-    @apply rounded-3xl bg-neutral-900 border border-neutral-800 shadow-lg shadow-black/30;
-}
-
-.btn {
-    @apply inline-flex items-center justify-center rounded-2xl px-4 py-2 font-medium border border-neutral-700 hover:bg-neutral-800 active:scale-95 transition;
-}
-
 .h1 {
     @apply text-3xl md:text-4xl font-semibold tracking-tight;
 }
@@ -1478,14 +1558,13 @@ button[aria-pressed='true'] {
     @apply text-2xl font-semibold;
 }
 
-.badge {
-    @apply text-xs px-2 py-0.5 rounded-full bg-neutral-800 border border-neutral-700;
-}
-
 input,
 select,
 textarea {
-    @apply rounded-xl bg-neutral-900 border border-neutral-700 px-3 py-2;
+    @apply rounded-xl border px-3 py-2;
+    background: var(--bg-surface);
+    border-color: var(--border-soft);
+    color: var(--text-primary);
 }
 
 a {
@@ -2142,4 +2221,39 @@ body {
         margin-top: 0;
         text-align: left;
     }
+}
+
+/* --------- СНИЖЕНИЕ ГЛАССМОРФИЗМА: плотные поверхности вместо blur --------- */
+.lessons-hero-card,
+.home-lesson-card {
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    border: 1px solid var(--border-soft) !important;
+    box-shadow: 0 8px 24px rgba(31, 28, 23, 0.07) !important;
+}
+
+.lessons-hero-card:hover,
+.home-lesson-card.lesson-card--interactive:hover {
+    background: #fffdfa !important;
+    border-color: rgba(31, 28, 23, 0.16) !important;
+    box-shadow: 0 14px 32px rgba(31, 28, 23, 0.10) !important;
+}
+
+.home-lesson-card--current {
+    background: #fff7ef !important;
+    border-color: rgba(255, 107, 53, 0.34) !important;
+}
+
+.home-lesson-card--complete {
+    background: #f3fbf6 !important;
+}
+
+.home-lesson-card--locked {
+    background: #f7f6f3 !important;
+    box-shadow: 0 4px 14px rgba(31, 28, 23, 0.04) !important;
+}
+
+.lessons-know > div > .relative,
+.lessons-know .rounded-\[20px\] {
+    backdrop-filter: none !important;
 }

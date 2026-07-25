@@ -326,17 +326,27 @@
 }
 
 .blocks-submit-btn {
-    border-color: rgba(23, 21, 19, 0.12) !important;
-    background: #171513 !important;
+    border-color: transparent !important;
+    background: var(--accent) !important;
     color: #fffaf2 !important;
     box-shadow:
-        0 16px 36px rgba(23, 21, 19, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+        0 14px 30px rgba(255, 107, 53, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.20) !important;
 }
 
 .blocks-submit-btn:hover {
-    background: #28231e !important;
+    background: var(--accent-hover) !important;
     transform: translateY(-2px);
+}
+
+.blocks-submit-btn:disabled {
+    background: rgba(23, 21, 19, 0.06) !important;
+    color: var(--text-tertiary) !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    cursor: not-allowed;
 }
 
 .blocks-grid-board {
@@ -558,4 +568,31 @@
 
 .blocks-grid-hover-cell {
     border-color: rgba(0, 168, 132, 0.32) !important;
+}
+
+/* Флэт-стиль: плотные поверхности вместо стекла */
+.blocks-question-card,
+.blocks-grid-board,
+.blocks-grid-score,
+.blocks-answer-input,
+.blocks-question-chip,
+.blocks-question-shortcut,
+.blocks-refresh-btn,
+.blocks-grid-gameover-card {
+    backdrop-filter: none !important;
+}
+
+.blocks-question-card,
+.blocks-grid-board {
+    background: #ffffff !important;
+    border: 1px solid var(--border-soft) !important;
+    box-shadow: 0 10px 28px rgba(31, 28, 23, 0.08) !important;
+}
+
+.blocks-answer-input {
+    background: #ffffff !important;
+}
+
+.blocks-grid-score {
+    background: #ffffff !important;
 }

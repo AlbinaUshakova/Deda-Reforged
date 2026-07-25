@@ -995,3 +995,44 @@
         linear-gradient(180deg, rgba(224, 255, 246, 0.92), rgba(255, 255, 255, 0.62)) !important;
     color: #006b58 !important;
 }
+
+/* Прогресс по карточкам урока — тонкая полоса вверху карточки */
+.study-progress {
+    position: absolute;
+    left: clamp(14px, 2vw, 20px);
+    right: clamp(14px, 2vw, 20px);
+    top: 10px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--progress-bg);
+    overflow: hidden;
+    z-index: 15;
+}
+
+.study-progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--accent), var(--progress-good)) !important;
+    transition: width 250ms ease;
+}
+
+/* Флэт-стиль: убрать blur на экране изучения, плотный ряд букв */
+.study-card-screen [class*="flashcard"] {
+    backdrop-filter: none !important;
+}
+
+.flashcard-lesson-letters {
+    background: #ffffff !important;
+    border-color: var(--border-soft) !important;
+}
+
+/* «Дальше» — акцентная (основное действие) */
+.flashcard-nav-step--next:not(:disabled) {
+    background: var(--accent) !important;
+    color: #fffaf2 !important;
+    border-color: transparent !important;
+}
+
+.flashcard-nav-step--next:not(:disabled):hover {
+    background: var(--accent-hover) !important;
+}

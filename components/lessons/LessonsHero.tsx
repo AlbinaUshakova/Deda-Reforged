@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import type { Route } from 'next';
 import type { LessonListItem } from '@/lib/lessonProgress';
@@ -62,9 +61,7 @@ export function LessonsHero({
   const hasDenseLetterSet = heroLetters.length > 7;
 
   return (
-    <section className="lessons-hero mx-auto grid w-full max-w-[1200px] grid-cols-[minmax(470px,0.6fr)_minmax(260px,0.4fr)] items-stretch gap-5 rounded-[32px] px-5 py-5 md:px-7 md:py-6 [@media(max-width:820px)]:grid-cols-1">
-      <div className="lessons-hero-art" aria-hidden="true">{course.alphabet[0]}</div>
-
+    <section className="lessons-hero mx-auto grid w-full max-w-[760px] grid-cols-1 items-stretch gap-4 rounded-[32px] px-5 py-5 md:px-7 md:py-6">
       <div className="lessons-hero-card group self-stretch">
         <Link
           href={lessonHref}
@@ -126,9 +123,9 @@ export function LessonsHero({
               <span>Прогресс в игре</span>
               <span>{earnedPoints} из {lessonTargetScore} очков</span>
             </div>
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-orange-100">
+            <div className="h-2 flex-1 overflow-hidden rounded-full bg-[var(--progress-bg)]">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-orange-400 to-emerald-400"
+                className="h-full rounded-full bg-[linear-gradient(to_right,var(--accent),var(--progress-good))]"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
@@ -138,26 +135,11 @@ export function LessonsHero({
           </div>
       </div>
 
-      <div className="lessons-hero-copy relative z-10 flex min-w-0 flex-col justify-center gap-3">
-        <div>
-          <div className="lessons-hero-kicker">Как проходить</div>
-          <p className="lessons-hero-subtitle lessons-hero-subtitle--lead">
-            {hasStarted && remainingPoints > 0
-              ? `Набери ещё ${formatPointsCount(remainingPoints)} в игре, чтобы пройти урок.`
-              : 'Сначала изучи карточки, затем сыграй в блоки.'}
-          </p>
-        </div>
-        <div className="lessons-hero-mascot" aria-hidden="true">
-          <Image
-            src="/images/cats/deda-lessons-book.png"
-            alt=""
-            width={92}
-            height={92}
-            className="lessons-hero-cat"
-            priority
-          />
-        </div>
-      </div>
+      <p className="lessons-hero-hint relative z-10 text-center text-[clamp(13px,1.4vw,15px)] text-[var(--text-secondary)]">
+        {hasStarted && remainingPoints > 0
+          ? `Набери ещё ${formatPointsCount(remainingPoints)} в игре, чтобы пройти урок.`
+          : 'Сначала изучи карточки, затем сыграй в блоки.'}
+      </p>
     </section>
   );
 }

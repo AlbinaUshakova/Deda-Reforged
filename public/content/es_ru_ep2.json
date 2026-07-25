@@ -3,9 +3,9 @@
   "title": "Урок 4",
   "letters": ["U", "M", "P"],
   "cards": [
-    { "type": "word", "ge_text": "un", "ru_meaning": "один" },
-    { "type": "word", "ge_text": "una", "ru_meaning": "одна" },
-    { "type": "word", "ge_text": "uno", "ru_meaning": "один" },
+    { "type": "word", "ge_text": "un", "ru_meaning": "один", "info_notes": [{ "kind": "grammar", "text": "артикль → перед словом м.р.: un café" }] },
+    { "type": "word", "ge_text": "una", "ru_meaning": "одна", "info_notes": [{ "kind": "grammar", "text": "артикль → перед словом ж.р.: una mesa" }] },
+    { "type": "word", "ge_text": "uno", "ru_meaning": "один", "info_notes": [{ "kind": "grammar", "text": "само число → при счёте: uno, dos, tres" }] },
     { "type": "word", "ge_text": "mi", "ru_meaning": "мой" },
     { "type": "word", "ge_text": "me", "ru_meaning": "меня" },
     { "type": "word", "ge_text": "mano", "ru_meaning": "рука" },

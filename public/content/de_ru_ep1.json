@@ -5,8 +5,8 @@
   "cards": [
     { "type": "word", "ge_text": "in", "ru_meaning": "в" },
     { "type": "word", "ge_text": "ist", "ru_meaning": "есть" },
-    { "type": "word", "ge_text": "ein", "ru_meaning": "один" },
-    { "type": "word", "ge_text": "eins", "ru_meaning": "один" },
+    { "type": "word", "ge_text": "ein", "ru_meaning": "один", "info_notes": [{ "kind": "grammar", "text": "артикль → перед словом: ein Tag (один день)" }] },
+    { "type": "word", "ge_text": "eins", "ru_meaning": "один", "info_notes": [{ "kind": "grammar", "text": "само число → при счёте: eins, zwei, drei" }] },
     { "type": "word", "ge_text": "sein", "ru_meaning": "быть" },
     { "type": "word", "ge_text": "sie", "ru_meaning": "она" },
     { "type": "word", "ge_text": "nie", "ru_meaning": "никогда" },

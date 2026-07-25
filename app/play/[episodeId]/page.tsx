@@ -204,7 +204,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
               />
             </>
           ) : (
-            <div className="text-neutral-400 mt-8">
+            <div className="mt-8 text-[var(--text-secondary)]">
               В этом эпизоде пока нет слов для игры.
             </div>
           )}

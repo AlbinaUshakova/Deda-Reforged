@@ -481,7 +481,5 @@ export function LandingAlphabetTitle() {
     void hydrate();
   }, [hydrate]);
 
-  const title = `${course.scriptTitleRu} — ${course.scriptTitleNative}`;
-
-  return <>{title}</>;
+  return <>{course.scriptTitleNative}</>;
 }

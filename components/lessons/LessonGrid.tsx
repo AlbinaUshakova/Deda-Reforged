@@ -70,7 +70,7 @@ export function LessonGrid({
               <Link href={`/study/${ep.id}`} legacyBehavior>
                 <a
                   ref={ep.id === recommendedEpId ? recommendedLessonRef : null}
-                  className={`lesson-card home-lesson-card ${best >= lessonTargetScore ? 'home-lesson-card--complete' : ''} ${status === 'current' ? 'home-lesson-card--current' : ''} ${status === 'locked' ? 'home-lesson-card--locked' : ''} relative grid w-full aspect-[2.35/1] [@media(max-width:560px)]:aspect-[2.15/0.82] grid-rows-[auto_1fr_auto] overflow-hidden rounded-2xl bg-white border border-slate-200 px-[clamp(10px,1.25vw,16px)] [@media(max-width:560px)]:px-[7px] pt-[clamp(6px,0.75vw,9px)] [@media(max-width:560px)]:pt-[4px] pb-[clamp(8px,1vw,12px)] [@media(max-width:560px)]:pb-[7px] transition-all duration-200 ease-out shadow-[0_8px_18px_rgba(15,23,42,0.075)] ${status !== 'locked' ? 'lesson-card--interactive hover:z-30 hover:border-slate-300 hover:bg-[#fafbfd]' : 'cursor-not-allowed'}`}
+                  className={`lesson-card home-lesson-card ${best >= lessonTargetScore ? 'home-lesson-card--complete' : ''} ${status === 'current' ? 'home-lesson-card--current' : ''} ${status === 'locked' ? 'home-lesson-card--locked' : ''} relative flex w-full flex-col gap-2 min-h-[128px] [@media(max-width:560px)]:min-h-[100px] overflow-hidden rounded-[20px] bg-white border border-slate-200 p-[clamp(12px,1.4vw,16px)] [@media(max-width:560px)]:p-3.5 transition-all duration-200 ease-out shadow-[0_8px_18px_rgba(15,23,42,0.075)] ${status !== 'locked' ? 'lesson-card--interactive hover:z-30 hover:border-slate-300 hover:bg-[#fafbfd]' : 'cursor-not-allowed'}`}
                   onMouseEnter={() => {
                     if (status !== 'locked') return;
                     onScheduleLockedLessonTooltip(ep.id);
@@ -94,36 +94,41 @@ export function LessonGrid({
                   }}
                   aria-disabled={status === 'locked'}
                 >
-                  <div className="z-10 row-start-1 justify-self-start self-start pl-3 -mt-[1px] text-left">
-                    <span className="home-lesson-title text-[13px] [@media(max-width:900px)]:text-[11px] [@media(max-width:560px)]:text-[10px] font-normal text-slate-700">
-                      Урок {i + 1}{isRecommended ? ' · Сейчас' : ''}
-                    </span>
-                    {status !== 'locked' && (
-                      <span className="home-lesson-state-label">{statusLabel}</span>
-                    )}
-                  </div>
-                  <div className="home-lesson-status-icon" aria-hidden="true">
-                    {status === 'mastered' && (
-                      <span className="home-lesson-status home-lesson-status--mastered">✓</span>
-                    )}
-                    {status === 'current' && (
-                      <span className="home-lesson-status home-lesson-status--current">🐾</span>
-                    )}
-                    {status === 'almost' && (
-                      <span className="home-lesson-status home-lesson-status--almost">•</span>
-                    )}
-                    {status === 'locked' && (
-                      <span
-                        className={`home-lesson-status home-lesson-status--locked transition-all duration-150 ${
-                          lockedLessonTooltipEpId === ep.id ? 'opacity-100 brightness-110' : 'opacity-90'
-                        }`}
-                      >
-                        🔒
+                  <div className="z-10 flex items-center justify-between gap-2">
+                    <div className="flex min-w-0 items-center gap-2.5">
+                      <span className={`home-lesson-badge home-lesson-badge--${status ?? 'unknown'}`} aria-hidden="true">{i + 1}</span>
+                      <span className="flex min-w-0 flex-col text-left">
+                        <span className="home-lesson-title text-[13px] [@media(max-width:560px)]:text-[12px] font-medium text-slate-700">
+                          Урок {i + 1}
+                        </span>
+                        {status !== 'locked' && (
+                          <span className="home-lesson-state-label">{statusLabel}</span>
+                        )}
                       </span>
-                    )}
+                    </div>
+                    <span className="home-lesson-status-inline" aria-hidden="true">
+                      {status === 'mastered' && (
+                        <span className="home-lesson-status home-lesson-status--mastered">✓</span>
+                      )}
+                      {status === 'current' && (
+                        <span className="home-lesson-status home-lesson-status--current">🐾</span>
+                      )}
+                      {status === 'almost' && (
+                        <span className="home-lesson-status home-lesson-status--almost">•</span>
+                      )}
+                      {status === 'locked' && (
+                        <span
+                          className={`home-lesson-status home-lesson-status--locked transition-all duration-150 ${
+                            lockedLessonTooltipEpId === ep.id ? 'opacity-100 brightness-110' : 'opacity-90'
+                          }`}
+                        >
+                          🔒
+                        </span>
+                      )}
+                    </span>
                   </div>
 
-                  <div className="row-start-2 mx-auto flex h-full min-h-0 w-full -translate-y-[5px] [@media(max-width:1200px)]:-translate-y-[2px] [@media(max-width:900px)]:translate-y-0 flex-wrap content-center justify-center gap-0.5 sm:gap-1 overflow-visible px-2 [@media(max-width:560px)]:px-1 py-1 [@media(max-width:560px)]:py-0.5 text-center">
+                  <div className="mx-auto flex min-h-0 w-full flex-1 flex-wrap content-center items-center justify-center gap-0.5 sm:gap-1 overflow-visible px-2 [@media(max-width:560px)]:px-1 text-center">
                     {hasVisualSymbols && (
                       <div className="flex w-full flex-col items-center justify-center gap-1">
                         <div className="flex flex-wrap items-center justify-center gap-0.5 sm:gap-1">
@@ -155,7 +160,7 @@ export function LessonGrid({
                     )}
                   </div>
 
-                  <div className="z-10 row-start-3 self-end w-full translate-y-[2px]">
+                  <div className="z-10 mt-auto w-full">
                     {status === 'locked' ? (
                       <div className="home-lesson-lock-copy">{statusLabel}</div>
                     ) : (

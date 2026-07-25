@@ -45,10 +45,15 @@ export default function MatchPage({ params }: { params: { episodeId: string } })
   return (
     <main>
       <div className="flex items-center justify-between mb-4">
-        <h1 className="h1">Совпадения — {title || params.episodeId}</h1>
-        <Link className="btn" href="/">Главная</Link>
+        <h1 className="h1 text-[var(--text-primary)]">Совпадения — {title || params.episodeId}</h1>
+        <Link
+          className="inline-flex items-center justify-center rounded-2xl border border-[var(--progress-bg)] px-4 py-2 font-semibold text-[var(--text-primary)] transition hover:bg-black/5 active:scale-95"
+          href="/"
+        >
+          Главная
+        </Link>
       </div>
-      {words ? <MatchGame words={words} /> : <div className="text-neutral-400">Загрузка…</div>}
+      {words ? <MatchGame words={words} /> : <div className="text-[var(--text-secondary)]">Загрузка…</div>}
     </main>
   );
 }

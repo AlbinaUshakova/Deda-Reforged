@@ -93,15 +93,15 @@ export default function DualScriptGeorgian({
   return (
     <div className="space-y-2">
       {/* Toggle */}
-      <div className="inline-flex rounded-xl overflow-hidden border border-[#2b3344]">
+      <div className="inline-flex overflow-hidden rounded-xl border border-[var(--progress-bg)]">
         <button
-          className={`px-3 py-1 text-sm ${mode === 'printed' ? 'bg-[#18304d] text-white' : 'bg-[#0e1726] text-neutral-300'}`}
+          className={`px-3 py-1 text-sm transition ${mode === 'printed' ? 'bg-[var(--accent)] text-white' : 'bg-black/5 text-[var(--text-secondary)] hover:bg-black/10'}`}
           onClick={() => setMode('printed')}
         >
           Печатное
         </button>
         <button
-          className={`px-3 py-1 text-sm ${mode === 'handwritten' ? 'bg-[#18304d] text-white' : 'bg-[#0e1726] text-neutral-300'}`}
+          className={`px-3 py-1 text-sm transition ${mode === 'handwritten' ? 'bg-[var(--accent)] text-white' : 'bg-black/5 text-[var(--text-secondary)] hover:bg-black/10'}`}
           onClick={() => setMode('handwritten')}
         >
           Письменное
@@ -109,7 +109,7 @@ export default function DualScriptGeorgian({
       </div>
 
       {/* Content */}
-      <div className="rounded-xl bg-[#0e1726] p-3">
+      <div className="rounded-xl bg-black/5 p-3 text-[var(--text-primary)]">
         {mode === 'printed' ? (
           preferPrintedImages ? (
             <LettersAsImages word={word} dir="print" size={size} gap={gap} />
@@ -124,7 +124,7 @@ export default function DualScriptGeorgian({
         ) : (
           <>
             <LettersAsImages word={word} dir="handwriting" size={size} gap={gap} />
-            <div className="mt-2 text-[11px] text-neutral-500">
+            <div className="mt-2 text-[11px] text-[var(--text-tertiary)]">
               Изображения со штрихами возьми из ресурса урока 9 и положи в <code>/public/handwriting/mkhedruli/LETTER.svg</code>.
             </div>
           </>

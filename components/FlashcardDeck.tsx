@@ -410,6 +410,15 @@ export default function FlashcardDeck({
               }
             }}
           >
+          {hasCard && total > 0 && (
+            <div className="study-progress" aria-hidden="true">
+              <div
+                className="study-progress-fill"
+                style={{ width: `${((idx + 1) / total) * 100}%` }}
+              />
+            </div>
+          )}
+
           {hasCard && (
             <FlashcardCardActions
               hintText={hintText}

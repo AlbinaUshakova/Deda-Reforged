@@ -7,8 +7,6 @@ import {
   LandingCourseTitle,
   LandingFinalCtaTitle,
   LandingLanguagePicker,
-  LandingRestaurantBill,
-  LandingReadingReasons,
 } from '@/components/LandingCourseTitle';
 
 export const landingMetadata = {
@@ -427,20 +425,6 @@ export default function LandingPage() {
       box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.10);
     }
 
-    .landing-preview-card {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 100%;
-      border-radius: clamp(28px, 3.4vw, 38px);
-      background: rgba(255, 255, 255, 0.62);
-      padding: clamp(22px, 2.8vw, 32px);
-      box-shadow:
-        0 22px 60px rgba(31, 28, 23, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.80);
-      backdrop-filter: blur(16px);
-    }
-
     .landing-preview-title {
       color: #171513;
       font-size: clamp(22px, 2.2vw, 30px);
@@ -449,305 +433,10 @@ export default function LandingPage() {
       line-height: 1;
     }
 
-    .landing-preview-title--receipt {
-      max-width: 420px;
-      color: #2f2b26;
-      font-size: clamp(19px, 1.7vw, 24px);
-      font-weight: 720;
-      letter-spacing: -0.032em;
-      line-height: 1.08;
-    }
-
-    .landing-bill-frame {
-      width: 100%;
-      max-width: 430px;
-      margin-top: clamp(18px, 2.2vw, 26px);
-      cursor: pointer;
-      perspective: 1200px;
-      outline: none;
-    }
-
-    .landing-bill-flip {
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 520ms cubic-bezier(0.2, 0.7, 0.2, 1);
-    }
-
-    .landing-bill-frame--flipped .landing-bill-flip {
-      transform: rotateY(180deg);
-    }
-
-    .landing-bill-frame:focus-visible .landing-bill,
-    .landing-bill-frame:hover .landing-bill {
-      box-shadow:
-        0 0 0 3px rgba(249, 115, 22, 0.12),
-        0 22px 54px rgba(31, 28, 23, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.88);
-    }
-
-    .landing-bill {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      min-height: 336px;
-      border-radius: 18px;
-      background:
-        repeating-linear-gradient(0deg, rgba(23, 21, 19, 0.018) 0 1px, transparent 1px 18px),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 250, 244, 0.88));
-      padding: 22px clamp(16px, 2vw, 22px);
-      color: #171513;
-      font-variant-numeric: tabular-nums;
-      box-shadow:
-        0 18px 44px rgba(31, 28, 23, 0.10),
-        inset 0 1px 0 rgba(255, 255, 255, 0.88);
-      backface-visibility: hidden;
-      transform: rotateY(0deg);
-      transition: box-shadow 180ms ease, transform 180ms ease;
-    }
-
-    .landing-bill-face--back {
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(0deg, rgba(23, 21, 19, 0.016) 0 1px, transparent 1px 18px),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(239, 250, 246, 0.88));
-      transform: rotateY(180deg);
-    }
-
-    .landing-bill-hint {
-      margin-top: 10px;
-      color: rgba(62, 55, 47, 0.48);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      text-align: center;
-    }
-
-    .landing-bill-edge {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 8px;
-      background:
-        radial-gradient(circle at 6px -1px, transparent 7px, rgba(255, 255, 255, 0.95) 7.5px) 0 0 / 16px 8px repeat-x;
-    }
-
-    .landing-bill-edge--bottom {
-      top: auto;
-      bottom: 0;
-      transform: rotate(180deg);
-    }
-
-    .landing-bill-top,
-    .landing-bill-meta,
-    .landing-bill-line,
-    .landing-bill-total,
-    .landing-bill-payment {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .landing-bill-top {
-      padding-bottom: 8px;
-      color: #171513;
-      font-size: 16px;
-      font-weight: 760;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-
-    .landing-bill-top span {
-      color: rgba(62, 55, 47, 0.56);
-      font-size: 12px;
-      font-weight: 660;
-      letter-spacing: 0.04em;
-    }
-
-    .landing-bill-meta {
-      border-top: 1px dashed rgba(31, 28, 23, 0.18);
-      border-bottom: 1px dashed rgba(31, 28, 23, 0.18);
-      padding: 10px 0;
-      color: rgba(62, 55, 47, 0.58);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-
-    .landing-bill-lines {
-      display: grid;
-      gap: 11px;
-      padding: 16px 0;
-    }
-
-    .landing-bill-line {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      align-items: start;
-      gap: 10px;
-      font-size: clamp(16px, 1.45vw, 19px);
-      font-weight: 680;
-      letter-spacing: -0.025em;
-    }
-
-    .landing-bill-qty {
-      color: rgba(62, 55, 47, 0.46);
-      font-size: 12px;
-      font-weight: 640;
-      line-height: 1.45;
-    }
-
-    .landing-bill-line strong {
-      display: block;
-    }
-
-    .landing-bill-summary {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 8px 14px;
-      border-top: 1px dashed rgba(31, 28, 23, 0.18);
-      padding: 12px 0;
-      color: rgba(62, 55, 47, 0.62);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: -0.012em;
-    }
-
-    .landing-bill-total {
-      border-top: 2px solid rgba(31, 28, 23, 0.14);
-      padding-top: 13px;
-      font-size: clamp(18px, 1.8vw, 24px);
-      font-weight: 820;
-      letter-spacing: -0.03em;
-    }
-
-    .landing-bill-payment {
-      margin-top: 14px;
-      border-radius: 14px;
-      background: rgba(23, 21, 19, 0.055);
-      padding: 9px 11px;
-      color: rgba(62, 55, 47, 0.66);
-      font-size: 12px;
-      font-weight: 620;
-      letter-spacing: 0.02em;
-    }
-
-    .landing-reasons-section {
-      width: 100%;
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 16px clamp(14px, 2vw, 22px);
-    }
-
-    .landing-reasons-card {
-      height: 100%;
-      border-radius: clamp(28px, 3.4vw, 38px);
-      background:
-        radial-gradient(circle at 8% 0%, rgba(255, 240, 229, 0.86), transparent 36%),
-        radial-gradient(circle at 92% 12%, rgba(234, 247, 241, 0.82), transparent 34%),
-        rgba(255, 255, 255, 0.66);
-      padding: clamp(22px, 2.8vw, 32px);
-      box-shadow:
-        0 22px 60px rgba(31, 28, 23, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.80);
-      backdrop-filter: blur(16px);
-    }
-
-    .landing-reasons-kicker {
-      width: fit-content;
-      margin-bottom: 14px;
-      border-radius: 999px;
-      background: rgba(25, 24, 23, 0.08);
-      padding: 7px 12px;
-      color: #706c67;
-      font-size: 12px;
-      font-weight: 620;
-      letter-spacing: -0.01em;
-      line-height: 1;
-    }
-
-    .landing-reasons-subtitle {
-      max-width: 720px;
-      margin-top: 12px;
-      color: #706c67;
-      font-size: clamp(15px, 1.35vw, 18px);
-      font-weight: 520;
-      letter-spacing: -0.016em;
-      line-height: 1.38;
-      text-wrap: balance;
-    }
-
-    .landing-reasons-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: clamp(22px, 2.6vw, 30px);
-    }
-
-    .landing-reason {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 12px;
-      align-items: start;
-      min-height: 0;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.52);
-      padding: 14px;
-      border-left: 0;
-    }
-
-    .landing-reason:first-child {
-      padding-left: 14px;
-    }
-
-    .landing-reason-index {
-      display: grid;
-      width: 58px;
-      height: 58px;
-      place-items: center;
-      border-radius: 999px;
-      background: linear-gradient(145deg, rgba(255, 240, 229, 0.96), rgba(234, 247, 241, 0.76));
-      color: #ff7138;
-      font-size: 25px;
-      font-weight: 760;
-      box-shadow:
-        0 10px 24px rgba(31, 28, 23, 0.055),
-        inset 0 1px 0 rgba(255, 255, 255, 0.86);
-    }
-
-    .landing-reason:nth-child(2) .landing-reason-index {
-      color: #3a9e8f;
-      background: rgba(234, 247, 241, 0.92);
-    }
-
-    .landing-reason-copy {
-      display: grid;
-      gap: 8px;
-      min-width: 0;
-    }
-
-    .landing-reason-title {
-      color: #191817;
-      font-size: clamp(15px, 1.25vw, 18px);
-      font-weight: 720;
-      letter-spacing: -0.025em;
-      line-height: 1.05;
-    }
-
-    .landing-reason-text {
-      color: #706c67;
-      font-size: clamp(13px, 1.05vw, 15px);
-      font-weight: 520;
-      letter-spacing: -0.012em;
-      line-height: 1.38;
-    }
-
     .landing-feature-strip {
       position: relative;
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: clamp(9px, 1.2vw, 14px);
       align-items: stretch;
       justify-content: start;
@@ -1409,6 +1098,87 @@ export default function LandingPage() {
         width: 286px;
       }
     }
+
+    @media (max-width: 767px) {
+      .landing-alphabet-column {
+        justify-self: center;
+        margin-inline: auto;
+      }
+
+      .landing-hero-meta {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .landing-subtitle {
+        margin-inline: auto;
+        max-width: none !important;
+        white-space: nowrap;
+        font-size: clamp(12px, 3.4vw, 17px) !important;
+      }
+
+      .landing-course-label {
+        text-align: center;
+      }
+
+      .landing-cta-row {
+        margin-inline: auto !important;
+        justify-content: center;
+      }
+
+      .landing-cta-btn {
+        margin-inline: auto;
+      }
+    }
+
+    /* Флэт-стиль: плотные поверхности вместо стекла */
+    .landing-alpha-card,
+    .landing-info-card,
+    .landing-feature,
+    .landing-final-cta,
+    .landing-footer,
+    .landing-course-button,
+    .landing-preview-card,
+    .landing-topbar .header-control-btn--menu {
+      backdrop-filter: none !important;
+    }
+
+    .landing-alpha-card {
+      background: #ffffff !important;
+      border-color: var(--border-soft) !important;
+      box-shadow: 0 10px 30px rgba(31, 28, 23, 0.08) !important;
+    }
+
+    .landing-info-card {
+      background: #ffffff !important;
+      box-shadow: 0 10px 30px rgba(31, 28, 23, 0.07) !important;
+    }
+
+    .landing-feature {
+      background: #fffaf4 !important;
+      box-shadow: 0 6px 18px rgba(31, 28, 23, 0.05) !important;
+    }
+
+    .landing-feature:hover {
+      background: #fff4ea !important;
+    }
+
+    .landing-final-cta {
+      background: linear-gradient(90deg, #fff2e6, #ffffff) !important;
+    }
+
+    .landing-course-button {
+      background: #ffffff !important;
+      box-shadow: 0 4px 12px rgba(31, 28, 23, 0.05) !important;
+    }
+
+    .landing-course-button--active {
+      background: #fff6ee !important;
+    }
+
+    .landing-topbar .header-control-btn--menu {
+      background: #ffffff !important;
+    }
   `;
 
   return (
@@ -1445,12 +1215,12 @@ export default function LandingPage() {
 
           <div className="landing-alphabet-column relative mt-8 w-full max-w-[430px] md:col-start-2 md:row-span-2 md:row-start-1 md:mt-0 lg:max-w-[470px]">
             <Image
-              src="/images/cats/deda-reading-clean.png"
+              src="/images/cats/deda-headphones.png"
               alt=""
               width={180}
               height={180}
               priority
-              className="landing-alpha-cat"
+              className="pointer-events-none absolute bottom-0 right-full z-20 mr-2 hidden h-[150px] w-[150px] object-contain lg:block xl:mr-3 xl:h-[168px] xl:w-[168px]"
             />
             <div className="flex flex-col items-start">
               <div className="landing-alpha-card min-w-0 self-center">
@@ -1469,17 +1239,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-section">
-        <div className="landing-learning-grid">
-          <div className="landing-preview-card">
-            <h2 className="landing-preview-title landing-preview-title--receipt">Скоро ты сможешь прочитать счёт и легко разделить его с друзьями — без переводчика.</h2>
-            <LandingRestaurantBill />
-          </div>
-
-          <LandingReadingReasons />
-        </div>
-      </section>
-
       <section className="landing-info-section" aria-label="Что внутри Deda">
         <div className="landing-info-grid">
           <div className="landing-info-card">
@@ -1489,29 +1248,21 @@ export default function LandingPage() {
                 <h2 className="landing-preview-title">От первой буквы до первых фраз</h2>
               </div>
               <p className="landing-info-lead">
-                Слушай, читай, закрепляй и начинай говорить.
+                Слушай, читай, играй и начинай говорить.
               </p>
             </div>
             <div className="landing-feature-strip">
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">1</span>
-                <span><span className="landing-feature-title">Слушай</span><span className="landing-feature-copy">Нажми и услышь звук буквы.</span></span>
+                <span><span className="landing-feature-title">Слушай</span><span className="landing-feature-copy">Нажми на букву и послушай её звук.</span></span>
               </div>
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">2</span>
-                <span><span className="landing-feature-title">Читай</span><span className="landing-feature-copy">Сразу читай знакомые слова.</span></span>
+                <span><span className="landing-feature-title">Читай</span><span className="landing-feature-copy">Читай первые слова уже с первых уроков.</span></span>
               </div>
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">3</span>
                 <span><span className="landing-feature-title">Играй</span><span className="landing-feature-copy">Понял слово — сделал ход.</span></span>
-              </div>
-              <div className="landing-feature">
-                <span className="landing-feature-icon" aria-hidden="true">4</span>
-                <span><span className="landing-feature-title">Говори</span><span className="landing-feature-copy">Фразы, которые пригодятся сразу.</span></span>
-              </div>
-              <div className="landing-feature">
-                <span className="landing-feature-icon" aria-hidden="true">✓</span>
-                <span><span className="landing-feature-title">Расти</span><span className="landing-feature-copy">Очки, серии и новые уровни.</span></span>
               </div>
             </div>
           </div>
@@ -1521,7 +1272,7 @@ export default function LandingPage() {
               alt=""
               width={140}
               height={140}
-              className="landing-final-cat"
+              className="h-16 w-16 justify-self-center object-contain md:h-24 md:w-24 md:self-end"
             />
             <div>
               <h2 className="landing-preview-title"><LandingFinalCtaTitle /></h2>

@@ -85,7 +85,7 @@ export default function StudyClient({
             />
           </div>
         ) : (
-          <div className="text-neutral-400 mt-8">
+          <div className="mt-8 text-[var(--text-secondary)]">
             В этом эпизоде пока нет слов для карточек.
           </div>
         )}

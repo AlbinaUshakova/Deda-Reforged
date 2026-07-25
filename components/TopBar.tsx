@@ -67,12 +67,12 @@ export default function TopBar() {
             </button>
 
             {menuOpen && (
-              <div className="absolute right-0 mt-2 bg-slate-800 border border-white/10 rounded-xl shadow-xl w-56 py-2 z-50">
+              <div className="absolute right-0 mt-2 bg-[var(--menu-bg)] border border-[var(--menu-border)] rounded-xl shadow-xl w-56 py-2 z-50 text-[var(--menu-text)]">
                 {/* блок с именем и почтой */}
-                <div className="px-4 pb-2 border-b border-white/10 text-sm">
+                <div className="px-4 pb-2 border-b border-[var(--menu-divider)] text-sm">
                   <div className="font-medium truncate">{username}</div>
                   {user?.email && (
-                    <div className="text-xs text-neutral-400 truncate">
+                    <div className="text-xs text-[var(--menu-text-muted)] truncate">
                       {user.email}
                     </div>
                   )}
@@ -80,7 +80,7 @@ export default function TopBar() {
 
                 {/* Настройки */}
                 <button
-                  className="block w-full text-left px-4 py-2 text-sm text-neutral-100 hover:bg-slate-700"
+                  className="block w-full text-left px-4 py-2 text-sm text-[var(--menu-text)] hover:bg-[var(--menu-hover)]"
                   onClick={() => {
                     setMenuOpen(false);
                     setShowSettings(true);
@@ -91,7 +91,7 @@ export default function TopBar() {
 
                 {/* Помощь и обратная связь */}
                 <button
-                  className="block w-full text-left px-4 py-2 text-sm text-neutral-100 hover:bg-slate-700"
+                  className="block w-full text-left px-4 py-2 text-sm text-[var(--menu-text)] hover:bg-[var(--menu-hover)]"
                   onClick={() => {
                     setMenuOpen(false);
                     setShowFeedback(true);
@@ -103,7 +103,7 @@ export default function TopBar() {
                 {/* Выйти */}
                 <button
                   onClick={logout}
-                  className="block w-full text-left px-4 py-2 text-sm text-red-300 hover:bg-slate-700"
+                  className="block w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-[var(--menu-hover)]"
                 >
                   Выйти
                 </button>
