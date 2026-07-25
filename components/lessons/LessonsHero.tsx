@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Route } from 'next';
 import type { LessonListItem } from '@/lib/lessonProgress';
@@ -39,107 +40,85 @@ export function LessonsHero({
 }: LessonsHeroProps) {
   const course = getCourse(courseId);
   const lessonHref = (recommendedLesson ? `/study/${recommendedLesson.id}` : '/study/ep1') as Route;
-  const lessonLabel = recommendedLessonNumber
-    ? `Урок ${recommendedLessonNumber}`
-    : 'Первый урок';
+  const lessonLabel = recommendedLessonNumber ? `Урок ${recommendedLessonNumber}` : 'Первый урок';
   const earnedPoints = Math.min(Math.max(recommendedScore, 0), lessonTargetScore);
-  const progressPercent = lessonTargetScore > 0
-    ? Math.min(Math.round((recommendedScore / lessonTargetScore) * 100), 100)
-    : 0;
   const hasStarted = recommendedScore > 0;
   const remainingPoints = Math.max(lessonTargetScore - earnedPoints, 0);
-  const actionLabel = hasStarted
-    ? `Продолжить ${lessonLabel.toLowerCase()} →`
-    : `Начать ${lessonLabel.toLowerCase()} →`;
-  const eyebrowLabel = hasStarted ? 'Продолжить обучение' : 'Начни с этого урока';
-  const lessonLettersRule = recommendedLessonNumber === 1
-    ? 'Слова и фразы только из этих букв'
-    : 'Слова и фразы из этих и прошлых букв';
-  const heroLetters = recommendedLetters.length
-    ? recommendedLetters
-    : course.alphabet.slice(0, 4);
-  const hasDenseLetterSet = heroLetters.length > 7;
+  const ctaLabel = hasStarted ? 'Продолжить' : 'Начать урок';
+  const heroLetters = recommendedLetters.length ? recommendedLetters : course.alphabet.slice(0, 4);
+  const subtitle =
+    hasStarted && remainingPoints > 0
+      ? `Ещё ${formatPointsCount(remainingPoints)} в игре — и урок в коллекции.`
+      : 'Сначала карточки, потом игра в блоки.';
 
   return (
-    <section className="lessons-hero mx-auto grid w-full max-w-[760px] grid-cols-1 items-stretch gap-4 rounded-[32px] px-5 py-5 md:px-7 md:py-6">
-      <div className="lessons-hero-card group self-stretch">
-        <Link
-          href={lessonHref}
-          className="lessons-hero-card-link"
-          aria-label={`Открыть ${lessonLabel}`}
-        />
-          <div className="lessons-hero-card-glow" aria-hidden="true" />
-          <div className="pointer-events-none relative z-10 flex items-start justify-between gap-3">
-            <div>
-              <div className="lessons-hero-card-label">
-                {eyebrowLabel}
+    <section className="mx-auto w-full max-w-[900px] px-[clamp(18px,4.4vw,36px)]">
+      <div className="scrapbook-card relative overflow-hidden rounded-[26px] px-[clamp(16px,3vw,28px)] py-[clamp(18px,3vw,26px)]">
+        <div className="relative z-10 flex items-center gap-[clamp(14px,3.4vw,28px)]">
+          {/* полароид кота */}
+          <div className="relative shrink-0 -rotate-3">
+            <span className="scrapbook-tape absolute -top-2.5 left-1/2 h-5 w-16 -translate-x-1/2 -rotate-6" aria-hidden="true" />
+            <div className="rounded-[7px] bg-white p-2 pb-5 shadow-[0_12px_26px_rgba(31,28,23,0.18)]">
+              <div className="grid h-[clamp(72px,13vw,104px)] w-[clamp(72px,13vw,104px)] place-items-center overflow-hidden rounded-[4px] bg-[#FBE7D3]">
+                <Image
+                  src="/images/cats/deda-reading-clean.png"
+                  alt=""
+                  width={120}
+                  height={120}
+                  priority
+                  className="h-[86%] w-[86%] object-contain"
+                />
               </div>
-              <div className="lessons-hero-card-title">
-                {lessonLabel}
+              <div className="mt-1.5 text-center text-[11px] font-semibold tracking-[-0.01em] text-[#8a837a]">
+                {lessonLabel.toLowerCase()}
               </div>
             </div>
           </div>
 
-          <div className={`lessons-hero-letter-panel pointer-events-none relative z-20 mt-3 flex min-h-[62px] items-center justify-center rounded-[22px] bg-white/62 px-4 py-2.5 ${
-            hasDenseLetterSet ? 'lessons-hero-letter-panel--dense' : ''
-          }`}>
-            <div className="w-full">
-              <div
-                className={`lessons-hero-letters ${
-                  hasDenseLetterSet ? 'lessons-hero-letters--dense' : ''
-                }`}
-                aria-label="Буквы рекомендованного урока"
-              >
-                {heroLetters.map((letter) => (
-                  <button
-                    key={letter}
-                    type="button"
-                    className={`lessons-hero-letter ${
-                      hasDenseLetterSet ? 'lessons-hero-letter--dense' : ''
-                    }`}
-                    title={`Послушать букву ${letter}`}
-                    aria-label={`Послушать букву ${letter}`}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      onSpeakLetter(letter);
-                  }}
+          {/* контент */}
+          <div className="min-w-0 flex-1">
+            <span className="scrapbook-eyebrow inline-block -rotate-1">{hasStarted ? 'продолжаем' : 'сейчас'}</span>
+            <h2 className="mt-1.5 text-[clamp(28px,6.4vw,42px)] font-extrabold leading-[0.95] tracking-[-0.03em] text-[var(--text-primary)]">
+              {lessonLabel}
+            </h2>
+
+            <div className="mt-3 flex flex-wrap gap-2" aria-label="Буквы урока">
+              {heroLetters.map((letter, i) => (
+                <button
+                  key={letter}
+                  type="button"
+                  onClick={() => onSpeakLetter(letter)}
+                  className="scrapbook-letter flex min-w-[42px] flex-col items-center rounded-[12px] bg-white px-2.5 py-1.5 shadow-[0_5px_12px_rgba(31,28,23,0.1)] transition-transform hover:-translate-y-0.5"
+                  style={{ transform: `rotate(${(i % 2 === 0 ? -1 : 1) * 2.5}deg)` }}
+                  aria-label={`Послушать букву ${letter}`}
+                  title={`Послушать букву ${letter}`}
                 >
-                    <span className="lessons-hero-letter-char">{letter}</span>
-                    <span className="lessons-hero-letter-hint">
-                      {letterToHint(letter, transliterationMode, courseId)}
-                    </span>
-                  </button>
-                ))}
-              </div>
+                  <span
+                    className="text-[clamp(17px,2.1vw,22px)] font-semibold leading-none text-[var(--text-primary)]"
+                    style={{ fontFamily: courseId === 'ka' ? 'var(--font-georgian)' : 'var(--font-display)' }}
+                  >
+                    {letter}
+                  </span>
+                  <span className="mt-0.5 text-[10px] leading-none text-[var(--text-tertiary)]">
+                    {letterToHint(letter, transliterationMode, courseId)}
+                  </span>
+                </button>
+              ))}
             </div>
-          </div>
 
-          <div className="lessons-hero-rule pointer-events-none relative z-10 mt-2">
-            {lessonLettersRule}
-          </div>
+            <Link
+              href={lessonHref}
+              className="mt-4 inline-flex rotate-[-1deg] items-center gap-2 rounded-full bg-[var(--accent)] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_10px_24px_rgba(255,107,53,0.28)] transition-all duration-150 hover:-translate-y-0.5 hover:bg-[var(--accent-hover)] active:scale-[0.98]"
+              aria-label={`Открыть ${lessonLabel}`}
+            >
+              <span aria-hidden="true">▶</span>
+              {ctaLabel}
+            </Link>
 
-          <div className="lessons-hero-progress pointer-events-none relative z-10 mt-3">
-            <div className="lessons-hero-progress-top">
-              <span>Прогресс в игре</span>
-              <span>{earnedPoints} из {lessonTargetScore} очков</span>
-            </div>
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-[var(--progress-bg)]">
-              <div
-                className="h-full rounded-full bg-[linear-gradient(to_right,var(--accent),var(--progress-good))]"
-                style={{ width: `${progressPercent}%` }}
-              />
-            </div>
+            <p className="mt-2.5 text-[clamp(12px,1.3vw,13px)] text-[var(--text-secondary)]">{subtitle}</p>
           </div>
-          <div className="lessons-hero-action pointer-events-none relative z-10 mt-3">
-            {actionLabel}
-          </div>
+        </div>
       </div>
-
-      <p className="lessons-hero-hint relative z-10 text-center text-[clamp(13px,1.4vw,15px)] text-[var(--text-secondary)]">
-        {hasStarted && remainingPoints > 0
-          ? `Набери ещё ${formatPointsCount(remainingPoints)} в игре, чтобы пройти урок.`
-          : 'Сначала изучи карточки, затем сыграй в блоки.'}
-      </p>
     </section>
   );
 }

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useAppStore } from '@/lib/appStore';
 import { AlphabetPanel } from '@/components/lessons/AlphabetPanel';
 import { LessonGrid } from '@/components/lessons/LessonGrid';
-import { LessonsAlreadyKnow } from '@/components/lessons/LessonsAlreadyKnow';
+import { LessonsStickerJournal } from '@/components/lessons/LessonsStickerJournal';
 import { LessonsHero } from '@/components/lessons/LessonsHero';
 import { SpecialLessonLinks } from '@/components/lessons/SpecialLessonLinks';
 import { useAlphabetPanelState } from '@/components/lessons/useAlphabetPanelState';
@@ -99,14 +99,6 @@ export default function HomePage() {
         .map(episode => episode.id),
     [normalEpisodes, courseProgress, lessonTargetScore],
   );
-  const lettersLearnedCount = useMemo(
-    () => new Set(masteredEpisodeIds.flatMap(id => lettersByEp[id] ?? [])).size,
-    [masteredEpisodeIds, lettersByEp],
-  );
-  const lettersTotalCount = useMemo(
-    () => new Set(normalEpisodeIds.flatMap(id => lettersByEp[id] ?? [])).size,
-    [normalEpisodeIds, lettersByEp],
-  );
 
   const lessonLetterSizePx =
     viewportWidth === null
@@ -156,12 +148,10 @@ export default function HomePage() {
           courseId={courseId}
           onSpeakLetter={speakLetter}
         />
-        <LessonsAlreadyKnow
+        <LessonsStickerJournal
           courseId={courseId}
           episodeIds={normalEpisodeIds}
           masteredEpisodeIds={masteredEpisodeIds}
-          lettersLearned={lettersLearnedCount}
-          lettersTotal={lettersTotalCount}
         />
         {/* алфавит + сетка эпизодов */}
         <section className="lessons-path-section mt-5 [@media(max-width:900px)]:mt-4 [@media(max-width:700px)]:mt-4 min-[1700px]:pl-10 min-[2200px]:pl-12">

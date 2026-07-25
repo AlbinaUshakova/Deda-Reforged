@@ -3413,3 +3413,83 @@ body {
 .home-special-grid::-webkit-scrollbar {
     display: none;
 }
+
+/* --------- ГЕРОЙ УРОКОВ: СКРАПБУК/ПОЛАРОИД --------- */
+.scrapbook-card {
+    background:
+        radial-gradient(circle at 10% 8%, rgba(255, 240, 229, 0.9), transparent 42%),
+        radial-gradient(circle at 96% 100%, rgba(234, 247, 241, 0.7), transparent 40%),
+        #fbf5ec;
+    border: 1px solid #efe4d4;
+    box-shadow: 0 10px 30px rgba(31, 28, 23, 0.07);
+}
+
+.scrapbook-tape {
+    background: repeating-linear-gradient(45deg, rgba(255, 107, 53, 0.34) 0 6px, rgba(255, 107, 53, 0.18) 6px 12px);
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(31, 28, 23, 0.08);
+}
+
+.scrapbook-eyebrow {
+    background: #ffef9f;
+    color: #7a5a12;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    padding: 2px 10px;
+    border-radius: 7px;
+    box-shadow: 0 3px 8px rgba(31, 28, 23, 0.08);
+}
+
+/* --------- ЖУРНАЛ КОТИКОВ (наклейки-коллекция) --------- */
+.journal-slot {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: clamp(52px, 14vw, 66px);
+    height: clamp(52px, 14vw, 66px);
+    border-radius: 16px;
+    border: 1.5px dashed rgba(23, 21, 19, 0.16);
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.journal-slot--on {
+    border-style: solid;
+    border-color: rgba(23, 21, 19, 0.08);
+    background: #ffffff;
+    box-shadow: 0 5px 12px rgba(31, 28, 23, 0.08);
+}
+
+.journal-slot--final {
+    border-color: rgba(255, 107, 53, 0.5);
+    background: #fff6ee;
+}
+
+.journal-slot--final.journal-slot--on {
+    border-color: rgba(255, 107, 53, 0.6);
+    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.22);
+}
+
+.journal-cat {
+    width: 84%;
+    height: 84%;
+    object-fit: contain;
+    transition: opacity 200ms ease, filter 200ms ease, transform 200ms ease;
+}
+
+.journal-cat--off {
+    filter: grayscale(1);
+    opacity: 0.16;
+}
+
+.journal-cat--on {
+    filter: drop-shadow(0 3px 5px rgba(31, 28, 23, 0.16));
+}
+
+.journal-final-star {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    font-size: 11px;
+    color: #ff9f1c;
+}
