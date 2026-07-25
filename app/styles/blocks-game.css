@@ -596,3 +596,83 @@
 .blocks-grid-score {
     background: #ffffff !important;
 }
+
+/* Празднование при завершении урока */
+.lesson-celebrate {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+}
+
+.lesson-celebrate-confetti {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.lesson-celebrate-piece {
+    position: absolute;
+    top: -14px;
+    border-radius: 2px;
+    animation-name: confettiFall;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(105vh) rotate(600deg);
+        opacity: 0.85;
+    }
+}
+
+.lesson-celebrate-card {
+    pointer-events: auto;
+    max-width: 320px;
+    border-radius: 24px;
+    border: 1px solid var(--border-soft);
+    background: #ffffff;
+    padding: 24px 28px;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(31, 28, 23, 0.18);
+    animation: celebratePop 300ms ease;
+}
+
+@keyframes celebratePop {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.lesson-celebrate-emoji {
+    font-size: 40px;
+    line-height: 1;
+}
+
+.lesson-celebrate-title {
+    margin-top: 8px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+.lesson-celebrate-sub {
+    margin-top: 6px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--text-secondary);
+}
+
+.lesson-celebrate-btn {
+    margin-top: 16px;
+    width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lesson-celebrate-piece { display: none; }
+    .lesson-celebrate-card { animation: none; }
+}

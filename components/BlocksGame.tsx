@@ -3,6 +3,7 @@
 
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { BlocksQuestionPanel } from '@/components/blocks/BlocksQuestionPanel';
+import { LessonPassedCelebration } from '@/components/blocks/LessonPassedCelebration';
 import BlocksGrid from './BlocksGrid';
 import { useAppStore } from '@/lib/appStore';
 import {
@@ -61,7 +62,9 @@ export default function BlocksGame({
     '--prompt-size': 'clamp(22px,2.5vw,31px)',
   };
   const translationDirection = useAppStore(state => state.settings.translationDirection);
+  const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const isFavoritesEpisode = episodeId === 'favorites';
+  const [celebrate, setCelebrate] = useState(false);
 
   const hasWords = useMemo(() => words && words.length > 0, [words]);
 
@@ -446,7 +449,12 @@ export default function BlocksGame({
 
   // когда из BlocksGrid приходит новый рекорд — обновляем прогресс и карту
   const handleBestScoreChange = (newBest: number) => {
+    const justPassed =
+      !isFavoritesEpisode &&
+      bestScore < lessonTargetScore &&
+      newBest >= lessonTargetScore;
     setBestScore(newBest);
+    if (justPassed) setCelebrate(true);
     if (!episodeId) return;
     upsertProgress(episodeId, newBest).catch(console.error);
   };
@@ -474,6 +482,7 @@ export default function BlocksGame({
     : '';
   return (
     <div className="blocks-game-root flex w-full justify-center lg:justify-start mt-1 md:mt-2">
+      {celebrate && <LessonPassedCelebration onDone={() => setCelebrate(false)} />}
       <div
         className={
           'blocks-game-layout relative flex w-full max-w-5xl rounded-[28px] bg-transparent px-1 sm:px-3 md:px-6 py-2 md:py-4 lg:py-5 ' +
