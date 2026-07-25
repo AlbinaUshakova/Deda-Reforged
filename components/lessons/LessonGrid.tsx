@@ -39,8 +39,8 @@ export function LessonGrid({
   onLockedLessonClick: (episodeId: string, event: MouseEvent<HTMLAnchorElement>) => void;
 }) {
   return (
-    <div className="relative z-[150] mx-auto w-full max-w-[1160px] [@media(max-height:980px)]:max-w-[1040px]">
-      <div className="grid grid-cols-3 [@media(max-width:900px)]:grid-cols-2 [@media(max-width:520px)]:grid-cols-1 gap-x-[clamp(10px,1.35vw,20px)] [@media(max-width:700px)]:gap-x-3 gap-y-[clamp(8px,1vw,15px)] [@media(max-width:700px)]:gap-y-4 [@media(max-height:980px)]:gap-y-3 justify-center">
+    <div className="relative z-[150] mx-auto w-full max-w-[1160px]">
+      <div className="lessons-shelf flex gap-3 overflow-x-auto snap-x snap-mandatory pb-3 pt-1 -mx-[clamp(18px,4.4vw,36px)] px-[clamp(18px,4.4vw,36px)]">
         {normalEpisodes.map((ep, i) => {
           const best = progress[ep.id] ?? 0;
           const letters = lettersByEp[ep.id] ?? [];
@@ -65,7 +65,7 @@ export function LessonGrid({
           return (
             <div
               key={ep.id}
-              className="relative w-full min-w-0 [@media(max-width:520px)]:mx-auto [@media(max-width:520px)]:max-w-[296px]"
+              className="relative shrink-0 snap-start w-[clamp(180px,74vw,212px)]"
             >
               <Link href={`/study/${ep.id}`} legacyBehavior>
                 <a

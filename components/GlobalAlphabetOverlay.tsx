@@ -179,27 +179,40 @@ export default function GlobalAlphabetOverlay() {
   if (pathname === '/' || isLessonsPage || isServicePage) return null;
 
   return (
-    <div
-      ref={overlayRef}
-      className={`block fixed left-2 sm:left-3 md:left-4 top-[68px] z-[140] w-[clamp(184px,31vw,244px)] transition-all duration-200 ease-out ${open
-        ? 'opacity-100 translate-y-0 scale-100'
-        : 'opacity-0 -translate-y-1 scale-[0.98] pointer-events-none select-none'
-        }`}
-      aria-hidden={!open}
-    >
-      <div className="home-alphabet-panel menu-panel-size max-h-[calc(100dvh-102px)] overflow-y-auto rounded-[clamp(18px,2.4vw,24px)] border border-slate-200/75 bg-gradient-to-b from-[#f6f8fe]/88 via-[#f1f4fc]/86 to-[#edf1f9]/84 px-[clamp(5px,0.9vw,8px)] pt-[clamp(4px,0.7vw,6px)] pb-[clamp(4px,0.6vw,5px)] shadow-[0_6px_14px_rgba(15,23,42,0.09)]">
-        <div className="flex justify-end">
+    <>
+      <div
+        className={`fixed inset-0 z-[139] bg-black/30 transition-opacity duration-200 ${open ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
+      <div
+        ref={overlayRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Алфавит: ${course.scriptTitleNative}`}
+        aria-hidden={!open}
+        className={`alphabet-sheet fixed inset-x-0 bottom-0 z-[140] mx-auto w-full max-w-[560px] max-h-[82dvh] overflow-y-auto rounded-t-[24px] border border-slate-200/70 bg-white px-[clamp(14px,4vw,22px)] pb-[max(18px,env(safe-area-inset-bottom))] pt-2 shadow-[0_-16px_44px_rgba(31,28,23,0.16)] transition-all duration-300 ease-out sm:inset-x-auto sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:w-[440px] sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-[24px] sm:px-6 sm:pb-5 sm:pt-4 sm:shadow-[0_24px_64px_rgba(31,28,23,0.20)] ${open
+          ? 'max-sm:translate-y-0 sm:opacity-100 sm:scale-100'
+          : 'pointer-events-none select-none max-sm:translate-y-full sm:opacity-0 sm:scale-95'
+          }`}
+      >
+        <div className="mx-auto mb-2 h-1 w-10 rounded-full bg-slate-200 sm:hidden" aria-hidden="true" />
+        <div className="mb-1 flex items-center justify-between gap-2">
+          <div className="min-w-0">
+            <div className="truncate text-[clamp(15px,1.6vw,17px)] font-semibold text-[var(--text-primary)]">{course.scriptTitleNative}</div>
+            <div className="text-[clamp(11px,1.3vw,12px)] text-[var(--text-secondary)]">Нажми на букву — послушай, как она звучит</div>
+          </div>
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="home-alphabet-close relative top-px h-6 w-6 rounded-md text-[11px] transition-colors focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2"
+            className="home-alphabet-close grid h-8 w-8 shrink-0 place-items-center rounded-full text-[14px] text-[var(--text-secondary)] transition-colors hover:bg-black/5 focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2"
             aria-label="Закрыть панель алфавита"
             title="Закрыть панель алфавита"
           >
             ✕
           </button>
         </div>
-        <div className="mt-1 flex flex-col gap-y-[clamp(5px,0.9vw,8px)]">
+        <div className="mx-auto mt-2 flex w-full max-w-[340px] flex-col gap-y-[clamp(6px,1.4vw,10px)]">
           {visibleAlphabetSections.map((section) => {
             return (
               <section
@@ -247,6 +260,6 @@ export default function GlobalAlphabetOverlay() {
           })}
         </div>
       </div>
-    </div>
+    </>
   );
 }

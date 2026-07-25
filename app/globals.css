@@ -1179,15 +1179,21 @@ h3,
 }
 
 .home-special-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
     gap: clamp(9px, 1vw, 12px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    margin-inline: calc(-1 * clamp(18px, 4.4vw, 36px));
+    padding-inline: clamp(18px, 4.4vw, 36px);
 }
 
 .home-special-card {
     position: relative;
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
+    flex: 0 0 clamp(224px, 78vw, 264px);
+    scroll-snap-align: start;
     min-height: clamp(68px, 5.6vw, 82px);
     align-items: center;
     gap: clamp(9px, 1.1vw, 12px);
@@ -2231,7 +2237,7 @@ body {
 }
 
 /* --------- СТИЛИ ЛЕНДИНГА (вынесено из инлайн-<style> LandingPage.tsx) --------- */
-    .header-control-btn--alphabet {
+    .landing-shell .header-control-btn--alphabet {
       display: none !important;
     }
 
@@ -3393,3 +3399,17 @@ body {
     .landing-topbar .header-control-btn--menu {
       background: #ffffff !important;
     }
+
+/* --------- ГОРИЗОНТАЛЬНЫЕ ПОЛКИ (Netflix-стиль) --------- */
+.lessons-shelf,
+.home-special-grid {
+    scrollbar-width: none;
+    scroll-padding-inline: clamp(18px, 4.4vw, 36px);
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+}
+
+.lessons-shelf::-webkit-scrollbar,
+.home-special-grid::-webkit-scrollbar {
+    display: none;
+}

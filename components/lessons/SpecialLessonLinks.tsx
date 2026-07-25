@@ -65,10 +65,9 @@ export function SpecialLessonLinks({
         <div className="home-special-block">
           <div className="home-special-heading">
             <div>
-              <span className="home-special-eyebrow">Разговорный минимум</span>
+              <span className="home-special-eyebrow">Фразы для первых дней в новой стране</span>
               <span className="home-special-summary">{studiedCards} из {totalCards} изучено</span>
             </div>
-            <span className="home-special-caption">Фразы для первых дней в новой стране.</span>
           </div>
           <div className="home-special-total-progress" aria-label={`Изучено ${totalProgress}%`}>
             <span style={{ width: `${totalProgress}%` }} />
