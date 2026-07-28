@@ -1,25 +1,110 @@
 {
   "id": "ep3",
   "title": "Урок 5",
-  "letters": ["B", "G", "V"],
+  "letters": [
+    "B",
+    "G",
+    "V"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "bien", "ru_meaning": "хорошо" },
-    { "type": "word", "ge_text": "boca", "ru_meaning": "рот" },
-    { "type": "word", "ge_text": "bebe", "ru_meaning": "пьёт", "accepted_ru": ["пьет"] },
-    { "type": "word", "ge_text": "bueno", "ru_meaning": "хороший" },
-    { "type": "word", "ge_text": "vida", "ru_meaning": "жизнь" },
-    { "type": "word", "ge_text": "vino", "ru_meaning": "вино" },
-    { "type": "word", "ge_text": "vivir", "ru_meaning": "жить" },
-    { "type": "word", "ge_text": "ver", "ru_meaning": "видеть" },
-    { "type": "word", "ge_text": "gato", "ru_meaning": "кот" },
-    { "type": "word", "ge_text": "gente", "ru_meaning": "люди" },
-    { "type": "word", "ge_text": "agua", "ru_meaning": "вода" },
-    { "type": "word", "ge_text": "amigo", "ru_meaning": "друг" },
-    { "type": "word", "ge_text": "gracias", "ru_meaning": "спасибо" },
-    { "type": "word", "ge_text": "verde", "ru_meaning": "зелёный", "accepted_ru": ["зеленый"] },
-    { "type": "word", "ge_text": "grave", "ru_meaning": "серьёзный", "accepted_ru": ["серьезный"] },
-    { "type": "word", "ge_text": "Me gusta", "ru_meaning": "мне нравится" },
-    { "type": "word", "ge_text": "Vengo a casa", "ru_meaning": "иду домой" },
-    { "type": "word", "ge_text": "Tengo agua", "ru_meaning": "у меня есть вода" }
+    {
+      "type": "word",
+      "ge_text": "bien",
+      "ru_meaning": "хорошо"
+    },
+    {
+      "type": "word",
+      "ge_text": "boca",
+      "ru_meaning": "рот"
+    },
+    {
+      "type": "word",
+      "ge_text": "bebe",
+      "ru_meaning": "пьёт",
+      "accepted_ru": [
+        "пьет"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "bueno",
+      "ru_meaning": "хороший"
+    },
+    {
+      "type": "word",
+      "ge_text": "Me gusta",
+      "ru_meaning": "мне нравится"
+    },
+    {
+      "type": "word",
+      "ge_text": "vida",
+      "ru_meaning": "жизнь"
+    },
+    {
+      "type": "word",
+      "ge_text": "vino",
+      "ru_meaning": "вино"
+    },
+    {
+      "type": "word",
+      "ge_text": "vivir",
+      "ru_meaning": "жить"
+    },
+    {
+      "type": "word",
+      "ge_text": "ver",
+      "ru_meaning": "видеть"
+    },
+    {
+      "type": "word",
+      "ge_text": "Vengo a casa",
+      "ru_meaning": "иду домой"
+    },
+    {
+      "type": "word",
+      "ge_text": "gato",
+      "ru_meaning": "кот"
+    },
+    {
+      "type": "word",
+      "ge_text": "gente",
+      "ru_meaning": "люди"
+    },
+    {
+      "type": "word",
+      "ge_text": "agua",
+      "ru_meaning": "вода"
+    },
+    {
+      "type": "word",
+      "ge_text": "Tengo agua",
+      "ru_meaning": "у меня есть вода"
+    },
+    {
+      "type": "word",
+      "ge_text": "amigo",
+      "ru_meaning": "друг"
+    },
+    {
+      "type": "word",
+      "ge_text": "gracias",
+      "ru_meaning": "спасибо"
+    },
+    {
+      "type": "word",
+      "ge_text": "verde",
+      "ru_meaning": "зелёный",
+      "accepted_ru": [
+        "зеленый"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "grave",
+      "ru_meaning": "серьёзный",
+      "accepted_ru": [
+        "серьезный"
+      ]
+    }
   ]
 }

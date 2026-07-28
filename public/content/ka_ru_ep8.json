@@ -1,24 +1,101 @@
 {
   "id": "ep8",
   "title": "Урок 9",
-  "letters": ["წ", "ჭ", "ღ"],
+  "letters": [
+    "წ",
+    "ჭ",
+    "ღ"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "წვენი", "ru_meaning": "сок" },
-    { "type": "word", "ge_text": "წყალი", "ru_meaning": "вода" },
-    { "type": "word", "ge_text": "მწვადი", "ru_meaning": "шашлык" },
-    { "type": "word", "ge_text": "ჭაჭა", "ru_meaning": "чача" },
-    { "type": "word", "ge_text": "ჭკვიანი", "ru_meaning": "умный" },
-    { "type": "word", "ge_text": "ჭიქა", "ru_meaning": "стакан" },
-    { "type": "word", "ge_text": "ხაჭო", "ru_meaning": "творог" },
-    { "type": "word", "ge_text": "ხაჭაპური", "ru_meaning": "хачапури" },
-    { "type": "word", "ge_text": "ღვინო", "ru_meaning": "вино" },
-    { "type": "word", "ge_text": "ღამე", "ru_meaning": "ночь" },
-    { "type": "word", "ge_text": "დღეს", "ru_meaning": "сегодня" },
-    { "type": "word", "ge_text": "საღამო", "ru_meaning": "вечер" },
-    { "type": "word", "ge_text": "ღორი", "ru_meaning": "свинья" },
-    { "type": "word", "ge_text": "წიგნი", "ru_meaning": "книга" },
-    { "type": "word", "ge_text": "მე მინდა წყალი", "ru_meaning": "я хочу воду" },
-    { "type": "word", "ge_text": "წყალი მინდა", "ru_meaning": "хочу воду" },
-    { "type": "word", "ge_text": "ეს ჭიქაა", "ru_meaning": "это стакан" }
+    {
+      "type": "word",
+      "ge_text": "წყალი",
+      "ru_meaning": "вода"
+    },
+    {
+      "type": "word",
+      "ge_text": "მე მინდა წყალი",
+      "ru_meaning": "я хочу воду"
+    },
+    {
+      "type": "word",
+      "ge_text": "წყალი მინდა",
+      "ru_meaning": "хочу воду"
+    },
+    {
+      "type": "word",
+      "ge_text": "ღვინო",
+      "ru_meaning": "вино"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ღვინო",
+      "ru_meaning": "вот вино"
+    },
+    {
+      "type": "word",
+      "ge_text": "ჭიქა",
+      "ru_meaning": "стакан"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს ჭიქაა",
+      "ru_meaning": "это стакан"
+    },
+    {
+      "type": "word",
+      "ge_text": "წიგნი",
+      "ru_meaning": "книга"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი წიგნი",
+      "ru_meaning": "вот книга"
+    },
+    {
+      "type": "word",
+      "ge_text": "წვენი",
+      "ru_meaning": "сок"
+    },
+    {
+      "type": "word",
+      "ge_text": "ხაჭაპური",
+      "ru_meaning": "хачапури"
+    },
+    {
+      "type": "word",
+      "ge_text": "მწვადი",
+      "ru_meaning": "шашлык"
+    },
+    {
+      "type": "word",
+      "ge_text": "ხაჭო",
+      "ru_meaning": "творог"
+    },
+    {
+      "type": "word",
+      "ge_text": "საღამო",
+      "ru_meaning": "вечер"
+    },
+    {
+      "type": "word",
+      "ge_text": "ღამე",
+      "ru_meaning": "ночь"
+    },
+    {
+      "type": "word",
+      "ge_text": "დღეს",
+      "ru_meaning": "сегодня"
+    },
+    {
+      "type": "word",
+      "ge_text": "ჭკვიანი",
+      "ru_meaning": "умный"
+    },
+    {
+      "type": "word",
+      "ge_text": "ღორი",
+      "ru_meaning": "свинья"
+    }
   ]
 }

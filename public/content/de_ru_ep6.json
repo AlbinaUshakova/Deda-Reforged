@@ -1,22 +1,89 @@
 {
   "id": "ep6",
   "title": "Урок 11",
-  "letters": ["Q", "X", "Y"],
+  "letters": [
+    "Q",
+    "X",
+    "Y"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "Taxi", "ru_meaning": "такси" },
-    { "type": "word", "ge_text": "Text", "ru_meaning": "текст" },
-    { "type": "word", "ge_text": "Box", "ru_meaning": "коробка" },
-    { "type": "word", "ge_text": "Keks", "ru_meaning": "печенье" },
-    { "type": "word", "ge_text": "Quiz", "ru_meaning": "тест" },
-    { "type": "word", "ge_text": "Qualität", "ru_meaning": "качество" },
-    { "type": "word", "ge_text": "Quark", "ru_meaning": "творог" },
-    { "type": "word", "ge_text": "Quittung", "ru_meaning": "чек" },
-    { "type": "word", "ge_text": "Yoga", "ru_meaning": "йога" },
-    { "type": "word", "ge_text": "Typ", "ru_meaning": "тип" },
-    { "type": "word", "ge_text": "System", "ru_meaning": "система" },
-    { "type": "word", "ge_text": "Baby", "ru_meaning": "малыш" },
-    { "type": "word", "ge_text": "City", "ru_meaning": "город" },
-    { "type": "word", "ge_text": "okay", "ru_meaning": "окей", "accepted_ru": ["ок"] },
-    { "type": "phrase", "ge_text": "Guten Tag", "ru_meaning": "добрый день" }
+    {
+      "type": "word",
+      "ge_text": "Taxi",
+      "ru_meaning": "такси"
+    },
+    {
+      "type": "word",
+      "ge_text": "Text",
+      "ru_meaning": "текст"
+    },
+    {
+      "type": "word",
+      "ge_text": "Box",
+      "ru_meaning": "коробка"
+    },
+    {
+      "type": "word",
+      "ge_text": "Keks",
+      "ru_meaning": "печенье"
+    },
+    {
+      "type": "word",
+      "ge_text": "Quiz",
+      "ru_meaning": "тест"
+    },
+    {
+      "type": "word",
+      "ge_text": "Qualität",
+      "ru_meaning": "качество"
+    },
+    {
+      "type": "word",
+      "ge_text": "Quark",
+      "ru_meaning": "творог"
+    },
+    {
+      "type": "word",
+      "ge_text": "Quittung",
+      "ru_meaning": "чек"
+    },
+    {
+      "type": "phrase",
+      "ge_text": "Guten Tag",
+      "ru_meaning": "добрый день"
+    },
+    {
+      "type": "word",
+      "ge_text": "Yoga",
+      "ru_meaning": "йога"
+    },
+    {
+      "type": "word",
+      "ge_text": "Typ",
+      "ru_meaning": "тип"
+    },
+    {
+      "type": "word",
+      "ge_text": "System",
+      "ru_meaning": "система"
+    },
+    {
+      "type": "word",
+      "ge_text": "Baby",
+      "ru_meaning": "малыш"
+    },
+    {
+      "type": "word",
+      "ge_text": "City",
+      "ru_meaning": "город"
+    },
+    {
+      "type": "word",
+      "ge_text": "okay",
+      "ru_meaning": "окей",
+      "accepted_ru": [
+        "ок"
+      ]
+    }
   ]
 }

@@ -1,24 +1,101 @@
 {
   "id": "ep7",
   "title": "Урок 8",
-  "letters": ["ჩ", "ც", "ძ"],
+  "letters": [
+    "ჩ",
+    "ც",
+    "ძ"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "ჩაი", "ru_meaning": "чай" },
-    { "type": "word", "ge_text": "ჩემი", "ru_meaning": "мой / моя" },
-    { "type": "word", "ge_text": "ცივი", "ru_meaning": "холодный" },
-    { "type": "word", "ge_text": "ცა", "ru_meaning": "небо" },
-    { "type": "word", "ge_text": "ძმა", "ru_meaning": "брат" },
-    { "type": "word", "ge_text": "ძველი", "ru_meaning": "старый" },
-    { "type": "word", "ge_text": "ძვირი", "ru_meaning": "дорогой" },
-    { "type": "word", "ge_text": "რძე", "ru_meaning": "молоко" },
-    { "type": "word", "ge_text": "ცხრა", "ru_meaning": "девять" },
-    { "type": "word", "ge_text": "ხორცი", "ru_meaning": "мясо" },
-    { "type": "word", "ge_text": "ცოტა", "ru_meaning": "немного" },
-    { "type": "word", "ge_text": "ცუდი", "ru_meaning": "плохой" },
-    { "type": "word", "ge_text": "ჩანთა", "ru_meaning": "сумка" },
-    { "type": "word", "ge_text": "ჩიტი", "ru_meaning": "птица" },
-    { "type": "word", "ge_text": "მე მაქვს ჩაი", "ru_meaning": "у меня есть чай" },
-    { "type": "word", "ge_text": "ეს ცხელია", "ru_meaning": "это горячее" },
-    { "type": "word", "ge_text": "ცოტა ჩაი მინდა", "ru_meaning": "хочу немного чая" }
+    {
+      "type": "word",
+      "ge_text": "ჩაი",
+      "ru_meaning": "чай"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ჩაი",
+      "ru_meaning": "вот чай"
+    },
+    {
+      "type": "word",
+      "ge_text": "მე მაქვს ჩაი",
+      "ru_meaning": "у меня есть чай"
+    },
+    {
+      "type": "word",
+      "ge_text": "ცოტა",
+      "ru_meaning": "немного"
+    },
+    {
+      "type": "word",
+      "ge_text": "ცოტა ჩაი მინდა",
+      "ru_meaning": "хочу немного чая"
+    },
+    {
+      "type": "word",
+      "ge_text": "ცივი",
+      "ru_meaning": "холодный"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს ცხელია",
+      "ru_meaning": "это горячее"
+    },
+    {
+      "type": "word",
+      "ge_text": "რძე",
+      "ru_meaning": "молоко"
+    },
+    {
+      "type": "word",
+      "ge_text": "ძმა",
+      "ru_meaning": "брат"
+    },
+    {
+      "type": "word",
+      "ge_text": "ჩემი",
+      "ru_meaning": "мой"
+    },
+    {
+      "type": "word",
+      "ge_text": "ჩანთა",
+      "ru_meaning": "сумка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ჩიტი",
+      "ru_meaning": "птица"
+    },
+    {
+      "type": "word",
+      "ge_text": "ცა",
+      "ru_meaning": "небо"
+    },
+    {
+      "type": "word",
+      "ge_text": "ცხრა",
+      "ru_meaning": "девять"
+    },
+    {
+      "type": "word",
+      "ge_text": "ხორცი",
+      "ru_meaning": "мясо"
+    },
+    {
+      "type": "word",
+      "ge_text": "ძველი",
+      "ru_meaning": "старый"
+    },
+    {
+      "type": "word",
+      "ge_text": "ძვირი",
+      "ru_meaning": "дорогой"
+    },
+    {
+      "type": "word",
+      "ge_text": "ცუდი",
+      "ru_meaning": "плохой"
+    }
   ]
 }

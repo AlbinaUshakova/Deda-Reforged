@@ -1,24 +1,113 @@
 {
   "id": "ep5",
   "title": "Урок 5",
-  "letters": ["P", "G", "B"],
+  "letters": [
+    "P",
+    "G",
+    "B"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "up", "translit": "ап", "ru_meaning": "вверх" },
-    { "type": "word", "ge_text": "big", "translit": "биг", "ru_meaning": "большой" },
-    { "type": "word", "ge_text": "bag", "translit": "бэг", "ru_meaning": "сумка" },
-    { "type": "word", "ge_text": "bus", "translit": "бас", "ru_meaning": "автобус" },
-    { "type": "word", "ge_text": "bed", "translit": "бед", "ru_meaning": "кровать" },
-    { "type": "word", "ge_text": "bad", "translit": "бэд", "ru_meaning": "плохой" },
-    { "type": "word", "ge_text": "stop", "translit": "стоп", "ru_meaning": "стоп" },
-    { "type": "word", "ge_text": "help", "translit": "хелп", "ru_meaning": "помощь" },
-    { "type": "word", "ge_text": "good", "translit": "гуд", "ru_meaning": "хороший" },
-    { "type": "word", "ge_text": "group", "translit": "груп", "ru_meaning": "группа" },
-    { "type": "word", "ge_text": "begin", "translit": "бигин", "ru_meaning": "начинать" },
-    { "type": "word", "ge_text": "people", "translit": "пипл", "ru_meaning": "люди" },
-    { "type": "word", "ge_text": "please", "translit": "плиз", "ru_meaning": "пожалуйста" },
-    { "type": "word", "ge_text": "problem", "translit": "проблем", "ru_meaning": "проблема" },
-    { "type": "word", "ge_text": "People help", "translit": "пипл хелп", "ru_meaning": "люди помогают" },
-    { "type": "word", "ge_text": "Big cup", "translit": "биг кап", "ru_meaning": "большая чашка" },
-    { "type": "word", "ge_text": "Grab a cup", "translit": "грэб э кап", "ru_meaning": "возьми чашку" }
+    {
+      "type": "word",
+      "ge_text": "up",
+      "translit": "ап",
+      "ru_meaning": "вверх"
+    },
+    {
+      "type": "word",
+      "ge_text": "Grab a cup",
+      "translit": "грэб э кап",
+      "ru_meaning": "возьми чашку"
+    },
+    {
+      "type": "word",
+      "ge_text": "big",
+      "translit": "биг",
+      "ru_meaning": "большой"
+    },
+    {
+      "type": "word",
+      "ge_text": "Big cup",
+      "translit": "биг кап",
+      "ru_meaning": "большая чашка"
+    },
+    {
+      "type": "word",
+      "ge_text": "bag",
+      "translit": "бэг",
+      "ru_meaning": "сумка"
+    },
+    {
+      "type": "word",
+      "ge_text": "bus",
+      "translit": "бас",
+      "ru_meaning": "автобус"
+    },
+    {
+      "type": "word",
+      "ge_text": "bed",
+      "translit": "бед",
+      "ru_meaning": "кровать"
+    },
+    {
+      "type": "word",
+      "ge_text": "bad",
+      "translit": "бэд",
+      "ru_meaning": "плохой"
+    },
+    {
+      "type": "word",
+      "ge_text": "stop",
+      "translit": "стоп",
+      "ru_meaning": "стоп"
+    },
+    {
+      "type": "word",
+      "ge_text": "help",
+      "translit": "хелп",
+      "ru_meaning": "помощь"
+    },
+    {
+      "type": "word",
+      "ge_text": "good",
+      "translit": "гуд",
+      "ru_meaning": "хороший"
+    },
+    {
+      "type": "word",
+      "ge_text": "group",
+      "translit": "груп",
+      "ru_meaning": "группа"
+    },
+    {
+      "type": "word",
+      "ge_text": "begin",
+      "translit": "бигин",
+      "ru_meaning": "начинать"
+    },
+    {
+      "type": "word",
+      "ge_text": "people",
+      "translit": "пипл",
+      "ru_meaning": "люди"
+    },
+    {
+      "type": "word",
+      "ge_text": "People help",
+      "translit": "пипл хелп",
+      "ru_meaning": "люди помогают"
+    },
+    {
+      "type": "word",
+      "ge_text": "please",
+      "translit": "плиз",
+      "ru_meaning": "пожалуйста"
+    },
+    {
+      "type": "word",
+      "ge_text": "problem",
+      "translit": "проблем",
+      "ru_meaning": "проблема"
+    }
   ]
 }

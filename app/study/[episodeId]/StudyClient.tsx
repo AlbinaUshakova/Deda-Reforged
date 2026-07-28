@@ -6,7 +6,7 @@ import FlashcardDeck from '@/components/FlashcardDeck';
 import StudyPageActions from '@/components/study/StudyPageActions';
 import type { Episode } from '@/lib/content';
 import { getEpisodeByIdCached } from '@/lib/clientContentCache';
-import { DEFAULT_COURSE_ID } from '@/lib/courses';
+import { DEFAULT_COURSE_ID, scriptWatermarkStyle } from '@/lib/courses';
 import { useAppStore } from '@/lib/appStore';
 import { getStudyDeckCards, resolveStudyEpisode } from './studyContent';
 
@@ -68,7 +68,7 @@ export default function StudyClient({
   }, []);
 
   return (
-    <main className="study-card-screen app-screen-fixed min-h-screen bg-transparent text-[var(--text-primary)]">
+    <main style={scriptWatermarkStyle(courseId)} className="study-card-screen app-screen-fixed min-h-screen bg-transparent text-[var(--text-primary)]">
       <div className="study-screen-orb study-screen-orb--left" aria-hidden="true" />
       <div className="study-screen-orb study-screen-orb--right" aria-hidden="true" />
       <div className="study-screen-shell mx-auto h-full w-full overflow-hidden px-[clamp(14px,3.6vw,48px)] py-[clamp(16px,2.6vh,32px)]">

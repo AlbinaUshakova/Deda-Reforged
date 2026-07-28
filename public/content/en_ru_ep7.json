@@ -1,24 +1,113 @@
 {
   "id": "ep7",
   "title": "Урок 7",
-  "letters": ["K", "V", "X"],
+  "letters": [
+    "K",
+    "V",
+    "X"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "key", "translit": "ки", "ru_meaning": "ключ" },
-    { "type": "word", "ge_text": "box", "translit": "бокс", "ru_meaning": "коробка" },
-    { "type": "word", "ge_text": "like", "translit": "лайк", "ru_meaning": "нравится" },
-    { "type": "word", "ge_text": "book", "translit": "бук", "ru_meaning": "книга" },
-    { "type": "word", "ge_text": "work", "translit": "уёрк", "ru_meaning": "работа" },
-    { "type": "word", "ge_text": "kind", "translit": "кайнд", "ru_meaning": "добрый" },
-    { "type": "word", "ge_text": "know", "translit": "ноу", "ru_meaning": "знать" },
-    { "type": "word", "ge_text": "keep", "translit": "кип", "ru_meaning": "держать" },
-    { "type": "word", "ge_text": "take", "translit": "тейк", "ru_meaning": "брать" },
-    { "type": "word", "ge_text": "make", "translit": "мейк", "ru_meaning": "делать" },
-    { "type": "word", "ge_text": "taxi", "translit": "тэкси", "ru_meaning": "такси" },
-    { "type": "word", "ge_text": "every", "translit": "эври", "ru_meaning": "каждый" },
-    { "type": "word", "ge_text": "kitchen", "translit": "китчен", "ru_meaning": "кухня" },
-    { "type": "word", "ge_text": "example", "translit": "игзэмпл", "ru_meaning": "пример" },
-    { "type": "word", "ge_text": "I like my work", "translit": "ай лайк май уёрк", "ru_meaning": "мне нравится моя работа" },
-    { "type": "word", "ge_text": "Very kind", "translit": "вери кайнд", "ru_meaning": "очень добрый" },
-    { "type": "word", "ge_text": "Fix it", "translit": "фикс ит", "ru_meaning": "почини это" }
+    {
+      "type": "word",
+      "ge_text": "key",
+      "translit": "ки",
+      "ru_meaning": "ключ"
+    },
+    {
+      "type": "word",
+      "ge_text": "box",
+      "translit": "бокс",
+      "ru_meaning": "коробка"
+    },
+    {
+      "type": "word",
+      "ge_text": "like",
+      "translit": "лайк",
+      "ru_meaning": "нравится"
+    },
+    {
+      "type": "word",
+      "ge_text": "book",
+      "translit": "бук",
+      "ru_meaning": "книга"
+    },
+    {
+      "type": "word",
+      "ge_text": "work",
+      "translit": "уёрк",
+      "ru_meaning": "работа"
+    },
+    {
+      "type": "word",
+      "ge_text": "I like my work",
+      "translit": "ай лайк май уёрк",
+      "ru_meaning": "мне нравится моя работа"
+    },
+    {
+      "type": "word",
+      "ge_text": "kind",
+      "translit": "кайнд",
+      "ru_meaning": "добрый"
+    },
+    {
+      "type": "word",
+      "ge_text": "Very kind",
+      "translit": "вери кайнд",
+      "ru_meaning": "очень добрый"
+    },
+    {
+      "type": "word",
+      "ge_text": "know",
+      "translit": "ноу",
+      "ru_meaning": "знать"
+    },
+    {
+      "type": "word",
+      "ge_text": "keep",
+      "translit": "кип",
+      "ru_meaning": "держать"
+    },
+    {
+      "type": "word",
+      "ge_text": "take",
+      "translit": "тейк",
+      "ru_meaning": "брать"
+    },
+    {
+      "type": "word",
+      "ge_text": "make",
+      "translit": "мейк",
+      "ru_meaning": "делать"
+    },
+    {
+      "type": "word",
+      "ge_text": "taxi",
+      "translit": "тэкси",
+      "ru_meaning": "такси"
+    },
+    {
+      "type": "word",
+      "ge_text": "Fix it",
+      "translit": "фикс ит",
+      "ru_meaning": "почини это"
+    },
+    {
+      "type": "word",
+      "ge_text": "every",
+      "translit": "эври",
+      "ru_meaning": "каждый"
+    },
+    {
+      "type": "word",
+      "ge_text": "kitchen",
+      "translit": "китчен",
+      "ru_meaning": "кухня"
+    },
+    {
+      "type": "word",
+      "ge_text": "example",
+      "translit": "игзэмпл",
+      "ru_meaning": "пример"
+    }
   ]
 }

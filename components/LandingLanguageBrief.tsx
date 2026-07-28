@@ -69,6 +69,15 @@ const languageBriefs: Record<CourseId, LanguageBrief> = {
       { label: 'Слова собираются из частей', text: 'К корню добавляются суффиксы, каждый со своим смыслом: evlerimden = ev + ler + im + den.' },
     ],
   },
+  fr: {
+    title: 'Французский: главное для чтения',
+    subtitle: 'Во французском много немых букв, зато сочетания читаются предсказуемо.',
+    points: [
+      { label: 'Конечные буквы часто немые', text: 'e, s, t, d на конце обычно не звучат: petit → «пёти». Это регулярно.' },
+      { label: 'Буквы читаются блоками', text: 'ou, on, an, ai, eau — устойчивые сочетания. Выучил один раз — узнаёшь везде.' },
+      { label: 'Диакритика помогает', text: 'é, è, ê, ç меняют звук предсказуемо — это подсказка, а не помеха.' },
+    ],
+  },
 };
 
 const nationalCatByCourse: Record<CourseId, string> = {
@@ -78,6 +87,7 @@ const nationalCatByCourse: Record<CourseId, string> = {
   en: '/images/cats/national/deda-en.png',
   sr: '/images/cats/national/deda-sr.png',
   tr: '/images/cats/national/deda-tr.png',
+  fr: '/images/cats/national/deda-fr.png',
 };
 
 export function LandingLanguageBrief() {

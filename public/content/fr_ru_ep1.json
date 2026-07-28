@@ -1,0 +1,99 @@
+{
+  "id": "ep1",
+  "title": "Урок 1",
+  "letters": [
+    "A",
+    "E",
+    "I",
+    "L",
+    "R",
+    "S",
+    "T"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "le",
+      "ru_meaning": "артикль (м. р.)",
+      "translit": "лё"
+    },
+    {
+      "type": "word",
+      "ge_text": "la",
+      "ru_meaning": "артикль (ж. р.)",
+      "translit": "ла"
+    },
+    {
+      "type": "word",
+      "ge_text": "il",
+      "ru_meaning": "он",
+      "translit": "иль"
+    },
+    {
+      "type": "word",
+      "ge_text": "elle",
+      "ru_meaning": "она",
+      "translit": "эль"
+    },
+    {
+      "type": "word",
+      "ge_text": "lit",
+      "ru_meaning": "кровать",
+      "translit": "ли"
+    },
+    {
+      "type": "word",
+      "ge_text": "il lit",
+      "ru_meaning": "он читает",
+      "translit": "иль ли"
+    },
+    {
+      "type": "word",
+      "ge_text": "elle lit",
+      "ru_meaning": "она читает",
+      "translit": "эль ли"
+    },
+    {
+      "type": "word",
+      "ge_text": "lire",
+      "ru_meaning": "читать",
+      "translit": "лир"
+    },
+    {
+      "type": "word",
+      "ge_text": "sel",
+      "ru_meaning": "соль",
+      "translit": "сэль"
+    },
+    {
+      "type": "word",
+      "ge_text": "le sel",
+      "ru_meaning": "соль",
+      "translit": "лё сэль"
+    },
+    {
+      "type": "word",
+      "ge_text": "sale",
+      "ru_meaning": "грязный",
+      "translit": "саль"
+    },
+    {
+      "type": "word",
+      "ge_text": "rat",
+      "ru_meaning": "крыса",
+      "translit": "ра"
+    },
+    {
+      "type": "word",
+      "ge_text": "art",
+      "ru_meaning": "искусство",
+      "translit": "ар"
+    },
+    {
+      "type": "word",
+      "ge_text": "aile",
+      "ru_meaning": "крыло",
+      "translit": "эль"
+    }
+  ]
+}

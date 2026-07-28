@@ -1,8 +1,8 @@
 import { geLetterAudioMap } from './georgianLetterAudio.ts';
 
-export type CourseId = 'ka' | 'sr' | 'tr' | 'es' | 'de' | 'en';
+export type CourseId = 'ka' | 'sr' | 'tr' | 'es' | 'de' | 'en' | 'fr';
 
-export const COURSE_ORDER: CourseId[] = ['ka', 'en', 'es', 'de', 'sr', 'tr'];
+export const COURSE_ORDER: CourseId[] = ['ka', 'en', 'es', 'de', 'fr', 'sr', 'tr'];
 
 export type Course = {
   id: CourseId;
@@ -131,75 +131,17 @@ function makeSoundHints(
 }
 
 const GEORGIAN_RU_HINTS: Record<string, string> = {
-  'ა': 'а',
-  'ბ': 'б',
-  'გ': 'г',
-  'დ': 'д',
-  'ე': 'э',
-  'ვ': 'в',
-  'ზ': 'з',
-  'თ': 'тх',
-  'ი': 'и',
-  'კ': "к'",
-  'ლ': 'л',
-  'მ': 'м',
-  'ნ': 'н',
-  'ო': 'о',
-  'პ': "п'",
-  'ჟ': 'ж',
-  'რ': 'р',
-  'ს': 'с',
-  'ტ': "т'",
-  'უ': 'у',
-  'ფ': 'пх',
-  'ქ': 'кх',
-  'ღ': 'гх',
-  'ყ': "къ'",
-  'შ': 'ш',
-  'ჩ': 'чх',
-  'ც': 'цх',
-  'ძ': 'дз',
-  'წ': "ц'",
-  'ჭ': "ч'",
-  'ხ': 'х',
-  'ჯ': 'дж',
-  'ჰ': 'х',
+  'ა': 'а', 'ბ': 'б', 'გ': 'г', 'დ': 'д', 'ე': 'э', 'ვ': 'в', 'ზ': 'з', 'თ': 'т',
+  'ი': 'и', 'კ': 'къ', 'ლ': 'л', 'მ': 'м', 'ნ': 'н', 'ო': 'о', 'პ': 'пъ', 'ჟ': 'ж',
+  'რ': 'р', 'ს': 'с', 'ტ': 'тъ', 'უ': 'у', 'ფ': 'п', 'ქ': 'к', 'ღ': 'гъ', 'ყ': 'къ',
+  'შ': 'ш', 'ჩ': 'ч', 'ც': 'ц', 'ძ': 'дз', 'წ': 'цъ', 'ჭ': 'чъ', 'ხ': 'х', 'ჯ': 'дж', 'ჰ': 'х',
 };
 
 const GEORGIAN_LATIN_HINTS: Record<string, string> = {
-  'ა': 'a',
-  'ბ': 'b',
-  'გ': 'g',
-  'დ': 'd',
-  'ე': 'e',
-  'ვ': 'v',
-  'ზ': 'z',
-  'თ': 't',
-  'ი': 'i',
-  'კ': 'k',
-  'ლ': 'l',
-  'მ': 'm',
-  'ნ': 'n',
-  'ო': 'o',
-  'პ': 'p',
-  'ჟ': 'zh',
-  'რ': 'r',
-  'ს': 's',
-  'ტ': 't',
-  'უ': 'u',
-  'ფ': 'p',
-  'ქ': 'k',
-  'ღ': 'gh',
-  'ყ': 'q',
-  'შ': 'sh',
-  'ჩ': 'ch',
-  'ც': 'ts',
-  'ძ': 'dz',
-  'წ': 'ts',
-  'ჭ': 'ch',
-  'ხ': 'kh',
-  'ჯ': 'j',
-  'ჰ': 'h',
+  'ა': 'a', 'ბ': 'b', 'გ': 'g', 'დ': 'd', 'ე': 'e', 'ვ': 'v', 'ზ': 'z', 'თ': 't',
+  'ი': 'i', 'კ': "k'", 'ლ': 'l', 'მ': 'm', 'ნ': 'n', 'ო': 'o', 'პ': "p'", 'ჟ': 'zh',
+  'რ': 'r', 'ს': 's', 'ტ': "t'", 'უ': 'u', 'ფ': 'p', 'ქ': 'k', 'ღ': 'gh', 'ყ': "q'",
+  'შ': 'sh', 'ჩ': 'ch', 'ც': 'ts', 'ძ': 'dz', 'წ': "ts'", 'ჭ': "ch'", 'ხ': 'kh', 'ჯ': 'j', 'ჰ': 'h',
 };
 
 const SERBIAN_ALPHABET = [
@@ -261,7 +203,7 @@ const SERBIAN_LATIN_HINTS: Record<string, string> = {
   'Ж': 'zh',
   'З': 'z',
   'И': 'i',
-  'Ј': 'j',
+  'Ј': 'y',
   'К': 'k',
   'Л': 'l',
   'Љ': 'lj',
@@ -273,13 +215,13 @@ const SERBIAN_LATIN_HINTS: Record<string, string> = {
   'Р': 'r',
   'С': 's',
   'Т': 't',
-  'Ћ': 'ch',
+  'Ћ': 'tj',
   'У': 'u',
   'Ф': 'f',
   'Х': 'h',
   'Ц': 'ts',
   'Ч': 'ch',
-  'Џ': 'dz',
+  'Џ': 'dzh',
   'Ш': 'sh',
 };
 
@@ -337,7 +279,7 @@ const TURKISH_RU_HINTS: Record<string, string> = {
   E: 'э',
   F: 'ф',
   G: 'г',
-  'Ğ': 'мягк.',
+  'Ğ': 'й/—',
   H: 'х',
   I: 'ы',
   'İ': 'и',
@@ -369,9 +311,9 @@ const TURKISH_LATIN_HINTS: Record<string, string> = {
   E: 'e',
   F: 'f',
   G: 'g',
-  'Ğ': 'gh',
+  'Ğ': 'y/—',
   H: 'h',
-  I: 'i',
+  I: 'uh',
   'İ': 'i',
   J: 'zh',
   K: 'k',
@@ -502,9 +444,9 @@ const SPANISH_RU_HINTS: Record<string, string> = {
   S: 'с',
   T: 'т',
   U: 'у',
-  V: 'б/в',
-  W: 'в',
-  X: 'кс',
+  V: 'б',
+  W: 'у/гу',
+  X: 'кс/х',
   Y: 'й/и',
   Z: 'с',
 };
@@ -512,14 +454,14 @@ const SPANISH_RU_HINTS: Record<string, string> = {
 const SPANISH_LATIN_HINTS: Record<string, string> = {
   A: 'a',
   B: 'b',
-  C: 'c',
+  C: 'k/s',
   D: 'd',
   E: 'e',
   F: 'f',
-  G: 'g',
-  H: 'h',
+  G: 'g/kh',
+  H: '—',
   I: 'i',
-  J: 'h',
+  J: 'kh',
   K: 'k',
   L: 'l',
   M: 'm',
@@ -533,16 +475,16 @@ const SPANISH_LATIN_HINTS: Record<string, string> = {
   'Ü': 'u',
   O: 'o',
   P: 'p',
-  Q: 'q',
+  Q: 'k',
   R: 'r',
   S: 's',
   T: 't',
   U: 'u',
-  V: 'v',
-  W: 'w',
-  X: 'x',
-  Y: 'y',
-  Z: 'z',
+  V: 'b',
+  W: 'w/gw',
+  X: 'ks/kh',
+  Y: 'y/i',
+  Z: 's',
 };
 
 const SPANISH_LETTER_NAMES: Record<string, string> = {
@@ -587,6 +529,8 @@ const SPANISH_SPEECH_LABELS: Record<string, string> = {
   G: 'г',
   H: 'не читается',
   V: 'б',
+  W: 'у',
+  X: 'кс',
   Y: 'й',
 };
 
@@ -634,31 +578,31 @@ const ENGLISH_ALPHABET = [
 ];
 
 const ENGLISH_RU_HINTS: Record<string, string> = {
-  A: 'э',
+  A: 'э/эй',
   B: 'б',
-  C: 'к',
+  C: 'к/с',
   D: 'д',
-  E: 'э',
+  E: 'э/и',
   F: 'ф',
-  G: 'г',
+  G: 'г/дж',
   H: 'х',
-  I: 'и',
+  I: 'и/ай',
   J: 'дж',
   K: 'к',
   L: 'л',
   M: 'м',
   N: 'н',
-  O: 'о',
+  O: 'о/оу',
   P: 'п',
   Q: 'кв',
   R: 'р',
-  S: 'с',
+  S: 'с/з',
   T: 'т',
-  U: 'а',
+  U: 'а/ю',
   V: 'в',
   W: 'у',
-  X: 'кс',
-  Y: 'й',
+  X: 'кс/гз',
+  Y: 'й/и',
   Z: 'з',
 };
 
@@ -696,31 +640,31 @@ const ENGLISH_LETTER_NAME_RU: Record<string, string> = {
 };
 
 const ENGLISH_LATIN_HINTS: Record<string, string> = {
-  A: 'a',
+  A: 'a/ay',
   B: 'b',
-  C: 'k',
+  C: 'k/s',
   D: 'd',
-  E: 'e',
+  E: 'e/ee',
   F: 'f',
-  G: 'g',
+  G: 'g/j',
   H: 'h',
-  I: 'i',
+  I: 'i/ay',
   J: 'j',
   K: 'k',
-  L: 'el',
-  M: 'em',
-  N: 'en',
-  O: 'o',
+  L: 'l',
+  M: 'm',
+  N: 'n',
+  O: 'o/oh',
   P: 'p',
   Q: 'kw',
   R: 'r',
-  S: 's',
+  S: 's/z',
   T: 't',
-  U: 'u',
+  U: 'uh/yoo',
   V: 'v',
   W: 'w',
-  X: 'ks',
-  Y: 'y',
+  X: 'ks/gz',
+  Y: 'y/ee',
   Z: 'z',
 };
 
@@ -779,7 +723,7 @@ const GERMAN_RU_HINTS: Record<string, string> = {
   E: 'э',
   F: 'ф',
   G: 'г',
-  H: 'х/—',
+  H: 'х',
   I: 'и',
   J: 'й',
   K: 'к',
@@ -793,13 +737,13 @@ const GERMAN_RU_HINTS: Record<string, string> = {
   S: 'з/с',
   T: 'т',
   U: 'у',
-  V: 'ф/в',
+  V: 'ф',
   W: 'в',
   X: 'кс',
-  Y: 'й/и/≈ю',
+  Y: 'ю/и',
   Z: 'ц',
   'Ä': 'э',
-  'Ö': '≈ё',
+  'Ö': 'ё',
   'Ü': 'ю',
   'ẞ': 'с',
 };
@@ -807,12 +751,12 @@ const GERMAN_RU_HINTS: Record<string, string> = {
 const GERMAN_LATIN_HINTS: Record<string, string> = {
   A: 'a',
   B: 'b',
-  C: 'k/ts',
+  C: 'ts/k',
   D: 'd',
   E: 'e',
   F: 'f',
   G: 'g',
-  H: 'h/—',
+  H: 'h',
   I: 'i',
   J: 'y',
   K: 'k',
@@ -826,12 +770,12 @@ const GERMAN_LATIN_HINTS: Record<string, string> = {
   S: 'z/s',
   T: 't',
   U: 'u',
-  V: 'f/v',
+  V: 'f',
   W: 'v',
   X: 'ks',
-  Y: 'ue/i/y',
+  Y: 'ue/i',
   Z: 'ts',
-  'Ä': 'e',
+  'Ä': 'ae',
   'Ö': 'oe',
   'Ü': 'ue',
   'ẞ': 's',
@@ -937,6 +881,53 @@ function noteSection(title: string, description: string) {
     rows: [],
   };
 }
+
+const FRENCH_CORE_LETTERS = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+  'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+  'U', 'V', 'W', 'X', 'Y', 'Z',
+];
+
+const FRENCH_SPECIAL_LETTERS = ['À', 'Â', 'Ç', 'É', 'È', 'Ê', 'Ë', 'Î', 'Ï', 'Ô', 'Œ', 'Ù', 'Û'];
+
+const FRENCH_ALPHABET = [...FRENCH_CORE_LETTERS, ...FRENCH_SPECIAL_LETTERS];
+
+const FRENCH_RU_HINTS: Record<string, string> = {
+  A: 'а', B: 'б', C: 'к/с', D: 'д', E: 'э/ё/—', F: 'ф', G: 'г/ж', H: '—',
+  I: 'и', J: 'ж', K: 'к', L: 'л', M: 'м', N: 'н', O: 'о', P: 'п', Q: 'к',
+  R: 'р', S: 'с/з', T: 'т/с', U: 'ю', V: 'в', W: 'в/у', X: 'кс/гз', Y: 'и/й', Z: 'з',
+  'À': 'а', 'Â': 'а', 'Ç': 'с', 'É': 'э', 'È': 'э', 'Ê': 'э', 'Ë': 'э',
+  'Î': 'и', 'Ï': 'и', 'Ô': 'о', 'Œ': 'ё/э', 'Ù': 'ю', 'Û': 'ю',
+};
+
+const FRENCH_LATIN_HINTS: Record<string, string> = {
+  A: 'a', B: 'b', C: 'k/s', D: 'd', E: 'e/uh/—', F: 'f', G: 'g/zh', H: '—',
+  I: 'i', J: 'zh', K: 'k', L: 'l', M: 'm', N: 'n', O: 'o', P: 'p', Q: 'k',
+  R: 'r', S: 's/z', T: 't/s', U: 'u', V: 'v', W: 'v/w', X: 'ks/gz', Y: 'i/y', Z: 'z',
+  'À': 'a', 'Â': 'a', 'Ç': 's', 'É': 'e', 'È': 'e', 'Ê': 'e', 'Ë': 'e',
+  'Î': 'i', 'Ï': 'i', 'Ô': 'o', 'Œ': 'oe', 'Ù': 'u', 'Û': 'u',
+};
+
+const FRENCH_LETTER_NAMES: Record<string, string> = {
+  A: 'a', B: 'bé', C: 'cé', D: 'dé', E: 'euh', F: 'ef', G: 'jé', H: 'ash',
+  I: 'i', J: 'ji', K: 'ka', L: 'el', M: 'em', N: 'en', O: 'o', P: 'pé', Q: 'ku',
+  R: 'er', S: 'es', T: 'té', U: 'ü', V: 'vé', W: 'double vé', X: 'iks', Y: 'i grec', Z: 'zed',
+  'À': 'a', 'Â': 'a', 'Ç': 'sé cédille', 'É': 'e', 'È': 'e', 'Ê': 'e', 'Ë': 'e',
+  'Î': 'i', 'Ï': 'i', 'Ô': 'o', 'Œ': 'oe', 'Ù': 'ü', 'Û': 'ü',
+};
+
+const FRENCH_LETTER_NAME_RU: Record<string, string> = {
+  A: 'а', B: 'бэ', C: 'сэ', D: 'дэ', E: 'ё', F: 'эф', G: 'жэ', H: 'аш',
+  I: 'и', J: 'жи', K: 'ка', L: 'эль', M: 'эм', N: 'эн', O: 'о', P: 'пэ', Q: 'кю',
+  R: 'эр', S: 'эс', T: 'тэ', U: 'ю', V: 'вэ', W: 'дубль-вэ', X: 'икс', Y: 'игрек', Z: 'зэд',
+  'À': 'а', 'Â': 'а', 'Ç': 'сэ седий', 'É': 'э', 'È': 'э', 'Ê': 'э', 'Ë': 'э',
+  'Î': 'и', 'Ï': 'и', 'Ô': 'о', 'Œ': 'ё', 'Ù': 'ю', 'Û': 'ю',
+};
+
+const FRENCH_SPEECH_LABELS: Record<string, string> = {
+  ...FRENCH_RU_HINTS,
+  C: 'с', E: 'ё', G: 'ж', H: '', R: 'р', S: 'с', Y: 'и',
+};
 
 export const COURSES: Record<CourseId, Course> = {
   ka: {
@@ -1096,19 +1087,60 @@ export const COURSES: Record<CourseId, Course> = {
     speechLang: 'de-DE',
     locale: 'de',
   },
+  fr: {
+    id: 'fr',
+    title: 'Французский',
+    shortTitle: 'Французский',
+    sourceLanguageLabel: '🇫🇷',
+    targetLanguageLabel: '🇷🇺',
+    scriptTitleRu: 'Французский алфавит',
+    scriptTitleNative: 'L’alphabet français',
+    alphabetTitle: 'Французский алфавит — L’alphabet français',
+    alphabet: FRENCH_ALPHABET,
+    alphabetRows: rows(FRENCH_ALPHABET, 6),
+    vowels: ['A', 'E', 'I', 'O', 'U', 'Y', 'À', 'Â', 'É', 'È', 'Ê', 'Ë', 'Î', 'Ï', 'Ô', 'Œ', 'Ù', 'Û'],
+    alphabetSections: [
+      section('Основные буквы', FRENCH_CORE_LETTERS),
+      section(
+        'Буквы с диакритикой',
+        FRENCH_SPECIAL_LETTERS,
+        'Значки меняют звук: é — «э», è и ê — открытое «э», ç — «с», î/ô/û — те же гласные.',
+      ),
+    ],
+    letterNames: FRENCH_LETTER_NAMES,
+    letterNameRu: FRENCH_LETTER_NAME_RU,
+    letterSoundLabels: FRENCH_RU_HINTS,
+    letterSpeechLabels: FRENCH_SPEECH_LABELS,
+    soundHints: makeSoundHints(FRENCH_RU_HINTS, FRENCH_LATIN_HINTS),
+    letterHints: makeSoundHints(FRENCH_RU_HINTS, FRENCH_LATIN_HINTS),
+    letterAudioMap: {},
+    speechLang: 'fr-FR',
+    locale: 'fr',
+  },
 };
 
 export const DEFAULT_COURSE_ID: CourseId = 'ka';
 export const COURSE_IDS = COURSE_ORDER;
 
 export function normalizeCourseId(value: unknown): CourseId {
-  return value === 'sr' || value === 'tr' || value === 'es' || value === 'de' || value === 'en'
+  return value === 'sr' || value === 'tr' || value === 'es' || value === 'de' || value === 'en' || value === 'fr'
     ? value
     : DEFAULT_COURSE_ID;
 }
 
 export function getCourse(courseId: unknown): Course {
   return COURSES[normalizeCourseId(courseId)];
+}
+
+// Стиль для фонового водяного знака письменности текущего курса
+// (буквы алфавита + подходящий шрифт), задаётся как CSS-переменные.
+export function scriptWatermarkStyle(courseId: unknown): Record<string, string> {
+  const id = normalizeCourseId(courseId);
+  const course = COURSES[id];
+  return {
+    '--script-watermark': `'${course.alphabet.join('')}'`,
+    '--script-watermark-font': id === 'ka' ? 'var(--font-georgian)' : 'var(--font-display)',
+  };
 }
 
 export function getLetterHint(
@@ -1152,6 +1184,35 @@ export function getLetterKind(
 ): LetterKind {
   const course = getCourse(courseId);
   return course.vowels.includes(letter) ? 'vowel' : 'consonant';
+}
+
+// Единое универсальное описание буквы для сетки алфавита.
+// Интерфейс читает ТОЛЬКО из этой структуры — без привязки к конкретному языку.
+// Строчная выводится из локали автоматически; для письменностей без регистра
+// (например, грузинской) она совпадает с заглавной и не показывается.
+export type AlphabetLetter = {
+  uppercase: string;
+  lowercase?: string;
+  pronunciationCyrillic: string;
+  pronunciationLatin: string;
+  isVowel: boolean;
+  audio?: string;
+};
+
+export function getAlphabetLetter(
+  letter: string,
+  courseId: unknown = DEFAULT_COURSE_ID,
+): AlphabetLetter {
+  const course = getCourse(courseId);
+  const lower = letter.toLocaleLowerCase(course.locale);
+  return {
+    uppercase: letter,
+    lowercase: lower !== letter ? lower : undefined,
+    pronunciationCyrillic: course.soundHints.ru[letter] ?? course.letterHints?.ru?.[letter] ?? '',
+    pronunciationLatin: course.soundHints.latin[letter] ?? course.letterHints?.latin?.[letter] ?? '',
+    isVowel: course.vowels.includes(letter),
+    audio: course.letterAudioMap[letter] || undefined,
+  };
 }
 
 export function isCourseLetter(character: string, courseId: unknown = DEFAULT_COURSE_ID): boolean {

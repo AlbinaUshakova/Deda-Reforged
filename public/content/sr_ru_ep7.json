@@ -1,25 +1,106 @@
 {
   "id": "ep7",
   "title": "Урок 7",
-  "letters": ["Љ", "Њ"],
+  "letters": [
+    "Љ",
+    "Њ"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "људи", "ru_meaning": "люди" },
-    { "type": "word", "ge_text": "љубав", "ru_meaning": "любовь" },
-    { "type": "word", "ge_text": "бољи", "ru_meaning": "лучше" },
-    { "type": "word", "ge_text": "њен", "ru_meaning": "её" },
-    { "type": "word", "ge_text": "њега", "ru_meaning": "его" },
-    { "type": "word", "ge_text": "коњ", "ru_meaning": "конь", "accepted_ru": ["лошадь"] },
-    { "type": "word", "ge_text": "мањи", "ru_meaning": "меньше" },
-    { "type": "word", "ge_text": "љуто", "ru_meaning": "остро" },
-    { "type": "word", "ge_text": "боље", "ru_meaning": "лучше" },
-    { "type": "word", "ge_text": "воља", "ru_meaning": "воля" },
-    { "type": "word", "ge_text": "поље", "ru_meaning": "поле" },
-    { "type": "word", "ge_text": "уље", "ru_meaning": "масло" },
-    { "type": "word", "ge_text": "њој", "ru_meaning": "ей" },
-    { "type": "word", "ge_text": "њима", "ru_meaning": "им" },
-    { "type": "word", "ge_text": "љуби", "ru_meaning": "целует" },
-    { "type": "word", "ge_text": "људи су ту", "ru_meaning": "люди здесь" },
-    { "type": "word", "ge_text": "њен дом", "ru_meaning": "её дом", "accepted_ru": ["ее дом"] },
-    { "type": "word", "ge_text": "љубав је ту", "ru_meaning": "любовь здесь" }
+    {
+      "type": "word",
+      "ge_text": "људи",
+      "ru_meaning": "люди"
+    },
+    {
+      "type": "word",
+      "ge_text": "људи су ту",
+      "ru_meaning": "люди здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "љубав",
+      "ru_meaning": "любовь"
+    },
+    {
+      "type": "word",
+      "ge_text": "љубав је ту",
+      "ru_meaning": "любовь здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "бољи",
+      "ru_meaning": "лучше"
+    },
+    {
+      "type": "word",
+      "ge_text": "њен",
+      "ru_meaning": "её"
+    },
+    {
+      "type": "word",
+      "ge_text": "њен дом",
+      "ru_meaning": "её дом",
+      "accepted_ru": [
+        "ее дом"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "њега",
+      "ru_meaning": "его"
+    },
+    {
+      "type": "word",
+      "ge_text": "коњ",
+      "ru_meaning": "конь",
+      "accepted_ru": [
+        "лошадь"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "мањи",
+      "ru_meaning": "меньше"
+    },
+    {
+      "type": "word",
+      "ge_text": "љуто",
+      "ru_meaning": "остро"
+    },
+    {
+      "type": "word",
+      "ge_text": "боље",
+      "ru_meaning": "лучше"
+    },
+    {
+      "type": "word",
+      "ge_text": "воља",
+      "ru_meaning": "воля"
+    },
+    {
+      "type": "word",
+      "ge_text": "поље",
+      "ru_meaning": "поле"
+    },
+    {
+      "type": "word",
+      "ge_text": "уље",
+      "ru_meaning": "масло"
+    },
+    {
+      "type": "word",
+      "ge_text": "њој",
+      "ru_meaning": "ей"
+    },
+    {
+      "type": "word",
+      "ge_text": "њима",
+      "ru_meaning": "им"
+    },
+    {
+      "type": "word",
+      "ge_text": "љуби",
+      "ru_meaning": "целует"
+    }
   ]
 }

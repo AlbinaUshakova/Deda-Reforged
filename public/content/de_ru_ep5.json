@@ -1,25 +1,106 @@
 {
   "id": "ep5",
   "title": "Урок 10",
-  "letters": ["Ö", "Ü"],
+  "letters": [
+    "Ö",
+    "Ü"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "für", "ru_meaning": "для" },
-    { "type": "word", "ge_text": "Tür", "ru_meaning": "дверь" },
-    { "type": "word", "ge_text": "grün", "ru_meaning": "зелёный", "accepted_ru": ["зеленый"] },
-    { "type": "word", "ge_text": "über", "ru_meaning": "над" },
-    { "type": "word", "ge_text": "Müll", "ru_meaning": "мусор" },
-    { "type": "word", "ge_text": "Öl", "ru_meaning": "масло" },
-    { "type": "word", "ge_text": "hören", "ru_meaning": "слышать" },
-    { "type": "word", "ge_text": "schön", "ru_meaning": "красиво" },
-    { "type": "word", "ge_text": "Köln", "ru_meaning": "Кёльн", "accepted_ru": ["Кельн"] },
-    { "type": "word", "ge_text": "zwölf", "ru_meaning": "двенадцать" },
-    { "type": "word", "ge_text": "Frühstück", "ru_meaning": "завтрак" },
-    { "type": "word", "ge_text": "möglich", "ru_meaning": "возможно" },
-    { "type": "word", "ge_text": "Löffel", "ru_meaning": "ложка" },
-    { "type": "word", "ge_text": "müde", "ru_meaning": "уставший" },
-    { "type": "word", "ge_text": "fünf", "ru_meaning": "пять" },
-    { "type": "word", "ge_text": "Tür zu", "ru_meaning": "дверь закрыта" },
-    { "type": "word", "ge_text": "Öl, bitte", "ru_meaning": "масло, пожалуйста" },
-    { "type": "word", "ge_text": "Für mich", "ru_meaning": "для меня" }
+    {
+      "type": "word",
+      "ge_text": "für",
+      "ru_meaning": "для"
+    },
+    {
+      "type": "word",
+      "ge_text": "Für mich",
+      "ru_meaning": "для меня"
+    },
+    {
+      "type": "word",
+      "ge_text": "Tür",
+      "ru_meaning": "дверь"
+    },
+    {
+      "type": "word",
+      "ge_text": "Tür zu",
+      "ru_meaning": "дверь закрыта"
+    },
+    {
+      "type": "word",
+      "ge_text": "grün",
+      "ru_meaning": "зелёный",
+      "accepted_ru": [
+        "зеленый"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "über",
+      "ru_meaning": "над"
+    },
+    {
+      "type": "word",
+      "ge_text": "Müll",
+      "ru_meaning": "мусор"
+    },
+    {
+      "type": "word",
+      "ge_text": "Öl",
+      "ru_meaning": "масло"
+    },
+    {
+      "type": "word",
+      "ge_text": "Öl, bitte",
+      "ru_meaning": "масло, пожалуйста"
+    },
+    {
+      "type": "word",
+      "ge_text": "hören",
+      "ru_meaning": "слышать"
+    },
+    {
+      "type": "word",
+      "ge_text": "schön",
+      "ru_meaning": "красиво"
+    },
+    {
+      "type": "word",
+      "ge_text": "Köln",
+      "ru_meaning": "Кёльн",
+      "accepted_ru": [
+        "Кельн"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "zwölf",
+      "ru_meaning": "двенадцать"
+    },
+    {
+      "type": "word",
+      "ge_text": "Frühstück",
+      "ru_meaning": "завтрак"
+    },
+    {
+      "type": "word",
+      "ge_text": "möglich",
+      "ru_meaning": "возможно"
+    },
+    {
+      "type": "word",
+      "ge_text": "Löffel",
+      "ru_meaning": "ложка"
+    },
+    {
+      "type": "word",
+      "ge_text": "müde",
+      "ru_meaning": "уставший"
+    },
+    {
+      "type": "word",
+      "ge_text": "fünf",
+      "ru_meaning": "пять"
+    }
   ]
 }

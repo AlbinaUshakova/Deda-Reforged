@@ -11,6 +11,7 @@ const courseFlag: Record<CourseId, string> = {
   es: '🇪🇸',
   de: '🇩🇪',
   en: '🇬🇧',
+  fr: '🇫🇷',
 };
 
 const courseAdverb: Record<CourseId, string> = {
@@ -20,6 +21,7 @@ const courseAdverb: Record<CourseId, string> = {
   de: 'по-немецки',
   sr: 'по-сербски',
   tr: 'по-турецки',
+  fr: 'по-французски',
 };
 
 type RestaurantBill = {
@@ -125,6 +127,21 @@ const restaurantBills: Record<CourseId, RestaurantBill> = {
     total: '165 ₺',
     payment: 'Kart',
   },
+  fr: {
+    label: 'Addition',
+    place: 'Café Deda',
+    date: '23/07/2026',
+    table: 'Table 4',
+    items: [
+      { qty: '1x', name: 'Croissant', price: '2,00 €' },
+      { qty: '1x', name: 'Quiche', price: '7,00 €' },
+      { qty: '1x', name: 'Café', price: '3,00 €' },
+    ],
+    subtotal: '12,00 €',
+    service: '1,20 €',
+    total: '13,20 €',
+    payment: 'Carte',
+  },
 };
 
 const BILL_LABELS: Record<CourseId, { subtotal: string; service: string; total: string }> = {
@@ -134,6 +151,7 @@ const BILL_LABELS: Record<CourseId, { subtotal: string; service: string; total: 
   de: { subtotal: 'Zwischensumme', service: 'Service', total: 'Gesamt' },
   sr: { subtotal: 'Међузбир', service: 'Сервис', total: 'Укупно' },
   tr: { subtotal: 'Ara toplam', service: 'Servis', total: 'Toplam' },
+  fr: { subtotal: 'Sous-total', service: 'Service', total: 'Total' },
 };
 
 const restaurantBillTranslations: Record<CourseId, RestaurantBill> = {
@@ -227,6 +245,21 @@ const restaurantBillTranslations: Record<CourseId, RestaurantBill> = {
     total: '165 ₺',
     payment: 'Карта',
   },
+  fr: {
+    label: 'Счёт',
+    place: 'Кафе Deda',
+    date: '23/07/2026',
+    table: 'Стол 4',
+    items: [
+      { qty: '1x', name: 'Круассан', price: '2,00 €' },
+      { qty: '1x', name: 'Киш', price: '7,00 €' },
+      { qty: '1x', name: 'Кофе', price: '3,00 €' },
+    ],
+    subtotal: '12,00 €',
+    service: '1,20 €',
+    total: '13,20 €',
+    payment: 'Карта',
+  },
 };
 
 const readingReasons: Record<CourseId, {
@@ -286,6 +319,15 @@ const readingReasons: Record<CourseId, {
       { title: 'Буква = звук, инженерная точность', text: '29 букв почти без исключений. Алфавит подстроили под язык, а не язык под чужие буквы.' },
       { title: 'Гласные договариваются', text: 'Суффиксы меняют гласную под корень. Это гармония гласных: не зубри окончания, слушай рифму слова.' },
       { title: 'Слова растут как поезд', text: 'К корню цепляются суффиксы, каждый со своим смыслом: evlerimden = ev + ler + im + den.' },
+    ],
+  },
+  fr: {
+    title: 'Французский: главное для чтения',
+    subtitle: 'Во французском много немых букв, но правила чтения на удивление стабильны.',
+    items: [
+      { title: 'Конечные буквы часто немые', text: 'e, s, t, d на конце обычно не читаются: petit звучит как «пёти». Это регулярно — к этому быстро привыкаешь.' },
+      { title: 'Буквы объединяются в звуки', text: 'ou, on, an, ai, eau читаются как единое целое. Выучил сочетание — узнаёшь его в сотнях слов.' },
+      { title: 'Значки над буквами помогают', text: 'é, è, ê, ç меняют звук предсказуемо. Диакритика — подсказка, а не помеха.' },
     ],
   },
 };

@@ -1,0 +1,97 @@
+{
+  "id": "ep4",
+  "title": "Урок 4",
+  "letters": [
+    "G",
+    "H",
+    "J",
+    "Q",
+    "Z"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "jour",
+      "ru_meaning": "день",
+      "translit": "жур"
+    },
+    {
+      "type": "word",
+      "ge_text": "un jour",
+      "ru_meaning": "день",
+      "translit": "эн жур"
+    },
+    {
+      "type": "word",
+      "ge_text": "bonjour",
+      "ru_meaning": "здравствуйте",
+      "translit": "бонжур"
+    },
+    {
+      "type": "word",
+      "ge_text": "grand",
+      "ru_meaning": "большой",
+      "translit": "гран"
+    },
+    {
+      "type": "word",
+      "ge_text": "un grand parc",
+      "ru_meaning": "большой парк",
+      "translit": "эн гран парк"
+    },
+    {
+      "type": "word",
+      "ge_text": "gare",
+      "ru_meaning": "вокзал",
+      "translit": "гар"
+    },
+    {
+      "type": "word",
+      "ge_text": "la gare",
+      "ru_meaning": "вокзал",
+      "translit": "ла гар"
+    },
+    {
+      "type": "word",
+      "ge_text": "rouge",
+      "ru_meaning": "красный",
+      "translit": "руж"
+    },
+    {
+      "type": "word",
+      "ge_text": "image",
+      "ru_meaning": "картинка",
+      "translit": "имаж"
+    },
+    {
+      "type": "word",
+      "ge_text": "juste",
+      "ru_meaning": "справедливо",
+      "translit": "жюст"
+    },
+    {
+      "type": "word",
+      "ge_text": "quel",
+      "ru_meaning": "какой",
+      "translit": "кэль"
+    },
+    {
+      "type": "word",
+      "ge_text": "quatre",
+      "ru_meaning": "четыре",
+      "translit": "катр"
+    },
+    {
+      "type": "word",
+      "ge_text": "garage",
+      "ru_meaning": "гараж",
+      "translit": "гараж"
+    },
+    {
+      "type": "word",
+      "ge_text": "gaz",
+      "ru_meaning": "газ",
+      "translit": "газ"
+    }
+  ]
+}

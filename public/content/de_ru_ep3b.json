@@ -1,25 +1,101 @@
 {
   "id": "ep3b",
   "title": "Урок 7",
-  "letters": ["P", "V", "J"],
+  "letters": [
+    "P",
+    "V",
+    "J"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "ja", "ru_meaning": "да" },
-    { "type": "word", "ge_text": "Jahr", "ru_meaning": "год" },
-    { "type": "word", "ge_text": "jetzt", "ru_meaning": "сейчас" },
-    { "type": "word", "ge_text": "jung", "ru_meaning": "молодой" },
-    { "type": "word", "ge_text": "Juni", "ru_meaning": "июнь" },
-    { "type": "word", "ge_text": "Juli", "ru_meaning": "июль" },
-    { "type": "word", "ge_text": "Park", "ru_meaning": "парк" },
-    { "type": "word", "ge_text": "Paket", "ru_meaning": "пакет" },
-    { "type": "word", "ge_text": "Papier", "ru_meaning": "бумага" },
-    { "type": "word", "ge_text": "Preis", "ru_meaning": "цена" },
-    { "type": "word", "ge_text": "Plan", "ru_meaning": "план" },
-    { "type": "word", "ge_text": "Post", "ru_meaning": "почта" },
-    { "type": "word", "ge_text": "viel", "ru_meaning": "много" },
-    { "type": "word", "ge_text": "vier", "ru_meaning": "четыре" },
-    { "type": "word", "ge_text": "Vater", "ru_meaning": "отец" },
-    { "type": "word", "ge_text": "Papa ist da", "ru_meaning": "папа здесь" },
-    { "type": "word", "ge_text": "Ja, bitte", "ru_meaning": "да, пожалуйста" },
-    { "type": "word", "ge_text": "Ich spiele", "ru_meaning": "я играю" }
+    {
+      "type": "word",
+      "ge_text": "ja",
+      "ru_meaning": "да"
+    },
+    {
+      "type": "word",
+      "ge_text": "Ja, bitte",
+      "ru_meaning": "да, пожалуйста"
+    },
+    {
+      "type": "word",
+      "ge_text": "Jahr",
+      "ru_meaning": "год"
+    },
+    {
+      "type": "word",
+      "ge_text": "jetzt",
+      "ru_meaning": "сейчас"
+    },
+    {
+      "type": "word",
+      "ge_text": "jung",
+      "ru_meaning": "молодой"
+    },
+    {
+      "type": "word",
+      "ge_text": "Papa ist da",
+      "ru_meaning": "папа здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "Juni",
+      "ru_meaning": "июнь"
+    },
+    {
+      "type": "word",
+      "ge_text": "Juli",
+      "ru_meaning": "июль"
+    },
+    {
+      "type": "word",
+      "ge_text": "Park",
+      "ru_meaning": "парк"
+    },
+    {
+      "type": "word",
+      "ge_text": "Paket",
+      "ru_meaning": "пакет"
+    },
+    {
+      "type": "word",
+      "ge_text": "Papier",
+      "ru_meaning": "бумага"
+    },
+    {
+      "type": "word",
+      "ge_text": "Preis",
+      "ru_meaning": "цена"
+    },
+    {
+      "type": "word",
+      "ge_text": "Plan",
+      "ru_meaning": "план"
+    },
+    {
+      "type": "word",
+      "ge_text": "Post",
+      "ru_meaning": "почта"
+    },
+    {
+      "type": "word",
+      "ge_text": "Ich spiele",
+      "ru_meaning": "я играю"
+    },
+    {
+      "type": "word",
+      "ge_text": "viel",
+      "ru_meaning": "много"
+    },
+    {
+      "type": "word",
+      "ge_text": "vier",
+      "ru_meaning": "четыре"
+    },
+    {
+      "type": "word",
+      "ge_text": "Vater",
+      "ru_meaning": "отец"
+    }
   ]
 }

@@ -1,24 +1,113 @@
 {
   "id": "ep8",
   "title": "Урок 8",
-  "letters": ["Z", "J", "Q"],
+  "letters": [
+    "Z",
+    "J",
+    "Q"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "job", "translit": "джоб", "ru_meaning": "работа" },
-    { "type": "word", "ge_text": "zero", "translit": "зиро", "ru_meaning": "ноль" },
-    { "type": "word", "ge_text": "zoo", "translit": "зу", "ru_meaning": "зоопарк" },
-    { "type": "word", "ge_text": "size", "translit": "сайз", "ru_meaning": "размер" },
-    { "type": "word", "ge_text": "prize", "translit": "прайз", "ru_meaning": "приз" },
-    { "type": "word", "ge_text": "juice", "translit": "джус", "ru_meaning": "сок" },
-    { "type": "word", "ge_text": "just", "translit": "джаст", "ru_meaning": "просто" },
-    { "type": "word", "ge_text": "joke", "translit": "джоук", "ru_meaning": "шутка" },
-    { "type": "word", "ge_text": "jump", "translit": "джамп", "ru_meaning": "прыгать" },
-    { "type": "word", "ge_text": "quiet", "translit": "квайет", "ru_meaning": "тихий" },
-    { "type": "word", "ge_text": "quick", "translit": "квик", "ru_meaning": "быстрый" },
-    { "type": "word", "ge_text": "question", "translit": "квестчен", "ru_meaning": "вопрос" },
-    { "type": "word", "ge_text": "quiz", "translit": "квиз", "ru_meaning": "тест" },
-    { "type": "word", "ge_text": "jazz", "translit": "джаз", "ru_meaning": "джаз" },
-    { "type": "word", "ge_text": "Just a joke", "translit": "джаст э джоук", "ru_meaning": "просто шутка" },
-    { "type": "word", "ge_text": "Quick quiz", "translit": "квик квиз", "ru_meaning": "быстрый тест" },
-    { "type": "word", "ge_text": "Jazz is fun", "translit": "джаз из фан", "ru_meaning": "джаз — это весело" }
+    {
+      "type": "word",
+      "ge_text": "job",
+      "translit": "джоб",
+      "ru_meaning": "работа"
+    },
+    {
+      "type": "word",
+      "ge_text": "zero",
+      "translit": "зиро",
+      "ru_meaning": "ноль"
+    },
+    {
+      "type": "word",
+      "ge_text": "zoo",
+      "translit": "зу",
+      "ru_meaning": "зоопарк"
+    },
+    {
+      "type": "word",
+      "ge_text": "size",
+      "translit": "сайз",
+      "ru_meaning": "размер"
+    },
+    {
+      "type": "word",
+      "ge_text": "prize",
+      "translit": "прайз",
+      "ru_meaning": "приз"
+    },
+    {
+      "type": "word",
+      "ge_text": "juice",
+      "translit": "джус",
+      "ru_meaning": "сок"
+    },
+    {
+      "type": "word",
+      "ge_text": "just",
+      "translit": "джаст",
+      "ru_meaning": "просто"
+    },
+    {
+      "type": "word",
+      "ge_text": "joke",
+      "translit": "джоук",
+      "ru_meaning": "шутка"
+    },
+    {
+      "type": "word",
+      "ge_text": "Just a joke",
+      "translit": "джаст э джоук",
+      "ru_meaning": "просто шутка"
+    },
+    {
+      "type": "word",
+      "ge_text": "jump",
+      "translit": "джамп",
+      "ru_meaning": "прыгать"
+    },
+    {
+      "type": "word",
+      "ge_text": "quiet",
+      "translit": "квайет",
+      "ru_meaning": "тихий"
+    },
+    {
+      "type": "word",
+      "ge_text": "quick",
+      "translit": "квик",
+      "ru_meaning": "быстрый"
+    },
+    {
+      "type": "word",
+      "ge_text": "question",
+      "translit": "квестчен",
+      "ru_meaning": "вопрос"
+    },
+    {
+      "type": "word",
+      "ge_text": "quiz",
+      "translit": "квиз",
+      "ru_meaning": "тест"
+    },
+    {
+      "type": "word",
+      "ge_text": "Quick quiz",
+      "translit": "квик квиз",
+      "ru_meaning": "быстрый тест"
+    },
+    {
+      "type": "word",
+      "ge_text": "jazz",
+      "translit": "джаз",
+      "ru_meaning": "джаз"
+    },
+    {
+      "type": "word",
+      "ge_text": "Jazz is fun",
+      "translit": "джаз из фан",
+      "ru_meaning": "джаз — это весело"
+    }
   ]
 }

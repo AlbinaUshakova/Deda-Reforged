@@ -1,0 +1,103 @@
+{
+  "id": "ep2",
+  "title": "Урок 2",
+  "letters": [
+    "N",
+    "O",
+    "U",
+    "M",
+    "D"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "une",
+      "ru_meaning": "одна (артикль)",
+      "translit": "юн"
+    },
+    {
+      "type": "word",
+      "ge_text": "mon",
+      "ru_meaning": "мой",
+      "translit": "мон"
+    },
+    {
+      "type": "word",
+      "ge_text": "nom",
+      "ru_meaning": "имя",
+      "translit": "ном"
+    },
+    {
+      "type": "word",
+      "ge_text": "mon nom",
+      "ru_meaning": "моё имя",
+      "translit": "мон ном"
+    },
+    {
+      "type": "word",
+      "ge_text": "non",
+      "ru_meaning": "нет",
+      "translit": "нон"
+    },
+    {
+      "type": "word",
+      "ge_text": "ami",
+      "ru_meaning": "друг",
+      "translit": "ами"
+    },
+    {
+      "type": "word",
+      "ge_text": "mon ami",
+      "ru_meaning": "мой друг",
+      "translit": "мон ами"
+    },
+    {
+      "type": "word",
+      "ge_text": "rue",
+      "ru_meaning": "улица",
+      "translit": "рю"
+    },
+    {
+      "type": "word",
+      "ge_text": "une rue",
+      "ru_meaning": "улица",
+      "translit": "юн рю"
+    },
+    {
+      "type": "word",
+      "ge_text": "lune",
+      "ru_meaning": "луна",
+      "translit": "люн"
+    },
+    {
+      "type": "word",
+      "ge_text": "la lune",
+      "ru_meaning": "луна",
+      "translit": "ла люн"
+    },
+    {
+      "type": "word",
+      "ge_text": "mer",
+      "ru_meaning": "море",
+      "translit": "мэр"
+    },
+    {
+      "type": "word",
+      "ge_text": "mur",
+      "ru_meaning": "стена",
+      "translit": "мюр"
+    },
+    {
+      "type": "word",
+      "ge_text": "monde",
+      "ru_meaning": "мир",
+      "translit": "монд"
+    },
+    {
+      "type": "word",
+      "ge_text": "lundi",
+      "ru_meaning": "понедельник",
+      "translit": "лёнди"
+    }
+  ]
+}

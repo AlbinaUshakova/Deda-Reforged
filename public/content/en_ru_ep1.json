@@ -1,23 +1,112 @@
 {
   "id": "ep1",
   "title": "Урок 1",
-  "letters": ["A", "T", "E", "S", "O"],
+  "letters": [
+    "A",
+    "T",
+    "E",
+    "S",
+    "O"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "at", "translit": "эт", "ru_meaning": "у" },
-    { "type": "word", "ge_text": "as", "translit": "эз", "ru_meaning": "как" },
-    { "type": "word", "ge_text": "so", "translit": "соу", "ru_meaning": "так" },
-    { "type": "word", "ge_text": "to", "translit": "ту", "ru_meaning": "к" },
-    { "type": "word", "ge_text": "too", "translit": "ту", "ru_meaning": "тоже" },
-    { "type": "word", "ge_text": "oat", "translit": "оут", "ru_meaning": "овёс", "accepted_ru": ["овес"] },
-    { "type": "word", "ge_text": "sea", "translit": "си", "ru_meaning": "море" },
-    { "type": "word", "ge_text": "eat", "translit": "ит", "ru_meaning": "есть" },
-    { "type": "word", "ge_text": "tea", "translit": "ти", "ru_meaning": "чай" },
-    { "type": "word", "ge_text": "toe", "translit": "тоу", "ru_meaning": "палец ноги" },
-    { "type": "word", "ge_text": "seat", "translit": "сит", "ru_meaning": "место" },
-    { "type": "word", "ge_text": "toast", "translit": "тоуст", "ru_meaning": "тост" },
-    { "type": "word", "ge_text": "state", "translit": "стейт", "ru_meaning": "штат" },
-    { "type": "word", "ge_text": "taste", "translit": "тейст", "ru_meaning": "вкус" },
-    { "type": "word", "ge_text": "Eat toast", "translit": "ит тоуст", "ru_meaning": "ешь тост" },
-    { "type": "word", "ge_text": "Tea, too", "translit": "ти ту", "ru_meaning": "чай тоже" }
+    {
+      "type": "word",
+      "ge_text": "at",
+      "translit": "эт",
+      "ru_meaning": "у"
+    },
+    {
+      "type": "word",
+      "ge_text": "as",
+      "translit": "эз",
+      "ru_meaning": "как"
+    },
+    {
+      "type": "word",
+      "ge_text": "so",
+      "translit": "соу",
+      "ru_meaning": "так"
+    },
+    {
+      "type": "word",
+      "ge_text": "to",
+      "translit": "ту",
+      "ru_meaning": "к"
+    },
+    {
+      "type": "word",
+      "ge_text": "too",
+      "translit": "ту",
+      "ru_meaning": "тоже"
+    },
+    {
+      "type": "word",
+      "ge_text": "oat",
+      "translit": "оут",
+      "ru_meaning": "овёс",
+      "accepted_ru": [
+        "овес"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "sea",
+      "translit": "си",
+      "ru_meaning": "море"
+    },
+    {
+      "type": "word",
+      "ge_text": "eat",
+      "translit": "ит",
+      "ru_meaning": "есть"
+    },
+    {
+      "type": "word",
+      "ge_text": "tea",
+      "translit": "ти",
+      "ru_meaning": "чай"
+    },
+    {
+      "type": "word",
+      "ge_text": "Tea, too",
+      "translit": "ти ту",
+      "ru_meaning": "чай тоже"
+    },
+    {
+      "type": "word",
+      "ge_text": "toe",
+      "translit": "тоу",
+      "ru_meaning": "палец ноги"
+    },
+    {
+      "type": "word",
+      "ge_text": "seat",
+      "translit": "сит",
+      "ru_meaning": "место"
+    },
+    {
+      "type": "word",
+      "ge_text": "toast",
+      "translit": "тоуст",
+      "ru_meaning": "тост"
+    },
+    {
+      "type": "word",
+      "ge_text": "Eat toast",
+      "translit": "ит тоуст",
+      "ru_meaning": "ешь тост"
+    },
+    {
+      "type": "word",
+      "ge_text": "state",
+      "translit": "стейт",
+      "ru_meaning": "штат"
+    },
+    {
+      "type": "word",
+      "ge_text": "taste",
+      "translit": "тейст",
+      "ru_meaning": "вкус"
+    }
   ]
 }

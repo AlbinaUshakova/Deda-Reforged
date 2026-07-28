@@ -1,25 +1,106 @@
 {
   "id": "ep6",
   "title": "Урок 6",
-  "letters": ["Ж", "Ф"],
+  "letters": [
+    "Ж",
+    "Ф"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "живот", "ru_meaning": "жизнь" },
-    { "type": "word", "ge_text": "жена", "ru_meaning": "женщина" },
-    { "type": "word", "ge_text": "желим", "ru_meaning": "хочу" },
-    { "type": "word", "ge_text": "жедан", "ru_meaning": "хочу пить" },
-    { "type": "word", "ge_text": "жути", "ru_meaning": "жёлтый", "accepted_ru": ["желтый"] },
-    { "type": "word", "ge_text": "нож", "ru_meaning": "нож" },
-    { "type": "word", "ge_text": "муж", "ru_meaning": "муж" },
-    { "type": "word", "ge_text": "може", "ru_meaning": "можно" },
-    { "type": "word", "ge_text": "каже", "ru_meaning": "говорит" },
-    { "type": "word", "ge_text": "фала", "ru_meaning": "спасибо" },
-    { "type": "word", "ge_text": "кафа", "ru_meaning": "кофе" },
-    { "type": "word", "ge_text": "филм", "ru_meaning": "фильм" },
-    { "type": "word", "ge_text": "флаша", "ru_meaning": "бутылка" },
-    { "type": "word", "ge_text": "фино", "ru_meaning": "хорошо" },
-    { "type": "word", "ge_text": "шеф", "ru_meaning": "шеф" },
-    { "type": "word", "ge_text": "жена је ту", "ru_meaning": "женщина здесь" },
-    { "type": "word", "ge_text": "филм је добар", "ru_meaning": "фильм хороший" },
-    { "type": "word", "ge_text": "жута чаша", "ru_meaning": "жёлтый стакан", "accepted_ru": ["желтый стакан"] }
+    {
+      "type": "word",
+      "ge_text": "живот",
+      "ru_meaning": "жизнь"
+    },
+    {
+      "type": "word",
+      "ge_text": "жена",
+      "ru_meaning": "женщина"
+    },
+    {
+      "type": "word",
+      "ge_text": "жена је ту",
+      "ru_meaning": "женщина здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "желим",
+      "ru_meaning": "хочу"
+    },
+    {
+      "type": "word",
+      "ge_text": "жедан",
+      "ru_meaning": "хочу пить"
+    },
+    {
+      "type": "word",
+      "ge_text": "жути",
+      "ru_meaning": "жёлтый",
+      "accepted_ru": [
+        "желтый"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "нож",
+      "ru_meaning": "нож"
+    },
+    {
+      "type": "word",
+      "ge_text": "муж",
+      "ru_meaning": "муж"
+    },
+    {
+      "type": "word",
+      "ge_text": "може",
+      "ru_meaning": "можно"
+    },
+    {
+      "type": "word",
+      "ge_text": "каже",
+      "ru_meaning": "говорит"
+    },
+    {
+      "type": "word",
+      "ge_text": "фала",
+      "ru_meaning": "спасибо"
+    },
+    {
+      "type": "word",
+      "ge_text": "кафа",
+      "ru_meaning": "кофе"
+    },
+    {
+      "type": "word",
+      "ge_text": "филм",
+      "ru_meaning": "фильм"
+    },
+    {
+      "type": "word",
+      "ge_text": "филм је добар",
+      "ru_meaning": "фильм хороший"
+    },
+    {
+      "type": "word",
+      "ge_text": "жута чаша",
+      "ru_meaning": "жёлтый стакан",
+      "accepted_ru": [
+        "желтый стакан"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "флаша",
+      "ru_meaning": "бутылка"
+    },
+    {
+      "type": "word",
+      "ge_text": "фино",
+      "ru_meaning": "хорошо"
+    },
+    {
+      "type": "word",
+      "ge_text": "шеф",
+      "ru_meaning": "шеф"
+    }
   ]
 }

@@ -1,25 +1,104 @@
 {
   "id": "ep4",
   "title": "Урок 8",
-  "letters": ["Y", "X", "Q"],
+  "letters": [
+    "Y",
+    "X",
+    "Q"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "Taxi", "ru_meaning": "такси" },
-    { "type": "word", "ge_text": "Text", "ru_meaning": "текст" },
-    { "type": "word", "ge_text": "Box", "ru_meaning": "коробка" },
-    { "type": "word", "ge_text": "Mix", "ru_meaning": "смесь" },
-    { "type": "word", "ge_text": "Keks", "ru_meaning": "печенье" },
-    { "type": "word", "ge_text": "Quiz", "ru_meaning": "тест" },
-    { "type": "word", "ge_text": "Quittung", "ru_meaning": "чек" },
-    { "type": "word", "ge_text": "Quark", "ru_meaning": "творог" },
-    { "type": "word", "ge_text": "Yoga", "ru_meaning": "йога" },
-    { "type": "word", "ge_text": "Party", "ru_meaning": "вечеринка" },
-    { "type": "word", "ge_text": "Handy", "ru_meaning": "мобильник" },
-    { "type": "word", "ge_text": "Baby", "ru_meaning": "малыш" },
-    { "type": "word", "ge_text": "City", "ru_meaning": "центр города" },
-    { "type": "word", "ge_text": "okay", "ru_meaning": "окей", "accepted_ru": ["ок"] },
-    { "type": "word", "ge_text": "Fax", "ru_meaning": "факс" },
-    { "type": "word", "ge_text": "Taxi ist da", "ru_meaning": "такси здесь" },
-    { "type": "word", "ge_text": "Yoga ist gut", "ru_meaning": "йога — это хорошо" },
-    { "type": "word", "ge_text": "Quiz ist okay", "ru_meaning": "тест нормальный" }
+    {
+      "type": "word",
+      "ge_text": "Taxi",
+      "ru_meaning": "такси"
+    },
+    {
+      "type": "word",
+      "ge_text": "Taxi ist da",
+      "ru_meaning": "такси здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "Text",
+      "ru_meaning": "текст"
+    },
+    {
+      "type": "word",
+      "ge_text": "Box",
+      "ru_meaning": "коробка"
+    },
+    {
+      "type": "word",
+      "ge_text": "Mix",
+      "ru_meaning": "смесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "Keks",
+      "ru_meaning": "печенье"
+    },
+    {
+      "type": "word",
+      "ge_text": "Quiz",
+      "ru_meaning": "тест"
+    },
+    {
+      "type": "word",
+      "ge_text": "Quittung",
+      "ru_meaning": "чек"
+    },
+    {
+      "type": "word",
+      "ge_text": "Quark",
+      "ru_meaning": "творог"
+    },
+    {
+      "type": "word",
+      "ge_text": "Yoga",
+      "ru_meaning": "йога"
+    },
+    {
+      "type": "word",
+      "ge_text": "Yoga ist gut",
+      "ru_meaning": "йога — это хорошо"
+    },
+    {
+      "type": "word",
+      "ge_text": "Party",
+      "ru_meaning": "вечеринка"
+    },
+    {
+      "type": "word",
+      "ge_text": "Handy",
+      "ru_meaning": "мобильник"
+    },
+    {
+      "type": "word",
+      "ge_text": "Baby",
+      "ru_meaning": "малыш"
+    },
+    {
+      "type": "word",
+      "ge_text": "City",
+      "ru_meaning": "центр города"
+    },
+    {
+      "type": "word",
+      "ge_text": "okay",
+      "ru_meaning": "окей",
+      "accepted_ru": [
+        "ок"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "Quiz ist okay",
+      "ru_meaning": "тест нормальный"
+    },
+    {
+      "type": "word",
+      "ge_text": "Fax",
+      "ru_meaning": "факс"
+    }
   ]
 }

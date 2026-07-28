@@ -1,25 +1,101 @@
 {
   "id": "ep4",
   "title": "Урок 4",
-  "letters": ["Г", "З", "Х"],
+  "letters": [
+    "Г",
+    "З",
+    "Х"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "бог", "ru_meaning": "бог" },
-    { "type": "word", "ge_text": "без", "ru_meaning": "без" },
-    { "type": "word", "ge_text": "брзо", "ru_meaning": "быстро" },
-    { "type": "word", "ge_text": "због", "ru_meaning": "из-за" },
-    { "type": "word", "ge_text": "град", "ru_meaning": "город" },
-    { "type": "word", "ge_text": "здраво", "ru_meaning": "привет" },
-    { "type": "word", "ge_text": "где", "ru_meaning": "где" },
-    { "type": "word", "ge_text": "зима", "ru_meaning": "зима" },
-    { "type": "word", "ge_text": "брод", "ru_meaning": "корабль" },
-    { "type": "word", "ge_text": "хлеб", "ru_meaning": "хлеб" },
-    { "type": "word", "ge_text": "храна", "ru_meaning": "еда" },
-    { "type": "word", "ge_text": "хотел", "ru_meaning": "отель" },
-    { "type": "word", "ge_text": "хладно", "ru_meaning": "холодно" },
-    { "type": "word", "ge_text": "гора", "ru_meaning": "гора" },
-    { "type": "word", "ge_text": "знак", "ru_meaning": "знак" },
-    { "type": "word", "ge_text": "где је дом", "ru_meaning": "где дом" },
-    { "type": "word", "ge_text": "ово је хлеб", "ru_meaning": "это хлеб" },
-    { "type": "word", "ge_text": "здраво свима", "ru_meaning": "всем привет" }
+    {
+      "type": "word",
+      "ge_text": "бог",
+      "ru_meaning": "бог"
+    },
+    {
+      "type": "word",
+      "ge_text": "без",
+      "ru_meaning": "без"
+    },
+    {
+      "type": "word",
+      "ge_text": "брзо",
+      "ru_meaning": "быстро"
+    },
+    {
+      "type": "word",
+      "ge_text": "због",
+      "ru_meaning": "из-за"
+    },
+    {
+      "type": "word",
+      "ge_text": "град",
+      "ru_meaning": "город"
+    },
+    {
+      "type": "word",
+      "ge_text": "здраво",
+      "ru_meaning": "привет"
+    },
+    {
+      "type": "word",
+      "ge_text": "здраво свима",
+      "ru_meaning": "всем привет"
+    },
+    {
+      "type": "word",
+      "ge_text": "где",
+      "ru_meaning": "где"
+    },
+    {
+      "type": "word",
+      "ge_text": "где је дом",
+      "ru_meaning": "где дом"
+    },
+    {
+      "type": "word",
+      "ge_text": "зима",
+      "ru_meaning": "зима"
+    },
+    {
+      "type": "word",
+      "ge_text": "брод",
+      "ru_meaning": "корабль"
+    },
+    {
+      "type": "word",
+      "ge_text": "хлеб",
+      "ru_meaning": "хлеб"
+    },
+    {
+      "type": "word",
+      "ge_text": "ово је хлеб",
+      "ru_meaning": "это хлеб"
+    },
+    {
+      "type": "word",
+      "ge_text": "храна",
+      "ru_meaning": "еда"
+    },
+    {
+      "type": "word",
+      "ge_text": "хотел",
+      "ru_meaning": "отель"
+    },
+    {
+      "type": "word",
+      "ge_text": "хладно",
+      "ru_meaning": "холодно"
+    },
+    {
+      "type": "word",
+      "ge_text": "гора",
+      "ru_meaning": "гора"
+    },
+    {
+      "type": "word",
+      "ge_text": "знак",
+      "ru_meaning": "знак"
+    }
   ]
 }

@@ -28,9 +28,21 @@ function isReadingLesson(episode: Episode): boolean {
 }
 
 function getReadingLessonTargets(index: number): { total: number; phrases: number } {
-  if (index < 2) return { total: 8, phrases: 2 };
-  if (index < 5) return { total: 10, phrases: 3 };
-  return { total: 13, phrases: 3 };
+  if (index < 2) return { total: 14, phrases: 4 };
+  if (index < 5) return { total: 16, phrases: 5 };
+  return { total: 18, phrases: 6 };
+}
+
+// Урок написан «воронкой», если фразы вплетены между словами (слово → слово →
+// фраза → слово …) и слов больше, чем фраз (иначе это просто набор фраз, как
+// местоименные комбинации в sr:ep1). Тогда сохраняем авторский порядок.
+function isFunnelOrdered(cards: Episode['cards']): boolean {
+  const phraseCount = cards.filter(isPhraseCard).length;
+  const wordCount = cards.length - phraseCount;
+  const interleaved = cards.some(
+    (card, i) => isPhraseCard(card) && cards.slice(i + 1).some((next) => !isPhraseCard(next)),
+  );
+  return interleaved && wordCount > phraseCount;
 }
 
 function isPhraseCard(card: Episode['cards'][number]): boolean {
@@ -39,6 +51,27 @@ function isPhraseCard(card: Episode['cards'][number]): boolean {
 
 function compactReadingLesson(episode: Episode, index: number): Episode {
   const { total, phrases: phraseTarget } = getReadingLessonTargets(index);
+
+  // Воронка: сохраняем авторский порядок (слово → фраза → слово …). Если карточек
+  // больше лимита — обрезаем лишние СЛОВА с хвоста, сохраняя все фразы.
+  if (isFunnelOrdered(episode.cards)) {
+    const cards = episode.cards;
+    if (cards.length <= total) {
+      return { ...episode, cards };
+    }
+    let excess = cards.length - total;
+    const trimmed: Episode['cards'] = [];
+    for (let i = cards.length - 1; i >= 0; i -= 1) {
+      if (excess > 0 && !isPhraseCard(cards[i])) {
+        excess -= 1;
+        continue;
+      }
+      trimmed.unshift(cards[i]);
+    }
+    return { ...episode, cards: trimmed };
+  }
+
+  // Старое поведение для не-воронки: слова, затем фразы (гарантируем несколько фраз).
   const phraseCards = episode.cards.filter(isPhraseCard);
   const wordCards = episode.cards.filter((card) => !isPhraseCard(card));
   const selectedPhrases = phraseCards.slice(0, phraseTarget);

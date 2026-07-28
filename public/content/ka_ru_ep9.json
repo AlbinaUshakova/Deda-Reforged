@@ -1,25 +1,110 @@
 {
   "id": "ep9",
   "title": "Урок 10",
-  "letters": ["ჯ", "ჰ", "ზ", "ფ"],
+  "letters": [
+    "ჯ",
+    "ჰ",
+    "ზ",
+    "ფ"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "ჰო", "ru_meaning": "да" },
-    { "type": "word", "ge_text": "ჯემი", "ru_meaning": "джем" },
-    { "type": "word", "ge_text": "ზეთი", "ru_meaning": "масло" },
-    { "type": "word", "ge_text": "ეზო", "ru_meaning": "двор" },
-    { "type": "word", "ge_text": "გზა", "ru_meaning": "дорога" },
-    { "type": "word", "ge_text": "ფული", "ru_meaning": "деньги" },
-    { "type": "word", "ge_text": "ფანქარი", "ru_meaning": "карандаш" },
-    { "type": "word", "ge_text": "კაფე", "ru_meaning": "кафе" },
-    { "type": "word", "ge_text": "ოფისი", "ru_meaning": "офис" },
-    { "type": "word", "ge_text": "ფაფა", "ru_meaning": "каша" },
-    { "type": "word", "ge_text": "ფორთოხალი", "ru_meaning": "апельсин" },
-    { "type": "word", "ge_text": "ჰო, გამარჯობა", "ru_meaning": "да, здравствуйте", "accepted_ru": ["да привет", "да добрый день"] },
-    { "type": "word", "ge_text": "ჰამბურგერი", "ru_meaning": "гамбургер" },
-    { "type": "word", "ge_text": "ტელეფონი", "ru_meaning": "телефон" },
-    { "type": "word", "ge_text": "ფასი", "ru_meaning": "цена" },
-    { "type": "word", "ge_text": "გამარჯობა", "ru_meaning": "здравствуйте", "accepted_ru": ["привет", "добрый день"] },
-    { "type": "word", "ge_text": "ფული მინდა", "ru_meaning": "мне нужны деньги" },
-    { "type": "word", "ge_text": "რა ფასია", "ru_meaning": "какая цена" }
+    {
+      "type": "word",
+      "ge_text": "გამარჯობა",
+      "ru_meaning": "здравствуйте",
+      "accepted_ru": [
+        "привет",
+        "добрый день"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "ჰო",
+      "ru_meaning": "да"
+    },
+    {
+      "type": "word",
+      "ge_text": "ჰო, გამარჯობა",
+      "ru_meaning": "да, здравствуйте",
+      "accepted_ru": [
+        "да привет",
+        "да добрый день"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "ფული",
+      "ru_meaning": "деньги"
+    },
+    {
+      "type": "word",
+      "ge_text": "ფული მინდა",
+      "ru_meaning": "мне нужны деньги"
+    },
+    {
+      "type": "word",
+      "ge_text": "ფასი",
+      "ru_meaning": "цена"
+    },
+    {
+      "type": "word",
+      "ge_text": "რა ფასია",
+      "ru_meaning": "какая цена"
+    },
+    {
+      "type": "word",
+      "ge_text": "კაფე",
+      "ru_meaning": "кафе"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი კაფე",
+      "ru_meaning": "вот кафе"
+    },
+    {
+      "type": "word",
+      "ge_text": "ჯემი",
+      "ru_meaning": "джем"
+    },
+    {
+      "type": "word",
+      "ge_text": "ზეთი",
+      "ru_meaning": "масло"
+    },
+    {
+      "type": "word",
+      "ge_text": "ფაფა",
+      "ru_meaning": "каша"
+    },
+    {
+      "type": "word",
+      "ge_text": "ფორთოხალი",
+      "ru_meaning": "апельсин"
+    },
+    {
+      "type": "word",
+      "ge_text": "ტელეფონი",
+      "ru_meaning": "телефон"
+    },
+    {
+      "type": "word",
+      "ge_text": "ფანქარი",
+      "ru_meaning": "карандаш"
+    },
+    {
+      "type": "word",
+      "ge_text": "ოფისი",
+      "ru_meaning": "офис"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეზო",
+      "ru_meaning": "двор"
+    },
+    {
+      "type": "word",
+      "ge_text": "გზა",
+      "ru_meaning": "дорога"
+    }
   ]
 }

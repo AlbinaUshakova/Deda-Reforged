@@ -1,0 +1,111 @@
+{
+  "id": "ep7",
+  "title": "Урок 7",
+  "letters": [
+    "Â",
+    "Î",
+    "Ï",
+    "Û",
+    "Ù",
+    "Ë",
+    "Œ"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "âge",
+      "ru_meaning": "возраст",
+      "translit": "аж"
+    },
+    {
+      "type": "word",
+      "ge_text": "où",
+      "ru_meaning": "где",
+      "translit": "у"
+    },
+    {
+      "type": "word",
+      "ge_text": "où est la gare",
+      "ru_meaning": "где вокзал",
+      "translit": "у э ла гар"
+    },
+    {
+      "type": "word",
+      "ge_text": "gâteau",
+      "ru_meaning": "торт",
+      "translit": "гато"
+    },
+    {
+      "type": "word",
+      "ge_text": "un gâteau",
+      "ru_meaning": "торт",
+      "translit": "эн гато"
+    },
+    {
+      "type": "word",
+      "ge_text": "château",
+      "ru_meaning": "замок",
+      "translit": "шато"
+    },
+    {
+      "type": "word",
+      "ge_text": "goût",
+      "ru_meaning": "вкус",
+      "translit": "гу"
+    },
+    {
+      "type": "word",
+      "ge_text": "île",
+      "ru_meaning": "остров",
+      "translit": "иль"
+    },
+    {
+      "type": "word",
+      "ge_text": "dîner",
+      "ru_meaning": "ужин",
+      "translit": "дине"
+    },
+    {
+      "type": "word",
+      "ge_text": "sûr",
+      "ru_meaning": "уверенный",
+      "translit": "сюр"
+    },
+    {
+      "type": "word",
+      "ge_text": "maïs",
+      "ru_meaning": "кукуруза",
+      "translit": "маис"
+    },
+    {
+      "type": "word",
+      "ge_text": "Noël",
+      "ru_meaning": "Рождество",
+      "translit": "ноэль"
+    },
+    {
+      "type": "word",
+      "ge_text": "œuf",
+      "ru_meaning": "яйцо",
+      "translit": "ёф"
+    },
+    {
+      "type": "word",
+      "ge_text": "sœur",
+      "ru_meaning": "сестра",
+      "translit": "сёр"
+    },
+    {
+      "type": "word",
+      "ge_text": "ma sœur",
+      "ru_meaning": "моя сестра",
+      "translit": "ма сёр"
+    },
+    {
+      "type": "word",
+      "ge_text": "cœur",
+      "ru_meaning": "сердце",
+      "translit": "кёр"
+    }
+  ]
+}

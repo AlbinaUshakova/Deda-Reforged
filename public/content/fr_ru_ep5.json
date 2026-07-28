@@ -1,0 +1,97 @@
+{
+  "id": "ep5",
+  "title": "Урок 5",
+  "letters": [
+    "K",
+    "W",
+    "X",
+    "Y",
+    "É"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "café",
+      "ru_meaning": "кофе",
+      "translit": "кафе"
+    },
+    {
+      "type": "word",
+      "ge_text": "un café",
+      "ru_meaning": "кофе",
+      "translit": "эн кафе"
+    },
+    {
+      "type": "word",
+      "ge_text": "thé",
+      "ru_meaning": "чай",
+      "translit": "тэ"
+    },
+    {
+      "type": "word",
+      "ge_text": "un thé",
+      "ru_meaning": "чай",
+      "translit": "эн тэ"
+    },
+    {
+      "type": "word",
+      "ge_text": "métro",
+      "ru_meaning": "метро",
+      "translit": "метро"
+    },
+    {
+      "type": "word",
+      "ge_text": "le métro",
+      "ru_meaning": "метро",
+      "translit": "лё метро"
+    },
+    {
+      "type": "word",
+      "ge_text": "taxi",
+      "ru_meaning": "такси",
+      "translit": "такси"
+    },
+    {
+      "type": "word",
+      "ge_text": "un taxi",
+      "ru_meaning": "такси",
+      "translit": "эн такси"
+    },
+    {
+      "type": "word",
+      "ge_text": "vélo",
+      "ru_meaning": "велосипед",
+      "translit": "вело"
+    },
+    {
+      "type": "word",
+      "ge_text": "clé",
+      "ru_meaning": "ключ",
+      "translit": "кле"
+    },
+    {
+      "type": "word",
+      "ge_text": "idée",
+      "ru_meaning": "идея",
+      "translit": "идэ"
+    },
+    {
+      "type": "word",
+      "ge_text": "kilo",
+      "ru_meaning": "килограмм",
+      "translit": "кило"
+    },
+    {
+      "type": "word",
+      "ge_text": "eau",
+      "ru_meaning": "вода",
+      "translit": "о"
+    },
+    {
+      "type": "word",
+      "ge_text": "pays",
+      "ru_meaning": "страна",
+      "translit": "пэи"
+    }
+  ]
+}

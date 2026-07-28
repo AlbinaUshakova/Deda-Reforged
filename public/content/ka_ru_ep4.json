@@ -1,24 +1,97 @@
 {
   "id": "ep4",
   "title": "Урок 5",
-  "letters": ["ბ", "თ", "ტ"],
+  "letters": [
+    "ბ",
+    "თ",
+    "ტ"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "ერთი", "ru_meaning": "один" },
-    { "type": "word", "ge_text": "ათი", "ru_meaning": "десять" },
-    { "type": "word", "ge_text": "ბარათი", "ru_meaning": "карта" },
-    { "type": "word", "ge_text": "ბებია", "ru_meaning": "бабушка" },
-    { "type": "word", "ge_text": "ბაბუა", "ru_meaning": "дедушка" },
-    { "type": "word", "ge_text": "თარო", "ru_meaning": "полка" },
-    { "type": "word", "ge_text": "თითი", "ru_meaning": "палец" },
-    { "type": "word", "ge_text": "თათი", "ru_meaning": "лапа" },
-    { "type": "word", "ge_text": "ტომატი", "ru_meaning": "томат" },
-    { "type": "word", "ge_text": "ტორტი", "ru_meaning": "торт" },
-    { "type": "word", "ge_text": "ბათუმი", "ru_meaning": "Батуми" },
-    { "type": "word", "ge_text": "ტბა", "ru_meaning": "озеро" },
-    { "type": "word", "ge_text": "თბილი", "ru_meaning": "тёплый", "accepted_ru": ["теплый"] },
-    { "type": "word", "ge_text": "ბილეთი", "ru_meaning": "билет" },
-    { "type": "word", "ge_text": "ეს ბილეთია", "ru_meaning": "это билет" },
-    { "type": "word", "ge_text": "მე მინდა ბილეთი", "ru_meaning": "я хочу билет" },
-    { "type": "word", "ge_text": "ეს თბილია", "ru_meaning": "это тёплое", "accepted_ru": ["это теплое"] }
+    {
+      "type": "word",
+      "ge_text": "ერთი",
+      "ru_meaning": "один"
+    },
+    {
+      "type": "word",
+      "ge_text": "ათი",
+      "ru_meaning": "десять"
+    },
+    {
+      "type": "word",
+      "ge_text": "ბილეთი",
+      "ru_meaning": "билет"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს ბილეთია",
+      "ru_meaning": "это билет"
+    },
+    {
+      "type": "word",
+      "ge_text": "მე მინდა ბილეთი",
+      "ru_meaning": "я хочу билет"
+    },
+    {
+      "type": "word",
+      "ge_text": "თბილი",
+      "ru_meaning": "тёплый",
+      "accepted_ru": [
+        "теплый"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს თბილია",
+      "ru_meaning": "это тёплое",
+      "accepted_ru": [
+        "это теплое"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "ტორტი",
+      "ru_meaning": "торт"
+    },
+    {
+      "type": "word",
+      "ge_text": "თარო",
+      "ru_meaning": "полка"
+    },
+    {
+      "type": "word",
+      "ge_text": "თითი",
+      "ru_meaning": "палец"
+    },
+    {
+      "type": "word",
+      "ge_text": "თათი",
+      "ru_meaning": "лапа"
+    },
+    {
+      "type": "word",
+      "ge_text": "ტომატი",
+      "ru_meaning": "томат"
+    },
+    {
+      "type": "word",
+      "ge_text": "ბარათი",
+      "ru_meaning": "карта"
+    },
+    {
+      "type": "word",
+      "ge_text": "ბებია",
+      "ru_meaning": "бабушка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ბაბუა",
+      "ru_meaning": "дедушка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ტბა",
+      "ru_meaning": "озеро"
+    }
   ]
 }

@@ -1,25 +1,101 @@
 {
   "id": "ep1b",
   "title": "Урок 3",
-  "letters": ["H", "U", "L"],
+  "letters": [
+    "H",
+    "U",
+    "L"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "und", "ru_meaning": "и" },
-    { "type": "word", "ge_text": "du", "ru_meaning": "ты" },
-    { "type": "word", "ge_text": "Haus", "ru_meaning": "дом" },
-    { "type": "word", "ge_text": "Hund", "ru_meaning": "собака" },
-    { "type": "word", "ge_text": "Hand", "ru_meaning": "рука" },
-    { "type": "word", "ge_text": "laut", "ru_meaning": "громко" },
-    { "type": "word", "ge_text": "leer", "ru_meaning": "пустой" },
-    { "type": "word", "ge_text": "lernen", "ru_meaning": "учить" },
-    { "type": "word", "ge_text": "lesen", "ru_meaning": "читать" },
-    { "type": "word", "ge_text": "Ruhe", "ru_meaning": "тишина" },
-    { "type": "word", "ge_text": "halt", "ru_meaning": "стой" },
-    { "type": "word", "ge_text": "Hals", "ru_meaning": "шея" },
-    { "type": "word", "ge_text": "Stuhl", "ru_meaning": "стул" },
-    { "type": "word", "ge_text": "Uhr", "ru_meaning": "часы" },
-    { "type": "word", "ge_text": "heute", "ru_meaning": "сегодня" },
-    { "type": "word", "ge_text": "Du lernst", "ru_meaning": "ты учишься" },
-    { "type": "word", "ge_text": "Sie ist da", "ru_meaning": "она здесь" },
-    { "type": "word", "ge_text": "Er ist da", "ru_meaning": "он здесь" }
+    {
+      "type": "word",
+      "ge_text": "und",
+      "ru_meaning": "и"
+    },
+    {
+      "type": "word",
+      "ge_text": "du",
+      "ru_meaning": "ты"
+    },
+    {
+      "type": "word",
+      "ge_text": "Du lernst",
+      "ru_meaning": "ты учишься"
+    },
+    {
+      "type": "word",
+      "ge_text": "Haus",
+      "ru_meaning": "дом"
+    },
+    {
+      "type": "word",
+      "ge_text": "Hund",
+      "ru_meaning": "собака"
+    },
+    {
+      "type": "word",
+      "ge_text": "Hand",
+      "ru_meaning": "рука"
+    },
+    {
+      "type": "word",
+      "ge_text": "laut",
+      "ru_meaning": "громко"
+    },
+    {
+      "type": "word",
+      "ge_text": "leer",
+      "ru_meaning": "пустой"
+    },
+    {
+      "type": "word",
+      "ge_text": "lernen",
+      "ru_meaning": "учить"
+    },
+    {
+      "type": "word",
+      "ge_text": "Sie ist da",
+      "ru_meaning": "она здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "lesen",
+      "ru_meaning": "читать"
+    },
+    {
+      "type": "word",
+      "ge_text": "Ruhe",
+      "ru_meaning": "тишина"
+    },
+    {
+      "type": "word",
+      "ge_text": "halt",
+      "ru_meaning": "стой"
+    },
+    {
+      "type": "word",
+      "ge_text": "Hals",
+      "ru_meaning": "шея"
+    },
+    {
+      "type": "word",
+      "ge_text": "Er ist da",
+      "ru_meaning": "он здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "Stuhl",
+      "ru_meaning": "стул"
+    },
+    {
+      "type": "word",
+      "ge_text": "Uhr",
+      "ru_meaning": "часы"
+    },
+    {
+      "type": "word",
+      "ge_text": "heute",
+      "ru_meaning": "сегодня"
+    }
   ]
 }

@@ -4,19 +4,13 @@
   "letters": ["ა", "ე", "ი", "ვ", "რ"],
   "cards": [
     { "type": "word", "ge_text": "აი", "ru_meaning": "вот" },
+    { "type": "word", "ge_text": "ია", "ru_meaning": "фиалка" },
+    { "type": "word", "ge_text": "აი ია", "ru_meaning": "вот фиалка" },
+    { "type": "word", "ge_text": "რვა", "ru_meaning": "восемь" },
+    { "type": "word", "ge_text": "რვა ია", "ru_meaning": "восемь фиалок" },
     { "type": "word", "ge_text": "რა", "ru_meaning": "что" },
-    { "type": "word", "ge_text": "არა", "ru_meaning": "нет" },
-    { "type": "word", "ge_text": "არ", "ru_meaning": "не" },
-    { "type": "word", "ge_text": "ვერ", "ru_meaning": "не могу" },
-    { "type": "word", "ge_text": "ვარ", "ru_meaning": "я есть" },
-    { "type": "word", "ge_text": "არ ვარ", "ru_meaning": "я не" },
-    { "type": "word", "ge_text": "ვერა", "ru_meaning": "не могу" },
-    { "type": "word", "ge_text": "ვაი", "ru_meaning": "ой" },
-    { "type": "word", "ge_text": "რავი", "ru_meaning": "не знаю" },
-    { "type": "word", "ge_text": "ია", "ru_meaning": "цветок" },
-    { "type": "word", "ge_text": "არა ვარ", "ru_meaning": "нет, я не" },
     { "type": "word", "ge_text": "აი რა", "ru_meaning": "вот что" },
-    { "type": "word", "ge_text": "ვაი არა", "ru_meaning": "ой нет" },
-    { "type": "word", "ge_text": "ავი", "ru_meaning": "плохой" }
+    { "type": "word", "ge_text": "არა", "ru_meaning": "нет" },
+    { "type": "word", "ge_text": "აი რვა", "ru_meaning": "вот восемь" }
   ]
 }

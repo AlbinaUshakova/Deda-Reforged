@@ -1,25 +1,101 @@
 {
   "id": "ep3",
   "title": "Урок 5",
-  "letters": ["S", "O", "I"],
+  "letters": [
+    "S",
+    "O",
+    "I"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "sen", "ru_meaning": "ты" },
-    { "type": "word", "ge_text": "sana", "ru_meaning": "тебе" },
-    { "type": "word", "ge_text": "seni", "ru_meaning": "тебя" },
-    { "type": "word", "ge_text": "isim", "ru_meaning": "имя" },
-    { "type": "word", "ge_text": "simit", "ru_meaning": "симит" },
-    { "type": "word", "ge_text": "saat", "ru_meaning": "час" },
-    { "type": "word", "ge_text": "okul", "ru_meaning": "школа" },
-    { "type": "word", "ge_text": "oda", "ru_meaning": "комната" },
-    { "type": "word", "ge_text": "olur", "ru_meaning": "ладно" },
-    { "type": "word", "ge_text": "son", "ru_meaning": "последний" },
-    { "type": "word", "ge_text": "soru", "ru_meaning": "вопрос" },
-    { "type": "word", "ge_text": "masa", "ru_meaning": "стол" },
-    { "type": "word", "ge_text": "orman", "ru_meaning": "лес" },
-    { "type": "word", "ge_text": "on", "ru_meaning": "десять" },
-    { "type": "word", "ge_text": "kısa", "ru_meaning": "короткий" },
-    { "type": "word", "ge_text": "bu oda", "ru_meaning": "эта комната" },
-    { "type": "word", "ge_text": "o ne", "ru_meaning": "что это" },
-    { "type": "word", "ge_text": "bu nasıl", "ru_meaning": "как это" }
+    {
+      "type": "word",
+      "ge_text": "sen",
+      "ru_meaning": "ты"
+    },
+    {
+      "type": "word",
+      "ge_text": "sana",
+      "ru_meaning": "тебе"
+    },
+    {
+      "type": "word",
+      "ge_text": "seni",
+      "ru_meaning": "тебя"
+    },
+    {
+      "type": "word",
+      "ge_text": "isim",
+      "ru_meaning": "имя"
+    },
+    {
+      "type": "word",
+      "ge_text": "simit",
+      "ru_meaning": "симит"
+    },
+    {
+      "type": "word",
+      "ge_text": "saat",
+      "ru_meaning": "час"
+    },
+    {
+      "type": "word",
+      "ge_text": "okul",
+      "ru_meaning": "школа"
+    },
+    {
+      "type": "word",
+      "ge_text": "oda",
+      "ru_meaning": "комната"
+    },
+    {
+      "type": "word",
+      "ge_text": "bu oda",
+      "ru_meaning": "эта комната"
+    },
+    {
+      "type": "word",
+      "ge_text": "o ne",
+      "ru_meaning": "что это"
+    },
+    {
+      "type": "word",
+      "ge_text": "olur",
+      "ru_meaning": "ладно"
+    },
+    {
+      "type": "word",
+      "ge_text": "son",
+      "ru_meaning": "последний"
+    },
+    {
+      "type": "word",
+      "ge_text": "soru",
+      "ru_meaning": "вопрос"
+    },
+    {
+      "type": "word",
+      "ge_text": "masa",
+      "ru_meaning": "стол"
+    },
+    {
+      "type": "word",
+      "ge_text": "bu nasıl",
+      "ru_meaning": "как это"
+    },
+    {
+      "type": "word",
+      "ge_text": "orman",
+      "ru_meaning": "лес"
+    },
+    {
+      "type": "word",
+      "ge_text": "on",
+      "ru_meaning": "десять"
+    },
+    {
+      "type": "word",
+      "ge_text": "kısa",
+      "ru_meaning": "короткий"
+    }
   ]
 }

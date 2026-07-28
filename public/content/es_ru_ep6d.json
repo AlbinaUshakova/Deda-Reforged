@@ -1,25 +1,107 @@
 {
   "id": "ep6d",
   "title": "Урок 10",
-  "letters": ["Á", "É", "Í", "Ó", "Ú", "Ü"],
+  "letters": [
+    "Á",
+    "É",
+    "Í",
+    "Ó",
+    "Ú",
+    "Ü"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "café", "ru_meaning": "кофе" },
-    { "type": "word", "ge_text": "teléfono", "ru_meaning": "телефон" },
-    { "type": "word", "ge_text": "menú", "ru_meaning": "меню" },
-    { "type": "word", "ge_text": "mamá", "ru_meaning": "мама" },
-    { "type": "word", "ge_text": "papá", "ru_meaning": "папа" },
-    { "type": "word", "ge_text": "sí", "ru_meaning": "да" },
-    { "type": "word", "ge_text": "adiós", "ru_meaning": "до свидания" },
-    { "type": "word", "ge_text": "inglés", "ru_meaning": "английский" },
-    { "type": "word", "ge_text": "estación", "ru_meaning": "станция" },
-    { "type": "word", "ge_text": "música", "ru_meaning": "музыка" },
-    { "type": "word", "ge_text": "rápido", "ru_meaning": "быстро" },
-    { "type": "word", "ge_text": "número", "ru_meaning": "номер" },
-    { "type": "word", "ge_text": "pingüino", "ru_meaning": "пингвин" },
-    { "type": "word", "ge_text": "vergüenza", "ru_meaning": "стыд" },
-    { "type": "word", "ge_text": "bilingüe", "ru_meaning": "двуязычный" },
-    { "type": "word", "ge_text": "Sí, está aquí", "ru_meaning": "да, это здесь" },
-    { "type": "word", "ge_text": "Un café", "ru_meaning": "один кофе" },
-    { "type": "word", "ge_text": "Más té", "ru_meaning": "ещё чай", "accepted_ru": ["еще чай"] }
+    {
+      "type": "word",
+      "ge_text": "café",
+      "ru_meaning": "кофе"
+    },
+    {
+      "type": "word",
+      "ge_text": "Un café",
+      "ru_meaning": "один кофе"
+    },
+    {
+      "type": "word",
+      "ge_text": "teléfono",
+      "ru_meaning": "телефон"
+    },
+    {
+      "type": "word",
+      "ge_text": "menú",
+      "ru_meaning": "меню"
+    },
+    {
+      "type": "word",
+      "ge_text": "mamá",
+      "ru_meaning": "мама"
+    },
+    {
+      "type": "word",
+      "ge_text": "papá",
+      "ru_meaning": "папа"
+    },
+    {
+      "type": "word",
+      "ge_text": "sí",
+      "ru_meaning": "да"
+    },
+    {
+      "type": "word",
+      "ge_text": "Sí, está aquí",
+      "ru_meaning": "да, это здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "adiós",
+      "ru_meaning": "до свидания"
+    },
+    {
+      "type": "word",
+      "ge_text": "inglés",
+      "ru_meaning": "английский"
+    },
+    {
+      "type": "word",
+      "ge_text": "estación",
+      "ru_meaning": "станция"
+    },
+    {
+      "type": "word",
+      "ge_text": "música",
+      "ru_meaning": "музыка"
+    },
+    {
+      "type": "word",
+      "ge_text": "rápido",
+      "ru_meaning": "быстро"
+    },
+    {
+      "type": "word",
+      "ge_text": "número",
+      "ru_meaning": "номер"
+    },
+    {
+      "type": "word",
+      "ge_text": "Más té",
+      "ru_meaning": "ещё чай",
+      "accepted_ru": [
+        "еще чай"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "pingüino",
+      "ru_meaning": "пингвин"
+    },
+    {
+      "type": "word",
+      "ge_text": "vergüenza",
+      "ru_meaning": "стыд"
+    },
+    {
+      "type": "word",
+      "ge_text": "bilingüe",
+      "ru_meaning": "двуязычный"
+    }
   ]
 }

@@ -1,24 +1,108 @@
 {
   "id": "ep6",
   "title": "Урок 7",
-  "letters": ["ყ", "შ", "ჟ"],
+  "letters": [
+    "ყ",
+    "შ",
+    "ჟ"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "შვიდი", "ru_meaning": "семь" },
-    { "type": "word", "ge_text": "შოთი", "ru_meaning": "шоти", "accepted_ru": ["хлеб шоти", "шоти хлеб"] },
-    { "type": "word", "ge_text": "შორს", "ru_meaning": "далеко" },
-    { "type": "word", "ge_text": "შაქარი", "ru_meaning": "сахар" },
-    { "type": "word", "ge_text": "ყავა", "ru_meaning": "кофе" },
-    { "type": "word", "ge_text": "ყველი", "ru_meaning": "сыр" },
-    { "type": "word", "ge_text": "ყუთი", "ru_meaning": "коробка" },
-    { "type": "word", "ge_text": "ჟაკეტი", "ru_meaning": "куртка" },
-    { "type": "word", "ge_text": "ჟურნალი", "ru_meaning": "журнал" },
-    { "type": "word", "ge_text": "შუა", "ru_meaning": "середина" },
-    { "type": "word", "ge_text": "შავი", "ru_meaning": "чёрный", "accepted_ru": ["черный"] },
-    { "type": "word", "ge_text": "შიში", "ru_meaning": "страх" },
-    { "type": "word", "ge_text": "მყავს", "ru_meaning": "у меня есть" },
-    { "type": "word", "ge_text": "მიყვარს", "ru_meaning": "люблю" },
-    { "type": "word", "ge_text": "ეს ყველია", "ru_meaning": "это сыр" },
-    { "type": "word", "ge_text": "მე მინდა ყველი", "ru_meaning": "я хочу сыр" },
-    { "type": "word", "ge_text": "ეს ჟურნალია", "ru_meaning": "это журнал" }
+    {
+      "type": "word",
+      "ge_text": "ყავა",
+      "ru_meaning": "кофе"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ყავა",
+      "ru_meaning": "вот кофе"
+    },
+    {
+      "type": "word",
+      "ge_text": "ყველი",
+      "ru_meaning": "сыр"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს ყველია",
+      "ru_meaning": "это сыр"
+    },
+    {
+      "type": "word",
+      "ge_text": "მე მინდა ყველი",
+      "ru_meaning": "я хочу сыр"
+    },
+    {
+      "type": "word",
+      "ge_text": "ჟურნალი",
+      "ru_meaning": "журнал"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს ჟურნალია",
+      "ru_meaning": "это журнал"
+    },
+    {
+      "type": "word",
+      "ge_text": "შვიდი",
+      "ru_meaning": "семь"
+    },
+    {
+      "type": "word",
+      "ge_text": "შაქარი",
+      "ru_meaning": "сахар"
+    },
+    {
+      "type": "word",
+      "ge_text": "ყუთი",
+      "ru_meaning": "коробка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ჟაკეტი",
+      "ru_meaning": "куртка"
+    },
+    {
+      "type": "word",
+      "ge_text": "შორს",
+      "ru_meaning": "далеко"
+    },
+    {
+      "type": "word",
+      "ge_text": "შავი",
+      "ru_meaning": "чёрный",
+      "accepted_ru": [
+        "черный"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "შუა",
+      "ru_meaning": "середина"
+    },
+    {
+      "type": "word",
+      "ge_text": "მიყვარს",
+      "ru_meaning": "люблю"
+    },
+    {
+      "type": "word",
+      "ge_text": "მყავს",
+      "ru_meaning": "у меня есть"
+    },
+    {
+      "type": "word",
+      "ge_text": "შოთი",
+      "ru_meaning": "шоти",
+      "accepted_ru": [
+        "хлеб шоти",
+        "шоти хлеб"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "შიში",
+      "ru_meaning": "страх"
+    }
   ]
 }

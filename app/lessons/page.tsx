@@ -16,7 +16,7 @@ import { useViewportWidth } from '@/components/lessons/useViewportWidth';
 import {
   writeAlphabetStatusCache,
 } from '@/lib/alphabetProgressCache';
-import { progressKeyForEpisode } from '@/lib/courses';
+import { progressKeyForEpisode, scriptWatermarkStyle } from '@/lib/courses';
 import { deriveLessonState } from '@/lib/lessonProgress';
 
 export default function HomePage() {
@@ -133,6 +133,7 @@ export default function HomePage() {
 
   return (
     <main
+      style={scriptWatermarkStyle(courseId)}
       className="lessons-screen min-h-screen min-h-[100dvh] [@media(max-width:700px)]:min-h-[auto] px-[clamp(18px,4.4vw,36px)] [@media(max-width:900px)]:px-[clamp(24px,7vw,42px)] [@media(max-width:700px)]:px-[clamp(18px,6vw,30px)] pt-5 pb-5 [@media(max-width:700px)]:pb-3 relative overflow-x-hidden flex flex-col"
     >
       <div className="lessons-screen-orb lessons-screen-orb--left" aria-hidden="true" />
@@ -146,12 +147,15 @@ export default function HomePage() {
           lessonTargetScore={lessonTargetScore}
           transliterationMode={transliterationMode}
           courseId={courseId}
+          totalLessons={normalEpisodeIds.length}
+          masteredCount={masteredEpisodeIds.length}
           onSpeakLetter={speakLetter}
         />
         <LessonsStickerJournal
           courseId={courseId}
           episodeIds={normalEpisodeIds}
           masteredEpisodeIds={masteredEpisodeIds}
+          lessonTargetScore={lessonTargetScore}
         />
         {/* алфавит + сетка эпизодов */}
         <section className="lessons-path-section mt-5 [@media(max-width:900px)]:mt-4 [@media(max-width:700px)]:mt-4 min-[1700px]:pl-10 min-[2200px]:pl-12">
@@ -166,7 +170,7 @@ export default function HomePage() {
               onToggleAlphabet={toggleAlphabet}
               onSpeakLetter={speakLetter}
             />
-            <div ref={lessonsWrapRef} className="relative z-[150] mx-auto w-full max-w-[1160px] [@media(max-height:980px)]:max-w-[1040px]">
+            <div ref={lessonsWrapRef} className="relative z-[150] mx-auto w-full max-w-[1160px]">
               <div className="lessons-grid-heading">
                 <h2>Уроки</h2>
                 {favoritesSpecial && (

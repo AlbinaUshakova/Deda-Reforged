@@ -1,25 +1,104 @@
 {
   "id": "ep1b",
   "title": "Урок 3",
-  "letters": ["L", "C", "T"],
+  "letters": [
+    "L",
+    "C",
+    "T"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "la", "ru_meaning": "эта" },
-    { "type": "word", "ge_text": "el", "ru_meaning": "этот" },
-    { "type": "word", "ge_text": "lo", "ru_meaning": "это" },
-    { "type": "word", "ge_text": "casa", "ru_meaning": "дом" },
-    { "type": "word", "ge_text": "cosa", "ru_meaning": "вещь" },
-    { "type": "word", "ge_text": "cena", "ru_meaning": "ужин" },
-    { "type": "word", "ge_text": "cine", "ru_meaning": "кино" },
-    { "type": "word", "ge_text": "todo", "ru_meaning": "всё", "accepted_ru": ["все"] },
-    { "type": "word", "ge_text": "tarde", "ru_meaning": "поздно" },
-    { "type": "word", "ge_text": "tres", "ru_meaning": "три" },
-    { "type": "word", "ge_text": "sal", "ru_meaning": "соль" },
-    { "type": "word", "ge_text": "sol", "ru_meaning": "солнце" },
-    { "type": "word", "ge_text": "lento", "ru_meaning": "медленный" },
-    { "type": "word", "ge_text": "calor", "ru_meaning": "жара" },
-    { "type": "word", "ge_text": "clase", "ru_meaning": "класс" },
-    { "type": "word", "ge_text": "La casa", "ru_meaning": "дом" },
-    { "type": "word", "ge_text": "El sol", "ru_meaning": "солнце" },
-    { "type": "word", "ge_text": "No lo creo", "ru_meaning": "я так не думаю" }
+    {
+      "type": "word",
+      "ge_text": "la",
+      "ru_meaning": "эта"
+    },
+    {
+      "type": "word",
+      "ge_text": "el",
+      "ru_meaning": "этот"
+    },
+    {
+      "type": "word",
+      "ge_text": "lo",
+      "ru_meaning": "это"
+    },
+    {
+      "type": "word",
+      "ge_text": "No lo creo",
+      "ru_meaning": "я так не думаю"
+    },
+    {
+      "type": "word",
+      "ge_text": "casa",
+      "ru_meaning": "дом"
+    },
+    {
+      "type": "word",
+      "ge_text": "La casa",
+      "ru_meaning": "дом"
+    },
+    {
+      "type": "word",
+      "ge_text": "cosa",
+      "ru_meaning": "вещь"
+    },
+    {
+      "type": "word",
+      "ge_text": "cena",
+      "ru_meaning": "ужин"
+    },
+    {
+      "type": "word",
+      "ge_text": "cine",
+      "ru_meaning": "кино"
+    },
+    {
+      "type": "word",
+      "ge_text": "todo",
+      "ru_meaning": "всё",
+      "accepted_ru": [
+        "все"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "tarde",
+      "ru_meaning": "поздно"
+    },
+    {
+      "type": "word",
+      "ge_text": "tres",
+      "ru_meaning": "три"
+    },
+    {
+      "type": "word",
+      "ge_text": "sal",
+      "ru_meaning": "соль"
+    },
+    {
+      "type": "word",
+      "ge_text": "sol",
+      "ru_meaning": "солнце"
+    },
+    {
+      "type": "word",
+      "ge_text": "El sol",
+      "ru_meaning": "солнце"
+    },
+    {
+      "type": "word",
+      "ge_text": "lento",
+      "ru_meaning": "медленный"
+    },
+    {
+      "type": "word",
+      "ge_text": "calor",
+      "ru_meaning": "жара"
+    },
+    {
+      "type": "word",
+      "ge_text": "clase",
+      "ru_meaning": "класс"
+    }
   ]
 }

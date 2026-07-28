@@ -65,13 +65,13 @@ test('course alphabet sound labels cover every course letter', () => {
     }
   }
 
-  assert.equal(getLetterSoundLabel('კ', 'ka'), "к'");
-  assert.equal(getLetterSoundLabel('ქ', 'ka'), 'кх');
-  assert.equal(getLetterSoundLabel('ყ', 'ka'), "къ'");
-  assert.equal(getLetterSoundLabel('ჩ', 'ka'), 'чх');
-  assert.equal(getLetterSoundLabel('ჭ', 'ka'), "ч'");
-  assert.equal(getLetterSoundLabel('ც', 'ka'), 'цх');
-  assert.equal(getLetterSoundLabel('წ', 'ka'), "ц'");
+  assert.equal(getLetterSoundLabel('კ', 'ka'), 'къ');
+  assert.equal(getLetterSoundLabel('ქ', 'ka'), 'к');
+  assert.equal(getLetterSoundLabel('ყ', 'ka'), 'къ');
+  assert.equal(getLetterSoundLabel('ჩ', 'ka'), 'ч');
+  assert.equal(getLetterSoundLabel('ჭ', 'ka'), 'чъ');
+  assert.equal(getLetterSoundLabel('ც', 'ka'), 'ц');
+  assert.equal(getLetterSoundLabel('წ', 'ka'), 'цъ');
   assert.equal(getLetterSoundLabel('A', 'en'), 'эй');
   assert.equal(getLetterSoundLabel('B', 'en'), 'би');
   assert.equal(getLetterSoundLabel('C', 'en'), 'си');
@@ -173,6 +173,7 @@ test('course primary alphabets are displayed as one uninterrupted grid', () => {
     en: COURSES.en.alphabet,
     es: COURSES.es.alphabet,
     de: COURSES.de.alphabet.filter(letter => !['Ä', 'Ö', 'Ü', 'ẞ'].includes(letter)),
+    fr: COURSES.fr.alphabet.filter(letter => !['À', 'Â', 'Ç', 'É', 'È', 'Ê', 'Ë', 'Î', 'Ï', 'Ô', 'Œ', 'Ù', 'Û'].includes(letter)),
   } as const;
 
   for (const courseId of COURSE_IDS) {
@@ -189,9 +190,9 @@ test('course primary alphabets are displayed as one uninterrupted grid', () => {
 });
 
 test('course list order matches product language switcher order', () => {
-  assert.deepEqual(COURSE_IDS, ['ka', 'en', 'es', 'de', 'sr', 'tr']);
+  assert.deepEqual(COURSE_IDS, ['ka', 'en', 'es', 'de', 'fr', 'sr', 'tr']);
   assert.deepEqual(
     COURSE_IDS.map(courseId => COURSES[courseId].sourceLanguageLabel),
-    ['🇬🇪', '🇬🇧', '🇪🇸', '🇩🇪', '🇷🇸', '🇹🇷'],
+    ['🇬🇪', '🇬🇧', '🇪🇸', '🇩🇪', '🇫🇷', '🇷🇸', '🇹🇷'],
   );
 });

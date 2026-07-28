@@ -1,25 +1,104 @@
 {
   "id": "ep5",
   "title": "Урок 5",
-  "letters": ["Ц", "Ш", "Ч"],
+  "letters": [
+    "Ц",
+    "Ш",
+    "Ч"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "цена", "ru_meaning": "цена" },
-    { "type": "word", "ge_text": "цар", "ru_meaning": "царь" },
-    { "type": "word", "ge_text": "црн", "ru_meaning": "чёрный", "accepted_ru": ["черный"] },
-    { "type": "word", "ge_text": "цвет", "ru_meaning": "цветок" },
-    { "type": "word", "ge_text": "црква", "ru_meaning": "церковь" },
-    { "type": "word", "ge_text": "школа", "ru_meaning": "школа" },
-    { "type": "word", "ge_text": "шта", "ru_meaning": "что" },
-    { "type": "word", "ge_text": "човек", "ru_meaning": "человек" },
-    { "type": "word", "ge_text": "вече", "ru_meaning": "вечер" },
-    { "type": "word", "ge_text": "чај", "ru_meaning": "чай" },
-    { "type": "word", "ge_text": "чист", "ru_meaning": "чистый" },
-    { "type": "word", "ge_text": "чаша", "ru_meaning": "стакан" },
-    { "type": "word", "ge_text": "шала", "ru_meaning": "шутка" },
-    { "type": "word", "ge_text": "шетам", "ru_meaning": "гуляю" },
-    { "type": "word", "ge_text": "учим", "ru_meaning": "учу" },
-    { "type": "word", "ge_text": "шта је то", "ru_meaning": "что это" },
-    { "type": "word", "ge_text": "чај је ту", "ru_meaning": "чай здесь" },
-    { "type": "word", "ge_text": "чаша је чиста", "ru_meaning": "стакан чистый" }
+    {
+      "type": "word",
+      "ge_text": "цена",
+      "ru_meaning": "цена"
+    },
+    {
+      "type": "word",
+      "ge_text": "цар",
+      "ru_meaning": "царь"
+    },
+    {
+      "type": "word",
+      "ge_text": "црн",
+      "ru_meaning": "чёрный",
+      "accepted_ru": [
+        "черный"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "цвет",
+      "ru_meaning": "цветок"
+    },
+    {
+      "type": "word",
+      "ge_text": "црква",
+      "ru_meaning": "церковь"
+    },
+    {
+      "type": "word",
+      "ge_text": "школа",
+      "ru_meaning": "школа"
+    },
+    {
+      "type": "word",
+      "ge_text": "шта",
+      "ru_meaning": "что"
+    },
+    {
+      "type": "word",
+      "ge_text": "шта је то",
+      "ru_meaning": "что это"
+    },
+    {
+      "type": "word",
+      "ge_text": "човек",
+      "ru_meaning": "человек"
+    },
+    {
+      "type": "word",
+      "ge_text": "вече",
+      "ru_meaning": "вечер"
+    },
+    {
+      "type": "word",
+      "ge_text": "чај",
+      "ru_meaning": "чай"
+    },
+    {
+      "type": "word",
+      "ge_text": "чај је ту",
+      "ru_meaning": "чай здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "чист",
+      "ru_meaning": "чистый"
+    },
+    {
+      "type": "word",
+      "ge_text": "чаша",
+      "ru_meaning": "стакан"
+    },
+    {
+      "type": "word",
+      "ge_text": "чаша је чиста",
+      "ru_meaning": "стакан чистый"
+    },
+    {
+      "type": "word",
+      "ge_text": "шала",
+      "ru_meaning": "шутка"
+    },
+    {
+      "type": "word",
+      "ge_text": "шетам",
+      "ru_meaning": "гуляю"
+    },
+    {
+      "type": "word",
+      "ge_text": "учим",
+      "ru_meaning": "учу"
+    }
   ]
 }

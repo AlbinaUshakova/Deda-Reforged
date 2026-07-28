@@ -1,22 +1,91 @@
 {
   "id": "ep5",
   "title": "Урок 6",
-  "letters": ["პ", "ხ", "ქ"],
+  "letters": [
+    "პ",
+    "ხ",
+    "ქ"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "ხე", "ru_meaning": "дерево" },
-    { "type": "word", "ge_text": "ხუთი", "ru_meaning": "пять" },
-    { "type": "word", "ge_text": "ექვსი", "ru_meaning": "шесть" },
-    { "type": "word", "ge_text": "ქუდი", "ru_meaning": "шапка" },
-    { "type": "word", "ge_text": "ქათამი", "ru_meaning": "курица" },
-    { "type": "word", "ge_text": "პური", "ru_meaning": "хлеб" },
-    { "type": "word", "ge_text": "პარკი", "ru_meaning": "парк" },
-    { "type": "word", "ge_text": "პალტო", "ru_meaning": "пальто" },
-    { "type": "word", "ge_text": "პომიდორი", "ru_meaning": "помидор" },
-    { "type": "word", "ge_text": "ქარი", "ru_meaning": "ветер" },
-    { "type": "word", "ge_text": "ქალაქი", "ru_meaning": "город" },
-    { "type": "word", "ge_text": "კაპიკი", "ru_meaning": "копейка" },
-    { "type": "word", "ge_text": "ეს პურია", "ru_meaning": "это хлеб" },
-    { "type": "word", "ge_text": "პური მინდა", "ru_meaning": "хочу хлеб" },
-    { "type": "word", "ge_text": "ქუდი მინდა", "ru_meaning": "хочу шапку" }
+    {
+      "type": "word",
+      "ge_text": "პური",
+      "ru_meaning": "хлеб"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს პურია",
+      "ru_meaning": "это хлеб"
+    },
+    {
+      "type": "word",
+      "ge_text": "პური მინდა",
+      "ru_meaning": "хочу хлеб"
+    },
+    {
+      "type": "word",
+      "ge_text": "ქუდი",
+      "ru_meaning": "шапка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ქუდი მინდა",
+      "ru_meaning": "хочу шапку"
+    },
+    {
+      "type": "word",
+      "ge_text": "ქალაქი",
+      "ru_meaning": "город"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი ქალაქი",
+      "ru_meaning": "вот город"
+    },
+    {
+      "type": "word",
+      "ge_text": "ხე",
+      "ru_meaning": "дерево"
+    },
+    {
+      "type": "word",
+      "ge_text": "ხუთი",
+      "ru_meaning": "пять"
+    },
+    {
+      "type": "word",
+      "ge_text": "ექვსი",
+      "ru_meaning": "шесть"
+    },
+    {
+      "type": "word",
+      "ge_text": "ქათამი",
+      "ru_meaning": "курица"
+    },
+    {
+      "type": "word",
+      "ge_text": "პარკი",
+      "ru_meaning": "парк"
+    },
+    {
+      "type": "word",
+      "ge_text": "პალტო",
+      "ru_meaning": "пальто"
+    },
+    {
+      "type": "word",
+      "ge_text": "პომიდორი",
+      "ru_meaning": "помидор"
+    },
+    {
+      "type": "word",
+      "ge_text": "ქარი",
+      "ru_meaning": "ветер"
+    },
+    {
+      "type": "word",
+      "ge_text": "კაპიკი",
+      "ru_meaning": "копейка"
+    }
   ]
 }

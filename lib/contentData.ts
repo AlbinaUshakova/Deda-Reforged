@@ -10,6 +10,7 @@ import ep6Json from '../public/content/ka_ru_ep6.json' with { type: 'json' };
 import ep7Json from '../public/content/ka_ru_ep7.json' with { type: 'json' };
 import ep8Json from '../public/content/ka_ru_ep8.json' with { type: 'json' };
 import ep9Json from '../public/content/ka_ru_ep9.json' with { type: 'json' };
+import numbersData from '../public/content/numbers.json' with { type: 'json' };
 import srEp1Json from '../public/content/sr_ru_ep1.json' with { type: 'json' };
 import srEp2Json from '../public/content/sr_ru_ep2.json' with { type: 'json' };
 import srEp3Json from '../public/content/sr_ru_ep3.json' with { type: 'json' };
@@ -59,6 +60,14 @@ import enEp5Json from '../public/content/en_ru_ep5.json' with { type: 'json' };
 import enEp6Json from '../public/content/en_ru_ep6.json' with { type: 'json' };
 import enEp7Json from '../public/content/en_ru_ep7.json' with { type: 'json' };
 import enEp8Json from '../public/content/en_ru_ep8.json' with { type: 'json' };
+import frStaticEpisodes from '../public/content/episodes_fr.json' with { type: 'json' };
+import frEp1Json from '../public/content/fr_ru_ep1.json' with { type: 'json' };
+import frEp2Json from '../public/content/fr_ru_ep2.json' with { type: 'json' };
+import frEp3Json from '../public/content/fr_ru_ep3.json' with { type: 'json' };
+import frEp4Json from '../public/content/fr_ru_ep4.json' with { type: 'json' };
+import frEp5Json from '../public/content/fr_ru_ep5.json' with { type: 'json' };
+import frEp6Json from '../public/content/fr_ru_ep6.json' with { type: 'json' };
+import frEp7Json from '../public/content/fr_ru_ep7.json' with { type: 'json' };
 import { DEFAULT_COURSE_ID, getCourse, isCourseLetter, normalizeCourseId, type CourseId } from './courses.ts';
 
 export type CardInfoNote = {
@@ -166,6 +175,15 @@ const RAW_EPISODES_BY_COURSE: Record<CourseId, RawEpisode[]> = {
     enEp7Json as RawEpisode,
     enEp8Json as RawEpisode,
   ],
+  fr: [
+    frEp1Json as RawEpisode,
+    frEp2Json as RawEpisode,
+    frEp3Json as RawEpisode,
+    frEp4Json as RawEpisode,
+    frEp5Json as RawEpisode,
+    frEp6Json as RawEpisode,
+    frEp7Json as RawEpisode,
+  ],
 };
 
 const COMMON_SPECIAL_EPISODES: EpisodesListItem[] = [
@@ -201,6 +219,10 @@ const STATIC_LESSON_ITEMS_BY_COURSE: Record<CourseId, EpisodesListItem[]> = {
     title: episode.title,
   })),
   en: (enStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
+    id: episode.id,
+    title: episode.title,
+  })),
+  fr: (frStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
   })),
@@ -1321,6 +1343,133 @@ const ENGLISH_INTENT_SECTION_EPISODES: Episode[] = [
   },
 ];
 
+const FRENCH_INTENT_SECTION_EPISODES: Episode[] = [
+  {
+    id: 'french-greetings',
+    title: 'Приветствия и прощания',
+    cards: [
+      intentEnPhrase('hello_formal', 'Bonjour', 'бонжур', 'Здравствуйте', undefined, ['Добрый день']),
+      intentEnPhrase('hello_informal', 'Salut', 'салю', 'Привет'),
+      intentEnPhrase('good_evening', 'Bonsoir', 'бонсуар', 'Добрый вечер'),
+      intentEnPhrase('good_night', 'Bonne nuit', 'бон нюи', 'Спокойной ночи'),
+      intentEnPhrase('goodbye', 'Au revoir', 'о рёвуар', 'До свидания', undefined, ['Пока']),
+      intentEnPhrase('see_you_soon', 'À bientôt', 'а бьенто', 'До скорого'),
+    ],
+  },
+  {
+    id: 'french-politeness',
+    title: 'Вежливость',
+    cards: [
+      intentEnPhrase('thanks', 'Merci', 'мерси', 'Спасибо', undefined, ['Благодарю']),
+      intentEnPhrase('thanks_very_much', 'Merci beaucoup', 'мерси боку', 'Большое спасибо', undefined, ['Спасибо большое']),
+      intentEnPhrase('please_request', "S'il vous plaît", 'силь ву пле', 'Пожалуйста', 'В просьбе: «пожалуйста».'),
+      intentEnPhrase('you_are_welcome', 'De rien', 'дё рьен', 'Не за что', undefined, ['Пожалуйста']),
+      intentEnPhrase('excuse_me_attention', 'Excusez-moi', 'экскюзе-муа', 'Извините', 'Чтобы обратиться или пройти.', ['Простите']),
+      intentEnPhrase('sorry_fault', 'Pardon', 'пардон', 'Простите', undefined, ['Извините']),
+    ],
+  },
+  {
+    id: 'french-introductions',
+    title: 'Знакомство',
+    cards: [
+      intentEnPhrase('my_name_is', "Je m'appelle Anna", 'жё мапэль Анна', 'Меня зовут Анна'),
+      intentEnPhrase('ask_name', 'Comment vous appelez-vous ?', 'коман вузапле-ву', 'Как вас зовут?'),
+      intentEnPhrase('nice_to_meet_you', 'Enchanté', 'аншантэ', 'Очень приятно', undefined, ['Приятно познакомиться']),
+      intentEnPhrase('where_are_you_from', "D'où venez-vous ?", 'ду вёнэ-ву', 'Откуда вы?'),
+      intentEnPhrase('i_am_from', 'Je viens de Russie', 'жё вьен дё Рюси', 'Я из России'),
+      intentEnPhrase('where_do_you_live', 'Où habitez-vous ?', 'у абитэ-ву', 'Где вы живёте?'),
+    ],
+  },
+  {
+    id: 'french-answers',
+    title: 'Простые ответы',
+    cards: [
+      intentEnPhrase('yes', 'Oui', 'уи', 'Да'),
+      intentEnPhrase('no', 'Non', 'нон', 'Нет'),
+      intentEnPhrase('maybe', 'Peut-être', 'пётэтр', 'Может быть'),
+      intentEnPhrase('okay', "D'accord", 'дакор', 'Хорошо', undefined, ['Ладно', 'Ок', 'Окей']),
+      intentEnPhrase('of_course', 'Bien sûr', 'бьен сюр', 'Конечно'),
+      intentEnPhrase('i_dont_know', 'Je ne sais pas', 'жё нё сэ па', 'Я не знаю', undefined, ['Не знаю']),
+    ],
+  },
+  {
+    id: 'french-language',
+    title: 'Понимание языка',
+    cards: [
+      intentEnPhrase('i_dont_understand', 'Je ne comprends pas', 'жё нё компран па', 'Я не понимаю', undefined, ['Не понимаю']),
+      intentEnPhrase('i_understand', 'Je comprends', 'жё компран', 'Я понимаю', undefined, ['Понимаю']),
+      intentEnPhrase('ask_repeat', "Répétez, s'il vous plaît", 'репетэ силь ву пле', 'Повторите, пожалуйста'),
+      intentEnPhrase('what_does_it_mean', "Qu'est-ce que ça veut dire ?", 'кэс-кё са вё дир', 'Что это значит?'),
+      intentEnPhrase('speak_slowly', 'Parlez plus lentement', 'парле плю лантман', 'Говорите медленнее'),
+      intentEnPhrase('do_you_speak_ru', 'Vous parlez russe ?', 'ву парле рюс', 'Вы говорите по-русски?'),
+    ],
+  },
+  {
+    id: 'french-questions',
+    title: 'Основные вопросы',
+    cards: [
+      intentEnPhrase('where_is', 'Où est... ?', 'у э', 'Где...?'),
+      intentEnPhrase('how_much', 'Combien ça coûte ?', 'комбьен са кут', 'Сколько это стоит?'),
+      intentEnPhrase('what_time', 'Quelle heure est-il ?', 'кэль ёр этиль', 'Который час?'),
+      intentEnPhrase('what_is_this', "Qu'est-ce que c'est ?", 'кэс-кё сэ', 'Что это?'),
+      intentEnPhrase('why', 'Pourquoi ?', 'пуркуа', 'Почему?'),
+      intentEnPhrase('how', 'Comment ?', 'коман', 'Как?'),
+    ],
+  },
+  {
+    id: 'french-shopping',
+    title: 'Магазин и оплата',
+    cards: [
+      intentEnPhrase('i_would_like', 'Je voudrais...', 'жё вудрэ', 'Я хотел бы...'),
+      intentEnPhrase('how_much2', 'Combien ça coûte ?', 'комбьен са кут', 'Сколько стоит?'),
+      intentEnPhrase('too_expensive', "C'est trop cher", 'сэ тро шер', 'Это слишком дорого'),
+      intentEnPhrase('by_card', 'Par carte', 'пар карт', 'Картой'),
+      intentEnPhrase('in_cash', 'En espèces', 'ан эспэс', 'Наличными'),
+      intentEnPhrase('the_bill', "L'addition, s'il vous plaît", 'лядисьон силь ву пле', 'Счёт, пожалуйста'),
+    ],
+  },
+  {
+    id: 'french-food',
+    title: 'Кафе и еда',
+    cards: [
+      intentEnPhrase('a_coffee', "Un café, s'il vous plaît", 'эн кафе силь ву пле', 'Кофе, пожалуйста'),
+      intentEnPhrase('some_water', "De l'eau", 'дё ло', 'Воды'),
+      intentEnPhrase('the_menu', 'Le menu', 'лё мёню', 'Меню'),
+      intentEnPhrase('a_tea', 'Un thé', 'эн тэ', 'Чай'),
+      intentEnPhrase('the_bill2', "L'addition", 'лядисьон', 'Счёт'),
+      intentEnPhrase('delicious', "C'est délicieux", 'сэ делисьё', 'Это вкусно'),
+    ],
+  },
+  {
+    id: 'french-places',
+    title: 'Общественные места',
+    cards: [
+      intentEnPhrase('station', 'La gare', 'ла гар', 'Вокзал'),
+      intentEnPhrase('airport', "L'aéroport", 'ляэропор', 'Аэропорт'),
+      intentEnPhrase('hotel', "L'hôtel", 'лётэль', 'Отель'),
+      intentEnPhrase('pharmacy', 'La pharmacie', 'ла фармаси', 'Аптека'),
+      intentEnPhrase('toilet', 'Les toilettes', 'ле туалет', 'Туалет'),
+      intentEnPhrase('metro', 'Le métro', 'лё метро', 'Метро'),
+    ],
+  },
+  {
+    id: 'french-help',
+    title: 'Помощь и самочувствие',
+    cards: [
+      intentEnPhrase('help_me', 'Aidez-moi', 'эдэ-муа', 'Помогите'),
+      intentEnPhrase('need_help', "J'ai besoin d'aide", 'жэ бёзуэн дэд', 'Мне нужна помощь'),
+      intentEnPhrase('i_am_sick', 'Je suis malade', 'жё сюи малад', 'Я болен'),
+      intentEnPhrase('call_doctor', 'Appelez un médecin', 'апле эн медсэн', 'Вызовите врача'),
+      intentEnPhrase('i_am_fine', 'Ça va', 'са ва', 'Всё хорошо'),
+      intentEnPhrase('i_am_lost', 'Je suis perdu', 'жё сюи пердю', 'Я заблудился'),
+    ],
+  },
+];
+
+const FRENCH_INTENT_SECTION_IDS = [
+  'ep8', 'ep8b', 'ep8c', 'ep8d', 'ep8e', 'ep8f', 'ep8g', 'ep8h', 'ep8i', 'ep8j',
+] as const;
+
 export const PHRASES_EPISODE_BY_COURSE: Record<CourseId, Episode | null> = {
   ka: null,
   sr: null,
@@ -1328,6 +1477,7 @@ export const PHRASES_EPISODE_BY_COURSE: Record<CourseId, Episode | null> = {
   es: null,
   de: null,
   en: null,
+  fr: null,
 };
 
 const RAW_SHOPPING_EPISODE_BY_COURSE: Record<CourseId, Episode> = {
@@ -1672,6 +1822,15 @@ const RAW_SHOPPING_EPISODE_BY_COURSE: Record<CourseId, Episode> = {
       enPhrase('Thirty minutes', 'сёрти минитс', 'тридцать минут'),
     ],
   },
+  fr: {
+    id: 'shopping',
+    title: 'Покупки и числа',
+    cards: [
+      phrase('un', 'один'),
+      phrase('deux', 'два'),
+      phrase('trois', 'три'),
+    ],
+  },
 };
 
 const GERMAN_PREPLY_SECTION_IDS = [
@@ -1759,6 +1918,39 @@ const EXTRA_LESSON_IDS_BY_COURSE: Record<CourseId, { phrases?: string }> = {
   es: {},
   de: {},
   en: {},
+  fr: {},
+};
+
+const NUMBERS_ID_BY_COURSE: Record<CourseId, string> = {
+  de: 'ep7k',
+  ka: 'ep10k',
+  sr: 'ep9k',
+  tr: 'ep10k',
+  es: 'ep11k',
+  en: 'ep9k',
+  fr: 'ep8k',
+};
+
+type NumberRow = { n: number; ge: string; ru: string; tl?: string };
+
+function buildNumbersEpisode(courseId: CourseId): Episode {
+  const rows = (numbersData as unknown as Record<string, NumberRow[]>)[courseId] ?? [];
+  const cards = rows.map((row) =>
+    courseId === 'en'
+      ? intentEnPhrase(`number_${row.n}`, row.ge, row.tl ?? '', row.ru)
+      : intentPhrase(`number_${row.n}`, row.ge, row.ru),
+  );
+  return { id: 'numbers', title: 'Числа', cards };
+}
+
+const NUMBERS_SECTION_BY_COURSE: Record<CourseId, Episode> = {
+  ka: buildNumbersEpisode('ka'),
+  de: buildNumbersEpisode('de'),
+  es: buildNumbersEpisode('es'),
+  sr: buildNumbersEpisode('sr'),
+  tr: buildNumbersEpisode('tr'),
+  en: buildNumbersEpisode('en'),
+  fr: buildNumbersEpisode('fr'),
 };
 
 function toRawLesson(episode: Episode, id: string): RawEpisode {
@@ -1805,6 +1997,12 @@ function getExtraLessons(courseId: CourseId): RawEpisode[] {
           toRawLesson(episode, ENGLISH_INTENT_SECTION_IDS[index])
         ))
       : []),
+    ...(courseId === 'fr'
+      ? FRENCH_INTENT_SECTION_EPISODES.map((episode, index) => (
+          toRawLesson(episode, FRENCH_INTENT_SECTION_IDS[index])
+        ))
+      : []),
+    toRawLesson(NUMBERS_SECTION_BY_COURSE[courseId], NUMBERS_ID_BY_COURSE[courseId]),
   ];
 }
 
@@ -1823,7 +2021,8 @@ function resolveLegacyEpisodeId(id: string, courseId: CourseId): string {
           courseId === 'sr' ? SERBIAN_INTENT_SECTION_IDS[0] :
             courseId === 'tr' ? TURKISH_INTENT_SECTION_IDS[0] :
               courseId === 'ka' ? GEORGIAN_INTENT_SECTION_IDS[0] :
-                GERMAN_PREPLY_SECTION_IDS[0]);
+                courseId === 'fr' ? FRENCH_INTENT_SECTION_IDS[0] :
+                  GERMAN_PREPLY_SECTION_IDS[0]);
   }
   return id;
 }

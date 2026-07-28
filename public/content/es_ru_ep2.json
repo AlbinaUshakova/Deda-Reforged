@@ -1,25 +1,119 @@
 {
   "id": "ep2",
   "title": "Урок 4",
-  "letters": ["U", "M", "P"],
+  "letters": [
+    "U",
+    "M",
+    "P"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "un", "ru_meaning": "один", "info_notes": [{ "kind": "grammar", "text": "артикль → перед словом м.р.: un café" }] },
-    { "type": "word", "ge_text": "una", "ru_meaning": "одна", "info_notes": [{ "kind": "grammar", "text": "артикль → перед словом ж.р.: una mesa" }] },
-    { "type": "word", "ge_text": "uno", "ru_meaning": "один", "info_notes": [{ "kind": "grammar", "text": "само число → при счёте: uno, dos, tres" }] },
-    { "type": "word", "ge_text": "mi", "ru_meaning": "мой" },
-    { "type": "word", "ge_text": "me", "ru_meaning": "меня" },
-    { "type": "word", "ge_text": "mano", "ru_meaning": "рука" },
-    { "type": "word", "ge_text": "mesa", "ru_meaning": "стол" },
-    { "type": "word", "ge_text": "museo", "ru_meaning": "музей" },
-    { "type": "word", "ge_text": "mundo", "ru_meaning": "мир" },
-    { "type": "word", "ge_text": "muro", "ru_meaning": "стена" },
-    { "type": "word", "ge_text": "pan", "ru_meaning": "хлеб" },
-    { "type": "word", "ge_text": "papa", "ru_meaning": "папа" },
-    { "type": "word", "ge_text": "pero", "ru_meaning": "но" },
-    { "type": "word", "ge_text": "pera", "ru_meaning": "груша" },
-    { "type": "word", "ge_text": "puerta", "ru_meaning": "дверь" },
-    { "type": "word", "ge_text": "Un momento", "ru_meaning": "один момент" },
-    { "type": "word", "ge_text": "Tu casa", "ru_meaning": "твой дом" },
-    { "type": "word", "ge_text": "Un poco", "ru_meaning": "немного" }
+    {
+      "type": "word",
+      "ge_text": "un",
+      "ru_meaning": "один",
+      "info_notes": [
+        {
+          "kind": "grammar",
+          "text": "артикль → перед словом м.р.: un café"
+        }
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "Un poco",
+      "ru_meaning": "немного"
+    },
+    {
+      "type": "word",
+      "ge_text": "una",
+      "ru_meaning": "одна",
+      "info_notes": [
+        {
+          "kind": "grammar",
+          "text": "артикль → перед словом ж.р.: una mesa"
+        }
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "uno",
+      "ru_meaning": "один",
+      "info_notes": [
+        {
+          "kind": "grammar",
+          "text": "само число → при счёте: uno, dos, tres"
+        }
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "mi",
+      "ru_meaning": "мой"
+    },
+    {
+      "type": "word",
+      "ge_text": "me",
+      "ru_meaning": "меня"
+    },
+    {
+      "type": "word",
+      "ge_text": "Un momento",
+      "ru_meaning": "один момент"
+    },
+    {
+      "type": "word",
+      "ge_text": "mano",
+      "ru_meaning": "рука"
+    },
+    {
+      "type": "word",
+      "ge_text": "mesa",
+      "ru_meaning": "стол"
+    },
+    {
+      "type": "word",
+      "ge_text": "museo",
+      "ru_meaning": "музей"
+    },
+    {
+      "type": "word",
+      "ge_text": "Tu casa",
+      "ru_meaning": "твой дом"
+    },
+    {
+      "type": "word",
+      "ge_text": "mundo",
+      "ru_meaning": "мир"
+    },
+    {
+      "type": "word",
+      "ge_text": "muro",
+      "ru_meaning": "стена"
+    },
+    {
+      "type": "word",
+      "ge_text": "pan",
+      "ru_meaning": "хлеб"
+    },
+    {
+      "type": "word",
+      "ge_text": "papa",
+      "ru_meaning": "папа"
+    },
+    {
+      "type": "word",
+      "ge_text": "pero",
+      "ru_meaning": "но"
+    },
+    {
+      "type": "word",
+      "ge_text": "pera",
+      "ru_meaning": "груша"
+    },
+    {
+      "type": "word",
+      "ge_text": "puerta",
+      "ru_meaning": "дверь"
+    }
   ]
 }

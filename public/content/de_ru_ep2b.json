@@ -1,25 +1,101 @@
 {
   "id": "ep2b",
   "title": "Урок 5",
-  "letters": ["O", "B", "W"],
+  "letters": [
+    "O",
+    "B",
+    "W"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "Oma", "ru_meaning": "бабушка" },
-    { "type": "word", "ge_text": "Omi", "ru_meaning": "бабушка" },
-    { "type": "word", "ge_text": "Brot", "ru_meaning": "хлеб" },
-    { "type": "word", "ge_text": "Bus", "ru_meaning": "автобус" },
-    { "type": "word", "ge_text": "bin", "ru_meaning": "есть" },
-    { "type": "word", "ge_text": "wo", "ru_meaning": "где" },
-    { "type": "word", "ge_text": "was", "ru_meaning": "что" },
-    { "type": "word", "ge_text": "wer", "ru_meaning": "кто" },
-    { "type": "word", "ge_text": "Woche", "ru_meaning": "неделя" },
-    { "type": "word", "ge_text": "Wasser", "ru_meaning": "вода" },
-    { "type": "word", "ge_text": "oben", "ru_meaning": "наверху" },
-    { "type": "word", "ge_text": "Boden", "ru_meaning": "пол" },
-    { "type": "word", "ge_text": "Boot", "ru_meaning": "лодка" },
-    { "type": "word", "ge_text": "wohnen", "ru_meaning": "жить" },
-    { "type": "word", "ge_text": "Sonne", "ru_meaning": "солнце" },
-    { "type": "word", "ge_text": "Wo bist du", "ru_meaning": "где ты" },
-    { "type": "word", "ge_text": "Ich bin da", "ru_meaning": "я здесь" },
-    { "type": "word", "ge_text": "Du bist oben", "ru_meaning": "ты наверху" }
+    {
+      "type": "word",
+      "ge_text": "Oma",
+      "ru_meaning": "бабушка"
+    },
+    {
+      "type": "word",
+      "ge_text": "Omi",
+      "ru_meaning": "бабушка"
+    },
+    {
+      "type": "word",
+      "ge_text": "Brot",
+      "ru_meaning": "хлеб"
+    },
+    {
+      "type": "word",
+      "ge_text": "Bus",
+      "ru_meaning": "автобус"
+    },
+    {
+      "type": "word",
+      "ge_text": "bin",
+      "ru_meaning": "есть"
+    },
+    {
+      "type": "word",
+      "ge_text": "Ich bin da",
+      "ru_meaning": "я здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "wo",
+      "ru_meaning": "где"
+    },
+    {
+      "type": "word",
+      "ge_text": "Wo bist du",
+      "ru_meaning": "где ты"
+    },
+    {
+      "type": "word",
+      "ge_text": "was",
+      "ru_meaning": "что"
+    },
+    {
+      "type": "word",
+      "ge_text": "wer",
+      "ru_meaning": "кто"
+    },
+    {
+      "type": "word",
+      "ge_text": "Woche",
+      "ru_meaning": "неделя"
+    },
+    {
+      "type": "word",
+      "ge_text": "Wasser",
+      "ru_meaning": "вода"
+    },
+    {
+      "type": "word",
+      "ge_text": "oben",
+      "ru_meaning": "наверху"
+    },
+    {
+      "type": "word",
+      "ge_text": "Du bist oben",
+      "ru_meaning": "ты наверху"
+    },
+    {
+      "type": "word",
+      "ge_text": "Boden",
+      "ru_meaning": "пол"
+    },
+    {
+      "type": "word",
+      "ge_text": "Boot",
+      "ru_meaning": "лодка"
+    },
+    {
+      "type": "word",
+      "ge_text": "wohnen",
+      "ru_meaning": "жить"
+    },
+    {
+      "type": "word",
+      "ge_text": "Sonne",
+      "ru_meaning": "солнце"
+    }
   ]
 }

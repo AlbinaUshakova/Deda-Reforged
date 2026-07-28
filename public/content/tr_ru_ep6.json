@@ -1,25 +1,101 @@
 {
   "id": "ep6",
   "title": "Урок 8",
-  "letters": ["P", "Ö", "Ü"],
+  "letters": [
+    "P",
+    "Ö",
+    "Ü"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "para", "ru_meaning": "деньги" },
-    { "type": "word", "ge_text": "pazar", "ru_meaning": "рынок" },
-    { "type": "word", "ge_text": "kapı", "ru_meaning": "дверь" },
-    { "type": "word", "ge_text": "peki", "ru_meaning": "ладно" },
-    { "type": "word", "ge_text": "kitap", "ru_meaning": "книга" },
-    { "type": "word", "ge_text": "gün", "ru_meaning": "день" },
-    { "type": "word", "ge_text": "bugün", "ru_meaning": "сегодня" },
-    { "type": "word", "ge_text": "üzüm", "ru_meaning": "виноград" },
-    { "type": "word", "ge_text": "süt", "ru_meaning": "молоко" },
-    { "type": "word", "ge_text": "kötü", "ru_meaning": "плохо" },
-    { "type": "word", "ge_text": "güzel", "ru_meaning": "красиво" },
-    { "type": "word", "ge_text": "söz", "ru_meaning": "слово" },
-    { "type": "word", "ge_text": "göz", "ru_meaning": "глаз" },
-    { "type": "word", "ge_text": "dört", "ru_meaning": "четыре" },
-    { "type": "word", "ge_text": "ödev", "ru_meaning": "задание" },
-    { "type": "word", "ge_text": "çok güzel", "ru_meaning": "очень красиво" },
-    { "type": "word", "ge_text": "öp beni", "ru_meaning": "поцелуй меня" },
-    { "type": "word", "ge_text": "para ver", "ru_meaning": "дай деньги" }
+    {
+      "type": "word",
+      "ge_text": "para",
+      "ru_meaning": "деньги"
+    },
+    {
+      "type": "word",
+      "ge_text": "para ver",
+      "ru_meaning": "дай деньги"
+    },
+    {
+      "type": "word",
+      "ge_text": "pazar",
+      "ru_meaning": "рынок"
+    },
+    {
+      "type": "word",
+      "ge_text": "kapı",
+      "ru_meaning": "дверь"
+    },
+    {
+      "type": "word",
+      "ge_text": "peki",
+      "ru_meaning": "ладно"
+    },
+    {
+      "type": "word",
+      "ge_text": "kitap",
+      "ru_meaning": "книга"
+    },
+    {
+      "type": "word",
+      "ge_text": "gün",
+      "ru_meaning": "день"
+    },
+    {
+      "type": "word",
+      "ge_text": "bugün",
+      "ru_meaning": "сегодня"
+    },
+    {
+      "type": "word",
+      "ge_text": "üzüm",
+      "ru_meaning": "виноград"
+    },
+    {
+      "type": "word",
+      "ge_text": "öp beni",
+      "ru_meaning": "поцелуй меня"
+    },
+    {
+      "type": "word",
+      "ge_text": "süt",
+      "ru_meaning": "молоко"
+    },
+    {
+      "type": "word",
+      "ge_text": "kötü",
+      "ru_meaning": "плохо"
+    },
+    {
+      "type": "word",
+      "ge_text": "güzel",
+      "ru_meaning": "красиво"
+    },
+    {
+      "type": "word",
+      "ge_text": "çok güzel",
+      "ru_meaning": "очень красиво"
+    },
+    {
+      "type": "word",
+      "ge_text": "söz",
+      "ru_meaning": "слово"
+    },
+    {
+      "type": "word",
+      "ge_text": "göz",
+      "ru_meaning": "глаз"
+    },
+    {
+      "type": "word",
+      "ge_text": "dört",
+      "ru_meaning": "четыре"
+    },
+    {
+      "type": "word",
+      "ge_text": "ödev",
+      "ru_meaning": "задание"
+    }
   ]
 }

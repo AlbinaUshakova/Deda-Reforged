@@ -1,25 +1,101 @@
 {
   "id": "ep5",
   "title": "Урок 7",
-  "letters": ["F", "Z", "J"],
+  "letters": [
+    "F",
+    "Z",
+    "J"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "favor", "ru_meaning": "услуга" },
-    { "type": "word", "ge_text": "frio", "ru_meaning": "холодно" },
-    { "type": "word", "ge_text": "fila", "ru_meaning": "очередь" },
-    { "type": "word", "ge_text": "familia", "ru_meaning": "семья" },
-    { "type": "word", "ge_text": "facil", "ru_meaning": "легко" },
-    { "type": "word", "ge_text": "zona", "ru_meaning": "зона" },
-    { "type": "word", "ge_text": "azul", "ru_meaning": "синий" },
-    { "type": "word", "ge_text": "diez", "ru_meaning": "десять" },
-    { "type": "word", "ge_text": "joven", "ru_meaning": "молодой" },
-    { "type": "word", "ge_text": "juego", "ru_meaning": "игра" },
-    { "type": "word", "ge_text": "caja", "ru_meaning": "коробка" },
-    { "type": "word", "ge_text": "rojo", "ru_meaning": "красный" },
-    { "type": "word", "ge_text": "jefe", "ru_meaning": "начальник" },
-    { "type": "word", "ge_text": "junio", "ru_meaning": "июнь" },
-    { "type": "word", "ge_text": "jardin", "ru_meaning": "сад" },
-    { "type": "word", "ge_text": "Feliz dia", "ru_meaning": "счастливого дня" },
-    { "type": "word", "ge_text": "Jugo fresco", "ru_meaning": "свежий сок" },
-    { "type": "word", "ge_text": "Fui feliz", "ru_meaning": "я был счастлив" }
+    {
+      "type": "word",
+      "ge_text": "favor",
+      "ru_meaning": "услуга"
+    },
+    {
+      "type": "word",
+      "ge_text": "frio",
+      "ru_meaning": "холодно"
+    },
+    {
+      "type": "word",
+      "ge_text": "fila",
+      "ru_meaning": "очередь"
+    },
+    {
+      "type": "word",
+      "ge_text": "familia",
+      "ru_meaning": "семья"
+    },
+    {
+      "type": "word",
+      "ge_text": "Feliz dia",
+      "ru_meaning": "счастливого дня"
+    },
+    {
+      "type": "word",
+      "ge_text": "facil",
+      "ru_meaning": "легко"
+    },
+    {
+      "type": "word",
+      "ge_text": "zona",
+      "ru_meaning": "зона"
+    },
+    {
+      "type": "word",
+      "ge_text": "azul",
+      "ru_meaning": "синий"
+    },
+    {
+      "type": "word",
+      "ge_text": "diez",
+      "ru_meaning": "десять"
+    },
+    {
+      "type": "word",
+      "ge_text": "Jugo fresco",
+      "ru_meaning": "свежий сок"
+    },
+    {
+      "type": "word",
+      "ge_text": "joven",
+      "ru_meaning": "молодой"
+    },
+    {
+      "type": "word",
+      "ge_text": "juego",
+      "ru_meaning": "игра"
+    },
+    {
+      "type": "word",
+      "ge_text": "caja",
+      "ru_meaning": "коробка"
+    },
+    {
+      "type": "word",
+      "ge_text": "rojo",
+      "ru_meaning": "красный"
+    },
+    {
+      "type": "word",
+      "ge_text": "Fui feliz",
+      "ru_meaning": "я был счастлив"
+    },
+    {
+      "type": "word",
+      "ge_text": "jefe",
+      "ru_meaning": "начальник"
+    },
+    {
+      "type": "word",
+      "ge_text": "junio",
+      "ru_meaning": "июнь"
+    },
+    {
+      "type": "word",
+      "ge_text": "jardin",
+      "ru_meaning": "сад"
+    }
   ]
 }

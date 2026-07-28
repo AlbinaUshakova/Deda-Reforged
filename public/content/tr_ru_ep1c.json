@@ -1,23 +1,94 @@
 {
   "id": "ep1c",
   "title": "Урок 3",
-  "letters": ["L", "D", "K"],
+  "letters": [
+    "L",
+    "D",
+    "K"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "el", "ru_meaning": "рука" },
-    { "type": "word", "ge_text": "bel", "ru_meaning": "талия" },
-    { "type": "word", "ge_text": "bal", "ru_meaning": "мёд", "accepted_ru": ["мед"] },
-    { "type": "word", "ge_text": "bana", "ru_meaning": "мне" },
-    { "type": "word", "ge_text": "belli", "ru_meaning": "ясный" },
-    { "type": "word", "ge_text": "bil", "ru_meaning": "знай" },
-    { "type": "word", "ge_text": "bile", "ru_meaning": "даже" },
-    { "type": "word", "ge_text": "dil", "ru_meaning": "язык" },
-    { "type": "word", "ge_text": "de", "ru_meaning": "тоже" },
-    { "type": "word", "ge_text": "de bana", "ru_meaning": "скажи мне" },
-    { "type": "word", "ge_text": "kedi", "ru_meaning": "кот" },
-    { "type": "word", "ge_text": "kal", "ru_meaning": "останься" },
-    { "type": "word", "ge_text": "kedi ver", "ru_meaning": "дай кота" },
-    { "type": "word", "ge_text": "kek", "ru_meaning": "кекс" },
-    { "type": "word", "ge_text": "kale", "ru_meaning": "замок" },
-    { "type": "word", "ge_text": "bana el ver", "ru_meaning": "дай мне руку" }
+    {
+      "type": "word",
+      "ge_text": "el",
+      "ru_meaning": "рука"
+    },
+    {
+      "type": "word",
+      "ge_text": "bel",
+      "ru_meaning": "талия"
+    },
+    {
+      "type": "word",
+      "ge_text": "bal",
+      "ru_meaning": "мёд",
+      "accepted_ru": [
+        "мед"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "bana",
+      "ru_meaning": "мне"
+    },
+    {
+      "type": "word",
+      "ge_text": "bana el ver",
+      "ru_meaning": "дай мне руку"
+    },
+    {
+      "type": "word",
+      "ge_text": "belli",
+      "ru_meaning": "ясный"
+    },
+    {
+      "type": "word",
+      "ge_text": "bil",
+      "ru_meaning": "знай"
+    },
+    {
+      "type": "word",
+      "ge_text": "bile",
+      "ru_meaning": "даже"
+    },
+    {
+      "type": "word",
+      "ge_text": "dil",
+      "ru_meaning": "язык"
+    },
+    {
+      "type": "word",
+      "ge_text": "de",
+      "ru_meaning": "тоже"
+    },
+    {
+      "type": "word",
+      "ge_text": "de bana",
+      "ru_meaning": "скажи мне"
+    },
+    {
+      "type": "word",
+      "ge_text": "kedi",
+      "ru_meaning": "кот"
+    },
+    {
+      "type": "word",
+      "ge_text": "kedi ver",
+      "ru_meaning": "дай кота"
+    },
+    {
+      "type": "word",
+      "ge_text": "kal",
+      "ru_meaning": "останься"
+    },
+    {
+      "type": "word",
+      "ge_text": "kek",
+      "ru_meaning": "кекс"
+    },
+    {
+      "type": "word",
+      "ge_text": "kale",
+      "ru_meaning": "замок"
+    }
   ]
 }

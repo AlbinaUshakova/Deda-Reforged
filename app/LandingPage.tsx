@@ -99,6 +99,10 @@ export default function LandingPage() {
                 <span className="landing-feature-icon" aria-hidden="true">3</span>
                 <span><span className="landing-feature-title">Играй</span><span className="landing-feature-copy">Понял слово — сделал ход.</span></span>
               </div>
+              <div className="landing-feature">
+                <span className="landing-feature-icon" aria-hidden="true">4</span>
+                <span><span className="landing-feature-title">Начинай говорить</span><span className="landing-feature-copy">Не заметишь, как выучишь слова и заговоришь.</span></span>
+              </div>
             </div>
           </div>
           <div className="landing-info-card landing-final-cta">
@@ -111,9 +115,6 @@ export default function LandingPage() {
             />
             <div>
               <h2 className="landing-preview-title"><LandingFinalCtaTitle /></h2>
-              <p className="landing-info-copy mt-2">
-                Первый урок займёт несколько минут.
-              </p>
             </div>
             <Link href="/lessons" className="landing-cta-btn inline-flex h-[58px] items-center justify-center rounded-[18px] px-7 text-[18px] font-semibold">
               Начать первый урок <span className="ml-3 text-[24px] leading-none">→</span>

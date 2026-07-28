@@ -1,0 +1,103 @@
+{
+  "id": "ep6",
+  "title": "Урок 6",
+  "letters": [
+    "È",
+    "À",
+    "Ç",
+    "Ê",
+    "Ô"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "à",
+      "ru_meaning": "в / к",
+      "translit": "а"
+    },
+    {
+      "type": "word",
+      "ge_text": "très",
+      "ru_meaning": "очень",
+      "translit": "трэ"
+    },
+    {
+      "type": "word",
+      "ge_text": "très bon",
+      "ru_meaning": "очень хорошо",
+      "translit": "трэ бон"
+    },
+    {
+      "type": "word",
+      "ge_text": "près",
+      "ru_meaning": "близко",
+      "translit": "прэ"
+    },
+    {
+      "type": "word",
+      "ge_text": "voilà",
+      "ru_meaning": "вот",
+      "translit": "вуаля"
+    },
+    {
+      "type": "word",
+      "ge_text": "voilà le café",
+      "ru_meaning": "вот кофе",
+      "translit": "вуаля лё кафе"
+    },
+    {
+      "type": "word",
+      "ge_text": "à la gare",
+      "ru_meaning": "на вокзал",
+      "translit": "а ла гар"
+    },
+    {
+      "type": "word",
+      "ge_text": "ça",
+      "ru_meaning": "это",
+      "translit": "са"
+    },
+    {
+      "type": "word",
+      "ge_text": "garçon",
+      "ru_meaning": "официант",
+      "translit": "гарсон"
+    },
+    {
+      "type": "word",
+      "ge_text": "français",
+      "ru_meaning": "французский",
+      "translit": "франсэ"
+    },
+    {
+      "type": "word",
+      "ge_text": "père",
+      "ru_meaning": "отец",
+      "translit": "пэр"
+    },
+    {
+      "type": "word",
+      "ge_text": "mère",
+      "ru_meaning": "мать",
+      "translit": "мэр"
+    },
+    {
+      "type": "word",
+      "ge_text": "hôtel",
+      "ru_meaning": "отель",
+      "translit": "отэль"
+    },
+    {
+      "type": "word",
+      "ge_text": "fête",
+      "ru_meaning": "праздник",
+      "translit": "фэт"
+    },
+    {
+      "type": "word",
+      "ge_text": "forêt",
+      "ru_meaning": "лес",
+      "translit": "форэ"
+    }
+  ]
+}

@@ -1,22 +1,88 @@
 {
   "id": "ep1",
   "title": "Урок 1",
-  "letters": ["А", "О", "Е", "И", "Н"],
+  "letters": [
+    "А",
+    "О",
+    "Е",
+    "И",
+    "Н"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "она не", "ru_meaning": "она не" },
-    { "type": "word", "ge_text": "они не", "ru_meaning": "они не" },
-    { "type": "word", "ge_text": "не", "ru_meaning": "нет / не" },
-    { "type": "word", "ge_text": "он", "ru_meaning": "он" },
-    { "type": "word", "ge_text": "она", "ru_meaning": "она" },
-    { "type": "word", "ge_text": "они", "ru_meaning": "они" },
-    { "type": "word", "ge_text": "оно", "ru_meaning": "оно" },
-    { "type": "word", "ge_text": "не он", "ru_meaning": "не он" },
-    { "type": "word", "ge_text": "не оно", "ru_meaning": "не оно" },
-    { "type": "word", "ge_text": "и она", "ru_meaning": "и она" },
-    { "type": "word", "ge_text": "он и она", "ru_meaning": "он и она" },
-    { "type": "word", "ge_text": "она и он", "ru_meaning": "она и он" },
-    { "type": "word", "ge_text": "не она", "ru_meaning": "не она" },
-    { "type": "word", "ge_text": "не они", "ru_meaning": "не они" },
-    { "type": "word", "ge_text": "они и она", "ru_meaning": "они и она" }
+    {
+      "type": "word",
+      "ge_text": "не",
+      "ru_meaning": "нет"
+    },
+    {
+      "type": "word",
+      "ge_text": "он",
+      "ru_meaning": "он"
+    },
+    {
+      "type": "word",
+      "ge_text": "не он",
+      "ru_meaning": "не он"
+    },
+    {
+      "type": "word",
+      "ge_text": "она",
+      "ru_meaning": "она"
+    },
+    {
+      "type": "word",
+      "ge_text": "она не",
+      "ru_meaning": "она не"
+    },
+    {
+      "type": "word",
+      "ge_text": "и она",
+      "ru_meaning": "и она"
+    },
+    {
+      "type": "word",
+      "ge_text": "он и она",
+      "ru_meaning": "он и она"
+    },
+    {
+      "type": "word",
+      "ge_text": "она и он",
+      "ru_meaning": "она и он"
+    },
+    {
+      "type": "word",
+      "ge_text": "не она",
+      "ru_meaning": "не она"
+    },
+    {
+      "type": "word",
+      "ge_text": "они",
+      "ru_meaning": "они"
+    },
+    {
+      "type": "word",
+      "ge_text": "они не",
+      "ru_meaning": "они не"
+    },
+    {
+      "type": "word",
+      "ge_text": "не они",
+      "ru_meaning": "не они"
+    },
+    {
+      "type": "word",
+      "ge_text": "они и она",
+      "ru_meaning": "они и она"
+    },
+    {
+      "type": "word",
+      "ge_text": "оно",
+      "ru_meaning": "оно"
+    },
+    {
+      "type": "word",
+      "ge_text": "не оно",
+      "ru_meaning": "не оно"
+    }
   ]
 }

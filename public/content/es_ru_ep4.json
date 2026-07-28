@@ -1,24 +1,99 @@
 {
   "id": "ep4",
   "title": "Урок 6",
-  "letters": ["Y", "Q", "H"],
+  "letters": [
+    "Y",
+    "Q",
+    "H"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "ayer", "ru_meaning": "вчера" },
-    { "type": "word", "ge_text": "ya", "ru_meaning": "уже" },
-    { "type": "word", "ge_text": "yo", "ru_meaning": "я" },
-    { "type": "word", "ge_text": "hay", "ru_meaning": "есть" },
-    { "type": "word", "ge_text": "hoy", "ru_meaning": "сегодня" },
-    { "type": "word", "ge_text": "hola", "ru_meaning": "привет" },
-    { "type": "word", "ge_text": "hora", "ru_meaning": "час" },
-    { "type": "word", "ge_text": "hielo", "ru_meaning": "лёд", "accepted_ru": ["лед"] },
-    { "type": "word", "ge_text": "queso", "ru_meaning": "сыр" },
-    { "type": "word", "ge_text": "aqui", "ru_meaning": "здесь" },
-    { "type": "word", "ge_text": "quiero", "ru_meaning": "хочу" },
-    { "type": "word", "ge_text": "quince", "ru_meaning": "пятнадцать" },
-    { "type": "word", "ge_text": "que", "ru_meaning": "что" },
-    { "type": "word", "ge_text": "quedo", "ru_meaning": "остаюсь" },
-    { "type": "word", "ge_text": "hay queso", "ru_meaning": "есть сыр" },
-    { "type": "word", "ge_text": "Hay agua", "ru_meaning": "есть вода" },
-    { "type": "word", "ge_text": "Quiero queso", "ru_meaning": "хочу сыр" }
+    {
+      "type": "word",
+      "ge_text": "ayer",
+      "ru_meaning": "вчера"
+    },
+    {
+      "type": "word",
+      "ge_text": "ya",
+      "ru_meaning": "уже"
+    },
+    {
+      "type": "word",
+      "ge_text": "yo",
+      "ru_meaning": "я"
+    },
+    {
+      "type": "word",
+      "ge_text": "hay",
+      "ru_meaning": "есть"
+    },
+    {
+      "type": "word",
+      "ge_text": "Hay agua",
+      "ru_meaning": "есть вода"
+    },
+    {
+      "type": "word",
+      "ge_text": "hoy",
+      "ru_meaning": "сегодня"
+    },
+    {
+      "type": "word",
+      "ge_text": "hola",
+      "ru_meaning": "привет"
+    },
+    {
+      "type": "word",
+      "ge_text": "hora",
+      "ru_meaning": "час"
+    },
+    {
+      "type": "word",
+      "ge_text": "hielo",
+      "ru_meaning": "лёд",
+      "accepted_ru": [
+        "лед"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "queso",
+      "ru_meaning": "сыр"
+    },
+    {
+      "type": "word",
+      "ge_text": "aqui",
+      "ru_meaning": "здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "quiero",
+      "ru_meaning": "хочу"
+    },
+    {
+      "type": "word",
+      "ge_text": "quince",
+      "ru_meaning": "пятнадцать"
+    },
+    {
+      "type": "word",
+      "ge_text": "que",
+      "ru_meaning": "что"
+    },
+    {
+      "type": "word",
+      "ge_text": "hay queso",
+      "ru_meaning": "есть сыр"
+    },
+    {
+      "type": "word",
+      "ge_text": "Quiero queso",
+      "ru_meaning": "хочу сыр"
+    },
+    {
+      "type": "word",
+      "ge_text": "quedo",
+      "ru_meaning": "остаюсь"
+    }
   ]
 }

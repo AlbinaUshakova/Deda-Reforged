@@ -1,22 +1,91 @@
 {
   "id": "ep3",
   "title": "Урок 4",
-  "letters": ["ლ", "კ", "გ"],
+  "letters": [
+    "ლ",
+    "კ",
+    "გ"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "კი", "ru_meaning": "да" },
-    { "type": "word", "ge_text": "გემი", "ru_meaning": "корабль" },
-    { "type": "word", "ge_text": "გოგო", "ru_meaning": "девочка" },
-    { "type": "word", "ge_text": "კარგი", "ru_meaning": "хороший" },
-    { "type": "word", "ge_text": "სკოლა", "ru_meaning": "школа" },
-    { "type": "word", "ge_text": "ლარი", "ru_meaning": "лари" },
-    { "type": "word", "ge_text": "გული", "ru_meaning": "сердце" },
-    { "type": "word", "ge_text": "კარი", "ru_meaning": "дверь" },
-    { "type": "word", "ge_text": "ლუდი", "ru_meaning": "пиво" },
-    { "type": "word", "ge_text": "კინო", "ru_meaning": "кино" },
-    { "type": "word", "ge_text": "კალამი", "ru_meaning": "ручка" },
-    { "type": "word", "ge_text": "დიდი", "ru_meaning": "большой" },
-    { "type": "word", "ge_text": "ეს კარგია", "ru_meaning": "это хорошо" },
-    { "type": "word", "ge_text": "ეს სკოლაა", "ru_meaning": "это школа" },
-    { "type": "word", "ge_text": "სად არის სკოლა?", "ru_meaning": "где школа?" }
+    {
+      "type": "word",
+      "ge_text": "კი",
+      "ru_meaning": "да"
+    },
+    {
+      "type": "word",
+      "ge_text": "კარი",
+      "ru_meaning": "дверь"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი კარი",
+      "ru_meaning": "вот дверь"
+    },
+    {
+      "type": "word",
+      "ge_text": "სკოლა",
+      "ru_meaning": "школа"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს სკოლაა",
+      "ru_meaning": "это школа"
+    },
+    {
+      "type": "word",
+      "ge_text": "სად არის სკოლა?",
+      "ru_meaning": "где школа?"
+    },
+    {
+      "type": "word",
+      "ge_text": "კარგი",
+      "ru_meaning": "хороший"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს კარგია",
+      "ru_meaning": "это хорошо"
+    },
+    {
+      "type": "word",
+      "ge_text": "გემი",
+      "ru_meaning": "корабль"
+    },
+    {
+      "type": "word",
+      "ge_text": "გოგო",
+      "ru_meaning": "девочка"
+    },
+    {
+      "type": "word",
+      "ge_text": "გული",
+      "ru_meaning": "сердце"
+    },
+    {
+      "type": "word",
+      "ge_text": "კინო",
+      "ru_meaning": "кино"
+    },
+    {
+      "type": "word",
+      "ge_text": "კალამი",
+      "ru_meaning": "ручка"
+    },
+    {
+      "type": "word",
+      "ge_text": "ლარი",
+      "ru_meaning": "лари"
+    },
+    {
+      "type": "word",
+      "ge_text": "ლუდი",
+      "ru_meaning": "пиво"
+    },
+    {
+      "type": "word",
+      "ge_text": "დიდი",
+      "ru_meaning": "большой"
+    }
   ]
 }

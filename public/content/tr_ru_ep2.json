@@ -1,25 +1,101 @@
 {
   "id": "ep2",
   "title": "Урок 4",
-  "letters": ["T", "M", "U"],
+  "letters": [
+    "T",
+    "M",
+    "U"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "tamam", "ru_meaning": "хорошо" },
-    { "type": "word", "ge_text": "tane", "ru_meaning": "штука" },
-    { "type": "word", "ge_text": "bu", "ru_meaning": "это" },
-    { "type": "word", "ge_text": "un", "ru_meaning": "мука" },
-    { "type": "word", "ge_text": "mum", "ru_meaning": "свеча" },
-    { "type": "word", "ge_text": "mavi", "ru_meaning": "синий" },
-    { "type": "word", "ge_text": "mutlu", "ru_meaning": "счастливый" },
-    { "type": "word", "ge_text": "tut", "ru_meaning": "держи" },
-    { "type": "word", "ge_text": "bu kalem", "ru_meaning": "это ручка" },
-    { "type": "word", "ge_text": "liman", "ru_meaning": "порт" },
-    { "type": "word", "ge_text": "kalem", "ru_meaning": "ручка" },
-    { "type": "word", "ge_text": "benim", "ru_meaning": "мой" },
-    { "type": "word", "ge_text": "tren", "ru_meaning": "поезд" },
-    { "type": "word", "ge_text": "metin", "ru_meaning": "текст" },
-    { "type": "word", "ge_text": "dur", "ru_meaning": "стой" },
-    { "type": "word", "ge_text": "bu ne", "ru_meaning": "что это" },
-    { "type": "word", "ge_text": "bana un ver", "ru_meaning": "дай мне муку" },
-    { "type": "word", "ge_text": "bu kutu", "ru_meaning": "это коробка" }
+    {
+      "type": "word",
+      "ge_text": "tamam",
+      "ru_meaning": "хорошо"
+    },
+    {
+      "type": "word",
+      "ge_text": "tane",
+      "ru_meaning": "штука"
+    },
+    {
+      "type": "word",
+      "ge_text": "bu",
+      "ru_meaning": "это"
+    },
+    {
+      "type": "word",
+      "ge_text": "bu ne",
+      "ru_meaning": "что это"
+    },
+    {
+      "type": "word",
+      "ge_text": "bu kutu",
+      "ru_meaning": "это коробка"
+    },
+    {
+      "type": "word",
+      "ge_text": "un",
+      "ru_meaning": "мука"
+    },
+    {
+      "type": "word",
+      "ge_text": "bana un ver",
+      "ru_meaning": "дай мне муку"
+    },
+    {
+      "type": "word",
+      "ge_text": "mum",
+      "ru_meaning": "свеча"
+    },
+    {
+      "type": "word",
+      "ge_text": "mavi",
+      "ru_meaning": "синий"
+    },
+    {
+      "type": "word",
+      "ge_text": "mutlu",
+      "ru_meaning": "счастливый"
+    },
+    {
+      "type": "word",
+      "ge_text": "tut",
+      "ru_meaning": "держи"
+    },
+    {
+      "type": "word",
+      "ge_text": "liman",
+      "ru_meaning": "порт"
+    },
+    {
+      "type": "word",
+      "ge_text": "kalem",
+      "ru_meaning": "ручка"
+    },
+    {
+      "type": "word",
+      "ge_text": "bu kalem",
+      "ru_meaning": "это ручка"
+    },
+    {
+      "type": "word",
+      "ge_text": "benim",
+      "ru_meaning": "мой"
+    },
+    {
+      "type": "word",
+      "ge_text": "tren",
+      "ru_meaning": "поезд"
+    },
+    {
+      "type": "word",
+      "ge_text": "metin",
+      "ru_meaning": "текст"
+    },
+    {
+      "type": "word",
+      "ge_text": "dur",
+      "ru_meaning": "стой"
+    }
   ]
 }

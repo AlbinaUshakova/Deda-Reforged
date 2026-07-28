@@ -188,14 +188,14 @@ h3,
 }
 
 .lessons-screen::before {
-    content: 'აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ';
+    content: var(--script-watermark, 'აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ');
     position: absolute;
     top: 82px;
     left: 50%;
     width: min(1120px, 94vw);
     transform: translateX(-50%);
     color: rgba(120, 113, 108, 0.07);
-    font-family: var(--font-georgian);
+    font-family: var(--script-watermark-font, var(--font-georgian));
     font-size: clamp(58px, 8vw, 118px);
     letter-spacing: 0.08em;
     line-height: 1;
@@ -1107,48 +1107,32 @@ h3,
 
 .home-special-section {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 12px;
 }
 
 .home-special-block {
     position: relative;
-    overflow: hidden;
-    border-radius: clamp(24px, 3vw, 34px);
-    background:
-        radial-gradient(circle at 8% 0%, rgba(255, 138, 61, 0.16), transparent 30%),
-        radial-gradient(circle at 92% 8%, rgba(0, 168, 132, 0.12), transparent 32%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 250, 243, 0.55));
-    padding: clamp(14px, 2vw, 20px);
-    box-shadow:
-        0 18px 54px rgba(31, 28, 23, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.76);
-    backdrop-filter: blur(18px);
-}
-
-.home-special-block::before {
-    content: '';
-    position: absolute;
-    inset: 1px;
-    pointer-events: none;
-    border-radius: inherit;
-    border: 1px solid rgba(255, 255, 255, 0.54);
+    background: transparent;
+    padding: 0;
 }
 
 .home-special-heading {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 10px;
+    gap: 14px;
+    margin-bottom: 12px;
     line-height: 1;
 }
 
 .home-special-eyebrow {
     display: block;
-    color: rgba(23, 21, 19, 0.86);
-    font-size: clamp(17px, 1.7vw, 22px);
-    font-weight: 820;
-    letter-spacing: -0.045em;
+    color: #202123;
+    font-size: clamp(18px, 4.6vw, 26px);
+    font-weight: 930;
+    letter-spacing: -0.05em;
+    line-height: 1;
 }
 
 .home-special-summary {
@@ -1342,7 +1326,7 @@ h3,
 
 @media (max-width: 700px) {
     .home-special-section {
-        max-width: min(100%, 520px);
+        max-width: 100%;
         margin-top: 18px;
     }
 
@@ -1458,14 +1442,14 @@ button[aria-pressed='true'] {
 }
 
 .study-card-screen::before {
-    content: 'აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ';
+    content: var(--script-watermark, 'აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ');
     position: absolute;
     top: 92px;
     left: 50%;
     width: min(1120px, 94vw);
     transform: translateX(-50%);
     color: rgba(120, 113, 108, 0.055);
-    font-family: var(--font-georgian);
+    font-family: var(--script-watermark-font, var(--font-georgian));
     font-size: clamp(58px, 8vw, 118px);
     letter-spacing: 0.08em;
     line-height: 1;
@@ -2128,7 +2112,7 @@ body {
 }
 
 .home-special-block {
-    padding: clamp(18px, 2.1vw, 24px) !important;
+    padding: 0 !important;
 }
 
 .home-special-caption {
@@ -2185,7 +2169,17 @@ body {
 @media (max-width: 720px) {
     .home-special-heading {
         flex-direction: column;
+        align-items: flex-start;
         gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .home-special-summary {
+        margin-top: 4px;
+    }
+
+    .home-special-total-progress {
+        margin-bottom: 10px;
     }
 
     .home-special-caption {
@@ -2656,7 +2650,7 @@ body {
     .landing-feature-strip {
       position: relative;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: clamp(9px, 1.2vw, 14px);
       align-items: stretch;
       justify-content: start;
@@ -2686,9 +2680,9 @@ body {
       position: relative;
       z-index: 1;
       display: grid;
-      gap: 14px;
+      gap: 10px;
       align-content: space-between;
-      min-height: 112px;
+      min-height: 84px;
       border-radius: 24px;
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.42)),
@@ -2988,6 +2982,41 @@ body {
 
     @media (max-width: 640px) {
       .landing-feature-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .landing-feature {
+        min-height: 0;
+        gap: 6px;
+        border-radius: 18px;
+        padding: 12px;
+      }
+
+      .landing-feature-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 12px;
+        font-size: 15px;
+      }
+
+      /* стрелки-связки на мобиле только мешают и добавляют высоту */
+      .landing-feature:not(:last-child)::after,
+      .landing-feature:not(:last-child)::before {
+        display: none;
+      }
+
+      .landing-info-card {
+        padding: 16px;
+      }
+
+      .landing-info-header {
+        margin-bottom: 12px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .landing-feature-strip {
         grid-template-columns: 1fr;
       }
     }
@@ -3010,7 +3039,7 @@ body {
       }
 
       .landing-feature-strip {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
 
@@ -3492,4 +3521,201 @@ body {
     right: 5px;
     font-size: 11px;
     color: #ff9f1c;
+}
+
+/* --------- КОМПАКТНЫЙ АЛФАВИТ (панель-подсказка) --------- */
+.alphabet-compact .home-alphabet-key {
+    aspect-ratio: auto !important;
+    min-height: 0 !important;
+    padding: clamp(2px, 0.8vw, 4px) 2px !important;
+    gap: 1px;
+}
+
+.alphabet-compact .home-alphabet-letter {
+    font-size: clamp(10px, 2.5vw, 13px) !important;
+}
+
+.alphabet-compact .home-alphabet-translit {
+    font-size: clamp(6px, 1.5vw, 7px) !important;
+}
+
+/* строчная буква: заметно меньше заглавной, но крупнее произношения */
+.home-alphabet-lower {
+    line-height: 1;
+    font-weight: 600;
+}
+
+.alphabet-compact .home-alphabet-lower {
+    font-size: clamp(8px, 1.9vw, 10px) !important;
+    margin-top: 1px !important;
+}
+
+/* Иерархия трёх строк карточки:
+   заглавная — тёмная, произношение (звук) — тёмно-серое и заметное,
+   строчная — светло-серая (второстепенная опора для узнавания). */
+.alphabet-compact .home-alphabet-lower {
+    color: rgba(31, 28, 23, 0.5) !important;
+}
+
+.alphabet-compact .home-alphabet-translit {
+    color: rgba(31, 28, 23, 0.8) !important;
+    font-weight: 600 !important;
+}
+
+/* Заголовок-разделитель для дополнительных букв (диакритика):
+   спокойный, не капсом, тонкая линия почти на всю ширину карточки. */
+.alphabet-section-label {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(31, 28, 23, 0.12);
+    margin-bottom: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: rgba(31, 28, 23, 0.5);
+    line-height: 1.1;
+}
+
+/* Дополнительные буквы — карточки на ~12% меньше основного алфавита */
+.alphabet-compact .alphabet-section--additional .home-alphabet-key {
+    padding: clamp(1px, 0.6vw, 3px) 2px !important;
+}
+
+.alphabet-compact .alphabet-section--additional .home-alphabet-letter {
+    font-size: clamp(9px, 2.2vw, 11px) !important;
+}
+
+.alphabet-compact .alphabet-section--additional .home-alphabet-lower {
+    font-size: clamp(7px, 1.7vw, 9px) !important;
+}
+
+.alphabet-compact .alphabet-section--additional .home-alphabet-translit {
+    font-size: clamp(5px, 1.35vw, 6px) !important;
+}
+
+/* --------- АЧИВКИ (круглые бейджи-котики) --------- */
+.ach-badge {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 999px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 5px 12px rgba(31, 28, 23, 0.1);
+    transition: transform 200ms ease;
+}
+
+.ach-badge-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ach-badge-img--contain {
+    object-fit: contain;
+    padding: 4px;
+}
+
+.ach-badge--final {
+    background: #fff6ee;
+    box-shadow: 0 6px 16px rgba(255, 107, 53, 0.22);
+}
+
+.ach-badge--off {
+    filter: grayscale(1);
+    opacity: 0.42;
+    box-shadow: none;
+    border: 1.5px dashed rgba(23, 21, 19, 0.18);
+}
+
+.ach-badge-lock {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+    color: rgba(23, 21, 19, 0.55);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Закрытая ачивка — «загадка» (котик скрыт до прохождения) */
+.ach-badge--locked {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1.5px dashed rgba(23, 21, 19, 0.2);
+    box-shadow: none;
+    display: grid;
+    place-items: center;
+}
+
+.ach-badge-q {
+    font-size: clamp(18px, 4vw, 22px);
+    font-weight: 800;
+    color: rgba(23, 21, 19, 0.3);
+}
+
+.ach-badge--final.ach-badge--locked {
+    border-color: rgba(255, 107, 53, 0.5);
+    background: #fff6ee;
+}
+
+.ach-badge--final.ach-badge--locked .ach-badge-q {
+    color: #ffb267;
+}
+
+/* --------- МИКРОАНИМАЦИИ АЧИВОК --------- */
+@keyframes ach-pop {
+    0% { transform: scale(0.6); opacity: 0; }
+    60% { transform: scale(1.08); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes ach-wiggle {
+    0%, 86%, 100% { transform: rotate(0deg); }
+    90% { transform: rotate(-5deg); }
+    93% { transform: rotate(4deg); }
+    96% { transform: rotate(-2deg); }
+}
+
+/* плавное появление открытой ачивки */
+.ach-badge--on {
+    animation: ach-pop 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* hover — лёгкое увеличение и тёплое свечение */
+.ach-badge--on:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 22px rgba(255, 107, 53, 0.28);
+}
+
+/* лёгкое покачивание недавно открытой ачивки */
+.ach-badge--recent {
+    animation:
+        ach-pop 360ms cubic-bezier(0.22, 1, 0.36, 1) both,
+        ach-wiggle 3.6s ease-in-out 0.8s infinite;
+}
+
+.ach-badge--recent:hover {
+    animation: none;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 22px rgba(255, 107, 53, 0.28);
+}
+
+/* закрытая ачивка — мягкая реакция на наведение */
+.ach-badge--locked {
+    transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.ach-badge--locked:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 107, 53, 0.4);
+    background: rgba(255, 246, 238, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ach-badge--on,
+    .ach-badge--recent {
+        animation: none;
+    }
 }

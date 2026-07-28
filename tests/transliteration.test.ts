@@ -12,7 +12,7 @@ test('letterToHint supports Russian and latin hints for all non-Georgian courses
   assert.equal(letterToHint('İ', 'ru', 'tr'), 'и');
   assert.equal(letterToHint('İ', 'latin', 'tr'), 'i');
   assert.equal(letterToHint('I', 'ru', 'tr'), 'ы');
-  assert.equal(letterToHint('I', 'latin', 'tr'), 'i');
+  assert.equal(letterToHint('I', 'latin', 'tr'), 'uh');
   assert.equal(letterToHint('Ş', 'latin', 'tr'), 'sh');
 
   assert.equal(letterToHint('Ñ', 'ru', 'es'), 'нь');
@@ -22,19 +22,19 @@ test('letterToHint supports Russian and latin hints for all non-Georgian courses
   assert.equal(letterToHint('Ü', 'latin', 'de'), 'ue');
   assert.equal(letterToHint('ẞ', 'ru', 'de'), 'с');
   assert.equal(letterToHint('ẞ', 'latin', 'de'), 's');
-  assert.equal(letterToHint('C', 'latin', 'de'), 'k/ts');
+  assert.equal(letterToHint('C', 'latin', 'de'), 'ts/k');
   assert.equal(letterToHint('Q', 'latin', 'de'), 'kv');
-  assert.equal(letterToHint('V', 'latin', 'de'), 'f/v');
+  assert.equal(letterToHint('V', 'latin', 'de'), 'f');
   assert.equal(letterToHint('W', 'latin', 'de'), 'v');
   assert.equal(letterToHint('X', 'latin', 'de'), 'ks');
-  assert.equal(letterToHint('Y', 'latin', 'de'), 'ue/i/y');
+  assert.equal(letterToHint('Y', 'latin', 'de'), 'ue/i');
   assert.equal(letterToHint('Z', 'latin', 'de'), 'ts');
 
-  assert.equal(letterToHint('A', 'ru', 'en'), 'э');
-  assert.equal(letterToHint('A', 'latin', 'en'), 'a');
-  assert.equal(letterToHint('C', 'ru', 'en'), 'к');
+  assert.equal(letterToHint('A', 'ru', 'en'), 'э/эй');
+  assert.equal(letterToHint('A', 'latin', 'en'), 'a/ay');
+  assert.equal(letterToHint('C', 'ru', 'en'), 'к/с');
   assert.equal(letterToHint('Q', 'ru', 'en'), 'кв');
-  assert.equal(letterToHint('X', 'latin', 'en'), 'ks');
+  assert.equal(letterToHint('X', 'latin', 'en'), 'ks/gz');
 });
 
 test('textToHint builds course-aware sound hint strings', () => {
@@ -75,6 +75,13 @@ test('single-letter sound hints match alphabet hints where reading is not contex
     'W',
     'Y',
     'S',
+    'X',
+    'I',
+    'J',
+    'Z',
+    'Ј',
+    'Ћ',
+    'Џ',
   ]);
 
   for (const courseId of COURSE_IDS) {

@@ -1,25 +1,107 @@
 {
   "id": "ep3",
   "title": "Урок 3",
-  "letters": ["М", "Д", "П", "Б", "В", "Ј"],
+  "letters": [
+    "М",
+    "Д",
+    "П",
+    "Б",
+    "В",
+    "Ј"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "мама", "ru_meaning": "мама" },
-    { "type": "word", "ge_text": "тата", "ru_meaning": "папа", "accepted_ru": ["отец"] },
-    { "type": "word", "ge_text": "има", "ru_meaning": "есть" },
-    { "type": "word", "ge_text": "ми", "ru_meaning": "мы" },
-    { "type": "word", "ge_text": "тамо", "ru_meaning": "там" },
-    { "type": "word", "ge_text": "да", "ru_meaning": "да" },
-    { "type": "word", "ge_text": "дан", "ru_meaning": "день" },
-    { "type": "word", "ge_text": "један", "ru_meaning": "один" },
-    { "type": "word", "ge_text": "јело", "ru_meaning": "еда" },
-    { "type": "word", "ge_text": "вода", "ru_meaning": "вода" },
-    { "type": "word", "ge_text": "папа", "ru_meaning": "папа" },
-    { "type": "word", "ge_text": "вино", "ru_meaning": "вино" },
-    { "type": "word", "ge_text": "време", "ru_meaning": "время" },
-    { "type": "word", "ge_text": "брат", "ru_meaning": "брат" },
-    { "type": "word", "ge_text": "добар", "ru_meaning": "хороший" },
-    { "type": "word", "ge_text": "ово је дом", "ru_meaning": "это дом" },
-    { "type": "word", "ge_text": "то је вода", "ru_meaning": "это вода" },
-    { "type": "word", "ge_text": "мој дом", "ru_meaning": "мой дом" }
+    {
+      "type": "word",
+      "ge_text": "мама",
+      "ru_meaning": "мама"
+    },
+    {
+      "type": "word",
+      "ge_text": "тата",
+      "ru_meaning": "папа",
+      "accepted_ru": [
+        "отец"
+      ]
+    },
+    {
+      "type": "word",
+      "ge_text": "има",
+      "ru_meaning": "есть"
+    },
+    {
+      "type": "word",
+      "ge_text": "ми",
+      "ru_meaning": "мы"
+    },
+    {
+      "type": "word",
+      "ge_text": "ово је дом",
+      "ru_meaning": "это дом"
+    },
+    {
+      "type": "word",
+      "ge_text": "тамо",
+      "ru_meaning": "там"
+    },
+    {
+      "type": "word",
+      "ge_text": "да",
+      "ru_meaning": "да"
+    },
+    {
+      "type": "word",
+      "ge_text": "дан",
+      "ru_meaning": "день"
+    },
+    {
+      "type": "word",
+      "ge_text": "један",
+      "ru_meaning": "один"
+    },
+    {
+      "type": "word",
+      "ge_text": "јело",
+      "ru_meaning": "еда"
+    },
+    {
+      "type": "word",
+      "ge_text": "вода",
+      "ru_meaning": "вода"
+    },
+    {
+      "type": "word",
+      "ge_text": "то је вода",
+      "ru_meaning": "это вода"
+    },
+    {
+      "type": "word",
+      "ge_text": "папа",
+      "ru_meaning": "папа"
+    },
+    {
+      "type": "word",
+      "ge_text": "вино",
+      "ru_meaning": "вино"
+    },
+    {
+      "type": "word",
+      "ge_text": "мој дом",
+      "ru_meaning": "мой дом"
+    },
+    {
+      "type": "word",
+      "ge_text": "време",
+      "ru_meaning": "время"
+    },
+    {
+      "type": "word",
+      "ge_text": "брат",
+      "ru_meaning": "брат"
+    },
+    {
+      "type": "word",
+      "ge_text": "добар",
+      "ru_meaning": "хороший"
+    }
   ]
 }

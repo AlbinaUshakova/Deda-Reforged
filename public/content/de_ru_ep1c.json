@@ -1,24 +1,96 @@
 {
   "id": "ep1c",
   "title": "Урок 2",
-  "letters": ["R", "A", "D"],
+  "letters": [
+    "R",
+    "A",
+    "D"
+  ],
   "cards": [
-    { "type": "word", "ge_text": "der", "ru_meaning": "этот" },
-    { "type": "word", "ge_text": "die", "ru_meaning": "эта" },
-    { "type": "word", "ge_text": "das", "ru_meaning": "это" },
-    { "type": "word", "ge_text": "den", "ru_meaning": "этот" },
-    { "type": "word", "ge_text": "dir", "ru_meaning": "тебе" },
-    { "type": "word", "ge_text": "dein", "ru_meaning": "твой" },
-    { "type": "word", "ge_text": "an", "ru_meaning": "у" },
-    { "type": "word", "ge_text": "da", "ru_meaning": "там" },
-    { "type": "word", "ge_text": "es", "ru_meaning": "оно" },
-    { "type": "word", "ge_text": "er", "ru_meaning": "он" },
-    { "type": "word", "ge_text": "Reise", "ru_meaning": "поездка" },
-    { "type": "word", "ge_text": "Reis", "ru_meaning": "рис" },
-    { "type": "word", "ge_text": "Rad", "ru_meaning": "велосипед" },
-    { "type": "word", "ge_text": "Erde", "ru_meaning": "земля" },
-    { "type": "word", "ge_text": "Adresse", "ru_meaning": "адрес" },
-    { "type": "word", "ge_text": "Er ist nett", "ru_meaning": "он милый" },
-    { "type": "word", "ge_text": "Der Tee ist da", "ru_meaning": "чай здесь" }
+    {
+      "type": "word",
+      "ge_text": "der",
+      "ru_meaning": "этот"
+    },
+    {
+      "type": "word",
+      "ge_text": "die",
+      "ru_meaning": "эта"
+    },
+    {
+      "type": "word",
+      "ge_text": "das",
+      "ru_meaning": "это"
+    },
+    {
+      "type": "word",
+      "ge_text": "den",
+      "ru_meaning": "этот"
+    },
+    {
+      "type": "word",
+      "ge_text": "dir",
+      "ru_meaning": "тебе"
+    },
+    {
+      "type": "word",
+      "ge_text": "dein",
+      "ru_meaning": "твой"
+    },
+    {
+      "type": "word",
+      "ge_text": "an",
+      "ru_meaning": "у"
+    },
+    {
+      "type": "word",
+      "ge_text": "da",
+      "ru_meaning": "там"
+    },
+    {
+      "type": "word",
+      "ge_text": "es",
+      "ru_meaning": "оно"
+    },
+    {
+      "type": "word",
+      "ge_text": "er",
+      "ru_meaning": "он"
+    },
+    {
+      "type": "word",
+      "ge_text": "Er ist nett",
+      "ru_meaning": "он милый"
+    },
+    {
+      "type": "word",
+      "ge_text": "Der Tee ist da",
+      "ru_meaning": "чай здесь"
+    },
+    {
+      "type": "word",
+      "ge_text": "Reise",
+      "ru_meaning": "поездка"
+    },
+    {
+      "type": "word",
+      "ge_text": "Reis",
+      "ru_meaning": "рис"
+    },
+    {
+      "type": "word",
+      "ge_text": "Rad",
+      "ru_meaning": "велосипед"
+    },
+    {
+      "type": "word",
+      "ge_text": "Erde",
+      "ru_meaning": "земля"
+    },
+    {
+      "type": "word",
+      "ge_text": "Adresse",
+      "ru_meaning": "адрес"
+    }
   ]
 }

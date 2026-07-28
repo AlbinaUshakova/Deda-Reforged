@@ -14,6 +14,7 @@ const sectionIconPaths: Record<string, string> = {
   'Кафе и еда': 'M7.2 7v5.2a2.8 2.8 0 1 0 5.6 0V7M7.2 7h5.6M15.4 7v10.2M15.4 7c1.8.7 2.9 2.1 2.9 3.8 0 1.7-1.1 3.1-2.9 3.8',
   'Общественные места': 'M7.8 17.2l2-5.2-1.4-2.2M10.4 6.6a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8Zm1.8 4.3 2.1 1.4 2.4-.9M12.5 17.2l-1.1-4.3',
   'Помощь и самочувствие': 'M12 5.8v12.4M5.8 12h12.4M8.1 8.1a5.5 5.5 0 1 1 7.8 7.8 5.5 5.5 0 0 1-7.8-7.8Z',
+  'Числа': 'M9.6 7.4 8.2 16.6M15.4 7.4 14 16.6M7.4 10.8H17M6.9 13.8H16.5',
 };
 
 function getCardCount(item: LessonListItem): number {
@@ -65,7 +66,7 @@ export function SpecialLessonLinks({
         <div className="home-special-block">
           <div className="home-special-heading">
             <div>
-              <span className="home-special-eyebrow">Фразы для первых дней в новой стране</span>
+              <span className="home-special-eyebrow">Фразы для первых дней</span>
               <span className="home-special-summary">{studiedCards} из {totalCards} изучено</span>
             </div>
           </div>

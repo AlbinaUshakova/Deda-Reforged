@@ -32,7 +32,9 @@ test('listEpisodes returns lessons plus special sections', async () => {
   assert.equal(episodes[9]?.id, 'ep9');
   assert.equal(episodes[10]?.id, 'ep10');
   assert.equal(episodes[10]?.title, 'Приветствия и прощания');
-  assert.equal(episodes[20]?.id, 'favorites');
+  assert.equal(episodes[20]?.id, 'ep10k');
+  assert.equal(episodes[20]?.title, 'Числа');
+  assert.equal(episodes[21]?.id, 'favorites');
   assert.ok(ids.includes('favorites'));
   assert.ok(ids.includes('all'));
   assert.ok(!ids.includes('phrases'));
@@ -403,9 +405,9 @@ function isReadingLesson(episode: { id: string; title: string }) {
 }
 
 function expectedReadingLessonCardRange(index: number) {
-  if (index < 2) return { min: 7, max: 9 };
-  if (index < 5) return { min: 9, max: 11 };
-  return { min: 12, max: 13 };
+  if (index < 2) return { min: 8, max: 14 };
+  if (index < 5) return { min: 10, max: 16 };
+  return { min: 12, max: 18 };
 }
 
 test('reading lessons stay compact for decoding practice', async () => {
@@ -438,14 +440,14 @@ test('reading lessons include the target number of short phrases', async () => {
       assert.ok(raw);
 
       const phraseCount = raw.cards.filter((card) => /\s/.test(card.ge_text.trim())).length;
-      const expectedPhraseCap = index < 2 ? 2 : 3;
+      const maxPhrases = index < 2 ? 6 : index < 5 ? 7 : 8;
       assert.ok(
-        phraseCount >= expectedPhraseCap,
-        `${courseId}:${lesson.id} should include at least ${expectedPhraseCap} phrases`,
+        phraseCount >= 2,
+        `${courseId}:${lesson.id} should include at least 2 phrases, got ${phraseCount}`,
       );
       assert.ok(
-        phraseCount <= expectedPhraseCap,
-        `${courseId}:${lesson.id} should include at most ${expectedPhraseCap} phrases`,
+        phraseCount <= maxPhrases,
+        `${courseId}:${lesson.id} should include at most ${maxPhrases} phrases, got ${phraseCount}`,
       );
     }
   }

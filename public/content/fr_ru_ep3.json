@@ -1,0 +1,103 @@
+{
+  "id": "ep3",
+  "title": "Урок 3",
+  "letters": [
+    "C",
+    "P",
+    "B",
+    "V",
+    "F"
+  ],
+  "cards": [
+    {
+      "type": "word",
+      "ge_text": "un",
+      "ru_meaning": "один (артикль м. р.)",
+      "translit": "эн"
+    },
+    {
+      "type": "word",
+      "ge_text": "pain",
+      "ru_meaning": "хлеб",
+      "translit": "пэн"
+    },
+    {
+      "type": "word",
+      "ge_text": "un pain",
+      "ru_meaning": "хлеб",
+      "translit": "эн пэн"
+    },
+    {
+      "type": "word",
+      "ge_text": "vin",
+      "ru_meaning": "вино",
+      "translit": "вэн"
+    },
+    {
+      "type": "word",
+      "ge_text": "le vin",
+      "ru_meaning": "вино",
+      "translit": "лё вэн"
+    },
+    {
+      "type": "word",
+      "ge_text": "bon",
+      "ru_meaning": "хороший",
+      "translit": "бон"
+    },
+    {
+      "type": "word",
+      "ge_text": "le pain est bon",
+      "ru_meaning": "хлеб хороший",
+      "translit": "лё пэн э бон"
+    },
+    {
+      "type": "word",
+      "ge_text": "porte",
+      "ru_meaning": "дверь",
+      "translit": "порт"
+    },
+    {
+      "type": "word",
+      "ge_text": "une porte",
+      "ru_meaning": "дверь",
+      "translit": "юн порт"
+    },
+    {
+      "type": "word",
+      "ge_text": "table",
+      "ru_meaning": "стол",
+      "translit": "табль"
+    },
+    {
+      "type": "word",
+      "ge_text": "livre",
+      "ru_meaning": "книга",
+      "translit": "ливр"
+    },
+    {
+      "type": "word",
+      "ge_text": "parc",
+      "ru_meaning": "парк",
+      "translit": "парк"
+    },
+    {
+      "type": "word",
+      "ge_text": "pied",
+      "ru_meaning": "нога",
+      "translit": "пье"
+    },
+    {
+      "type": "word",
+      "ge_text": "bras",
+      "ru_meaning": "рука",
+      "translit": "бра"
+    },
+    {
+      "type": "word",
+      "ge_text": "belle",
+      "ru_meaning": "красивая",
+      "translit": "бэль"
+    }
+  ]
+}
