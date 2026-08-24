@@ -10,12 +10,14 @@
     {
       "type": "word",
       "ge_text": "bien",
-      "ru_meaning": "хорошо"
+      "ru_meaning": "хорошо",
+      "transcription_en": "beeehn"
     },
     {
       "type": "word",
       "ge_text": "boca",
-      "ru_meaning": "рот"
+      "ru_meaning": "рот",
+      "transcription_en": "bohkah"
     },
     {
       "type": "word",
@@ -23,72 +25,86 @@
       "ru_meaning": "пьёт",
       "accepted_ru": [
         "пьет"
-      ]
+      ],
+      "transcription_en": "beh-BEH"
     },
     {
       "type": "word",
       "ge_text": "bueno",
-      "ru_meaning": "хороший"
+      "ru_meaning": "хороший",
+      "transcription_en": "booehnoh"
     },
     {
       "type": "word",
       "ge_text": "Me gusta",
-      "ru_meaning": "мне нравится"
+      "ru_meaning": "мне нравится",
+      "transcription_en": "meh goostah"
     },
     {
       "type": "word",
       "ge_text": "vida",
-      "ru_meaning": "жизнь"
+      "ru_meaning": "жизнь",
+      "transcription_en": "beedah"
     },
     {
       "type": "word",
       "ge_text": "vino",
-      "ru_meaning": "вино"
+      "ru_meaning": "вино",
+      "transcription_en": "BEE-noh"
     },
     {
       "type": "word",
       "ge_text": "vivir",
-      "ru_meaning": "жить"
+      "ru_meaning": "жить",
+      "transcription_en": "beebeer"
     },
     {
       "type": "word",
       "ge_text": "ver",
-      "ru_meaning": "видеть"
+      "ru_meaning": "видеть",
+      "transcription_en": "behr"
     },
     {
       "type": "word",
       "ge_text": "Vengo a casa",
-      "ru_meaning": "иду домой"
+      "ru_meaning": "иду домой",
+      "transcription_en": "behngoh ah KAH-sah"
     },
     {
       "type": "word",
       "ge_text": "gato",
-      "ru_meaning": "кот"
+      "ru_meaning": "кот",
+      "transcription_en": "GAH-toh"
     },
     {
       "type": "word",
       "ge_text": "gente",
-      "ru_meaning": "люди"
+      "ru_meaning": "люди",
+      "transcription_en": "HEN-teh"
     },
     {
       "type": "word",
       "ge_text": "agua",
-      "ru_meaning": "вода"
+      "ru_meaning": "вода",
+      "transcription_en": "ahgooah"
     },
     {
       "type": "word",
       "ge_text": "Tengo agua",
-      "ru_meaning": "у меня есть вода"
+      "ru_meaning": "у меня есть вода",
+      "transcription_en": "tehngoh ahgooah"
     },
     {
       "type": "word",
       "ge_text": "amigo",
-      "ru_meaning": "друг"
+      "ru_meaning": "друг",
+      "transcription_en": "ah-MEE-goh"
     },
     {
       "type": "word",
       "ge_text": "gracias",
-      "ru_meaning": "спасибо"
+      "ru_meaning": "спасибо",
+      "transcription_en": "grahseeahs"
     },
     {
       "type": "word",
@@ -96,7 +112,8 @@
       "ru_meaning": "зелёный",
       "accepted_ru": [
         "зеленый"
-      ]
+      ],
+      "transcription_en": "behrdeh"
     },
     {
       "type": "word",
@@ -104,7 +121,8 @@
       "ru_meaning": "серьёзный",
       "accepted_ru": [
         "серьезный"
-      ]
+      ],
+      "transcription_en": "grahbeh"
     }
   ]
 }

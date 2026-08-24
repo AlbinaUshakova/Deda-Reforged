@@ -12,12 +12,14 @@
     {
       "type": "word",
       "ge_text": "in",
-      "ru_meaning": "в"
+      "ru_meaning": "в",
+      "transcription_en": "in"
     },
     {
       "type": "word",
       "ge_text": "ist",
-      "ru_meaning": "есть"
+      "ru_meaning": "есть",
+      "transcription_en": "ist"
     },
     {
       "type": "word",
@@ -28,7 +30,8 @@
           "kind": "grammar",
           "text": "артикль → перед словом: ein Tag (один день)"
         }
-      ]
+      ],
+      "transcription_en": "eye-n"
     },
     {
       "type": "word",
@@ -39,72 +42,86 @@
           "kind": "grammar",
           "text": "само число → при счёте: eins, zwei, drei"
         }
-      ]
+      ],
+      "transcription_en": "eye-ns"
     },
     {
       "type": "word",
       "ge_text": "sein",
-      "ru_meaning": "быть"
+      "ru_meaning": "быть",
+      "transcription_en": "zine"
     },
     {
       "type": "word",
       "ge_text": "sie",
-      "ru_meaning": "она"
+      "ru_meaning": "она",
+      "transcription_en": "zee"
     },
     {
       "type": "word",
       "ge_text": "nie",
-      "ru_meaning": "никогда"
+      "ru_meaning": "никогда",
+      "transcription_en": "nee"
     },
     {
       "type": "word",
       "ge_text": "Tee",
-      "ru_meaning": "чай"
+      "ru_meaning": "чай",
+      "transcription_en": "tay"
     },
     {
       "type": "word",
       "ge_text": "See",
-      "ru_meaning": "озеро"
+      "ru_meaning": "озеро",
+      "transcription_en": "zay"
     },
     {
       "type": "word",
       "ge_text": "Eis",
-      "ru_meaning": "мороженое"
+      "ru_meaning": "мороженое",
+      "transcription_en": "ice"
     },
     {
       "type": "word",
       "ge_text": "Nest",
-      "ru_meaning": "гнездо"
+      "ru_meaning": "гнездо",
+      "transcription_en": "nest"
     },
     {
       "type": "word",
       "ge_text": "nett",
-      "ru_meaning": "милый"
+      "ru_meaning": "милый",
+      "transcription_en": "net"
     },
     {
       "type": "word",
       "ge_text": "Sie ist nett",
-      "ru_meaning": "она милая"
+      "ru_meaning": "она милая",
+      "transcription_en": "zee ist net"
     },
     {
       "type": "word",
       "ge_text": "Test",
-      "ru_meaning": "тест"
+      "ru_meaning": "тест",
+      "transcription_en": "test"
     },
     {
       "type": "word",
       "ge_text": "Seite",
-      "ru_meaning": "страница"
+      "ru_meaning": "страница",
+      "transcription_en": "ZYE-tuh"
     },
     {
       "type": "word",
       "ge_text": "essen",
-      "ru_meaning": "есть"
+      "ru_meaning": "есть",
+      "transcription_en": "EH-sen"
     },
     {
       "type": "word",
       "ge_text": "Sie essen",
-      "ru_meaning": "они едят"
+      "ru_meaning": "они едят",
+      "transcription_en": "zee EH-sen"
     }
   ]
 }

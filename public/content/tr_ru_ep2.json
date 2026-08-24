@@ -10,92 +10,110 @@
     {
       "type": "word",
       "ge_text": "tamam",
-      "ru_meaning": "хорошо"
+      "ru_meaning": "хорошо",
+      "transcription_en": "tah-MAHM"
     },
     {
       "type": "word",
       "ge_text": "tane",
-      "ru_meaning": "штука"
+      "ru_meaning": "штука",
+      "transcription_en": "tah-NEH"
     },
     {
       "type": "word",
       "ge_text": "bu",
-      "ru_meaning": "это"
+      "ru_meaning": "это",
+      "transcription_en": "boo"
     },
     {
       "type": "word",
       "ge_text": "bu ne",
-      "ru_meaning": "что это"
+      "ru_meaning": "что это",
+      "transcription_en": "boo neh"
     },
     {
       "type": "word",
       "ge_text": "bu kutu",
-      "ru_meaning": "это коробка"
+      "ru_meaning": "это коробка",
+      "transcription_en": "boo koo-TOO"
     },
     {
       "type": "word",
       "ge_text": "un",
-      "ru_meaning": "мука"
+      "ru_meaning": "мука",
+      "transcription_en": "oon"
     },
     {
       "type": "word",
       "ge_text": "bana un ver",
-      "ru_meaning": "дай мне муку"
+      "ru_meaning": "дай мне муку",
+      "transcription_en": "bah-NAH oon vehr"
     },
     {
       "type": "word",
       "ge_text": "mum",
-      "ru_meaning": "свеча"
+      "ru_meaning": "свеча",
+      "transcription_en": "moom"
     },
     {
       "type": "word",
       "ge_text": "mavi",
-      "ru_meaning": "синий"
+      "ru_meaning": "синий",
+      "transcription_en": "mah-VEE"
     },
     {
       "type": "word",
       "ge_text": "mutlu",
-      "ru_meaning": "счастливый"
+      "ru_meaning": "счастливый",
+      "transcription_en": "moot-LOO"
     },
     {
       "type": "word",
       "ge_text": "tut",
-      "ru_meaning": "держи"
+      "ru_meaning": "держи",
+      "transcription_en": "toot"
     },
     {
       "type": "word",
       "ge_text": "liman",
-      "ru_meaning": "порт"
+      "ru_meaning": "порт",
+      "transcription_en": "lee-MAHN"
     },
     {
       "type": "word",
       "ge_text": "kalem",
-      "ru_meaning": "ручка"
+      "ru_meaning": "ручка",
+      "transcription_en": "kah-LEM"
     },
     {
       "type": "word",
       "ge_text": "bu kalem",
-      "ru_meaning": "это ручка"
+      "ru_meaning": "это ручка",
+      "transcription_en": "boo kah-LEM"
     },
     {
       "type": "word",
       "ge_text": "benim",
-      "ru_meaning": "мой"
+      "ru_meaning": "мой",
+      "transcription_en": "beh-NEEM"
     },
     {
       "type": "word",
       "ge_text": "tren",
-      "ru_meaning": "поезд"
+      "ru_meaning": "поезд",
+      "transcription_en": "trehn"
     },
     {
       "type": "word",
       "ge_text": "metin",
-      "ru_meaning": "текст"
+      "ru_meaning": "текст",
+      "transcription_en": "meh-TEEN"
     },
     {
       "type": "word",
       "ge_text": "dur",
-      "ru_meaning": "стой"
+      "ru_meaning": "стой",
+      "transcription_en": "door"
     }
   ]
 }

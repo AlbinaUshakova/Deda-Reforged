@@ -10,22 +10,26 @@
     {
       "type": "word",
       "ge_text": "çok",
-      "ru_meaning": "много"
+      "ru_meaning": "много",
+      "transcription_en": "chok"
     },
     {
       "type": "word",
       "ge_text": "çok acı",
-      "ru_meaning": "очень остро"
+      "ru_meaning": "очень остро",
+      "transcription_en": "chok ah-JUH"
     },
     {
       "type": "word",
       "ge_text": "geç",
-      "ru_meaning": "поздно"
+      "ru_meaning": "поздно",
+      "transcription_en": "gech"
     },
     {
       "type": "word",
       "ge_text": "gece",
-      "ru_meaning": "ночь"
+      "ru_meaning": "ночь",
+      "transcription_en": "geh-JEH"
     },
     {
       "type": "word",
@@ -33,72 +37,86 @@
       "ru_meaning": "ребёнок",
       "accepted_ru": [
         "ребенок"
-      ]
+      ],
+      "transcription_en": "choh-JOOK"
     },
     {
       "type": "word",
       "ge_text": "aç",
-      "ru_meaning": "голодный"
+      "ru_meaning": "голодный",
+      "transcription_en": "ahch"
     },
     {
       "type": "word",
       "ge_text": "açık",
-      "ru_meaning": "открыто"
+      "ru_meaning": "открыто",
+      "transcription_en": "ah-CHUHK"
     },
     {
       "type": "word",
       "ge_text": "çay",
-      "ru_meaning": "чай"
+      "ru_meaning": "чай",
+      "transcription_en": "chai"
     },
     {
       "type": "word",
       "ge_text": "çay hazır",
-      "ru_meaning": "чай готов"
+      "ru_meaning": "чай готов",
+      "transcription_en": "chai hah-ZUHR"
     },
     {
       "type": "word",
       "ge_text": "çay iç",
-      "ru_meaning": "пей чай"
+      "ru_meaning": "пей чай",
+      "transcription_en": "chai eech"
     },
     {
       "type": "word",
       "ge_text": "kaç",
-      "ru_meaning": "сколько"
+      "ru_meaning": "сколько",
+      "transcription_en": "kahch"
     },
     {
       "type": "word",
       "ge_text": "genç",
-      "ru_meaning": "молодой"
+      "ru_meaning": "молодой",
+      "transcription_en": "gench"
     },
     {
       "type": "word",
       "ge_text": "hoş",
-      "ru_meaning": "приятный"
+      "ru_meaning": "приятный",
+      "transcription_en": "hosh"
     },
     {
       "type": "word",
       "ge_text": "şehir",
-      "ru_meaning": "город"
+      "ru_meaning": "город",
+      "transcription_en": "sheh-HEER"
     },
     {
       "type": "word",
       "ge_text": "hasta",
-      "ru_meaning": "больной"
+      "ru_meaning": "больной",
+      "transcription_en": "hahs-TAH"
     },
     {
       "type": "word",
       "ge_text": "hemen",
-      "ru_meaning": "сразу"
+      "ru_meaning": "сразу",
+      "transcription_en": "heh-MEN"
     },
     {
       "type": "word",
       "ge_text": "sabah",
-      "ru_meaning": "утро"
+      "ru_meaning": "утро",
+      "transcription_en": "sah-BAH"
     },
     {
       "type": "word",
       "ge_text": "hiç",
-      "ru_meaning": "совсем"
+      "ru_meaning": "совсем",
+      "transcription_en": "heech"
     }
   ]
 }

@@ -10,92 +10,110 @@
     {
       "type": "word",
       "ge_text": "und",
-      "ru_meaning": "и"
+      "ru_meaning": "и",
+      "transcription_en": "oont"
     },
     {
       "type": "word",
       "ge_text": "du",
-      "ru_meaning": "ты"
+      "ru_meaning": "ты",
+      "transcription_en": "doo"
     },
     {
       "type": "word",
       "ge_text": "Du lernst",
-      "ru_meaning": "ты учишься"
+      "ru_meaning": "ты учишься",
+      "transcription_en": "doo lehrnst"
     },
     {
       "type": "word",
       "ge_text": "Haus",
-      "ru_meaning": "дом"
+      "ru_meaning": "дом",
+      "transcription_en": "house"
     },
     {
       "type": "word",
       "ge_text": "Hund",
-      "ru_meaning": "собака"
+      "ru_meaning": "собака",
+      "transcription_en": "hoont"
     },
     {
       "type": "word",
       "ge_text": "Hand",
-      "ru_meaning": "рука"
+      "ru_meaning": "рука",
+      "transcription_en": "hahnt"
     },
     {
       "type": "word",
       "ge_text": "laut",
-      "ru_meaning": "громко"
+      "ru_meaning": "громко",
+      "transcription_en": "lowt"
     },
     {
       "type": "word",
       "ge_text": "leer",
-      "ru_meaning": "пустой"
+      "ru_meaning": "пустой",
+      "transcription_en": "layr"
     },
     {
       "type": "word",
       "ge_text": "lernen",
-      "ru_meaning": "учить"
+      "ru_meaning": "учить",
+      "transcription_en": "LEHR-nehn"
     },
     {
       "type": "word",
       "ge_text": "Sie ist da",
-      "ru_meaning": "она здесь"
+      "ru_meaning": "она здесь",
+      "transcription_en": "zee ist dah"
     },
     {
       "type": "word",
       "ge_text": "lesen",
-      "ru_meaning": "читать"
+      "ru_meaning": "читать",
+      "transcription_en": "LAY-zehn"
     },
     {
       "type": "word",
       "ge_text": "Ruhe",
-      "ru_meaning": "тишина"
+      "ru_meaning": "тишина",
+      "transcription_en": "ROO-uh"
     },
     {
       "type": "word",
       "ge_text": "halt",
-      "ru_meaning": "стой"
+      "ru_meaning": "стой",
+      "transcription_en": "hahlt"
     },
     {
       "type": "word",
       "ge_text": "Hals",
-      "ru_meaning": "шея"
+      "ru_meaning": "шея",
+      "transcription_en": "hahls"
     },
     {
       "type": "word",
       "ge_text": "Er ist da",
-      "ru_meaning": "он здесь"
+      "ru_meaning": "он здесь",
+      "transcription_en": "ehr ist dah"
     },
     {
       "type": "word",
       "ge_text": "Stuhl",
-      "ru_meaning": "стул"
+      "ru_meaning": "стул",
+      "transcription_en": "shtool"
     },
     {
       "type": "word",
       "ge_text": "Uhr",
-      "ru_meaning": "часы"
+      "ru_meaning": "часы",
+      "transcription_en": "oor"
     },
     {
       "type": "word",
       "ge_text": "heute",
-      "ru_meaning": "сегодня"
+      "ru_meaning": "сегодня",
+      "transcription_en": "HOY-tuh"
     }
   ]
 }

@@ -8,9 +8,8 @@ import ProgressPanel from '@/components/ProgressPanel';
 import FeedbackPanel from '@/components/FeedbackPanel';
 
 export default function AuthStatus() {
-    const transliterationMode = useAppStore(state => state.settings.transliterationMode);
     const alphabetOpen = useAppStore(state => state.alphabetOpen);
-    const updateSettings = useAppStore(state => state.updateSettings);
+    const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
     const setProfileMenuOpen = useAppStore(state => state.setProfileMenuOpen);
     const [open, setOpen] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
@@ -39,7 +38,7 @@ export default function AuthStatus() {
         setShowProgress(false);
         setShowFeedback(false);
     }, [setProfileMenuOpen]);
-    const menuLabel = 'Меню';
+    const menuLabel = interfaceLanguage === 'en' ? 'Menu' : 'Меню';
     const focusRingClass =
         'focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2';
     const menuItemClass =
@@ -88,7 +87,7 @@ export default function AuthStatus() {
             <div className="relative max-w-full" ref={menuRef}>
                 <button
                     onClick={toggleMenu}
-                    aria-label="Открыть меню"
+                    aria-label={interfaceLanguage === 'en' ? 'Open menu' : 'Открыть меню'}
                     aria-expanded={open}
                     aria-haspopup="menu"
                     className={`header-control-btn header-control-btn--menu inline-flex items-center justify-center ${open ? 'header-control-btn--active' : ''
@@ -109,7 +108,7 @@ export default function AuthStatus() {
                         >
                             <button
                                 type="button"
-                                aria-label="Закрыть меню"
+                                aria-label={interfaceLanguage === 'en' ? 'Close menu' : 'Закрыть меню'}
                                 className={`home-alphabet-close absolute right-1 top-1/2 h-6 w-6 -translate-y-1/2 rounded-md text-[11px] transition-colors ${focusRingClass}`}
                                 onClick={closeMenu}
                             >
@@ -128,7 +127,7 @@ export default function AuthStatus() {
                                 }}
                             >
                                 <span aria-hidden>📈</span>
-                                <span>Прогресс</span>
+                                <span>{interfaceLanguage === 'en' ? 'Progress' : 'Прогресс'}</span>
                             </button>
 
                             {/* Настройки игры */}
@@ -140,7 +139,7 @@ export default function AuthStatus() {
                                 }}
                             >
                                 <span aria-hidden>⚙️</span>
-                                <span>Настройки игры</span>
+                                <span>{interfaceLanguage === 'en' ? 'Game settings' : 'Настройки игры'}</span>
                             </button>
 
                             {/* Помощь и обратная связь */}
@@ -152,64 +151,10 @@ export default function AuthStatus() {
                                 }}
                             >
                                 <span aria-hidden>💬</span>
-                                <span>Помощь и отзывы</span>
+                                <span>{interfaceLanguage === 'en' ? 'Help and feedback' : 'Помощь и отзывы'}</span>
                             </button>
 
                         </div>
-
-                        <div
-                            className="mt-0.5 border-t pt-1"
-                            style={{ borderColor: 'color-mix(in srgb, var(--menu-divider) 68%, transparent 32%)' }}
-                        >
-                            <div className="mb-1 px-1 text-[clamp(9px,1.55vw,11px)] font-semibold uppercase tracking-[0.08em] text-[var(--menu-text-muted)]">
-                                Запись звуков
-                            </div>
-                            <div className="grid grid-cols-2 gap-1 rounded-xl border border-[var(--menu-segment-border)] bg-[var(--menu-segment-bg)] p-[3px]">
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        updateSettings({ transliterationMode: 'ru' });
-                                    }}
-                                    aria-pressed={transliterationMode === 'ru'}
-                                    className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,12px)] font-medium transition ${focusRingClass} ${transliterationMode === 'ru'
-                                            ? 'text-[var(--btn-active-text)] border shadow-none'
-                                            : 'bg-transparent text-[var(--menu-segment-idle)] hover:bg-[var(--menu-segment-idle-hover)]'
-                                        }`}
-                                    style={
-                                        transliterationMode === 'ru'
-                                            ? {
-                                                background: 'color-mix(in srgb, var(--btn-active-bg) 72%, white 28%)',
-                                                borderColor: 'color-mix(in srgb, var(--btn-active-border) 48%, transparent 52%)',
-                                            }
-                                            : undefined
-                                    }
-                                >
-                                    Кириллицей
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        updateSettings({ transliterationMode: 'latin' });
-                                    }}
-                                    aria-pressed={transliterationMode === 'latin'}
-                                    className={`rounded-[10px] px-2 py-1 text-[clamp(10px,1.7vw,11.5px)] font-medium transition ${focusRingClass} ${transliterationMode === 'latin'
-                                            ? 'text-[var(--btn-active-text)] border shadow-none'
-                                            : 'bg-transparent text-[var(--menu-segment-idle)] hover:bg-[var(--menu-segment-idle-hover)]'
-                                        }`}
-                                    style={
-                                        transliterationMode === 'latin'
-                                            ? {
-                                                background: 'color-mix(in srgb, var(--btn-active-bg) 72%, white 28%)',
-                                                borderColor: 'color-mix(in srgb, var(--btn-active-border) 48%, transparent 52%)',
-                                            }
-                                            : undefined
-                                    }
-                                >
-                                    Латиницей
-                                </button>
-                            </div>
-                        </div>
-
                     </div>
                 )}
             </div>

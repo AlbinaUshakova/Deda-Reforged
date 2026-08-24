@@ -10,67 +10,80 @@
     {
       "type": "word",
       "ge_text": "yağ",
-      "ru_meaning": "масло"
+      "ru_meaning": "масло",
+      "transcription_en": "yah"
     },
     {
       "type": "word",
       "ge_text": "sağ",
-      "ru_meaning": "правый"
+      "ru_meaning": "правый",
+      "transcription_en": "sah"
     },
     {
       "type": "word",
       "ge_text": "ağaç",
-      "ru_meaning": "дерево"
+      "ru_meaning": "дерево",
+      "transcription_en": "ah-AHCH"
     },
     {
       "type": "word",
       "ge_text": "yağmur",
-      "ru_meaning": "дождь"
+      "ru_meaning": "дождь",
+      "transcription_en": "yah-MOOR"
     },
     {
       "type": "word",
       "ge_text": "afiyet olsun",
-      "ru_meaning": "приятного аппетита"
+      "ru_meaning": "приятного аппетита",
+      "transcription_en": "ah-fee-YET ohl-SOON"
     },
     {
       "type": "word",
       "ge_text": "değil",
-      "ru_meaning": "не"
+      "ru_meaning": "не",
+      "transcription_en": "deh-EEL"
     },
     {
       "type": "word",
       "ge_text": "soğuk",
-      "ru_meaning": "холодный"
+      "ru_meaning": "холодный",
+      "transcription_en": "soh-OOK"
     },
     {
       "type": "word",
       "ge_text": "film",
-      "ru_meaning": "фильм"
+      "ru_meaning": "фильм",
+      "transcription_en": "film"
     },
     {
       "type": "word",
       "ge_text": "fiyat",
-      "ru_meaning": "цена"
+      "ru_meaning": "цена",
+      "transcription_en": "fee-YAHT"
     },
     {
       "type": "word",
       "ge_text": "foto çek",
-      "ru_meaning": "сделай фото"
+      "ru_meaning": "сделай фото",
+      "transcription_en": "foh-TOH chek"
     },
     {
       "type": "word",
       "ge_text": "fazla",
-      "ru_meaning": "слишком много"
+      "ru_meaning": "слишком много",
+      "transcription_en": "FAHZ-lah"
     },
     {
       "type": "word",
       "ge_text": "fena",
-      "ru_meaning": "плохо"
+      "ru_meaning": "плохо",
+      "transcription_en": "feh-NAH"
     },
     {
       "type": "word",
       "ge_text": "firma",
-      "ru_meaning": "фирма"
+      "ru_meaning": "фирма",
+      "transcription_en": "feer-MAH"
     },
     {
       "type": "word",
@@ -79,27 +92,32 @@
       "accepted_ru": [
         "самолет",
         "реактивный самолет"
-      ]
+      ],
+      "transcription_en": "zhet"
     },
     {
       "type": "word",
       "ge_text": "doğru mu",
-      "ru_meaning": "это правильно"
+      "ru_meaning": "это правильно",
+      "transcription_en": "doh-RUH moo"
     },
     {
       "type": "word",
       "ge_text": "Japon",
-      "ru_meaning": "японец"
+      "ru_meaning": "японец",
+      "transcription_en": "zhah-POHN"
     },
     {
       "type": "word",
       "ge_text": "jilet",
-      "ru_meaning": "лезвие"
+      "ru_meaning": "лезвие",
+      "transcription_en": "zhee-LET"
     },
     {
       "type": "word",
       "ge_text": "mesaj",
-      "ru_meaning": "сообщение"
+      "ru_meaning": "сообщение",
+      "transcription_en": "meh-SAHZH"
     }
   ]
 }

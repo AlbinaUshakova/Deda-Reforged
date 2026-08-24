@@ -9,92 +9,110 @@
     {
       "type": "word",
       "ge_text": "Käse",
-      "ru_meaning": "сыр"
+      "ru_meaning": "сыр",
+      "transcription_en": "KAY-zuh"
     },
     {
       "type": "word",
       "ge_text": "März",
-      "ru_meaning": "март"
+      "ru_meaning": "март",
+      "transcription_en": "mehrts"
     },
     {
       "type": "word",
       "ge_text": "spät",
-      "ru_meaning": "поздно"
+      "ru_meaning": "поздно",
+      "transcription_en": "shpayt"
     },
     {
       "type": "word",
       "ge_text": "Bär",
-      "ru_meaning": "медведь"
+      "ru_meaning": "медведь",
+      "transcription_en": "bear"
     },
     {
       "type": "word",
       "ge_text": "Hände",
-      "ru_meaning": "руки"
+      "ru_meaning": "руки",
+      "transcription_en": "hehnde"
     },
     {
       "type": "word",
       "ge_text": "heiß",
-      "ru_meaning": "горячий"
+      "ru_meaning": "горячий",
+      "transcription_en": "heyess"
     },
     {
       "type": "word",
       "ge_text": "Das ist heiß",
-      "ru_meaning": "это горячее"
+      "ru_meaning": "это горячее",
+      "transcription_en": "dahs ist heyess"
     },
     {
       "type": "word",
       "ge_text": "Straße",
-      "ru_meaning": "улица"
+      "ru_meaning": "улица",
+      "transcription_en": "SHTRAH-suh"
     },
     {
       "type": "word",
       "ge_text": "groß",
-      "ru_meaning": "большой"
+      "ru_meaning": "большой",
+      "transcription_en": "grohss"
     },
     {
       "type": "word",
       "ge_text": "Äpfel, bitte",
-      "ru_meaning": "яблоки, пожалуйста"
+      "ru_meaning": "яблоки, пожалуйста",
+      "transcription_en": "ehpfel, bitte"
     },
     {
       "type": "word",
       "ge_text": "weiß",
-      "ru_meaning": "белый"
+      "ru_meaning": "белый",
+      "transcription_en": "feyess"
     },
     {
       "type": "word",
       "ge_text": "Spaß",
-      "ru_meaning": "веселье"
+      "ru_meaning": "веселье",
+      "transcription_en": "shPass"
     },
     {
       "type": "word",
       "ge_text": "Fuß",
-      "ru_meaning": "нога"
+      "ru_meaning": "нога",
+      "transcription_en": "fooss"
     },
     {
       "type": "word",
       "ge_text": "heiße",
-      "ru_meaning": "зовусь"
+      "ru_meaning": "зовусь",
+      "transcription_en": "heyesse"
     },
     {
       "type": "word",
       "ge_text": "Ich heiße Anna",
-      "ru_meaning": "меня зовут Анна"
+      "ru_meaning": "меня зовут Анна",
+      "transcription_en": "ikh heyesse anna"
     },
     {
       "type": "word",
       "ge_text": "Mädchen",
-      "ru_meaning": "девочка"
+      "ru_meaning": "девочка",
+      "transcription_en": "mehdkhen"
     },
     {
       "type": "word",
       "ge_text": "nächste",
-      "ru_meaning": "следующий"
+      "ru_meaning": "следующий",
+      "transcription_en": "nehkhste"
     },
     {
       "type": "word",
       "ge_text": "draußen",
-      "ru_meaning": "снаружи"
+      "ru_meaning": "снаружи",
+      "transcription_en": "drowssen"
     }
   ]
 }

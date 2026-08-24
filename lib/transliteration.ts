@@ -24,6 +24,39 @@ const SERBIAN_CYRILLIC_TO_LATIN: Record<string, string> = {
   С: 's', Т: 't', Ћ: 'ch', У: 'u', Ф: 'f', Х: 'h', Ц: 'ts', Ч: 'ch', Џ: 'dz', Ш: 'sh',
 };
 
+const SERBIAN_CYRILLIC_TO_LATIN_DISPLAY: Record<string, string> = {
+  А: 'A', а: 'a',
+  Б: 'B', б: 'b',
+  В: 'V', в: 'v',
+  Г: 'G', г: 'g',
+  Д: 'D', д: 'd',
+  Ђ: 'Đ', ђ: 'đ',
+  Е: 'E', е: 'e',
+  Ж: 'Ž', ж: 'ž',
+  З: 'Z', з: 'z',
+  И: 'I', и: 'i',
+  Ј: 'J', ј: 'j',
+  К: 'K', к: 'k',
+  Л: 'L', л: 'l',
+  Љ: 'Lj', љ: 'lj',
+  М: 'M', м: 'm',
+  Н: 'N', н: 'n',
+  Њ: 'Nj', њ: 'nj',
+  О: 'O', о: 'o',
+  П: 'P', п: 'p',
+  Р: 'R', р: 'r',
+  С: 'S', с: 's',
+  Т: 'T', т: 't',
+  Ћ: 'Ć', ћ: 'ć',
+  У: 'U', у: 'u',
+  Ф: 'F', ф: 'f',
+  Х: 'H', х: 'h',
+  Ц: 'C', ц: 'c',
+  Ч: 'Č', ч: 'č',
+  Џ: 'Dž', џ: 'dž',
+  Ш: 'Š', ш: 'š',
+};
+
 const SERBIAN_CYRILLIC_TO_RU: Record<string, string> = {
   А: 'а', Б: 'б', В: 'в', Г: 'г', Д: 'д', Ђ: 'джь', Е: 'э', Ж: 'ж', З: 'з', И: 'и',
   Ј: 'й', К: 'к', Л: 'л', Љ: 'ль', М: 'м', Н: 'н', Њ: 'нь', О: 'о', П: 'п', Р: 'р',
@@ -85,6 +118,11 @@ function serbianTextToHint(text: string, mode: TransliterationMode): string {
     const upper = ch.toLocaleUpperCase('sr');
     return map[upper] ?? ch;
   }).join('');
+}
+
+function serbianDisplayText(text: string, mode: TransliterationMode): string {
+  if (mode !== 'latin') return text;
+  return Array.from(text).map((ch) => SERBIAN_CYRILLIC_TO_LATIN_DISPLAY[ch] ?? ch).join('');
 }
 
 function turkishTextToHint(text: string, mode: TransliterationMode): string {
@@ -262,4 +300,14 @@ export function textToHint(
     const upper = ch === 'ß' ? 'ẞ' : ch.toLocaleUpperCase(course.locale);
     return getLetterHint(upper, mode, course.id) || ch;
   }).join('');
+}
+
+export function getDisplayText(
+  text: string,
+  mode: TransliterationMode,
+  courseId: unknown = DEFAULT_COURSE_ID,
+): string {
+  const course = getCourse(courseId);
+  if (course.id === 'sr') return serbianDisplayText(text, mode);
+  return text;
 }

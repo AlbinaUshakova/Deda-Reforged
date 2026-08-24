@@ -1,0 +1,19 @@
+{
+  "id": "ep8",
+  "title": "Урок 8",
+  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P", "B", "D", "F", "G", "S", "V", "H", "Q", "Z"],
+  "cards": [
+    { "type": "word", "ge_text": "zero", "ru_meaning": "ноль" },
+    { "type": "word", "ge_text": "zio", "ru_meaning": "дядя" },
+    { "type": "word", "ge_text": "zucchero", "ru_meaning": "сахар" },
+    { "type": "word", "ge_text": "zaino", "ru_meaning": "рюкзак" },
+    { "type": "word", "ge_text": "pizza", "ru_meaning": "пицца" },
+    { "type": "word", "ge_text": "pezzo", "ru_meaning": "кусок" },
+    { "type": "word", "ge_text": "zona", "ru_meaning": "зона" },
+    { "type": "word", "ge_text": "mezzo", "ru_meaning": "половина" },
+    { "type": "word", "ge_text": "zebra", "ru_meaning": "зебра" },
+    { "type": "word", "ge_text": "stazione", "ru_meaning": "станция" },
+    { "type": "word", "ge_text": "La pizza", "ru_meaning": "пицца" },
+    { "type": "word", "ge_text": "Lo zio", "ru_meaning": "дядя" }
+  ]
+}

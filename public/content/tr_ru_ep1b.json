@@ -10,87 +10,104 @@
     {
       "type": "word",
       "ge_text": "ben",
-      "ru_meaning": "я"
+      "ru_meaning": "я",
+      "transcription_en": "ben"
     },
     {
       "type": "word",
       "ge_text": "beni",
-      "ru_meaning": "меня"
+      "ru_meaning": "меня",
+      "transcription_en": "beh-NEE"
     },
     {
       "type": "word",
       "ge_text": "bina",
-      "ru_meaning": "здание"
+      "ru_meaning": "здание",
+      "transcription_en": "bee-NAH"
     },
     {
       "type": "word",
       "ge_text": "bir",
-      "ru_meaning": "один"
+      "ru_meaning": "один",
+      "transcription_en": "beer"
     },
     {
       "type": "word",
       "ge_text": "biri",
-      "ru_meaning": "кто-то"
+      "ru_meaning": "кто-то",
+      "transcription_en": "bee-REE"
     },
     {
       "type": "word",
       "ge_text": "bayan",
-      "ru_meaning": "женщина"
+      "ru_meaning": "женщина",
+      "transcription_en": "bah-YAHN"
     },
     {
       "type": "word",
       "ge_text": "ver",
-      "ru_meaning": "дай"
+      "ru_meaning": "дай",
+      "transcription_en": "vehr"
     },
     {
       "type": "word",
       "ge_text": "bana ver",
-      "ru_meaning": "дай мне"
+      "ru_meaning": "дай мне",
+      "transcription_en": "bah-NAH vehr"
     },
     {
       "type": "word",
       "ge_text": "var",
-      "ru_meaning": "есть"
+      "ru_meaning": "есть",
+      "transcription_en": "vahr"
     },
     {
       "type": "word",
       "ge_text": "ne var",
-      "ru_meaning": "что есть"
+      "ru_meaning": "что есть",
+      "transcription_en": "neh vahr"
     },
     {
       "type": "word",
       "ge_text": "yeni",
-      "ru_meaning": "новый"
+      "ru_meaning": "новый",
+      "transcription_en": "yeh-NEE"
     },
     {
       "type": "word",
       "ge_text": "yer",
-      "ru_meaning": "место"
+      "ru_meaning": "место",
+      "transcription_en": "yehr"
     },
     {
       "type": "word",
       "ge_text": "yine",
-      "ru_meaning": "снова"
+      "ru_meaning": "снова",
+      "transcription_en": "YEE-neh"
     },
     {
       "type": "word",
       "ge_text": "bey",
-      "ru_meaning": "господин"
+      "ru_meaning": "господин",
+      "transcription_en": "bay"
     },
     {
       "type": "word",
       "ge_text": "biber",
-      "ru_meaning": "перец"
+      "ru_meaning": "перец",
+      "transcription_en": "bee-BEHR"
     },
     {
       "type": "word",
       "ge_text": "bira",
-      "ru_meaning": "пиво"
+      "ru_meaning": "пиво",
+      "transcription_en": "bee-RAH"
     },
     {
       "type": "word",
       "ge_text": "ay",
-      "ru_meaning": "месяц"
+      "ru_meaning": "месяц",
+      "transcription_en": "eye"
     }
   ]
 }

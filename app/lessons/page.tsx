@@ -18,13 +18,16 @@ import {
 } from '@/lib/alphabetProgressCache';
 import { progressKeyForEpisode, scriptWatermarkStyle } from '@/lib/courses';
 import { deriveLessonState } from '@/lib/lessonProgress';
+import { getActiveTransliterationMode } from '@/lib/settings';
 
 export default function HomePage() {
   const hydrate = useAppStore(state => state.hydrate);
   const progress = useAppStore(state => state.progressMap);
   const courseId = useAppStore(state => state.settings.courseId);
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
-  const transliterationMode = useAppStore(state => state.settings.transliterationMode);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const storedTransliterationMode = useAppStore(state => state.settings.transliterationMode);
+  const transliterationMode = getActiveTransliterationMode(interfaceLanguage, courseId, storedTransliterationMode);
   const alphabetToggleRequest = useAppStore(state => state.alphabetToggleRequest);
   const profileMenuOpen = useAppStore(state => state.profileMenuOpen);
   const setAlphabetOpen = useAppStore(state => state.setAlphabetOpen);
@@ -172,10 +175,10 @@ export default function HomePage() {
             />
             <div ref={lessonsWrapRef} className="relative z-[150] mx-auto w-full max-w-[1160px]">
               <div className="lessons-grid-heading">
-                <h2>Уроки</h2>
+                <h2>{interfaceLanguage === 'en' ? 'Lessons' : 'Уроки'}</h2>
                 {favoritesSpecial && (
                   <Link href={`/study/${favoritesSpecial.id}`} className="lessons-favorites-link">
-                    ☆ Избранное
+                    {interfaceLanguage === 'en' ? '☆ Favorites' : '☆ Избранное'}
                   </Link>
                 )}
               </div>
@@ -186,6 +189,7 @@ export default function HomePage() {
                 lettersByEp={lettersByEp}
                 lessonTargetScore={lessonTargetScore}
                 lessonLetterSizePx={lessonLetterSizePx}
+                transliterationMode={transliterationMode}
                 statusById={statusById}
                 recommendedEpId={recommendedEpId}
                 recommendedLessonRef={recommendedLessonRef}

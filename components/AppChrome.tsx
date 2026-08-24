@@ -5,6 +5,8 @@ import AuthStatus from '@/components/AuthStatus';
 import BrandToggle from '@/components/BrandToggle';
 import GlobalAlphabetOverlay from '@/components/GlobalAlphabetOverlay';
 import HeaderLessonTitle from '@/components/HeaderLessonTitle';
+import InterfaceLanguageSwitcher from '@/components/InterfaceLanguageSwitcher';
+import SerbianScriptSwitcher from '@/components/SerbianScriptSwitcher';
 
 export default function AppChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -21,7 +23,9 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
             <div className="justify-self-center h-full">
               <HeaderLessonTitle />
             </div>
-            <div className="justify-self-end">
+            <div className="justify-self-end flex items-center gap-2">
+              <InterfaceLanguageSwitcher />
+              <SerbianScriptSwitcher />
               <AuthStatus />
             </div>
           </div>

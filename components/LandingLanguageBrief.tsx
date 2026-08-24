@@ -78,6 +78,15 @@ const languageBriefs: Record<CourseId, LanguageBrief> = {
       { label: 'Диакритика помогает', text: 'é, è, ê, ç меняют звук предсказуемо — это подсказка, а не помеха.' },
     ],
   },
+  it: {
+    title: 'Итальянский: главное для чтения',
+    subtitle: 'Итальянский читается довольно честно: освоив несколько правил, большинство слов можно читать почти сразу.',
+    points: [
+      { label: 'Гласные звучат стабильно', text: 'A, E, I, O, U обычно читаются предсказуемо. Это помогает быстро начать читать целые слова.' },
+      { label: 'C и G зависят от следующей буквы', text: 'Перед e и i они мягче: cena, gelato. Перед a, o, u звучат твёрже: casa, gatto.' },
+      { label: 'Двойные согласные важно замечать', text: 'pala и palla звучат по-разному. Удвоение в итальянском реально слышно и влияет на слово.' },
+    ],
+  },
 };
 
 const nationalCatByCourse: Record<CourseId, string> = {
@@ -88,6 +97,7 @@ const nationalCatByCourse: Record<CourseId, string> = {
   sr: '/images/cats/national/deda-sr.png',
   tr: '/images/cats/national/deda-tr.png',
   fr: '/images/cats/national/deda-fr.png',
+  it: '/images/cats/national/deda-en.png',
 };
 
 export function LandingLanguageBrief() {

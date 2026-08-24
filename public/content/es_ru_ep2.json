@@ -16,12 +16,14 @@
           "kind": "grammar",
           "text": "артикль → перед словом м.р.: un café"
         }
-      ]
+      ],
+      "transcription_en": "oon"
     },
     {
       "type": "word",
       "ge_text": "Un poco",
-      "ru_meaning": "немного"
+      "ru_meaning": "немного",
+      "transcription_en": "oon pohkoh"
     },
     {
       "type": "word",
@@ -32,7 +34,8 @@
           "kind": "grammar",
           "text": "артикль → перед словом ж.р.: una mesa"
         }
-      ]
+      ],
+      "transcription_en": "oonah"
     },
     {
       "type": "word",
@@ -43,77 +46,92 @@
           "kind": "grammar",
           "text": "само число → при счёте: uno, dos, tres"
         }
-      ]
+      ],
+      "transcription_en": "OO-noh"
     },
     {
       "type": "word",
       "ge_text": "mi",
-      "ru_meaning": "мой"
+      "ru_meaning": "мой",
+      "transcription_en": "mee"
     },
     {
       "type": "word",
       "ge_text": "me",
-      "ru_meaning": "меня"
+      "ru_meaning": "меня",
+      "transcription_en": "meh"
     },
     {
       "type": "word",
       "ge_text": "Un momento",
-      "ru_meaning": "один момент"
+      "ru_meaning": "один момент",
+      "transcription_en": "oon mohmehntoh"
     },
     {
       "type": "word",
       "ge_text": "mano",
-      "ru_meaning": "рука"
+      "ru_meaning": "рука",
+      "transcription_en": "MAH-noh"
     },
     {
       "type": "word",
       "ge_text": "mesa",
-      "ru_meaning": "стол"
+      "ru_meaning": "стол",
+      "transcription_en": "mehsah"
     },
     {
       "type": "word",
       "ge_text": "museo",
-      "ru_meaning": "музей"
+      "ru_meaning": "музей",
+      "transcription_en": "moosehoh"
     },
     {
       "type": "word",
       "ge_text": "Tu casa",
-      "ru_meaning": "твой дом"
+      "ru_meaning": "твой дом",
+      "transcription_en": "too KAH-sah"
     },
     {
       "type": "word",
       "ge_text": "mundo",
-      "ru_meaning": "мир"
+      "ru_meaning": "мир",
+      "transcription_en": "MOON-doh"
     },
     {
       "type": "word",
       "ge_text": "muro",
-      "ru_meaning": "стена"
+      "ru_meaning": "стена",
+      "transcription_en": "mooroh"
     },
     {
       "type": "word",
       "ge_text": "pan",
-      "ru_meaning": "хлеб"
+      "ru_meaning": "хлеб",
+      "transcription_en": "pahn"
     },
     {
       "type": "word",
       "ge_text": "papa",
-      "ru_meaning": "папа"
+      "ru_meaning": "папа",
+      "transcription_en": "pahpah"
     },
     {
       "type": "word",
       "ge_text": "pero",
-      "ru_meaning": "но"
+      "ru_meaning": "но",
+      "transcription_en": "pehroh"
     },
     {
       "type": "word",
       "ge_text": "pera",
-      "ru_meaning": "груша"
+      "ru_meaning": "груша",
+      "transcription_en": "pehrah"
     },
     {
       "type": "word",
       "ge_text": "puerta",
-      "ru_meaning": "дверь"
+      "ru_meaning": "дверь",
+      "transcription_en": "pooehrtah"
     }
   ]
 }

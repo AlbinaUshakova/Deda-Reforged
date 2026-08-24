@@ -12,77 +12,92 @@
     {
       "type": "word",
       "ge_text": "eso",
-      "ru_meaning": "это"
+      "ru_meaning": "это",
+      "transcription_en": "EH-soh"
     },
     {
       "type": "word",
       "ge_text": "eres",
-      "ru_meaning": "ты есть"
+      "ru_meaning": "ты есть",
+      "transcription_en": "EH-rehs"
     },
     {
       "type": "word",
       "ge_text": "es",
-      "ru_meaning": "есть"
+      "ru_meaning": "есть",
+      "transcription_en": "ehs"
     },
     {
       "type": "word",
       "ge_text": "a eso",
-      "ru_meaning": "к этому"
+      "ru_meaning": "к этому",
+      "transcription_en": "ah EH-soh"
     },
     {
       "type": "word",
       "ge_text": "sea",
-      "ru_meaning": "пусть будет"
+      "ru_meaning": "пусть будет",
+      "transcription_en": "SEH-ah"
     },
     {
       "type": "word",
       "ge_text": "ser",
-      "ru_meaning": "быть"
+      "ru_meaning": "быть",
+      "transcription_en": "sehr"
     },
     {
       "type": "word",
       "ge_text": "oso",
-      "ru_meaning": "медведь"
+      "ru_meaning": "медведь",
+      "transcription_en": "OH-soh"
     },
     {
       "type": "word",
       "ge_text": "rosa",
-      "ru_meaning": "роза"
+      "ru_meaning": "роза",
+      "transcription_en": "ROH-sah"
     },
     {
       "type": "word",
       "ge_text": "oro",
-      "ru_meaning": "золото"
+      "ru_meaning": "золото",
+      "transcription_en": "OH-roh"
     },
     {
       "type": "word",
       "ge_text": "aseo",
-      "ru_meaning": "туалет"
+      "ru_meaning": "туалет",
+      "transcription_en": "ah-SEH-oh"
     },
     {
       "type": "word",
       "ge_text": "raro",
-      "ru_meaning": "странный"
+      "ru_meaning": "странный",
+      "transcription_en": "RAH-roh"
     },
     {
       "type": "word",
       "ge_text": "error",
-      "ru_meaning": "ошибка"
+      "ru_meaning": "ошибка",
+      "transcription_en": "eh-ROR"
     },
     {
       "type": "word",
       "ge_text": "esa",
-      "ru_meaning": "та"
+      "ru_meaning": "та",
+      "transcription_en": "EH-sah"
     },
     {
       "type": "word",
       "ge_text": "ese",
-      "ru_meaning": "тот"
+      "ru_meaning": "тот",
+      "transcription_en": "EH-seh"
     },
     {
       "type": "word",
       "ge_text": "ese oso",
-      "ru_meaning": "этот медведь"
+      "ru_meaning": "этот медведь",
+      "transcription_en": "EH-seh OH-soh"
     }
   ]
 }

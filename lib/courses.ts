@@ -1,8 +1,8 @@
 import { geLetterAudioMap } from './georgianLetterAudio.ts';
 
-export type CourseId = 'ka' | 'sr' | 'tr' | 'es' | 'de' | 'en' | 'fr';
+export type CourseId = 'ka' | 'sr' | 'tr' | 'es' | 'de' | 'en' | 'fr' | 'it';
 
-export const COURSE_ORDER: CourseId[] = ['ka', 'en', 'es', 'de', 'fr', 'sr', 'tr'];
+export const COURSE_ORDER: CourseId[] = ['ka', 'en', 'es', 'de', 'fr', 'it', 'sr', 'tr'];
 
 export type Course = {
   id: CourseId;
@@ -43,6 +43,12 @@ export type Course = {
 };
 
 export type LetterKind = 'vowel' | 'consonant';
+
+const EXTRA_VOWELS_BY_COURSE: Partial<Record<CourseId, string[]>> = {
+  de: ['Ä', 'Ö', 'Ü', 'ä', 'ö', 'ü'],
+  fr: ['À', 'Â', 'É', 'È', 'Ê', 'Ë', 'Î', 'Ï', 'Ô', 'Œ', 'Ù', 'Û', 'à', 'â', 'é', 'è', 'ê', 'ë', 'î', 'ï', 'ô', 'œ', 'ù', 'û'],
+  es: ['Á', 'É', 'Í', 'Ó', 'Ú', 'Ü', 'á', 'é', 'í', 'ó', 'ú', 'ü'],
+};
 
 const GEORGIAN_ALPHABET = [
   'ა', 'ბ', 'გ', 'დ', 'ე', 'ვ', 'ზ', 'თ', 'ი', 'კ', 'ლ',
@@ -704,7 +710,7 @@ const ENGLISH_SPEECH_LABELS: Record<string, string> = {
 const GERMAN_ALPHABET = [
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
   'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
-  'U', 'V', 'W', 'X', 'Y', 'Z', 'Ä', 'Ö', 'Ü', 'ẞ',
+  'U', 'V', 'W', 'X', 'Y', 'Z',
 ];
 
 const GERMAN_CORE_LETTERS = [
@@ -890,7 +896,7 @@ const FRENCH_CORE_LETTERS = [
 
 const FRENCH_SPECIAL_LETTERS = ['À', 'Â', 'Ç', 'É', 'È', 'Ê', 'Ë', 'Î', 'Ï', 'Ô', 'Œ', 'Ù', 'Û'];
 
-const FRENCH_ALPHABET = [...FRENCH_CORE_LETTERS, ...FRENCH_SPECIAL_LETTERS];
+const FRENCH_ALPHABET = [...FRENCH_CORE_LETTERS];
 
 const FRENCH_RU_HINTS: Record<string, string> = {
   A: 'а', B: 'б', C: 'к/с', D: 'д', E: 'э/ё/—', F: 'ф', G: 'г/ж', H: '—',
@@ -927,6 +933,140 @@ const FRENCH_LETTER_NAME_RU: Record<string, string> = {
 const FRENCH_SPEECH_LABELS: Record<string, string> = {
   ...FRENCH_RU_HINTS,
   C: 'с', E: 'ё', G: 'ж', H: '', R: 'р', S: 'с', Y: 'и',
+};
+
+const ITALIAN_CORE_LETTERS = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L',
+  'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'Z',
+];
+
+const ITALIAN_EXTRA_LETTERS = ['J', 'K', 'W', 'X', 'Y'];
+
+const ITALIAN_ALPHABET = [...ITALIAN_CORE_LETTERS];
+
+const ITALIAN_RU_HINTS: Record<string, string> = {
+  A: 'а',
+  B: 'б',
+  C: 'к/ч',
+  D: 'д',
+  E: 'э',
+  F: 'ф',
+  G: 'г/дж',
+  H: '—',
+  I: 'и',
+  L: 'л',
+  M: 'м',
+  N: 'н',
+  O: 'о',
+  P: 'п',
+  Q: 'кв',
+  R: 'р',
+  S: 'с/з',
+  T: 'т',
+  U: 'у',
+  V: 'в',
+  Z: 'ц/дз',
+  J: 'й',
+  K: 'к',
+  W: 'в',
+  X: 'кс',
+  Y: 'и',
+};
+
+const ITALIAN_LATIN_HINTS: Record<string, string> = {
+  A: 'a',
+  B: 'b',
+  C: 'k/ch',
+  D: 'd',
+  E: 'e',
+  F: 'f',
+  G: 'g/j',
+  H: '—',
+  I: 'i',
+  L: 'l',
+  M: 'm',
+  N: 'n',
+  O: 'o',
+  P: 'p',
+  Q: 'kw',
+  R: 'r',
+  S: 's/z',
+  T: 't',
+  U: 'u',
+  V: 'v',
+  Z: 'ts/dz',
+  J: 'y',
+  K: 'k',
+  W: 'w',
+  X: 'ks',
+  Y: 'i',
+};
+
+const ITALIAN_LETTER_NAMES: Record<string, string> = {
+  A: 'a',
+  B: 'bi',
+  C: 'ci',
+  D: 'di',
+  E: 'e',
+  F: 'effe',
+  G: 'gi',
+  H: 'acca',
+  I: 'i',
+  L: 'elle',
+  M: 'emme',
+  N: 'enne',
+  O: 'o',
+  P: 'pi',
+  Q: 'cu',
+  R: 'erre',
+  S: 'esse',
+  T: 'ti',
+  U: 'u',
+  V: 'vi',
+  Z: 'zeta',
+  J: 'i lunga',
+  K: 'kappa',
+  W: 'doppia vu',
+  X: 'ics',
+  Y: 'ipsilon',
+};
+
+const ITALIAN_LETTER_NAME_RU: Record<string, string> = {
+  A: 'а',
+  B: 'би',
+  C: 'чи',
+  D: 'ди',
+  E: 'э',
+  F: 'эффе',
+  G: 'джи',
+  H: 'акка',
+  I: 'и',
+  L: 'элле',
+  M: 'эмме',
+  N: 'энне',
+  O: 'о',
+  P: 'пи',
+  Q: 'ку',
+  R: 'эрре',
+  S: 'эссе',
+  T: 'ти',
+  U: 'у',
+  V: 'ви',
+  Z: 'дзета',
+  J: 'и лунга',
+  K: 'каппа',
+  W: 'доппья ву',
+  X: 'икс',
+  Y: 'ипсилон',
+};
+
+const ITALIAN_SPEECH_LABELS: Record<string, string> = {
+  ...ITALIAN_RU_HINTS,
+  C: 'к',
+  G: 'г',
+  H: '',
+  Q: 'кв',
+  Z: 'ц',
 };
 
 export const COURSES: Record<CourseId, Course> = {
@@ -1068,7 +1208,7 @@ export const COURSES: Record<CourseId, Course> = {
     alphabetTitle: 'Немецкий алфавит — Das deutsche Alphabet',
     alphabet: GERMAN_ALPHABET,
     alphabetRows: rows(GERMAN_ALPHABET, 6),
-    vowels: ['A', 'E', 'I', 'O', 'U', 'Ä', 'Ö', 'Ü'],
+    vowels: ['A', 'E', 'I', 'O', 'U'],
     alphabetSections: [
       section('Основные буквы', GERMAN_CORE_LETTERS),
       section(
@@ -1098,7 +1238,7 @@ export const COURSES: Record<CourseId, Course> = {
     alphabetTitle: 'Французский алфавит — L’alphabet français',
     alphabet: FRENCH_ALPHABET,
     alphabetRows: rows(FRENCH_ALPHABET, 6),
-    vowels: ['A', 'E', 'I', 'O', 'U', 'Y', 'À', 'Â', 'É', 'È', 'Ê', 'Ë', 'Î', 'Ï', 'Ô', 'Œ', 'Ù', 'Û'],
+    vowels: ['A', 'E', 'I', 'O', 'U', 'Y'],
     alphabetSections: [
       section('Основные буквы', FRENCH_CORE_LETTERS),
       section(
@@ -1117,13 +1257,43 @@ export const COURSES: Record<CourseId, Course> = {
     speechLang: 'fr-FR',
     locale: 'fr',
   },
+  it: {
+    id: 'it',
+    title: 'Итальянский',
+    shortTitle: 'Итальянский',
+    sourceLanguageLabel: '🇮🇹',
+    targetLanguageLabel: '🇷🇺',
+    scriptTitleRu: 'Итальянский алфавит',
+    scriptTitleNative: 'L’alfabeto italiano',
+    alphabetTitle: 'Итальянский алфавит — L’alfabeto italiano',
+    alphabet: ITALIAN_ALPHABET,
+    alphabetRows: rows(ITALIAN_ALPHABET, 6),
+    vowels: ['A', 'E', 'I', 'O', 'U'],
+    alphabetSections: [
+      section('Основные буквы', ITALIAN_CORE_LETTERS),
+      section(
+        'Дополнительные буквы',
+        ITALIAN_EXTRA_LETTERS,
+        'J, K, W, X и Y встречаются в заимствованных словах и именах.',
+      ),
+    ],
+    letterNames: ITALIAN_LETTER_NAMES,
+    letterNameRu: ITALIAN_LETTER_NAME_RU,
+    letterSoundLabels: ITALIAN_RU_HINTS,
+    letterSpeechLabels: ITALIAN_SPEECH_LABELS,
+    soundHints: makeSoundHints(ITALIAN_RU_HINTS, ITALIAN_LATIN_HINTS),
+    letterHints: makeSoundHints(ITALIAN_RU_HINTS, ITALIAN_LATIN_HINTS),
+    letterAudioMap: {},
+    speechLang: 'it-IT',
+    locale: 'it',
+  },
 };
 
 export const DEFAULT_COURSE_ID: CourseId = 'ka';
 export const COURSE_IDS = COURSE_ORDER;
 
 export function normalizeCourseId(value: unknown): CourseId {
-  return value === 'sr' || value === 'tr' || value === 'es' || value === 'de' || value === 'en' || value === 'fr'
+  return value === 'sr' || value === 'tr' || value === 'es' || value === 'de' || value === 'en' || value === 'fr' || value === 'it'
     ? value
     : DEFAULT_COURSE_ID;
 }
@@ -1183,7 +1353,9 @@ export function getLetterKind(
   courseId: unknown = DEFAULT_COURSE_ID,
 ): LetterKind {
   const course = getCourse(courseId);
-  return course.vowels.includes(letter) ? 'vowel' : 'consonant';
+  return course.vowels.includes(letter) || (EXTRA_VOWELS_BY_COURSE[course.id]?.includes(letter) ?? false)
+    ? 'vowel'
+    : 'consonant';
 }
 
 // Единое универсальное описание буквы для сетки алфавита.

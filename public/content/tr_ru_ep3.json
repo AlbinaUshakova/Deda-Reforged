@@ -10,92 +10,110 @@
     {
       "type": "word",
       "ge_text": "sen",
-      "ru_meaning": "ты"
+      "ru_meaning": "ты",
+      "transcription_en": "sen"
     },
     {
       "type": "word",
       "ge_text": "sana",
-      "ru_meaning": "тебе"
+      "ru_meaning": "тебе",
+      "transcription_en": "sah-NAH"
     },
     {
       "type": "word",
       "ge_text": "seni",
-      "ru_meaning": "тебя"
+      "ru_meaning": "тебя",
+      "transcription_en": "seh-NEE"
     },
     {
       "type": "word",
       "ge_text": "isim",
-      "ru_meaning": "имя"
+      "ru_meaning": "имя",
+      "transcription_en": "ee-SEEM"
     },
     {
       "type": "word",
       "ge_text": "simit",
-      "ru_meaning": "симит"
+      "ru_meaning": "симит",
+      "transcription_en": "see-MEET"
     },
     {
       "type": "word",
       "ge_text": "saat",
-      "ru_meaning": "час"
+      "ru_meaning": "час",
+      "transcription_en": "sah-AHT"
     },
     {
       "type": "word",
       "ge_text": "okul",
-      "ru_meaning": "школа"
+      "ru_meaning": "школа",
+      "transcription_en": "oh-KOOL"
     },
     {
       "type": "word",
       "ge_text": "oda",
-      "ru_meaning": "комната"
+      "ru_meaning": "комната",
+      "transcription_en": "oh-DAH"
     },
     {
       "type": "word",
       "ge_text": "bu oda",
-      "ru_meaning": "эта комната"
+      "ru_meaning": "эта комната",
+      "transcription_en": "boo oh-DAH"
     },
     {
       "type": "word",
       "ge_text": "o ne",
-      "ru_meaning": "что это"
+      "ru_meaning": "что это",
+      "transcription_en": "oh neh"
     },
     {
       "type": "word",
       "ge_text": "olur",
-      "ru_meaning": "ладно"
+      "ru_meaning": "ладно",
+      "transcription_en": "oh-LOOR"
     },
     {
       "type": "word",
       "ge_text": "son",
-      "ru_meaning": "последний"
+      "ru_meaning": "последний",
+      "transcription_en": "sohn"
     },
     {
       "type": "word",
       "ge_text": "soru",
-      "ru_meaning": "вопрос"
+      "ru_meaning": "вопрос",
+      "transcription_en": "soh-ROO"
     },
     {
       "type": "word",
       "ge_text": "masa",
-      "ru_meaning": "стол"
+      "ru_meaning": "стол",
+      "transcription_en": "mah-SAH"
     },
     {
       "type": "word",
       "ge_text": "bu nasıl",
-      "ru_meaning": "как это"
+      "ru_meaning": "как это",
+      "transcription_en": "boo NAH-suhl"
     },
     {
       "type": "word",
       "ge_text": "orman",
-      "ru_meaning": "лес"
+      "ru_meaning": "лес",
+      "transcription_en": "ohr-MAHN"
     },
     {
       "type": "word",
       "ge_text": "on",
-      "ru_meaning": "десять"
+      "ru_meaning": "десять",
+      "transcription_en": "ohn"
     },
     {
       "type": "word",
       "ge_text": "kısa",
-      "ru_meaning": "короткий"
+      "ru_meaning": "короткий",
+      "transcription_en": "kuh-SAH"
     }
   ]
 }

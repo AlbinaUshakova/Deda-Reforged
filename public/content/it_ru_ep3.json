@@ -1,0 +1,19 @@
+{
+  "id": "ep3",
+  "title": "Урок 3",
+  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P"],
+  "cards": [
+    { "type": "word", "ge_text": "casa", "ru_meaning": "дом" },
+    { "type": "word", "ge_text": "cane", "ru_meaning": "собака" },
+    { "type": "word", "ge_text": "pane", "ru_meaning": "хлеб" },
+    { "type": "word", "ge_text": "pace", "ru_meaning": "мир" },
+    { "type": "word", "ge_text": "pipa", "ru_meaning": "трубка" },
+    { "type": "word", "ge_text": "copia", "ru_meaning": "копия" },
+    { "type": "word", "ge_text": "cima", "ru_meaning": "вершина" },
+    { "type": "word", "ge_text": "palla", "ru_meaning": "шар" },
+    { "type": "word", "ge_text": "piccolo", "ru_meaning": "маленький" },
+    { "type": "word", "ge_text": "capo", "ru_meaning": "голова" },
+    { "type": "word", "ge_text": "Il cane", "ru_meaning": "собака" },
+    { "type": "word", "ge_text": "Pane e pace", "ru_meaning": "хлеб и мир" }
+  ]
+}

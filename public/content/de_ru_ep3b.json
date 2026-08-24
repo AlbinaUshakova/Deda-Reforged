@@ -10,92 +10,110 @@
     {
       "type": "word",
       "ge_text": "ja",
-      "ru_meaning": "да"
+      "ru_meaning": "да",
+      "transcription_en": "ya"
     },
     {
       "type": "word",
       "ge_text": "Ja, bitte",
-      "ru_meaning": "да, пожалуйста"
+      "ru_meaning": "да, пожалуйста",
+      "transcription_en": "ya, bitte"
     },
     {
       "type": "word",
       "ge_text": "Jahr",
-      "ru_meaning": "год"
+      "ru_meaning": "год",
+      "transcription_en": "yahr"
     },
     {
       "type": "word",
       "ge_text": "jetzt",
-      "ru_meaning": "сейчас"
+      "ru_meaning": "сейчас",
+      "transcription_en": "yettst"
     },
     {
       "type": "word",
       "ge_text": "jung",
-      "ru_meaning": "молодой"
+      "ru_meaning": "молодой",
+      "transcription_en": "yung"
     },
     {
       "type": "word",
       "ge_text": "Papa ist da",
-      "ru_meaning": "папа здесь"
+      "ru_meaning": "папа здесь",
+      "transcription_en": "papa ist dah"
     },
     {
       "type": "word",
       "ge_text": "Juni",
-      "ru_meaning": "июнь"
+      "ru_meaning": "июнь",
+      "transcription_en": "YOO-nee"
     },
     {
       "type": "word",
       "ge_text": "Juli",
-      "ru_meaning": "июль"
+      "ru_meaning": "июль",
+      "transcription_en": "yuli"
     },
     {
       "type": "word",
       "ge_text": "Park",
-      "ru_meaning": "парк"
+      "ru_meaning": "парк",
+      "transcription_en": "park"
     },
     {
       "type": "word",
       "ge_text": "Paket",
-      "ru_meaning": "пакет"
+      "ru_meaning": "пакет",
+      "transcription_en": "paket"
     },
     {
       "type": "word",
       "ge_text": "Papier",
-      "ru_meaning": "бумага"
+      "ru_meaning": "бумага",
+      "transcription_en": "papeer"
     },
     {
       "type": "word",
       "ge_text": "Preis",
-      "ru_meaning": "цена"
+      "ru_meaning": "цена",
+      "transcription_en": "preyes"
     },
     {
       "type": "word",
       "ge_text": "Plan",
-      "ru_meaning": "план"
+      "ru_meaning": "план",
+      "transcription_en": "plan"
     },
     {
       "type": "word",
       "ge_text": "Post",
-      "ru_meaning": "почта"
+      "ru_meaning": "почта",
+      "transcription_en": "post"
     },
     {
       "type": "word",
       "ge_text": "Ich spiele",
-      "ru_meaning": "я играю"
+      "ru_meaning": "я играю",
+      "transcription_en": "ikh shPeele"
     },
     {
       "type": "word",
       "ge_text": "viel",
-      "ru_meaning": "много"
+      "ru_meaning": "много",
+      "transcription_en": "feel"
     },
     {
       "type": "word",
       "ge_text": "vier",
-      "ru_meaning": "четыре"
+      "ru_meaning": "четыре",
+      "transcription_en": "feer"
     },
     {
       "type": "word",
       "ge_text": "Vater",
-      "ru_meaning": "отец"
+      "ru_meaning": "отец",
+      "transcription_en": "FAH-tehr"
     }
   ]
 }

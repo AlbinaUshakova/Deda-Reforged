@@ -10,92 +10,110 @@
     {
       "type": "word",
       "ge_text": "Oma",
-      "ru_meaning": "бабушка"
+      "ru_meaning": "бабушка",
+      "transcription_en": "oma"
     },
     {
       "type": "word",
       "ge_text": "Omi",
-      "ru_meaning": "бабушка"
+      "ru_meaning": "бабушка",
+      "transcription_en": "omi"
     },
     {
       "type": "word",
       "ge_text": "Brot",
-      "ru_meaning": "хлеб"
+      "ru_meaning": "хлеб",
+      "transcription_en": "broht"
     },
     {
       "type": "word",
       "ge_text": "Bus",
-      "ru_meaning": "автобус"
+      "ru_meaning": "автобус",
+      "transcription_en": "boos"
     },
     {
       "type": "word",
       "ge_text": "bin",
-      "ru_meaning": "есть"
+      "ru_meaning": "есть",
+      "transcription_en": "bin"
     },
     {
       "type": "word",
       "ge_text": "Ich bin da",
-      "ru_meaning": "я здесь"
+      "ru_meaning": "я здесь",
+      "transcription_en": "ikh bin dah"
     },
     {
       "type": "word",
       "ge_text": "wo",
-      "ru_meaning": "где"
+      "ru_meaning": "где",
+      "transcription_en": "fo"
     },
     {
       "type": "word",
       "ge_text": "Wo bist du",
-      "ru_meaning": "где ты"
+      "ru_meaning": "где ты",
+      "transcription_en": "fo bist doo"
     },
     {
       "type": "word",
       "ge_text": "was",
-      "ru_meaning": "что"
+      "ru_meaning": "что",
+      "transcription_en": "fas"
     },
     {
       "type": "word",
       "ge_text": "wer",
-      "ru_meaning": "кто"
+      "ru_meaning": "кто",
+      "transcription_en": "fer"
     },
     {
       "type": "word",
       "ge_text": "Woche",
-      "ru_meaning": "неделя"
+      "ru_meaning": "неделя",
+      "transcription_en": "fokhe"
     },
     {
       "type": "word",
       "ge_text": "Wasser",
-      "ru_meaning": "вода"
+      "ru_meaning": "вода",
+      "transcription_en": "VAH-ser"
     },
     {
       "type": "word",
       "ge_text": "oben",
-      "ru_meaning": "наверху"
+      "ru_meaning": "наверху",
+      "transcription_en": "oben"
     },
     {
       "type": "word",
       "ge_text": "Du bist oben",
-      "ru_meaning": "ты наверху"
+      "ru_meaning": "ты наверху",
+      "transcription_en": "doo bist oben"
     },
     {
       "type": "word",
       "ge_text": "Boden",
-      "ru_meaning": "пол"
+      "ru_meaning": "пол",
+      "transcription_en": "boden"
     },
     {
       "type": "word",
       "ge_text": "Boot",
-      "ru_meaning": "лодка"
+      "ru_meaning": "лодка",
+      "transcription_en": "boot"
     },
     {
       "type": "word",
       "ge_text": "wohnen",
-      "ru_meaning": "жить"
+      "ru_meaning": "жить",
+      "transcription_en": "fohnen"
     },
     {
       "type": "word",
       "ge_text": "Sonne",
-      "ru_meaning": "солнце"
+      "ru_meaning": "солнце",
+      "transcription_en": "ZOH-nuh"
     }
   ]
 }

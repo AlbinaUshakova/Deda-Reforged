@@ -4,6 +4,7 @@ import {
   getGrammarDisplay,
   getInfoNoteMeta,
 } from '@/components/flashcards/flashcardText';
+import { useAppStore } from '@/lib/appStore';
 
 type InfoNote = {
   kind: 'grammar' | 'speech' | 'mistake';
@@ -21,18 +22,22 @@ export function FlashcardInfoNotes({
   expandedKinds,
   onToggle,
 }: FlashcardInfoNotesProps) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   if (notes.length === 0) return null;
 
   return (
     <div className="flashcard-info-notes mt-3 flex w-full max-w-[26ch] flex-col gap-2">
       {notes.map((note, noteIdx) => {
-        const meta = getInfoNoteMeta(note.kind);
+        const meta = getInfoNoteMeta(note.kind, interfaceLanguage);
         const noteKey = `${note.kind}-${noteIdx}`;
         const isExpanded = !!expandedKinds[noteKey];
         const grammarDisplay =
           note.kind === 'grammar'
-            ? getGrammarDisplay(note.text)
+            ? getGrammarDisplay(note.text, interfaceLanguage)
             : null;
+        const displayText = interfaceLanguage === 'en' && !grammarDisplay
+          ? getGrammarDisplay(note.text, 'en').summary
+          : note.text;
 
         return (
           <button
@@ -44,7 +49,11 @@ export function FlashcardInfoNotes({
             }}
             className={`flashcard-info-note w-full overflow-hidden rounded-[16px] border px-3.5 py-2.5 text-left transition-all duration-200 ${meta.cardClass}`}
             aria-expanded={isExpanded}
-            aria-label={`Открыть пояснение: ${meta.eyebrow}`}
+            aria-label={
+              interfaceLanguage === 'en'
+                ? `Open note: ${meta.eyebrow || meta.title}`
+                : `Открыть пояснение: ${meta.eyebrow || meta.title}`
+            }
           >
             <div className="flex items-start justify-between gap-2.5">
               <div className="min-w-0">
@@ -74,7 +83,7 @@ export function FlashcardInfoNotes({
                   </div>
                 ) : (
                   <span className="mt-2 block pl-8 text-[clamp(12px,1.35vw,14px)] leading-snug text-slate-700">
-                    {note.text}
+                    {displayText}
                   </span>
                 )}
               </div>
@@ -109,7 +118,7 @@ export function FlashcardInfoNotes({
                       <span className={`mt-[2px] text-[11px] ${meta.bulletClass}`} aria-hidden="true">
                         →
                       </span>
-                      <span>{note.text}</span>
+                      <span>{displayText}</span>
                     </div>
                   )}
                 </div>

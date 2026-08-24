@@ -2,6 +2,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useAppStore } from '@/lib/appStore';
 
 export default function FeedbackPanel({
     onClose,
@@ -10,6 +11,7 @@ export default function FeedbackPanel({
     onClose: () => void;
     onBack?: () => void;
 }) {
+    const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
     const [message, setMessage] = useState('');
     const [contact, setContact] = useState('');
     const [error, setError] = useState<string | null>(null);
@@ -22,11 +24,11 @@ export default function FeedbackPanel({
         const trimmedContact = contact.trim();
 
         if (!trimmedMessage) {
-            setError('Напишите хотя бы пару слов :)');
+            setError(interfaceLanguage === 'en' ? 'Write at least a few words :)' : 'Напишите хотя бы пару слов :)');
             return;
         }
         if (trimmedMessage.length < 5) {
-            setError('Сообщение слишком короткое');
+            setError(interfaceLanguage === 'en' ? 'Message is too short' : 'Сообщение слишком короткое');
             return;
         }
 
@@ -45,13 +47,13 @@ export default function FeedbackPanel({
 
             if (!res.ok) {
                 if (res.status === 429) {
-                    setError('Слишком часто. Попробуйте через минуту.');
+                    setError(interfaceLanguage === 'en' ? 'Too many attempts. Try again in a minute.' : 'Слишком часто. Попробуйте через минуту.');
                 } else if (res.status === 503) {
-                    setError('Почта не настроена. Напишите позже.');
+                    setError(interfaceLanguage === 'en' ? 'Mail is not configured yet. Try later.' : 'Почта не настроена. Напишите позже.');
                 } else if (res.status === 400) {
-                    setError('Проверьте сообщение и контакт.');
+                    setError(interfaceLanguage === 'en' ? 'Check the message and contact details.' : 'Проверьте сообщение и контакт.');
                 } else {
-                    setError('Не получилось отправить. Попробуйте ещё раз позже.');
+                    setError(interfaceLanguage === 'en' ? 'Could not send it. Please try again later.' : 'Не получилось отправить. Попробуйте ещё раз позже.');
                 }
                 setSending(false);
                 return;
@@ -68,7 +70,7 @@ export default function FeedbackPanel({
             }, 800);
         } catch (e) {
             console.error('feedback insert exception', e);
-            setError('Что-то пошло не так. Попробуйте ещё раз.');
+            setError(interfaceLanguage === 'en' ? 'Something went wrong. Please try again.' : 'Что-то пошло не так. Попробуйте ещё раз.');
             setSending(false);
         }
     };
@@ -82,7 +84,7 @@ export default function FeedbackPanel({
                 >
                     {onBack && (
                         <button
-                            aria-label="Назад в меню"
+                            aria-label={interfaceLanguage === 'en' ? 'Back to menu' : 'Назад в меню'}
                             className="absolute left-1 top-1/2 h-6 w-6 -translate-y-1/2 rounded-md text-[var(--menu-text-muted)] opacity-85 transition hover:bg-transparent hover:text-[var(--menu-text)] focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2"
                             onClick={onBack}
                             disabled={sending}
@@ -92,10 +94,12 @@ export default function FeedbackPanel({
                             </svg>
                         </button>
                     )}
-                    <div className="whitespace-nowrap px-7 text-center text-[clamp(9px,1.55vw,13px)] font-semibold text-[var(--menu-text)]">Помощь и отзывы</div>
+                    <div className="whitespace-nowrap px-7 text-center text-[clamp(9px,1.55vw,13px)] font-semibold text-[var(--menu-text)]">
+                        {interfaceLanguage === 'en' ? 'Help and feedback' : 'Помощь и отзывы'}
+                    </div>
                     <button
                         type="button"
-                        aria-label="Закрыть"
+                        aria-label={interfaceLanguage === 'en' ? 'Close' : 'Закрыть'}
                         className="home-alphabet-close absolute right-1 top-1/2 h-6 w-6 -translate-y-1/2 rounded-md text-[11px] transition-colors focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2"
                         onClick={onClose}
                         disabled={sending}
@@ -105,7 +109,7 @@ export default function FeedbackPanel({
                 </div>
 
                 <p className="pt-0.5 text-[clamp(10px,1.65vw,11px)] text-[var(--menu-text-muted)] leading-relaxed mb-1">
-                    Поделитесь, что можно улучшить.
+                    {interfaceLanguage === 'en' ? 'Tell us what can be improved.' : 'Поделитесь, что можно улучшить.'}
                 </p>
 
                 <div className="space-y-1 mt-1.5">
@@ -113,7 +117,7 @@ export default function FeedbackPanel({
                         htmlFor="feedback-message"
                         className="text-[clamp(10px,1.65vw,11px)] text-[var(--menu-text-muted)]"
                     >
-                        Сообщение
+                        {interfaceLanguage === 'en' ? 'Message' : 'Сообщение'}
                     </label>
                     <textarea
                         id="feedback-message"
@@ -124,7 +128,7 @@ export default function FeedbackPanel({
                             setError(null);
                             setSuccess(false);
                         }}
-                        placeholder="Опишите проблему или идею…"
+                        placeholder={interfaceLanguage === 'en' ? 'Describe the issue or idea…' : 'Опишите проблему или идею…'}
                     />
                 </div>
 
@@ -133,7 +137,7 @@ export default function FeedbackPanel({
                         htmlFor="feedback-contact"
                         className="text-[clamp(10px,1.65vw,11px)] text-[var(--menu-text-muted)]"
                     >
-                        Контакт (необязательно)
+                        {interfaceLanguage === 'en' ? 'Contact (optional)' : 'Контакт (необязательно)'}
                     </label>
                     <input
                         id="feedback-contact"
@@ -144,7 +148,7 @@ export default function FeedbackPanel({
                             setError(null);
                             setSuccess(false);
                         }}
-                        placeholder="Telegram или email"
+                        placeholder={interfaceLanguage === 'en' ? 'Telegram or email' : 'Telegram или email'}
                     />
                 </div>
 
@@ -156,7 +160,7 @@ export default function FeedbackPanel({
 
                 {success && (
                     <div className="text-[clamp(10px,1.65vw,11px)] text-emerald-500 animate-settings-bump">
-                        Спасибо. Сообщение отправлено.
+                        {interfaceLanguage === 'en' ? 'Thanks. Message sent.' : 'Спасибо. Сообщение отправлено.'}
                     </div>
                 )}
 
@@ -166,7 +170,9 @@ export default function FeedbackPanel({
                         onClick={handleSend}
                         disabled={!canSend}
                     >
-                        {sending ? 'Отправляю…' : 'Отправить'}
+                        {sending
+                            ? (interfaceLanguage === 'en' ? 'Sending…' : 'Отправляю…')
+                            : (interfaceLanguage === 'en' ? 'Send' : 'Отправить')}
                     </button>
                 </div>
             </div>

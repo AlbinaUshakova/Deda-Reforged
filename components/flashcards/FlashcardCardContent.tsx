@@ -1,12 +1,7 @@
 'use client';
 
 import type React from 'react';
-import { FlashcardInfoNotes } from '@/components/flashcards/FlashcardInfoNotes';
-
-type InfoNote = {
-  kind: 'grammar' | 'speech' | 'mistake';
-  text: string;
-};
+import { useAppStore } from '@/lib/appStore';
 
 type FlashcardCardContentProps = {
   hasCard: boolean;
@@ -17,20 +12,18 @@ type FlashcardCardContentProps = {
   ruText: string;
   geDialogLines: string[];
   ruDialogLines: string[];
-  translitDialogLines: string[];
-  cardTranslit: string;
-  showTranslit: boolean;
   isGeDialog: boolean;
   isRuDialog: boolean;
   geMobileTextClass: string;
   ruMobileTextClass: string;
   geMobileLayoutClass: string;
   ruMobileLayoutClass: string;
-  infoNotes: InfoNote[];
-  expandedInfoKinds: Record<string, boolean>;
+  transcriptionText: string;
+  hintText: string;
+  showTranslit: boolean;
+  showHint: boolean;
   renderCardText: (text: string, kind: 'ge' | 'ru') => React.ReactNode;
   renderLessonLetterHighlight: (text: string) => React.ReactNode;
-  onToggleInfoNote: (noteKey: string) => void;
 };
 
 export function FlashcardCardContent({
@@ -42,30 +35,45 @@ export function FlashcardCardContent({
   ruText,
   geDialogLines,
   ruDialogLines,
-  translitDialogLines,
-  cardTranslit,
-  showTranslit,
   isGeDialog,
   isRuDialog,
   geMobileTextClass,
   ruMobileTextClass,
   geMobileLayoutClass,
   ruMobileLayoutClass,
-  infoNotes,
-  expandedInfoKinds,
+  transcriptionText,
+  hintText,
+  showTranslit,
+  showHint,
   renderCardText,
   renderLessonLetterHighlight,
-  onToggleInfoNote,
 }: FlashcardCardContentProps) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   if (!hasCard) {
     return (
       <div className="text-[var(--text-secondary)]">
         {isFavoritesPage
-          ? 'Нет отмеченных карточек'
-          : 'Нет карточек'}
+          ? (interfaceLanguage === 'en' ? 'No saved cards' : 'Нет отмеченных карточек')
+          : (interfaceLanguage === 'en' ? 'No cards' : 'Нет карточек')}
       </div>
     );
   }
+
+  const renderSupplementaryInfo = () => (
+    <div className="flex flex-col items-center gap-2">
+      {showTranslit && transcriptionText.trim() && (
+        <div className="flashcard-translit-panel">
+          <span className="flashcard-translit-value">{transcriptionText}</span>
+        </div>
+      )}
+      {showHint && hintText.trim() && (
+        <div className="flashcard-hint-btn flashcard-secondary-label inline-flex items-center justify-center rounded-full border border-[rgba(15,118,110,0.14)] bg-[rgba(255,255,255,0.75)] px-3 py-1.5 text-[11px] font-semibold text-slate-600 shadow-sm">
+          <span className="flashcard-hint-label">{interfaceLanguage === 'en' ? 'Hint' : 'Подсказка'}</span>
+          <span className="flashcard-hint-value">{hintText}</span>
+        </div>
+      )}
+    </div>
+  );
 
   if (!flipped) {
     return (
@@ -79,9 +87,8 @@ export function FlashcardCardContent({
               {geDialogLines.map((line, lineIdx) => (
                 <div
                   key={`${line}-${lineIdx}`}
-                  className={`flashcard-dialog-line ${
-                    lineIdx === 0 ? 'flashcard-dialog-line--question' : 'flashcard-dialog-line--answer'
-                  }`}
+                  className={`flashcard-dialog-line ${lineIdx === 0 ? 'flashcard-dialog-line--question' : 'flashcard-dialog-line--answer'
+                    }`}
                 >
                   {renderLessonLetterHighlight(line)}
                 </div>
@@ -91,28 +98,7 @@ export function FlashcardCardContent({
             renderCardText(geText, 'ge')
           )}
         </div>
-        {showTranslit && (
-          <div className="flashcard-translit-panel mb-2 max-[640px]:mb-4 max-[460px]:mb-5">
-            <div className="flashcard-translit-value">
-              {isGeDialog && translitDialogLines.length > 1 ? (
-                <div className="flex flex-col items-center gap-1.5">
-                  {translitDialogLines.map((line, lineIdx) => (
-                    <div
-                      key={`${line}-${lineIdx}`}
-                      className={`flashcard-dialog-line ${
-                        lineIdx === 0 ? 'flashcard-dialog-line--question' : 'flashcard-dialog-line--answer'
-                      }`}
-                    >
-                      {line}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                cardTranslit
-              )}
-            </div>
-          </div>
-        )}
+        {renderSupplementaryInfo()}
       </div>
     );
   }
@@ -125,9 +111,8 @@ export function FlashcardCardContent({
             {ruDialogLines.map((line, lineIdx) => (
               <div
                 key={`${line}-${lineIdx}`}
-                className={`flashcard-dialog-line ${
-                  lineIdx === 0 ? 'flashcard-dialog-line--question' : 'flashcard-dialog-line--answer'
-                }`}
+                className={`flashcard-dialog-line ${lineIdx === 0 ? 'flashcard-dialog-line--question' : 'flashcard-dialog-line--answer'
+                  }`}
               >
                 {line}
               </div>
@@ -137,11 +122,7 @@ export function FlashcardCardContent({
           renderCardText(ruText || '—', 'ru')
         )}
       </div>
-      <FlashcardInfoNotes
-        notes={infoNotes}
-        expandedKinds={expandedInfoKinds}
-        onToggle={onToggleInfoNote}
-      />
+      {renderSupplementaryInfo()}
     </div>
   );
 }

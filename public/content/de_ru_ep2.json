@@ -10,92 +10,110 @@
     {
       "type": "word",
       "ge_text": "ich",
-      "ru_meaning": "я"
+      "ru_meaning": "я",
+      "transcription_en": "ikh"
     },
     {
       "type": "word",
       "ge_text": "Ich mache es",
-      "ru_meaning": "я сделаю это"
+      "ru_meaning": "я сделаю это",
+      "transcription_en": "ikh makhe es"
     },
     {
       "type": "word",
       "ge_text": "mich",
-      "ru_meaning": "меня"
+      "ru_meaning": "меня",
+      "transcription_en": "mikh"
     },
     {
       "type": "word",
       "ge_text": "dich",
-      "ru_meaning": "тебя"
+      "ru_meaning": "тебя",
+      "transcription_en": "dikh"
     },
     {
       "type": "word",
       "ge_text": "Ich mag dich",
-      "ru_meaning": "ты мне нравишься"
+      "ru_meaning": "ты мне нравишься",
+      "transcription_en": "ikh mag dikh"
     },
     {
       "type": "word",
       "ge_text": "machen",
-      "ru_meaning": "делать"
+      "ru_meaning": "делать",
+      "transcription_en": "MAH-khen"
     },
     {
       "type": "word",
       "ge_text": "gut",
-      "ru_meaning": "хорошо"
+      "ru_meaning": "хорошо",
+      "transcription_en": "goot"
     },
     {
       "type": "word",
       "ge_text": "Mann",
-      "ru_meaning": "мужчина"
+      "ru_meaning": "мужчина",
+      "transcription_en": "mann"
     },
     {
       "type": "word",
       "ge_text": "Mama",
-      "ru_meaning": "мама"
+      "ru_meaning": "мама",
+      "transcription_en": "mama"
     },
     {
       "type": "word",
       "ge_text": "Name",
-      "ru_meaning": "имя"
+      "ru_meaning": "имя",
+      "transcription_en": "name"
     },
     {
       "type": "word",
       "ge_text": "Mach mit",
-      "ru_meaning": "делай вместе"
+      "ru_meaning": "делай вместе",
+      "transcription_en": "makh mit"
     },
     {
       "type": "word",
       "ge_text": "genug",
-      "ru_meaning": "достаточно"
+      "ru_meaning": "достаточно",
+      "transcription_en": "genug"
     },
     {
       "type": "word",
       "ge_text": "gehen",
-      "ru_meaning": "идти"
+      "ru_meaning": "идти",
+      "transcription_en": "gehen"
     },
     {
       "type": "word",
       "ge_text": "gern",
-      "ru_meaning": "охотно"
+      "ru_meaning": "охотно",
+      "transcription_en": "gern"
     },
     {
       "type": "word",
       "ge_text": "Milch",
-      "ru_meaning": "молоко"
+      "ru_meaning": "молоко",
+      "transcription_en": "milkh"
     },
     {
       "type": "word",
       "ge_text": "Tisch",
-      "ru_meaning": "стол"
+      "ru_meaning": "стол",
+      "transcription_en": "tish"
     },
     {
       "type": "word",
       "ge_text": "Gans",
-      "ru_meaning": "гусь"
+      "ru_meaning": "гусь",
+      "transcription_en": "gans"
     },
     {
       "type": "word",
       "ge_text": "Maus",
-      "ru_meaning": "мышь"
+      "ru_meaning": "мышь",
+      "transcription_en": "mows"
     }
   ]
 }

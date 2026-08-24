@@ -13,91 +13,106 @@
       "type": "word",
       "ge_text": "un",
       "ru_meaning": "один (артикль м. р.)",
-      "translit": "эн"
+      "translit": "эн",
+      "transcription_en": "uhn"
     },
     {
       "type": "word",
       "ge_text": "pain",
       "ru_meaning": "хлеб",
-      "translit": "пэн"
+      "translit": "пэн",
+      "transcription_en": "pahn"
     },
     {
       "type": "word",
       "ge_text": "un pain",
       "ru_meaning": "хлеб",
-      "translit": "эн пэн"
+      "translit": "эн пэн",
+      "transcription_en": "uhn pahn"
     },
     {
       "type": "word",
       "ge_text": "vin",
       "ru_meaning": "вино",
-      "translit": "вэн"
+      "translit": "вэн",
+      "transcription_en": "vahn"
     },
     {
       "type": "word",
       "ge_text": "le vin",
       "ru_meaning": "вино",
-      "translit": "лё вэн"
+      "translit": "лё вэн",
+      "transcription_en": "luh vahn"
     },
     {
       "type": "word",
       "ge_text": "bon",
       "ru_meaning": "хороший",
-      "translit": "бон"
+      "translit": "бон",
+      "transcription_en": "bohn"
     },
     {
       "type": "word",
       "ge_text": "le pain est bon",
       "ru_meaning": "хлеб хороший",
-      "translit": "лё пэн э бон"
+      "translit": "лё пэн э бон",
+      "transcription_en": "luh pahn eh bohn"
     },
     {
       "type": "word",
       "ge_text": "porte",
       "ru_meaning": "дверь",
-      "translit": "порт"
+      "translit": "порт",
+      "transcription_en": "port"
     },
     {
       "type": "word",
       "ge_text": "une porte",
       "ru_meaning": "дверь",
-      "translit": "юн порт"
+      "translit": "юн порт",
+      "transcription_en": "ewn port"
     },
     {
       "type": "word",
       "ge_text": "table",
       "ru_meaning": "стол",
-      "translit": "табль"
+      "translit": "табль",
+      "transcription_en": "tahbl"
     },
     {
       "type": "word",
       "ge_text": "livre",
       "ru_meaning": "книга",
-      "translit": "ливр"
+      "translit": "ливр",
+      "transcription_en": "leevr"
     },
     {
       "type": "word",
       "ge_text": "parc",
       "ru_meaning": "парк",
-      "translit": "парк"
+      "translit": "парк",
+      "transcription_en": "park"
     },
     {
       "type": "word",
       "ge_text": "pied",
       "ru_meaning": "нога",
-      "translit": "пье"
+      "translit": "пье",
+      "transcription_en": "pyeh"
     },
     {
       "type": "word",
       "ge_text": "bras",
       "ru_meaning": "рука",
-      "translit": "бра"
+      "translit": "бра",
+      "transcription_en": "brah"
     },
     {
       "type": "word",
       "ge_text": "belle",
       "ru_meaning": "красивая",
-      "translit": "бэль"
+      "translit": "бэль",
+      "transcription_en": "bel"
     }
   ]
 }

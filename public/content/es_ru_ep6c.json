@@ -9,87 +9,104 @@
     {
       "type": "word",
       "ge_text": "kiwi",
-      "ru_meaning": "киви"
+      "ru_meaning": "киви",
+      "transcription_en": "KEE-wee"
     },
     {
       "type": "word",
       "ge_text": "Kiwi fresco",
-      "ru_meaning": "свежий киви"
+      "ru_meaning": "свежий киви",
+      "transcription_en": "KEE-wee frehskoh"
     },
     {
       "type": "word",
       "ge_text": "kilo",
-      "ru_meaning": "килограмм"
+      "ru_meaning": "килограмм",
+      "transcription_en": "KEE-loh"
     },
     {
       "type": "word",
       "ge_text": "karaoke",
-      "ru_meaning": "караоке"
+      "ru_meaning": "караоке",
+      "transcription_en": "kahrahohkeh"
     },
     {
       "type": "word",
       "ge_text": "kayak",
-      "ru_meaning": "каяк"
+      "ru_meaning": "каяк",
+      "transcription_en": "kahyahk"
     },
     {
       "type": "word",
       "ge_text": "koala",
-      "ru_meaning": "коала"
+      "ru_meaning": "коала",
+      "transcription_en": "kohahlah"
     },
     {
       "type": "word",
       "ge_text": "kebab",
-      "ru_meaning": "кебаб"
+      "ru_meaning": "кебаб",
+      "transcription_en": "kehbahb"
     },
     {
       "type": "word",
       "ge_text": "wifi",
-      "ru_meaning": "вайфай"
+      "ru_meaning": "вайфай",
+      "transcription_en": "WEE-fee"
     },
     {
       "type": "word",
       "ge_text": "wifi ok",
-      "ru_meaning": "вайфай работает"
+      "ru_meaning": "вайфай работает",
+      "transcription_en": "WEE-fee ohk"
     },
     {
       "type": "word",
       "ge_text": "web",
-      "ru_meaning": "сайт"
+      "ru_meaning": "сайт",
+      "transcription_en": "web"
     },
     {
       "type": "word",
       "ge_text": "Web gratis",
-      "ru_meaning": "бесплатный сайт"
+      "ru_meaning": "бесплатный сайт",
+      "transcription_en": "web grahtees"
     },
     {
       "type": "word",
       "ge_text": "whisky",
-      "ru_meaning": "виски"
+      "ru_meaning": "виски",
+      "transcription_en": "weeskeheh"
     },
     {
       "type": "word",
       "ge_text": "kiosko",
-      "ru_meaning": "киоск"
+      "ru_meaning": "киоск",
+      "transcription_en": "keeohskoh"
     },
     {
       "type": "word",
       "ge_text": "show",
-      "ru_meaning": "шоу"
+      "ru_meaning": "шоу",
+      "transcription_en": "sohw"
     },
     {
       "type": "word",
       "ge_text": "wok",
-      "ru_meaning": "вок"
+      "ru_meaning": "вок",
+      "transcription_en": "wohk"
     },
     {
       "type": "word",
       "ge_text": "wiki",
-      "ru_meaning": "вики"
+      "ru_meaning": "вики",
+      "transcription_en": "weekee"
     },
     {
       "type": "word",
       "ge_text": "weekend",
-      "ru_meaning": "выходные"
+      "ru_meaning": "выходные",
+      "transcription_en": "wehehkehnd"
     }
   ]
 }

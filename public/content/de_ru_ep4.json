@@ -10,77 +10,92 @@
     {
       "type": "word",
       "ge_text": "Taxi",
-      "ru_meaning": "такси"
+      "ru_meaning": "такси",
+      "transcription_en": "TAHK-see"
     },
     {
       "type": "word",
       "ge_text": "Taxi ist da",
-      "ru_meaning": "такси здесь"
+      "ru_meaning": "такси здесь",
+      "transcription_en": "TAHK-see ist dah"
     },
     {
       "type": "word",
       "ge_text": "Text",
-      "ru_meaning": "текст"
+      "ru_meaning": "текст",
+      "transcription_en": "tekst"
     },
     {
       "type": "word",
       "ge_text": "Box",
-      "ru_meaning": "коробка"
+      "ru_meaning": "коробка",
+      "transcription_en": "box"
     },
     {
       "type": "word",
       "ge_text": "Mix",
-      "ru_meaning": "смесь"
+      "ru_meaning": "смесь",
+      "transcription_en": "mix"
     },
     {
       "type": "word",
       "ge_text": "Keks",
-      "ru_meaning": "печенье"
+      "ru_meaning": "печенье",
+      "transcription_en": "keks"
     },
     {
       "type": "word",
       "ge_text": "Quiz",
-      "ru_meaning": "тест"
+      "ru_meaning": "тест",
+      "transcription_en": "kvits"
     },
     {
       "type": "word",
       "ge_text": "Quittung",
-      "ru_meaning": "чек"
+      "ru_meaning": "чек",
+      "transcription_en": "kvittung"
     },
     {
       "type": "word",
       "ge_text": "Quark",
-      "ru_meaning": "творог"
+      "ru_meaning": "творог",
+      "transcription_en": "kvark"
     },
     {
       "type": "word",
       "ge_text": "Yoga",
-      "ru_meaning": "йога"
+      "ru_meaning": "йога",
+      "transcription_en": "YOH-gah"
     },
     {
       "type": "word",
       "ge_text": "Yoga ist gut",
-      "ru_meaning": "йога — это хорошо"
+      "ru_meaning": "йога — это хорошо",
+      "transcription_en": "YOH-gah ist goot"
     },
     {
       "type": "word",
       "ge_text": "Party",
-      "ru_meaning": "вечеринка"
+      "ru_meaning": "вечеринка",
+      "transcription_en": "party"
     },
     {
       "type": "word",
       "ge_text": "Handy",
-      "ru_meaning": "мобильник"
+      "ru_meaning": "мобильник",
+      "transcription_en": "handy"
     },
     {
       "type": "word",
       "ge_text": "Baby",
-      "ru_meaning": "малыш"
+      "ru_meaning": "малыш",
+      "transcription_en": "baby"
     },
     {
       "type": "word",
       "ge_text": "City",
-      "ru_meaning": "центр города"
+      "ru_meaning": "центр города",
+      "transcription_en": "SI-tee"
     },
     {
       "type": "word",
@@ -88,17 +103,20 @@
       "ru_meaning": "окей",
       "accepted_ru": [
         "ок"
-      ]
+      ],
+      "transcription_en": "okay"
     },
     {
       "type": "word",
       "ge_text": "Quiz ist okay",
-      "ru_meaning": "тест нормальный"
+      "ru_meaning": "тест нормальный",
+      "transcription_en": "kvits ist okay"
     },
     {
       "type": "word",
       "ge_text": "Fax",
-      "ru_meaning": "факс"
+      "ru_meaning": "факс",
+      "transcription_en": "fax"
     }
   ]
 }

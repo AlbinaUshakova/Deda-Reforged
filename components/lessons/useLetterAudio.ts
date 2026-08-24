@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useAppStore } from '@/lib/appStore';
 import {
   getCourse,
   getLetterSpeechLang,
@@ -10,6 +11,7 @@ import {
 import { playLetterAudio } from '@/lib/playLetterAudio';
 
 export function useLetterAudio(courseId: CourseId) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const [ttsVoices, setTtsVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [audioError, setAudioError] = useState('');
   const course = getCourse(courseId);
@@ -39,8 +41,12 @@ export function useLetterAudio(courseId: CourseId) {
         const hasSpeech = typeof window !== 'undefined' && 'speechSynthesis' in window;
         setAudioError(
           hasSpeech
-            ? 'Озвучка недоступна на этом устройстве'
-            : 'Озвучка недоступна в этом браузере',
+            ? (interfaceLanguage === 'en'
+              ? 'Audio is not available on this device'
+              : 'Озвучка недоступна на этом устройстве')
+            : (interfaceLanguage === 'en'
+              ? 'Audio is not available in this browser'
+              : 'Озвучка недоступна в этом браузере'),
         );
       },
     });

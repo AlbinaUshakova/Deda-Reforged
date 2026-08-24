@@ -1,6 +1,7 @@
 'use client';
 
 import type React from 'react';
+import { useAppStore } from '@/lib/appStore';
 
 type AnswerState = 'idle' | 'wrong' | 'correct';
 
@@ -51,10 +52,11 @@ export function BlocksQuestionPanel({
   onRevealTranslation,
   onToggleFavorite,
 }: BlocksQuestionPanelProps) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   if (!hasWords) {
     return (
       <div className="text-sm text-slate-500">
-        В этом эпизоде пока нет слов.
+        {interfaceLanguage === 'en' ? 'There are no words in this episode yet.' : 'В этом эпизоде пока нет слов.'}
       </div>
     );
   }
@@ -67,7 +69,7 @@ export function BlocksQuestionPanel({
       style={panelStyle}
     >
       <div className="blocks-question-meta mb-3 flex items-center justify-between gap-2">
-        <span className="blocks-question-chip">Переведи</span>
+        <span className="blocks-question-chip">{interfaceLanguage === 'en' ? 'Translate' : 'Переведи'}</span>
         <span className="blocks-question-shortcut">Enter ↵</span>
       </div>
 
@@ -98,7 +100,7 @@ export function BlocksQuestionPanel({
                   e.currentTarget.form?.requestSubmit();
                 }
               }}
-              placeholder="Введите перевод"
+              placeholder={interfaceLanguage === 'en' ? 'Type the translation' : 'Введите перевод'}
               readOnly={showCorrect}
               autoComplete="off"
               spellCheck={false}
@@ -116,7 +118,9 @@ export function BlocksQuestionPanel({
               className="blocks-submit-btn"
               disabled={!showCorrect && !answer.trim()}
             >
-              {showCorrect ? 'Дальше' : 'Проверить'}
+              {showCorrect
+                ? (interfaceLanguage === 'en' ? 'Next' : 'Дальше')
+                : (interfaceLanguage === 'en' ? 'Check' : 'Проверить')}
             </button>
           </div>
         </form>
@@ -129,7 +133,7 @@ export function BlocksQuestionPanel({
           className="blocks-translation-btn blocks-refresh-btn inline-flex h-[clamp(28px,4vh,36px)] items-center rounded-lg border border-transparent bg-transparent px-[clamp(6px,0.9vw,9px)] text-[clamp(11px,1.05vw,13px)] font-normal transition-all duration-150 focus:outline-none [-webkit-tap-highlight-color:transparent]"
           disabled={showCorrect}
         >
-          <span className="leading-none">Перевод</span>
+          <span className="leading-none">{interfaceLanguage === 'en' ? 'Answer' : 'Перевод'}</span>
         </button>
         {!isFavoritesEpisode && (
           <button
@@ -143,13 +147,13 @@ export function BlocksQuestionPanel({
             }
             title={
               isCurrentFavorite
-                ? 'Убрать из избранного'
-                : 'Добавить в избранное'
+                ? (interfaceLanguage === 'en' ? 'Remove from favorites' : 'Убрать из избранного')
+                : (interfaceLanguage === 'en' ? 'Add to favorites' : 'Добавить в избранное')
             }
             aria-label={
               isCurrentFavorite
-                ? 'Убрать слово из избранного'
-                : 'Добавить слово в избранное'
+                ? (interfaceLanguage === 'en' ? 'Remove word from favorites' : 'Убрать слово из избранного')
+                : (interfaceLanguage === 'en' ? 'Add word to favorites' : 'Добавить слово в избранное')
             }
           >
             {isCurrentFavorite ? '★' : '☆'}
@@ -160,8 +164,8 @@ export function BlocksQuestionPanel({
       {error && !showCorrect && (
         <div className="mt-2 text-[13px] text-red-500">
           {attempts >= 3
-            ? 'Неверно, сейчас покажем верный ответ.'
-            : 'Неверно, попробуй ещё раз.'}
+            ? (interfaceLanguage === 'en' ? 'Incorrect. We will show the correct answer now.' : 'Неверно, сейчас покажем верный ответ.')
+            : (interfaceLanguage === 'en' ? 'Incorrect, try again.' : 'Неверно, попробуй ещё раз.')}
         </div>
       )}
     </div>

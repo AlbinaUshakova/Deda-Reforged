@@ -1,0 +1,19 @@
+{
+  "id": "ep1",
+  "title": "Урок 1",
+  "letters": ["A", "E", "I", "L", "M", "N", "O"],
+  "cards": [
+    { "type": "word", "ge_text": "io", "ru_meaning": "я" },
+    { "type": "word", "ge_text": "mia", "ru_meaning": "моя" },
+    { "type": "word", "ge_text": "mela", "ru_meaning": "яблоко" },
+    { "type": "word", "ge_text": "mano", "ru_meaning": "рука" },
+    { "type": "word", "ge_text": "mamma", "ru_meaning": "мама" },
+    { "type": "word", "ge_text": "nome", "ru_meaning": "имя" },
+    { "type": "word", "ge_text": "sale", "ru_meaning": "соль" },
+    { "type": "word", "ge_text": "sole", "ru_meaning": "солнце" },
+    { "type": "word", "ge_text": "limone", "ru_meaning": "лимон" },
+    { "type": "word", "ge_text": "linea", "ru_meaning": "линия" },
+    { "type": "word", "ge_text": "La mano", "ru_meaning": "рука" },
+    { "type": "word", "ge_text": "Io amo la mamma", "ru_meaning": "я люблю маму" }
+  ]
+}

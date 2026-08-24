@@ -13,85 +13,99 @@
       "type": "word",
       "ge_text": "jour",
       "ru_meaning": "день",
-      "translit": "жур"
+      "translit": "жур",
+      "transcription_en": "zhoor"
     },
     {
       "type": "word",
       "ge_text": "un jour",
       "ru_meaning": "день",
-      "translit": "эн жур"
+      "translit": "эн жур",
+      "transcription_en": "uhn zhoor"
     },
     {
       "type": "word",
       "ge_text": "bonjour",
       "ru_meaning": "здравствуйте",
-      "translit": "бонжур"
+      "translit": "бонжур",
+      "transcription_en": "bohn-ZHOOR"
     },
     {
       "type": "word",
       "ge_text": "grand",
       "ru_meaning": "большой",
-      "translit": "гран"
+      "translit": "гран",
+      "transcription_en": "grahn"
     },
     {
       "type": "word",
       "ge_text": "un grand parc",
       "ru_meaning": "большой парк",
-      "translit": "эн гран парк"
+      "translit": "эн гран парк",
+      "transcription_en": "uhn grahn park"
     },
     {
       "type": "word",
       "ge_text": "gare",
       "ru_meaning": "вокзал",
-      "translit": "гар"
+      "translit": "гар",
+      "transcription_en": "gahr"
     },
     {
       "type": "word",
       "ge_text": "la gare",
       "ru_meaning": "вокзал",
-      "translit": "ла гар"
+      "translit": "ла гар",
+      "transcription_en": "lah gahr"
     },
     {
       "type": "word",
       "ge_text": "rouge",
       "ru_meaning": "красный",
-      "translit": "руж"
+      "translit": "руж",
+      "transcription_en": "roozh"
     },
     {
       "type": "word",
       "ge_text": "image",
       "ru_meaning": "картинка",
-      "translit": "имаж"
+      "translit": "имаж",
+      "transcription_en": "ee-MAHZH"
     },
     {
       "type": "word",
       "ge_text": "juste",
       "ru_meaning": "справедливо",
-      "translit": "жюст"
+      "translit": "жюст",
+      "transcription_en": "zhuyst"
     },
     {
       "type": "word",
       "ge_text": "quel",
       "ru_meaning": "какой",
-      "translit": "кэль"
+      "translit": "кэль",
+      "transcription_en": "kel"
     },
     {
       "type": "word",
       "ge_text": "quatre",
       "ru_meaning": "четыре",
-      "translit": "катр"
+      "translit": "катр",
+      "transcription_en": "katr"
     },
     {
       "type": "word",
       "ge_text": "garage",
       "ru_meaning": "гараж",
-      "translit": "гараж"
+      "translit": "гараж",
+      "transcription_en": "gah-RAHZH"
     },
     {
       "type": "word",
       "ge_text": "gaz",
       "ru_meaning": "газ",
-      "translit": "газ"
+      "translit": "газ",
+      "transcription_en": "gahz"
     }
   ]
 }

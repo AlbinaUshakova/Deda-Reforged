@@ -306,6 +306,12 @@
     letter-spacing: -0.01em;
 }
 
+.home-alphabet-key--composite .home-alphabet-letter,
+.landing-alphabet-key--composite .landing-alphabet-letter {
+    font-size: clamp(11px, 2.15vw, 13px) !important;
+    letter-spacing: -0.04em;
+}
+
 .home-alphabet-legend {
     display: flex;
     align-items: center;
@@ -379,6 +385,12 @@
 
     .home-alphabet-key {
         min-height: 44px !important;
+    }
+
+    .home-alphabet-key--composite .home-alphabet-letter,
+    .landing-alphabet-key--composite .landing-alphabet-letter {
+        font-size: clamp(10px, 3.15vw, 12px) !important;
+        letter-spacing: -0.05em;
     }
 
     .study-page-actions {

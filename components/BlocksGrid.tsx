@@ -2,8 +2,8 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import { useAppStore } from '@/lib/appStore';
 import { BlocksBoard } from '@/components/blocks/BlocksBoard';
-import { BlocksCatHint } from '@/components/blocks/BlocksCatHint';
 import { BlocksPalettePortal } from '@/components/blocks/BlocksPalettePortal';
 import { PieceSVG } from '@/components/blocks/PieceSVG';
 import {
@@ -60,6 +60,7 @@ export default function BlocksGrid({
   paletteSlotId = 'blocks-palette-slot',
   palettePlacement = 'side',
 }: BlocksGridProps) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const [board, setBoard] = useState<CellColor[][]>(() => createEmptyBoard());
   const [bag, setBag] = useState<Piece[]>([]);
   const [drag, setDrag] = useState<DragState>(null);
@@ -69,7 +70,6 @@ export default function BlocksGrid({
   const [bestScore, setBestScore] = useState(initialBestScore);
   const [gameOver, setGameOver] = useState(false);
   const [scorePop, setScorePop] = useState(false);
-  const [showCatLangHint, setShowCatLangHint] = useState(false);
   const [catReaction, setCatReaction] = useState<{
     emoji: string;
     text?: string;
@@ -81,7 +81,6 @@ export default function BlocksGrid({
 
   const boardRef = useRef<HTMLDivElement | null>(null);
   const scorePopTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const catHintTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const reactionFadeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
@@ -140,9 +139,6 @@ export default function BlocksGrid({
     return () => {
       if (scorePopTimeoutRef.current) {
         clearTimeout(scorePopTimeoutRef.current);
-      }
-      if (catHintTimeoutRef.current) {
-        clearTimeout(catHintTimeoutRef.current);
       }
       if (reactionFadeTimeoutRef.current) {
         clearTimeout(reactionFadeTimeoutRef.current);
@@ -378,12 +374,6 @@ export default function BlocksGrid({
     setDrag({ piece, pointerX: e.clientX, pointerY: e.clientY });
   };
 
-  const showLanguageHint = () => {
-    setShowCatLangHint(true);
-    if (catHintTimeoutRef.current) clearTimeout(catHintTimeoutRef.current);
-    catHintTimeoutRef.current = setTimeout(() => setShowCatLangHint(false), 3200);
-  };
-
   const handleRestart = () => {
     setBoard(createEmptyBoard());
     setScore(0);
@@ -430,9 +420,9 @@ export default function BlocksGrid({
         >
           <div className="blocks-grid-score-row mb-[clamp(4px,0.8vh,8px)] px-1 relative z-[70] flex justify-end">
             <div className="blocks-grid-score mt-0 text-center text-[clamp(11px,1.2vw,13px)] font-medium tracking-[-0.01em] text-slate-700 opacity-72">
-              <span>Счёт {score}</span>
+              <span>{interfaceLanguage === 'en' ? `Score ${score}` : `Счёт ${score}`}</span>
               <span aria-hidden="true">•</span>
-              <span>Рекорд {bestScore}</span>
+              <span>{interfaceLanguage === 'en' ? `Best ${bestScore}` : `Рекорд ${bestScore}`}</span>
             </div>
           </div>
 
@@ -456,15 +446,6 @@ export default function BlocksGrid({
             onRestart={handleRestart}
           />
 
-          <BlocksCatHint
-            cellSize={cellSize}
-            placement={palettePlacement}
-            moodClass={catMoodClass}
-            showLanguageHint={showCatLangHint}
-            reaction={catReaction}
-            reactionVisible={catReactionVisible}
-            onShowLanguageHint={showLanguageHint}
-          />
         </div>
       </div>
 

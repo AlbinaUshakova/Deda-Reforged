@@ -10,87 +10,104 @@
     {
       "type": "word",
       "ge_text": "der",
-      "ru_meaning": "этот"
+      "ru_meaning": "этот",
+      "transcription_en": "dehr"
     },
     {
       "type": "word",
       "ge_text": "die",
-      "ru_meaning": "эта"
+      "ru_meaning": "эта",
+      "transcription_en": "dee"
     },
     {
       "type": "word",
       "ge_text": "das",
-      "ru_meaning": "это"
+      "ru_meaning": "это",
+      "transcription_en": "dahs"
     },
     {
       "type": "word",
       "ge_text": "den",
-      "ru_meaning": "этот"
+      "ru_meaning": "этот",
+      "transcription_en": "dayn"
     },
     {
       "type": "word",
       "ge_text": "dir",
-      "ru_meaning": "тебе"
+      "ru_meaning": "тебе",
+      "transcription_en": "deer"
     },
     {
       "type": "word",
       "ge_text": "dein",
-      "ru_meaning": "твой"
+      "ru_meaning": "твой",
+      "transcription_en": "dine"
     },
     {
       "type": "word",
       "ge_text": "an",
-      "ru_meaning": "у"
+      "ru_meaning": "у",
+      "transcription_en": "ahn"
     },
     {
       "type": "word",
       "ge_text": "da",
-      "ru_meaning": "там"
+      "ru_meaning": "там",
+      "transcription_en": "dah"
     },
     {
       "type": "word",
       "ge_text": "es",
-      "ru_meaning": "оно"
+      "ru_meaning": "оно",
+      "transcription_en": "es"
     },
     {
       "type": "word",
       "ge_text": "er",
-      "ru_meaning": "он"
+      "ru_meaning": "он",
+      "transcription_en": "ehr"
     },
     {
       "type": "word",
       "ge_text": "Er ist nett",
-      "ru_meaning": "он милый"
+      "ru_meaning": "он милый",
+      "transcription_en": "ehr ist net"
     },
     {
       "type": "word",
       "ge_text": "Der Tee ist da",
-      "ru_meaning": "чай здесь"
+      "ru_meaning": "чай здесь",
+      "transcription_en": "dehr tay ist dah"
     },
     {
       "type": "word",
       "ge_text": "Reise",
-      "ru_meaning": "поездка"
+      "ru_meaning": "поездка",
+      "transcription_en": "RYE-zuh"
     },
     {
       "type": "word",
       "ge_text": "Reis",
-      "ru_meaning": "рис"
+      "ru_meaning": "рис",
+      "transcription_en": "rice"
     },
     {
       "type": "word",
       "ge_text": "Rad",
-      "ru_meaning": "велосипед"
+      "ru_meaning": "велосипед",
+      "transcription_en": "raht"
     },
     {
       "type": "word",
       "ge_text": "Erde",
-      "ru_meaning": "земля"
+      "ru_meaning": "земля",
+      "transcription_en": "EHR-duh"
     },
     {
       "type": "word",
       "ge_text": "Adresse",
-      "ru_meaning": "адрес"
+      "ru_meaning": "адрес",
+      "transcription_en": "ah-DREH-suh"
     }
   ]
 }

@@ -13,72 +13,86 @@
     {
       "type": "word",
       "ge_text": "café",
-      "ru_meaning": "кофе"
+      "ru_meaning": "кофе",
+      "transcription_en": "kah-FEH"
     },
     {
       "type": "word",
       "ge_text": "Un café",
-      "ru_meaning": "один кофе"
+      "ru_meaning": "один кофе",
+      "transcription_en": "oon kah-FEH"
     },
     {
       "type": "word",
       "ge_text": "teléfono",
-      "ru_meaning": "телефон"
+      "ru_meaning": "телефон",
+      "transcription_en": "tehlehfohnoh"
     },
     {
       "type": "word",
       "ge_text": "menú",
-      "ru_meaning": "меню"
+      "ru_meaning": "меню",
+      "transcription_en": "mehnoo"
     },
     {
       "type": "word",
       "ge_text": "mamá",
-      "ru_meaning": "мама"
+      "ru_meaning": "мама",
+      "transcription_en": "mah-MAH"
     },
     {
       "type": "word",
       "ge_text": "papá",
-      "ru_meaning": "папа"
+      "ru_meaning": "папа",
+      "transcription_en": "pahpah"
     },
     {
       "type": "word",
       "ge_text": "sí",
-      "ru_meaning": "да"
+      "ru_meaning": "да",
+      "transcription_en": "see"
     },
     {
       "type": "word",
       "ge_text": "Sí, está aquí",
-      "ru_meaning": "да, это здесь"
+      "ru_meaning": "да, это здесь",
+      "transcription_en": "see, ehstah ahkee"
     },
     {
       "type": "word",
       "ge_text": "adiós",
-      "ru_meaning": "до свидания"
+      "ru_meaning": "до свидания",
+      "transcription_en": "ahdeeohs"
     },
     {
       "type": "word",
       "ge_text": "inglés",
-      "ru_meaning": "английский"
+      "ru_meaning": "английский",
+      "transcription_en": "eenglehs"
     },
     {
       "type": "word",
       "ge_text": "estación",
-      "ru_meaning": "станция"
+      "ru_meaning": "станция",
+      "transcription_en": "ehstahseeohn"
     },
     {
       "type": "word",
       "ge_text": "música",
-      "ru_meaning": "музыка"
+      "ru_meaning": "музыка",
+      "transcription_en": "mooseekah"
     },
     {
       "type": "word",
       "ge_text": "rápido",
-      "ru_meaning": "быстро"
+      "ru_meaning": "быстро",
+      "transcription_en": "rahpeedoh"
     },
     {
       "type": "word",
       "ge_text": "número",
-      "ru_meaning": "номер"
+      "ru_meaning": "номер",
+      "transcription_en": "noomehroh"
     },
     {
       "type": "word",
@@ -86,22 +100,26 @@
       "ru_meaning": "ещё чай",
       "accepted_ru": [
         "еще чай"
-      ]
+      ],
+      "transcription_en": "mahs teh"
     },
     {
       "type": "word",
       "ge_text": "pingüino",
-      "ru_meaning": "пингвин"
+      "ru_meaning": "пингвин",
+      "transcription_en": "peenehehnoh"
     },
     {
       "type": "word",
       "ge_text": "vergüenza",
-      "ru_meaning": "стыд"
+      "ru_meaning": "стыд",
+      "transcription_en": "behrehnsah"
     },
     {
       "type": "word",
       "ge_text": "bilingüe",
-      "ru_meaning": "двуязычный"
+      "ru_meaning": "двуязычный",
+      "transcription_en": "beeleeneh"
     }
   ]
 }

@@ -10,92 +10,110 @@
     {
       "type": "word",
       "ge_text": "favor",
-      "ru_meaning": "услуга"
+      "ru_meaning": "услуга",
+      "transcription_en": "fahbohr"
     },
     {
       "type": "word",
       "ge_text": "frio",
-      "ru_meaning": "холодно"
+      "ru_meaning": "холодно",
+      "transcription_en": "freeoh"
     },
     {
       "type": "word",
       "ge_text": "fila",
-      "ru_meaning": "очередь"
+      "ru_meaning": "очередь",
+      "transcription_en": "feelah"
     },
     {
       "type": "word",
       "ge_text": "familia",
-      "ru_meaning": "семья"
+      "ru_meaning": "семья",
+      "transcription_en": "fah-MEE-lyah"
     },
     {
       "type": "word",
       "ge_text": "Feliz dia",
-      "ru_meaning": "счастливого дня"
+      "ru_meaning": "счастливого дня",
+      "transcription_en": "fehlees deeah"
     },
     {
       "type": "word",
       "ge_text": "facil",
-      "ru_meaning": "легко"
+      "ru_meaning": "легко",
+      "transcription_en": "fahseel"
     },
     {
       "type": "word",
       "ge_text": "zona",
-      "ru_meaning": "зона"
+      "ru_meaning": "зона",
+      "transcription_en": "sohnah"
     },
     {
       "type": "word",
       "ge_text": "azul",
-      "ru_meaning": "синий"
+      "ru_meaning": "синий",
+      "transcription_en": "ah-SOOL"
     },
     {
       "type": "word",
       "ge_text": "diez",
-      "ru_meaning": "десять"
+      "ru_meaning": "десять",
+      "transcription_en": "deeehs"
     },
     {
       "type": "word",
       "ge_text": "Jugo fresco",
-      "ru_meaning": "свежий сок"
+      "ru_meaning": "свежий сок",
+      "transcription_en": "oogoh frehskoh"
     },
     {
       "type": "word",
       "ge_text": "joven",
-      "ru_meaning": "молодой"
+      "ru_meaning": "молодой",
+      "transcription_en": "ohbehn"
     },
     {
       "type": "word",
       "ge_text": "juego",
-      "ru_meaning": "игра"
+      "ru_meaning": "игра",
+      "transcription_en": "ooehgoh"
     },
     {
       "type": "word",
       "ge_text": "caja",
-      "ru_meaning": "коробка"
+      "ru_meaning": "коробка",
+      "transcription_en": "KAH-hah"
     },
     {
       "type": "word",
       "ge_text": "rojo",
-      "ru_meaning": "красный"
+      "ru_meaning": "красный",
+      "transcription_en": "ROH-hoh"
     },
     {
       "type": "word",
       "ge_text": "Fui feliz",
-      "ru_meaning": "я был счастлив"
+      "ru_meaning": "я был счастлив",
+      "transcription_en": "fooee fehlees"
     },
     {
       "type": "word",
       "ge_text": "jefe",
-      "ru_meaning": "начальник"
+      "ru_meaning": "начальник",
+      "transcription_en": "HEH-feh"
     },
     {
       "type": "word",
       "ge_text": "junio",
-      "ru_meaning": "июнь"
+      "ru_meaning": "июнь",
+      "transcription_en": "ooneeoh"
     },
     {
       "type": "word",
       "ge_text": "jardin",
-      "ru_meaning": "сад"
+      "ru_meaning": "сад",
+      "transcription_en": "ahrdeen"
     }
   ]
 }

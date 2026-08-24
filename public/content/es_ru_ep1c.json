@@ -10,12 +10,14 @@
     {
       "type": "word",
       "ge_text": "en",
-      "ru_meaning": "в"
+      "ru_meaning": "в",
+      "transcription_en": "en"
     },
     {
       "type": "word",
       "ge_text": "no",
-      "ru_meaning": "нет"
+      "ru_meaning": "нет",
+      "transcription_en": "noh"
     },
     {
       "type": "word",
@@ -23,77 +25,92 @@
       "ru_meaning": "это не серьёзно",
       "accepted_ru": [
         "это не серьезно"
-      ]
+      ],
+      "transcription_en": "noh es SEH-ryoh"
     },
     {
       "type": "word",
       "ge_text": "si",
-      "ru_meaning": "если"
+      "ru_meaning": "если",
+      "transcription_en": "see"
     },
     {
       "type": "word",
       "ge_text": "sin",
-      "ru_meaning": "без"
+      "ru_meaning": "без",
+      "transcription_en": "seen"
     },
     {
       "type": "word",
       "ge_text": "son",
-      "ru_meaning": "они есть"
+      "ru_meaning": "они есть",
+      "transcription_en": "sohn"
     },
     {
       "type": "word",
       "ge_text": "dos",
-      "ru_meaning": "два"
+      "ru_meaning": "два",
+      "transcription_en": "dohs"
     },
     {
       "type": "word",
       "ge_text": "donde",
-      "ru_meaning": "где"
+      "ru_meaning": "где",
+      "transcription_en": "DOHN-deh"
     },
     {
       "type": "word",
       "ge_text": "dinero",
-      "ru_meaning": "деньги"
+      "ru_meaning": "деньги",
+      "transcription_en": "dee-NEH-roh"
     },
     {
       "type": "word",
       "ge_text": "nada",
-      "ru_meaning": "ничего"
+      "ru_meaning": "ничего",
+      "transcription_en": "NAH-dah"
     },
     {
       "type": "word",
       "ge_text": "No es nada",
-      "ru_meaning": "ничего страшного"
+      "ru_meaning": "ничего страшного",
+      "transcription_en": "noh es NAH-dah"
     },
     {
       "type": "word",
       "ge_text": "dios",
-      "ru_meaning": "бог"
+      "ru_meaning": "бог",
+      "transcription_en": "dyohs"
     },
     {
       "type": "word",
       "ge_text": "orden",
-      "ru_meaning": "порядок"
+      "ru_meaning": "порядок",
+      "transcription_en": "OR-den"
     },
     {
       "type": "word",
       "ge_text": "nido",
-      "ru_meaning": "гнездо"
+      "ru_meaning": "гнездо",
+      "transcription_en": "NEE-doh"
     },
     {
       "type": "word",
       "ge_text": "sano",
-      "ru_meaning": "здоровый"
+      "ru_meaning": "здоровый",
+      "transcription_en": "SAH-noh"
     },
     {
       "type": "word",
       "ge_text": "andar",
-      "ru_meaning": "ходить"
+      "ru_meaning": "ходить",
+      "transcription_en": "ahn-DAR"
     },
     {
       "type": "word",
       "ge_text": "sandia",
-      "ru_meaning": "арбуз"
+      "ru_meaning": "арбуз",
+      "transcription_en": "sahn-DEE-ah"
     }
   ]
 }

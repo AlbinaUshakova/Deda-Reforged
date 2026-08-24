@@ -1,5 +1,7 @@
 'use client';
 
+import { useAppStore } from '@/lib/appStore';
+
 const TOPIC_CONFIG: Record<string, { label: string; description: string }> = {
   location_movement: {
     label: 'Где / Куда',
@@ -32,6 +34,41 @@ const TOPIC_CONFIG: Record<string, { label: string; description: string }> = {
   politeness: {
     label: 'Вежливость',
     description: 'Спасибо, пожалуйста, извините, до свидания — вежливые формулы.',
+  },
+};
+
+const TOPIC_CONFIG_EN: Record<string, { label: string; description: string }> = {
+  location_movement: {
+    label: 'Where / to where',
+    description: 'Location and movement phrases: here, there, go, stop.',
+  },
+  questions: {
+    label: 'Questions',
+    description: 'Who? What? Where? When? Why? Basic question phrases.',
+  },
+  time: {
+    label: 'Time',
+    description: 'Today, tomorrow, yesterday, later. Basic time orientation.',
+  },
+  daily_actions: {
+    label: 'Daily life',
+    description: 'Everyday actions: work, read, cook, use something.',
+  },
+  needs_offers: {
+    label: 'Want / can',
+    description: 'Want, can, may, help, wait. Expressing needs.',
+  },
+  shopping_places: {
+    label: 'Shop / cafe',
+    description: 'Price, open or not, queue, options. Service and shopping.',
+  },
+  feelings_reactions: {
+    label: 'Feelings / reaction',
+    description: 'Like, remember, understand, forgot, really, great. Emotions and reactions.',
+  },
+  politeness: {
+    label: 'Politeness',
+    description: 'Thank you, please, excuse me, goodbye. Polite basics.',
   },
 };
 
@@ -76,6 +113,9 @@ export function FlashcardFilters({
   onSelectTopic: (topic: string) => void;
   onSelectLevel: (level: number) => void;
 }) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const topicConfig = interfaceLanguage === 'en' ? TOPIC_CONFIG_EN : TOPIC_CONFIG;
+
   if (hasTopics) {
     return (
       <>
@@ -84,10 +124,10 @@ export function FlashcardFilters({
             className={`${chipBase} ${topicFilter === null ? chipActive : chipPassive}`}
             onClick={onClearFilters}
           >
-            Все
+            {interfaceLanguage === 'en' ? 'All' : 'Все'}
           </button>
           {topics.map(topic => {
-            const cfg = TOPIC_CONFIG[topic];
+            const cfg = topicConfig[topic];
             return (
               <button
                 key={topic}
@@ -101,7 +141,7 @@ export function FlashcardFilters({
         </div>
         {topicFilter && (
           <div className="mt-1 max-w-xl text-center text-[11px] md:text-xs text-[var(--text-secondary)]">
-            {TOPIC_CONFIG[topicFilter]?.description ?? 'Фразы по выбранной теме.'}
+            {topicConfig[topicFilter]?.description ?? (interfaceLanguage === 'en' ? 'Phrases for the selected topic.' : 'Фразы по выбранной теме.')}
           </div>
         )}
       </>
@@ -116,7 +156,7 @@ export function FlashcardFilters({
             className={`${chipBase} ${levelFilter === null ? chipActive : chipPassive}`}
             onClick={onClearFilters}
           >
-            Все
+            {interfaceLanguage === 'en' ? 'All' : 'Все'}
           </button>
           {[1, 2, 3].map(level => (
             <button
@@ -130,7 +170,13 @@ export function FlashcardFilters({
         </div>
         {levelInfo !== null && (
           <div className="mt-1 max-w-xl text-center text-[11px] md:text-xs text-[var(--text-secondary)]">
-            {renderLevelDescription(levelInfo)}
+            {interfaceLanguage === 'en'
+              ? (levelInfo === 1
+                ? 'L1: super basic phrases, short and with simple grammar.'
+                : levelInfo === 2
+                  ? 'L2: simple phrases, full sentences with objects and context.'
+                  : 'L3: longer phrases, emotions, and more complex patterns.')
+              : renderLevelDescription(levelInfo)}
           </div>
         )}
       </>

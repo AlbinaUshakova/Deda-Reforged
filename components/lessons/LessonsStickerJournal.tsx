@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import { useAppStore } from '@/lib/appStore';
 import type { CourseId } from '@/lib/courses';
 
 // Последовательность дня: зарядка → пробежка → тренировка → готовит →
@@ -17,6 +18,7 @@ const costumeByCourse: Record<CourseId, string> = {
   sr: '/images/cats/deda-cost-sr.png',
   tr: '/images/cats/deda-cost-tr.png',
   fr: '/images/cats/deda-cost-fr.png',
+  it: '/images/cats/deda-cost-en.png',
 };
 
 type ZoomBadge = { src: string; label: string; isFinal: boolean };
@@ -32,6 +34,7 @@ export function LessonsStickerJournal({
   masteredEpisodeIds: string[];
   lessonTargetScore: number;
 }) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const [zoom, setZoom] = useState<ZoomBadge | null>(null);
 
   if (episodeIds.length === 0) return null;
@@ -48,23 +51,35 @@ export function LessonsStickerJournal({
   const remaining = episodeIds.length - collected;
   const message =
     collected === 0
-      ? 'Проходи уроки — собирай котика Deda за разными занятиями.'
+      ? (interfaceLanguage === 'en'
+        ? 'Complete lessons to collect Deda the cat in different scenes.'
+        : 'Проходи уроки — собирай котика Deda за разными занятиями.')
       : collected === episodeIds.length
-        ? '😺 Весь альбом котика Deda собран — даже финальное фото в национальном костюме!'
+        ? (interfaceLanguage === 'en'
+          ? '😺 The whole Deda cat album is complete, including the final national costume photo!'
+          : '😺 Весь альбом котика Deda собран — даже финальное фото в национальном костюме!')
         : remaining === 1
-          ? 'Осталось одно фото — котик Deda в национальном костюме!'
-          : `😺 Уже ${collected} в альбоме! Осталось ${remaining}.`;
-  const unlockRule = `Открывается за ${lessonTargetScore} очков в игре урока.`;
+          ? (interfaceLanguage === 'en'
+            ? 'One photo left: Deda the cat in the national costume!'
+            : 'Осталось одно фото — котик Deda в национальном костюме!')
+          : interfaceLanguage === 'en'
+            ? `😺 ${collected} already collected! ${remaining} left.`
+            : `😺 Уже ${collected} в альбоме! Осталось ${remaining}.`;
+  const unlockRule = interfaceLanguage === 'en'
+    ? `Unlocked at ${lessonTargetScore} points in the lesson game.`
+    : `Открывается за ${lessonTargetScore} очков в игре урока.`;
 
   return (
     <section className="lessons-journal mx-auto mt-4 w-full max-w-[900px] px-[clamp(18px,4.4vw,36px)] [@media(max-width:700px)]:mt-3">
       <div className="rounded-[24px] border border-[var(--border-soft)] bg-white px-[clamp(18px,3.2vw,34px)] py-[clamp(16px,2.6vw,22px)] shadow-[0_10px_30px_rgba(31,28,23,0.07)]">
         <div className="flex items-center justify-between gap-2">
           <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
-            Фотоальбом котика Deda
+            {interfaceLanguage === 'en' ? 'Deda cat photo album' : 'Фотоальбом котика Deda'}
           </span>
           <span className="text-[12px] font-semibold text-[var(--text-secondary)]">
-            {collected} из {episodeIds.length}
+            {interfaceLanguage === 'en'
+              ? `${collected} of ${episodeIds.length}`
+              : `${collected} из ${episodeIds.length}`}
           </span>
         </div>
 
@@ -72,14 +87,22 @@ export function LessonsStickerJournal({
           {episodeIds.map((id, i) => {
             const isFinal = i === lastIndex;
             const revealed = mastered.has(id);
-            const label = isFinal ? `Урок ${i + 1} · национальный костюм` : `Урок ${i + 1}`;
+            const label = isFinal
+              ? (interfaceLanguage === 'en' ? `Lesson ${i + 1} · national costume` : `Урок ${i + 1} · национальный костюм`)
+              : (interfaceLanguage === 'en' ? `Lesson ${i + 1}` : `Урок ${i + 1}`);
 
             if (!revealed) {
               return (
                 <div
                   key={id}
                   className={`ach-badge ach-badge--locked ${isFinal ? 'ach-badge--final' : ''}`}
-                  title={isFinal ? `Урок ${i + 1} — финал в костюме, ещё закрыт` : `Урок ${i + 1} — пройди, чтобы открыть котика`}
+                  title={isFinal
+                    ? (interfaceLanguage === 'en'
+                      ? `Lesson ${i + 1} — final costume photo, still locked`
+                      : `Урок ${i + 1} — финал в костюме, ещё закрыт`)
+                    : (interfaceLanguage === 'en'
+                      ? `Lesson ${i + 1} — complete it to unlock the cat`
+                      : `Урок ${i + 1} — пройди, чтобы открыть котика`)}
                 >
                   <span className="ach-badge-q" aria-hidden="true">{isFinal ? '★' : '?'}</span>
                 </div>
@@ -95,7 +118,7 @@ export function LessonsStickerJournal({
                 type="button"
                 onClick={() => setZoom({ src, label, isFinal })}
                 className={`ach-badge ach-badge--on ${isFinal ? 'ach-badge--final' : ''} ${isRecent ? 'ach-badge--recent' : ''} cursor-pointer focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2`}
-                aria-label={`${label} — увеличить`}
+                aria-label={interfaceLanguage === 'en' ? `${label} — enlarge` : `${label} — увеличить`}
                 title={label}
               >
                 <Image
@@ -151,7 +174,7 @@ export function LessonsStickerJournal({
               onClick={() => setZoom(null)}
               className="mt-3 rounded-full bg-white/20 px-4 py-1.5 text-[13px] font-medium text-white transition hover:bg-white/30"
             >
-              Закрыть
+              {interfaceLanguage === 'en' ? 'Close' : 'Закрыть'}
             </button>
           </div>
         </div>

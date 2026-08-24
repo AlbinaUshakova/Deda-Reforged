@@ -3,7 +3,8 @@
 
 import { useEffect, useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
-import { COURSES, type CourseId } from '@/lib/courses';
+import { type CourseId } from '@/lib/courses';
+import { getCourseName } from '@/lib/interfaceText';
 
 export default function SettingsPanel({
     onClose,
@@ -14,6 +15,7 @@ export default function SettingsPanel({
 }) {
     const settings = useAppStore(state => state.settings);
     const updateSettings = useAppStore(state => state.updateSettings);
+    const interfaceLanguage = settings.interfaceLanguage;
     const [lessonTargetScoreInput, setLessonTargetScoreInput] = useState('25');
     const [translationDirection, setTranslationDirection] = useState<'ge-ru' | 'ru-ge'>('ge-ru');
     const [courseId, setCourseId] = useState<CourseId>('ka');
@@ -60,7 +62,7 @@ export default function SettingsPanel({
                 >
                     {onBack && (
                         <button
-                            aria-label="Назад в меню"
+                            aria-label={interfaceLanguage === 'en' ? 'Back to menu' : 'Назад в меню'}
                             className="absolute left-1 top-1/2 h-6 w-6 -translate-y-1/2 rounded-md text-[var(--menu-text-muted)] opacity-85 transition hover:bg-transparent hover:text-[var(--menu-text)] focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2"
                             onClick={handleBack}
                         >
@@ -69,10 +71,12 @@ export default function SettingsPanel({
                             </svg>
                         </button>
                     )}
-                    <div className="whitespace-nowrap px-7 text-center text-[clamp(9px,1.55vw,13px)] font-semibold text-[var(--menu-text)]">Настройки игры</div>
+                    <div className="whitespace-nowrap px-7 text-center text-[clamp(9px,1.55vw,13px)] font-semibold text-[var(--menu-text)]">
+                        {interfaceLanguage === 'en' ? 'Game settings' : 'Настройки игры'}
+                    </div>
                     <button
                         type="button"
-                        aria-label="Закрыть"
+                        aria-label={interfaceLanguage === 'en' ? 'Close' : 'Закрыть'}
                         className="home-alphabet-close absolute right-1 top-1/2 h-6 w-6 -translate-y-1/2 rounded-md text-[11px] transition-colors focus-visible:outline focus-visible:outline-3 focus-visible:outline-[var(--menu-focus)] focus-visible:outline-offset-2"
                         onClick={handleClose}
                     >
@@ -80,7 +84,9 @@ export default function SettingsPanel({
                     </button>
                 </div>
                 <div className="pt-2.5">
-                    <div className="mb-2 text-[clamp(10px,1.8vw,12px)] text-[var(--menu-text)]">Направление перевода</div>
+                    <div className="mb-2 text-[clamp(10px,1.8vw,12px)] text-[var(--menu-text)]">
+                        {interfaceLanguage === 'en' ? 'Translation direction' : 'Направление перевода'}
+                    </div>
                     <div className="grid grid-cols-2 gap-2">
                         <button
                             type="button"
@@ -101,7 +107,7 @@ export default function SettingsPanel({
                                     : undefined
                             }
                         >
-                            <div>{COURSES[courseId].sourceLanguageLabel} → {COURSES[courseId].targetLanguageLabel}</div>
+                            <div>{getCourseName(courseId, interfaceLanguage)} → {interfaceLanguage === 'en' ? 'English' : 'Русский'}</div>
                         </button>
                         <button
                             type="button"
@@ -122,7 +128,7 @@ export default function SettingsPanel({
                                     : undefined
                             }
                         >
-                            <div>{COURSES[courseId].targetLanguageLabel} → {COURSES[courseId].sourceLanguageLabel}</div>
+                            <div>{interfaceLanguage === 'en' ? 'English' : 'Русский'} → {getCourseName(courseId, interfaceLanguage)}</div>
                         </button>
                     </div>
                 </div>
@@ -131,7 +137,9 @@ export default function SettingsPanel({
 
                 <div className="pt-2.5">
                     <div className="grid grid-cols-[auto_auto] items-center gap-x-2 gap-y-1">
-                        <div className="text-[clamp(10px,1.8vw,12px)] text-[var(--menu-text)]">Цель по очкам</div>
+                        <div className="text-[clamp(10px,1.8vw,12px)] text-[var(--menu-text)]">
+                            {interfaceLanguage === 'en' ? 'Target score' : 'Цель по очкам'}
+                        </div>
                         <div className="inline-flex items-center rounded-xl border border-[var(--menu-stepper-border)] bg-transparent">
                             <button
                                 type="button"
@@ -139,8 +147,8 @@ export default function SettingsPanel({
                                 onClick={() => {
                                     setLessonTargetScoreInput(String(clampTarget(safeTarget - 1)));
                                 }}
-                                aria-label="Уменьшить цель"
-                                title="Уменьшить цель"
+                                aria-label={interfaceLanguage === 'en' ? 'Decrease target' : 'Уменьшить цель'}
+                                title={interfaceLanguage === 'en' ? 'Decrease target' : 'Уменьшить цель'}
                             >
                                 −
                             </button>
@@ -170,8 +178,8 @@ export default function SettingsPanel({
                                 onClick={() => {
                                     setLessonTargetScoreInput(String(clampTarget(safeTarget + 1)));
                                 }}
-                                aria-label="Увеличить цель"
-                                title="Увеличить цель"
+                                aria-label={interfaceLanguage === 'en' ? 'Increase target' : 'Увеличить цель'}
+                                title={interfaceLanguage === 'en' ? 'Increase target' : 'Увеличить цель'}
                             >
                                 +
                             </button>

@@ -12,77 +12,92 @@
     {
       "type": "word",
       "ge_text": "ne",
-      "ru_meaning": "что"
+      "ru_meaning": "что",
+      "transcription_en": "neh"
     },
     {
       "type": "word",
       "ge_text": "ne ne",
-      "ru_meaning": "что-что?"
+      "ru_meaning": "что-что?",
+      "transcription_en": "neh neh"
     },
     {
       "type": "word",
       "ge_text": "anne",
-      "ru_meaning": "мама"
+      "ru_meaning": "мама",
+      "transcription_en": "ahn-NEH"
     },
     {
       "type": "word",
       "ge_text": "anne ne",
-      "ru_meaning": "мама, что?"
+      "ru_meaning": "мама, что?",
+      "transcription_en": "ahn-NEH neh"
     },
     {
       "type": "word",
       "ge_text": "nane",
-      "ru_meaning": "мята"
+      "ru_meaning": "мята",
+      "transcription_en": "nah-NEH"
     },
     {
       "type": "word",
       "ge_text": "ara",
-      "ru_meaning": "позвони"
+      "ru_meaning": "позвони",
+      "transcription_en": "ah-RAH"
     },
     {
       "type": "word",
       "ge_text": "anne ara",
-      "ru_meaning": "позови маму"
+      "ru_meaning": "позови маму",
+      "transcription_en": "ahn-NEH ah-RAH"
     },
     {
       "type": "word",
       "ge_text": "ne ara",
-      "ru_meaning": "что ищешь?"
+      "ru_meaning": "что ищешь?",
+      "transcription_en": "neh ah-RAH"
     },
     {
       "type": "word",
       "ge_text": "nane ara",
-      "ru_meaning": "найди мяту"
+      "ru_meaning": "найди мяту",
+      "transcription_en": "nah-NEH ah-RAH"
     },
     {
       "type": "word",
       "ge_text": "nar",
-      "ru_meaning": "гранат"
+      "ru_meaning": "гранат",
+      "transcription_en": "nahr"
     },
     {
       "type": "word",
       "ge_text": "ninni",
-      "ru_meaning": "колыбельная"
+      "ru_meaning": "колыбельная",
+      "transcription_en": "neen-NEE"
     },
     {
       "type": "word",
       "ge_text": "nine",
-      "ru_meaning": "бабушка"
+      "ru_meaning": "бабушка",
+      "transcription_en": "nee-NEH"
     },
     {
       "type": "word",
       "ge_text": "annene",
-      "ru_meaning": "твоей маме"
+      "ru_meaning": "твоей маме",
+      "transcription_en": "ahn-neh-NEH"
     },
     {
       "type": "word",
       "ge_text": "nene",
-      "ru_meaning": "бабушка"
+      "ru_meaning": "бабушка",
+      "transcription_en": "neh-NEH"
     },
     {
       "type": "word",
       "ge_text": "anneanne",
-      "ru_meaning": "бабушка"
+      "ru_meaning": "бабушка",
+      "transcription_en": "ahn-neh-AHN-neh"
     }
   ]
 }

@@ -10,12 +10,14 @@
     {
       "type": "word",
       "ge_text": "el",
-      "ru_meaning": "рука"
+      "ru_meaning": "рука",
+      "transcription_en": "el"
     },
     {
       "type": "word",
       "ge_text": "bel",
-      "ru_meaning": "талия"
+      "ru_meaning": "талия",
+      "transcription_en": "bel"
     },
     {
       "type": "word",
@@ -23,72 +25,86 @@
       "ru_meaning": "мёд",
       "accepted_ru": [
         "мед"
-      ]
+      ],
+      "transcription_en": "bahl"
     },
     {
       "type": "word",
       "ge_text": "bana",
-      "ru_meaning": "мне"
+      "ru_meaning": "мне",
+      "transcription_en": "bah-NAH"
     },
     {
       "type": "word",
       "ge_text": "bana el ver",
-      "ru_meaning": "дай мне руку"
+      "ru_meaning": "дай мне руку",
+      "transcription_en": "bah-NAH el vehr"
     },
     {
       "type": "word",
       "ge_text": "belli",
-      "ru_meaning": "ясный"
+      "ru_meaning": "ясный",
+      "transcription_en": "bel-LEE"
     },
     {
       "type": "word",
       "ge_text": "bil",
-      "ru_meaning": "знай"
+      "ru_meaning": "знай",
+      "transcription_en": "bil"
     },
     {
       "type": "word",
       "ge_text": "bile",
-      "ru_meaning": "даже"
+      "ru_meaning": "даже",
+      "transcription_en": "bee-LEH"
     },
     {
       "type": "word",
       "ge_text": "dil",
-      "ru_meaning": "язык"
+      "ru_meaning": "язык",
+      "transcription_en": "deel"
     },
     {
       "type": "word",
       "ge_text": "de",
-      "ru_meaning": "тоже"
+      "ru_meaning": "тоже",
+      "transcription_en": "deh"
     },
     {
       "type": "word",
       "ge_text": "de bana",
-      "ru_meaning": "скажи мне"
+      "ru_meaning": "скажи мне",
+      "transcription_en": "deh bah-NAH"
     },
     {
       "type": "word",
       "ge_text": "kedi",
-      "ru_meaning": "кот"
+      "ru_meaning": "кот",
+      "transcription_en": "keh-DEE"
     },
     {
       "type": "word",
       "ge_text": "kedi ver",
-      "ru_meaning": "дай кота"
+      "ru_meaning": "дай кота",
+      "transcription_en": "keh-DEE vehr"
     },
     {
       "type": "word",
       "ge_text": "kal",
-      "ru_meaning": "останься"
+      "ru_meaning": "останься",
+      "transcription_en": "kahl"
     },
     {
       "type": "word",
       "ge_text": "kek",
-      "ru_meaning": "кекс"
+      "ru_meaning": "кекс",
+      "transcription_en": "kek"
     },
     {
       "type": "word",
       "ge_text": "kale",
-      "ru_meaning": "замок"
+      "ru_meaning": "замок",
+      "transcription_en": "kah-LEH"
     }
   ]
 }

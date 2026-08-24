@@ -68,7 +68,18 @@ import frEp4Json from '../public/content/fr_ru_ep4.json' with { type: 'json' };
 import frEp5Json from '../public/content/fr_ru_ep5.json' with { type: 'json' };
 import frEp6Json from '../public/content/fr_ru_ep6.json' with { type: 'json' };
 import frEp7Json from '../public/content/fr_ru_ep7.json' with { type: 'json' };
+import itStaticEpisodes from '../public/content/episodes_it.json' with { type: 'json' };
+import itEp1Json from '../public/content/it_ru_ep1.json' with { type: 'json' };
+import itEp2Json from '../public/content/it_ru_ep2.json' with { type: 'json' };
+import itEp3Json from '../public/content/it_ru_ep3.json' with { type: 'json' };
+import itEp4Json from '../public/content/it_ru_ep4.json' with { type: 'json' };
+import itEp5Json from '../public/content/it_ru_ep5.json' with { type: 'json' };
+import itEp6Json from '../public/content/it_ru_ep6.json' with { type: 'json' };
+import itEp7Json from '../public/content/it_ru_ep7.json' with { type: 'json' };
+import itEp8Json from '../public/content/it_ru_ep8.json' with { type: 'json' };
+import itEp9Json from '../public/content/it_ru_ep9.json' with { type: 'json' };
 import { DEFAULT_COURSE_ID, getCourse, isCourseLetter, normalizeCourseId, type CourseId } from './courses.ts';
+import { textToHint } from './transliteration.ts';
 
 export type CardInfoNote = {
   kind: 'grammar' | 'speech' | 'mistake';
@@ -80,6 +91,9 @@ export type EpisodeCard = {
   ge_text: string;
   ru_meaning: string;
   translit?: string;
+  transcription_ru?: string;
+  transcription_en?: string;
+  ipa?: string;
   intent_id?: string;
   accepted_ru?: string[];
   accepted_ge?: string[];
@@ -184,6 +198,17 @@ const RAW_EPISODES_BY_COURSE: Record<CourseId, RawEpisode[]> = {
     frEp6Json as RawEpisode,
     frEp7Json as RawEpisode,
   ],
+  it: [
+    itEp1Json as RawEpisode,
+    itEp2Json as RawEpisode,
+    itEp3Json as RawEpisode,
+    itEp4Json as RawEpisode,
+    itEp5Json as RawEpisode,
+    itEp6Json as RawEpisode,
+    itEp7Json as RawEpisode,
+    itEp8Json as RawEpisode,
+    itEp9Json as RawEpisode,
+  ],
 };
 
 const COMMON_SPECIAL_EPISODES: EpisodesListItem[] = [
@@ -226,6 +251,10 @@ const STATIC_LESSON_ITEMS_BY_COURSE: Record<CourseId, EpisodesListItem[]> = {
     id: episode.id,
     title: episode.title,
   })),
+  it: (itStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
+    id: episode.id,
+    title: episode.title,
+  })),
 };
 
 function phrase(
@@ -234,6 +263,7 @@ function phrase(
   note?: string,
   accepted_ru?: string[],
   playable?: boolean,
+  transcription_en?: string,
 ): EpisodeCard {
   return {
     type: 'word',
@@ -242,6 +272,7 @@ function phrase(
     ...(accepted_ru?.length ? { accepted_ru } : {}),
     ...(note ? { info_notes: [{ kind: 'grammar' as const, text: note }] } : {}),
     ...(playable === false ? { playable: false } : {}),
+    ...(transcription_en ? { transcription_en } : {}),
   };
 }
 
@@ -252,10 +283,12 @@ function enPhrase(
   note?: string,
   accepted_ru?: string[],
   playable?: boolean,
+  transcription_en?: string,
 ): EpisodeCard {
   return {
-    ...phrase(ge_text, ru_meaning, note, accepted_ru, playable),
+    ...phrase(ge_text, ru_meaning, note, accepted_ru, playable, transcription_en),
     translit,
+    transcription_ru: translit,
   };
 }
 
@@ -266,9 +299,10 @@ function intentPhrase(
   note?: string,
   accepted_ru?: string[],
   playable?: boolean,
+  transcription_en?: string,
 ): EpisodeCard {
   return {
-    ...phrase(ge_text, ru_meaning, note, accepted_ru, playable),
+    ...phrase(ge_text, ru_meaning, note, accepted_ru, playable, transcription_en),
     intent_id,
   };
 }
@@ -281,9 +315,10 @@ function intentEnPhrase(
   note?: string,
   accepted_ru?: string[],
   playable?: boolean,
+  transcription_en?: string,
 ): EpisodeCard {
   return {
-    ...enPhrase(ge_text, translit, ru_meaning, note, accepted_ru, playable),
+    ...enPhrase(ge_text, translit, ru_meaning, note, accepted_ru, playable, transcription_en),
     intent_id,
   };
 }
@@ -610,39 +645,39 @@ const GERMAN_PREPLY_SECTION_EPISODES: Episode[] = [
     id: 'german-greetings',
     title: 'Приветствия и прощания',
     cards: [
-      intentPhrase('hello_formal', 'Schönen guten Tag', 'Здравствуйте', undefined, ['Добрый день']),
-      intentPhrase('hello_informal', 'Hallo', 'Привет'),
-      intentPhrase('good_morning', 'Guten Morgen', 'Доброе утро'),
-      intentPhrase('good_day', 'Guten Tag', 'Добрый день'),
-      intentPhrase('good_evening', 'Guten Abend', 'Добрый вечер'),
-      intentPhrase('goodbye', 'Auf Wiedersehen', 'До свидания', undefined, ['Пока']),
+      intentPhrase('hello_formal', 'Schönen guten Tag', 'Здравствуйте', undefined, ['Добрый день'], undefined, 'SHUR-nen GOO-ten tahk'),
+      intentPhrase('hello_informal', 'Hallo', 'Привет', undefined, undefined, undefined, 'HAH-loh'),
+      intentPhrase('good_morning', 'Guten Morgen', 'Доброе утро', undefined, undefined, undefined, 'GOO-ten MOR-gen'),
+      intentPhrase('good_day', 'Guten Tag', 'Добрый день', undefined, undefined, undefined, 'GOO-ten tahk'),
+      intentPhrase('good_evening', 'Guten Abend', 'Добрый вечер', undefined, undefined, undefined, 'GOO-ten AH-bent'),
+      intentPhrase('goodbye', 'Auf Wiedersehen', 'До свидания', undefined, ['Пока'], undefined, 'owf VEE-der-zay-en'),
     ],
   },
   {
     id: 'german-politeness',
     title: 'Вежливость',
     cards: [
-      intentPhrase('thanks', 'Danke', 'Спасибо'),
-      intentPhrase('thanks_very_much', 'Vielen Dank', 'Большое спасибо', undefined, ['Спасибо большое']),
-      intentPhrase('please_request', 'Bitte', 'Пожалуйста', 'В просьбе: “пожалуйста”.'),
-      intentPhrase('you_are_welcome', 'Gern geschehen', 'Не за что', undefined, ['Пожалуйста']),
-      intentPhrase('excuse_me_attention', 'Entschuldigung', 'Извините', 'Чтобы обратиться к человеку или привлечь внимание.', ['Простите']),
-      intentPhrase('sorry_fault', 'Es tut mir leid', 'Мне жаль', undefined, ['Простите']),
-      intentPhrase('no_problem', 'Kein Problem', 'Ничего страшного', undefined, ['Все в порядке', 'Всё в порядке']),
-      intentPhrase('bless_you', 'Gesundheit', 'Будьте здоровы'),
+      intentPhrase('thanks', 'Danke', 'Спасибо', undefined, undefined, undefined, 'DAHN-keh'),
+      intentPhrase('thanks_very_much', 'Vielen Dank', 'Большое спасибо', undefined, ['Спасибо большое'], undefined, 'FEE-len dahnk'),
+      intentPhrase('please_request', 'Bitte', 'Пожалуйста', 'В просьбе: “пожалуйста”.', undefined, undefined, 'BIT-teh'),
+      intentPhrase('you_are_welcome', 'Gern geschehen', 'Не за что', undefined, ['Пожалуйста'], undefined, 'gehrn guh-SHAY-en'),
+      intentPhrase('excuse_me_attention', 'Entschuldigung', 'Извините', 'Чтобы обратиться к человеку или привлечь внимание.', ['Простите'], undefined, 'ent-SHOOL-dee-goong'),
+      intentPhrase('sorry_fault', 'Es tut mir leid', 'Мне жаль', undefined, ['Простите'], undefined, 'es toot meer lite'),
+      intentPhrase('no_problem', 'Kein Problem', 'Ничего страшного', undefined, ['Все в порядке', 'Всё в порядке'], undefined, 'kine proh-BLEM'),
+      intentPhrase('bless_you', 'Gesundheit', 'Будьте здоровы', undefined, undefined, undefined, 'guh-ZOONT-hite'),
     ],
   },
   {
     id: 'german-introductions',
     title: 'Знакомство',
     cards: [
-      intentPhrase('my_name_is', 'Ich heiße Anna', 'Меня зовут Анна'),
-      intentPhrase('ask_name', 'Wie heißen Sie?', 'Как вас зовут?'),
-      intentPhrase('nice_to_meet_you', 'Freut mich', 'Очень приятно', undefined, ['Приятно познакомиться']),
-      intentPhrase('where_are_you_from', 'Woher kommen Sie?', 'Откуда вы?'),
-      intentPhrase('i_am_from', 'Ich komme aus Russland', 'Я из России'),
-      intentPhrase('where_do_you_live', 'Wo wohnen Sie?', 'Где вы живёте?', undefined, ['Где вы живете?']),
-      intentPhrase('i_live_in', 'Ich wohne in Berlin', 'Я живу в Берлине'),
+      intentPhrase('my_name_is', 'Ich heiße Anna', 'Меня зовут Анна', undefined, undefined, undefined, 'ikh HAI-seh AH-nah'),
+      intentPhrase('ask_name', 'Wie heißen Sie?', 'Как вас зовут?', undefined, undefined, undefined, 'vee HAI-sen zee'),
+      intentPhrase('nice_to_meet_you', 'Freut mich', 'Очень приятно', undefined, ['Приятно познакомиться'], undefined, 'froyt mikh'),
+      intentPhrase('where_are_you_from', 'Woher kommen Sie?', 'Откуда вы?', undefined, undefined, undefined, 'voh-hair KOH-men zee'),
+      intentPhrase('i_am_from', 'Ich komme aus Russland', 'Я из России', undefined, undefined, undefined, 'ikh KOH-meh ows ROOS-land'),
+      intentPhrase('where_do_you_live', 'Wo wohnen Sie?', 'Где вы живёте?', undefined, ['Где вы живете?'], undefined, 'voh VOH-nen zee'),
+      intentPhrase('i_live_in', 'Ich wohne in Berlin', 'Я живу в Берлине', undefined, undefined, undefined, 'ikh VOH-neh in ber-LEEN'),
     ],
   },
   {
@@ -979,39 +1014,39 @@ const TURKISH_INTENT_SECTION_EPISODES: Episode[] = [
     id: 'turkish-greetings',
     title: 'Приветствия и прощания',
     cards: [
-      intentPhrase('hello_formal', 'Merhaba', 'Здравствуйте'),
-      intentPhrase('hello_informal', 'Selam', 'Привет'),
-      intentPhrase('good_morning', 'Günaydın', 'Доброе утро'),
-      intentPhrase('good_day', 'İyi günler', 'Добрый день'),
-      intentPhrase('good_evening', 'İyi akşamlar', 'Добрый вечер'),
-      intentPhrase('goodbye', 'Hoşça kal', 'До свидания', undefined, ['Пока']),
+      intentPhrase('hello_formal', 'Merhaba', 'Здравствуйте', undefined, undefined, undefined, 'MEHR-hah-bah'),
+      intentPhrase('hello_informal', 'Selam', 'Привет', undefined, undefined, undefined, 'seh-LAHM'),
+      intentPhrase('good_morning', 'Günaydın', 'Доброе утро', undefined, undefined, undefined, 'gew-NIGH-duhn'),
+      intentPhrase('good_day', 'İyi günler', 'Добрый день', undefined, undefined, undefined, 'EE-yee gewn-LAIR'),
+      intentPhrase('good_evening', 'İyi akşamlar', 'Добрый вечер', undefined, undefined, undefined, 'EE-yee ak-sham-LAR'),
+      intentPhrase('goodbye', 'Hoşça kal', 'До свидания', undefined, ['Пока'], undefined, 'HOSH-cha kal'),
     ],
   },
   {
     id: 'turkish-politeness',
     title: 'Вежливость',
     cards: [
-      intentPhrase('thanks', 'Teşekkür ederim', 'Спасибо'),
-      intentPhrase('thanks_very_much', 'Çok teşekkürler', 'Большое спасибо', undefined, ['Спасибо большое']),
-      intentPhrase('please_request', 'Lütfen', 'Пожалуйста', 'В просьбе: “пожалуйста”.'),
-      intentPhrase('you_are_welcome', 'Rica ederim', 'Не за что', undefined, ['Пожалуйста']),
-      intentPhrase('excuse_me_attention', 'Afedersiniz', 'Извините', 'Чтобы обратиться к человеку или пройти.', ['Простите']),
-      intentPhrase('sorry_fault', 'Özür dilerim', 'Мне жаль', undefined, ['Простите']),
-      intentPhrase('no_problem', 'Sorun değil', 'Ничего страшного', undefined, ['Все в порядке', 'Всё в порядке']),
-      intentPhrase('bless_you', 'Çok yaşa', 'Будьте здоровы'),
+      intentPhrase('thanks', 'Teşekkür ederim', 'Спасибо', undefined, undefined, undefined, 'teh-shehk-KUER eh-deh-REEM'),
+      intentPhrase('thanks_very_much', 'Çok teşekkürler', 'Большое спасибо', undefined, ['Спасибо большое'], undefined, 'chok teh-shehk-KUER-lair'),
+      intentPhrase('please_request', 'Lütfen', 'Пожалуйста', 'В просьбе: “пожалуйста”.', undefined, undefined, 'LUET-fen'),
+      intentPhrase('you_are_welcome', 'Rica ederim', 'Не за что', undefined, ['Пожалуйста'], undefined, 'ree-JAH eh-deh-REEM'),
+      intentPhrase('excuse_me_attention', 'Afedersiniz', 'Извините', 'Чтобы обратиться к человеку или пройти.', ['Простите'], undefined, 'ah-feh-dehr-see-NEEZ'),
+      intentPhrase('sorry_fault', 'Özür dilerim', 'Мне жаль', undefined, ['Простите'], undefined, 'uh-ZUER dee-leh-REEM'),
+      intentPhrase('no_problem', 'Sorun değil', 'Ничего страшного', undefined, ['Все в порядке', 'Всё в порядке'], undefined, 'soh-ROON DEH-eel'),
+      intentPhrase('bless_you', 'Çok yaşa', 'Будьте здоровы', undefined, undefined, undefined, 'chok yah-SHAH'),
     ],
   },
   {
     id: 'turkish-introductions',
     title: 'Знакомство',
     cards: [
-      intentPhrase('my_name_is', 'Benim adım Anna', 'Меня зовут Анна'),
-      intentPhrase('ask_name', 'Adınız ne?', 'Как вас зовут?'),
-      intentPhrase('nice_to_meet_you', 'Memnun oldum', 'Очень приятно', undefined, ['Приятно познакомиться']),
-      intentPhrase('where_are_you_from', 'Nerelisiniz?', 'Откуда вы?'),
-      intentPhrase('i_am_from', 'Rusya’danım', 'Я из России'),
-      intentPhrase('where_do_you_live', 'Nerede yaşıyorsunuz?', 'Где вы живёте?', undefined, ['Где вы живете?']),
-      intentPhrase('i_live_in', 'İstanbul’da yaşıyorum', 'Я живу в Стамбуле'),
+      intentPhrase('my_name_is', 'Benim adım Anna', 'Меня зовут Анна', undefined, undefined, undefined, 'beh-NEEM ah-DUHM AN-nah'),
+      intentPhrase('ask_name', 'Adınız ne?', 'Как вас зовут?', undefined, undefined, undefined, 'ah-duh-NUHZ neh'),
+      intentPhrase('nice_to_meet_you', 'Memnun oldum', 'Очень приятно', undefined, ['Приятно познакомиться'], undefined, 'mehm-NOON ohl-DOOM'),
+      intentPhrase('where_are_you_from', 'Nerelisiniz?', 'Откуда вы?', undefined, undefined, undefined, 'neh-reh-lee-see-NEEZ'),
+      intentPhrase('i_am_from', 'Rusya’danım', 'Я из России', undefined, undefined, undefined, 'ROOS-yah-dah-nuhm'),
+      intentPhrase('where_do_you_live', 'Nerede yaşıyorsunuz?', 'Где вы живёте?', undefined, ['Где вы живете?'], undefined, 'NEH-reh-deh yah-shuh-YOR-soh-nooz'),
+      intentPhrase('i_live_in', 'İstanbul’da yaşıyorum', 'Я живу в Стамбуле', undefined, undefined, undefined, 'ees-tahn-BOOL-dah yah-shuh-YOR-oom'),
     ],
   },
   {
@@ -1102,39 +1137,39 @@ const SPANISH_INTENT_SECTION_EPISODES: Episode[] = [
     id: 'spanish-greetings',
     title: 'Приветствия и прощания',
     cards: [
-      intentPhrase('hello_formal', 'Muy buenas', 'Здравствуйте', undefined, ['Привет']),
-      intentPhrase('hello_informal', 'Hola', 'Привет'),
-      intentPhrase('good_morning', 'Buenos días', 'Доброе утро'),
-      intentPhrase('good_day', 'Buenas tardes', 'Добрый день'),
-      intentPhrase('good_evening', 'Buenas noches', 'Добрый вечер'),
-      intentPhrase('goodbye', 'Adiós', 'До свидания', undefined, ['Пока']),
+      intentPhrase('hello_formal', 'Muy buenas', 'Здравствуйте', undefined, ['Привет'], undefined, 'mwee BWEH-nahs'),
+      intentPhrase('hello_informal', 'Hola', 'Привет', undefined, undefined, undefined, 'OH-lah'),
+      intentPhrase('good_morning', 'Buenos días', 'Доброе утро', undefined, undefined, undefined, 'BWEH-nohs DEE-ahs'),
+      intentPhrase('good_day', 'Buenas tardes', 'Добрый день', undefined, undefined, undefined, 'BWEH-nahs TAR-des'),
+      intentPhrase('good_evening', 'Buenas noches', 'Добрый вечер', undefined, undefined, undefined, 'BWEH-nahs NO-chehs'),
+      intentPhrase('goodbye', 'Adiós', 'До свидания', undefined, ['Пока'], undefined, 'ah-DYOS'),
     ],
   },
   {
     id: 'spanish-politeness',
     title: 'Вежливость',
     cards: [
-      intentPhrase('thanks', 'Gracias', 'Спасибо'),
-      intentPhrase('thanks_very_much', 'Muchas gracias', 'Большое спасибо', undefined, ['Спасибо большое']),
-      intentPhrase('please_request', 'Por favor', 'Пожалуйста', 'В просьбе: “пожалуйста”.'),
-      intentPhrase('you_are_welcome', 'De nada', 'Не за что', undefined, ['Пожалуйста']),
-      intentPhrase('excuse_me_attention', 'Perdón', 'Извините', 'Чтобы обратиться к человеку или пройти.', ['Простите']),
-      intentPhrase('sorry_fault', 'Lo siento', 'Мне жаль', undefined, ['Простите']),
-      intentPhrase('no_problem', 'No pasa nada', 'Ничего страшного', undefined, ['Все в порядке', 'Всё в порядке']),
-      intentPhrase('bless_you', 'Salud', 'Будьте здоровы'),
+      intentPhrase('thanks', 'Gracias', 'Спасибо', undefined, undefined, undefined, 'GRAH-syahs'),
+      intentPhrase('thanks_very_much', 'Muchas gracias', 'Большое спасибо', undefined, ['Спасибо большое'], undefined, 'MOO-chahs GRAH-syahs'),
+      intentPhrase('please_request', 'Por favor', 'Пожалуйста', 'В просьбе: “пожалуйста”.', undefined, undefined, 'por fah-VOR'),
+      intentPhrase('you_are_welcome', 'De nada', 'Не за что', undefined, ['Пожалуйста'], undefined, 'deh NAH-dah'),
+      intentPhrase('excuse_me_attention', 'Perdón', 'Извините', 'Чтобы обратиться к человеку или пройти.', ['Простите'], undefined, 'per-DON'),
+      intentPhrase('sorry_fault', 'Lo siento', 'Мне жаль', undefined, ['Простите'], undefined, 'loh SYEN-toh'),
+      intentPhrase('no_problem', 'No pasa nada', 'Ничего страшного', undefined, ['Все в порядке', 'Всё в порядке'], undefined, 'noh PAH-sah NAH-dah'),
+      intentPhrase('bless_you', 'Salud', 'Будьте здоровы', undefined, undefined, undefined, 'sah-LOOD'),
     ],
   },
   {
     id: 'spanish-introductions',
     title: 'Знакомство',
     cards: [
-      intentPhrase('my_name_is', 'Me llamo Ana', 'Меня зовут Анна'),
-      intentPhrase('ask_name', '¿Cómo se llama?', 'Как вас зовут?'),
-      intentPhrase('nice_to_meet_you', 'Mucho gusto', 'Очень приятно', undefined, ['Приятно познакомиться']),
-      intentPhrase('where_are_you_from', '¿De dónde es?', 'Откуда вы?'),
-      intentPhrase('i_am_from', 'Soy de Rusia', 'Я из России'),
-      intentPhrase('where_do_you_live', '¿Dónde vive?', 'Где вы живёте?', undefined, ['Где вы живете?']),
-      intentPhrase('i_live_in', 'Vivo en Madrid', 'Я живу в Мадриде'),
+      intentPhrase('my_name_is', 'Me llamo Ana', 'Меня зовут Анна', undefined, undefined, undefined, 'meh YAH-moh AH-nah'),
+      intentPhrase('ask_name', '¿Cómo se llama?', 'Как вас зовут?', undefined, undefined, undefined, 'KOH-moh seh YAH-mah'),
+      intentPhrase('nice_to_meet_you', 'Mucho gusto', 'Очень приятно', undefined, ['Приятно познакомиться'], undefined, 'MOO-choh GOOS-toh'),
+      intentPhrase('where_are_you_from', '¿De dónde es?', 'Откуда вы?', undefined, undefined, undefined, 'deh DON-deh es'),
+      intentPhrase('i_am_from', 'Soy de Rusia', 'Я из России', undefined, undefined, undefined, 'soy deh ROO-syah'),
+      intentPhrase('where_do_you_live', '¿Dónde vive?', 'Где вы живёте?', undefined, ['Где вы живете?'], undefined, 'DON-deh BEE-beh'),
+      intentPhrase('i_live_in', 'Vivo en Madrid', 'Я живу в Мадриде', undefined, undefined, undefined, 'BEE-boh en mah-DREED'),
     ],
   },
   {
@@ -1348,36 +1383,36 @@ const FRENCH_INTENT_SECTION_EPISODES: Episode[] = [
     id: 'french-greetings',
     title: 'Приветствия и прощания',
     cards: [
-      intentEnPhrase('hello_formal', 'Bonjour', 'бонжур', 'Здравствуйте', undefined, ['Добрый день']),
-      intentEnPhrase('hello_informal', 'Salut', 'салю', 'Привет'),
-      intentEnPhrase('good_evening', 'Bonsoir', 'бонсуар', 'Добрый вечер'),
-      intentEnPhrase('good_night', 'Bonne nuit', 'бон нюи', 'Спокойной ночи'),
-      intentEnPhrase('goodbye', 'Au revoir', 'о рёвуар', 'До свидания', undefined, ['Пока']),
-      intentEnPhrase('see_you_soon', 'À bientôt', 'а бьенто', 'До скорого'),
+      intentEnPhrase('hello_formal', 'Bonjour', 'бонжур', 'Здравствуйте', undefined, ['Добрый день'], undefined, 'bohn-ZHOOR'),
+      intentEnPhrase('hello_informal', 'Salut', 'салю', 'Привет', undefined, undefined, undefined, 'sah-LUU'),
+      intentEnPhrase('good_evening', 'Bonsoir', 'бонсуар', 'Добрый вечер', undefined, undefined, undefined, 'bohn-SWAR'),
+      intentEnPhrase('good_night', 'Bonne nuit', 'бон нюи', 'Спокойной ночи', undefined, undefined, undefined, 'buhn NWEE'),
+      intentEnPhrase('goodbye', 'Au revoir', 'о рёвуар', 'До свидания', undefined, ['Пока'], undefined, 'oh ruh-VWAR'),
+      intentEnPhrase('see_you_soon', 'À bientôt', 'а бьенто', 'До скорого', undefined, undefined, undefined, 'ah byen-TOH'),
     ],
   },
   {
     id: 'french-politeness',
     title: 'Вежливость',
     cards: [
-      intentEnPhrase('thanks', 'Merci', 'мерси', 'Спасибо', undefined, ['Благодарю']),
-      intentEnPhrase('thanks_very_much', 'Merci beaucoup', 'мерси боку', 'Большое спасибо', undefined, ['Спасибо большое']),
-      intentEnPhrase('please_request', "S'il vous plaît", 'силь ву пле', 'Пожалуйста', 'В просьбе: «пожалуйста».'),
-      intentEnPhrase('you_are_welcome', 'De rien', 'дё рьен', 'Не за что', undefined, ['Пожалуйста']),
-      intentEnPhrase('excuse_me_attention', 'Excusez-moi', 'экскюзе-муа', 'Извините', 'Чтобы обратиться или пройти.', ['Простите']),
-      intentEnPhrase('sorry_fault', 'Pardon', 'пардон', 'Простите', undefined, ['Извините']),
+      intentEnPhrase('thanks', 'Merci', 'мерси', 'Спасибо', undefined, ['Благодарю'], undefined, 'mehr-SEE'),
+      intentEnPhrase('thanks_very_much', 'Merci beaucoup', 'мерси боку', 'Большое спасибо', undefined, ['Спасибо большое'], undefined, 'mehr-SEE boh-KOO'),
+      intentEnPhrase('please_request', "S'il vous plaît", 'силь ву пле', 'Пожалуйста', 'В просьбе: «пожалуйста».', undefined, undefined, 'seel voo PLEH'),
+      intentEnPhrase('you_are_welcome', 'De rien', 'дё рьен', 'Не за что', undefined, ['Пожалуйста'], undefined, 'duh ree-AN'),
+      intentEnPhrase('excuse_me_attention', 'Excusez-moi', 'экскюзе-муа', 'Извините', 'Чтобы обратиться или пройти.', ['Простите'], undefined, 'ex-kew-zay MWAH'),
+      intentEnPhrase('sorry_fault', 'Pardon', 'пардон', 'Простите', undefined, ['Извините'], undefined, 'par-DOHN'),
     ],
   },
   {
     id: 'french-introductions',
     title: 'Знакомство',
     cards: [
-      intentEnPhrase('my_name_is', "Je m'appelle Anna", 'жё мапэль Анна', 'Меня зовут Анна'),
-      intentEnPhrase('ask_name', 'Comment vous appelez-vous ?', 'коман вузапле-ву', 'Как вас зовут?'),
-      intentEnPhrase('nice_to_meet_you', 'Enchanté', 'аншантэ', 'Очень приятно', undefined, ['Приятно познакомиться']),
-      intentEnPhrase('where_are_you_from', "D'où venez-vous ?", 'ду вёнэ-ву', 'Откуда вы?'),
-      intentEnPhrase('i_am_from', 'Je viens de Russie', 'жё вьен дё Рюси', 'Я из России'),
-      intentEnPhrase('where_do_you_live', 'Où habitez-vous ?', 'у абитэ-ву', 'Где вы живёте?'),
+      intentEnPhrase('my_name_is', "Je m'appelle Anna", 'жё мапэль Анна', 'Меня зовут Анна', undefined, undefined, undefined, 'zhuh mah-PEL AH-nah'),
+      intentEnPhrase('ask_name', 'Comment vous appelez-vous ?', 'коман вузапле-ву', 'Как вас зовут?', undefined, undefined, undefined, 'koh-MAHN voo zah-play VOO'),
+      intentEnPhrase('nice_to_meet_you', 'Enchanté', 'аншантэ', 'Очень приятно', undefined, ['Приятно познакомиться'], undefined, 'ahn-shahn-TAY'),
+      intentEnPhrase('where_are_you_from', "D'où venez-vous ?", 'ду вёнэ-ву', 'Откуда вы?', undefined, undefined, undefined, 'doo vuh-nay VOO'),
+      intentEnPhrase('i_am_from', 'Je viens de Russie', 'жё вьен дё Рюси', 'Я из России', undefined, undefined, undefined, 'zhuh vyan duh ru-SEE'),
+      intentEnPhrase('where_do_you_live', 'Où habitez-vous ?', 'у абитэ-ву', 'Где вы живёте?', undefined, undefined, undefined, 'oo ah-bee-tay VOO'),
     ],
   },
   {
@@ -1478,9 +1513,27 @@ export const PHRASES_EPISODE_BY_COURSE: Record<CourseId, Episode | null> = {
   de: null,
   en: null,
   fr: null,
+  it: {
+    id: 'phrases',
+    title: 'Полезные фразы',
+    cards: [
+      phrase('Ciao', 'привет'),
+      phrase('Buongiorno', 'доброе утро'),
+      phrase('Buonasera', 'добрый вечер'),
+      phrase('Arrivederci', 'до свидания'),
+      phrase('Grazie', 'спасибо'),
+      phrase('Per favore', 'пожалуйста'),
+      phrase('Scusa', 'извини'),
+      phrase('Mi chiamo Anna', 'меня зовут Анна'),
+      phrase('Piacere', 'приятно познакомиться'),
+      phrase('Quanto costa?', 'сколько стоит?'),
+      phrase('Un caffè, per favore', 'кофе, пожалуйста'),
+      phrase('Dov’è il bagno?', 'где туалет?'),
+    ],
+  },
 };
 
-const RAW_SHOPPING_EPISODE_BY_COURSE: Record<CourseId, Episode> = {
+const RAW_SHOPPING_EPISODE_BY_COURSE: Partial<Record<CourseId, Episode>> = {
   ka: {
     id: 'shopping',
     title: 'Покупки и числа',
@@ -1919,6 +1972,7 @@ const EXTRA_LESSON_IDS_BY_COURSE: Record<CourseId, { phrases?: string }> = {
   de: {},
   en: {},
   fr: {},
+  it: { phrases: 'ep10a' },
 };
 
 const NUMBERS_ID_BY_COURSE: Record<CourseId, string> = {
@@ -1929,6 +1983,7 @@ const NUMBERS_ID_BY_COURSE: Record<CourseId, string> = {
   es: 'ep11k',
   en: 'ep9k',
   fr: 'ep8k',
+  it: 'ep10b',
 };
 
 type NumberRow = { n: number; ge: string; ru: string; tl?: string };
@@ -1951,6 +2006,7 @@ const NUMBERS_SECTION_BY_COURSE: Record<CourseId, Episode> = {
   tr: buildNumbersEpisode('tr'),
   en: buildNumbersEpisode('en'),
   fr: buildNumbersEpisode('fr'),
+  it: buildNumbersEpisode('it'),
 };
 
 function toRawLesson(episode: Episode, id: string): RawEpisode {
@@ -2102,11 +2158,19 @@ export function normalizeEpisode(
         ...getGeneratedRussianAnswers(card),
       ]);
       const acceptedGe = normalizeAcceptedAnswers(card.accepted_ge);
+      const normalizedGeText = normalizeSourceText(card.ge_text, courseId);
+      const transcriptionRu = card.transcription_ru?.trim() || card.translit?.trim() || undefined;
+      const transcriptionEn =
+        card.transcription_en?.trim() ||
+        (courseId === 'en' ? '' : textToHint(normalizedGeText, 'latin', courseId).trim()) ||
+        undefined;
       return {
         ...card,
-        ge_text: normalizeSourceText(card.ge_text, courseId),
+        ge_text: normalizedGeText,
         ...(acceptedRu ? { accepted_ru: acceptedRu } : {}),
         ...(acceptedGe ? { accepted_ge: acceptedGe } : {}),
+        ...(transcriptionRu ? { transcription_ru: transcriptionRu } : {}),
+        ...(transcriptionEn ? { transcription_en: transcriptionEn } : {}),
       };
     }),
   };

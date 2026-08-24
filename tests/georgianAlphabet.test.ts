@@ -174,6 +174,7 @@ test('course primary alphabets are displayed as one uninterrupted grid', () => {
     es: COURSES.es.alphabet,
     de: COURSES.de.alphabet.filter(letter => !['Ä', 'Ö', 'Ü', 'ẞ'].includes(letter)),
     fr: COURSES.fr.alphabet.filter(letter => !['À', 'Â', 'Ç', 'É', 'È', 'Ê', 'Ë', 'Î', 'Ï', 'Ô', 'Œ', 'Ù', 'Û'].includes(letter)),
+    it: COURSES.it.alphabet.filter(letter => !['J', 'K', 'W', 'X', 'Y'].includes(letter)),
   } as const;
 
   for (const courseId of COURSE_IDS) {
@@ -190,9 +191,9 @@ test('course primary alphabets are displayed as one uninterrupted grid', () => {
 });
 
 test('course list order matches product language switcher order', () => {
-  assert.deepEqual(COURSE_IDS, ['ka', 'en', 'es', 'de', 'fr', 'sr', 'tr']);
+  assert.deepEqual(COURSE_IDS, ['ka', 'en', 'es', 'de', 'fr', 'it', 'sr', 'tr']);
   assert.deepEqual(
     COURSE_IDS.map(courseId => COURSES[courseId].sourceLanguageLabel),
-    ['🇬🇪', '🇬🇧', '🇪🇸', '🇩🇪', '🇫🇷', '🇷🇸', '🇹🇷'],
+    ['🇬🇪', '🇬🇧', '🇪🇸', '🇩🇪', '🇫🇷', '🇮🇹', '🇷🇸', '🇹🇷'],
   );
 });

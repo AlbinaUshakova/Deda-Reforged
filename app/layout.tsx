@@ -19,27 +19,27 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Deda - учимся читать по-грузински играя.",
-  description: "Слушай буквы, читай карточки и играй, чтобы довести чтение по-грузински до автоматизма.",
+  title: "Deda - learn to read through play.",
+  description: "Meet the alphabet, read simple words, and learn first phrases for a new country.",
   openGraph: {
-    title: "Deda - учимся читать по-грузински играя.",
-    description: "Слушай буквы, читай карточки и играй, чтобы довести чтение по-грузински до автоматизма.",
+    title: "Deda - learn to read through play.",
+    description: "Meet the alphabet, read simple words, and learn first phrases for a new country.",
     url: "/",
-    locale: "ru_RU",
+    locale: "en_US",
     type: "website",
     images: [
       {
         url: "/og-image-v2",
         width: 1200,
         height: 630,
-        alt: "Deda - учимся читать по-грузински играя.",
+        alt: "Deda - learn to read through play.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Deda - учимся читать по-грузински играя.",
-    description: "Слушай буквы, читай карточки и играй, чтобы довести чтение по-грузински до автоматизма.",
+    title: "Deda - learn to read through play.",
+    description: "Meet the alphabet, read simple words, and learn first phrases for a new country.",
     images: ["/og-image-v2"],
   },
   icons: {
@@ -55,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru">
+    <html lang="en">
       <body className="min-h-screen min-h-[100dvh] text-[var(--app-text)]">
         <StandaloneModeSync />
         <AppChrome>{children}</AppChrome>

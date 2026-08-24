@@ -2,25 +2,28 @@
 
 import { useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
-import { letterToHint } from '@/lib/transliteration';
+import { getAlphabetAudioLabel, getAlphabetDisplayTitle, getAlphabetInstruction, getAlphabetLegend } from '@/lib/interfaceText';
+import { getDisplayText } from '@/lib/transliteration';
 import {
   getCourse,
   getLetterKind,
-  getLetterSoundLabel,
   getLetterSpeechLang,
   getLetterSpeechText,
 } from '@/lib/courses';
 import { playLetterAudio } from '@/lib/playLetterAudio';
+import { getActiveTransliterationMode } from '@/lib/settings';
 
 export default function LandingAlphabet() {
   const courseId = useAppStore(state => state.settings.courseId);
   const course = getCourse(courseId);
-  const transliterationMode = useAppStore(state => state.settings.transliterationMode);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const storedTransliterationMode = useAppStore(state => state.settings.transliterationMode);
+  const transliterationMode = getActiveTransliterationMode(interfaceLanguage, courseId, storedTransliterationMode);
   const [playingLetter, setPlayingLetter] = useState<string | null>(null);
   const letterFontClass = courseId === 'ka' ? 'alphabet-letter--georgian' : 'alphabet-letter--latin';
   const hasVowels = course.vowels.length > 0;
   const alphabetColumnCount = Math.max(
-    ...course.alphabetSections.flatMap(section => section.rows.map(row => row.length)),
+    ...course.alphabetRows.map(row => row.length),
   );
 
   const speakLetter = (letter: string) => {
@@ -35,81 +38,49 @@ export default function LandingAlphabet() {
 
   return (
     <div className="landing-alphabet-shell rounded-[clamp(10px,1.2vw,15px)] border border-white/70 bg-white/55 p-[clamp(3px,0.48vw,6px)] shadow-[0_10px_24px_rgba(15,23,42,0.06)] backdrop-blur-[6px]">
+      <div className="px-1 pb-1 text-[clamp(12px,1.35vw,14px)] font-semibold tracking-[-0.01em] text-[var(--text-primary)]">
+        {getAlphabetDisplayTitle(courseId, transliterationMode) ?? getDisplayText(course.scriptTitleNative, transliterationMode, courseId)}
+      </div>
       <div className="landing-alphabet-rows flex flex-col gap-[clamp(4px,0.5vw,6px)]">
-        {course.alphabetSections.map((section) => {
-          const isMemorySection = section.title === 'Запомни отдельно';
-          const isDiacriticSection = courseId === 'es' && isMemorySection;
-          const showSectionHeader = isMemorySection;
+        {course.alphabetRows.map((row, rowIdx) => (
+          <div
+            key={`landing-alphabet-row-${rowIdx}`}
+            className="landing-alphabet-grid grid gap-[clamp(2px,0.42vw,5px)]"
+            style={{
+              gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))`,
+            }}
+          >
+            {row.map((ch) => {
+              const letterKind = getLetterKind(ch, courseId);
+              const visibleLetter = getDisplayText(ch, transliterationMode, courseId);
+              const audioLabel = getAlphabetAudioLabel(interfaceLanguage, ch, courseId);
+              const isCompositeSerbianLetter =
+                courseId === 'sr' && ['Lj', 'Nj', 'Dž'].includes(visibleLetter);
 
-          return (
-            <section
-              key={`landing-alphabet-section-${section.title}`}
-              className={`min-w-0 ${isMemorySection ? 'landing-alphabet-memory-section' : ''}`}
-            >
-              {showSectionHeader && (
-                <div className={`mb-[3px] flex gap-2 px-1 ${isMemorySection ? 'landing-alphabet-memory-note flex-col items-start' : 'items-center justify-between'
-                  }`}>
-                  <span className="text-[clamp(8px,1vw,10px)] font-bold tracking-[-0.01em] text-slate-600">
-                    {section.title}
-                  </span>
-                  {section.description && (
-                    <span className={`text-slate-400 ${isMemorySection
-                      ? 'landing-alphabet-memory-text'
-                      : 'hidden min-[860px]:inline text-[clamp(7px,0.9vw,8px)]'
-                      }`}>
-                      {section.description}
-                    </span>
-                  )}
-                </div>
-              )}
-              <div className="flex flex-col gap-[clamp(2px,0.42vw,5px)]">
-                {section.rows.map((row, rowIdx) => (
-                  <div
-                    key={`landing-alphabet-row-${section.title}-${rowIdx}`}
-                    className="landing-alphabet-grid grid gap-[clamp(2px,0.42vw,5px)]"
-                    style={{
-                      gridTemplateColumns: `repeat(${alphabetColumnCount}, minmax(0, 1fr))`,
-                    }}
-                  >
-                    {row.map((ch) => {
-                      const soundLabel = getLetterSoundLabel(ch, courseId);
-                      const letterKind = getLetterKind(ch, courseId);
-                      const rawSoundHint = letterToHint(ch, transliterationMode, courseId);
-                      const soundHint = String(rawSoundHint || ch).toLowerCase();
-                      const audioLabel = `Прослушать звук буквы ${ch}`;
-                      const isHighlightedLetter = course.alphabetHighlightedLetters?.includes(ch) ?? false;
-
-                      return (
-                        <button
-                          key={ch}
-                          type="button"
-                          onClick={() => speakLetter(ch)}
-                          className={`landing-alphabet-key landing-alphabet-key--${letterKind} ${isHighlightedLetter ? 'landing-alphabet-key--highlighted' : ''} ${isDiacriticSection ? 'landing-alphabet-key--diacritic' : ''} home-alphabet-key rounded-lg border border-slate-200/75 bg-white/90 py-[3px] text-center shadow-sm transition-all hover:border-[rgba(249,115,22,0.35)] hover:bg-slate-50 ${playingLetter === ch ? 'landing-alphabet-key--active' : ''
-                            }`}
-                          title={`Озвучить букву ${ch}. Звучит как: ${soundLabel}`}
-                          aria-label={audioLabel}
-                        >
-                          <div className={`landing-alphabet-letter home-alphabet-letter ${letterFontClass} translate-y-[-1px] leading-none`}>{ch}</div>
-                          <div className="landing-alphabet-translit home-alphabet-translit mt-[2px] leading-none">{soundHint}</div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })}
+              return (
+                <button
+                  key={ch}
+                  type="button"
+                  onClick={() => speakLetter(ch)}
+                  className={`landing-alphabet-key landing-alphabet-key--${letterKind} ${isCompositeSerbianLetter ? 'landing-alphabet-key--composite' : ''} home-alphabet-key rounded-lg border border-slate-200/75 bg-white/90 py-[3px] text-center shadow-sm transition-all hover:border-[rgba(249,115,22,0.35)] hover:bg-slate-50 ${playingLetter === ch ? 'landing-alphabet-key--active' : ''}`}
+                  title={
+                    interfaceLanguage === 'en'
+                      ? `Play the name of the letter ${visibleLetter}`
+                      : `Прослушать название буквы ${visibleLetter}`
+                  }
+                  aria-label={audioLabel}
+                >
+                  <div className={`landing-alphabet-letter home-alphabet-letter ${letterFontClass} translate-y-[-1px] leading-none`}>{visibleLetter}</div>
+                </button>
+              );
+            })}
+          </div>
+        ))}
       </div>
       {hasVowels && (
-        <div className="landing-alphabet-legend" aria-label="Легенда алфавита">
+        <div className="landing-alphabet-legend" aria-label={getAlphabetInstruction(interfaceLanguage)}>
           <span className="landing-alphabet-legend-dot" aria-hidden="true" />
-          <span>Оранжевым выделены гласные</span>
-        </div>
-      )}
-      {course.alphabetLegendNote && (
-        <div className="landing-alphabet-note">
-          {course.alphabetLegendNote}
+          <span>{getAlphabetLegend(interfaceLanguage)}</span>
         </div>
       )}
       <style jsx>{`
@@ -121,33 +92,6 @@ export default function LandingAlphabet() {
         .landing-alphabet-key--consonant {
           border-color: rgba(0, 168, 132, 0.13);
           background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(225, 246, 238, 0.48));
-        }
-
-        .landing-alphabet-key--diacritic {
-          border-color: rgba(107, 114, 128, 0.20) !important;
-          background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(244, 244, 245, 0.66)) !important;
-          box-shadow:
-            0 6px 14px rgba(31, 28, 23, 0.035),
-            inset 0 1px 0 rgba(255, 255, 255, 0.86) !important;
-        }
-
-        .landing-alphabet-memory-section {
-          margin-top: clamp(10px, 1.25vw, 16px);
-        }
-
-        .landing-alphabet-memory-note {
-          border-radius: 12px;
-          background: rgba(255, 247, 237, 0.72);
-          padding: clamp(6px, 0.8vw, 9px);
-        }
-
-        .landing-alphabet-memory-text {
-          display: block;
-          max-width: 100%;
-          font-size: clamp(8px, 0.95vw, 10px);
-          font-weight: 560;
-          line-height: 1.28;
-          letter-spacing: -0.01em;
         }
 
         .landing-alphabet-legend {
@@ -171,17 +115,8 @@ export default function LandingAlphabet() {
           box-shadow: 0 0 0 3px rgba(232, 145, 54, 0.12);
         }
 
-        .landing-alphabet-note {
-          margin-top: 6px;
-          padding-inline: 4px;
-          color: #4b5563;
-          font-size: clamp(8.5px, 1vw, 10px);
-          font-weight: 600;
-          letter-spacing: -0.01em;
-          line-height: 1.28;
-        }
-
         .landing-alphabet-key {
+          min-height: clamp(44px, 6vw, 60px);
           padding: 3px !important;
         }
 
@@ -189,12 +124,9 @@ export default function LandingAlphabet() {
           font-size: clamp(15px, 2.2vw, 20px) !important;
         }
 
-        .landing-alphabet-translit {
-          font-size: clamp(8px, 0.95vw, 10px) !important;
-          white-space: normal;
-          overflow-wrap: break-word;
-          word-break: break-word;
-          hyphens: auto;
+        .landing-alphabet-key--composite .landing-alphabet-letter {
+          font-size: clamp(13px, 1.9vw, 17px) !important;
+          letter-spacing: -0.035em;
         }
 
         .landing-alphabet-key--active {
@@ -243,6 +175,11 @@ export default function LandingAlphabet() {
 
           .landing-alphabet-letter {
             font-size: clamp(14px, 4vw, 18px) !important;
+          }
+
+          .landing-alphabet-key--composite .landing-alphabet-letter {
+            font-size: clamp(11px, 3.2vw, 14px) !important;
+            letter-spacing: -0.045em;
           }
 
         }

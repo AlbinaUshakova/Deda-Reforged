@@ -9,22 +9,26 @@
     {
       "type": "word",
       "ge_text": "für",
-      "ru_meaning": "для"
+      "ru_meaning": "для",
+      "transcription_en": "fewr"
     },
     {
       "type": "word",
       "ge_text": "Für mich",
-      "ru_meaning": "для меня"
+      "ru_meaning": "для меня",
+      "transcription_en": "fewr mikh"
     },
     {
       "type": "word",
       "ge_text": "Tür",
-      "ru_meaning": "дверь"
+      "ru_meaning": "дверь",
+      "transcription_en": "tewr"
     },
     {
       "type": "word",
       "ge_text": "Tür zu",
-      "ru_meaning": "дверь закрыта"
+      "ru_meaning": "дверь закрыта",
+      "transcription_en": "tewr tsu"
     },
     {
       "type": "word",
@@ -32,37 +36,44 @@
       "ru_meaning": "зелёный",
       "accepted_ru": [
         "зеленый"
-      ]
+      ],
+      "transcription_en": "groon"
     },
     {
       "type": "word",
       "ge_text": "über",
-      "ru_meaning": "над"
+      "ru_meaning": "над",
+      "transcription_en": "ewber"
     },
     {
       "type": "word",
       "ge_text": "Müll",
-      "ru_meaning": "мусор"
+      "ru_meaning": "мусор",
+      "transcription_en": "mewll"
     },
     {
       "type": "word",
       "ge_text": "Öl",
-      "ru_meaning": "масло"
+      "ru_meaning": "масло",
+      "transcription_en": "url"
     },
     {
       "type": "word",
       "ge_text": "Öl, bitte",
-      "ru_meaning": "масло, пожалуйста"
+      "ru_meaning": "масло, пожалуйста",
+      "transcription_en": "url, bitte"
     },
     {
       "type": "word",
       "ge_text": "hören",
-      "ru_meaning": "слышать"
+      "ru_meaning": "слышать",
+      "transcription_en": "HUR-en"
     },
     {
       "type": "word",
       "ge_text": "schön",
-      "ru_meaning": "красиво"
+      "ru_meaning": "красиво",
+      "transcription_en": "shurn"
     },
     {
       "type": "word",
@@ -70,37 +81,44 @@
       "ru_meaning": "Кёльн",
       "accepted_ru": [
         "Кельн"
-      ]
+      ],
+      "transcription_en": "kurln"
     },
     {
       "type": "word",
       "ge_text": "zwölf",
-      "ru_meaning": "двенадцать"
+      "ru_meaning": "двенадцать",
+      "transcription_en": "tsfurlf"
     },
     {
       "type": "word",
       "ge_text": "Frühstück",
-      "ru_meaning": "завтрак"
+      "ru_meaning": "завтрак",
+      "transcription_en": "frewhstewck"
     },
     {
       "type": "word",
       "ge_text": "möglich",
-      "ru_meaning": "возможно"
+      "ru_meaning": "возможно",
+      "transcription_en": "murglikh"
     },
     {
       "type": "word",
       "ge_text": "Löffel",
-      "ru_meaning": "ложка"
+      "ru_meaning": "ложка",
+      "transcription_en": "lurffel"
     },
     {
       "type": "word",
       "ge_text": "müde",
-      "ru_meaning": "уставший"
+      "ru_meaning": "уставший",
+      "transcription_en": "mewde"
     },
     {
       "type": "word",
       "ge_text": "fünf",
-      "ru_meaning": "пять"
+      "ru_meaning": "пять",
+      "transcription_en": "fewnf"
     }
   ]
 }

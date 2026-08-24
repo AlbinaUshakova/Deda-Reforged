@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useAppStore } from '@/lib/appStore';
 
 type CatReaction = {
   emoji: string;
@@ -27,11 +28,12 @@ export function BlocksCatHint({
   reactionVisible,
   onShowLanguageHint,
 }: BlocksCatHintProps) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   return (
     <button
       type="button"
       onClick={onShowLanguageHint}
-      aria-label="Подсказка по выбору языка"
+      aria-label={interfaceLanguage === 'en' ? 'Translation direction hint' : 'Подсказка по выбору языка'}
       className="absolute left-0 z-[60] select-none"
       style={{
         top: placement === 'bottom' ? -cellSize * 0.92 : -cellSize * 1.16,
@@ -63,9 +65,19 @@ export function BlocksCatHint({
               />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center px-10 text-[15px] leading-snug text-center font-semibold tracking-tight text-slate-900">
-              Направление перевода
-              <br />
-              меняется в Настройках
+              {interfaceLanguage === 'en' ? (
+                <>
+                  Translation direction
+                  <br />
+                  changes in Settings
+                </>
+              ) : (
+                <>
+                  Направление перевода
+                  <br />
+                  меняется в Настройках
+                </>
+              )}
             </div>
           </div>
         </div>

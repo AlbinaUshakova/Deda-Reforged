@@ -13,85 +13,99 @@
       "type": "word",
       "ge_text": "café",
       "ru_meaning": "кофе",
-      "translit": "кафе"
+      "translit": "кафе",
+      "transcription_en": "kah-FAY"
     },
     {
       "type": "word",
       "ge_text": "un café",
       "ru_meaning": "кофе",
-      "translit": "эн кафе"
+      "translit": "эн кафе",
+      "transcription_en": "uhn kah-FAY"
     },
     {
       "type": "word",
       "ge_text": "thé",
       "ru_meaning": "чай",
-      "translit": "тэ"
+      "translit": "тэ",
+      "transcription_en": "tay"
     },
     {
       "type": "word",
       "ge_text": "un thé",
       "ru_meaning": "чай",
-      "translit": "эн тэ"
+      "translit": "эн тэ",
+      "transcription_en": "uhn tay"
     },
     {
       "type": "word",
       "ge_text": "métro",
       "ru_meaning": "метро",
-      "translit": "метро"
+      "translit": "метро",
+      "transcription_en": "may-TROH"
     },
     {
       "type": "word",
       "ge_text": "le métro",
       "ru_meaning": "метро",
-      "translit": "лё метро"
+      "translit": "лё метро",
+      "transcription_en": "luh may-TROH"
     },
     {
       "type": "word",
       "ge_text": "taxi",
       "ru_meaning": "такси",
-      "translit": "такси"
+      "translit": "такси",
+      "transcription_en": "tak-SEE"
     },
     {
       "type": "word",
       "ge_text": "un taxi",
       "ru_meaning": "такси",
-      "translit": "эн такси"
+      "translit": "эн такси",
+      "transcription_en": "uhn tak-SEE"
     },
     {
       "type": "word",
       "ge_text": "vélo",
       "ru_meaning": "велосипед",
-      "translit": "вело"
+      "translit": "вело",
+      "transcription_en": "vay-LOH"
     },
     {
       "type": "word",
       "ge_text": "clé",
       "ru_meaning": "ключ",
-      "translit": "кле"
+      "translit": "кле",
+      "transcription_en": "klay"
     },
     {
       "type": "word",
       "ge_text": "idée",
       "ru_meaning": "идея",
-      "translit": "идэ"
+      "translit": "идэ",
+      "transcription_en": "ee-DAY"
     },
     {
       "type": "word",
       "ge_text": "kilo",
       "ru_meaning": "килограмм",
-      "translit": "кило"
+      "translit": "кило",
+      "transcription_en": "kee-LOH"
     },
     {
       "type": "word",
       "ge_text": "eau",
       "ru_meaning": "вода",
-      "translit": "о"
+      "translit": "о",
+      "transcription_en": "oh"
     },
     {
       "type": "word",
       "ge_text": "pays",
       "ru_meaning": "страна",
-      "translit": "пэи"
+      "translit": "пэи",
+      "transcription_en": "pay-EE"
     }
   ]
 }

@@ -9,92 +9,110 @@
     {
       "type": "word",
       "ge_text": "niño",
-      "ru_meaning": "мальчик"
+      "ru_meaning": "мальчик",
+      "transcription_en": "NEEN-yoh"
     },
     {
       "type": "word",
       "ge_text": "Niño feliz",
-      "ru_meaning": "счастливый мальчик"
+      "ru_meaning": "счастливый мальчик",
+      "transcription_en": "NEEN-yoh fehlees"
     },
     {
       "type": "word",
       "ge_text": "niña",
-      "ru_meaning": "девочка"
+      "ru_meaning": "девочка",
+      "transcription_en": "NEEN-yah"
     },
     {
       "type": "word",
       "ge_text": "año",
-      "ru_meaning": "год"
+      "ru_meaning": "год",
+      "transcription_en": "AHN-yoh"
     },
     {
       "type": "word",
       "ge_text": "mañana",
-      "ru_meaning": "завтра"
+      "ru_meaning": "завтра",
+      "transcription_en": "mah-NYAH-nah"
     },
     {
       "type": "word",
       "ge_text": "Mañana voy",
-      "ru_meaning": "завтра пойду"
+      "ru_meaning": "завтра пойду",
+      "transcription_en": "mah-NYAH-nah boheheh"
     },
     {
       "type": "word",
       "ge_text": "baño",
-      "ru_meaning": "туалет"
+      "ru_meaning": "туалет",
+      "transcription_en": "bahnoh"
     },
     {
       "type": "word",
       "ge_text": "señor",
-      "ru_meaning": "сеньор"
+      "ru_meaning": "сеньор",
+      "transcription_en": "sehnohr"
     },
     {
       "type": "word",
       "ge_text": "señora",
-      "ru_meaning": "сеньора"
+      "ru_meaning": "сеньора",
+      "transcription_en": "sehnohrah"
     },
     {
       "type": "word",
       "ge_text": "sueño",
-      "ru_meaning": "сон"
+      "ru_meaning": "сон",
+      "transcription_en": "sooehnoh"
     },
     {
       "type": "word",
       "ge_text": "Extra queso",
-      "ru_meaning": "дополнительный сыр"
+      "ru_meaning": "дополнительный сыр",
+      "transcription_en": "ehkstrah KEH-soh"
     },
     {
       "type": "word",
       "ge_text": "pequeño",
-      "ru_meaning": "маленький"
+      "ru_meaning": "маленький",
+      "transcription_en": "pehkehnoh"
     },
     {
       "type": "word",
       "ge_text": "España",
-      "ru_meaning": "Испания"
+      "ru_meaning": "Испания",
+      "transcription_en": "ehspahnah"
     },
     {
       "type": "word",
       "ge_text": "texto",
-      "ru_meaning": "текст"
+      "ru_meaning": "текст",
+      "transcription_en": "tehkstoh"
     },
     {
       "type": "word",
       "ge_text": "taxi",
-      "ru_meaning": "такси"
+      "ru_meaning": "такси",
+      "transcription_en": "TAHK-see"
     },
     {
       "type": "word",
       "ge_text": "examen",
-      "ru_meaning": "экзамен"
+      "ru_meaning": "экзамен",
+      "transcription_en": "ehg-SAH-mehn"
     },
     {
       "type": "word",
       "ge_text": "Mexico",
-      "ru_meaning": "Мексика"
+      "ru_meaning": "Мексика",
+      "transcription_en": "MEH-hee-koh"
     },
     {
       "type": "word",
       "ge_text": "exacto",
-      "ru_meaning": "точно"
+      "ru_meaning": "точно",
+      "transcription_en": "ehksahktoh"
     }
   ]
 }

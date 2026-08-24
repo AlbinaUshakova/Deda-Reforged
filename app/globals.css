@@ -1162,6 +1162,40 @@ h3,
     transition: width 220ms ease;
 }
 
+@media (max-width: 700px) {
+    .lessons-grid-heading {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .lessons-path-section::before {
+        inset-inline: 0;
+        margin-inline: auto;
+        width: 100%;
+    }
+
+    .home-special-heading {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .home-special-summary {
+        text-align: center;
+    }
+
+    .home-special-links {
+        justify-content: center;
+    }
+
+    .home-special-btn {
+        margin-inline: auto;
+    }
+}
+
 .home-special-grid {
     display: flex;
     gap: clamp(9px, 1vw, 12px);
@@ -3061,6 +3095,51 @@ body {
       }
     }
 
+    @media (max-width: 1279px) {
+      .landing-hero-grid {
+        width: 100%;
+        max-width: 100%;
+        min-height: 0;
+        justify-items: center;
+        gap: 22px;
+        margin-inline: auto;
+      }
+
+      .landing-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 720px;
+        margin-inline: auto;
+        text-align: center;
+        padding-top: 0;
+      }
+
+      .landing-topbar {
+        width: 100%;
+        max-width: 720px;
+        margin-inline: auto;
+      }
+
+      .landing-course-buttons,
+      .landing-hero-meta,
+      .landing-cta-row,
+      .landing-alphabet-column {
+        justify-content: center;
+        margin-inline: auto;
+      }
+
+      .landing-course-label,
+      .landing-alphabet-column {
+        text-align: center;
+      }
+
+      .landing-alphabet-column {
+        display: flex;
+        width: 100%;
+      }
+    }
+
     @media (max-width: 767px) {
       .landing-hero-grid {
         justify-items: center;
@@ -3094,13 +3173,39 @@ body {
     }
 
     @media (max-width: 767px) {
+      #languages {
+        align-items: center;
+      }
+
       .landing-shell {
         overflow-x: hidden;
       }
 
+      .landing-hero-grid {
+        width: 100%;
+        max-width: 100%;
+        margin-inline: auto;
+      }
+
       .landing-copy {
         max-width: 100%;
+        margin-inline: auto;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .landing-topbar {
+        justify-content: center;
+        width: 100%;
+        max-width: 560px;
+        margin-inline: auto;
+      }
+
+      .landing-topbar > div:last-child {
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .landing-topbar {
@@ -3108,6 +3213,7 @@ body {
       }
 
       .landing-course-buttons {
+        width: min(100%, 560px);
         justify-content: center;
         margin-inline: auto;
       }
@@ -3228,6 +3334,13 @@ body {
 
       .landing-info-grid {
         grid-template-columns: 1fr;
+        justify-items: center;
+      }
+
+      .landing-info-card {
+        margin-inline: auto;
+        width: 100%;
+        max-width: 560px;
       }
 
       .landing-learning-grid {
@@ -3252,6 +3365,7 @@ body {
       .landing-final-cta {
         grid-template-columns: 1fr;
         text-align: center;
+        justify-items: center;
       }
 
       .landing-final-cat {
@@ -3260,12 +3374,14 @@ body {
 
       .landing-footer {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
       }
 
       .landing-footer-brand,
       .landing-footer-links {
         flex-wrap: wrap;
+        justify-content: center;
       }
 
       .landing-screens-grid {
@@ -3352,6 +3468,9 @@ body {
       .landing-alphabet-column {
         justify-self: center;
         margin-inline: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
       }
 
       .landing-hero-meta {

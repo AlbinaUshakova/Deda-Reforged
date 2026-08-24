@@ -15,85 +15,99 @@
       "type": "word",
       "ge_text": "le",
       "ru_meaning": "артикль (м. р.)",
-      "translit": "лё"
+      "translit": "лё",
+      "transcription_en": "luh"
     },
     {
       "type": "word",
       "ge_text": "la",
       "ru_meaning": "артикль (ж. р.)",
-      "translit": "ла"
+      "translit": "ла",
+      "transcription_en": "lah"
     },
     {
       "type": "word",
       "ge_text": "il",
       "ru_meaning": "он",
-      "translit": "иль"
+      "translit": "иль",
+      "transcription_en": "eel"
     },
     {
       "type": "word",
       "ge_text": "elle",
       "ru_meaning": "она",
-      "translit": "эль"
+      "translit": "эль",
+      "transcription_en": "el"
     },
     {
       "type": "word",
       "ge_text": "lit",
       "ru_meaning": "кровать",
-      "translit": "ли"
+      "translit": "ли",
+      "transcription_en": "lee"
     },
     {
       "type": "word",
       "ge_text": "il lit",
       "ru_meaning": "он читает",
-      "translit": "иль ли"
+      "translit": "иль ли",
+      "transcription_en": "eel lee"
     },
     {
       "type": "word",
       "ge_text": "elle lit",
       "ru_meaning": "она читает",
-      "translit": "эль ли"
+      "translit": "эль ли",
+      "transcription_en": "el lee"
     },
     {
       "type": "word",
       "ge_text": "lire",
       "ru_meaning": "читать",
-      "translit": "лир"
+      "translit": "лир",
+      "transcription_en": "leer"
     },
     {
       "type": "word",
       "ge_text": "sel",
       "ru_meaning": "соль",
-      "translit": "сэль"
+      "translit": "сэль",
+      "transcription_en": "sel"
     },
     {
       "type": "word",
       "ge_text": "le sel",
       "ru_meaning": "соль",
-      "translit": "лё сэль"
+      "translit": "лё сэль",
+      "transcription_en": "luh sel"
     },
     {
       "type": "word",
       "ge_text": "sale",
       "ru_meaning": "грязный",
-      "translit": "саль"
+      "translit": "саль",
+      "transcription_en": "sahl"
     },
     {
       "type": "word",
       "ge_text": "rat",
       "ru_meaning": "крыса",
-      "translit": "ра"
+      "translit": "ра",
+      "transcription_en": "rah"
     },
     {
       "type": "word",
       "ge_text": "art",
       "ru_meaning": "искусство",
-      "translit": "ар"
+      "translit": "ар",
+      "transcription_en": "ar"
     },
     {
       "type": "word",
       "ge_text": "aile",
       "ru_meaning": "крыло",
-      "translit": "эль"
+      "translit": "эль",
+      "transcription_en": "el"
     }
   ]
 }

@@ -7,6 +7,8 @@ import { useAppStore } from '@/lib/appStore';
 import type { EpisodeCard } from '@/lib/clientContentCache';
 import { progressKeyForEpisode } from '@/lib/courses';
 import BlocksGame from '@/components/BlocksGame';
+import { translateRussianMeaningToEnglish } from '@/lib/englishMeanings';
+import { getActiveTranslationLanguage } from '@/lib/settings';
 
 type Word = { ge: string; ru: string; acceptedRu?: string[]; acceptedGe?: string[]; audio?: string };
 type Card = EpisodeCard;
@@ -59,7 +61,7 @@ function parseEpisodeApiResponse(value: unknown): Episode | null {
 
 function getEpisodeFallbackTitle(episodeId: string): string {
   const match = episodeId.match(/^ep(\d+)$/i);
-  if (match) return `Урок ${match[1]}`;
+  if (match) return `Lesson ${match[1]}`;
   return episodeId;
 }
 
@@ -77,6 +79,8 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
   const hydrate = useAppStore(state => state.hydrate);
   const progressMap = useAppStore(state => state.progressMap);
   const courseId = useAppStore(state => state.settings.courseId);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const translationLanguage = getActiveTranslationLanguage(interfaceLanguage);
   const progressEpisodeId = progressKeyForEpisode(courseId, episodeId);
 
   const [title, setTitle] = useState<string>('');
@@ -130,8 +134,12 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
 
         const ws: Word[] = cards.map((c) => ({
           ge: c.ge_text,
-          ru: c.ru_meaning,
-          acceptedRu: c.accepted_ru,
+          ru: translationLanguage === 'en'
+            ? translateRussianMeaningToEnglish(c.ru_meaning)
+            : c.ru_meaning,
+          acceptedRu: translationLanguage === 'en'
+            ? (c.accepted_ru ?? []).map(translateRussianMeaningToEnglish)
+            : c.accepted_ru,
           acceptedGe: c.accepted_ge,
           audio: c.audio_url,
         }));
@@ -151,7 +159,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
     return () => {
       cancelled = true;
     };
-  }, [courseId, episodeId]);
+  }, [courseId, episodeId, translationLanguage]);
 
   const hasWords = useMemo(() => words.length > 0, [words]);
   const studyHref = `/study/${episodeId}` as Route;
@@ -170,31 +178,31 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
     <main className="blocks-game-screen app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">
       <div className="study-screen-orb study-screen-orb--left" aria-hidden="true" />
       <div className="study-screen-orb study-screen-orb--right" aria-hidden="true" />
-      <div className="blocks-screen-shell mx-auto h-full w-full overflow-hidden px-3 sm:px-4 md:px-6 py-8 lg:pl-[124px]">
+      <div className="blocks-screen-shell mx-auto h-full w-full overflow-hidden px-3 py-8 sm:px-4 md:px-6 lg:pl-[124px]">
         <div className="relative z-30 mb-2 mx-auto w-full max-w-[980px]">
-          <div className="relative flex min-h-[52px] items-center justify-end">
-            <div className="topButtons study-page-actions ml-auto flex flex-wrap justify-end gap-2 lg:pr-[112px]">
+          <div className="relative flex min-h-[52px] items-center justify-center lg:justify-end">
+            <div className="topButtons study-page-actions flex flex-wrap justify-center gap-2 lg:ml-auto lg:justify-end lg:pr-[112px]">
             <Link
               className="study-action-pill study-action-pill--secondary"
               href="/lessons"
-              aria-label="Вернуться на главную страницу уроков"
+              aria-label={interfaceLanguage === 'en' ? 'Back to lessons' : 'Вернуться на главную страницу уроков'}
             >
               <span aria-hidden="true">←</span>
-              Главная
+              {interfaceLanguage === 'en' ? 'Home' : 'Главная'}
             </Link>
             <Link
               className="study-action-pill study-action-pill--primary"
               href={studyHref}
-              aria-label="Вернуться к карточкам этого урока"
+              aria-label={interfaceLanguage === 'en' ? 'Back to flashcards for this lesson' : 'Вернуться к карточкам этого урока'}
             >
               <span aria-hidden="true">▣</span>
-              Карточки
+              {interfaceLanguage === 'en' ? 'Cards' : 'Карточки'}
             </Link>
             </div>
           </div>
         </div>
 
-        <div className="relative z-50 w-full">
+        <div className="relative z-50 mx-auto w-full max-w-[980px]">
           {isLoading ? null : hasWords ? (
             <>
               <BlocksGame
@@ -204,8 +212,10 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
               />
             </>
           ) : (
-            <div className="mt-8 text-[var(--text-secondary)]">
-              В этом эпизоде пока нет слов для игры.
+            <div className="mt-8 text-center text-[var(--text-secondary)]">
+              {interfaceLanguage === 'en'
+                ? 'There are no game words in this episode yet.'
+                : 'В этом эпизоде пока нет слов для игры.'}
             </div>
           )}
         </div>

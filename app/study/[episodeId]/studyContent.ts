@@ -15,6 +15,9 @@ export type StudyCard = {
   audio_url?: string;
   topic?: string;
   translit?: string;
+  transcription_ru?: string;
+  transcription_en?: string;
+  ipa?: string;
   playable?: boolean;
 };
 
@@ -29,6 +32,9 @@ export type FlashcardDeckCard = {
   ge_text: string;
   ru_meaning?: string;
   translit?: string;
+  transcription_ru?: string;
+  transcription_en?: string;
+  ipa?: string;
   info_notes?: CardInfoNote[];
   type: 'word' | 'letter';
   topic?: string;
@@ -57,6 +63,9 @@ type RawStudyCard = {
   topic?: unknown;
   reading?: unknown;
   translit?: unknown;
+  transcription_ru?: unknown;
+  transcription_en?: unknown;
+  ipa?: unknown;
   playable?: unknown;
 };
 
@@ -145,6 +154,16 @@ function normalizeStudyCards(cards: unknown[]): StudyCard[] {
         audio_url: audioUrl,
         topic: typeof legacyCard.topic === 'string' ? legacyCard.topic : undefined,
         translit: String(legacyCard.translit ?? legacyCard.reading ?? '').trim() || undefined,
+        transcription_ru:
+          String(legacyCard.transcription_ru ?? legacyCard.translit ?? legacyCard.reading ?? '').trim() || undefined,
+        transcription_en:
+          typeof legacyCard.transcription_en === 'string'
+            ? legacyCard.transcription_en.trim() || undefined
+            : undefined,
+        ipa:
+          typeof legacyCard.ipa === 'string'
+            ? legacyCard.ipa.trim() || undefined
+            : undefined,
         ...(playable === false ? { playable: false } : {}),
       };
     })

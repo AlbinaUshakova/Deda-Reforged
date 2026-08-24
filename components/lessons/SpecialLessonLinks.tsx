@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useAppStore } from '@/lib/appStore';
 import type { LessonListItem } from '@/lib/lessonProgress';
 
 const sectionIconPaths: Record<string, string> = {
@@ -16,6 +17,24 @@ const sectionIconPaths: Record<string, string> = {
   'Помощь и самочувствие': 'M12 5.8v12.4M5.8 12h12.4M8.1 8.1a5.5 5.5 0 1 1 7.8 7.8 5.5 5.5 0 0 1-7.8-7.8Z',
   'Числа': 'M9.6 7.4 8.2 16.6M15.4 7.4 14 16.6M7.4 10.8H17M6.9 13.8H16.5',
 };
+
+const sectionTitleEn: Record<string, string> = {
+  'Приветствия и прощания': 'Greetings and goodbyes',
+  'Вежливость': 'Politeness',
+  'Знакомство': 'Introductions',
+  'Простые ответы': 'Simple answers',
+  'Понимание языка': 'Understanding the language',
+  'Основные вопросы': 'Basic questions',
+  'Магазин и оплата': 'Shopping and payment',
+  'Кафе и еда': 'Cafe and food',
+  'Общественные места': 'Public places',
+  'Помощь и самочувствие': 'Help and wellbeing',
+  'Числа': 'Numbers',
+};
+
+function translateSectionTitle(title: string, interfaceLanguage: 'ru' | 'en') {
+  return interfaceLanguage === 'en' ? (sectionTitleEn[title] ?? title) : title;
+}
 
 function getCardCount(item: LessonListItem): number {
   return Math.max(0, item.cardCount ?? 0);
@@ -46,6 +65,7 @@ export function SpecialLessonLinks({
   practicalSpecials: LessonListItem[];
   phrasesSpecial?: LessonListItem;
 }) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const legacyPhrasesSpecial = phrasesSpecial && !practicalSpecials.some(
     special => special.id === phrasesSpecial.id,
   )
@@ -66,11 +86,17 @@ export function SpecialLessonLinks({
         <div className="home-special-block">
           <div className="home-special-heading">
             <div>
-              <span className="home-special-eyebrow">Фразы для первых дней</span>
-              <span className="home-special-summary">{studiedCards} из {totalCards} изучено</span>
+              <span className="home-special-eyebrow">
+                {interfaceLanguage === 'en' ? 'Phrases for day one' : 'Фразы для первых дней'}
+              </span>
+              <span className="home-special-summary">
+                {interfaceLanguage === 'en'
+                  ? `${studiedCards} of ${totalCards} studied`
+                  : `${studiedCards} из ${totalCards} изучено`}
+              </span>
             </div>
           </div>
-          <div className="home-special-total-progress" aria-label={`Изучено ${totalProgress}%`}>
+          <div className="home-special-total-progress" aria-label={interfaceLanguage === 'en' ? `Studied ${totalProgress}%` : `Изучено ${totalProgress}%`}>
             <span style={{ width: `${totalProgress}%` }} />
           </div>
           <div className="home-special-grid">
@@ -81,20 +107,20 @@ export function SpecialLessonLinks({
               const isComplete = cardCount > 0 && studiedCount >= cardCount;
               const isStarted = studiedCount > 0;
               const metaText = isComplete
-                ? 'Пройдено'
+                ? (interfaceLanguage === 'en' ? 'Completed' : 'Пройдено')
                 : isStarted
-                  ? `${studiedCount} из ${cardCount} изучено`
-                  : `${cardCount} базовых`;
+                  ? (interfaceLanguage === 'en' ? `${studiedCount} of ${cardCount} studied` : `${studiedCount} из ${cardCount} изучено`)
+                  : (interfaceLanguage === 'en' ? `${cardCount} basics` : `${cardCount} базовых`);
 
               return (
                 <Link key={special.id} href={`/study/${special.id}`} legacyBehavior>
                   <a className="home-special-card lesson-card--interactive">
                     <SectionIcon title={special.title} />
                     <span className="home-special-card-copy">
-                      <span className="home-special-card-title">{special.title}</span>
+                      <span className="home-special-card-title">{translateSectionTitle(special.title, interfaceLanguage)}</span>
                       <span className="home-special-card-meta">
                         <span>{metaText}</span>
-                        {!isStarted && !isComplete && <span>Не начато</span>}
+                        {!isStarted && !isComplete && <span>{interfaceLanguage === 'en' ? 'Not started' : 'Не начато'}</span>}
                       </span>
                       <span className="home-special-card-progress" aria-hidden="true">
                         <span style={{ width: `${progressPercent}%` }} />
@@ -113,7 +139,7 @@ export function SpecialLessonLinks({
         {legacyPhrasesSpecial && (
           <Link href={`/study/${legacyPhrasesSpecial.id}`} legacyBehavior>
             <a className="home-special-btn h-9 min-w-[152px] px-3 text-[12px] [@media(max-width:900px)]:h-8 [@media(max-width:900px)]:min-w-[136px] [@media(max-width:900px)]:px-2.5 [@media(max-width:900px)]:text-[11px] [@media(max-width:720px)]:h-7.5 [@media(max-width:720px)]:min-w-[120px] [@media(max-width:720px)]:px-2 [@media(max-width:720px)]:text-[10px] [@media(max-width:480px)]:min-w-[112px] [@media(max-width:480px)]:px-2 rounded-2xl border border-slate-200/80 bg-transparent text-[var(--text-secondary)] flex items-center justify-center gap-1.5 transition-all duration-200 hover:bg-[var(--button-hover)] hover:text-[var(--text-primary)] shadow-[0_8px_18px_rgba(15,23,42,0.1)] [@media(max-width:700px)]:shadow-[0_5px_12px_rgba(15,23,42,0.07)]">
-              <span>{legacyPhrasesSpecial.title}</span>
+              <span>{translateSectionTitle(legacyPhrasesSpecial.title, interfaceLanguage)}</span>
               {typeof legacyPhrasesSpecial.cardCount === 'number' && (
                 <span className="home-special-btn-count">{legacyPhrasesSpecial.cardCount}</span>
               )}

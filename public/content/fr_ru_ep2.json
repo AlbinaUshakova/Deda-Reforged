@@ -13,91 +13,106 @@
       "type": "word",
       "ge_text": "une",
       "ru_meaning": "одна (артикль)",
-      "translit": "юн"
+      "translit": "юн",
+      "transcription_en": "ewn"
     },
     {
       "type": "word",
       "ge_text": "mon",
       "ru_meaning": "мой",
-      "translit": "мон"
+      "translit": "мон",
+      "transcription_en": "mohn"
     },
     {
       "type": "word",
       "ge_text": "nom",
       "ru_meaning": "имя",
-      "translit": "ном"
+      "translit": "ном",
+      "transcription_en": "nohn"
     },
     {
       "type": "word",
       "ge_text": "mon nom",
       "ru_meaning": "моё имя",
-      "translit": "мон ном"
+      "translit": "мон ном",
+      "transcription_en": "mohn nohn"
     },
     {
       "type": "word",
       "ge_text": "non",
       "ru_meaning": "нет",
-      "translit": "нон"
+      "translit": "нон",
+      "transcription_en": "nohn"
     },
     {
       "type": "word",
       "ge_text": "ami",
       "ru_meaning": "друг",
-      "translit": "ами"
+      "translit": "ами",
+      "transcription_en": "ah-MEE"
     },
     {
       "type": "word",
       "ge_text": "mon ami",
       "ru_meaning": "мой друг",
-      "translit": "мон ами"
+      "translit": "мон ами",
+      "transcription_en": "mohn ah-MEE"
     },
     {
       "type": "word",
       "ge_text": "rue",
       "ru_meaning": "улица",
-      "translit": "рю"
+      "translit": "рю",
+      "transcription_en": "rew"
     },
     {
       "type": "word",
       "ge_text": "une rue",
       "ru_meaning": "улица",
-      "translit": "юн рю"
+      "translit": "юн рю",
+      "transcription_en": "ewn rew"
     },
     {
       "type": "word",
       "ge_text": "lune",
       "ru_meaning": "луна",
-      "translit": "люн"
+      "translit": "люн",
+      "transcription_en": "lewn"
     },
     {
       "type": "word",
       "ge_text": "la lune",
       "ru_meaning": "луна",
-      "translit": "ла люн"
+      "translit": "ла люн",
+      "transcription_en": "lah lewn"
     },
     {
       "type": "word",
       "ge_text": "mer",
       "ru_meaning": "море",
-      "translit": "мэр"
+      "translit": "мэр",
+      "transcription_en": "mehr"
     },
     {
       "type": "word",
       "ge_text": "mur",
       "ru_meaning": "стена",
-      "translit": "мюр"
+      "translit": "мюр",
+      "transcription_en": "mewr"
     },
     {
       "type": "word",
       "ge_text": "monde",
       "ru_meaning": "мир",
-      "translit": "монд"
+      "translit": "монд",
+      "transcription_en": "mohnd"
     },
     {
       "type": "word",
       "ge_text": "lundi",
       "ru_meaning": "понедельник",
-      "translit": "лёнди"
+      "translit": "лёнди",
+      "transcription_en": "luhn-DEE"
     }
   ]
 }

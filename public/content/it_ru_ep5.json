@@ -1,0 +1,19 @@
+{
+  "id": "ep5",
+  "title": "Урок 5",
+  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P", "B", "D", "F", "G"],
+  "cards": [
+    { "type": "word", "ge_text": "foto", "ru_meaning": "фото" },
+    { "type": "word", "ge_text": "fumo", "ru_meaning": "дым" },
+    { "type": "word", "ge_text": "fame", "ru_meaning": "голод" },
+    { "type": "word", "ge_text": "gatto", "ru_meaning": "кошка" },
+    { "type": "word", "ge_text": "lago", "ru_meaning": "озеро" },
+    { "type": "word", "ge_text": "gelato", "ru_meaning": "мороженое" },
+    { "type": "word", "ge_text": "figura", "ru_meaning": "фигура" },
+    { "type": "word", "ge_text": "fuga", "ru_meaning": "побег" },
+    { "type": "word", "ge_text": "gola", "ru_meaning": "горло" },
+    { "type": "word", "ge_text": "gita", "ru_meaning": "поездка" },
+    { "type": "word", "ge_text": "Il gatto", "ru_meaning": "кошка" },
+    { "type": "word", "ge_text": "Lago e foto", "ru_meaning": "озеро и фото" }
+  ]
+}

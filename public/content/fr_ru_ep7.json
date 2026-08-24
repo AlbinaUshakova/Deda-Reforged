@@ -15,97 +15,113 @@
       "type": "word",
       "ge_text": "âge",
       "ru_meaning": "возраст",
-      "translit": "аж"
+      "translit": "аж",
+      "transcription_en": "ahzh"
     },
     {
       "type": "word",
       "ge_text": "où",
       "ru_meaning": "где",
-      "translit": "у"
+      "translit": "у",
+      "transcription_en": "oo"
     },
     {
       "type": "word",
       "ge_text": "où est la gare",
       "ru_meaning": "где вокзал",
-      "translit": "у э ла гар"
+      "translit": "у э ла гар",
+      "transcription_en": "oo eh lah gahr"
     },
     {
       "type": "word",
       "ge_text": "gâteau",
       "ru_meaning": "торт",
-      "translit": "гато"
+      "translit": "гато",
+      "transcription_en": "gah-TOH"
     },
     {
       "type": "word",
       "ge_text": "un gâteau",
       "ru_meaning": "торт",
-      "translit": "эн гато"
+      "translit": "эн гато",
+      "transcription_en": "uhn gah-TOH"
     },
     {
       "type": "word",
       "ge_text": "château",
       "ru_meaning": "замок",
-      "translit": "шато"
+      "translit": "шато",
+      "transcription_en": "shah-TOH"
     },
     {
       "type": "word",
       "ge_text": "goût",
       "ru_meaning": "вкус",
-      "translit": "гу"
+      "translit": "гу",
+      "transcription_en": "goo"
     },
     {
       "type": "word",
       "ge_text": "île",
       "ru_meaning": "остров",
-      "translit": "иль"
+      "translit": "иль",
+      "transcription_en": "eel"
     },
     {
       "type": "word",
       "ge_text": "dîner",
       "ru_meaning": "ужин",
-      "translit": "дине"
+      "translit": "дине",
+      "transcription_en": "dee-NAY"
     },
     {
       "type": "word",
       "ge_text": "sûr",
       "ru_meaning": "уверенный",
-      "translit": "сюр"
+      "translit": "сюр",
+      "transcription_en": "sewr"
     },
     {
       "type": "word",
       "ge_text": "maïs",
       "ru_meaning": "кукуруза",
-      "translit": "маис"
+      "translit": "маис",
+      "transcription_en": "mah-EES"
     },
     {
       "type": "word",
       "ge_text": "Noël",
       "ru_meaning": "Рождество",
-      "translit": "ноэль"
+      "translit": "ноэль",
+      "transcription_en": "noh-EL"
     },
     {
       "type": "word",
       "ge_text": "œuf",
       "ru_meaning": "яйцо",
-      "translit": "ёф"
+      "translit": "ёф",
+      "transcription_en": "uhf"
     },
     {
       "type": "word",
       "ge_text": "sœur",
       "ru_meaning": "сестра",
-      "translit": "сёр"
+      "translit": "сёр",
+      "transcription_en": "sewr"
     },
     {
       "type": "word",
       "ge_text": "ma sœur",
       "ru_meaning": "моя сестра",
-      "translit": "ма сёр"
+      "translit": "ма сёр",
+      "transcription_en": "mah sewr"
     },
     {
       "type": "word",
       "ge_text": "cœur",
       "ru_meaning": "сердце",
-      "translit": "кёр"
+      "translit": "кёр",
+      "transcription_en": "kuhr"
     }
   ]
 }

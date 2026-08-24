@@ -13,91 +13,106 @@
       "type": "word",
       "ge_text": "à",
       "ru_meaning": "в / к",
-      "translit": "а"
+      "translit": "а",
+      "transcription_en": "ah"
     },
     {
       "type": "word",
       "ge_text": "très",
       "ru_meaning": "очень",
-      "translit": "трэ"
+      "translit": "трэ",
+      "transcription_en": "treh"
     },
     {
       "type": "word",
       "ge_text": "très bon",
       "ru_meaning": "очень хорошо",
-      "translit": "трэ бон"
+      "translit": "трэ бон",
+      "transcription_en": "treh bohn"
     },
     {
       "type": "word",
       "ge_text": "près",
       "ru_meaning": "близко",
-      "translit": "прэ"
+      "translit": "прэ",
+      "transcription_en": "preh"
     },
     {
       "type": "word",
       "ge_text": "voilà",
       "ru_meaning": "вот",
-      "translit": "вуаля"
+      "translit": "вуаля",
+      "transcription_en": "vwah-LAH"
     },
     {
       "type": "word",
       "ge_text": "voilà le café",
       "ru_meaning": "вот кофе",
-      "translit": "вуаля лё кафе"
+      "translit": "вуаля лё кафе",
+      "transcription_en": "vwah-LAH luh kah-FAY"
     },
     {
       "type": "word",
       "ge_text": "à la gare",
       "ru_meaning": "на вокзал",
-      "translit": "а ла гар"
+      "translit": "а ла гар",
+      "transcription_en": "ah lah gahr"
     },
     {
       "type": "word",
       "ge_text": "ça",
       "ru_meaning": "это",
-      "translit": "са"
+      "translit": "са",
+      "transcription_en": "sah"
     },
     {
       "type": "word",
       "ge_text": "garçon",
       "ru_meaning": "официант",
-      "translit": "гарсон"
+      "translit": "гарсон",
+      "transcription_en": "gahr-SOHN"
     },
     {
       "type": "word",
       "ge_text": "français",
       "ru_meaning": "французский",
-      "translit": "франсэ"
+      "translit": "франсэ",
+      "transcription_en": "frahn-SAY"
     },
     {
       "type": "word",
       "ge_text": "père",
       "ru_meaning": "отец",
-      "translit": "пэр"
+      "translit": "пэр",
+      "transcription_en": "pehr"
     },
     {
       "type": "word",
       "ge_text": "mère",
       "ru_meaning": "мать",
-      "translit": "мэр"
+      "translit": "мэр",
+      "transcription_en": "mehr"
     },
     {
       "type": "word",
       "ge_text": "hôtel",
       "ru_meaning": "отель",
-      "translit": "отэль"
+      "translit": "отэль",
+      "transcription_en": "oh-TEL"
     },
     {
       "type": "word",
       "ge_text": "fête",
       "ru_meaning": "праздник",
-      "translit": "фэт"
+      "translit": "фэт",
+      "transcription_en": "feht"
     },
     {
       "type": "word",
       "ge_text": "forêt",
       "ru_meaning": "лес",
-      "translit": "форэ"
+      "translit": "форэ",
+      "transcription_en": "foh-REH"
     }
   ]
 }

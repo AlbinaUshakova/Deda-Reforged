@@ -9,16 +9,16 @@ type HeaderRoute = {
   fallbackTitle: string;
 };
 
-function getKnownFallbackTitle(episodeId: string): string {
+function getKnownFallbackTitle(episodeId: string, interfaceLanguage: 'ru' | 'en'): string {
   const match = episodeId.match(/^ep(\d+)$/i);
-  if (match) return `Урок ${match[1]}`;
-  if (episodeId === 'favorites') return 'Избранное';
-  if (episodeId === 'all') return 'Все уроки';
-  if (episodeId === 'phrases') return 'Вежливые фразы';
+  if (match) return interfaceLanguage === 'en' ? `Lesson ${match[1]}` : `Урок ${match[1]}`;
+  if (episodeId === 'favorites') return interfaceLanguage === 'en' ? 'Favorites' : 'Избранное';
+  if (episodeId === 'all') return interfaceLanguage === 'en' ? 'All lessons' : 'Все уроки';
+  if (episodeId === 'phrases') return interfaceLanguage === 'en' ? 'Useful phrases' : 'Вежливые фразы';
   return '';
 }
 
-function getHeaderRoute(pathname: string): HeaderRoute | null {
+function getHeaderRoute(pathname: string, interfaceLanguage: 'ru' | 'en'): HeaderRoute | null {
   const parts = pathname.split('/').filter(Boolean);
   if (parts.length < 2) return null;
 
@@ -32,14 +32,15 @@ function getHeaderRoute(pathname: string): HeaderRoute | null {
 
   return {
     episodeId,
-    fallbackTitle: getKnownFallbackTitle(episodeId),
+    fallbackTitle: getKnownFallbackTitle(episodeId, interfaceLanguage),
   };
 }
 
 export default function HeaderLessonTitle() {
   const pathname = usePathname();
   const courseId = useAppStore(state => state.settings.courseId);
-  const route = useMemo(() => getHeaderRoute(pathname), [pathname]);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const route = useMemo(() => getHeaderRoute(pathname, interfaceLanguage), [interfaceLanguage, pathname]);
   const [resolvedTitle, setResolvedTitle] = useState('');
 
   useEffect(() => {

@@ -10,92 +10,110 @@
     {
       "type": "word",
       "ge_text": "para",
-      "ru_meaning": "деньги"
+      "ru_meaning": "деньги",
+      "transcription_en": "pah-RAH"
     },
     {
       "type": "word",
       "ge_text": "para ver",
-      "ru_meaning": "дай деньги"
+      "ru_meaning": "дай деньги",
+      "transcription_en": "pah-RAH vehr"
     },
     {
       "type": "word",
       "ge_text": "pazar",
-      "ru_meaning": "рынок"
+      "ru_meaning": "рынок",
+      "transcription_en": "pah-ZAHR"
     },
     {
       "type": "word",
       "ge_text": "kapı",
-      "ru_meaning": "дверь"
+      "ru_meaning": "дверь",
+      "transcription_en": "kah-PUH"
     },
     {
       "type": "word",
       "ge_text": "peki",
-      "ru_meaning": "ладно"
+      "ru_meaning": "ладно",
+      "transcription_en": "peh-KEE"
     },
     {
       "type": "word",
       "ge_text": "kitap",
-      "ru_meaning": "книга"
+      "ru_meaning": "книга",
+      "transcription_en": "kee-TAHP"
     },
     {
       "type": "word",
       "ge_text": "gün",
-      "ru_meaning": "день"
+      "ru_meaning": "день",
+      "transcription_en": "gewn"
     },
     {
       "type": "word",
       "ge_text": "bugün",
-      "ru_meaning": "сегодня"
+      "ru_meaning": "сегодня",
+      "transcription_en": "boo-GEWN"
     },
     {
       "type": "word",
       "ge_text": "üzüm",
-      "ru_meaning": "виноград"
+      "ru_meaning": "виноград",
+      "transcription_en": "ew-ZEWM"
     },
     {
       "type": "word",
       "ge_text": "öp beni",
-      "ru_meaning": "поцелуй меня"
+      "ru_meaning": "поцелуй меня",
+      "transcription_en": "urp beh-NEE"
     },
     {
       "type": "word",
       "ge_text": "süt",
-      "ru_meaning": "молоко"
+      "ru_meaning": "молоко",
+      "transcription_en": "sewt"
     },
     {
       "type": "word",
       "ge_text": "kötü",
-      "ru_meaning": "плохо"
+      "ru_meaning": "плохо",
+      "transcription_en": "kuh-TUW"
     },
     {
       "type": "word",
       "ge_text": "güzel",
-      "ru_meaning": "красиво"
+      "ru_meaning": "красиво",
+      "transcription_en": "gew-ZEL"
     },
     {
       "type": "word",
       "ge_text": "çok güzel",
-      "ru_meaning": "очень красиво"
+      "ru_meaning": "очень красиво",
+      "transcription_en": "chok gew-ZEL"
     },
     {
       "type": "word",
       "ge_text": "söz",
-      "ru_meaning": "слово"
+      "ru_meaning": "слово",
+      "transcription_en": "suhz"
     },
     {
       "type": "word",
       "ge_text": "göz",
-      "ru_meaning": "глаз"
+      "ru_meaning": "глаз",
+      "transcription_en": "guhz"
     },
     {
       "type": "word",
       "ge_text": "dört",
-      "ru_meaning": "четыре"
+      "ru_meaning": "четыре",
+      "transcription_en": "durt"
     },
     {
       "type": "word",
       "ge_text": "ödev",
-      "ru_meaning": "задание"
+      "ru_meaning": "задание",
+      "transcription_en": "uh-DEV"
     }
   ]
 }

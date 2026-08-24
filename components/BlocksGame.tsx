@@ -14,8 +14,10 @@ import {
   pickNextIndexFromQueue,
   wordKey,
 } from '@/lib/blocksAnswer';
+import { getDisplayText, type TransliterationMode } from '@/lib/transliteration';
 import { readFavoriteWords, toggleFavoriteWord } from '@/lib/studyPreferences';
 import { upsertProgress } from '@/lib/supabase';
+import { getActiveTransliterationMode } from '@/lib/settings';
 
 type Word = { ge: string; ru: string; acceptedRu?: string[]; acceptedGe?: string[]; audio?: string };
 
@@ -62,6 +64,10 @@ export default function BlocksGame({
     '--prompt-size': 'clamp(22px,2.5vw,31px)',
   };
   const translationDirection = useAppStore(state => state.settings.translationDirection);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const courseId = useAppStore(state => state.settings.courseId);
+  const storedTransliterationMode = useAppStore(state => state.settings.transliterationMode);
+  const transliterationMode = getActiveTransliterationMode(interfaceLanguage, courseId, storedTransliterationMode) as TransliterationMode;
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const isFavoritesEpisode = episodeId === 'favorites';
   const [celebrate, setCelebrate] = useState(false);
@@ -416,7 +422,7 @@ export default function BlocksGame({
     setError(false);
     setAnswerState('idle');
     setShowCorrect(true);
-    setAnswer(direction === 'ge-ru' ? question.ru : question.ge);
+    setAnswer(direction === 'ge-ru' ? question.ru : getDisplayText(question.ge, transliterationMode, courseId));
   };
 
   const handleRevealTranslation = () => {
@@ -478,7 +484,7 @@ export default function BlocksGame({
   const isCurrentFavorite =
     currentGe != null ? favoriteWords.has(currentGe) : false;
   const promptText = question
-    ? (direction === 'ge-ru' ? question.ge : question.ru)
+    ? (direction === 'ge-ru' ? getDisplayText(question.ge, transliterationMode, courseId) : question.ru)
     : '';
   return (
     <div className="blocks-game-root flex w-full justify-center lg:justify-start mt-1 md:mt-2">

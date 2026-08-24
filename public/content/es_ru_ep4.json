@@ -10,42 +10,50 @@
     {
       "type": "word",
       "ge_text": "ayer",
-      "ru_meaning": "вчера"
+      "ru_meaning": "вчера",
+      "transcription_en": "ah-YEHR"
     },
     {
       "type": "word",
       "ge_text": "ya",
-      "ru_meaning": "уже"
+      "ru_meaning": "уже",
+      "transcription_en": "yah"
     },
     {
       "type": "word",
       "ge_text": "yo",
-      "ru_meaning": "я"
+      "ru_meaning": "я",
+      "transcription_en": "yoh"
     },
     {
       "type": "word",
       "ge_text": "hay",
-      "ru_meaning": "есть"
+      "ru_meaning": "есть",
+      "transcription_en": "aheheh"
     },
     {
       "type": "word",
       "ge_text": "Hay agua",
-      "ru_meaning": "есть вода"
+      "ru_meaning": "есть вода",
+      "transcription_en": "aheheh ahgooah"
     },
     {
       "type": "word",
       "ge_text": "hoy",
-      "ru_meaning": "сегодня"
+      "ru_meaning": "сегодня",
+      "transcription_en": "oheheh"
     },
     {
       "type": "word",
       "ge_text": "hola",
-      "ru_meaning": "привет"
+      "ru_meaning": "привет",
+      "transcription_en": "OH-lah"
     },
     {
       "type": "word",
       "ge_text": "hora",
-      "ru_meaning": "час"
+      "ru_meaning": "час",
+      "transcription_en": "ohrah"
     },
     {
       "type": "word",
@@ -53,47 +61,56 @@
       "ru_meaning": "лёд",
       "accepted_ru": [
         "лед"
-      ]
+      ],
+      "transcription_en": "eeehloh"
     },
     {
       "type": "word",
       "ge_text": "queso",
-      "ru_meaning": "сыр"
+      "ru_meaning": "сыр",
+      "transcription_en": "KEH-soh"
     },
     {
       "type": "word",
       "ge_text": "aqui",
-      "ru_meaning": "здесь"
+      "ru_meaning": "здесь",
+      "transcription_en": "ahkee"
     },
     {
       "type": "word",
       "ge_text": "quiero",
-      "ru_meaning": "хочу"
+      "ru_meaning": "хочу",
+      "transcription_en": "KYEH-roh"
     },
     {
       "type": "word",
       "ge_text": "quince",
-      "ru_meaning": "пятнадцать"
+      "ru_meaning": "пятнадцать",
+      "transcription_en": "KEEN-seh"
     },
     {
       "type": "word",
       "ge_text": "que",
-      "ru_meaning": "что"
+      "ru_meaning": "что",
+      "transcription_en": "keh"
     },
     {
       "type": "word",
       "ge_text": "hay queso",
-      "ru_meaning": "есть сыр"
+      "ru_meaning": "есть сыр",
+      "transcription_en": "aheheh KEH-soh"
     },
     {
       "type": "word",
       "ge_text": "Quiero queso",
-      "ru_meaning": "хочу сыр"
+      "ru_meaning": "хочу сыр",
+      "transcription_en": "KYEH-roh KEH-soh"
     },
     {
       "type": "word",
       "ge_text": "quedo",
-      "ru_meaning": "остаюсь"
+      "ru_meaning": "остаюсь",
+      "transcription_en": "kehdoh"
     }
   ]
 }

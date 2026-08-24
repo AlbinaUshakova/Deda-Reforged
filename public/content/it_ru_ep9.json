@@ -1,0 +1,19 @@
+{
+  "id": "ep9",
+  "title": "Урок 9",
+  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P", "B", "D", "F", "G", "S", "V", "H", "Q", "Z", "J", "K", "W", "X", "Y"],
+  "cards": [
+    { "type": "word", "ge_text": "taxi", "ru_meaning": "такси" },
+    { "type": "word", "ge_text": "jeans", "ru_meaning": "джинсы" },
+    { "type": "word", "ge_text": "jazz", "ru_meaning": "джаз" },
+    { "type": "word", "ge_text": "kiwi", "ru_meaning": "киви" },
+    { "type": "word", "ge_text": "yoga", "ru_meaning": "йога" },
+    { "type": "word", "ge_text": "web", "ru_meaning": "интернет" },
+    { "type": "word", "ge_text": "wifi", "ru_meaning": "вайфай" },
+    { "type": "word", "ge_text": "xilofono", "ru_meaning": "ксилофон" },
+    { "type": "word", "ge_text": "kayak", "ru_meaning": "каяк" },
+    { "type": "word", "ge_text": "yeti", "ru_meaning": "йети" },
+    { "type": "word", "ge_text": "Il taxi", "ru_meaning": "такси" },
+    { "type": "word", "ge_text": "Yoga e jazz", "ru_meaning": "йога и джаз" }
+  ]
+}

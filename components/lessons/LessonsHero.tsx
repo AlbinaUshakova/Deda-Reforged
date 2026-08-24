@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import type { Route } from 'next';
+import { useAppStore } from '@/lib/appStore';
 import type { LessonListItem } from '@/lib/lessonProgress';
 import { getCourse, type CourseId } from '@/lib/courses';
-import { letterToHint, type TransliterationMode } from '@/lib/transliteration';
+import { getDisplayText, letterToHint, type TransliterationMode } from '@/lib/transliteration';
 
 type LessonsHeroProps = {
   recommendedLesson?: LessonListItem;
@@ -40,12 +41,18 @@ export function LessonsHero({
   masteredCount,
   onSpeakLetter,
 }: LessonsHeroProps) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const course = getCourse(courseId);
   const lessonHref = (recommendedLesson ? `/study/${recommendedLesson.id}` : '/study/ep1') as Route;
-  const lessonLabel = recommendedLessonNumber ? `Урок ${recommendedLessonNumber}` : 'Первый урок';
+  const lessonLabel = recommendedLessonNumber
+    ? (interfaceLanguage === 'en' ? `Lesson ${recommendedLessonNumber}` : `Урок ${recommendedLessonNumber}`)
+    : (interfaceLanguage === 'en' ? 'First lesson' : 'Первый урок');
   const hasStarted = recommendedScore > 0;
-  const ctaLabel = hasStarted ? 'Продолжить' : 'Начать урок';
+  const ctaLabel = hasStarted
+    ? (interfaceLanguage === 'en' ? 'Continue' : 'Продолжить')
+    : (interfaceLanguage === 'en' ? 'Start lesson' : 'Начать урок');
   const heroLetters = recommendedLetters.length ? recommendedLetters : course.alphabet.slice(0, 4);
+  const visibleHeroLetters = heroLetters.map((letter) => getDisplayText(letter, transliterationMode, courseId));
 
   // Мета для снижения неопределённости перед уроком
   const cardCount = Math.max(0, recommendedLesson?.cardCount ?? 0);
@@ -58,15 +65,17 @@ export function LessonsHero({
   const courseHint =
     totalLessons > 0
       ? lessonsLeft === 0
-        ? 'Курс пройден — все ачивки собраны!'
-        : `Пройдено ${masteredCount} из ${totalLessons} · осталось ${plural(lessonsLeft, 'урок', 'урока', 'уроков')}`
+        ? (interfaceLanguage === 'en' ? 'Course complete, all achievements collected!' : 'Курс пройден — все ачивки собраны!')
+        : interfaceLanguage === 'en'
+          ? `Completed ${masteredCount} of ${totalLessons} · ${lessonsLeft} left`
+          : `Пройдено ${masteredCount} из ${totalLessons} · осталось ${plural(lessonsLeft, 'урок', 'урока', 'уроков')}`
       : '';
 
   const subtitle = hasStarted
-    ? 'Ещё немного игры — и урок засчитан, ачивка твоя.'
-    : 'Новые буквы → игра → новая ачивка в коллекции.';
+    ? (interfaceLanguage === 'en' ? 'A little more play and the lesson is yours.' : 'Ещё немного игры — и урок засчитан, ачивка твоя.')
+    : (interfaceLanguage === 'en' ? 'New letters → game → new achievement.' : 'Новые буквы → игра → новая ачивка в коллекции.');
 
-  const decorGlyph = heroLetters[0] ?? course.alphabet[0] ?? '';
+  const decorGlyph = visibleHeroLetters[0] ?? getDisplayText(course.alphabet[0] ?? '', transliterationMode, courseId);
 
   return (
     <section className="mx-auto w-full max-w-[900px] px-[clamp(18px,4.4vw,36px)]">
@@ -92,10 +101,12 @@ export function LessonsHero({
           </span>
         )}
 
-        <div className="relative z-10 sm:max-w-[74%]">
+        <div className="relative z-10 mx-auto flex flex-col items-center text-center sm:mx-0 sm:block sm:max-w-[74%] sm:text-left">
           <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
-            {hasStarted ? 'Продолжаем' : 'Сейчас'} · {lessonLabel}
-            {totalLessons > 0 ? ` из ${totalLessons}` : ''}
+            {hasStarted
+              ? (interfaceLanguage === 'en' ? 'Continue' : 'Продолжаем')
+              : (interfaceLanguage === 'en' ? 'Now' : 'Сейчас')} · {lessonLabel}
+            {totalLessons > 0 ? interfaceLanguage === 'en' ? ` of ${totalLessons}` : ` из ${totalLessons}` : ''}
           </span>
           <h2 className="mt-1 text-[clamp(26px,5.2vw,38px)] font-extrabold leading-[0.98] tracking-[-0.03em] text-[var(--text-primary)]">
             {lessonLabel}
@@ -104,48 +115,51 @@ export function LessonsHero({
             {subtitle}
           </p>
 
-          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:justify-start">
             <Link
               href={lessonHref}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-7 py-3.5 text-[15px] font-semibold text-white shadow-[0_10px_24px_rgba(255,107,53,0.24)] transition-all duration-150 hover:-translate-y-0.5 hover:bg-[var(--accent-hover)] active:scale-[0.98]"
-              aria-label={`Открыть ${lessonLabel}`}
+              aria-label={interfaceLanguage === 'en' ? `Open ${lessonLabel}` : `Открыть ${lessonLabel}`}
             >
               <span aria-hidden="true">▶</span>
               {ctaLabel}
             </Link>
 
-            <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[12px] font-medium text-[var(--text-tertiary)]">
-              {estMinutes > 0 && <span>≈ {estMinutes} мин</span>}
+            <div className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-[12px] font-medium text-[var(--text-tertiary)] sm:justify-start">
+              {estMinutes > 0 && <span>≈ {estMinutes} {interfaceLanguage === 'en' ? 'min' : 'мин'}</span>}
               {estMinutes > 0 && heroLetters.length > 0 && <span aria-hidden="true">·</span>}
-              {heroLetters.length > 0 && (
-                <span>{plural(heroLetters.length, 'новая буква', 'новые буквы', 'новых букв')}</span>
+            {visibleHeroLetters.length > 0 && (
+                <span>{interfaceLanguage === 'en'
+                  ? `${visibleHeroLetters.length} new ${visibleHeroLetters.length === 1 ? 'letter' : 'letters'}`
+                  : plural(visibleHeroLetters.length, 'новая буква', 'новые буквы', 'новых букв')}</span>
               )}
               {cardCount > 0 && <span aria-hidden="true">·</span>}
-              {cardCount > 0 && <span>{plural(cardCount, 'карточка', 'карточки', 'карточек')} + игра</span>}
+              {cardCount > 0 && <span>{interfaceLanguage === 'en'
+                ? `${cardCount} ${cardCount === 1 ? 'card' : 'cards'} + game`
+                : `${plural(cardCount, 'карточка', 'карточки', 'карточек')} + игра`}</span>}
             </div>
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-1.5" aria-label="Буквы урока">
-            {heroLetters.map((letter) => (
+          <div className="mt-4 flex flex-wrap justify-center gap-1.5 sm:justify-start" aria-label={interfaceLanguage === 'en' ? 'Lesson letters' : 'Буквы урока'}>
+            {heroLetters.map((letter, index) => {
+              const visibleLetter = visibleHeroLetters[index] ?? letter;
+              return (
               <button
                 key={letter}
                 type="button"
                 onClick={() => onSpeakLetter(letter)}
                 className="flex min-w-[40px] flex-col items-center rounded-xl border border-[var(--border-soft)] bg-[#fbf7f1] px-2.5 py-1.5 transition-colors hover:bg-[#fff2e8]"
-                aria-label={`Послушать букву ${letter}`}
-                title={`Послушать букву ${letter}`}
+                aria-label={interfaceLanguage === 'en' ? `Hear letter ${visibleLetter}` : `Послушать букву ${visibleLetter}`}
+                title={interfaceLanguage === 'en' ? `Hear letter ${visibleLetter}` : `Послушать букву ${visibleLetter}`}
               >
                 <span
                   className="text-[clamp(16px,1.9vw,20px)] font-semibold leading-none text-[var(--text-primary)]"
                   style={{ fontFamily: courseId === 'ka' ? 'var(--font-georgian)' : 'var(--font-display)' }}
                 >
-                  {letter}
-                </span>
-                <span className="mt-0.5 text-[10px] leading-none text-[var(--text-tertiary)]">
-                  {letterToHint(letter, transliterationMode, courseId).split('/').slice(0, 2).join('/')}
+                  {visibleLetter}
                 </span>
               </button>
-            ))}
+            )})}
           </div>
 
           {totalLessons > 0 && (

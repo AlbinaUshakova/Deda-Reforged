@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import type { MouseEvent, Ref } from 'react';
+import { useAppStore } from '@/lib/appStore';
 import type { CourseId } from '@/lib/courses';
 import type { LessonListItem, LessonStatus } from '@/lib/lessonProgress';
+import { getDisplayText, type TransliterationMode } from '@/lib/transliteration';
 
 function getLessonSymbolSize(symbol: string, baseSizePx: number) {
   return Math.max(14, baseSizePx - Math.max(0, symbol.length - 1) * 5);
@@ -16,6 +18,7 @@ export function LessonGrid({
   lettersByEp,
   lessonTargetScore,
   lessonLetterSizePx,
+  transliterationMode,
   statusById,
   recommendedEpId,
   recommendedLessonRef,
@@ -30,6 +33,7 @@ export function LessonGrid({
   lettersByEp: Record<string, string[]>;
   lessonTargetScore: number;
   lessonLetterSizePx: number;
+  transliterationMode: TransliterationMode;
   statusById: Record<string, LessonStatus>;
   recommendedEpId?: string;
   recommendedLessonRef: Ref<HTMLAnchorElement>;
@@ -38,29 +42,36 @@ export function LessonGrid({
   onHideLockedLessonTooltip: () => void;
   onLockedLessonClick: (episodeId: string, event: MouseEvent<HTMLAnchorElement>) => void;
 }) {
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   return (
     <div className="relative z-[150] mx-auto w-full max-w-[1160px]">
       <div className="lessons-shelf flex gap-3 overflow-x-auto snap-x snap-mandatory pb-3 pt-1 -mx-[clamp(18px,4.4vw,36px)] px-[clamp(18px,4.4vw,36px)]">
         {normalEpisodes.map((ep, i) => {
           const best = progress[ep.id] ?? 0;
           const letters = lettersByEp[ep.id] ?? [];
-          const visualSymbols = letters;
+          const visualSymbols = letters.map((letter) => getDisplayText(letter, transliterationMode, courseId));
           const earnedPoints = Math.min(Math.max(best, 0), lessonTargetScore);
           const progressRatio = Math.min(best / lessonTargetScore, 1);
           const progressPercent = Math.round(progressRatio * 100);
           const status = statusById[ep.id];
           const isRecommended = status === 'current';
-          const previousLessonTitle = i > 0 ? `урока ${i}` : 'предыдущего урока';
+          const previousLessonTitle = i > 0
+            ? (interfaceLanguage === 'en' ? `lesson ${i}` : `урока ${i}`)
+            : (interfaceLanguage === 'en' ? 'the previous lesson' : 'предыдущего урока');
           const progressTone = `home-progress-fill--${status ?? 'unknown'}`;
           const hasVisualSymbols = visualSymbols.length > 0;
           const statusLabel =
             status === 'mastered'
-              ? 'Пройдено'
+              ? (interfaceLanguage === 'en' ? 'Completed' : 'Пройдено')
               : status === 'current'
-                ? best > 0 ? 'Продолжить' : 'Начать'
+                ? best > 0
+                  ? (interfaceLanguage === 'en' ? 'Continue' : 'Продолжить')
+                  : (interfaceLanguage === 'en' ? 'Start' : 'Начать')
                 : status === 'almost'
-                  ? 'Доступен'
-                  : `Откроется после ${previousLessonTitle}`;
+                  ? (interfaceLanguage === 'en' ? 'Available' : 'Доступен')
+                  : interfaceLanguage === 'en'
+                    ? `Unlocks after ${previousLessonTitle}`
+                    : `Откроется после ${previousLessonTitle}`;
 
           return (
             <div
@@ -99,7 +110,7 @@ export function LessonGrid({
                       <span className={`home-lesson-badge home-lesson-badge--${status ?? 'unknown'}`} aria-hidden="true">{i + 1}</span>
                       <span className="flex min-w-0 flex-col text-left">
                         <span className="home-lesson-title text-[13px] [@media(max-width:560px)]:text-[12px] font-medium text-slate-700">
-                          Урок {i + 1}
+                          {interfaceLanguage === 'en' ? `Lesson ${i + 1}` : `Урок ${i + 1}`}
                         </span>
                         {status !== 'locked' && (
                           <span className="home-lesson-state-label">{statusLabel}</span>
@@ -172,7 +183,9 @@ export function LessonGrid({
                           />
                         </div>
                         <span className="home-progress-score">
-                          {earnedPoints} из {lessonTargetScore} очков
+                          {interfaceLanguage === 'en'
+                            ? `${earnedPoints} of ${lessonTargetScore} points`
+                            : `${earnedPoints} из ${lessonTargetScore} очков`}
                         </span>
                       </div>
                     )}
@@ -184,15 +197,27 @@ export function LessonGrid({
                         className="locked-lesson-tooltip-arrow absolute left-1/2 top-0 h-0 w-0 -translate-x-1/2 -translate-y-[5px] border-l-[5px] border-r-[5px] border-b-[5px] border-l-transparent border-r-transparent"
                       />
                       <span>
-                        Наберите <span className="font-semibold text-[var(--progress-current)]">1 очко</span>
-                        <br />
-                        в предыдущем уроке,
-                        <br />
-                        чтобы открыть этот.
+                        {interfaceLanguage === 'en' ? (
+                          <>
+                            Score <span className="font-semibold text-[var(--progress-current)]">1 point</span>
+                            <br />
+                            in the previous lesson
+                            <br />
+                            to unlock this one.
+                          </>
+                        ) : (
+                          <>
+                            Наберите <span className="font-semibold text-[var(--progress-current)]">1 очко</span>
+                            <br />
+                            в предыдущем уроке,
+                            <br />
+                            чтобы открыть этот.
+                          </>
+                        )}
                       </span>
                     </div>
                   )}
-                  {isRecommended && <span className="sr-only">Рекомендуемый урок</span>}
+                  {isRecommended && <span className="sr-only">{interfaceLanguage === 'en' ? 'Recommended lesson' : 'Рекомендуемый урок'}</span>}
                 </a>
               </Link>
             </div>

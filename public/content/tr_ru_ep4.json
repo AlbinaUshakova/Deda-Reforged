@@ -10,92 +10,110 @@
     {
       "type": "word",
       "ge_text": "gel",
-      "ru_meaning": "иди сюда"
+      "ru_meaning": "иди сюда",
+      "transcription_en": "gel"
     },
     {
       "type": "word",
       "ge_text": "bize gel",
-      "ru_meaning": "приходи к нам"
+      "ru_meaning": "приходи к нам",
+      "transcription_en": "bee-ZEH gel"
     },
     {
       "type": "word",
       "ge_text": "git",
-      "ru_meaning": "иди"
+      "ru_meaning": "иди",
+      "transcription_en": "geet"
     },
     {
       "type": "word",
       "ge_text": "şimdi",
-      "ru_meaning": "сейчас"
+      "ru_meaning": "сейчас",
+      "transcription_en": "SHEEM-dee"
     },
     {
       "type": "word",
       "ge_text": "iş",
-      "ru_meaning": "работа"
+      "ru_meaning": "работа",
+      "transcription_en": "eesh"
     },
     {
       "type": "word",
       "ge_text": "beş",
-      "ru_meaning": "пять"
+      "ru_meaning": "пять",
+      "transcription_en": "besh"
     },
     {
       "type": "word",
       "ge_text": "şeker",
-      "ru_meaning": "сахар"
+      "ru_meaning": "сахар",
+      "transcription_en": "sheh-KEHR"
     },
     {
       "type": "word",
       "ge_text": "yaş",
-      "ru_meaning": "возраст"
+      "ru_meaning": "возраст",
+      "transcription_en": "yahsh"
     },
     {
       "type": "word",
       "ge_text": "şey",
-      "ru_meaning": "вещь"
+      "ru_meaning": "вещь",
+      "transcription_en": "shay"
     },
     {
       "type": "word",
       "ge_text": "şu ne",
-      "ru_meaning": "что это"
+      "ru_meaning": "что это",
+      "transcription_en": "shoo neh"
     },
     {
       "type": "word",
       "ge_text": "kız",
-      "ru_meaning": "девочка"
+      "ru_meaning": "девочка",
+      "transcription_en": "kuhz"
     },
     {
       "type": "word",
       "ge_text": "yaz",
-      "ru_meaning": "лето"
+      "ru_meaning": "лето",
+      "transcription_en": "yahz"
     },
     {
       "type": "word",
       "ge_text": "biraz",
-      "ru_meaning": "немного"
+      "ru_meaning": "немного",
+      "transcription_en": "bee-RAHZ"
     },
     {
       "type": "word",
       "ge_text": "zaman",
-      "ru_meaning": "время"
+      "ru_meaning": "время",
+      "transcription_en": "zah-MAHN"
     },
     {
       "type": "word",
       "ge_text": "az tuz",
-      "ru_meaning": "немного соли"
+      "ru_meaning": "немного соли",
+      "transcription_en": "ahz tooz"
     },
     {
       "type": "word",
       "ge_text": "uzun",
-      "ru_meaning": "длинный"
+      "ru_meaning": "длинный",
+      "transcription_en": "oo-ZOON"
     },
     {
       "type": "word",
       "ge_text": "izin",
-      "ru_meaning": "разрешение"
+      "ru_meaning": "разрешение",
+      "transcription_en": "ee-ZEEN"
     },
     {
       "type": "word",
       "ge_text": "gibi",
-      "ru_meaning": "как"
+      "ru_meaning": "как",
+      "transcription_en": "gee-BEE"
     }
   ]
 }

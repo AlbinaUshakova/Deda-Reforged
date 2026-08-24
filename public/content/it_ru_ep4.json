@@ -1,0 +1,19 @@
+{
+  "id": "ep4",
+  "title": "Урок 4",
+  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P", "B", "D"],
+  "cards": [
+    { "type": "word", "ge_text": "bene", "ru_meaning": "хорошо" },
+    { "type": "word", "ge_text": "bambino", "ru_meaning": "ребёнок" },
+    { "type": "word", "ge_text": "donna", "ru_meaning": "женщина" },
+    { "type": "word", "ge_text": "dado", "ru_meaning": "кубик" },
+    { "type": "word", "ge_text": "data", "ru_meaning": "дата" },
+    { "type": "word", "ge_text": "barca", "ru_meaning": "лодка" },
+    { "type": "word", "ge_text": "dente", "ru_meaning": "зуб" },
+    { "type": "word", "ge_text": "banca", "ru_meaning": "банк" },
+    { "type": "word", "ge_text": "bordo", "ru_meaning": "край" },
+    { "type": "word", "ge_text": "bella", "ru_meaning": "красивая" },
+    { "type": "word", "ge_text": "La donna", "ru_meaning": "женщина" },
+    { "type": "word", "ge_text": "Bella barca", "ru_meaning": "красивая лодка" }
+  ]
+}

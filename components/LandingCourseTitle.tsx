@@ -3,16 +3,9 @@
 import { type KeyboardEvent, useEffect, useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
 import { COURSES, COURSE_IDS, type CourseId } from '@/lib/courses';
-
-const courseFlag: Record<CourseId, string> = {
-  ka: '🇬🇪',
-  sr: '🇷🇸',
-  tr: '🇹🇷',
-  es: '🇪🇸',
-  de: '🇩🇪',
-  en: '🇬🇧',
-  fr: '🇫🇷',
-};
+import { getAlphabetDisplayTitle, getCourseName } from '@/lib/interfaceText';
+import { getDisplayText } from '@/lib/transliteration';
+import { getActiveTransliterationMode } from '@/lib/settings';
 
 const courseAdverb: Record<CourseId, string> = {
   ka: 'по-грузински',
@@ -22,6 +15,7 @@ const courseAdverb: Record<CourseId, string> = {
   sr: 'по-сербски',
   tr: 'по-турецки',
   fr: 'по-французски',
+  it: 'по-итальянски',
 };
 
 type RestaurantBill = {
@@ -142,6 +136,21 @@ const restaurantBills: Record<CourseId, RestaurantBill> = {
     total: '13,20 €',
     payment: 'Carte',
   },
+  it: {
+    label: 'Conto',
+    place: 'Caffè Deda',
+    date: '23/07/2026',
+    table: 'Tavolo 4',
+    items: [
+      { qty: '1x', name: 'Pizza', price: '8,00 €' },
+      { qty: '1x', name: 'Pasta', price: '9,00 €' },
+      { qty: '1x', name: 'Caffè', price: '2,00 €' },
+    ],
+    subtotal: '19,00 €',
+    service: '1,90 €',
+    total: '20,90 €',
+    payment: 'Carta',
+  },
 };
 
 const BILL_LABELS: Record<CourseId, { subtotal: string; service: string; total: string }> = {
@@ -152,6 +161,7 @@ const BILL_LABELS: Record<CourseId, { subtotal: string; service: string; total: 
   sr: { subtotal: 'Међузбир', service: 'Сервис', total: 'Укупно' },
   tr: { subtotal: 'Ara toplam', service: 'Servis', total: 'Toplam' },
   fr: { subtotal: 'Sous-total', service: 'Service', total: 'Total' },
+  it: { subtotal: 'Subtotale', service: 'Servizio', total: 'Totale' },
 };
 
 const restaurantBillTranslations: Record<CourseId, RestaurantBill> = {
@@ -260,6 +270,21 @@ const restaurantBillTranslations: Record<CourseId, RestaurantBill> = {
     total: '13,20 €',
     payment: 'Карта',
   },
+  it: {
+    label: 'Счёт',
+    place: 'Кафе Deda',
+    date: '23/07/2026',
+    table: 'Стол 4',
+    items: [
+      { qty: '1x', name: 'Пицца', price: '8,00 €' },
+      { qty: '1x', name: 'Паста', price: '9,00 €' },
+      { qty: '1x', name: 'Кофе', price: '2,00 €' },
+    ],
+    subtotal: '19,00 €',
+    service: '1,90 €',
+    total: '20,90 €',
+    payment: 'Карта',
+  },
 };
 
 const readingReasons: Record<CourseId, {
@@ -330,10 +355,19 @@ const readingReasons: Record<CourseId, {
       { title: 'Значки над буквами помогают', text: 'é, è, ê, ç меняют звук предсказуемо. Диакритика — подсказка, а не помеха.' },
     ],
   },
+  it: {
+    title: 'Итальянский: главное для чтения',
+    subtitle: 'Итальянский выглядит музыкальным не случайно: буквы и слоги в нём обычно читаются очень последовательно.',
+    items: [
+      { title: 'Гласные почти не спорят с письмом', text: 'A, E, I, O, U обычно звучат стабильно. Это делает чтение заметно проще, чем во французском или английском.' },
+      { title: 'C и G меняют звук по соседям', text: 'Перед e и i они мягче: cena, gelato. Перед a, o и u остаются твёрдыми: casa, gatto.' },
+      { title: 'Двойные согласные реально слышны', text: 'В словах вроде palla или nonna удвоение не декоративное: оно меняет ритм и помогает различать слова.' },
+    ],
+  },
 };
 
 export function LandingCourseTitle() {
-  const courseId = useAppStore(state => state.settings.courseId);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const hydrate = useAppStore(state => state.hydrate);
 
   useEffect(() => {
@@ -342,39 +376,42 @@ export function LandingCourseTitle() {
 
   return (
     <>
-      Научись читать{' '}
+      {interfaceLanguage === 'en' ? 'Learn to read.' : 'Научись читать.'}{' '}
       <br />
-      <span className="landing-title-accent">{courseAdverb[courseId]}</span>
-      <span className="landing-title-play"> — играя</span>
+      <span className="landing-title-accent">
+        {interfaceLanguage === 'en' ? 'Start speaking.' : 'Начни общаться.'}
+      </span>
     </>
   );
 }
 
 export function LandingLanguagePicker() {
   const courseId = useAppStore(state => state.settings.courseId);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const hydrate = useAppStore(state => state.hydrate);
   const updateSettings = useAppStore(state => state.updateSettings);
+  const availableCourseIds = COURSE_IDS.filter(id => !(interfaceLanguage === 'en' && id === 'en'));
 
   useEffect(() => {
     void hydrate();
   }, [hydrate]);
 
   return (
-    <div className="landing-course-buttons" aria-label="Выбрать язык курса">
-      {COURSE_IDS.map(id => {
+    <div className="landing-course-buttons" aria-label={interfaceLanguage === 'en' ? 'Choose course language' : 'Выбрать язык курса'}>
+      {availableCourseIds.map(id => {
         const course = COURSES[id];
+        const courseName = getCourseName(course.id, interfaceLanguage);
         return (
           <button
             key={course.id}
             type="button"
             className={`landing-course-button ${courseId === course.id ? 'landing-course-button--active' : ''}`}
             onClick={() => updateSettings({ courseId: course.id })}
-            aria-label={`Выбрать ${course.title}`}
+            aria-label={interfaceLanguage === 'en' ? `Choose ${courseName}` : `Выбрать ${courseName}`}
             aria-pressed={courseId === course.id}
-            title={course.title}
+            title={courseName}
           >
-            <span className="landing-course-button-flag" aria-hidden="true">{courseFlag[course.id]}</span>
-            <span>{course.shortTitle}</span>
+            <span>{courseName}</span>
           </button>
         );
       })}
@@ -469,7 +506,6 @@ export function LandingRestaurantBill() {
           {renderBill(translation, { translated: true })}
         </div>
       </div>
-      <div className="landing-bill-hint">{flipped ? 'Нажми, чтобы вернуться' : 'Нажми, чтобы увидеть перевод'}</div>
     </div>
   );
 }
@@ -505,17 +541,27 @@ export function LandingReadingReasons() {
 
 export function LandingFinalCtaTitle() {
   const courseId = useAppStore(state => state.settings.courseId);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const hydrate = useAppStore(state => state.hydrate);
 
   useEffect(() => {
     void hydrate();
   }, [hydrate]);
 
-  return <>Готов начать читать {courseAdverb[courseId]}?</>;
+  return (
+    <>
+      {interfaceLanguage === 'en'
+        ? `Ready to start reading ${getCourseName(courseId, 'en').toLowerCase()}?`
+        : `Готов начать читать ${courseAdverb[courseId]}?`}
+    </>
+  );
 }
 
 export function LandingAlphabetTitle() {
   const courseId = useAppStore(state => state.settings.courseId);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const storedTransliterationMode = useAppStore(state => state.settings.transliterationMode);
+  const transliterationMode = getActiveTransliterationMode(interfaceLanguage, courseId, storedTransliterationMode);
   const hydrate = useAppStore(state => state.hydrate);
   const course = COURSES[courseId];
 
@@ -523,5 +569,5 @@ export function LandingAlphabetTitle() {
     void hydrate();
   }, [hydrate]);
 
-  return <>{course.scriptTitleNative}</>;
+  return <>{getAlphabetDisplayTitle(courseId, transliterationMode) ?? getDisplayText(course.scriptTitleNative, transliterationMode, courseId)}</>;
 }

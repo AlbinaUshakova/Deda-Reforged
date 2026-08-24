@@ -10,72 +10,86 @@
     {
       "type": "word",
       "ge_text": "Taxi",
-      "ru_meaning": "такси"
+      "ru_meaning": "такси",
+      "transcription_en": "TAHK-see"
     },
     {
       "type": "word",
       "ge_text": "Text",
-      "ru_meaning": "текст"
+      "ru_meaning": "текст",
+      "transcription_en": "tekst"
     },
     {
       "type": "word",
       "ge_text": "Box",
-      "ru_meaning": "коробка"
+      "ru_meaning": "коробка",
+      "transcription_en": "box"
     },
     {
       "type": "word",
       "ge_text": "Keks",
-      "ru_meaning": "печенье"
+      "ru_meaning": "печенье",
+      "transcription_en": "keks"
     },
     {
       "type": "word",
       "ge_text": "Quiz",
-      "ru_meaning": "тест"
+      "ru_meaning": "тест",
+      "transcription_en": "kvits"
     },
     {
       "type": "word",
       "ge_text": "Qualität",
-      "ru_meaning": "качество"
+      "ru_meaning": "качество",
+      "transcription_en": "kvaliteht"
     },
     {
       "type": "word",
       "ge_text": "Quark",
-      "ru_meaning": "творог"
+      "ru_meaning": "творог",
+      "transcription_en": "kvark"
     },
     {
       "type": "word",
       "ge_text": "Quittung",
-      "ru_meaning": "чек"
+      "ru_meaning": "чек",
+      "transcription_en": "kvittung"
     },
     {
       "type": "phrase",
       "ge_text": "Guten Tag",
-      "ru_meaning": "добрый день"
+      "ru_meaning": "добрый день",
+      "transcription_en": "guten tahk"
     },
     {
       "type": "word",
       "ge_text": "Yoga",
-      "ru_meaning": "йога"
+      "ru_meaning": "йога",
+      "transcription_en": "YOH-gah"
     },
     {
       "type": "word",
       "ge_text": "Typ",
-      "ru_meaning": "тип"
+      "ru_meaning": "тип",
+      "transcription_en": "typ"
     },
     {
       "type": "word",
       "ge_text": "System",
-      "ru_meaning": "система"
+      "ru_meaning": "система",
+      "transcription_en": "system"
     },
     {
       "type": "word",
       "ge_text": "Baby",
-      "ru_meaning": "малыш"
+      "ru_meaning": "малыш",
+      "transcription_en": "baby"
     },
     {
       "type": "word",
       "ge_text": "City",
-      "ru_meaning": "город"
+      "ru_meaning": "город",
+      "transcription_en": "SI-tee"
     },
     {
       "type": "word",
@@ -83,7 +97,8 @@
       "ru_meaning": "окей",
       "accepted_ru": [
         "ок"
-      ]
+      ],
+      "transcription_en": "okay"
     }
   ]
 }

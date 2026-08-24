@@ -10,22 +10,26 @@
     {
       "type": "word",
       "ge_text": "Fisch",
-      "ru_meaning": "рыба"
+      "ru_meaning": "рыба",
+      "transcription_en": "fish"
     },
     {
       "type": "word",
       "ge_text": "Kaffee",
-      "ru_meaning": "кофе"
+      "ru_meaning": "кофе",
+      "transcription_en": "kah-FAY"
     },
     {
       "type": "word",
       "ge_text": "Kaffee ist da",
-      "ru_meaning": "кофе здесь"
+      "ru_meaning": "кофе здесь",
+      "transcription_en": "kah-FAY ist dah"
     },
     {
       "type": "word",
       "ge_text": "Karte",
-      "ru_meaning": "карта"
+      "ru_meaning": "карта",
+      "transcription_en": "KAR-tuh"
     },
     {
       "type": "word",
@@ -33,7 +37,8 @@
       "ru_meaning": "ребёнок",
       "accepted_ru": [
         "ребенок"
-      ]
+      ],
+      "transcription_en": "kint"
     },
     {
       "type": "word",
@@ -41,67 +46,80 @@
       "ru_meaning": "пойдём со мной",
       "accepted_ru": [
         "пойдем со мной"
-      ]
+      ],
+      "transcription_en": "komm mit"
     },
     {
       "type": "word",
       "ge_text": "kalt",
-      "ru_meaning": "холодно"
+      "ru_meaning": "холодно",
+      "transcription_en": "kalt"
     },
     {
       "type": "word",
       "ge_text": "klein",
-      "ru_meaning": "маленький"
+      "ru_meaning": "маленький",
+      "transcription_en": "kleyen"
     },
     {
       "type": "word",
       "ge_text": "kurz",
-      "ru_meaning": "короткий"
+      "ru_meaning": "короткий",
+      "transcription_en": "kurts"
     },
     {
       "type": "word",
       "ge_text": "Zeit",
-      "ru_meaning": "время"
+      "ru_meaning": "время",
+      "transcription_en": "tseyet"
     },
     {
       "type": "word",
       "ge_text": "Zug",
-      "ru_meaning": "поезд"
+      "ru_meaning": "поезд",
+      "transcription_en": "tsook"
     },
     {
       "type": "word",
       "ge_text": "zehn",
-      "ru_meaning": "десять"
+      "ru_meaning": "десять",
+      "transcription_en": "tsehn"
     },
     {
       "type": "word",
       "ge_text": "Zimmer",
-      "ru_meaning": "комната"
+      "ru_meaning": "комната",
+      "transcription_en": "tsimmer"
     },
     {
       "type": "word",
       "ge_text": "Zucker",
-      "ru_meaning": "сахар"
+      "ru_meaning": "сахар",
+      "transcription_en": "tsucker"
     },
     {
       "type": "word",
       "ge_text": "Ich kann es",
-      "ru_meaning": "я могу это"
+      "ru_meaning": "я могу это",
+      "transcription_en": "ikh kann es"
     },
     {
       "type": "word",
       "ge_text": "Katze",
-      "ru_meaning": "кошка"
+      "ru_meaning": "кошка",
+      "transcription_en": "kattse"
     },
     {
       "type": "word",
       "ge_text": "Foto",
-      "ru_meaning": "фото"
+      "ru_meaning": "фото",
+      "transcription_en": "FOH-toh"
     },
     {
       "type": "word",
       "ge_text": "Farbe",
-      "ru_meaning": "цвет"
+      "ru_meaning": "цвет",
+      "transcription_en": "FAR-buh"
     }
   ]
 }
