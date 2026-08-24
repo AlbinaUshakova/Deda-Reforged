@@ -1,19 +1,19 @@
 {
   "id": "ep4",
   "title": "Урок 4",
-  "letters": ["B", "D"],
+  "letters": ["C", "P"],
   "cards": [
-    { "type": "word", "ge_text": "bene", "ru_meaning": "хорошо" },
-    { "type": "word", "ge_text": "bambino", "ru_meaning": "ребёнок" },
-    { "type": "word", "ge_text": "donna", "ru_meaning": "женщина" },
-    { "type": "word", "ge_text": "dado", "ru_meaning": "кубик" },
-    { "type": "word", "ge_text": "data", "ru_meaning": "дата" },
-    { "type": "word", "ge_text": "barca", "ru_meaning": "лодка" },
-    { "type": "word", "ge_text": "dente", "ru_meaning": "зуб" },
-    { "type": "word", "ge_text": "banca", "ru_meaning": "банк" },
-    { "type": "word", "ge_text": "bordo", "ru_meaning": "край" },
-    { "type": "word", "ge_text": "bella", "ru_meaning": "красивая" },
-    { "type": "word", "ge_text": "La donna", "ru_meaning": "женщина" },
-    { "type": "word", "ge_text": "Bella barca", "ru_meaning": "красивая лодка" }
+    { "type": "word", "ge_text": "cane", "ru_meaning": "собака" },
+    { "type": "word", "ge_text": "pane", "ru_meaning": "хлеб" },
+    { "type": "word", "ge_text": "pace", "ru_meaning": "мир" },
+    { "type": "word", "ge_text": "pipa", "ru_meaning": "трубка" },
+    { "type": "word", "ge_text": "copia", "ru_meaning": "копия" },
+    { "type": "word", "ge_text": "cima", "ru_meaning": "вершина" },
+    { "type": "word", "ge_text": "palla", "ru_meaning": "шар" },
+    { "type": "word", "ge_text": "piccolo", "ru_meaning": "маленький" },
+    { "type": "word", "ge_text": "capo", "ru_meaning": "голова" },
+    { "type": "word", "ge_text": "cena", "ru_meaning": "ужин" },
+    { "type": "word", "ge_text": "Il cane", "ru_meaning": "собака" },
+    { "type": "word", "ge_text": "Pane e pace", "ru_meaning": "хлеб и мир" }
   ]
 }
