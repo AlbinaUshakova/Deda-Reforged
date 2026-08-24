@@ -41,8 +41,9 @@ export function FlashcardCardActions({
         title={hintTitle}
         aria-label={hintTitle}
         aria-pressed={showHint}
-        disabled={!hasHintText}
+        data-has-hint={hasHintText ? 'true' : 'false'}
         onClick={e => {
+          e.preventDefault();
           e.stopPropagation();
           onToggleHint();
         }}
