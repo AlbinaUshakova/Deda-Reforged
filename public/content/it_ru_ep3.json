@@ -1,7 +1,7 @@
 {
   "id": "ep3",
   "title": "Урок 3",
-  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P"],
+  "letters": ["C", "P"],
   "cards": [
     { "type": "word", "ge_text": "casa", "ru_meaning": "дом" },
     { "type": "word", "ge_text": "cane", "ru_meaning": "собака" },

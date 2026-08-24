@@ -1,7 +1,7 @@
 {
   "id": "ep9",
   "title": "Урок 9",
-  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P", "B", "D", "F", "G", "S", "V", "H", "Q", "Z", "J", "K", "W", "X", "Y"],
+  "letters": ["J", "K", "W", "X", "Y"],
   "cards": [
     { "type": "word", "ge_text": "taxi", "ru_meaning": "такси" },
     { "type": "word", "ge_text": "jeans", "ru_meaning": "джинсы" },

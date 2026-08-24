@@ -1,7 +1,7 @@
 {
   "id": "ep4",
   "title": "Урок 4",
-  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P", "B", "D"],
+  "letters": ["B", "D"],
   "cards": [
     { "type": "word", "ge_text": "bene", "ru_meaning": "хорошо" },
     { "type": "word", "ge_text": "bambino", "ru_meaning": "ребёнок" },

@@ -1,7 +1,7 @@
 {
   "id": "ep6",
   "title": "Урок 6",
-  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P", "B", "D", "F", "G", "S", "V"],
+  "letters": ["S", "V"],
   "cards": [
     { "type": "word", "ge_text": "vino", "ru_meaning": "вино" },
     { "type": "word", "ge_text": "vaso", "ru_meaning": "ваза" },

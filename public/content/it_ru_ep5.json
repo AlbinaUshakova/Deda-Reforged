@@ -1,7 +1,7 @@
 {
   "id": "ep5",
   "title": "Урок 5",
-  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P", "B", "D", "F", "G"],
+  "letters": ["F", "G"],
   "cards": [
     { "type": "word", "ge_text": "foto", "ru_meaning": "фото" },
     { "type": "word", "ge_text": "fumo", "ru_meaning": "дым" },

@@ -1,7 +1,7 @@
 {
   "id": "ep8",
   "title": "Урок 8",
-  "letters": ["A", "E", "I", "L", "M", "N", "O", "R", "T", "U", "C", "P", "B", "D", "F", "G", "S", "V", "H", "Q", "Z"],
+  "letters": ["Z"],
   "cards": [
     { "type": "word", "ge_text": "zero", "ru_meaning": "ноль" },
     { "type": "word", "ge_text": "zio", "ru_meaning": "дядя" },
