@@ -27,6 +27,18 @@ export function resolveCardTranscription(
 ) {
   if (!card) return '';
 
+  // Italian transcription used to be pre-generated character by character in
+  // normalizeEpisode (for example `k/chinkwue` for `cinque`). Always rebuild
+  // Italian pronunciation contextually so C/CH, G/GH, QU, GN, SC and GLI are
+  // interpreted as spelling combinations instead of ambiguous single letters.
+  if (courseId === 'it') {
+    return generatedTranscription(
+      card.ge_text,
+      interfaceLanguage === 'en' ? 'latin' : transliterationMode,
+      courseId,
+    );
+  }
+
   const ruTranscription = card.transcription_ru?.trim() || card.translit?.trim() || '';
   const enTranscription = card.transcription_en?.trim() || '';
 
