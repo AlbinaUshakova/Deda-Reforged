@@ -18,12 +18,12 @@ import {
   splitDialogLines,
 } from '@/components/flashcards/flashcardText';
 import { useFlashcardKeyboardShortcuts } from '@/components/flashcards/useFlashcardKeyboardShortcuts';
-import { getDisplayText, textToHint, type TransliterationMode } from '@/lib/transliteration';
+import { getDisplayText, type TransliterationMode } from '@/lib/transliteration';
 import { getEpisodesDataCached, getEpisodesDataSync } from '@/lib/clientContentCache';
 import { getCourse } from '@/lib/courses';
 import { translateRussianMeaningToEnglish } from '@/lib/englishMeanings';
 import { getActiveTransliterationMode } from '@/lib/settings';
-import { resolveCardTranscription, resolveCardHint } from '@/lib/cardTranscription';
+import { resolveCardTranscription } from '@/lib/cardTranscription';
 
 type Card = {
   id?: string;
@@ -35,9 +35,27 @@ type Card = {
   ru_meaning?: string;
   info_notes?: Array<{ kind: 'grammar' | 'speech' | 'mistake'; text: string }>;
   type?: 'word' | 'letter';
-  level?: number; // 1–3 сложность (используем, если нет topic)
-  topic?: string; // тема фразы (location_movement, questions и т.п.)
+  level?: number;
+  topic?: string;
 };
+
+const HINT_LETTER_RE = /[A-Za-zА-Яа-яЁёІіЇїЄєҐґ\u0400-\u04FF]/;
+
+function buildProgressiveHint(text: string, revealCount: number): string {
+  const chars = Array.from(text.trim());
+  const totalLetters = chars.filter(ch => HINT_LETTER_RE.test(ch)).length;
+  const shownLetters = Math.min(revealCount, totalLetters);
+  let revealedLetters = 0;
+
+  return chars.map(ch => {
+    if (!HINT_LETTER_RE.test(ch)) return ch;
+    if (revealedLetters < shownLetters) {
+      revealedLetters += 1;
+      return ch;
+    }
+    return '_';
+  }).join('');
+}
 
 export default function FlashcardDeck({
   cards,
@@ -59,15 +77,11 @@ export default function FlashcardDeck({
   const [order, setOrder] = useState<number[]>([]);
   const [flipped, setFlipped] = useState(false);
   const [showTranslit, setShowTranslit] = useState(false);
-  const [showHint, setShowHint] = useState(false);
+  const [revealCount, setRevealCount] = useState(0);
 
-  // фильтр по сложности (используем только если нет topic)
   const [levelFilter, setLevelFilter] = useState<number | null>(null);
   const [levelInfo, setLevelInfo] = useState<number | null>(null);
-
-  // фильтр по теме
   const [topicFilter, setTopicFilter] = useState<string | null>(null);
-
   const [favMap, setFavMap] = useState<Record<string, true>>({});
 
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
@@ -164,7 +178,6 @@ export default function FlashcardDeck({
     return Array.from(set);
   }, [cards, hasTopics]);
 
-  // говорим наружу, какая тема выбрана (или null)
   useEffect(() => {
     if (!onTopicChange) return;
     if (!hasTopics) {
@@ -197,6 +210,8 @@ export default function FlashcardDeck({
     setIdx(0);
     setProgressStep(visible.length ? 1 : 0);
     setFlipped(false);
+    setShowTranslit(false);
+    setRevealCount(0);
   }, [visible]);
 
   const card = visible[order[idx]];
@@ -216,9 +231,9 @@ export default function FlashcardDeck({
     () => resolveCardTranscription(card, interfaceLanguage, transliterationMode, courseId),
     [card, courseId, interfaceLanguage, transliterationMode],
   );
-  const hintText = useMemo(
-    () => resolveCardHint(card, transliterationMode, courseId),
-    [card, courseId, transliterationMode],
+  const progressiveHintText = useMemo(
+    () => buildProgressiveHint(translationText, revealCount),
+    [translationText, revealCount],
   );
   const geDialogLines = splitDialogLines(displayGeText);
   const ruDialogLines = splitDialogLines(translationText);
@@ -252,6 +267,8 @@ export default function FlashcardDeck({
       return nextIdx;
     });
     setFlipped(false);
+    setShowTranslit(false);
+    setRevealCount(0);
   }, [visible.length]);
 
   const onNext = useCallback(() => {
@@ -266,6 +283,8 @@ export default function FlashcardDeck({
       return nextIdx;
     });
     setFlipped(false);
+    setShowTranslit(false);
+    setRevealCount(0);
   }, [visible.length]);
 
   const toggleFav = useCallback(
@@ -316,23 +335,31 @@ export default function FlashcardDeck({
     setLevelInfo(prev => (prev === level ? null : level));
   }, []);
 
+  const revealHint = useCallback(() => {
+    const totalLetters = Array.from(translationText.trim()).filter(ch => HINT_LETTER_RE.test(ch)).length;
+    if (totalLetters === 0) return;
+    setRevealCount(count => Math.min(totalLetters, count + 1));
+  }, [translationText]);
+
+  const resetHint = useCallback(() => {
+    setRevealCount(0);
+  }, []);
+
   const toggleCurrentFavorite = useCallback(() => {
     if (!card) return;
     toggleFav(card.ge_text);
   }, [card, toggleFav]);
 
   const hasTranscription = !!transcriptionText.trim();
-  const hasHint = !!hintText.trim() && hintText !== transcriptionText;
 
   useEffect(() => {
     if (!card) return;
     setShowTranslit(false);
-    setShowHint(false);
+    setRevealCount(0);
   }, [card?.id, card?.ge_text]);
 
   return (
     <div className="flashcard-screen-root relative w-full min-w-0">
-      {/* Верх: счётчик и заголовок */}
       <div className="mb-1 flex w-full flex-col items-center justify-center gap-1.5">
         <FlashcardFilters
           hasTopics={hasTopics}
@@ -347,7 +374,6 @@ export default function FlashcardDeck({
         />
       </div>
 
-      {/* Карточка */}
       <div className="flashcard-stage relative mx-auto flex w-full max-w-[900px] flex-col items-center justify-center px-[clamp(14px,3.6vw,40px)] pt-[clamp(8px,1.4vh,18px)] pb-[clamp(24px,4vh,44px)]">
         <FlashcardLessonLetters
           letters={currentLessonLettersList}
@@ -368,8 +394,7 @@ export default function FlashcardDeck({
           </div>
 
           <div
-            className={`flashcard-main-card group relative z-10 mx-auto cursor-pointer rounded-3xl border border-slate-200 bg-white ${flipped ? 'flashcard-main-card--flipped' : ''
-              }`}
+            className={`flashcard-main-card group relative z-10 mx-auto cursor-pointer rounded-3xl border border-slate-200 bg-white ${flipped ? 'flashcard-main-card--flipped' : ''}`}
             onClick={() => hasCard && setFlipped(f => !f)}
             role="button"
             tabIndex={0}
@@ -391,18 +416,18 @@ export default function FlashcardDeck({
 
             {hasCard && (
               <FlashcardCardActions
+                hintText={progressiveHintText}
+                revealCount={revealCount}
                 isFavorite={isFav}
                 showTranslit={showTranslit}
-                showHint={showHint}
                 hasTranscription={hasTranscription}
-                hasHint={hasHint}
+                onRevealHint={revealHint}
+                onResetHint={resetHint}
                 onToggleFavorite={toggleCurrentFavorite}
                 onToggleTranslit={() => setShowTranslit(v => !v)}
-                onToggleHint={() => setShowHint(v => !v)}
               />
             )}
 
-            {/* Контент */}
             <div className="flashcard-content grid h-full w-full select-none place-items-center text-center">
               <FlashcardCardContent
                 hasCard={hasCard}
@@ -420,9 +445,9 @@ export default function FlashcardDeck({
                 geMobileLayoutClass={geMobileLayoutClass}
                 ruMobileLayoutClass={ruMobileLayoutClass}
                 transcriptionText={transcriptionText}
-                hintText={hintText}
+                hintText=""
                 showTranslit={showTranslit}
-                showHint={showHint}
+                showHint={false}
                 renderCardText={renderCardText}
                 renderLessonLetterHighlight={renderLessonLetterHighlight}
               />
@@ -432,7 +457,6 @@ export default function FlashcardDeck({
               className="flashcard-corner-fold pointer-events-none absolute bottom-[clamp(12px,1.8vw,18px)] right-[clamp(16px,1.8vw,22px)] z-10"
               aria-hidden="true"
             />
-
           </div>
         </div>
 
