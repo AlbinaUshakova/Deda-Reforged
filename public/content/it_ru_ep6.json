@@ -1,19 +1,19 @@
 {
   "id": "ep6",
   "title": "Урок 6",
-  "letters": ["S", "V"],
+  "letters": ["F", "G"],
   "cards": [
-    { "type": "word", "ge_text": "vino", "ru_meaning": "вино" },
-    { "type": "word", "ge_text": "vaso", "ru_meaning": "ваза" },
-    { "type": "word", "ge_text": "sedia", "ru_meaning": "стул" },
-    { "type": "word", "ge_text": "viso", "ru_meaning": "лицо" },
-    { "type": "word", "ge_text": "sasso", "ru_meaning": "камень" },
-    { "type": "word", "ge_text": "seta", "ru_meaning": "шёлк" },
-    { "type": "word", "ge_text": "strada", "ru_meaning": "улица" },
-    { "type": "word", "ge_text": "sera", "ru_meaning": "вечер" },
-    { "type": "word", "ge_text": "salame", "ru_meaning": "салями" },
-    { "type": "word", "ge_text": "vasca", "ru_meaning": "ванна" },
-    { "type": "word", "ge_text": "Il vino", "ru_meaning": "вино" },
-    { "type": "word", "ge_text": "La sedia", "ru_meaning": "стул" }
+    { "type": "word", "ge_text": "foto", "ru_meaning": "фото" },
+    { "type": "word", "ge_text": "fumo", "ru_meaning": "дым" },
+    { "type": "word", "ge_text": "fame", "ru_meaning": "голод" },
+    { "type": "word", "ge_text": "gatto", "ru_meaning": "кошка" },
+    { "type": "word", "ge_text": "lago", "ru_meaning": "озеро" },
+    { "type": "word", "ge_text": "gelato", "ru_meaning": "мороженое" },
+    { "type": "word", "ge_text": "figura", "ru_meaning": "фигура" },
+    { "type": "word", "ge_text": "fuga", "ru_meaning": "побег" },
+    { "type": "word", "ge_text": "gola", "ru_meaning": "горло" },
+    { "type": "word", "ge_text": "gita", "ru_meaning": "поездка" },
+    { "type": "word", "ge_text": "Il gatto", "ru_meaning": "кошка" },
+    { "type": "word", "ge_text": "Lago e foto", "ru_meaning": "озеро и фото" }
   ]
 }
