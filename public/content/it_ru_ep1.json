@@ -1,19 +1,15 @@
 {
   "id": "ep1",
   "title": "Урок 1",
-  "letters": ["A", "E", "I", "L", "M", "N", "O"],
+  "letters": ["A", "I", "M", "O"],
   "cards": [
     { "type": "word", "ge_text": "io", "ru_meaning": "я" },
     { "type": "word", "ge_text": "mia", "ru_meaning": "моя" },
-    { "type": "word", "ge_text": "mela", "ru_meaning": "яблоко" },
-    { "type": "word", "ge_text": "mano", "ru_meaning": "рука" },
+    { "type": "word", "ge_text": "mio", "ru_meaning": "мой" },
     { "type": "word", "ge_text": "mamma", "ru_meaning": "мама" },
-    { "type": "word", "ge_text": "nome", "ru_meaning": "имя" },
-    { "type": "word", "ge_text": "miele", "ru_meaning": "мёд" },
-    { "type": "word", "ge_text": "olio", "ru_meaning": "масло" },
-    { "type": "word", "ge_text": "limone", "ru_meaning": "лимон" },
-    { "type": "word", "ge_text": "linea", "ru_meaning": "линия" },
-    { "type": "word", "ge_text": "La mano", "ru_meaning": "рука" },
-    { "type": "word", "ge_text": "Io amo la mamma", "ru_meaning": "я люблю маму" }
+    { "type": "word", "ge_text": "amo", "ru_meaning": "я люблю" },
+    { "type": "word", "ge_text": "ama", "ru_meaning": "любит" },
+    { "type": "word", "ge_text": "Mia mamma", "ru_meaning": "моя мама" },
+    { "type": "word", "ge_text": "Io amo mia mamma", "ru_meaning": "я люблю мою маму" }
   ]
 }
