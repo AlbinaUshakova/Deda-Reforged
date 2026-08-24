@@ -11,6 +11,7 @@ import { getEpisodesDataCached } from '@/lib/clientContentCache';
 import { deriveLessonState, type AlphabetLetterStatus } from '@/lib/lessonProgress';
 import {
   getCourse,
+  getLetterHint,
   getLetterSpeechLang,
   getLetterSpeechText,
 } from '@/lib/courses';
@@ -207,6 +208,7 @@ export default function GlobalAlphabetOverlay() {
             >
               {row.map(ch => {
                 const visibleUppercase = getDisplayText(ch, transliterationMode, courseId);
+                const soundHint = getLetterHint(ch, transliterationMode, courseId);
                 const audioLabel = getAlphabetAudioLabel(interfaceLanguage, ch, courseId);
                 const isVowel = course.vowels.includes(ch);
                 const isCompositeSerbianLetter =
@@ -217,7 +219,7 @@ export default function GlobalAlphabetOverlay() {
                     key={ch}
                     type="button"
                     onClick={() => speakLetter(ch)}
-                    className={`home-alphabet-key home-alphabet-key--${isVowel ? 'vowel' : 'consonant'} ${isCompositeSerbianLetter ? 'home-alphabet-key--composite' : ''} rounded-lg border border-slate-200/75 bg-white/90 py-[3px] text-center shadow-sm hover:bg-slate-50 transition-all ${playingLetter === ch ? 'home-alphabet-key--active' : ''}`}
+                    className={`home-alphabet-key home-alphabet-key--${isVowel ? 'vowel' : 'consonant'} ${isCompositeSerbianLetter ? 'home-alphabet-key--composite' : ''} rounded-lg border border-slate-200/75 bg-white/90 py-[4px] text-center shadow-sm hover:bg-slate-50 transition-all ${playingLetter === ch ? 'home-alphabet-key--active' : ''}`}
                     title={
                       interfaceLanguage === 'en'
                         ? `Play the name of the letter ${visibleUppercase}`
@@ -226,6 +228,11 @@ export default function GlobalAlphabetOverlay() {
                     aria-label={audioLabel}
                   >
                     <div className={`home-alphabet-letter ${letterFontClass} translate-y-[-1px] leading-none`}>{visibleUppercase}</div>
+                    {soundHint && (
+                      <div className="mt-[3px] truncate text-[9px] font-semibold leading-none text-[var(--text-tertiary)] sm:text-[10px]">
+                        {soundHint}
+                      </div>
+                    )}
                   </button>
                 );
               })}
