@@ -1,19 +1,22 @@
 {
   "id": "ep8",
   "title": "Урок 8",
-  "letters": ["H", "Q"],
+  "letters": ["H", "Q", "Z"],
   "cards": [
     { "type": "word", "ge_text": "qui", "ru_meaning": "здесь" },
     { "type": "word", "ge_text": "quanto", "ru_meaning": "сколько" },
     { "type": "word", "ge_text": "quale", "ru_meaning": "какой" },
     { "type": "word", "ge_text": "hotel", "ru_meaning": "отель" },
     { "type": "word", "ge_text": "ho", "ru_meaning": "у меня есть" },
-    { "type": "word", "ge_text": "hai", "ru_meaning": "у тебя есть" },
-    { "type": "word", "ge_text": "hanno", "ru_meaning": "у них есть" },
-    { "type": "word", "ge_text": "quadro", "ru_meaning": "картина" },
     { "type": "word", "ge_text": "acqua", "ru_meaning": "вода" },
-    { "type": "word", "ge_text": "questo", "ru_meaning": "это" },
+    { "type": "word", "ge_text": "zero", "ru_meaning": "ноль" },
+    { "type": "word", "ge_text": "zio", "ru_meaning": "дядя" },
+    { "type": "word", "ge_text": "zaino", "ru_meaning": "рюкзак" },
+    { "type": "word", "ge_text": "pizza", "ru_meaning": "пицца" },
+    { "type": "word", "ge_text": "zucchero", "ru_meaning": "сахар" },
+    { "type": "word", "ge_text": "stazione", "ru_meaning": "станция" },
     { "type": "word", "ge_text": "Ho acqua", "ru_meaning": "у меня есть вода" },
-    { "type": "word", "ge_text": "Quanto costa?", "ru_meaning": "сколько стоит?" }
+    { "type": "word", "ge_text": "Quanto costa?", "ru_meaning": "сколько стоит?" },
+    { "type": "word", "ge_text": "La pizza", "ru_meaning": "пицца" }
   ]
 }
