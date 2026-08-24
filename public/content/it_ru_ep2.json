@@ -1,19 +1,17 @@
 {
   "id": "ep2",
   "title": "Урок 2",
-  "letters": ["R", "T", "U"],
+  "letters": ["E", "L", "N"],
   "cards": [
-    { "type": "word", "ge_text": "tu", "ru_meaning": "ты" },
-    { "type": "word", "ge_text": "uno", "ru_meaning": "один" },
-    { "type": "word", "ge_text": "luna", "ru_meaning": "луна" },
-    { "type": "word", "ge_text": "muro", "ru_meaning": "стена" },
-    { "type": "word", "ge_text": "mare", "ru_meaning": "море" },
-    { "type": "word", "ge_text": "rete", "ru_meaning": "сеть" },
-    { "type": "word", "ge_text": "treno", "ru_meaning": "поезд" },
-    { "type": "word", "ge_text": "rito", "ru_meaning": "ритуал" },
-    { "type": "word", "ge_text": "tuta", "ru_meaning": "костюм" },
-    { "type": "word", "ge_text": "natura", "ru_meaning": "природа" },
-    { "type": "word", "ge_text": "Un treno", "ru_meaning": "поезд" },
-    { "type": "word", "ge_text": "Tu ami il mare", "ru_meaning": "ты любишь море" }
+    { "type": "word", "ge_text": "mela", "ru_meaning": "яблоко" },
+    { "type": "word", "ge_text": "mano", "ru_meaning": "рука" },
+    { "type": "word", "ge_text": "nome", "ru_meaning": "имя" },
+    { "type": "word", "ge_text": "miele", "ru_meaning": "мёд" },
+    { "type": "word", "ge_text": "olio", "ru_meaning": "масло" },
+    { "type": "word", "ge_text": "limone", "ru_meaning": "лимон" },
+    { "type": "word", "ge_text": "linea", "ru_meaning": "линия" },
+    { "type": "word", "ge_text": "La mano", "ru_meaning": "рука" },
+    { "type": "word", "ge_text": "Il mio nome", "ru_meaning": "моё имя" },
+    { "type": "word", "ge_text": "Mela e limone", "ru_meaning": "яблоко и лимон" }
   ]
 }
