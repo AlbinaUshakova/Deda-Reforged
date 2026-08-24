@@ -1,19 +1,19 @@
 {
   "id": "ep9",
   "title": "Урок 9",
-  "letters": ["J", "K", "W", "X", "Y"],
+  "letters": ["Z"],
   "cards": [
-    { "type": "word", "ge_text": "taxi", "ru_meaning": "такси" },
-    { "type": "word", "ge_text": "jeans", "ru_meaning": "джинсы" },
-    { "type": "word", "ge_text": "jazz", "ru_meaning": "джаз" },
-    { "type": "word", "ge_text": "kiwi", "ru_meaning": "киви" },
-    { "type": "word", "ge_text": "yoga", "ru_meaning": "йога" },
-    { "type": "word", "ge_text": "web", "ru_meaning": "интернет" },
-    { "type": "word", "ge_text": "wifi", "ru_meaning": "вайфай" },
-    { "type": "word", "ge_text": "xilofono", "ru_meaning": "ксилофон" },
-    { "type": "word", "ge_text": "kayak", "ru_meaning": "каяк" },
-    { "type": "word", "ge_text": "yeti", "ru_meaning": "йети" },
-    { "type": "word", "ge_text": "Il taxi", "ru_meaning": "такси" },
-    { "type": "word", "ge_text": "Yoga e jazz", "ru_meaning": "йога и джаз" }
+    { "type": "word", "ge_text": "zero", "ru_meaning": "ноль" },
+    { "type": "word", "ge_text": "zio", "ru_meaning": "дядя" },
+    { "type": "word", "ge_text": "zucchero", "ru_meaning": "сахар" },
+    { "type": "word", "ge_text": "zaino", "ru_meaning": "рюкзак" },
+    { "type": "word", "ge_text": "pizza", "ru_meaning": "пицца" },
+    { "type": "word", "ge_text": "pezzo", "ru_meaning": "кусок" },
+    { "type": "word", "ge_text": "zona", "ru_meaning": "зона" },
+    { "type": "word", "ge_text": "mezzo", "ru_meaning": "половина" },
+    { "type": "word", "ge_text": "zebra", "ru_meaning": "зебра" },
+    { "type": "word", "ge_text": "stazione", "ru_meaning": "станция" },
+    { "type": "word", "ge_text": "La pizza", "ru_meaning": "пицца" },
+    { "type": "word", "ge_text": "Lo zio", "ru_meaning": "дядя" }
   ]
 }
