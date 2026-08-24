@@ -3,7 +3,6 @@
   "title": "Урок 3",
   "letters": ["C", "P"],
   "cards": [
-    { "type": "word", "ge_text": "casa", "ru_meaning": "дом" },
     { "type": "word", "ge_text": "cane", "ru_meaning": "собака" },
     { "type": "word", "ge_text": "pane", "ru_meaning": "хлеб" },
     { "type": "word", "ge_text": "pace", "ru_meaning": "мир" },
@@ -13,6 +12,7 @@
     { "type": "word", "ge_text": "palla", "ru_meaning": "шар" },
     { "type": "word", "ge_text": "piccolo", "ru_meaning": "маленький" },
     { "type": "word", "ge_text": "capo", "ru_meaning": "голова" },
+    { "type": "word", "ge_text": "cena", "ru_meaning": "ужин" },
     { "type": "word", "ge_text": "Il cane", "ru_meaning": "собака" },
     { "type": "word", "ge_text": "Pane e pace", "ru_meaning": "хлеб и мир" }
   ]
