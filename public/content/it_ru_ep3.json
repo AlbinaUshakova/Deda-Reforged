@@ -1,19 +1,19 @@
 {
   "id": "ep3",
   "title": "Урок 3",
-  "letters": ["C", "P"],
+  "letters": ["R", "T", "U"],
   "cards": [
-    { "type": "word", "ge_text": "cane", "ru_meaning": "собака" },
-    { "type": "word", "ge_text": "pane", "ru_meaning": "хлеб" },
-    { "type": "word", "ge_text": "pace", "ru_meaning": "мир" },
-    { "type": "word", "ge_text": "pipa", "ru_meaning": "трубка" },
-    { "type": "word", "ge_text": "copia", "ru_meaning": "копия" },
-    { "type": "word", "ge_text": "cima", "ru_meaning": "вершина" },
-    { "type": "word", "ge_text": "palla", "ru_meaning": "шар" },
-    { "type": "word", "ge_text": "piccolo", "ru_meaning": "маленький" },
-    { "type": "word", "ge_text": "capo", "ru_meaning": "голова" },
-    { "type": "word", "ge_text": "cena", "ru_meaning": "ужин" },
-    { "type": "word", "ge_text": "Il cane", "ru_meaning": "собака" },
-    { "type": "word", "ge_text": "Pane e pace", "ru_meaning": "хлеб и мир" }
+    { "type": "word", "ge_text": "tu", "ru_meaning": "ты" },
+    { "type": "word", "ge_text": "uno", "ru_meaning": "один" },
+    { "type": "word", "ge_text": "luna", "ru_meaning": "луна" },
+    { "type": "word", "ge_text": "muro", "ru_meaning": "стена" },
+    { "type": "word", "ge_text": "mare", "ru_meaning": "море" },
+    { "type": "word", "ge_text": "rete", "ru_meaning": "сеть" },
+    { "type": "word", "ge_text": "treno", "ru_meaning": "поезд" },
+    { "type": "word", "ge_text": "tuta", "ru_meaning": "костюм" },
+    { "type": "word", "ge_text": "natura", "ru_meaning": "природа" },
+    { "type": "word", "ge_text": "rumore", "ru_meaning": "шум" },
+    { "type": "word", "ge_text": "Il treno", "ru_meaning": "поезд" },
+    { "type": "word", "ge_text": "Tu ami il mare", "ru_meaning": "ты любишь море" }
   ]
 }
