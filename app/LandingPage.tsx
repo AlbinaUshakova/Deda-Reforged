@@ -103,29 +103,12 @@ export default function LandingPage() {
   };
 
   const handleCoursePick = (courseId: CourseId) => {
-    const episodesData = getEpisodesDataSync(courseId);
-    const selectedCourseProgress = Object.fromEntries(
-      Object.entries(progressMap).flatMap(([key, value]) => {
-        if (courseId === 'ka') return [[key, value]];
-        const prefix = `${courseId}:`;
-        return key.startsWith(prefix) ? [[key.slice(prefix.length), value]] : [];
-      }),
-    );
-    const { recommendedEpId } = deriveLessonState({
-      episodes: episodesData.episodes,
-      progress: selectedCourseProgress,
-      lessonTargetScore,
-      lettersByEpisode: episodesData.lettersByEpisode,
-      cachedLetterStatusByChar: {},
-    });
-    const nextHref = `/study/${recommendedEpId ?? 'ep1'}` as Route;
-
     updateSettings({
       courseId,
       hasCompletedOnboarding: true,
     });
     startRoutingAfterOnboarding(() => {
-      router.push(nextHref);
+      router.push('/lessons');
     });
   };
 
