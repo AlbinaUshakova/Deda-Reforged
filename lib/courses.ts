@@ -267,6 +267,39 @@ const SERBIAN_LETTER_NAMES: Record<string, string> = {
   'Ш': 'ша',
 };
 
+const SERBIAN_LETTER_AUDIO: Record<string, string> = {
+  'А': '/audio/letters-sr/01-a.wav',
+  'Б': '/audio/letters-sr/02-b.wav',
+  'В': '/audio/letters-sr/03-v.wav',
+  'Г': '/audio/letters-sr/04-g.wav',
+  'Д': '/audio/letters-sr/05-d.wav',
+  'Ђ': '/audio/letters-sr/06-dj-soft.wav',
+  'Е': '/audio/letters-sr/07-e.wav',
+  'Ж': '/audio/letters-sr/08-zh.wav',
+  'З': '/audio/letters-sr/09-z.wav',
+  'И': '/audio/letters-sr/10-i.wav',
+  'Ј': '/audio/letters-sr/11-y.wav',
+  'К': '/audio/letters-sr/12-k.wav',
+  'Л': '/audio/letters-sr/13-l.wav',
+  'Љ': '/audio/letters-sr/14-l-soft.wav',
+  'М': '/audio/letters-sr/15-m.wav',
+  'Н': '/audio/letters-sr/16-n.wav',
+  'Њ': '/audio/letters-sr/17-n-soft.wav',
+  'О': '/audio/letters-sr/18-o.wav',
+  'П': '/audio/letters-sr/19-p.wav',
+  'Р': '/audio/letters-sr/20-r.wav',
+  'С': '/audio/letters-sr/21-s.wav',
+  'Т': '/audio/letters-sr/22-t.wav',
+  'Ћ': '/audio/letters-sr/23-ch-soft.wav',
+  'У': '/audio/letters-sr/24-u.wav',
+  'Ф': '/audio/letters-sr/25-f.wav',
+  'Х': '/audio/letters-sr/26-h.wav',
+  'Ц': '/audio/letters-sr/27-ts.wav',
+  'Ч': '/audio/letters-sr/28-ch.wav',
+  'Џ': '/audio/letters-sr/29-dzh.wav',
+  'Ш': '/audio/letters-sr/30-sh.wav',
+};
+
 const SERBIAN_LETTER_NAME_RU: Record<string, string> = {
   ...SERBIAN_LETTER_NAMES,
 };
@@ -1118,7 +1151,7 @@ export const COURSES: Record<CourseId, Course> = {
     letterSoundLabels: SERBIAN_RU_HINTS,
     soundHints: makeSoundHints(SERBIAN_RU_HINTS, SERBIAN_LATIN_HINTS),
     letterHints: makeSoundHints(SERBIAN_RU_HINTS, SERBIAN_LATIN_HINTS),
-    letterAudioMap: {},
+    letterAudioMap: SERBIAN_LETTER_AUDIO,
     speechLang: 'sr-RS',
     locale: 'sr',
   },
@@ -1338,7 +1371,9 @@ export function getLetterSpeechText(
   courseId: unknown = DEFAULT_COURSE_ID,
 ): string {
   const course = getCourse(courseId);
-  if (course.letterAudioMap[letter]) return course.letterNames[letter] ?? letter;
+  if (course.id === 'ka' && course.letterAudioMap[letter]) {
+    return course.letterNames[letter] ?? letter;
+  }
   if (course.letterSpeechLabels?.[letter]) return course.letterSpeechLabels[letter];
   return getLetterSoundLabel(letter, course.id)
     .replace(/\/.*$/g, '')
@@ -1348,7 +1383,7 @@ export function getLetterSpeechText(
 
 export function getLetterSpeechLang(courseId: unknown = DEFAULT_COURSE_ID): string {
   const course = getCourse(courseId);
-  return Object.keys(course.letterAudioMap).length > 0 ? course.speechLang : 'ru-RU';
+  return course.id === 'ka' ? course.speechLang : 'ru-RU';
 }
 
 export function getLetterKind(
