@@ -74,7 +74,7 @@ export default function PrivacyPageClient() {
             {interfaceLanguage === 'en' ? 'Lessons' : 'К урокам'}
           </Link>
           <Link className="study-action-pill study-action-pill--secondary" href={supportHref}>
-            {interfaceLanguage === 'en' ? 'Support' : 'Поддержка'}
+            {interfaceLanguage === 'en' ? 'Help' : 'Помощь'}
           </Link>
         </div>
       </section>

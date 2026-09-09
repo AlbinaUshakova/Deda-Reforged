@@ -1,6 +1,7 @@
 // components/AuthStatus.tsx
 'use client';
-
+import Link from 'next/link';
+import type { Route } from 'next';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
 import SettingsPanel from '@/components/SettingsPanel';
@@ -153,6 +154,15 @@ export default function AuthStatus() {
                                 <span aria-hidden>💬</span>
                                 <span>{interfaceLanguage === 'en' ? 'Help and feedback' : 'Помощь и отзывы'}</span>
                             </button>
+
+                            <Link
+                                className={menuItemClass}
+                                href={'/support-deda' as Route}
+                                onClick={closeMenu}
+                            >
+                                <span aria-hidden>♡</span>
+                                <span>{interfaceLanguage === 'en' ? 'Support the project' : 'Поддержать проект'}</span>
+                            </Link>
 
                         </div>
                     </div>

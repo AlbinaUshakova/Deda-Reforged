@@ -19,11 +19,11 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Deda - learn to read through play.",
-  description: "Meet the alphabet, read simple words, and learn first phrases for a new country.",
+  title: "Deda - start reading through play.",
+  description: "Learn unfamiliar symbols, read real words early, and build reading confidence through short playful lessons.",
   openGraph: {
-    title: "Deda - learn to read through play.",
-    description: "Meet the alphabet, read simple words, and learn first phrases for a new country.",
+    title: "Deda - start reading through play.",
+    description: "Learn unfamiliar symbols, read real words early, and build reading confidence through short playful lessons.",
     url: "/",
     locale: "en_US",
     type: "website",
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
         url: "/og-image-v2",
         width: 1200,
         height: 630,
-        alt: "Deda - learn to read through play.",
+        alt: "Deda - start reading through play.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Deda - learn to read through play.",
-    description: "Meet the alphabet, read simple words, and learn first phrases for a new country.",
+    title: "Deda - start reading through play.",
+    description: "Learn unfamiliar symbols, read real words early, and build reading confidence through short playful lessons.",
     images: ["/og-image-v2"],
   },
   icons: {

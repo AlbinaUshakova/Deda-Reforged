@@ -17,8 +17,32 @@ export type DerivedLessonState = {
   letterStatusByChar: Record<string, AlphabetLetterStatus>;
 };
 
-function isLessonEpisodeId(id: string): boolean {
+export const LESSON_UNLOCK_SCORE = 5;
+
+export function isLessonEpisodeId(id: string): boolean {
   return /^ep\d+[a-z]*$/i.test(id);
+}
+
+export function getNormalLessonEpisodes(
+  episodes: LessonListItem[],
+  lettersByEpisode: Record<string, string[]>,
+) {
+  const numberedEpisodes = episodes.filter((episode) => isLessonEpisodeId(episode.id));
+  return numberedEpisodes.filter(
+    (episode) => (lettersByEpisode[episode.id] ?? []).length > 0,
+  );
+}
+
+export function getLessonPosition(episodes: LessonListItem[], episodeId: string) {
+  const index = episodes.findIndex((episode) => episode.id === episodeId);
+  if (index < 0) return undefined;
+  return index + 1;
+}
+
+export function getNextLessonId(episodes: LessonListItem[], episodeId: string) {
+  const index = episodes.findIndex((episode) => episode.id === episodeId);
+  if (index < 0 || index >= episodes.length - 1) return undefined;
+  return episodes[index + 1]?.id;
 }
 
 function getEpisodeOrderValue(id: string): number {
@@ -44,9 +68,7 @@ export function deriveLessonState({
   cachedLetterStatusByChar: Record<string, AlphabetLetterStatus>;
 }): DerivedLessonState {
   const numberedEpisodes = episodes.filter((episode) => isLessonEpisodeId(episode.id));
-  const normalEpisodes = numberedEpisodes.filter(
-    (episode) => (lettersByEpisode[episode.id] ?? []).length > 0,
-  );
+  const normalEpisodes = getNormalLessonEpisodes(episodes, lettersByEpisode);
   const practicalSpecials = numberedEpisodes.filter(
     (episode) => (lettersByEpisode[episode.id] ?? []).length === 0,
   ).map(episode => ({
@@ -61,8 +83,7 @@ export function deriveLessonState({
     practicalSpecials.find((episode) => episode.title === 'Вежливые фразы');
 
   const allLessonsReady =
-    normalEpisodes.length > 0 &&
-    normalEpisodes.every((episode) => (progress[episode.id] ?? 0) > 0);
+    normalEpisodes.some((episode) => (progress[episode.id] ?? 0) >= LESSON_UNLOCK_SCORE);
 
   const unlockedById: Record<string, boolean> = {};
   for (let index = 0; index < normalEpisodes.length; index += 1) {
@@ -73,7 +94,7 @@ export function deriveLessonState({
     }
 
     const prevId = normalEpisodes[index - 1].id;
-    unlockedById[episode.id] = (progress[prevId] ?? 0) > 0;
+    unlockedById[episode.id] = (progress[prevId] ?? 0) >= LESSON_UNLOCK_SCORE;
   }
 
   const recommendedEpId = normalEpisodes

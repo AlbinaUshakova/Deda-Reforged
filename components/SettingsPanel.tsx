@@ -16,23 +16,15 @@ export default function SettingsPanel({
     const settings = useAppStore(state => state.settings);
     const updateSettings = useAppStore(state => state.updateSettings);
     const interfaceLanguage = settings.interfaceLanguage;
-    const [lessonTargetScoreInput, setLessonTargetScoreInput] = useState('25');
     const [translationDirection, setTranslationDirection] = useState<'ge-ru' | 'ru-ge'>('ge-ru');
-    const [courseId, setCourseId] = useState<CourseId>('ka');
+    const courseId = settings.courseId;
 
     useEffect(() => {
-        setLessonTargetScoreInput(String(settings.lessonTargetScore));
         setTranslationDirection(settings.translationDirection);
-        setCourseId(settings.courseId);
-    }, [settings.courseId, settings.lessonTargetScore, settings.translationDirection]);
+    }, [settings.translationDirection]);
 
     const applyAndExit = (afterApply: () => void) => {
-        const parsed = Number(lessonTargetScoreInput);
-        const safe = Number.isFinite(parsed) ? parsed : 25;
-        const next = Math.max(10, Math.min(100, Math.round(safe)));
         updateSettings({
-            courseId,
-            lessonTargetScore: next,
             translationDirection,
         });
         afterApply();
@@ -46,11 +38,6 @@ export default function SettingsPanel({
         if (!onBack) return;
         applyAndExit(onBack);
     };
-
-    const clampTarget = (value: number) => Math.max(10, Math.min(100, Math.round(value)));
-    const parsedTarget = Number(lessonTargetScoreInput);
-    const safeTarget = Number.isFinite(parsedTarget) ? parsedTarget : 25;
-
     return (
         <div className="menu-floating-anchor">
             <div
@@ -85,7 +72,7 @@ export default function SettingsPanel({
                 </div>
                 <div className="pt-2.5">
                     <div className="mb-2 text-[clamp(10px,1.8vw,12px)] text-[var(--menu-text)]">
-                        {interfaceLanguage === 'en' ? 'Translation direction' : 'Направление перевода'}
+                        {interfaceLanguage === 'en' ? 'Practice direction' : 'Направление тренировки'}
                     </div>
                     <div className="grid grid-cols-2 gap-2">
                         <button
@@ -107,7 +94,7 @@ export default function SettingsPanel({
                                     : undefined
                             }
                         >
-                            <div>{getCourseName(courseId, interfaceLanguage)} → {interfaceLanguage === 'en' ? 'English' : 'Русский'}</div>
+                            <div>{getCourseName(courseId as CourseId, interfaceLanguage)} → {interfaceLanguage === 'en' ? 'English' : 'Русский'}</div>
                         </button>
                         <button
                             type="button"
@@ -128,65 +115,10 @@ export default function SettingsPanel({
                                     : undefined
                             }
                         >
-                            <div>{interfaceLanguage === 'en' ? 'English' : 'Русский'} → {getCourseName(courseId, interfaceLanguage)}</div>
+                            <div>{interfaceLanguage === 'en' ? 'English' : 'Русский'} → {getCourseName(courseId as CourseId, interfaceLanguage)}</div>
                         </button>
                     </div>
                 </div>
-
-                <div className="-mx-2.5 mt-2.5 border-t border-[var(--menu-divider)]" />
-
-                <div className="pt-2.5">
-                    <div className="grid grid-cols-[auto_auto] items-center gap-x-2 gap-y-1">
-                        <div className="text-[clamp(10px,1.8vw,12px)] text-[var(--menu-text)]">
-                            {interfaceLanguage === 'en' ? 'Target score' : 'Цель по очкам'}
-                        </div>
-                        <div className="inline-flex items-center rounded-xl border border-[var(--menu-stepper-border)] bg-transparent">
-                            <button
-                                type="button"
-                                className="h-9 w-9 rounded-l-xl border-r border-[var(--menu-stepper-border)] text-[clamp(11px,1.8vw,14px)] font-semibold text-[var(--menu-text)] hover:bg-[var(--menu-hover)] active:bg-[var(--menu-active)] active:scale-[0.97] transition"
-                                onClick={() => {
-                                    setLessonTargetScoreInput(String(clampTarget(safeTarget - 1)));
-                                }}
-                                aria-label={interfaceLanguage === 'en' ? 'Decrease target' : 'Уменьшить цель'}
-                                title={interfaceLanguage === 'en' ? 'Decrease target' : 'Уменьшить цель'}
-                            >
-                                −
-                            </button>
-                            <input
-                                type="number"
-                                min={10}
-                                max={100}
-                                step={1}
-                                value={lessonTargetScoreInput}
-                                onChange={e => {
-                                    const digits = e.target.value.replace(/\D/g, '');
-                                    const noLeadingZero = digits.replace(/^0+/, '');
-                                    setLessonTargetScoreInput(noLeadingZero);
-                                }}
-                                onBlur={() => {
-                                    if (!lessonTargetScoreInput) {
-                                        setLessonTargetScoreInput('25');
-                                        return;
-                                    }
-                                    setLessonTargetScoreInput(String(clampTarget(Number(lessonTargetScoreInput))));
-                                }}
-                                className="menu-stepper-input h-9 w-11 bg-transparent text-center text-[clamp(10px,1.7vw,12px)] leading-none text-[var(--menu-text)] focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            />
-                            <button
-                                type="button"
-                                className="h-9 w-9 rounded-r-xl border-l border-[var(--menu-stepper-border)] text-[clamp(11px,1.8vw,14px)] font-semibold text-[var(--menu-text)] hover:bg-[var(--menu-hover)] active:bg-[var(--menu-active)] active:scale-[0.97] transition"
-                                onClick={() => {
-                                    setLessonTargetScoreInput(String(clampTarget(safeTarget + 1)));
-                                }}
-                                aria-label={interfaceLanguage === 'en' ? 'Increase target' : 'Увеличить цель'}
-                                title={interfaceLanguage === 'en' ? 'Increase target' : 'Увеличить цель'}
-                            >
-                                +
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     );

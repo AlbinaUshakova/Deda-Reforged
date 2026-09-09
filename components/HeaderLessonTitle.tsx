@@ -12,9 +12,9 @@ type HeaderRoute = {
 function getKnownFallbackTitle(episodeId: string, interfaceLanguage: 'ru' | 'en'): string {
   const match = episodeId.match(/^ep(\d+)$/i);
   if (match) return interfaceLanguage === 'en' ? `Lesson ${match[1]}` : `Урок ${match[1]}`;
-  if (episodeId === 'favorites') return interfaceLanguage === 'en' ? 'Favorites' : 'Избранное';
-  if (episodeId === 'all') return interfaceLanguage === 'en' ? 'All lessons' : 'Все уроки';
-  if (episodeId === 'phrases') return interfaceLanguage === 'en' ? 'Useful phrases' : 'Вежливые фразы';
+  if (episodeId === 'favorites') return interfaceLanguage === 'en' ? 'Saved words' : 'Сохраненные слова';
+  if (episodeId === 'all') return interfaceLanguage === 'en' ? 'Review deck' : 'Повторение';
+  if (episodeId === 'phrases') return interfaceLanguage === 'en' ? 'Phrase pack' : 'Набор фраз';
   return '';
 }
 

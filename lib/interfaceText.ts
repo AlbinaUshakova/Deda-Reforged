@@ -79,6 +79,37 @@ export function getAlphabetDisplayTitle(
   return null;
 }
 
+export function getHeaderAlphabetButtonTitle(
+  courseId: CourseId,
+  transliterationMode: 'ru' | 'latin',
+) {
+  if (courseId === 'ka') {
+    return 'ქართული';
+  }
+  if (courseId === 'sr') {
+    return transliterationMode === 'latin' ? 'Latinica' : 'Ћирилица';
+  }
+  if (courseId === 'tr') {
+    return 'Türkçe';
+  }
+  if (courseId === 'es') {
+    return 'Español';
+  }
+  if (courseId === 'de') {
+    return 'Deutsch';
+  }
+  if (courseId === 'fr') {
+    return 'Français';
+  }
+  if (courseId === 'it') {
+    return 'Italiano';
+  }
+  if (courseId === 'en') {
+    return 'English';
+  }
+  return getAlphabetDisplayTitle(courseId, transliterationMode);
+}
+
 export function getSectionTitle(
   rawTitle: string,
   interfaceLanguage: InterfaceLanguage,

@@ -1,9 +1,11 @@
 // src/components/BlocksGrid.tsx
 'use client';
 
+import type { Route } from 'next';
 import React, { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
 import { BlocksBoard } from '@/components/blocks/BlocksBoard';
+import { BlocksCatHint } from '@/components/blocks/BlocksCatHint';
 import { BlocksPalettePortal } from '@/components/blocks/BlocksPalettePortal';
 import { PieceSVG } from '@/components/blocks/PieceSVG';
 import {
@@ -36,6 +38,11 @@ type BlocksGridProps = {
   topActions?: React.ReactNode;
   leftOfCatAction?: React.ReactNode;
   answerState?: 'idle' | 'wrong' | 'correct';
+  unlockTargetScore?: number;
+  studyHref?: Route;
+  nextLessonHref?: Route;
+  hasUnlockedNextLesson?: boolean;
+  milestoneOverlay?: React.ReactNode;
   paletteSlotId?: string;
   palettePlacement?: 'side' | 'bottom';
 };
@@ -57,6 +64,11 @@ export default function BlocksGrid({
   topActions,
   leftOfCatAction,
   answerState = 'idle',
+  unlockTargetScore,
+  studyHref,
+  nextLessonHref,
+  hasUnlockedNextLesson = false,
+  milestoneOverlay,
   paletteSlotId = 'blocks-palette-slot',
   palettePlacement = 'side',
 }: BlocksGridProps) {
@@ -69,18 +81,22 @@ export default function BlocksGrid({
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(initialBestScore);
   const [gameOver, setGameOver] = useState(false);
+  const [gameOverPending, setGameOverPending] = useState(false);
   const [scorePop, setScorePop] = useState(false);
+  const [scoreDelta, setScoreDelta] = useState<number | null>(null);
   const [catReaction, setCatReaction] = useState<{
     emoji: string;
     text?: string;
     bounce?: boolean;
   } | null>(null);
   const [catReactionVisible, setCatReactionVisible] = useState(false);
+  const [showLanguageHint, setShowLanguageHint] = useState(false);
 
   const [clearedCells, setClearedCells] = useState<ClearedCell[]>([]);
 
   const boardRef = useRef<HTMLDivElement | null>(null);
   const scorePopTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scoreDeltaTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const reactionFadeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
@@ -140,6 +156,9 @@ export default function BlocksGrid({
       if (scorePopTimeoutRef.current) {
         clearTimeout(scorePopTimeoutRef.current);
       }
+      if (scoreDeltaTimeoutRef.current) {
+        clearTimeout(scoreDeltaTimeoutRef.current);
+      }
       if (reactionFadeTimeoutRef.current) {
         clearTimeout(reactionFadeTimeoutRef.current);
       }
@@ -148,6 +167,14 @@ export default function BlocksGrid({
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (!showLanguageHint) return;
+    const timeout = setTimeout(() => {
+      setShowLanguageHint(false);
+    }, 2400);
+    return () => clearTimeout(timeout);
+  }, [showLanguageHint]);
 
   const triggerCatReaction = (
     emoji: string,
@@ -213,11 +240,13 @@ export default function BlocksGrid({
     setBag(newBag);
 
     if (newBag.length === 0 || !hasAnyMove(board, newBag)) {
+      setGameOverPending(true);
       setTimeout(() => {
         setGameOver(true);
         // onGameOver();
       }, 2000);
     } else {
+      setGameOverPending(false);
       setGameOver(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -304,6 +333,16 @@ export default function BlocksGrid({
 
           setBoard(clearedBoard);
           setScore(newScore);
+          setScoreDelta(gainedLines > 0 ? gainedLines : null);
+          if (scoreDeltaTimeoutRef.current) {
+            clearTimeout(scoreDeltaTimeoutRef.current);
+          }
+          if (gainedLines > 0) {
+            scoreDeltaTimeoutRef.current = setTimeout(() => {
+              setScoreDelta(null);
+              scoreDeltaTimeoutRef.current = null;
+            }, 1400);
+          }
           setBestScore(prevBest => {
             const updated = newScore > prevBest ? newScore : prevBest;
             if (onBestScoreChange) onBestScoreChange(updated);
@@ -328,6 +367,7 @@ export default function BlocksGrid({
 
             if (rest.length > 0) {
               if (!hasAnyMove(clearedBoard, rest)) {
+                setGameOverPending(true);
                 setTimeout(() => {
                   setGameOver(true);
                   // onGameOver();
@@ -367,7 +407,6 @@ export default function BlocksGrid({
   ]);
 
   const dragPiece = drag?.piece ?? null;
-
   const startDrag = (piece: Piece, e: React.PointerEvent) => {
     if (!bag.find(p => p.id === piece.id) || gameOver) return;
     e.preventDefault();
@@ -379,6 +418,7 @@ export default function BlocksGrid({
     setScore(0);
     setBag([]);
     setGameOver(false);
+    setGameOverPending(false);
     setDrag(null);
     setHover(null);
     setClearedCells([]);
@@ -419,13 +459,19 @@ export default function BlocksGrid({
           style={{ width: boardPixelSize }}
         >
           <div className="blocks-grid-score-row mb-[clamp(4px,0.8vh,8px)] px-1 relative z-[70] flex justify-end">
-            <div className="blocks-grid-score mt-0 text-center text-[clamp(11px,1.2vw,13px)] font-medium tracking-[-0.01em] text-slate-700 opacity-72">
+            <div
+              className={`blocks-grid-score mt-0 text-center text-[clamp(11px,1.2vw,13px)] font-medium tracking-[-0.01em] text-slate-700 opacity-72 ${scorePop ? 'blocks-grid-score--pop' : ''}`}
+            >
               <span>{interfaceLanguage === 'en' ? `Score ${score}` : `Счёт ${score}`}</span>
               <span aria-hidden="true">•</span>
               <span>{interfaceLanguage === 'en' ? `Best ${bestScore}` : `Рекорд ${bestScore}`}</span>
+              {scoreDelta && (
+                <span className="blocks-grid-score-delta">
+                  +{scoreDelta}
+                </span>
+              )}
             </div>
           </div>
-
           {topActions && (
             <div className="absolute right-0 -top-[5.5rem] md:-top-24 z-[95] flex items-center gap-2">
               {topActions}
@@ -436,6 +482,15 @@ export default function BlocksGrid({
               {leftOfCatAction}
             </div>
           )}
+          <BlocksCatHint
+            cellSize={cellSize}
+            placement={palettePlacement}
+            moodClass={catMoodClass}
+            showLanguageHint={showLanguageHint}
+            reaction={catReaction}
+            reactionVisible={catReactionVisible}
+            onShowLanguageHint={() => setShowLanguageHint(prev => !prev)}
+          />
           <BlocksBoard
             board={board}
             boardRef={boardRef}
@@ -443,6 +498,11 @@ export default function BlocksGrid({
             hover={hover}
             clearedCells={clearedCells}
             gameOver={gameOver}
+            interfaceLanguage={interfaceLanguage}
+            studyHref={studyHref}
+            nextLessonHref={nextLessonHref}
+            hasUnlockedNextLesson={hasUnlockedNextLesson}
+            milestoneOverlay={gameOverPending ? undefined : milestoneOverlay}
             onRestart={handleRestart}
           />
 

@@ -44,8 +44,8 @@
     },
     {
       "type": "word",
-      "ge_text": "ეს ორია",
-      "ru_meaning": "это два"
+      "ge_text": "ის მამაა",
+      "ru_meaning": "он папа"
     },
     {
       "type": "word",
@@ -54,8 +54,8 @@
     },
     {
       "type": "word",
-      "ge_text": "აი სამი",
-      "ru_meaning": "вот три"
+      "ge_text": "სამოსი",
+      "ru_meaning": "одежда"
     },
     {
       "type": "word",
@@ -64,18 +64,18 @@
     },
     {
       "type": "word",
-      "ge_text": "რამე",
-      "ru_meaning": "что-нибудь"
+      "ge_text": "აი ის",
+      "ru_meaning": "вот он"
     },
     {
       "type": "word",
-      "ge_text": "ორი რამე",
-      "ru_meaning": "две вещи"
+      "ge_text": "აი ორი",
+      "ru_meaning": "вот два"
     },
     {
       "type": "word",
-      "ge_text": "მომე",
-      "ru_meaning": "дай мне"
+      "ge_text": "ეს ისაა",
+      "ru_meaning": "это он"
     }
   ]
 }

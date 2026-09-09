@@ -24,6 +24,17 @@ import { getCourse } from '@/lib/courses';
 import { translateRussianMeaningToEnglish } from '@/lib/englishMeanings';
 import { getActiveTransliterationMode } from '@/lib/settings';
 import { resolveCardTranscription } from '@/lib/cardTranscription';
+import { getSpecialDeckHint, getSpecialEpisodeKind } from '@/lib/specialEpisodeText';
+import {
+  shouldAutoShowTranscription,
+  shouldShowTranscriptionToggle,
+} from '@/lib/transcriptionVisibility';
+import {
+  orderReviewCards,
+  readReviewMemory,
+  REVIEW_MEMORY_UPDATED_EVENT,
+  type ReviewMemory,
+} from '@/lib/reviewMemory';
 
 type Card = {
   id?: string;
@@ -37,6 +48,7 @@ type Card = {
   type?: 'word' | 'letter';
   level?: number;
   topic?: string;
+  source_episode_id?: string;
 };
 
 const HINT_LETTER_RE = /[A-Za-zА-Яа-яЁёІіЇїЄєҐґ\u0400-\u04FF]/;
@@ -61,10 +73,12 @@ export default function FlashcardDeck({
   cards,
   episodeId,
   onTopicChange,
+  onVisibleCountChange,
 }: {
   cards: Card[];
   episodeId?: string;
   onTopicChange?: (topic: string | null) => void;
+  onVisibleCountChange?: (count: number) => void;
 }) {
   const [isFavoritesPage, setIsFavoritesPage] = useState(false);
   useEffect(() => {
@@ -76,20 +90,22 @@ export default function FlashcardDeck({
   const [progressStep, setProgressStep] = useState(0);
   const [order, setOrder] = useState<number[]>([]);
   const [flipped, setFlipped] = useState(false);
-  const [showTranslit, setShowTranslit] = useState(false);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const courseId = useAppStore(state => state.settings.courseId);
+  const storedTransliterationMode = useAppStore(state => state.settings.transliterationMode);
+  const [showTranslit, setShowTranslit] = useState(shouldAutoShowTranscription(episodeId, courseId));
   const [revealCount, setRevealCount] = useState(0);
 
   const [levelFilter, setLevelFilter] = useState<number | null>(null);
   const [levelInfo, setLevelInfo] = useState<number | null>(null);
   const [topicFilter, setTopicFilter] = useState<string | null>(null);
   const [favMap, setFavMap] = useState<Record<string, true>>({});
+  const [reviewMemory, setReviewMemory] = useState<ReviewMemory>({});
 
-  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
-  const courseId = useAppStore(state => state.settings.courseId);
-  const storedTransliterationMode = useAppStore(state => state.settings.transliterationMode);
   const transliterationMode = getActiveTransliterationMode(interfaceLanguage, courseId, storedTransliterationMode) as TransliterationMode;
   const course = getCourse(courseId);
   const [lessonLetters, setLessonLetters] = useState<string[]>([]);
+  const specialEpisodeKind = getSpecialEpisodeKind(episodeId ?? '');
 
   const hasTopics = useMemo(
     () => cards.some(c => !!c.topic),
@@ -193,6 +209,24 @@ export default function FlashcardDeck({
     } catch { }
   }, []);
 
+  useEffect(() => {
+    const refreshReviewMemory = () => {
+      setReviewMemory(episodeId === 'all' ? readReviewMemory(courseId) : {});
+    };
+
+    refreshReviewMemory();
+    window.addEventListener('focus', refreshReviewMemory);
+    window.addEventListener('pageshow', refreshReviewMemory);
+    window.addEventListener('storage', refreshReviewMemory);
+    window.addEventListener(REVIEW_MEMORY_UPDATED_EVENT, refreshReviewMemory);
+    return () => {
+      window.removeEventListener('focus', refreshReviewMemory);
+      window.removeEventListener('pageshow', refreshReviewMemory);
+      window.removeEventListener('storage', refreshReviewMemory);
+      window.removeEventListener(REVIEW_MEMORY_UPDATED_EVENT, refreshReviewMemory);
+    };
+  }, [courseId, episodeId]);
+
   const visible = useMemo(() => {
     let base = isFavoritesPage ? cards.filter(c => !!favMap[c.ge_text]) : cards;
 
@@ -202,19 +236,38 @@ export default function FlashcardDeck({
       base = base.filter(c => (c.level ?? 1) === levelFilter);
     }
 
+    if (episodeId === 'all') {
+      base = orderReviewCards(base, reviewMemory);
+    }
+
     return base;
-  }, [cards, favMap, isFavoritesPage, hasTopics, topicFilter, hasLevels, levelFilter]);
+  }, [cards, episodeId, favMap, isFavoritesPage, hasTopics, topicFilter, hasLevels, levelFilter, reviewMemory]);
+
+  const defaultShowTranslit = useMemo(
+    () => shouldAutoShowTranscription(episodeId, courseId),
+    [courseId, episodeId],
+  );
 
   useEffect(() => {
     setOrder(visible.map((_, i) => i));
     setIdx(0);
     setProgressStep(visible.length ? 1 : 0);
     setFlipped(false);
-    setShowTranslit(false);
+    setShowTranslit(defaultShowTranslit);
     setRevealCount(0);
-  }, [visible]);
+  }, [defaultShowTranslit, visible]);
 
-  const card = visible[order[idx]];
+  useEffect(() => {
+    onVisibleCountChange?.(visible.length);
+  }, [onVisibleCountChange, visible.length]);
+
+  const effectiveOrder = order.length === visible.length
+    ? order
+    : visible.map((_, index) => index);
+  const safeIdx = effectiveOrder.length > 0
+    ? Math.min(idx, effectiveOrder.length - 1)
+    : 0;
+  const card = visible[effectiveOrder[safeIdx]];
   const hasCard = !!card;
   const translationText = useMemo(
     () =>
@@ -267,7 +320,6 @@ export default function FlashcardDeck({
       return nextIdx;
     });
     setFlipped(false);
-    setShowTranslit(false);
     setRevealCount(0);
   }, [visible.length]);
 
@@ -283,7 +335,6 @@ export default function FlashcardDeck({
       return nextIdx;
     });
     setFlipped(false);
-    setShowTranslit(false);
     setRevealCount(0);
   }, [visible.length]);
 
@@ -312,11 +363,17 @@ export default function FlashcardDeck({
     onToggleFavorite: toggleFav,
   });
 
-  const total = visible.length;
-  const counter = total ? `${idx + 1} / ${total}` : '0 / 0';
+  const total = effectiveOrder.length;
+  const counter = total ? `${safeIdx + 1} / ${total}` : '0 / 0';
   const isFav = !!(card && favMap[card.ge_text]);
+  const isReviewPriority = !!(
+    episodeId === 'all' &&
+    card &&
+    (reviewMemory[card.ge_text]?.difficulty ?? 0) > 0
+  );
   const canPrev = hasCard && total > 1;
   const canNext = hasCard && total > 1;
+  const isLastCard = total > 0 && safeIdx === total - 1;
 
   const clearFilters = useCallback(() => {
     setTopicFilter(null);
@@ -351,10 +408,9 @@ export default function FlashcardDeck({
   }, [card, toggleFav]);
 
   const hasTranscription = !!transcriptionText.trim();
+  const shouldRenderTranslitToggle = hasTranscription && shouldShowTranscriptionToggle(episodeId, courseId, flipped, showTranslit);
 
   useEffect(() => {
-    if (!card) return;
-    setShowTranslit(false);
     setRevealCount(0);
   }, [card?.id, card?.ge_text]);
 
@@ -394,10 +450,13 @@ export default function FlashcardDeck({
           </div>
 
           <div
-            className={`flashcard-main-card group relative z-10 mx-auto cursor-pointer rounded-3xl border border-slate-200 bg-white ${flipped ? 'flashcard-main-card--flipped' : ''}`}
+            className={`flashcard-main-card group relative z-10 mx-auto cursor-pointer rounded-3xl border border-slate-200 bg-white ${flipped ? 'flashcard-main-card--flipped flashcard-main-card--back' : 'flashcard-main-card--front'}`}
             onClick={() => hasCard && setFlipped(f => !f)}
             role="button"
             tabIndex={0}
+            aria-label={flipped
+              ? (interfaceLanguage === 'en' ? 'Card with translation. Tap to return to the word.' : 'Карточка с переводом. Нажми, чтобы вернуться к слову.')
+              : (interfaceLanguage === 'en' ? 'Card with original word. Tap to see translation.' : 'Карточка со словом. Нажми, чтобы увидеть перевод.')}
             onKeyDown={e => {
               if (e.key === ' ' || e.key === 'Enter') {
                 e.preventDefault();
@@ -420,7 +479,7 @@ export default function FlashcardDeck({
                 revealCount={revealCount}
                 isFavorite={isFav}
                 showTranslit={showTranslit}
-                hasTranscription={hasTranscription}
+                hasTranscription={shouldRenderTranslitToggle}
                 onRevealHint={revealHint}
                 onResetHint={resetHint}
                 onToggleFavorite={toggleCurrentFavorite}
@@ -434,6 +493,8 @@ export default function FlashcardDeck({
                 isFavoritesPage={isFavoritesPage}
                 flipped={flipped}
                 idx={idx}
+                total={total}
+                isLastCard={isLastCard}
                 geText={displayGeText}
                 ruText={translationText}
                 geDialogLines={geDialogLines}
@@ -448,6 +509,7 @@ export default function FlashcardDeck({
                 hintText=""
                 showTranslit={showTranslit}
                 showHint={false}
+                isReviewPriority={isReviewPriority}
                 renderCardText={renderCardText}
                 renderLessonLetterHighlight={renderLessonLetterHighlight}
               />
@@ -472,7 +534,12 @@ export default function FlashcardDeck({
           </button>
 
           <div className="flashcard-nav-progress" aria-live="polite">
-            {counter}
+            <span className="flashcard-nav-progress-count">{counter}</span>
+            <span className="flashcard-nav-progress-state">
+              {flipped
+                ? (interfaceLanguage === 'en' ? 'Translation' : 'Перевод')
+                : (interfaceLanguage === 'en' ? 'Word' : 'Слово')}
+            </span>
           </div>
 
           <button
@@ -485,6 +552,22 @@ export default function FlashcardDeck({
             <span className="flashcard-nav-icon" aria-hidden="true">›</span>
           </button>
         </nav>
+        {hasCard && (
+          <p className="flashcard-bottom-hint mt-3 text-center text-[12px] font-medium text-[var(--text-tertiary)]">
+            {getSpecialDeckHint(specialEpisodeKind, flipped, isLastCard, interfaceLanguage) ??
+              (flipped
+                ? (isLastCard
+                  ? (interfaceLanguage === 'en'
+                    ? 'Finish this card and move to practice.'
+                    : 'Закончи эту карточку и переходи к практике.')
+                  : (interfaceLanguage === 'en'
+                    ? 'Now go to the next card.'
+                    : 'Теперь переходи к следующей карточке.'))
+                : (interfaceLanguage === 'en'
+                  ? 'Read the word first, then flip the card.'
+                  : 'Сначала прочитай слово, потом переверни карточку.'))}
+          </p>
+        )}
       </div>
     </div>
   );

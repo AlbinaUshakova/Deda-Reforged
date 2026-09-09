@@ -49,8 +49,8 @@
     },
     {
       "type": "word",
-      "ge_text": "ხუთი",
-      "ru_meaning": "пять"
+      "ge_text": "ხილი",
+      "ru_meaning": "фрукт"
     },
     {
       "type": "word",
@@ -84,8 +84,8 @@
     },
     {
       "type": "word",
-      "ge_text": "კაპიკი",
-      "ru_meaning": "копейка"
+      "ge_text": "ქალი",
+      "ru_meaning": "женщина"
     }
   ]
 }

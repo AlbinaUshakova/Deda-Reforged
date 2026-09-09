@@ -11,7 +11,7 @@ export default function SerbianScriptSwitcher() {
   if (courseId !== 'sr') return null;
 
   return (
-    <div className="inline-flex items-center gap-1 rounded-full border border-[var(--border-soft)] bg-white/80 p-1 shadow-[0_8px_18px_rgba(15,23,42,0.05)]">
+    <div className="header-script-switcher inline-flex items-center gap-1 rounded-full border border-[var(--border-soft)] bg-white/80 p-1 shadow-[0_8px_18px_rgba(15,23,42,0.05)]">
       <button
         type="button"
         onClick={() => updateSettings({ transliterationMode: 'latin' })}
@@ -22,7 +22,7 @@ export default function SerbianScriptSwitcher() {
             : 'text-[var(--text-secondary)] hover:bg-black/5'
         }`}
       >
-        {interfaceLanguage === 'en' ? 'Latinica' : 'Латиница'}
+        {interfaceLanguage === 'en' ? 'Latin' : 'Латиница'}
       </button>
       <button
         type="button"

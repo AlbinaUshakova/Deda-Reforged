@@ -12,7 +12,6 @@ type LessonsHeroProps = {
   recommendedLessonNumber?: number;
   recommendedLetters: string[];
   recommendedScore: number;
-  lessonTargetScore: number;
   transliterationMode: TransliterationMode;
   courseId: CourseId;
   totalLessons: number;
@@ -29,12 +28,35 @@ function plural(count: number, one: string, few: string, many: string): string {
   return `${count} ${many}`;
 }
 
+function getLessonOutcome(
+  interfaceLanguage: 'ru' | 'en',
+  letterCount: number,
+  cardCount: number,
+) {
+  if (interfaceLanguage === 'en') {
+    if (letterCount > 0 && cardCount > 0) {
+      return `${letterCount} new ${letterCount === 1 ? 'letter' : 'letters'}. Read real words right away.`;
+    }
+    if (letterCount > 0) {
+      return `${letterCount} new ${letterCount === 1 ? 'letter' : 'letters'}. Start reading with them right away.`;
+    }
+    return 'Keep reading with the letters you already know.';
+  }
+
+  if (letterCount > 0 && cardCount > 0) {
+    return `${plural(letterCount, 'новая буква', 'новые буквы', 'новых букв')}. Сразу слова.`;
+  }
+  if (letterCount > 0) {
+    return `${plural(letterCount, 'новая буква', 'новые буквы', 'новых букв')}. Начни читать с ними.`;
+  }
+  return 'Продолжай с уже знакомыми символами.';
+}
+
 export function LessonsHero({
   recommendedLesson,
   recommendedLessonNumber,
   recommendedLetters,
   recommendedScore,
-  lessonTargetScore,
   transliterationMode,
   courseId,
   totalLessons,
@@ -65,21 +87,19 @@ export function LessonsHero({
   const courseHint =
     totalLessons > 0
       ? lessonsLeft === 0
-        ? (interfaceLanguage === 'en' ? 'Course complete, all achievements collected!' : 'Курс пройден — все ачивки собраны!')
+        ? (interfaceLanguage === 'en' ? 'All lessons complete' : 'Все уроки пройдены')
         : interfaceLanguage === 'en'
-          ? `Completed ${masteredCount} of ${totalLessons} · ${lessonsLeft} left`
-          : `Пройдено ${masteredCount} из ${totalLessons} · осталось ${plural(lessonsLeft, 'урок', 'урока', 'уроков')}`
+          ? `${masteredCount} of ${totalLessons} lessons complete`
+          : `Освоено ${masteredCount} из ${totalLessons} уроков`
       : '';
 
-  const subtitle = hasStarted
-    ? (interfaceLanguage === 'en' ? 'A little more play and the lesson is yours.' : 'Ещё немного игры — и урок засчитан, ачивка твоя.')
-    : (interfaceLanguage === 'en' ? 'New letters → game → new achievement.' : 'Новые буквы → игра → новая ачивка в коллекции.');
+  const outcomeText = getLessonOutcome(interfaceLanguage, heroLetters.length, cardCount);
 
   const decorGlyph = visibleHeroLetters[0] ?? getDisplayText(course.alphabet[0] ?? '', transliterationMode, courseId);
 
   return (
-    <section className="mx-auto w-full max-w-[900px] px-[clamp(18px,4.4vw,36px)]">
-      <div className="relative overflow-hidden rounded-[24px] border border-[var(--border-soft)] bg-white px-[clamp(18px,3.2vw,34px)] py-[clamp(18px,3vw,26px)] shadow-[0_10px_30px_rgba(31,28,23,0.07)]">
+    <section className="lessons-mobile-hero-wrap mx-auto w-full max-w-[900px] px-[clamp(18px,4.4vw,36px)]">
+      <div className="lessons-mobile-hero-card relative overflow-hidden rounded-[24px] border border-[var(--border-soft)] bg-white px-[clamp(18px,3.2vw,34px)] py-[clamp(18px,3vw,26px)] shadow-[0_10px_30px_rgba(31,28,23,0.07)]">
         {/* мягкое цветное пятно */}
         <div
           className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full"
@@ -105,14 +125,13 @@ export function LessonsHero({
           <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
             {hasStarted
               ? (interfaceLanguage === 'en' ? 'Continue' : 'Продолжаем')
-              : (interfaceLanguage === 'en' ? 'Now' : 'Сейчас')} · {lessonLabel}
-            {totalLessons > 0 ? interfaceLanguage === 'en' ? ` of ${totalLessons}` : ` из ${totalLessons}` : ''}
+              : (interfaceLanguage === 'en' ? 'Now' : 'Сейчас')}
           </span>
           <h2 className="mt-1 text-[clamp(26px,5.2vw,38px)] font-extrabold leading-[0.98] tracking-[-0.03em] text-[var(--text-primary)]">
             {lessonLabel}
           </h2>
-          <p className="mt-1.5 text-[clamp(13px,1.4vw,15px)] font-medium text-[var(--text-secondary)]">
-            {subtitle}
+          <p className="lessons-mobile-hero-outcome mt-2 text-[13px] font-semibold text-[var(--text-primary)]">
+            {outcomeText}
           </p>
 
           <div className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:justify-start">
@@ -125,7 +144,7 @@ export function LessonsHero({
               {ctaLabel}
             </Link>
 
-            <div className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-[12px] font-medium text-[var(--text-tertiary)] sm:justify-start">
+            <div className="lessons-mobile-hero-meta flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-[12px] font-medium text-[var(--text-tertiary)] sm:justify-start">
               {estMinutes > 0 && <span>≈ {estMinutes} {interfaceLanguage === 'en' ? 'min' : 'мин'}</span>}
               {estMinutes > 0 && heroLetters.length > 0 && <span aria-hidden="true">·</span>}
             {visibleHeroLetters.length > 0 && (
@@ -140,7 +159,7 @@ export function LessonsHero({
             </div>
           </div>
 
-          <div className="mt-4 flex flex-wrap justify-center gap-1.5 sm:justify-start" aria-label={interfaceLanguage === 'en' ? 'Lesson letters' : 'Буквы урока'}>
+          <div className="lessons-mobile-hero-letters mt-4 flex flex-wrap justify-center gap-1.5 sm:justify-start" aria-label={interfaceLanguage === 'en' ? 'Lesson letters' : 'Буквы урока'}>
             {heroLetters.map((letter, index) => {
               const visibleLetter = visibleHeroLetters[index] ?? letter;
               return (
@@ -163,12 +182,18 @@ export function LessonsHero({
           </div>
 
           {totalLessons > 0 && (
-            <div className="mt-5">
-              <div className="mb-1 flex items-center justify-between text-[11px] font-medium text-[var(--text-tertiary)]">
+            <div className="lessons-mobile-hero-progress mt-5">
+              <div className="lessons-mobile-hero-progress-copy mb-1 flex items-center justify-between text-[11px] font-medium text-[var(--text-tertiary)]">
                 <span>{courseHint}</span>
-                <span>{coursePercent}%</span>
               </div>
-              <div className="h-1.5 overflow-hidden rounded-full bg-[var(--progress-bg)]">
+              <div
+                className="h-1.5 overflow-hidden rounded-full bg-[var(--progress-bg)]"
+                role="progressbar"
+                aria-label={courseHint}
+                aria-valuemin={0}
+                aria-valuemax={totalLessons}
+                aria-valuenow={masteredCount}
+              >
                 <div
                   className="h-full rounded-full bg-[var(--accent)] transition-all duration-500"
                   style={{ width: `${coursePercent}%` }}

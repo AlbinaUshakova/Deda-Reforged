@@ -27,12 +27,10 @@ export function LessonsStickerJournal({
   courseId,
   episodeIds,
   masteredEpisodeIds,
-  lessonTargetScore,
 }: {
   courseId: CourseId;
   episodeIds: string[];
   masteredEpisodeIds: string[];
-  lessonTargetScore: number;
 }) {
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const [zoom, setZoom] = useState<ZoomBadge | null>(null);
@@ -66,24 +64,24 @@ export function LessonsStickerJournal({
             ? `😺 ${collected} already collected! ${remaining} left.`
             : `😺 Уже ${collected} в альбоме! Осталось ${remaining}.`;
   const unlockRule = interfaceLanguage === 'en'
-    ? `Unlocked at ${lessonTargetScore} points in the lesson game.`
-    : `Открывается за ${lessonTargetScore} очков в игре урока.`;
+    ? 'Unlocked after completing the lesson practice.'
+    : 'Открывается после завершения практики урока.';
 
   return (
     <section className="lessons-journal mx-auto mt-4 w-full max-w-[900px] px-[clamp(18px,4.4vw,36px)] [@media(max-width:700px)]:mt-3">
-      <div className="rounded-[24px] border border-[var(--border-soft)] bg-white px-[clamp(18px,3.2vw,34px)] py-[clamp(16px,2.6vw,22px)] shadow-[0_10px_30px_rgba(31,28,23,0.07)]">
-        <div className="flex items-center justify-between gap-2">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
+      <div className="lessons-journal-card rounded-[24px] border border-[var(--border-soft)] bg-white px-[clamp(18px,3.2vw,34px)] py-[clamp(16px,2.6vw,22px)] shadow-[0_10px_30px_rgba(31,28,23,0.07)]">
+        <div className="lessons-journal-head flex items-center justify-between gap-2">
+          <span className="lessons-journal-title text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
             {interfaceLanguage === 'en' ? 'Deda cat photo album' : 'Фотоальбом котика Deda'}
           </span>
-          <span className="text-[12px] font-semibold text-[var(--text-secondary)]">
+          <span className="lessons-journal-count text-[12px] font-semibold text-[var(--text-secondary)]">
             {interfaceLanguage === 'en'
               ? `${collected} of ${episodeIds.length}`
               : `${collected} из ${episodeIds.length}`}
           </span>
         </div>
 
-        <div className="mt-3 grid grid-cols-5 gap-[clamp(7px,1.8vw,11px)] sm:grid-cols-8">
+        <div className="lessons-journal-grid mt-3 grid grid-cols-5 gap-[clamp(7px,1.8vw,11px)] sm:grid-cols-8">
           {episodeIds.map((id, i) => {
             const isFinal = i === lastIndex;
             const revealed = mastered.has(id);
@@ -133,10 +131,10 @@ export function LessonsStickerJournal({
           })}
         </div>
 
-        <p className="mt-2.5 text-[12px] font-medium leading-snug text-[var(--text-secondary)]">
+        <p className="lessons-journal-message mt-2.5 text-[12px] font-medium leading-snug text-[var(--text-secondary)]">
           {message}
         </p>
-        <p className="mt-1 text-[11px] leading-snug text-[var(--text-tertiary)]">
+        <p className="lessons-journal-rule mt-1 text-[11px] leading-snug text-[var(--text-tertiary)]">
           {unlockRule}
         </p>
       </div>

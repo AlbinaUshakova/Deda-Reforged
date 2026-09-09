@@ -39,8 +39,8 @@
     },
     {
       "type": "word",
-      "ge_text": "ეს მინდა",
-      "ru_meaning": "я хочу это"
+      "ge_text": "ეს დანაა",
+      "ru_meaning": "это нож"
     },
     {
       "type": "word",
@@ -54,33 +54,43 @@
     },
     {
       "type": "word",
-      "ge_text": "ეს უნდა",
-      "ru_meaning": "это нужно"
+      "ge_text": "აი დედა",
+      "ru_meaning": "вот мама"
     },
     {
       "type": "word",
-      "ge_text": "არ უნდა",
-      "ru_meaning": "не нужно"
+      "ge_text": "ეს დედაა",
+      "ru_meaning": "это мама"
     },
     {
       "type": "word",
-      "ge_text": "ორი მინდა",
-      "ru_meaning": "хочу два"
+      "ge_text": "სოდა მინდა",
+      "ru_meaning": "хочу соду"
     },
     {
       "type": "word",
-      "ge_text": "დრო",
-      "ru_meaning": "время"
+      "ge_text": "დანა",
+      "ru_meaning": "нож"
     },
     {
       "type": "word",
-      "ge_text": "სუნი",
-      "ru_meaning": "запах"
+      "ge_text": "აი დანა",
+      "ru_meaning": "вот нож"
     },
     {
       "type": "word",
-      "ge_text": "დარი",
-      "ru_meaning": "погода"
+      "ge_text": "სოდა",
+      "ru_meaning": "сода"
+    },
+    {
+      "type": "word",
+      "ge_text": "ეს სოდაა",
+      "ru_meaning": "это сода"
+    },
+    {
+      "type": "word",
+      "ge_text": "აი და",
+      "ru_meaning": "вот сестра"
     }
   ]
 }

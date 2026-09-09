@@ -5,6 +5,7 @@ import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { BlocksQuestionPanel } from '@/components/blocks/BlocksQuestionPanel';
 import { LessonPassedCelebration } from '@/components/blocks/LessonPassedCelebration';
 import BlocksGrid from './BlocksGrid';
+import type { Route } from 'next';
 import { useAppStore } from '@/lib/appStore';
 import {
   RECENT_WORD_GAP,
@@ -18,15 +19,20 @@ import { getDisplayText, type TransliterationMode } from '@/lib/transliteration'
 import { readFavoriteWords, toggleFavoriteWord } from '@/lib/studyPreferences';
 import { upsertProgress } from '@/lib/supabase';
 import { getActiveTransliterationMode } from '@/lib/settings';
+import { LESSON_UNLOCK_SCORE, isLessonEpisodeId } from '@/lib/lessonProgress';
+import { recordReviewMistake, recordReviewSuccess } from '@/lib/reviewMemory';
 
 type Word = { ge: string; ru: string; acceptedRu?: string[]; acceptedGe?: string[]; audio?: string };
 
 type BlocksGameProps = {
   words: Word[];
   episodeId?: string;
+  progressEpisodeId?: string;
   // рекорд уровня, который пришёл с карты
   initialBest?: number;
   topActions?: React.ReactNode;
+  nextLessonHref?: string;
+  studyHref?: string;
 };
 
 type Question = {
@@ -56,8 +62,11 @@ function createQuestionFromWord(word: Word): Question {
 export default function BlocksGame({
   words,
   episodeId,
+  progressEpisodeId,
   initialBest = 0,
   topActions,
+  nextLessonHref,
+  studyHref,
 }: BlocksGameProps) {
   const questionPanelStyle: QuestionPanelStyleVars = {
     '--input-size': 'clamp(16px,1.8vw,22px)',
@@ -70,7 +79,9 @@ export default function BlocksGame({
   const transliterationMode = getActiveTransliterationMode(interfaceLanguage, courseId, storedTransliterationMode) as TransliterationMode;
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const isFavoritesEpisode = episodeId === 'favorites';
+  const isMainLessonEpisode = episodeId ? isLessonEpisodeId(episodeId) : false;
   const [celebrate, setCelebrate] = useState(false);
+  const [showUnlockToast, setShowUnlockToast] = useState(false);
 
   const hasWords = useMemo(() => words && words.length > 0, [words]);
 
@@ -85,6 +96,7 @@ export default function BlocksGame({
 
   const [attempts, setAttempts] = useState(0);
   const [showCorrect, setShowCorrect] = useState(false);
+  const [isAnswerAccepted, setIsAnswerAccepted] = useState(false);
 
   const [showPalette, setShowPalette] = useState(false);
   const [hardGameOver, setHardGameOver] = useState(false);
@@ -165,6 +177,7 @@ export default function BlocksGame({
     setAnswer('');
     setError(false);
     setAnswerState('idle');
+    setIsAnswerAccepted(false);
     setAttempts(0);
     setShowCorrect(false);
     clearRevealTimer();
@@ -248,6 +261,7 @@ export default function BlocksGame({
         setAnswer('');
         setError(false);
         setAnswerState('idle');
+        setIsAnswerAccepted(false);
         setAttempts(0);
         setShowCorrect(false);
         clearRevealTimer();
@@ -300,6 +314,7 @@ export default function BlocksGame({
       setAnswer('');
       setError(false);
       setAnswerState('idle');
+      setIsAnswerAccepted(false);
       setAttempts(0);
       setShowCorrect(false);
       clearRevealTimer();
@@ -324,6 +339,25 @@ export default function BlocksGame({
     setShowPalette(false);
   }, [mode]);
 
+  const acceptCorrectAnswer = () => {
+    if (question) recordReviewSuccess(courseId, question.ge);
+    clearRevealTimer();
+    clearCorrectTimer();
+    setError(false);
+    setAnswerState('correct');
+    setIsAnswerAccepted(true);
+    setAttempts(0);
+    setShowCorrect(false);
+    correctTimeoutRef.current = setTimeout(() => {
+      setAnswer('');
+      setAnswerState('idle');
+      setIsAnswerAccepted(false);
+      setMode('pieces');
+      setRoundId(prev => (prev > 0 ? prev + 1 : 1));
+      correctTimeoutRef.current = null;
+    }, 140);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (mode !== 'question' || !question || hardGameOver) return;
@@ -344,20 +378,10 @@ export default function BlocksGame({
     const isCorrect = isSameAnswer(answer, correctAnswer);
 
     if (isCorrect) {
-      clearRevealTimer();
-      clearCorrectTimer();
-      setError(false);
-      setAnswerState('correct');
-      setAttempts(0);
-      setShowCorrect(false);
-      correctTimeoutRef.current = setTimeout(() => {
-        setAnswer('');
-        setAnswerState('idle');
-        setMode('pieces');
-        setRoundId(prev => (prev > 0 ? prev + 1 : 1));
-        correctTimeoutRef.current = null;
-      }, 180);
+      acceptCorrectAnswer();
     } else {
+      recordReviewMistake(courseId, question.ge);
+      setIsAnswerAccepted(false);
       if (currentWordIndex !== null) {
         setHardSet(prev => {
           const next = new Set(prev);
@@ -404,7 +428,16 @@ export default function BlocksGame({
       ? [question.ru, ...(question.acceptedRu ?? [])]
       : [question.ge, ...(question.acceptedGe ?? [])];
     const liveCorrect = isSameAnswer(nextValue, correctAnswer);
-    setAnswerState(liveCorrect ? 'correct' : 'idle');
+    if (liveCorrect) {
+      if (!isAnswerAccepted) {
+        acceptCorrectAnswer();
+      }
+      return;
+    }
+    if (isAnswerAccepted) {
+      setIsAnswerAccepted(false);
+    }
+    setAnswerState('idle');
   };
 
   const revealCorrectAnswer = () => {
@@ -421,6 +454,7 @@ export default function BlocksGame({
     setAttempts(3);
     setError(false);
     setAnswerState('idle');
+    setIsAnswerAccepted(false);
     setShowCorrect(true);
     setAnswer(direction === 'ge-ru' ? question.ru : getDisplayText(question.ge, transliterationMode, courseId));
   };
@@ -436,6 +470,7 @@ export default function BlocksGame({
 
     setMode('question');
     setAnswerState('idle');
+    setIsAnswerAccepted(false);
     gotoNextFromQueue(false);
   };
 
@@ -449,6 +484,7 @@ export default function BlocksGame({
     setHardGameOver(false);
     setMode('question');
     setAnswerState('idle');
+    setIsAnswerAccepted(false);
     setRoundId(0);
     gotoNextFromQueue(false);
   };
@@ -456,13 +492,25 @@ export default function BlocksGame({
   // когда из BlocksGrid приходит новый рекорд — обновляем прогресс и карту
   const handleBestScoreChange = (newBest: number) => {
     const justPassed =
-      !isFavoritesEpisode &&
+      isMainLessonEpisode &&
       bestScore < lessonTargetScore &&
       newBest >= lessonTargetScore;
+    const justUnlockedNextLesson =
+      isMainLessonEpisode &&
+      bestScore < LESSON_UNLOCK_SCORE &&
+      newBest >= LESSON_UNLOCK_SCORE &&
+      newBest < lessonTargetScore;
     setBestScore(newBest);
-    if (justPassed) setCelebrate(true);
-    if (!episodeId) return;
-    upsertProgress(episodeId, newBest).catch(console.error);
+    if (justPassed) {
+      setShowUnlockToast(false);
+      setCelebrate(true);
+    }
+    if (justUnlockedNextLesson) {
+      setShowUnlockToast(true);
+    }
+    const progressId = progressEpisodeId ?? episodeId;
+    if (!progressId) return;
+    upsertProgress(progressId, newBest).catch(console.error);
   };
 
   const isQuestionVisible = mode === 'question';
@@ -488,7 +536,13 @@ export default function BlocksGame({
     : '';
   return (
     <div className="blocks-game-root flex w-full justify-center lg:justify-start mt-1 md:mt-2">
-      {celebrate && <LessonPassedCelebration onDone={() => setCelebrate(false)} />}
+      {celebrate && (
+        <LessonPassedCelebration
+          onDone={() => setCelebrate(false)}
+          interfaceLanguage={interfaceLanguage}
+          nextLessonHref={nextLessonHref as never}
+        />
+      )}
       <div
         className={
           'blocks-game-layout relative flex w-full max-w-5xl rounded-[28px] bg-transparent px-1 sm:px-3 md:px-6 py-2 md:py-4 lg:py-5 ' +
@@ -527,6 +581,7 @@ export default function BlocksGame({
                     promptText={promptText}
                     answer={answer}
                     answerState={answerState}
+                    isAnswerAccepted={isAnswerAccepted}
                     showCorrect={showCorrect}
                     error={error}
                     attempts={attempts}
@@ -573,6 +628,43 @@ export default function BlocksGame({
             onBestScoreChange={handleBestScoreChange}
             topActions={topActions}
             answerState={answerState}
+            unlockTargetScore={isMainLessonEpisode ? LESSON_UNLOCK_SCORE : undefined}
+            studyHref={studyHref as Route | undefined}
+            nextLessonHref={nextLessonHref as Route | undefined}
+            hasUnlockedNextLesson={isMainLessonEpisode && bestScore >= LESSON_UNLOCK_SCORE}
+            milestoneOverlay={showUnlockToast && !celebrate ? (
+              <div className="lesson-unlock-toast" role="status" aria-live="polite">
+                <div className="lesson-unlock-toast-card">
+                  <div className="lesson-unlock-toast-emoji" aria-hidden="true">✨</div>
+                  <div className="lesson-unlock-toast-title">
+                    {interfaceLanguage === 'en' ? 'You are reading real words' : 'Ты уже читаешь слова'}
+                  </div>
+                  <div className="lesson-unlock-toast-sub">
+                    {nextLessonHref
+                      ? (interfaceLanguage === 'en'
+                        ? 'The next lesson is ready. Continue now or come back to it later.'
+                        : 'Следующий урок готов. Продолжай сейчас или вернись к нему позже.')
+                      : (interfaceLanguage === 'en'
+                        ? 'You reached the score needed for the next step.'
+                        : 'Ты набрала порог для следующего шага.')}
+                  </div>
+                  <div className="lesson-unlock-toast-actions">
+                    {nextLessonHref && (
+                      <a href={nextLessonHref} className="lesson-unlock-toast-link">
+                        {interfaceLanguage === 'en' ? 'Next lesson' : 'Следующий урок'}
+                      </a>
+                    )}
+                    <button
+                      type="button"
+                      className="lesson-unlock-toast-dismiss"
+                      onClick={() => setShowUnlockToast(false)}
+                    >
+                      {interfaceLanguage === 'en' ? 'Keep practicing' : 'Ещё потренироваться'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : undefined}
             paletteSlotId={paletteSlotId}
             palettePlacement={isNarrowLayout ? 'bottom' : 'side'}
           />

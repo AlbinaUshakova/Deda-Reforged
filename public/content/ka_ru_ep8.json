@@ -74,28 +74,28 @@
     },
     {
       "type": "word",
-      "ge_text": "საღამო",
-      "ru_meaning": "вечер"
+      "ge_text": "ეს ღვინოა",
+      "ru_meaning": "это вино"
     },
     {
       "type": "word",
-      "ge_text": "ღამე",
-      "ru_meaning": "ночь"
+      "ge_text": "აი წვენი",
+      "ru_meaning": "вот сок"
     },
     {
       "type": "word",
-      "ge_text": "დღეს",
-      "ru_meaning": "сегодня"
+      "ge_text": "დიდი ჭიქა",
+      "ru_meaning": "большой стакан"
     },
     {
       "type": "word",
-      "ge_text": "ჭკვიანი",
-      "ru_meaning": "умный"
+      "ge_text": "ხაჭაპური მინდა",
+      "ru_meaning": "хочу хачапури"
     },
     {
       "type": "word",
-      "ge_text": "ღორი",
-      "ru_meaning": "свинья"
+      "ge_text": "მწვადი მინდა",
+      "ru_meaning": "хочу шашлык"
     }
   ]
 }

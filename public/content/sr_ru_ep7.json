@@ -28,26 +28,23 @@
     },
     {
       "type": "word",
-      "ge_text": "бољи",
-      "ru_meaning": "лучше"
+      "ge_text": "књига",
+      "ru_meaning": "книга"
     },
     {
       "type": "word",
-      "ge_text": "њен",
-      "ru_meaning": "её"
+      "ge_text": "уље",
+      "ru_meaning": "масло"
     },
     {
       "type": "word",
-      "ge_text": "њен дом",
-      "ru_meaning": "её дом",
-      "accepted_ru": [
-        "ее дом"
-      ]
+      "ge_text": "поље",
+      "ru_meaning": "поле"
     },
     {
       "type": "word",
-      "ge_text": "њега",
-      "ru_meaning": "его"
+      "ge_text": "кухиња",
+      "ru_meaning": "кухня"
     },
     {
       "type": "word",
@@ -69,38 +66,44 @@
     },
     {
       "type": "word",
-      "ge_text": "боље",
-      "ru_meaning": "лучше"
+      "ge_text": "љута супа",
+      "ru_meaning": "острый суп"
     },
     {
       "type": "word",
-      "ge_text": "воља",
-      "ru_meaning": "воля"
+      "ge_text": "љиљан",
+      "ru_meaning": "лилия"
     },
     {
       "type": "word",
-      "ge_text": "поље",
-      "ru_meaning": "поле"
+      "ge_text": "уље је ту",
+      "ru_meaning": "масло здесь"
     },
     {
       "type": "word",
-      "ge_text": "уље",
-      "ru_meaning": "масло"
+      "ge_text": "њен коњ",
+      "ru_meaning": "её конь",
+      "accepted_ru": [
+        "ее конь"
+      ]
     },
     {
       "type": "word",
-      "ge_text": "њој",
-      "ru_meaning": "ей"
+      "ge_text": "њена шоља",
+      "ru_meaning": "её чашка",
+      "accepted_ru": [
+        "ее чашка"
+      ]
     },
     {
       "type": "word",
-      "ge_text": "њима",
-      "ru_meaning": "им"
+      "ge_text": "књига је ту",
+      "ru_meaning": "книга здесь"
     },
     {
       "type": "word",
-      "ge_text": "љуби",
-      "ru_meaning": "целует"
+      "ge_text": "љубичица",
+      "ru_meaning": "фиалка"
     }
   ]
 }

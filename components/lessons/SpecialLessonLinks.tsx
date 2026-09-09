@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAppStore } from '@/lib/appStore';
+import { readFavoriteWords } from '@/lib/studyPreferences';
 import type { LessonListItem } from '@/lib/lessonProgress';
 
 const sectionIconPaths: Record<string, string> = {
@@ -46,6 +48,19 @@ function getStudiedCount(item: LessonListItem): number {
   return cardCount > 0 ? Math.min(best, cardCount) : best;
 }
 
+function getCardCountLabel(count: number, interfaceLanguage: 'ru' | 'en') {
+  if (interfaceLanguage === 'en') {
+    return `${count} ${count === 1 ? 'card' : 'cards'}`;
+  }
+
+  const lastTwo = count % 100;
+  const last = count % 10;
+  if (lastTwo >= 11 && lastTwo <= 14) return `${count} карточек`;
+  if (last === 1) return `${count} карточка`;
+  if (last >= 2 && last <= 4) return `${count} карточки`;
+  return `${count} карточек`;
+}
+
 function SectionIcon({ title }: { title: string }) {
   const path = sectionIconPaths[title] ?? sectionIconPaths['Простые ответы'];
 
@@ -60,19 +75,72 @@ function SectionIcon({ title }: { title: string }) {
 
 export function SpecialLessonLinks({
   practicalSpecials,
+  allLessonsSpecial,
+  favoritesSpecial,
   phrasesSpecial,
+  allLessonsReady,
+  reviewDeckCardCount,
 }: {
   practicalSpecials: LessonListItem[];
+  allLessonsSpecial?: LessonListItem;
+  favoritesSpecial?: LessonListItem;
   phrasesSpecial?: LessonListItem;
+  allLessonsReady: boolean;
+  reviewDeckCardCount: number;
 }) {
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const [savedWordsCount, setSavedWordsCount] = useState(0);
+
+  useEffect(() => {
+    try {
+      setSavedWordsCount(readFavoriteWords().size);
+    } catch {
+      setSavedWordsCount(0);
+    }
+  }, []);
   const legacyPhrasesSpecial = phrasesSpecial && !practicalSpecials.some(
     special => special.id === phrasesSpecial.id,
   )
     ? phrasesSpecial
     : undefined;
+  const supportModeCards = [
+    favoritesSpecial
+      ? {
+          id: favoritesSpecial.id,
+          title: interfaceLanguage === 'en' ? 'Saved words' : 'Сохраненные слова',
+          meta: interfaceLanguage === 'en'
+            ? `Words you starred · ${getCardCountLabel(savedWordsCount, interfaceLanguage)}`
+            : `Слова со звездой · ${getCardCountLabel(savedWordsCount, interfaceLanguage)}`,
+        }
+      : null,
+    allLessonsSpecial
+      ? {
+          id: allLessonsSpecial.id,
+          title: interfaceLanguage === 'en' ? 'Review deck' : 'Повторение',
+          locked: !allLessonsReady,
+          meta:
+            !allLessonsReady
+              ? interfaceLanguage === 'en'
+                ? 'Words from learned lessons · opens after 5 points'
+                : 'Слова из освоенных уроков · откроется после 5 очков'
+              : interfaceLanguage === 'en'
+                ? `Words from learned lessons · ${getCardCountLabel(reviewDeckCardCount, interfaceLanguage)}`
+                : `Слова из освоенных уроков · ${getCardCountLabel(reviewDeckCardCount, interfaceLanguage)}`,
+        }
+      : null,
+    legacyPhrasesSpecial
+      ? {
+          id: legacyPhrasesSpecial.id,
+          title: translateSectionTitle(legacyPhrasesSpecial.title, interfaceLanguage),
+          meta:
+            interfaceLanguage === 'en'
+              ? 'Ready-made phrases for speaking'
+              : 'Готовые речевые фразы',
+        }
+      : null,
+  ].filter((item): item is { id: string; title: string; meta: string; locked?: boolean } => item !== null);
 
-  if (!legacyPhrasesSpecial && practicalSpecials.length === 0) {
+  if (supportModeCards.length === 0 && practicalSpecials.length === 0) {
     return null;
   }
 
@@ -82,12 +150,43 @@ export function SpecialLessonLinks({
 
   return (
     <section className="home-special-section relative z-[170] mt-8 min-[1512px]:mt-12 min-[1700px]:mt-14 [@media(max-height:980px)]:mt-9 mx-auto w-full max-w-[1160px]">
+      {supportModeCards.length > 0 && (
+        <div className="home-special-block mb-4">
+          <div className="home-special-heading">
+            <div>
+              <span className="home-special-eyebrow">
+                {interfaceLanguage === 'en' ? 'Support modes' : 'Режимы поддержки'}
+              </span>
+            </div>
+          </div>
+          <div className="home-support-grid">
+            {supportModeCards.map((card) => (
+              <Link key={card.id} href={`/study/${card.id}`} legacyBehavior>
+                <a
+                  className={`home-support-card ${card.locked ? 'home-support-card--locked' : 'lesson-card--interactive'}`}
+                  onClick={(event) => {
+                    if (!card.locked) return;
+                    event.preventDefault();
+                  }}
+                  aria-disabled={card.locked ? 'true' : undefined}
+                >
+                  <span className="home-special-card-copy">
+                    <span className="home-support-card-title">{card.title}</span>
+                    <span className="home-support-card-meta">{card.meta}</span>
+                  </span>
+                </a>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       {practicalSpecials.length > 0 && (
         <div className="home-special-block">
           <div className="home-special-heading">
             <div>
               <span className="home-special-eyebrow">
-                {interfaceLanguage === 'en' ? 'Phrases for day one' : 'Фразы для первых дней'}
+                {interfaceLanguage === 'en' ? 'Extra practice' : 'Дополнительная практика'}
               </span>
               <span className="home-special-summary">
                 {interfaceLanguage === 'en'
@@ -110,7 +209,7 @@ export function SpecialLessonLinks({
                 ? (interfaceLanguage === 'en' ? 'Completed' : 'Пройдено')
                 : isStarted
                   ? (interfaceLanguage === 'en' ? `${studiedCount} of ${cardCount} studied` : `${studiedCount} из ${cardCount} изучено`)
-                  : (interfaceLanguage === 'en' ? `${cardCount} basics` : `${cardCount} базовых`);
+                  : (interfaceLanguage === 'en' ? `${cardCount} cards` : `${cardCount} карточек`);
 
               return (
                 <Link key={special.id} href={`/study/${special.id}`} legacyBehavior>
@@ -120,7 +219,6 @@ export function SpecialLessonLinks({
                       <span className="home-special-card-title">{translateSectionTitle(special.title, interfaceLanguage)}</span>
                       <span className="home-special-card-meta">
                         <span>{metaText}</span>
-                        {!isStarted && !isComplete && <span>{interfaceLanguage === 'en' ? 'Not started' : 'Не начато'}</span>}
                       </span>
                       <span className="home-special-card-progress" aria-hidden="true">
                         <span style={{ width: `${progressPercent}%` }} />
@@ -135,18 +233,6 @@ export function SpecialLessonLinks({
         </div>
       )}
 
-      <div className="home-special-links flex items-center justify-center gap-2.5 [@media(max-width:720px)]:gap-2 [@media(max-width:480px)]:gap-1.5">
-        {legacyPhrasesSpecial && (
-          <Link href={`/study/${legacyPhrasesSpecial.id}`} legacyBehavior>
-            <a className="home-special-btn h-9 min-w-[152px] px-3 text-[12px] [@media(max-width:900px)]:h-8 [@media(max-width:900px)]:min-w-[136px] [@media(max-width:900px)]:px-2.5 [@media(max-width:900px)]:text-[11px] [@media(max-width:720px)]:h-7.5 [@media(max-width:720px)]:min-w-[120px] [@media(max-width:720px)]:px-2 [@media(max-width:720px)]:text-[10px] [@media(max-width:480px)]:min-w-[112px] [@media(max-width:480px)]:px-2 rounded-2xl border border-slate-200/80 bg-transparent text-[var(--text-secondary)] flex items-center justify-center gap-1.5 transition-all duration-200 hover:bg-[var(--button-hover)] hover:text-[var(--text-primary)] shadow-[0_8px_18px_rgba(15,23,42,0.1)] [@media(max-width:700px)]:shadow-[0_5px_12px_rgba(15,23,42,0.07)]">
-              <span>{translateSectionTitle(legacyPhrasesSpecial.title, interfaceLanguage)}</span>
-              {typeof legacyPhrasesSpecial.cardCount === 'number' && (
-                <span className="home-special-btn-count">{legacyPhrasesSpecial.cardCount}</span>
-              )}
-            </a>
-          </Link>
-        )}
-      </div>
     </section>
   );
 }

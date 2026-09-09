@@ -36,7 +36,9 @@ export function FlashcardCardActions({
   const favoriteTitle = isFavorite
     ? (interfaceLanguage === 'en' ? 'Remove from saved' : 'Убрать сохранение')
     : (interfaceLanguage === 'en' ? 'Save card' : 'Сохранить карточку');
-  const translitTitle = interfaceLanguage === 'en' ? 'Show transcription' : 'Показать транскрипцию';
+  const translitTitle = showTranslit
+    ? (interfaceLanguage === 'en' ? 'Hide transcription' : 'Скрыть транскрипцию')
+    : (interfaceLanguage === 'en' ? 'Show transcription' : 'Показать транскрипцию');
 
   return (
     <div className="flashcard-action-bar absolute left-[clamp(14px,2vw,24px)] right-[clamp(14px,2vw,24px)] top-[clamp(12px,1.4vw,16px)] z-10 flex items-start justify-between gap-2">
@@ -56,6 +58,7 @@ export function FlashcardCardActions({
         title={hintTitle}
         aria-label={hintTitle}
         aria-pressed={revealCount > 0}
+        data-state={revealCount > 0 ? 'active' : 'idle'}
       >
         <span className="flashcard-action-icon" aria-hidden="true">?</span>
         {revealCount > 0 ? (
@@ -76,6 +79,7 @@ export function FlashcardCardActions({
           title={favoriteTitle}
           aria-label={favoriteTitle}
           aria-pressed={isFavorite}
+          data-state={isFavorite ? 'active' : 'idle'}
         >
           <span className="flashcard-action-icon" aria-hidden="true">
             {isFavorite ? '★' : '☆'}
@@ -93,6 +97,7 @@ export function FlashcardCardActions({
             title={translitTitle}
             aria-label={translitTitle}
             aria-pressed={showTranslit}
+            data-state={showTranslit ? 'active' : 'idle'}
           >
             <span className="flashcard-action-icon" aria-hidden="true">Aa</span>
           </button>

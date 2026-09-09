@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
 import { resetProgress } from '@/lib/supabase';
 import { getEpisodesDataCached } from '@/lib/clientContentCache';
+import { isLessonEpisodeId } from '@/lib/lessonProgress';
 
 export default function ProgressPanel({
   onClose,
@@ -31,7 +32,7 @@ export default function ProgressPanel({
         if (cancelled) return;
 
         const episodes = episodesData.episodes;
-        const normalEpisodes = episodes.filter(ep => /^ep\d+$/i.test(String(ep?.id ?? '')));
+        const normalEpisodes = episodes.filter(ep => isLessonEpisodeId(String(ep?.id ?? '')));
         const mastered = normalEpisodes.filter(
           ep => (progressMap[ep.id] ?? 0) >= lessonTargetScore,
         ).length;

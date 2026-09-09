@@ -101,6 +101,7 @@ export type EpisodeCard = {
   audio_url?: string;
   topic?: string;
   playable?: boolean;
+  source_episode_id?: string;
 };
 
 export type Episode = {

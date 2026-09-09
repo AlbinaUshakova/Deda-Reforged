@@ -4,11 +4,17 @@ import Link from 'next/link';
 import type { Route } from 'next';
 import { useEffect, useState, useMemo } from 'react';
 import { useAppStore } from '@/lib/appStore';
+import { getEpisodesDataCached, getEpisodesDataSync } from '@/lib/clientContentCache';
 import type { EpisodeCard } from '@/lib/clientContentCache';
 import { progressKeyForEpisode } from '@/lib/courses';
 import BlocksGame from '@/components/BlocksGame';
 import { translateRussianMeaningToEnglish } from '@/lib/englishMeanings';
 import { getActiveTranslationLanguage } from '@/lib/settings';
+import { LESSON_UNLOCK_SCORE, getLessonPosition, getNextLessonId, getNormalLessonEpisodes, isLessonEpisodeId } from '@/lib/lessonProgress';
+import { getLessonProgressGuidance, getLessonProgressSummary } from '@/lib/progressFeedback';
+import { getSpecialEpisodeKind, getSpecialEpisodeLabel, getSpecialPlayCopy, getSpecialPlayEmptyState } from '@/lib/specialEpisodeText';
+import { orderReviewCards, readReviewMemory } from '@/lib/reviewMemory';
+import { readFavoriteWords } from '@/lib/studyPreferences';
 
 type Word = { ge: string; ru: string; acceptedRu?: string[]; acceptedGe?: string[]; audio?: string };
 type Card = EpisodeCard;
@@ -80,13 +86,25 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
   const progressMap = useAppStore(state => state.progressMap);
   const courseId = useAppStore(state => state.settings.courseId);
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const translationLanguage = getActiveTranslationLanguage(interfaceLanguage);
   const progressEpisodeId = progressKeyForEpisode(courseId, episodeId);
+  const specialEpisodeKind = getSpecialEpisodeKind(episodeId);
+  const isMainLessonEpisode = isLessonEpisodeId(episodeId);
 
   const [title, setTitle] = useState<string>('');
   const [words, setWords] = useState<Word[]>([]);
   const [initialBest, setInitialBest] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [episodesData, setEpisodesData] = useState(() => getEpisodesDataSync(courseId));
+  const learnedReviewEpisodeSignature = useMemo(
+    () =>
+      getNormalLessonEpisodes(episodesData.episodes, episodesData.lettersByEpisode)
+        .filter(episode => (progressMap[progressKeyForEpisode(courseId, episode.id)] ?? 0) >= LESSON_UNLOCK_SCORE)
+        .map(episode => episode.id)
+        .join('|'),
+    [courseId, episodesData.episodes, episodesData.lettersByEpisode, progressMap],
+  );
 
   useEffect(() => {
     void hydrate();
@@ -125,6 +143,19 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
         // берём только нужные карточки
         let cards = ep.cards.filter(isPlayableCard);
 
+        if (episodeId === 'favorites') {
+          const favoriteWords = readFavoriteWords();
+          cards = cards.filter(c => favoriteWords.has(c.ge_text));
+        }
+
+        if (episodeId === 'all') {
+          const learnedIds = new Set(learnedReviewEpisodeSignature.split('|').filter(Boolean));
+          cards = orderReviewCards(
+            cards.filter(card => card.source_episode_id && learnedIds.has(card.source_episode_id)),
+            readReviewMemory(courseId),
+          );
+        }
+
         if (topic) {
           const filtered = cards.filter(c => c.topic === topic);
           if (filtered.length > 0) {
@@ -159,11 +190,52 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
     return () => {
       cancelled = true;
     };
-  }, [courseId, episodeId, translationLanguage]);
+  }, [courseId, episodeId, learnedReviewEpisodeSignature, translationLanguage]);
 
   const hasWords = useMemo(() => words.length > 0, [words]);
   const studyHref = `/study/${episodeId}` as Route;
   const pageTitle = title || getEpisodeFallbackTitle(episodeId);
+  const normalEpisodes = useMemo(
+    () => getNormalLessonEpisodes(episodesData.episodes, episodesData.lettersByEpisode),
+    [episodesData.episodes, episodesData.lettersByEpisode],
+  );
+  const lessonPosition = useMemo(
+    () => getLessonPosition(normalEpisodes, episodeId),
+    [episodeId, normalEpisodes],
+  );
+  const nextLessonId = useMemo(
+    () => getNextLessonId(normalEpisodes, episodeId),
+    [episodeId, normalEpisodes],
+  );
+  const nextLessonHref = nextLessonId ? (`/study/${nextLessonId}` as Route) : undefined;
+  const currentBest = progressMap[progressEpisodeId] ?? 0;
+  const hasUnlockedNextLesson = currentBest >= LESSON_UNLOCK_SCORE;
+  const progressSummary = isMainLessonEpisode
+    ? getLessonProgressSummary({
+        score: currentBest,
+        targetScore: lessonTargetScore,
+        hasNextLesson: Boolean(nextLessonId),
+        interfaceLanguage,
+      })
+    : currentBest > 0
+      ? interfaceLanguage === 'en'
+        ? `Best score ${currentBest}`
+        : `Лучший счет ${currentBest}`
+      : undefined;
+  const lessonLabel = lessonPosition
+    ? interfaceLanguage === 'en'
+      ? `Lesson ${lessonPosition}`
+      : `Урок ${lessonPosition}`
+    : getSpecialEpisodeLabel(specialEpisodeKind, interfaceLanguage) ?? pageTitle;
+  const playProgressLabel = lessonPosition && normalEpisodes.length > 0
+    ? getLessonProgressGuidance({
+        score: currentBest,
+        targetScore: lessonTargetScore,
+        hasNextLesson: Boolean(nextLessonId),
+        surface: 'play',
+        interfaceLanguage,
+      })
+    : getSpecialPlayCopy(specialEpisodeKind, interfaceLanguage);
 
   useEffect(() => {
     document.documentElement.classList.add('app-no-page-scroll');
@@ -174,30 +246,104 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
     };
   }, []);
 
+  useEffect(() => {
+    let cancelled = false;
+    setEpisodesData(getEpisodesDataSync(courseId));
+
+    void getEpisodesDataCached(false, courseId).then((data) => {
+      if (cancelled) return;
+      setEpisodesData(data);
+    }).catch(() => {});
+
+    return () => {
+      cancelled = true;
+    };
+  }, [courseId]);
+
   return (
     <main className="blocks-game-screen app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">
       <div className="study-screen-orb study-screen-orb--left" aria-hidden="true" />
       <div className="study-screen-orb study-screen-orb--right" aria-hidden="true" />
-      <div className="blocks-screen-shell mx-auto h-full w-full overflow-hidden px-3 py-8 sm:px-4 md:px-6 lg:pl-[124px]">
-        <div className="relative z-30 mb-2 mx-auto w-full max-w-[980px]">
-          <div className="relative flex min-h-[52px] items-center justify-center lg:justify-end">
-            <div className="topButtons study-page-actions flex flex-wrap justify-center gap-2 lg:ml-auto lg:justify-end lg:pr-[112px]">
-            <Link
-              className="study-action-pill study-action-pill--secondary"
-              href="/lessons"
-              aria-label={interfaceLanguage === 'en' ? 'Back to lessons' : 'Вернуться на главную страницу уроков'}
-            >
-              <span aria-hidden="true">←</span>
-              {interfaceLanguage === 'en' ? 'Home' : 'Главная'}
-            </Link>
-            <Link
-              className="study-action-pill study-action-pill--primary"
-              href={studyHref}
-              aria-label={interfaceLanguage === 'en' ? 'Back to flashcards for this lesson' : 'Вернуться к карточкам этого урока'}
-            >
-              <span aria-hidden="true">▣</span>
-              {interfaceLanguage === 'en' ? 'Cards' : 'Карточки'}
-            </Link>
+      <div className="study-screen-shell mx-auto h-full w-full overflow-hidden px-[clamp(14px,3.6vw,48px)] py-[clamp(16px,2.6vh,32px)]">
+        <div className="study-panel study-context-panel game-play-panel relative z-30 mb-3 mx-auto w-full max-w-[980px] rounded-[24px] border border-white/70 bg-white/72 px-[clamp(14px,2vw,22px)] py-[clamp(12px,1.8vw,18px)] shadow-[0_16px_38px_rgba(31,28,23,0.08)] backdrop-blur-[14px]">
+          <div className="study-panel-main game-play-panel-main relative flex min-h-[52px] flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div className="study-panel-copy game-play-panel-copy min-w-0">
+              <div className="study-panel-topline flex flex-wrap items-center justify-between gap-2 lg:hidden">
+                <div className="study-panel-mobile-copy min-w-0">
+                  <div className="study-panel-label text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">
+                    {lessonLabel}
+                  </div>
+                </div>
+                <div className="study-panel-actions game-play-panel-actions topButtons study-page-actions flex flex-wrap justify-end gap-2">
+                  <Link
+                    className="study-action-pill study-action-pill--secondary"
+                    href="/lessons"
+                    aria-label={interfaceLanguage === 'en' ? 'Back to lessons' : 'Вернуться на главную страницу уроков'}
+                  >
+                    <span aria-hidden="true">←</span>
+                    {interfaceLanguage === 'en' ? 'Home' : 'Главная'}
+                  </Link>
+                  <Link
+                    className="study-action-pill study-action-pill--primary"
+                    href={studyHref}
+                    aria-label={interfaceLanguage === 'en' ? 'Back to flashcards for this lesson' : 'Вернуться к карточкам этого урока'}
+                  >
+                    <span aria-hidden="true">▣</span>
+                    {interfaceLanguage === 'en' ? 'Cards' : 'Карточки'}
+                  </Link>
+                  {hasUnlockedNextLesson && nextLessonHref && (
+                    <Link
+                      className="study-action-pill study-action-pill--secondary"
+                      href={nextLessonHref}
+                      aria-label={interfaceLanguage === 'en' ? 'Open the next lesson' : 'Открыть следующий урок'}
+                    >
+                      <span aria-hidden="true">→</span>
+                      {interfaceLanguage === 'en' ? 'Next lesson' : 'Дальше'}
+                    </Link>
+                  )}
+                </div>
+              </div>
+              <div className="study-panel-label hidden text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)] lg:block">
+                {lessonLabel}
+              </div>
+              {progressSummary && (
+                <div className="study-panel-summary game-play-panel-summary mt-2 hidden items-center rounded-full bg-[rgba(255,107,53,0.10)] px-3 py-1 text-[12px] font-semibold text-[var(--accent)] lg:inline-flex">
+                  {progressSummary}
+                </div>
+              )}
+              {playProgressLabel && (
+                <div className="study-panel-progress-copy mt-1 hidden text-[13px] font-medium text-[var(--text-secondary)] lg:block">
+                  {playProgressLabel}
+                </div>
+              )}
+            </div>
+            <div className="study-panel-actions game-play-panel-actions topButtons study-page-actions ml-auto hidden flex-wrap justify-end gap-2 lg:pr-[112px] lg:flex">
+              <Link
+                className="study-action-pill study-action-pill--secondary"
+                href="/lessons"
+                aria-label={interfaceLanguage === 'en' ? 'Back to lessons' : 'Вернуться на главную страницу уроков'}
+              >
+                <span aria-hidden="true">←</span>
+                {interfaceLanguage === 'en' ? 'Home' : 'Главная'}
+              </Link>
+              <Link
+                className="study-action-pill study-action-pill--primary"
+                href={studyHref}
+                aria-label={interfaceLanguage === 'en' ? 'Back to flashcards for this lesson' : 'Вернуться к карточкам этого урока'}
+              >
+                <span aria-hidden="true">▣</span>
+                {interfaceLanguage === 'en' ? 'Cards' : 'Карточки'}
+              </Link>
+              {hasUnlockedNextLesson && nextLessonHref && (
+                <Link
+                  className="study-action-pill study-action-pill--secondary"
+                  href={nextLessonHref}
+                  aria-label={interfaceLanguage === 'en' ? 'Open the next lesson' : 'Открыть следующий урок'}
+                >
+                  <span aria-hidden="true">→</span>
+                  {interfaceLanguage === 'en' ? 'Next lesson' : 'Дальше'}
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -207,15 +353,19 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
             <>
               <BlocksGame
                 words={words}
-                episodeId={progressEpisodeId}
+                episodeId={episodeId}
+                progressEpisodeId={progressEpisodeId}
                 initialBest={initialBest}
+                nextLessonHref={nextLessonHref}
+                studyHref={studyHref}
               />
             </>
           ) : (
             <div className="mt-8 text-center text-[var(--text-secondary)]">
-              {interfaceLanguage === 'en'
-                ? 'There are no game words in this episode yet.'
-                : 'В этом эпизоде пока нет слов для игры.'}
+              {getSpecialPlayEmptyState(specialEpisodeKind, interfaceLanguage) ??
+                (interfaceLanguage === 'en'
+                  ? 'There are no game words in this episode yet.'
+                  : 'В этом эпизоде пока нет слов для игры.')}
             </div>
           )}
         </div>

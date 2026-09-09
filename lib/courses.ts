@@ -3,6 +3,9 @@ import { geLetterAudioMap } from './georgianLetterAudio.ts';
 export type CourseId = 'ka' | 'sr' | 'tr' | 'es' | 'de' | 'en' | 'fr' | 'it';
 
 export const COURSE_ORDER: CourseId[] = ['ka', 'en', 'es', 'de', 'fr', 'it', 'sr', 'tr'];
+export const PRIMARY_ACTIVE_COURSE_IDS: CourseId[] = ['ka'];
+export const SECONDARY_ACTIVE_COURSE_IDS: CourseId[] = ['sr'];
+export const HIDDEN_ACTIVE_COURSE_IDS: CourseId[] = ['tr', 'es', 'de', 'en', 'fr', 'it'];
 
 export type Course = {
   id: CourseId;

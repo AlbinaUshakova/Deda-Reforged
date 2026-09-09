@@ -166,7 +166,12 @@ export async function loadEpisode(
     return {
       id: 'all',
       title: 'Все уроки',
-      cards: validEpisodes.flatMap((episode) => episode.cards),
+      cards: validEpisodes.flatMap((episode) =>
+        episode.cards.map((card) => ({
+          ...card,
+          source_episode_id: episode.id,
+        })),
+      ),
     };
   }
 
@@ -212,10 +217,24 @@ export async function listEpisodes(
   courseId: CourseId = DEFAULT_COURSE_ID,
 ): Promise<EpisodesListItem[]> {
   const normalizedCourseId = normalizeCourseId(courseId);
-  if (normalizedCourseId !== 'it') return listStaticEpisodes(normalizedCourseId);
+  if (normalizedCourseId !== 'it') {
+    return listStaticEpisodes(normalizedCourseId).map((episode) => {
+      if (!/^ep\d+[a-z]*$/i.test(episode.id)) return episode;
+      const compactEpisode = loadCompactReadingLesson(episode.id, normalizedCourseId);
+      return {
+        ...episode,
+        cardCount: compactEpisode?.cards.length ?? episode.cardCount,
+      };
+    });
+  }
 
   const base = listStaticEpisodes('it');
-  const readingLessons = base.filter(episode => /^ep[1-9]$/i.test(episode.id));
+  const readingLessons = base
+    .filter(episode => /^ep[1-9]$/i.test(episode.id))
+    .map((episode) => ({
+      ...episode,
+      cardCount: loadCompactReadingLesson(episode.id, 'it')?.cards.length ?? episode.cardCount,
+    }));
   const numbers = loadItalianNumbersEpisode();
 
   return [

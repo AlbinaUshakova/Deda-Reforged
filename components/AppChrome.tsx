@@ -6,7 +6,6 @@ import BrandToggle from '@/components/BrandToggle';
 import GlobalAlphabetOverlay from '@/components/GlobalAlphabetOverlay';
 import HeaderLessonTitle from '@/components/HeaderLessonTitle';
 import InterfaceLanguageSwitcher from '@/components/InterfaceLanguageSwitcher';
-import SerbianScriptSwitcher from '@/components/SerbianScriptSwitcher';
 
 export default function AppChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -16,16 +15,15 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
     <>
       {!isLandingPage && (
         <header className="sticky top-0 z-[260] h-[clamp(48px,7.2vh,66px)] w-full border-b border-[var(--header-border)] bg-[var(--header-bg)] text-[var(--header-text)] backdrop-blur-md">
-          <div className="mx-auto grid h-full w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-[clamp(8px,1.8vw,16px)] px-[clamp(12px,2.4vw,24px)] sm:px-[clamp(14px,2.8vw,28px)] lg:w-[78vw] xl:w-[73vw] 2xl:w-[66vw] min-[1900px]:w-[60vw] min-[2100px]:w-[58vw] max-w-[1820px]">
-            <div className="justify-self-start">
+          <div className="app-header-shell mx-auto grid h-full w-full grid-cols-[minmax(0,1fr)_auto] md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-[clamp(8px,1.8vw,16px)] px-[clamp(12px,2.4vw,24px)] sm:px-[clamp(14px,2.8vw,28px)] lg:w-[78vw] xl:w-[73vw] 2xl:w-[66vw] min-[1900px]:w-[60vw] min-[2100px]:w-[58vw] max-w-[1820px]">
+            <div className="app-header-left justify-self-start">
               <BrandToggle />
             </div>
-            <div className="justify-self-center h-full">
+            <div className="hidden md:justify-self-center md:block h-full">
               <HeaderLessonTitle />
             </div>
-            <div className="justify-self-end flex items-center gap-2">
+            <div className="app-header-controls justify-self-end flex items-center gap-2">
               <InterfaceLanguageSwitcher />
-              <SerbianScriptSwitcher />
               <AuthStatus />
             </div>
           </div>

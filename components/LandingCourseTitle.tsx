@@ -2,7 +2,13 @@
 
 import { type KeyboardEvent, useEffect, useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
-import { COURSES, COURSE_IDS, type CourseId } from '@/lib/courses';
+import {
+  COURSES,
+  HIDDEN_ACTIVE_COURSE_IDS,
+  PRIMARY_ACTIVE_COURSE_IDS,
+  SECONDARY_ACTIVE_COURSE_IDS,
+  type CourseId,
+} from '@/lib/courses';
 import { getAlphabetDisplayTitle, getCourseName } from '@/lib/interfaceText';
 import { getDisplayText } from '@/lib/transliteration';
 import { getActiveTransliterationMode } from '@/lib/settings';
@@ -17,6 +23,13 @@ const courseAdverb: Record<CourseId, string> = {
   fr: 'по-французски',
   it: 'по-итальянски',
 };
+
+const COMING_SOON_COURSES = [
+  { key: 'ko', label: { en: 'Korean', ru: 'Корейский' } },
+  { key: 'ru', label: { en: 'Russian', ru: 'Русский' } },
+  { key: 'ja', label: { en: 'Japanese', ru: 'Японский' } },
+  { key: 'ar', label: { en: 'Arabic', ru: 'Арабский' } },
+] as const;
 
 type RestaurantBill = {
   label: string;
@@ -376,10 +389,10 @@ export function LandingCourseTitle() {
 
   return (
     <>
-      {interfaceLanguage === 'en' ? 'Learn to read.' : 'Научись читать.'}{' '}
+      {interfaceLanguage === 'en' ? 'Start reading a new script.' : 'Новая письменность.'}{' '}
       <br />
       <span className="landing-title-accent">
-        {interfaceLanguage === 'en' ? 'Start speaking.' : 'Начни общаться.'}
+        {interfaceLanguage === 'en' ? 'Read words from the first lesson.' : 'Читай слова с первого урока.'}
       </span>
     </>
   );
@@ -390,31 +403,96 @@ export function LandingLanguagePicker() {
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const hydrate = useAppStore(state => state.hydrate);
   const updateSettings = useAppStore(state => state.updateSettings);
-  const availableCourseIds = COURSE_IDS.filter(id => !(interfaceLanguage === 'en' && id === 'en'));
+  const primaryCourseIds = PRIMARY_ACTIVE_COURSE_IDS;
+  const secondaryCourseIds = SECONDARY_ACTIVE_COURSE_IDS;
+  const moreCourseIds = HIDDEN_ACTIVE_COURSE_IDS.filter(id => !(interfaceLanguage === 'en' && id === 'en'));
 
   useEffect(() => {
     void hydrate();
   }, [hydrate]);
 
   return (
-    <div className="landing-course-buttons" aria-label={interfaceLanguage === 'en' ? 'Choose course language' : 'Выбрать язык курса'}>
-      {availableCourseIds.map(id => {
-        const course = COURSES[id];
-        const courseName = getCourseName(course.id, interfaceLanguage);
-        return (
-          <button
-            key={course.id}
-            type="button"
-            className={`landing-course-button ${courseId === course.id ? 'landing-course-button--active' : ''}`}
-            onClick={() => updateSettings({ courseId: course.id })}
-            aria-label={interfaceLanguage === 'en' ? `Choose ${courseName}` : `Выбрать ${courseName}`}
-            aria-pressed={courseId === course.id}
-            title={courseName}
+    <div className="flex flex-col gap-4" aria-label={interfaceLanguage === 'en' ? 'Choose course language' : 'Выбрать язык курса'}>
+      <div className="landing-course-buttons">
+        {primaryCourseIds.map(id => {
+          const course = COURSES[id];
+          const courseName = getCourseName(course.id, interfaceLanguage);
+          return (
+            <button
+              key={course.id}
+              type="button"
+              className={`landing-course-button ${courseId === course.id ? 'landing-course-button--active' : ''}`}
+              onClick={() => updateSettings({ courseId: course.id })}
+              aria-label={interfaceLanguage === 'en' ? `Choose ${courseName}` : `Выбрать ${courseName}`}
+              aria-pressed={courseId === course.id}
+              title={courseName}
+            >
+              <span>{courseName}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2 text-[13px] font-medium text-[var(--text-secondary)]">
+        <span>{interfaceLanguage === 'en' ? 'More languages available now:' : 'Сейчас также доступны:'}</span>
+        {secondaryCourseIds.map(id => {
+          const course = COURSES[id];
+          const courseName = getCourseName(course.id, interfaceLanguage);
+          return (
+            <button
+              key={course.id}
+              type="button"
+              className={`rounded-full border px-3 py-1.5 text-[13px] font-semibold transition ${
+                courseId === course.id
+                  ? 'border-[var(--accent)] bg-[var(--accent)] text-white'
+                  : 'border-[var(--border-soft)] bg-white text-[var(--text-primary)] hover:border-[rgba(249,115,22,0.3)]'
+              }`}
+              onClick={() => updateSettings({ courseId: course.id })}
+              aria-label={interfaceLanguage === 'en' ? `Choose ${courseName}` : `Выбрать ${courseName}`}
+              aria-pressed={courseId === course.id}
+            >
+              {courseName}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2 text-[12px] font-medium text-[var(--text-secondary)]">
+        <span>{interfaceLanguage === 'en' ? 'Coming soon:' : 'Скоро:'}</span>
+        {COMING_SOON_COURSES.map((course) => (
+          <span
+            key={course.key}
+            className="rounded-full border border-dashed border-[var(--border-soft)] bg-white/70 px-3 py-1.5 text-[12px] font-semibold text-[var(--text-secondary)]"
           >
-            <span>{courseName}</span>
-          </button>
-        );
-      })}
+            {course.label[interfaceLanguage]}
+          </span>
+        ))}
+      </div>
+
+      <details className="text-[13px] text-[var(--text-secondary)]">
+        <summary className="cursor-pointer select-none font-medium">
+          {interfaceLanguage === 'en' ? 'Other available courses' : 'Другие доступные курсы'}
+        </summary>
+        <div className="landing-course-buttons mt-3">
+          {moreCourseIds.map(id => {
+            const course = COURSES[id];
+            const courseName = getCourseName(course.id, interfaceLanguage);
+            return (
+              <button
+                key={course.id}
+                type="button"
+                className={`landing-course-button ${courseId === course.id ? 'landing-course-button--active' : ''}`}
+                onClick={() => updateSettings({ courseId: course.id })}
+                aria-label={interfaceLanguage === 'en' ? `Choose ${courseName}` : `Выбрать ${courseName}`}
+                aria-pressed={courseId === course.id}
+                title={courseName}
+              >
+                <span>{courseName}</span>
+              </button>
+            );
+          })}
+        </div>
+      </details>
     </div>
   );
 }

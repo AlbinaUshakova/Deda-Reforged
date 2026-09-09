@@ -1,15 +1,24 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useTransition } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import type { Route } from 'next';
 import AuthStatus from '@/components/AuthStatus';
 import InterfaceLanguageSwitcher from '@/components/InterfaceLanguageSwitcher';
 import LandingAlphabet from '@/components/LandingAlphabet';
 import SerbianScriptSwitcher from '@/components/SerbianScriptSwitcher';
 import { useAppStore } from '@/lib/appStore';
-import { COURSES, COURSE_IDS, type CourseId } from '@/lib/courses';
+import { getEpisodesDataSync } from '@/lib/clientContentCache';
+import {
+  PRIMARY_ACTIVE_COURSE_IDS,
+  SECONDARY_ACTIVE_COURSE_IDS,
+  type CourseId,
+  progressKeyForEpisode,
+} from '@/lib/courses';
 import { getCourseName } from '@/lib/interfaceText';
+import { deriveLessonState, getLessonPosition } from '@/lib/lessonProgress';
 import {
   LandingCourseTitle,
   LandingFinalCtaTitle,
@@ -17,22 +26,76 @@ import {
 } from '@/components/LandingCourseTitle';
 
 export default function LandingPage() {
+  const router = useRouter();
   const settings = useAppStore(state => state.settings);
+  const progressMap = useAppStore(state => state.progressMap);
   const hydrate = useAppStore(state => state.hydrate);
   const updateSettings = useAppStore(state => state.updateSettings);
   const interfaceLanguage = settings.interfaceLanguage;
+  const courseId = settings.courseId;
+  const lessonTargetScore = settings.lessonTargetScore;
   const [hydrated, setHydrated] = useState(false);
   const [onboardingStep, setOnboardingStep] = useState<1 | 2>(1);
+  const [isRoutingAfterOnboarding, startRoutingAfterOnboarding] = useTransition();
 
   useEffect(() => {
-    void hydrate().finally(() => setHydrated(true));
+    setHydrated(true);
+    void hydrate();
   }, [hydrate]);
 
   const onboardingVisible = hydrated && !settings.hasCompletedOnboarding;
-  const onboardingCourseIds = useMemo(
-    () => COURSE_IDS.filter(id => !(interfaceLanguage === 'en' && id === 'en')),
-    [interfaceLanguage],
+  const onboardingPrimaryCourseIds = useMemo(() => PRIMARY_ACTIVE_COURSE_IDS, []);
+  const onboardingSecondaryCourseIds = useMemo(() => SECONDARY_ACTIVE_COURSE_IDS, []);
+  const initialEpisodesData = useMemo(() => getEpisodesDataSync(courseId), [courseId]);
+  const courseProgress = useMemo(
+    () =>
+      Object.fromEntries(
+        Object.entries(progressMap).flatMap(([key, value]) => {
+          if (courseId === 'ka') return [[key, value]];
+          const prefix = `${courseId}:`;
+          return key.startsWith(prefix) ? [[key.slice(prefix.length), value]] : [];
+        }),
+      ),
+    [courseId, progressMap],
   );
+  const { recommendedEpId, normalEpisodes } = useMemo(
+    () =>
+      deriveLessonState({
+        episodes: initialEpisodesData.episodes,
+        progress: courseProgress,
+        lessonTargetScore,
+        lettersByEpisode: initialEpisodesData.lettersByEpisode,
+        cachedLetterStatusByChar: {},
+      }),
+    [courseProgress, initialEpisodesData.episodes, initialEpisodesData.lettersByEpisode, lessonTargetScore],
+  );
+  const ctaEpisodeId = recommendedEpId ?? 'ep1';
+  const ctaLessonNumber = getLessonPosition(normalEpisodes, ctaEpisodeId) ?? 1;
+  const ctaProgress = progressMap[progressKeyForEpisode(courseId, ctaEpisodeId)] ?? 0;
+  const ctaHref = (settings.hasCompletedOnboarding ? `/study/${ctaEpisodeId}` : '/lessons') as Route;
+  const ctaLabel = settings.hasCompletedOnboarding
+    ? ctaProgress > 0
+      ? interfaceLanguage === 'en'
+        ? 'Continue'
+        : 'Продолжить'
+      : interfaceLanguage === 'en'
+        ? `Start lesson ${ctaLessonNumber}`
+        : `Начать урок ${ctaLessonNumber}`
+    : interfaceLanguage === 'en'
+      ? 'Start the first lesson'
+      : 'Первый урок';
+  const ctaMeta = settings.hasCompletedOnboarding
+    ? ctaProgress > 0
+      ? interfaceLanguage === 'en'
+        ? 'Pick up where you left off.'
+        : 'Продолжай с места паузы.'
+      : interfaceLanguage === 'en'
+        ? 'Recommended next step.'
+        : 'Рекомендуемый первый шаг.'
+    : interfaceLanguage === 'en'
+      ? 'Choose a language first.'
+      : 'Сначала выбери язык.';
+  const backgroundAriaHidden = onboardingVisible ? true : undefined;
 
   const handleInterfacePick = (language: 'en' | 'ru') => {
     updateSettings({ interfaceLanguage: language });
@@ -40,9 +103,29 @@ export default function LandingPage() {
   };
 
   const handleCoursePick = (courseId: CourseId) => {
+    const episodesData = getEpisodesDataSync(courseId);
+    const selectedCourseProgress = Object.fromEntries(
+      Object.entries(progressMap).flatMap(([key, value]) => {
+        if (courseId === 'ka') return [[key, value]];
+        const prefix = `${courseId}:`;
+        return key.startsWith(prefix) ? [[key.slice(prefix.length), value]] : [];
+      }),
+    );
+    const { recommendedEpId } = deriveLessonState({
+      episodes: episodesData.episodes,
+      progress: selectedCourseProgress,
+      lessonTargetScore,
+      lettersByEpisode: episodesData.lettersByEpisode,
+      cachedLetterStatusByChar: {},
+    });
+    const nextHref = `/study/${recommendedEpId ?? 'ep1'}` as Route;
+
     updateSettings({
       courseId,
       hasCompletedOnboarding: true,
+    });
+    startRoutingAfterOnboarding(() => {
+      router.push(nextHref);
     });
   };
 
@@ -53,12 +136,14 @@ export default function LandingPage() {
           <div className="w-full max-w-[720px] rounded-[32px] border border-white/70 bg-white/92 p-5 shadow-[0_24px_70px_rgba(31,28,23,0.16)] sm:p-7">
             <div className="text-center">
               <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[var(--text-tertiary)]">
-                {onboardingStep === 1 ? 'Step 1' : 'Step 2'}
+                {interfaceLanguage === 'en'
+                  ? `Step ${onboardingStep} of 2`
+                  : `Шаг ${onboardingStep} из 2`}
               </div>
               <h2 className="mt-2 text-[clamp(28px,4vw,40px)] font-semibold tracking-[-0.03em] text-[var(--text-primary)]">
                 {onboardingStep === 1
-                  ? 'What language do you speak?'
-                  : 'What language do you want to learn?'}
+                  ? (interfaceLanguage === 'en' ? 'Choose app language' : 'Выбери язык приложения')
+                  : (interfaceLanguage === 'en' ? 'Choose your first language' : 'Выбери первую письменность')}
               </h2>
             </div>
 
@@ -80,29 +165,57 @@ export default function LandingPage() {
                 </button>
               </div>
             ) : (
-              <div className="mx-auto mt-6 flex max-w-[640px] flex-wrap justify-center gap-3">
-                {onboardingCourseIds.map(courseId => (
-                  <button
-                    key={courseId}
-                    type="button"
-                    onClick={() => handleCoursePick(courseId)}
-                    className="rounded-[22px] border border-[var(--border-soft)] bg-white px-5 py-4 text-[20px] font-semibold text-[var(--text-primary)] shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition hover:-translate-y-0.5"
-                    aria-label={`Choose ${getCourseName(courseId, interfaceLanguage)}`}
-                  >
-                    {getCourseName(courseId, interfaceLanguage)}
-                  </button>
-                ))}
+              <div className="mx-auto mt-6 flex w-full max-w-[640px] flex-col gap-4">
+                <div className="flex flex-wrap justify-center gap-3">
+                  {onboardingPrimaryCourseIds.map(courseId => (
+                    <button
+                      key={courseId}
+                      type="button"
+                      onClick={() => handleCoursePick(courseId)}
+                      disabled={isRoutingAfterOnboarding}
+                      className="rounded-[22px] border border-[var(--border-soft)] bg-white px-5 py-4 text-[20px] font-semibold text-[var(--text-primary)] shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition hover:-translate-y-0.5"
+                      aria-label={`Choose ${getCourseName(courseId, interfaceLanguage)}`}
+                    >
+                      {getCourseName(courseId, interfaceLanguage)}
+                    </button>
+                  ))}
+                </div>
+                <div className="text-center text-[13px] font-medium text-[var(--text-secondary)]">
+                  {interfaceLanguage === 'en' ? 'Also available now: Serbian' : 'Также доступен: Сербский'}
+                </div>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {onboardingSecondaryCourseIds.map(courseId => (
+                    <button
+                      key={courseId}
+                      type="button"
+                      onClick={() => handleCoursePick(courseId)}
+                      disabled={isRoutingAfterOnboarding}
+                      className="rounded-[18px] border border-[var(--border-soft)] bg-white px-4 py-3 text-[17px] font-semibold text-[var(--text-primary)] shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition hover:-translate-y-0.5"
+                      aria-label={`Choose ${getCourseName(courseId, interfaceLanguage)}`}
+                    >
+                      {getCourseName(courseId, interfaceLanguage)}
+                    </button>
+                  ))}
+                </div>
+                <div className="text-center text-[12px] font-medium text-[var(--text-secondary)]">
+                  {interfaceLanguage === 'en'
+                    ? 'Korean, Russian, Japanese, and Arabic come next.'
+                    : 'Дальше: корейский, русский, японский и арабский.'}
+                </div>
               </div>
             )}
           </div>
         </div>
       )}
-      <section id="languages" className="mx-auto flex w-full max-w-[1240px] flex-col justify-center px-4 pt-6 sm:px-6 sm:pt-8 lg:px-8 lg:pt-9">
+      <section
+        id="languages"
+        aria-hidden={backgroundAriaHidden}
+        className="mx-auto flex w-full max-w-[1240px] flex-col justify-center px-4 pt-6 sm:px-6 sm:pt-8 lg:px-8 lg:pt-9"
+      >
         <div className="landing-topbar">
           <div className="landing-brand">Deda</div>
-          <div className="flex items-center gap-2">
+          <div className="landing-topbar-controls flex items-center gap-2">
             <InterfaceLanguageSwitcher />
-            <SerbianScriptSwitcher />
             <AuthStatus />
           </div>
         </div>
@@ -112,20 +225,27 @@ export default function LandingPage() {
               <LandingCourseTitle />
             </h1>
             <div className="landing-course-label">
-              {interfaceLanguage === 'en' ? 'Which language do you want to learn?' : 'Какой язык будем учить?'}
+              {settings.hasCompletedOnboarding
+                ? interfaceLanguage === 'en'
+                  ? 'Choose language'
+                  : 'Выбери письменность'
+                : interfaceLanguage === 'en'
+                  ? 'Choose language'
+                  : 'Выбери язык'}
             </div>
             <LandingLanguagePicker />
             <div className="landing-cta-row mt-3">
               <Link
-                href="/lessons"
+                href={ctaHref}
                 className="landing-cta-btn inline-flex h-[64px] items-center justify-center rounded-[20px] border border-[var(--accent)] bg-[var(--accent)] px-7 text-[20px] font-semibold text-white transition-opacity hover:opacity-90"
               >
-                {interfaceLanguage === 'en' ? 'Start the first lesson' : 'Начать первый урок'} <span className="ml-3 text-[26px] leading-none">→</span>
+                {ctaLabel} <span className="ml-3 text-[26px] leading-none">→</span>
               </Link>
             </div>
             <div className="landing-hero-meta" aria-label={interfaceLanguage === 'en' ? 'Getting started' : 'Условия старта'}>
               <span>{interfaceLanguage === 'en' ? 'Free' : 'Бесплатно'}</span>
-              <span>{interfaceLanguage === 'en' ? 'About 5 minutes to start' : 'Займёт около 5 минут'}</span>
+              <span>{interfaceLanguage === 'en' ? 'First words in about 5 minutes' : 'Первые слова за 5 минут'}</span>
+              {settings.hasCompletedOnboarding && <span>{ctaMeta}</span>}
             </div>
           </div>
 
@@ -139,6 +259,11 @@ export default function LandingPage() {
               className="pointer-events-none absolute bottom-0 right-full z-20 mr-2 hidden h-[150px] w-[150px] object-contain lg:block xl:mr-3 xl:h-[168px] xl:w-[168px]"
             />
             <div className="flex flex-col items-center">
+              {courseId === 'sr' && (
+                <div className="landing-script-switcher-wrap mb-3 flex w-full justify-center">
+                  <SerbianScriptSwitcher />
+                </div>
+              )}
               <div className="landing-alpha-card min-w-0 self-center">
                 <LandingAlphabet />
               </div>
@@ -147,36 +272,40 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="landing-info-section" aria-label={interfaceLanguage === 'en' ? 'What is inside Deda' : 'Что внутри Deda'}>
+      <section
+        className="landing-info-section"
+        aria-hidden={backgroundAriaHidden}
+        aria-label={interfaceLanguage === 'en' ? 'What is inside Deda' : 'Что внутри Deda'}
+      >
         <div className="landing-info-grid">
           <div className="landing-info-card">
             <div className="landing-info-header">
               <div>
                 <span className="landing-info-kicker">{interfaceLanguage === 'en' ? 'Inside Deda' : 'Внутри Deda'}</span>
                 <h2 className="landing-preview-title">
-                  {interfaceLanguage === 'en' ? 'From the first letter to the first phrases' : 'От первой буквы до первых фраз'}
+                  {interfaceLanguage === 'en' ? 'From unfamiliar symbols to readable words' : 'От букв к словам'}
                 </h2>
               </div>
               <p className="landing-info-lead">
-                {interfaceLanguage === 'en' ? 'Listen, read, play, and start speaking.' : 'Слушай, читай, играй и начинай говорить.'}
+                {interfaceLanguage === 'en' ? 'Learn a few letters, read real words, and lock them in with a short game.' : 'Несколько букв, реальные слова и короткая игра.'}
               </p>
             </div>
             <div className="landing-feature-strip">
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">1</span>
-                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Listen' : 'Слушай'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Tap a letter and hear its sound.' : 'Нажми на букву и послушай её звук.'}</span></span>
+                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Learn letters' : 'Буквы'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Tap a symbol and hear its sound.' : 'Нажми и услышь звук.'}</span></span>
               </div>
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">2</span>
-                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Read' : 'Читай'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Read your first words from the first lessons.' : 'Читай первые слова уже с первых уроков.'}</span></span>
+                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Read words' : 'Слова'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Read with the letters you already know.' : 'Читай из уже знакомых букв.'}</span></span>
               </div>
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">3</span>
-                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Play' : 'Играй'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Understand the word and make your move.' : 'Понял слово — сделал ход.'}</span></span>
+                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Practice' : 'Игра'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Practice new words in a short game.' : 'Закрепи слова в игре.'}</span></span>
               </div>
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">4</span>
-                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Start speaking' : 'Начинай говорить'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'You will start picking up words and speaking naturally.' : 'Не заметишь, как выучишь слова и заговоришь.'}</span></span>
+                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Read directly' : 'Самостоятельно'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Rely less on transliteration as you go.' : 'Постепенно без транслитерации.'}</span></span>
               </div>
             </div>
           </div>
@@ -191,22 +320,26 @@ export default function LandingPage() {
             <div>
               <h2 className="landing-preview-title"><LandingFinalCtaTitle /></h2>
             </div>
-            <Link href="/lessons" className="landing-cta-btn inline-flex h-[58px] items-center justify-center rounded-[18px] px-7 text-[18px] font-semibold">
-              {interfaceLanguage === 'en' ? 'Start the first lesson' : 'Начать первый урок'} <span className="ml-3 text-[24px] leading-none">→</span>
+            <Link href={ctaHref} className="landing-cta-btn inline-flex h-[58px] items-center justify-center rounded-[18px] px-7 text-[18px] font-semibold">
+              {ctaLabel} <span className="ml-3 text-[24px] leading-none">→</span>
             </Link>
           </div>
         </div>
       </section>
 
-      <footer className="landing-footer-wrap" aria-label={interfaceLanguage === 'en' ? 'About Deda' : 'Информация о Deda'}>
+      <footer
+        className="landing-footer-wrap"
+        aria-hidden={backgroundAriaHidden}
+        aria-label={interfaceLanguage === 'en' ? 'About Deda' : 'Информация о Deda'}
+      >
         <div className="landing-footer">
           <div className="landing-footer-brand">
             <div className="landing-footer-logo">Deda</div>
-            <p>{interfaceLanguage === 'en' ? '© 2026 Deda. Learn to read through play.' : '© 2026 Deda. Учимся читать играя.'}</p>
+            <p>{interfaceLanguage === 'en' ? '© 2026 Deda. Start reading through play.' : '© 2026 Deda. Начни читать через игру.'}</p>
           </div>
           <div className="landing-footer-links">
-            <a href="#languages">{interfaceLanguage === 'en' ? 'Languages' : 'Языки'}</a>
-            <Link href="/support">{interfaceLanguage === 'en' ? 'Support' : 'Поддержка'}</Link>
+            <Link href={'/support-deda' as Route}>{interfaceLanguage === 'en' ? 'Support the project' : 'Поддержать проект'}</Link>
+            <Link href="/support">{interfaceLanguage === 'en' ? 'Help' : 'Помощь'}</Link>
             <Link href="/privacy">{interfaceLanguage === 'en' ? 'Privacy' : 'Конфиденциальность'}</Link>
           </div>
         </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import type { CardInfoNote, Episode } from '../../../lib/content.ts';
+import { DEFAULT_COURSE_ID, type CourseId } from '../../../lib/courses.ts';
 import { orderLessonCardsByLetterProgression } from '../../../lib/lessonCardOrder.ts';
 
 const RAW_CONTENT_KEY = 'deda_content_json';
@@ -19,6 +20,7 @@ export type StudyCard = {
   transcription_en?: string;
   ipa?: string;
   playable?: boolean;
+  source_episode_id?: string;
 };
 
 export type StudyEpisode = {
@@ -38,6 +40,7 @@ export type FlashcardDeckCard = {
   info_notes?: CardInfoNote[];
   type: 'word' | 'letter';
   topic?: string;
+  source_episode_id?: string;
 };
 
 type FlashcardDeckCompatibleCard = Extract<StudyCard, { type: 'word' }> | {
@@ -67,6 +70,7 @@ type RawStudyCard = {
   transcription_en?: unknown;
   ipa?: unknown;
   playable?: unknown;
+  source_episode_id?: unknown;
 };
 
 type RawStudyEpisode = {
@@ -130,6 +134,10 @@ function normalizeStudyCards(cards: unknown[]): StudyCard[] {
         typeof legacyCard.audio_url === 'string' ? legacyCard.audio_url : undefined;
       const playable =
         typeof legacyCard.playable === 'boolean' ? legacyCard.playable : undefined;
+      const sourceEpisodeId =
+        typeof legacyCard.source_episode_id === 'string'
+          ? legacyCard.source_episode_id
+          : undefined;
 
       if (legacyCard.type === 'letter') {
         return {
@@ -141,6 +149,7 @@ function normalizeStudyCards(cards: unknown[]): StudyCard[] {
           info_notes: infoNotes,
           audio_url: audioUrl,
           ...(playable === false ? { playable: false } : {}),
+          ...(sourceEpisodeId ? { source_episode_id: sourceEpisodeId } : {}),
         };
       }
 
@@ -165,6 +174,7 @@ function normalizeStudyCards(cards: unknown[]): StudyCard[] {
             ? legacyCard.ipa.trim() || undefined
             : undefined,
         ...(playable === false ? { playable: false } : {}),
+        ...(sourceEpisodeId ? { source_episode_id: sourceEpisodeId } : {}),
       };
     })
     .filter((card): card is StudyCard => card !== null);
@@ -205,6 +215,7 @@ function isReadingLessonEpisode(episode: StudyEpisode | null): boolean {
 export function resolveStudyEpisode(
   bundled: Episode | null,
   episodeId: string,
+  courseId: CourseId = DEFAULT_COURSE_ID,
 ): StudyEpisode | null {
   let resolvedEpisode: StudyEpisode | null = bundled
     ? normalizeStudyEpisode(bundled)
@@ -215,6 +226,10 @@ export function resolveStudyEpisode(
   }
 
   if (typeof window === 'undefined') {
+    return resolvedEpisode;
+  }
+
+  if (courseId !== DEFAULT_COURSE_ID) {
     return resolvedEpisode;
   }
 

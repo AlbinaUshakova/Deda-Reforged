@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useMemo, useRef } from 'react';
-import Link from 'next/link';
 import { useAppStore } from '@/lib/appStore';
 import { AlphabetPanel } from '@/components/lessons/AlphabetPanel';
 import { LessonGrid } from '@/components/lessons/LessonGrid';
@@ -17,7 +16,7 @@ import {
   writeAlphabetStatusCache,
 } from '@/lib/alphabetProgressCache';
 import { progressKeyForEpisode, scriptWatermarkStyle } from '@/lib/courses';
-import { deriveLessonState } from '@/lib/lessonProgress';
+import { deriveLessonState, LESSON_UNLOCK_SCORE } from '@/lib/lessonProgress';
 import { getActiveTransliterationMode } from '@/lib/settings';
 
 export default function HomePage() {
@@ -40,6 +39,7 @@ export default function HomePage() {
   const viewportWidth = useViewportWidth();
   const { audioError, speakLetter } = useLetterAudio(courseId);
   const recommendedLessonRef = useRef<HTMLAnchorElement | null>(null);
+  const lastCenteredLessonRef = useRef<string | null>(null);
   const lettersByEpCount = Object.keys(lettersByEp).length;
   const {
     alphabetRef,
@@ -74,8 +74,10 @@ export default function HomePage() {
   const {
     normalEpisodes,
     practicalSpecials,
+    allLessonsSpecial,
     favoritesSpecial,
     phrasesSpecial,
+    allLessonsReady,
     recommendedEpId,
     statusById,
     letterStatusByChar,
@@ -124,6 +126,15 @@ export default function HomePage() {
   const recommendedScore = recommendedLesson
     ? progress[progressKeyForEpisode(courseId, recommendedLesson.id)] ?? 0
     : 0;
+  const lessonsHeadingHint = recommendedLessonNumber
+    ? recommendedScore > 0
+      ? interfaceLanguage === 'en'
+        ? `Continue lesson ${recommendedLessonNumber}.`
+        : `Продолжи урок ${recommendedLessonNumber}.`
+      : interfaceLanguage === 'en'
+        ? `Start with lesson ${recommendedLessonNumber}.`
+        : `Начни с урока ${recommendedLessonNumber}.`
+    : undefined;
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -134,10 +145,30 @@ export default function HomePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId, lettersByEp, lessonTargetScore, progress]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!recommendedEpId || !recommendedLessonRef.current) return;
+    if (lastCenteredLessonRef.current === `${courseId}:${recommendedEpId}`) return;
+
+    const element = recommendedLessonRef.current;
+    const viewportIsCompact = window.innerWidth < 900;
+    lastCenteredLessonRef.current = `${courseId}:${recommendedEpId}`;
+
+    const timer = window.setTimeout(() => {
+      element.scrollIntoView({
+        behavior: viewportIsCompact ? 'smooth' : 'auto',
+        block: 'nearest',
+        inline: 'center',
+      });
+    }, 120);
+
+    return () => window.clearTimeout(timer);
+  }, [courseId, recommendedEpId]);
+
   return (
     <main
       style={scriptWatermarkStyle(courseId)}
-      className="lessons-screen min-h-screen min-h-[100dvh] [@media(max-width:700px)]:min-h-[auto] px-[clamp(18px,4.4vw,36px)] [@media(max-width:900px)]:px-[clamp(24px,7vw,42px)] [@media(max-width:700px)]:px-[clamp(18px,6vw,30px)] pt-5 pb-5 [@media(max-width:700px)]:pb-3 relative overflow-x-hidden flex flex-col"
+      className="lessons-screen min-h-screen min-h-[100dvh] [@media(max-width:700px)]:min-h-[auto] px-[clamp(18px,4.4vw,36px)] [@media(max-width:900px)]:px-[clamp(24px,7vw,42px)] [@media(max-width:700px)]:px-[clamp(18px,6vw,30px)] pt-5 [@media(max-width:700px)]:pt-3 pb-5 [@media(max-width:700px)]:pb-3 relative overflow-x-hidden flex flex-col"
     >
       <div className="lessons-screen-orb lessons-screen-orb--left" aria-hidden="true" />
       <div className="lessons-screen-orb lessons-screen-orb--right" aria-hidden="true" />
@@ -147,7 +178,6 @@ export default function HomePage() {
           recommendedLessonNumber={recommendedLessonNumber}
           recommendedLetters={recommendedLetters}
           recommendedScore={recommendedScore}
-          lessonTargetScore={lessonTargetScore}
           transliterationMode={transliterationMode}
           courseId={courseId}
           totalLessons={normalEpisodeIds.length}
@@ -158,10 +188,9 @@ export default function HomePage() {
           courseId={courseId}
           episodeIds={normalEpisodeIds}
           masteredEpisodeIds={masteredEpisodeIds}
-          lessonTargetScore={lessonTargetScore}
         />
         {/* алфавит + сетка эпизодов */}
-        <section className="lessons-path-section mt-5 [@media(max-width:900px)]:mt-4 [@media(max-width:700px)]:mt-4 min-[1700px]:pl-10 min-[2200px]:pl-12">
+        <section className="lessons-path-section mt-5 [@media(max-width:900px)]:mt-4 [@media(max-width:700px)]:mt-3 min-[1700px]:pl-10 min-[2200px]:pl-12">
           <div className="relative mx-auto w-full">
             <AlphabetPanel
               alphabetRef={alphabetRef}
@@ -175,12 +204,12 @@ export default function HomePage() {
             />
             <div ref={lessonsWrapRef} className="relative z-[150] mx-auto w-full max-w-[1160px]">
               <div className="lessons-grid-heading">
-                <h2>{interfaceLanguage === 'en' ? 'Lessons' : 'Уроки'}</h2>
-                {favoritesSpecial && (
-                  <Link href={`/study/${favoritesSpecial.id}`} className="lessons-favorites-link">
-                    {interfaceLanguage === 'en' ? '☆ Favorites' : '☆ Избранное'}
-                  </Link>
-                )}
+                <div className="lessons-grid-heading-copy">
+                  <h2>{interfaceLanguage === 'en' ? 'Lessons' : 'Уроки'}</h2>
+                  {lessonsHeadingHint && (
+                    <p className="lessons-grid-heading-hint">{lessonsHeadingHint}</p>
+                  )}
+                </div>
               </div>
               <LessonGrid
                 courseId={courseId}
@@ -207,7 +236,17 @@ export default function HomePage() {
 
         <SpecialLessonLinks
           practicalSpecials={practicalSpecials}
+          allLessonsSpecial={allLessonsSpecial}
+          favoritesSpecial={favoritesSpecial}
           phrasesSpecial={phrasesSpecial}
+          allLessonsReady={allLessonsReady}
+          reviewDeckCardCount={normalEpisodes.reduce(
+            (sum, episode) =>
+              (courseProgress[episode.id] ?? 0) >= LESSON_UNLOCK_SCORE
+                ? sum + (episode.cardCount ?? 0)
+                : sum,
+            0,
+          )}
         />
 
       </div>

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Deda - learn to read through play.',
+  title: 'Deda - start reading through play.',
   description:
-    'Learn Georgian, Turkish, Serbian, Spanish, German, French, and English through letters, simple words, and play.',
+    'Learn unfamiliar symbols, read real words early, and build reading confidence through short playful lessons.',
 };
 
 export { default } from "./LandingPage";

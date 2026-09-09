@@ -49,7 +49,11 @@
     {
       "type": "word",
       "ge_text": "რა ფასია",
-      "ru_meaning": "какая цена"
+      "ru_meaning": "сколько стоит",
+      "accepted_ru": [
+        "какая цена",
+        "какова цена"
+      ]
     },
     {
       "type": "word",
@@ -83,28 +87,28 @@
     },
     {
       "type": "word",
-      "ge_text": "ტელეფონი",
-      "ru_meaning": "телефон"
+      "ge_text": "ეს ჯემია",
+      "ru_meaning": "это джем"
     },
     {
       "type": "word",
-      "ge_text": "ფანქარი",
-      "ru_meaning": "карандаш"
+      "ge_text": "ეს ზეთია",
+      "ru_meaning": "это масло"
     },
     {
       "type": "word",
-      "ge_text": "ოფისი",
-      "ru_meaning": "офис"
+      "ge_text": "აი ფაფა",
+      "ru_meaning": "вот каша"
     },
     {
       "type": "word",
-      "ge_text": "ეზო",
-      "ru_meaning": "двор"
+      "ge_text": "ფორთოხალი მინდა",
+      "ru_meaning": "хочу апельсин"
     },
     {
       "type": "word",
-      "ge_text": "გზა",
-      "ru_meaning": "дорога"
+      "ge_text": "ფეხი",
+      "ru_meaning": "нога"
     }
   ]
 }

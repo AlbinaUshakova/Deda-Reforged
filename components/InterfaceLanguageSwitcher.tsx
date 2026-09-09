@@ -7,7 +7,7 @@ export default function InterfaceLanguageSwitcher() {
   const updateSettings = useAppStore(state => state.updateSettings);
 
   return (
-    <div className="inline-flex items-center gap-1 rounded-full border border-[var(--border-soft)] bg-white/80 p-1 shadow-[0_8px_18px_rgba(15,23,42,0.05)]">
+    <div className="header-interface-switcher inline-flex items-center gap-1 rounded-full border border-[var(--border-soft)] bg-white/80 p-1 shadow-[0_8px_18px_rgba(15,23,42,0.05)]">
       <button
         type="button"
         onClick={() => updateSettings({ interfaceLanguage: 'en' })}

@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/**/*.test.ts",
     "check": "npm run typecheck && npm run lint && npm run test",
-    "check:lesson-letters": "node scripts/check-lesson-letters.mjs",
+    "check:lesson-letters": "node --experimental-strip-types scripts/check-lesson-letters.mts",
     "postinstall": "next telemetry disable || true"
   },
   "dependencies": {

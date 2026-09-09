@@ -8,6 +8,8 @@ type FlashcardCardContentProps = {
   isFavoritesPage: boolean;
   flipped: boolean;
   idx: number;
+  total: number;
+  isLastCard: boolean;
   geText: string;
   ruText: string;
   geDialogLines: string[];
@@ -22,6 +24,7 @@ type FlashcardCardContentProps = {
   hintText: string;
   showTranslit: boolean;
   showHint: boolean;
+  isReviewPriority: boolean;
   renderCardText: (text: string, kind: 'ge' | 'ru') => React.ReactNode;
   renderLessonLetterHighlight: (text: string) => React.ReactNode;
 };
@@ -31,6 +34,8 @@ export function FlashcardCardContent({
   isFavoritesPage,
   flipped,
   idx,
+  total,
+  isLastCard,
   geText,
   ruText,
   geDialogLines,
@@ -45,22 +50,48 @@ export function FlashcardCardContent({
   hintText,
   showTranslit,
   showHint,
+  isReviewPriority,
   renderCardText,
   renderLessonLetterHighlight,
 }: FlashcardCardContentProps) {
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const faceLabel = flipped
+    ? (interfaceLanguage === 'en' ? 'Translation' : 'Перевод')
+    : isReviewPriority
+      ? (interfaceLanguage === 'en' ? 'Review again' : 'На повторение')
+      : (interfaceLanguage === 'en' ? 'Word' : 'Слово');
+  const faceHint = flipped
+    ? (interfaceLanguage === 'en' ? 'Tap to return to the original word' : 'Нажми, чтобы вернуться к слову')
+    : (interfaceLanguage === 'en' ? 'Read first, then flip the card' : 'Сначала прочитай, потом переверни карточку');
   if (!hasCard) {
     return (
       <div className="text-[var(--text-secondary)]">
         {isFavoritesPage
-          ? (interfaceLanguage === 'en' ? 'No saved cards' : 'Нет отмеченных карточек')
+          ? (interfaceLanguage === 'en' ? 'No saved words yet' : 'Пока нет сохраненных слов')
           : (interfaceLanguage === 'en' ? 'No cards' : 'Нет карточек')}
       </div>
     );
   }
 
   const renderSupplementaryInfo = () => (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flashcard-supplementary-info flex flex-col items-center gap-2">
+      <div className="flashcard-status-pill">
+        {flipped
+          ? (interfaceLanguage === 'en'
+            ? isLastCard
+              ? 'Last card'
+              : 'Translation open'
+            : isLastCard
+              ? 'Последняя карточка'
+              : 'Перевод открыт')
+          : (interfaceLanguage === 'en'
+            ? total > 1
+              ? 'Word side'
+              : 'First card'
+            : total > 1
+              ? 'Сторона слова'
+              : 'Первая карточка')}
+      </div>
       {showTranslit && transcriptionText.trim() && (
         <div className="flashcard-translit-panel">
           <span className="flashcard-translit-value">{transcriptionText}</span>
@@ -77,7 +108,11 @@ export function FlashcardCardContent({
 
   if (!flipped) {
     return (
-      <div key={`front-${idx}`} className="flex -translate-y-[14px] flex-col items-center justify-center gap-3">
+      <div key={`front-${idx}`} className="flashcard-face flashcard-face--front flex -translate-y-[14px] flex-col items-center justify-center gap-3">
+        <div className="flashcard-face-meta">
+          <span className={`flashcard-face-label ${isReviewPriority ? 'flashcard-face-label--review' : ''}`}>{faceLabel}</span>
+          <span className="flashcard-face-hint">{faceHint}</span>
+        </div>
         <div
           className={`flashcard-ge-text mx-auto w-full max-w-[20ch] max-[640px]:max-w-full whitespace-normal break-normal text-[clamp(34px,5vw,56px)] ${geMobileTextClass} ${geMobileLayoutClass} leading-[1.12] text-slate-800`}
           style={{ fontFamily: 'var(--font-georgian)' }}
@@ -104,7 +139,11 @@ export function FlashcardCardContent({
   }
 
   return (
-    <div key={`back-${idx}`} className="flex -translate-y-[14px] flex-col items-center justify-center gap-3">
+    <div key={`back-${idx}`} className="flashcard-face flashcard-face--back flex -translate-y-[14px] flex-col items-center justify-center gap-3">
+      <div className="flashcard-face-meta">
+        <span className="flashcard-face-label">{faceLabel}</span>
+        <span className="flashcard-face-hint">{faceHint}</span>
+      </div>
       <div className={`flashcard-ru-text mx-auto w-full max-w-[20ch] max-[640px]:max-w-full whitespace-normal break-normal text-[clamp(30px,5vw,48px)] ${ruMobileTextClass} ${ruMobileLayoutClass} leading-tight text-[var(--text-primary)]`}>
         {isRuDialog ? (
           <div className="flex flex-col items-center gap-1.5">

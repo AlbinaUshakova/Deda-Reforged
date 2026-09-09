@@ -9,13 +9,13 @@
   "cards": [
     {
       "type": "word",
-      "ge_text": "ერთი",
-      "ru_meaning": "один"
+      "ge_text": "ბოთლი",
+      "ru_meaning": "бутылка"
     },
     {
       "type": "word",
-      "ge_text": "ათი",
-      "ru_meaning": "десять"
+      "ge_text": "ბატი",
+      "ru_meaning": "утка"
     },
     {
       "type": "word",
@@ -34,19 +34,13 @@
     },
     {
       "type": "word",
-      "ge_text": "თბილი",
-      "ru_meaning": "тёплый",
-      "accepted_ru": [
-        "теплый"
-      ]
+      "ge_text": "თათი",
+      "ru_meaning": "лапа"
     },
     {
       "type": "word",
-      "ge_text": "ეს თბილია",
-      "ru_meaning": "это тёплое",
-      "accepted_ru": [
-        "это теплое"
-      ]
+      "ge_text": "ეს თაროა",
+      "ru_meaning": "это полка"
     },
     {
       "type": "word",
@@ -60,18 +54,18 @@
     },
     {
       "type": "word",
-      "ge_text": "თითი",
-      "ru_meaning": "палец"
+      "ge_text": "აი თარო",
+      "ru_meaning": "вот полка"
     },
     {
       "type": "word",
-      "ge_text": "თათი",
-      "ru_meaning": "лапа"
+      "ge_text": "ტორტი მინდა",
+      "ru_meaning": "хочу торт"
     },
     {
       "type": "word",
-      "ge_text": "ტომატი",
-      "ru_meaning": "томат"
+      "ge_text": "ეს ტორტია",
+      "ru_meaning": "это торт"
     },
     {
       "type": "word",
@@ -80,18 +74,18 @@
     },
     {
       "type": "word",
-      "ge_text": "ბებია",
-      "ru_meaning": "бабушка"
+      "ge_text": "ეს ბარათია",
+      "ru_meaning": "это карта"
     },
     {
       "type": "word",
-      "ge_text": "ბაბუა",
-      "ru_meaning": "дедушка"
+      "ge_text": "ტომატი",
+      "ru_meaning": "томат"
     },
     {
       "type": "word",
-      "ge_text": "ტბა",
-      "ru_meaning": "озеро"
+      "ge_text": "აი ტომატი",
+      "ru_meaning": "вот томат"
     }
   ]
 }

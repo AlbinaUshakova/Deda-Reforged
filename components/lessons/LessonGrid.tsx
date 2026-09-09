@@ -4,11 +4,20 @@ import Link from 'next/link';
 import type { MouseEvent, Ref } from 'react';
 import { useAppStore } from '@/lib/appStore';
 import type { CourseId } from '@/lib/courses';
-import type { LessonListItem, LessonStatus } from '@/lib/lessonProgress';
+import { LESSON_UNLOCK_SCORE, type LessonListItem, type LessonStatus } from '@/lib/lessonProgress';
 import { getDisplayText, type TransliterationMode } from '@/lib/transliteration';
 
 function getLessonSymbolSize(symbol: string, baseSizePx: number) {
   return Math.max(14, baseSizePx - Math.max(0, symbol.length - 1) * 5);
+}
+
+function plural(count: number, one: string, few: string, many: string): string {
+  const lastTwo = Math.abs(count) % 100;
+  const last = Math.abs(count) % 10;
+  if (lastTwo >= 11 && lastTwo <= 14) return many;
+  if (last === 1) return one;
+  if (last >= 2 && last <= 4) return few;
+  return many;
 }
 
 export function LessonGrid({
@@ -62,16 +71,20 @@ export function LessonGrid({
           const hasVisualSymbols = visualSymbols.length > 0;
           const statusLabel =
             status === 'mastered'
-              ? (interfaceLanguage === 'en' ? 'Completed' : 'Пройдено')
+              ? (interfaceLanguage === 'en' ? 'Done' : 'Готово')
               : status === 'current'
                 ? best > 0
                   ? (interfaceLanguage === 'en' ? 'Continue' : 'Продолжить')
                   : (interfaceLanguage === 'en' ? 'Start' : 'Начать')
                 : status === 'almost'
-                  ? (interfaceLanguage === 'en' ? 'Available' : 'Доступен')
-                  : interfaceLanguage === 'en'
-                    ? `Unlocks after ${previousLessonTitle}`
-                    : `Откроется после ${previousLessonTitle}`;
+                  ? (interfaceLanguage === 'en' ? 'Review' : 'Закрепить')
+                  : undefined;
+          const lockedLabel =
+            status === 'locked'
+              ? interfaceLanguage === 'en'
+                    ? `After ${previousLessonTitle}`
+                    : `После ${previousLessonTitle}`
+              : undefined;
 
           return (
             <div
@@ -107,36 +120,24 @@ export function LessonGrid({
                 >
                   <div className="z-10 flex items-center justify-between gap-2">
                     <div className="flex min-w-0 items-center gap-2.5">
-                      <span className={`home-lesson-badge home-lesson-badge--${status ?? 'unknown'}`} aria-hidden="true">{i + 1}</span>
+                      <span className={`home-lesson-badge home-lesson-badge--${status ?? 'unknown'}`} aria-hidden="true">
+                        {status === 'mastered'
+                          ? '✓'
+                          : status === 'current'
+                            ? '🐾'
+                            : status === 'locked'
+                              ? '🔒'
+                              : '•'}
+                      </span>
                       <span className="flex min-w-0 flex-col text-left">
                         <span className="home-lesson-title text-[13px] [@media(max-width:560px)]:text-[12px] font-medium text-slate-700">
                           {interfaceLanguage === 'en' ? `Lesson ${i + 1}` : `Урок ${i + 1}`}
                         </span>
-                        {status !== 'locked' && (
+                        {statusLabel && (
                           <span className="home-lesson-state-label">{statusLabel}</span>
                         )}
                       </span>
                     </div>
-                    <span className="home-lesson-status-inline" aria-hidden="true">
-                      {status === 'mastered' && (
-                        <span className="home-lesson-status home-lesson-status--mastered">✓</span>
-                      )}
-                      {status === 'current' && (
-                        <span className="home-lesson-status home-lesson-status--current">🐾</span>
-                      )}
-                      {status === 'almost' && (
-                        <span className="home-lesson-status home-lesson-status--almost">•</span>
-                      )}
-                      {status === 'locked' && (
-                        <span
-                          className={`home-lesson-status home-lesson-status--locked transition-all duration-150 ${
-                            lockedLessonTooltipEpId === ep.id ? 'opacity-100 brightness-110' : 'opacity-90'
-                          }`}
-                        >
-                          🔒
-                        </span>
-                      )}
-                    </span>
                   </div>
 
                   <div className="mx-auto flex min-h-0 w-full flex-1 flex-wrap content-center items-center justify-center gap-0.5 sm:gap-1 overflow-visible px-2 [@media(max-width:560px)]:px-1 text-center">
@@ -173,7 +174,7 @@ export function LessonGrid({
 
                   <div className="z-10 mt-auto w-full">
                     {status === 'locked' ? (
-                      <div className="home-lesson-lock-copy">{statusLabel}</div>
+                      <div className="home-lesson-lock-copy">{lockedLabel}</div>
                     ) : (
                       <div className="home-lesson-progress-block">
                         <div className="home-progress-bg h-[4px] [@media(max-width:480px)]:h-[3px] flex-1 rounded-[4px] bg-slate-200 overflow-hidden">
@@ -184,8 +185,8 @@ export function LessonGrid({
                         </div>
                         <span className="home-progress-score">
                           {interfaceLanguage === 'en'
-                            ? `${earnedPoints} of ${lessonTargetScore} points`
-                            : `${earnedPoints} из ${lessonTargetScore} очков`}
+                            ? `${earnedPoints}/${lessonTargetScore}`
+                            : `${earnedPoints}/${lessonTargetScore}`}
                         </span>
                       </div>
                     )}
@@ -199,7 +200,7 @@ export function LessonGrid({
                       <span>
                         {interfaceLanguage === 'en' ? (
                           <>
-                            Score <span className="font-semibold text-[var(--progress-current)]">1 point</span>
+                            Score <span className="font-semibold text-[var(--progress-current)]">{LESSON_UNLOCK_SCORE} points</span>
                             <br />
                             in the previous lesson
                             <br />
@@ -207,7 +208,7 @@ export function LessonGrid({
                           </>
                         ) : (
                           <>
-                            Наберите <span className="font-semibold text-[var(--progress-current)]">1 очко</span>
+                            Наберите <span className="font-semibold text-[var(--progress-current)]">{LESSON_UNLOCK_SCORE} очков</span>
                             <br />
                             в предыдущем уроке,
                             <br />

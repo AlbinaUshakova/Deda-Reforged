@@ -21,6 +21,7 @@ type BlocksQuestionPanelProps = {
   promptText: string;
   answer: string;
   answerState: AnswerState;
+  isAnswerAccepted: boolean;
   showCorrect: boolean;
   error: boolean;
   attempts: number;
@@ -40,6 +41,7 @@ export function BlocksQuestionPanel({
   promptText,
   answer,
   answerState,
+  isAnswerAccepted,
   showCorrect,
   error,
   attempts,
@@ -115,10 +117,12 @@ export function BlocksQuestionPanel({
             />
             <button
               type="submit"
-              className="blocks-submit-btn"
-              disabled={!showCorrect && !answer.trim()}
+              className={`blocks-submit-btn${isAnswerAccepted ? ' blocks-submit-btn--accepted' : ''}`}
+              disabled={isAnswerAccepted || (!showCorrect && !answer.trim())}
             >
-              {showCorrect
+              {isAnswerAccepted
+                ? (interfaceLanguage === 'en' ? 'Correct' : 'Верно')
+                : showCorrect
                 ? (interfaceLanguage === 'en' ? 'Next' : 'Дальше')
                 : (interfaceLanguage === 'en' ? 'Check' : 'Проверить')}
             </button>
@@ -133,7 +137,7 @@ export function BlocksQuestionPanel({
           className="blocks-translation-btn blocks-refresh-btn inline-flex h-[clamp(28px,4vh,36px)] items-center rounded-lg border border-transparent bg-transparent px-[clamp(6px,0.9vw,9px)] text-[clamp(11px,1.05vw,13px)] font-normal transition-all duration-150 focus:outline-none [-webkit-tap-highlight-color:transparent]"
           disabled={showCorrect}
         >
-          <span className="leading-none">{interfaceLanguage === 'en' ? 'Answer' : 'Перевод'}</span>
+          <span className="leading-none">{interfaceLanguage === 'en' ? 'Show answer' : 'Перевод'}</span>
         </button>
         {!isFavoritesEpisode && (
           <button
@@ -164,8 +168,8 @@ export function BlocksQuestionPanel({
       {error && !showCorrect && (
         <div className="mt-2 text-[13px] text-red-500">
           {attempts >= 3
-            ? (interfaceLanguage === 'en' ? 'Incorrect. We will show the correct answer now.' : 'Неверно, сейчас покажем верный ответ.')
-            : (interfaceLanguage === 'en' ? 'Incorrect, try again.' : 'Неверно, попробуй ещё раз.')}
+            ? (interfaceLanguage === 'en' ? 'Added to review. We will show the answer now.' : 'Слово в повторении. Сейчас покажем ответ.')
+            : (interfaceLanguage === 'en' ? 'Not quite. Added to review.' : 'Неверно. Слово добавлено в повторение.')}
         </div>
       )}
     </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import type { Route } from 'next';
 import type React from 'react';
 import {
   canPlace,
@@ -23,6 +24,11 @@ type BlocksBoardProps = {
   hover: HoverPos;
   clearedCells: ClearedCell[];
   gameOver: boolean;
+  interfaceLanguage: 'ru' | 'en';
+  studyHref?: Route;
+  nextLessonHref?: Route;
+  hasUnlockedNextLesson?: boolean;
+  milestoneOverlay?: React.ReactNode;
   onRestart: () => void;
 };
 
@@ -33,6 +39,11 @@ export function BlocksBoard({
   hover,
   clearedCells,
   gameOver,
+  interfaceLanguage,
+  studyHref,
+  nextLessonHref,
+  hasUnlockedNextLesson,
+  milestoneOverlay,
   onRestart,
 }: BlocksBoardProps) {
   return (
@@ -94,7 +105,16 @@ export function BlocksBoard({
         }),
       )}
 
-      {gameOver && <BlocksGameOverOverlay onRestart={onRestart} />}
+      {gameOver && (
+        <BlocksGameOverOverlay
+          interfaceLanguage={interfaceLanguage}
+          studyHref={studyHref}
+          nextLessonHref={nextLessonHref}
+          hasUnlockedNextLesson={hasUnlockedNextLesson}
+          onRestart={onRestart}
+        />
+      )}
+      {!gameOver && milestoneOverlay}
     </div>
   );
 }

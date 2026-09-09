@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useAppStore } from '@/lib/appStore';
 import { getCourse } from '@/lib/courses';
-import { getAlphabetDisplayTitle } from '@/lib/interfaceText';
+import { getAlphabetDisplayTitle, getHeaderAlphabetButtonTitle } from '@/lib/interfaceText';
 import { getDisplayText } from '@/lib/transliteration';
 import { getActiveTransliterationMode } from '@/lib/settings';
 
@@ -15,8 +15,9 @@ export default function BrandToggle() {
   const transliterationMode = getActiveTransliterationMode(interfaceLanguage, courseId, storedTransliterationMode);
   const requestAlphabetToggle = useAppStore(state => state.requestAlphabetToggle);
   const course = getCourse(courseId);
-  const alphabetButtonText = getAlphabetDisplayTitle(courseId, transliterationMode) ?? getDisplayText(course.scriptTitleNative, transliterationMode, courseId);
-  const title = `${course.scriptTitleRu} — ${alphabetButtonText}`;
+  const alphabetTitle = getAlphabetDisplayTitle(courseId, transliterationMode) ?? getDisplayText(course.scriptTitleNative, transliterationMode, courseId);
+  const alphabetButtonText = getHeaderAlphabetButtonTitle(courseId, transliterationMode) ?? alphabetTitle;
+  const title = `${course.scriptTitleRu} — ${alphabetTitle}`;
   const alphabetLabel = alphabetOpen
     ? (interfaceLanguage === 'en' ? `Hide ${title}` : `Скрыть ${title}`)
     : (interfaceLanguage === 'en' ? `Open ${title}` : `Открыть ${title}`);

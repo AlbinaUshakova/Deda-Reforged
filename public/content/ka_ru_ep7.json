@@ -54,11 +54,6 @@
     },
     {
       "type": "word",
-      "ge_text": "ჩემი",
-      "ru_meaning": "мой"
-    },
-    {
-      "type": "word",
       "ge_text": "ჩანთა",
       "ru_meaning": "сумка"
     },
@@ -69,13 +64,13 @@
     },
     {
       "type": "word",
-      "ge_text": "ცა",
-      "ru_meaning": "небо"
+      "ge_text": "აი ჩანთა",
+      "ru_meaning": "вот сумка"
     },
     {
       "type": "word",
-      "ge_text": "ცხრა",
-      "ru_meaning": "девять"
+      "ge_text": "ეს ჩანთაა",
+      "ru_meaning": "это сумка"
     },
     {
       "type": "word",
@@ -84,18 +79,18 @@
     },
     {
       "type": "word",
-      "ge_text": "ძველი",
-      "ru_meaning": "старый"
+      "ge_text": "რძე მინდა",
+      "ru_meaning": "хочу молоко"
     },
     {
       "type": "word",
-      "ge_text": "ძვირი",
-      "ru_meaning": "дорогой"
+      "ge_text": "ცივი ჩაი",
+      "ru_meaning": "холодный чай"
     },
     {
       "type": "word",
-      "ge_text": "ცუდი",
-      "ru_meaning": "плохой"
+      "ge_text": "ხორცი მინდა",
+      "ru_meaning": "хочу мясо"
     }
   ]
 }

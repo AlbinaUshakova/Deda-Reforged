@@ -44,8 +44,8 @@
     },
     {
       "type": "word",
-      "ge_text": "შვიდი",
-      "ru_meaning": "семь"
+      "ge_text": "შუქი",
+      "ru_meaning": "свет"
     },
     {
       "type": "word",
@@ -64,8 +64,8 @@
     },
     {
       "type": "word",
-      "ge_text": "შორს",
-      "ru_meaning": "далеко"
+      "ge_text": "აი ყუთი",
+      "ru_meaning": "вот коробка"
     },
     {
       "type": "word",
@@ -77,18 +77,21 @@
     },
     {
       "type": "word",
-      "ge_text": "შუა",
-      "ru_meaning": "середина"
+      "ge_text": "შავი ყავა",
+      "ru_meaning": "чёрный кофе",
+      "accepted_ru": [
+        "черный кофе"
+      ]
     },
     {
       "type": "word",
-      "ge_text": "მიყვარს",
-      "ru_meaning": "люблю"
+      "ge_text": "შაქარი მინდა",
+      "ru_meaning": "хочу сахар"
     },
     {
       "type": "word",
-      "ge_text": "მყავს",
-      "ru_meaning": "у меня есть"
+      "ge_text": "აი ჟაკეტი",
+      "ru_meaning": "вот куртка"
     },
     {
       "type": "word",
@@ -101,8 +104,12 @@
     },
     {
       "type": "word",
-      "ge_text": "შიში",
-      "ru_meaning": "страх"
+      "ge_text": "ეს შოთია",
+      "ru_meaning": "это шоти",
+      "accepted_ru": [
+        "это хлеб шоти",
+        "это шоти хлеб"
+      ]
     }
   ]
 }

@@ -21,23 +21,18 @@
     },
     {
       "type": "word",
-      "ge_text": "не он",
-      "ru_meaning": "не он"
-    },
-    {
-      "type": "word",
       "ge_text": "она",
       "ru_meaning": "она"
     },
     {
       "type": "word",
-      "ge_text": "она не",
-      "ru_meaning": "она не"
+      "ge_text": "оно",
+      "ru_meaning": "оно"
     },
     {
       "type": "word",
-      "ge_text": "и она",
-      "ru_meaning": "и она"
+      "ge_text": "они",
+      "ru_meaning": "они"
     },
     {
       "type": "word",
@@ -51,38 +46,8 @@
     },
     {
       "type": "word",
-      "ge_text": "не она",
-      "ru_meaning": "не она"
-    },
-    {
-      "type": "word",
-      "ge_text": "они",
-      "ru_meaning": "они"
-    },
-    {
-      "type": "word",
-      "ge_text": "они не",
-      "ru_meaning": "они не"
-    },
-    {
-      "type": "word",
-      "ge_text": "не они",
-      "ru_meaning": "не они"
-    },
-    {
-      "type": "word",
       "ge_text": "они и она",
       "ru_meaning": "они и она"
-    },
-    {
-      "type": "word",
-      "ge_text": "оно",
-      "ru_meaning": "оно"
-    },
-    {
-      "type": "word",
-      "ge_text": "не оно",
-      "ru_meaning": "не оно"
     }
   ]
 }
