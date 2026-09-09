@@ -3,6 +3,10 @@ import test from 'node:test';
 import { getDonationUrl } from '../lib/donation.ts';
 
 test('donation link accepts only valid HTTPS addresses', () => {
+  assert.equal(
+    getDonationUrl(),
+    'https://www.paypal.com/ncp/payment/RZWAGBDKG8K7Y',
+  );
   assert.equal(getDonationUrl('https://example.com/support'), 'https://example.com/support');
   assert.equal(getDonationUrl('http://example.com/support'), null);
   assert.equal(getDonationUrl('not-a-link'), null);
