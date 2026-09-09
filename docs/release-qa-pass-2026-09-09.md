@@ -34,3 +34,4 @@ Local QA: Go.
 
 Public release: pending deployment checks.
 
+Production target: https://dedareforged.vercel.app/
