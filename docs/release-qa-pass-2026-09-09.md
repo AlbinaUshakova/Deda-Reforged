@@ -2,7 +2,7 @@
 
 ## Result
 
-Local release candidate passes the automated checks and route smoke tests. Production-only checks remain pending until the site is published.
+The release is published and passes the automated checks and production route smoke tests.
 
 ## Passed
 
@@ -23,15 +23,12 @@ Local release candidate passes the automated checks and route smoke tests. Produ
 
 ## Pending after deployment
 
-- Verify the public HTTPS URL.
-- Confirm the production donation environment setting.
 - Complete one low-value real PayPal payment.
-- Repeat the short mobile and desktop smoke test against production.
 
 ## Release decision
 
 Local QA: Go.
 
-Public release: pending deployment checks.
+Public release: Go.
 
 Production target: https://dedareforged.vercel.app/
