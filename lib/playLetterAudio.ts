@@ -15,14 +15,15 @@ type InlinePlayableAudio = HTMLAudioElement & { playsInline?: boolean };
 let sharedAudio: InlinePlayableAudio | null = null;
 let playbackToken = 0;
 
-function getSharedAudio() {
-  if (!sharedAudio) {
-    sharedAudio = new Audio();
-    sharedAudio.preload = 'auto';
-    sharedAudio.playsInline = true;
-    sharedAudio.setAttribute('playsinline', '');
+function resetAudio(audio: InlinePlayableAudio) {
+  audio.pause();
+  if (audio.readyState > 0) {
+    try {
+      audio.currentTime = 0;
+    } catch {
+      // Some mobile browsers reject seeking until media metadata is loaded.
+    }
   }
-  return sharedAudio;
 }
 
 export function stopLetterAudioPlayback() {
@@ -30,10 +31,10 @@ export function stopLetterAudioPlayback() {
   if (typeof window === 'undefined') return;
 
   if (sharedAudio) {
-    sharedAudio.pause();
-    sharedAudio.currentTime = 0;
+    resetAudio(sharedAudio);
     sharedAudio.onended = null;
     sharedAudio.onerror = null;
+    sharedAudio = null;
   }
 
   if ('speechSynthesis' in window) {
@@ -106,11 +107,11 @@ export async function playLetterAudio({
   }
 
   try {
-    const audio = getSharedAudio();
-    audio.pause();
-    audio.src = audioSrc;
+    const audio: InlinePlayableAudio = new Audio(audioSrc);
+    sharedAudio = audio;
     audio.preload = 'auto';
-    audio.currentTime = 0;
+    audio.playsInline = true;
+    audio.setAttribute('playsinline', '');
     audio.volume = 1;
     audio.onended = finish;
     audio.onerror = () => {
