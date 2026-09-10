@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import type { Route } from 'next';
 import { useEffect, useState, useMemo } from 'react';
 import { useAppStore } from '@/lib/appStore';
@@ -8,6 +7,7 @@ import { getEpisodesDataCached, getEpisodesDataSync } from '@/lib/clientContentC
 import type { EpisodeCard } from '@/lib/clientContentCache';
 import { progressKeyForEpisode } from '@/lib/courses';
 import BlocksGame from '@/components/BlocksGame';
+import StudyPageActions from '@/components/study/StudyPageActions';
 import { translateRussianMeaningToEnglish } from '@/lib/englishMeanings';
 import { getActiveTranslationLanguage } from '@/lib/settings';
 import { LESSON_UNLOCK_SCORE, getLessonPosition, getNextLessonId, getNormalLessonEpisodes, isLessonEpisodeId } from '@/lib/lessonProgress';
@@ -280,88 +280,14 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
       <div className="study-screen-orb study-screen-orb--left" aria-hidden="true" />
       <div className="study-screen-orb study-screen-orb--right" aria-hidden="true" />
       <div className="study-screen-shell mx-auto h-full w-full overflow-hidden px-[clamp(14px,3.6vw,48px)] py-[clamp(16px,2.6vh,32px)]">
-        <div className="study-panel study-context-panel game-play-panel relative z-30 mb-3 mx-auto w-full max-w-[980px] rounded-[24px] border border-white/70 bg-white/72 px-[clamp(14px,2vw,22px)] py-[clamp(12px,1.8vw,18px)] shadow-[0_16px_38px_rgba(31,28,23,0.08)] backdrop-blur-[14px]">
-          <div className="study-panel-main game-play-panel-main relative flex min-h-[52px] flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <div className="study-panel-copy game-play-panel-copy min-w-0">
-              <div className="study-panel-topline flex flex-wrap items-center justify-between gap-2 lg:hidden">
-                <div className="study-panel-mobile-copy min-w-0">
-                  <div className="study-panel-label text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)]">
-                    {lessonLabel}
-                  </div>
-                </div>
-                <div className="study-panel-actions game-play-panel-actions topButtons study-page-actions flex flex-wrap justify-end gap-2">
-                  <Link
-                    className="study-action-pill study-action-pill--secondary"
-                    href="/lessons"
-                    aria-label={interfaceLanguage === 'en' ? 'Back to lessons' : 'Вернуться на главную страницу уроков'}
-                  >
-                    <span aria-hidden="true">←</span>
-                    {interfaceLanguage === 'en' ? 'Home' : 'Главная'}
-                  </Link>
-                  <Link
-                    className="study-action-pill study-action-pill--primary"
-                    href={studyHref}
-                    aria-label={interfaceLanguage === 'en' ? 'Back to flashcards for this lesson' : 'Вернуться к карточкам этого урока'}
-                  >
-                    <span aria-hidden="true">▣</span>
-                    {interfaceLanguage === 'en' ? 'Cards' : 'Карточки'}
-                  </Link>
-                  {hasUnlockedNextLesson && nextLessonHref && (
-                    <Link
-                      className="study-action-pill study-action-pill--secondary"
-                      href={nextLessonHref}
-                      aria-label={interfaceLanguage === 'en' ? 'Open the next lesson' : 'Открыть следующий урок'}
-                    >
-                      <span aria-hidden="true">→</span>
-                      {interfaceLanguage === 'en' ? 'Next lesson' : 'Дальше'}
-                    </Link>
-                  )}
-                </div>
-              </div>
-              <div className="study-panel-label hidden text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--accent)] lg:block">
-                {lessonLabel}
-              </div>
-              {progressSummary && (
-                <div className="study-panel-summary game-play-panel-summary mt-2 hidden items-center rounded-full bg-[rgba(255,107,53,0.10)] px-3 py-1 text-[12px] font-semibold text-[var(--accent)] lg:inline-flex">
-                  {progressSummary}
-                </div>
-              )}
-              {playProgressLabel && (
-                <div className="study-panel-progress-copy mt-1 hidden text-[13px] font-medium text-[var(--text-secondary)] lg:block">
-                  {playProgressLabel}
-                </div>
-              )}
-            </div>
-            <div className="study-panel-actions game-play-panel-actions topButtons study-page-actions ml-auto hidden flex-wrap justify-end gap-2 lg:pr-[112px] lg:flex">
-              <Link
-                className="study-action-pill study-action-pill--secondary"
-                href="/lessons"
-                aria-label={interfaceLanguage === 'en' ? 'Back to lessons' : 'Вернуться на главную страницу уроков'}
-              >
-                <span aria-hidden="true">←</span>
-                {interfaceLanguage === 'en' ? 'Home' : 'Главная'}
-              </Link>
-              <Link
-                className="study-action-pill study-action-pill--primary"
-                href={studyHref}
-                aria-label={interfaceLanguage === 'en' ? 'Back to flashcards for this lesson' : 'Вернуться к карточкам этого урока'}
-              >
-                <span aria-hidden="true">▣</span>
-                {interfaceLanguage === 'en' ? 'Cards' : 'Карточки'}
-              </Link>
-              {hasUnlockedNextLesson && nextLessonHref && (
-                <Link
-                  className="study-action-pill study-action-pill--secondary"
-                  href={nextLessonHref}
-                  aria-label={interfaceLanguage === 'en' ? 'Open the next lesson' : 'Открыть следующий урок'}
-                >
-                  <span aria-hidden="true">→</span>
-                  {interfaceLanguage === 'en' ? 'Next lesson' : 'Дальше'}
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
+        <StudyPageActions
+          playHref={studyHref}
+          lessonLabel={lessonLabel}
+          courseProgressLabel={playProgressLabel}
+          progressSummary={progressSummary}
+          nextLessonHref={hasUnlockedNextLesson ? nextLessonHref : undefined}
+          surface="play"
+        />
 
         <div className="relative z-50 mx-auto w-full max-w-[980px]">
           {isLoading ? null : hasWords ? (

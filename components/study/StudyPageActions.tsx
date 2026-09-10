@@ -11,6 +11,7 @@ export default function StudyPageActions({
   progressSummary,
   nextLessonHref,
   manageHref,
+  surface = 'study',
 }: {
   playHref: Route;
   lessonLabel?: string;
@@ -18,11 +19,18 @@ export default function StudyPageActions({
   progressSummary?: string;
   nextLessonHref?: Route;
   manageHref?: Route;
+  surface?: 'study' | 'play';
 }) {
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const primaryLabel = surface === 'play'
+    ? (interfaceLanguage === 'en' ? 'Cards' : 'Карточки')
+    : (interfaceLanguage === 'en' ? 'Practice' : 'Практика');
+  const primaryAriaLabel = surface === 'play'
+    ? (interfaceLanguage === 'en' ? 'Back to flashcards for this lesson' : 'Вернуться к карточкам этого урока')
+    : (interfaceLanguage === 'en' ? 'Open the game for this lesson' : 'Перейти к игре по этому уроку');
 
   return (
-    <div className="study-panel study-context-panel relative z-30 mb-3 mx-auto w-full max-w-[980px] rounded-[24px] border border-white/70 bg-white/72 px-[clamp(14px,2vw,22px)] py-[clamp(12px,1.8vw,18px)] shadow-[0_16px_38px_rgba(31,28,23,0.08)] backdrop-blur-[14px]">
+    <div className="study-context-panel relative z-30 mb-3 mx-auto w-full max-w-[980px] px-0 py-0">
       <div className="study-panel-main relative flex min-h-[52px] flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
         <div className="study-panel-copy min-w-0">
           <div className="study-panel-topline flex flex-wrap items-center justify-between gap-2 lg:hidden">
@@ -45,10 +53,10 @@ export default function StudyPageActions({
               <Link
                 className="study-action-pill study-action-pill--primary"
                 href={playHref}
-                aria-label={interfaceLanguage === 'en' ? 'Open the game for this lesson' : 'Перейти к игре по этому уроку'}
+                aria-label={primaryAriaLabel}
               >
-                <span aria-hidden="true">▶</span>
-                {interfaceLanguage === 'en' ? 'Practice' : 'Практика'}
+                <span aria-hidden="true">{surface === 'play' ? '▣' : '▶'}</span>
+                {primaryLabel}
               </Link>
               {nextLessonHref && (
                 <Link
@@ -100,10 +108,10 @@ export default function StudyPageActions({
           <Link
             className="study-action-pill study-action-pill--primary"
             href={playHref}
-            aria-label={interfaceLanguage === 'en' ? 'Open the game for this lesson' : 'Перейти к игре по этому уроку'}
+            aria-label={primaryAriaLabel}
           >
-            <span aria-hidden="true">▶</span>
-            {interfaceLanguage === 'en' ? 'Practice' : 'Практика'}
+            <span aria-hidden="true">{surface === 'play' ? '▣' : '▶'}</span>
+            {primaryLabel}
           </Link>
           {nextLessonHref && (
             <Link
