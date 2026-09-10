@@ -8,8 +8,6 @@ type FlashcardCardContentProps = {
   isFavoritesPage: boolean;
   flipped: boolean;
   idx: number;
-  total: number;
-  isLastCard: boolean;
   geText: string;
   ruText: string;
   geDialogLines: string[];
@@ -34,8 +32,6 @@ export function FlashcardCardContent({
   isFavoritesPage,
   flipped,
   idx,
-  total,
-  isLastCard,
   geText,
   ruText,
   geDialogLines,
@@ -75,23 +71,6 @@ export function FlashcardCardContent({
 
   const renderSupplementaryInfo = () => (
     <div className="flashcard-supplementary-info flex flex-col items-center gap-2">
-      <div className="flashcard-status-pill">
-        {flipped
-          ? (interfaceLanguage === 'en'
-            ? isLastCard
-              ? 'Last card'
-              : 'Translation open'
-            : isLastCard
-              ? 'Последняя карточка'
-              : 'Перевод открыт')
-          : (interfaceLanguage === 'en'
-            ? total > 1
-              ? 'Word side'
-              : 'First card'
-            : total > 1
-              ? 'Сторона слова'
-              : 'Первая карточка')}
-      </div>
       {showTranslit && transcriptionText.trim() && (
         <div className="flashcard-translit-panel">
           <span className="flashcard-translit-value">{transcriptionText}</span>

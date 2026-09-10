@@ -501,8 +501,6 @@ export default function FlashcardDeck({
                 isFavoritesPage={isFavoritesPage}
                 flipped={flipped}
                 idx={idx}
-                total={total}
-                isLastCard={isLastCard}
                 geText={displayGeText}
                 ruText={translationText}
                 geDialogLines={geDialogLines}
