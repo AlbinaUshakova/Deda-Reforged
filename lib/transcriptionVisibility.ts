@@ -8,6 +8,10 @@ function isLessonEpisodeId(episodeId: string): boolean {
   return /^ep\d+[a-z]*$/i.test(episodeId);
 }
 
+function isPracticalEpisodeId(episodeId: string | undefined): boolean {
+  return !!episodeId && /^ep10[a-z]*$/i.test(episodeId);
+}
+
 export function getEpisodeOrderValue(id: string): number {
   const [, numberRaw = '0', suffix = ''] = id.match(/^ep(\d+)([a-z]*)$/i) ?? [];
   const base = Number(numberRaw);
@@ -35,6 +39,7 @@ export function shouldShowTranscriptionToggle(
   flipped: boolean,
   showTranslit: boolean,
 ): boolean {
+  if (isPracticalEpisodeId(episodeId)) return true;
   if (shouldAutoShowTranscription(episodeId, courseId)) return true;
   return flipped || showTranslit;
 }

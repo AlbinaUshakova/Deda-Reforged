@@ -37,3 +37,9 @@ test('toggle stays hidden on stronger lessons until needed', () => {
   assert.equal(shouldShowTranscriptionToggle('ep3', 'ka', true, false), true);
   assert.equal(shouldShowTranscriptionToggle('ep3', 'ka', false, true), true);
 });
+
+test('extra practice always offers transcription without opening it automatically', () => {
+  assert.equal(shouldAutoShowTranscription('ep10a', 'tr'), false);
+  assert.equal(shouldShowTranscriptionToggle('ep10a', 'tr', false, false), true);
+  assert.equal(shouldShowTranscriptionToggle('ep10m', 'tr', false, false), true);
+});
