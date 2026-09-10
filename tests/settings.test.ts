@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 import { DEFAULT_SETTINGS, normalizeSettings } from '../lib/settings.ts';
 
-test('normalizeSettings clamps and sanitizes values', () => {
+test('normalizeSettings migrates old score targets and sanitizes values', () => {
   const normalized = normalizeSettings({
     lessonTargetScore: 999,
     translationDirection: 'bad-value',
@@ -13,7 +13,7 @@ test('normalizeSettings clamps and sanitizes values', () => {
   assert.deepEqual(normalized, {
     courseId: 'ka',
     interfaceLanguage: 'ru',
-    lessonTargetScore: 100,
+    lessonTargetScore: 5,
     translationDirection: 'ge-ru',
     transliterationMode: 'latin',
     hasCompletedOnboarding: false,

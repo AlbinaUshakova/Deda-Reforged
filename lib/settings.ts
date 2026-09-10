@@ -1,6 +1,7 @@
 'use client';
 
 import { DEFAULT_COURSE_ID, normalizeCourseId, type CourseId } from './courses.ts';
+import { LESSON_UNLOCK_SCORE } from './lessonProgress.ts';
 
 type SettingsListener = (settings: Settings) => void;
 
@@ -17,7 +18,7 @@ const KEY = 'deda_settings_v1';
 export const DEFAULT_SETTINGS: Settings = {
   courseId: DEFAULT_COURSE_ID,
   interfaceLanguage: 'en',
-  lessonTargetScore: 25,
+  lessonTargetScore: LESSON_UNLOCK_SCORE,
   translationDirection: 'ge-ru',
   transliterationMode: 'ru',
   hasCompletedOnboarding: false,
@@ -29,11 +30,8 @@ function normalizeInterfaceLanguage(value: unknown): Settings['interfaceLanguage
   return value === 'ru' ? 'ru' : 'en';
 }
 
-function normalizeLessonTargetScore(value: unknown): number {
-  const num = Number(value);
-  if (!Number.isFinite(num)) return DEFAULT_SETTINGS.lessonTargetScore;
-  const rounded = Math.round(num);
-  return Math.max(10, Math.min(100, rounded));
+function normalizeLessonTargetScore(): number {
+  return LESSON_UNLOCK_SCORE;
 }
 
 function normalizeTranslationDirection(value: unknown): Settings['translationDirection'] {
@@ -69,7 +67,7 @@ export function normalizeSettings(
   return {
     courseId,
     interfaceLanguage,
-    lessonTargetScore: normalizeLessonTargetScore(raw.lessonTargetScore),
+    lessonTargetScore: normalizeLessonTargetScore(),
     translationDirection: normalizeTranslationDirection(
       raw.translationDirection ?? legacyDirection,
     ),
