@@ -162,11 +162,11 @@ export function SpecialLessonLinks({
           meta:
             !allLessonsReady
               ? interfaceLanguage === 'en'
-                ? 'Words from learned lessons · opens after 5 points'
-                : 'Слова из освоенных уроков · откроется после 5 очков'
+                ? 'Words from learned lessons in one deck'
+                : 'Слова из освоенных уроков в одной колоде'
               : interfaceLanguage === 'en'
-                ? `Words from learned lessons · ${getCardCountLabel(reviewDeckCardCount, interfaceLanguage)}`
-                : `Слова из освоенных уроков · ${getCardCountLabel(reviewDeckCardCount, interfaceLanguage)}`,
+                ? `Words from learned lessons in one deck · ${getCardCountLabel(reviewDeckCardCount, interfaceLanguage)}`
+                : `Слова из освоенных уроков в одной колоде · ${getCardCountLabel(reviewDeckCardCount, interfaceLanguage)}`,
         }
       : null,
     legacyPhrasesSpecial
