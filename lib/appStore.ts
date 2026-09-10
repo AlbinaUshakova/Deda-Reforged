@@ -18,6 +18,7 @@ import {
 type AppStoreState = {
   settings: Settings;
   progressMap: ProgressMap;
+  hydrated: boolean;
   alphabetOpen: boolean;
   alphabetToggleRequest: number;
   profileMenuOpen: boolean;
@@ -35,6 +36,7 @@ let subscriptionsInitialized = false;
 export const useAppStore = create<AppStoreState>((set, get) => ({
   settings: DEFAULT_SETTINGS,
   progressMap: {},
+  hydrated: false,
   alphabetOpen: false,
   alphabetToggleRequest: 0,
   profileMenuOpen: false,
@@ -54,6 +56,7 @@ export const useAppStore = create<AppStoreState>((set, get) => ({
     set({
       settings: getSettings(),
       progressMap: getLocalProgressMap(),
+      hydrated: true,
     });
 
     if (!hydrationPromise) {

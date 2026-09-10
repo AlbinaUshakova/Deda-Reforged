@@ -16,7 +16,7 @@ Use this checklist before every public release. Mark an item complete only after
 - [ ] The interface language can be changed between English and Russian.
 - [ ] Georgian and Serbian can be selected; hidden courses stay outside the main flow.
 - [ ] Serbian script selection appears only on the landing page and persists after selection.
-- [ ] The main CTA opens the correct recommended lesson.
+- [ ] The main CTA opens Lessons, where the correct recommended lesson is shown first.
 - [ ] Footer links open Help, Privacy, and Support the project.
 - [ ] Support the project opens the PayPal page with a customer-entered amount.
 
@@ -97,4 +97,3 @@ Check at 320 px, 375 px, and 430 px widths.
 - Blocking issues:
 - Non-blocking issues:
 - Release decision: Go / No-go
-

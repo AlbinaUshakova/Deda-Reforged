@@ -629,7 +629,7 @@ export function LandingFinalCtaTitle() {
   return (
     <>
       {interfaceLanguage === 'en'
-        ? `Ready to start reading ${getCourseName(courseId, 'en').toLowerCase()}?`
+        ? `Ready to start reading ${getCourseName(courseId, 'en')}?`
         : `Готов начать читать ${courseAdverb[courseId]}?`}
     </>
   );

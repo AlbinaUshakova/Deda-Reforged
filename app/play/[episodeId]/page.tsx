@@ -10,7 +10,7 @@ import BlocksGame from '@/components/BlocksGame';
 import StudyPageActions from '@/components/study/StudyPageActions';
 import { translateRussianMeaningToEnglish } from '@/lib/englishMeanings';
 import { getActiveTranslationLanguage } from '@/lib/settings';
-import { LESSON_UNLOCK_SCORE, getLessonPosition, getNextLessonId, getNormalLessonEpisodes, isLessonEpisodeId } from '@/lib/lessonProgress';
+import { LESSON_UNLOCK_SCORE, getLessonPosition, getNextLessonId, getNormalLessonEpisodes, isLessonEpisodeId, isLessonUnlocked } from '@/lib/lessonProgress';
 import { getLessonProgressGuidance, getLessonProgressSummary } from '@/lib/progressFeedback';
 import { getSpecialEpisodeKind, getSpecialEpisodeLabel, getSpecialPlayCopy, getSpecialPlayEmptyState } from '@/lib/specialEpisodeText';
 import { orderReviewCards, readReviewMemory } from '@/lib/reviewMemory';
@@ -79,6 +79,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
   const { episodeId } = params;
   const hydrate = useAppStore(state => state.hydrate);
   const progressMap = useAppStore(state => state.progressMap);
+  const hydrated = useAppStore(state => state.hydrated);
   const courseId = useAppStore(state => state.settings.courseId);
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
@@ -216,6 +217,16 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
     () => getNextLessonId(normalEpisodes, episodeId),
     [episodeId, normalEpisodes],
   );
+  const lessonUnlocked = useMemo(
+    () => isLessonUnlocked(
+      normalEpisodes,
+      episodeId,
+      id => progressMap[progressKeyForEpisode(courseId, id)] ?? 0,
+    ),
+    [courseId, episodeId, normalEpisodes, progressMap],
+  );
+  const lessonAccessPending = Boolean(lessonPosition && lessonPosition > 1 && !hydrated);
+  const isLockedLesson = Boolean(lessonPosition && lessonPosition > 1 && hydrated && !lessonUnlocked);
   const nextLessonHref = nextLessonId ? (`/study/${nextLessonId}` as Route) : undefined;
   const currentBest = progressMap[progressEpisodeId] ?? 0;
   const hasUnlockedNextLesson = currentBest >= LESSON_UNLOCK_SCORE;
@@ -268,6 +279,20 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
       cancelled = true;
     };
   }, [courseId]);
+
+  useEffect(() => {
+    if (isLockedLesson) window.location.replace('/lessons');
+  }, [isLockedLesson]);
+
+  if (lessonAccessPending || isLockedLesson) {
+    return (
+      <main className="blocks-game-screen app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">
+        <div className="mx-auto max-w-[980px] p-6 text-center text-[var(--text-secondary)]">
+          {interfaceLanguage === 'en' ? 'Checking lesson access…' : 'Проверяю доступ к уроку…'}
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="blocks-game-screen app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">

@@ -8,7 +8,7 @@ import type { Episode } from '@/lib/content';
 import { getEpisodeByIdCached, getEpisodesDataCached, getEpisodesDataSync } from '@/lib/clientContentCache';
 import { DEFAULT_COURSE_ID, progressKeyForEpisode, scriptWatermarkStyle } from '@/lib/courses';
 import { useAppStore } from '@/lib/appStore';
-import { LESSON_UNLOCK_SCORE, getLessonPosition, getNextLessonId, getNormalLessonEpisodes, isLessonEpisodeId } from '@/lib/lessonProgress';
+import { LESSON_UNLOCK_SCORE, getLessonPosition, getNextLessonId, getNormalLessonEpisodes, isLessonEpisodeId, isLessonUnlocked } from '@/lib/lessonProgress';
 import { getLessonProgressGuidance, getLessonProgressSummary } from '@/lib/progressFeedback';
 import { getSpecialEmptyState, getSpecialEpisodeKind, getSpecialEpisodeLabel, getSpecialStudyCopy } from '@/lib/specialEpisodeText';
 import { readFavoriteWordMap } from '@/lib/studyPreferences';
@@ -36,6 +36,7 @@ export default function StudyClient({
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const progressMap = useAppStore(state => state.progressMap);
+  const hydrated = useAppStore(state => state.hydrated);
   const hydrate = useAppStore(state => state.hydrate);
   const [courseEpisode, setCourseEpisode] = useState<Episode | null>(bundled);
   const [isEpisodeLoading, setIsEpisodeLoading] = useState<boolean>(!bundled);
@@ -83,6 +84,16 @@ export default function StudyClient({
     () => getNextLessonId(normalEpisodes, episodeId),
     [episodeId, normalEpisodes],
   );
+  const lessonUnlocked = useMemo(
+    () => isLessonUnlocked(
+      normalEpisodes,
+      episodeId,
+      id => progressMap[progressKeyForEpisode(courseId, id)] ?? 0,
+    ),
+    [courseId, episodeId, normalEpisodes, progressMap],
+  );
+  const lessonAccessPending = Boolean(lessonPosition && lessonPosition > 1 && !hydrated);
+  const isLockedLesson = Boolean(lessonPosition && lessonPosition > 1 && hydrated && !lessonUnlocked);
   const currentBest = progressMap[progressKeyForEpisode(courseId, episodeId)] ?? 0;
   const hasUnlockedNextLesson = currentBest >= LESSON_UNLOCK_SCORE;
   const progressSummary = isMainLessonEpisode
@@ -206,6 +217,20 @@ export default function StudyClient({
       document.body.classList.remove('app-no-page-scroll');
     };
   }, []);
+
+  useEffect(() => {
+    if (isLockedLesson) window.location.replace('/lessons');
+  }, [isLockedLesson]);
+
+  if (lessonAccessPending || isLockedLesson) {
+    return (
+      <main className="study-card-screen app-screen-fixed min-h-screen bg-transparent text-[var(--text-primary)]">
+        <div className="mx-auto max-w-[980px] p-6 text-center text-[var(--text-secondary)]">
+          {interfaceLanguage === 'en' ? 'Checking lesson access…' : 'Проверяю доступ к уроку…'}
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main style={scriptWatermarkStyle(courseId)} className="study-card-screen app-screen-fixed min-h-screen bg-transparent text-[var(--text-primary)]">

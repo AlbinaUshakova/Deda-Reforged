@@ -45,6 +45,16 @@ export function getNextLessonId(episodes: LessonListItem[], episodeId: string) {
   return episodes[index + 1]?.id;
 }
 
+export function isLessonUnlocked(
+  episodes: LessonListItem[],
+  episodeId: string,
+  getScore: (episodeId: string) => number,
+) {
+  const index = episodes.findIndex((episode) => episode.id === episodeId);
+  if (index <= 0) return index === 0;
+  return getScore(episodes[index - 1].id) >= LESSON_UNLOCK_SCORE;
+}
+
 function getEpisodeOrderValue(id: string): number {
   const [, numberRaw = '0', suffix = ''] = id.match(/^ep(\d+)([a-z]*)$/i) ?? [];
   const base = Number(numberRaw);

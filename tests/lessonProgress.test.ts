@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { LESSON_UNLOCK_SCORE, deriveLessonState, getLessonPosition } from '../lib/lessonProgress.ts';
+import { LESSON_UNLOCK_SCORE, deriveLessonState, getLessonPosition, isLessonUnlocked } from '../lib/lessonProgress.ts';
 
 test('getLessonPosition exposes a user-facing number for suffixed episode ids', () => {
   const episodes = [
@@ -10,6 +10,20 @@ test('getLessonPosition exposes a user-facing number for suffixed episode ids', 
   ];
 
   assert.equal(getLessonPosition(episodes, 'ep2b'), 3);
+});
+
+test('isLessonUnlocked protects direct links using the previous lesson score', () => {
+  const episodes = [
+    { id: 'ep1', title: 'One' },
+    { id: 'ep2', title: 'Two' },
+    { id: 'ep2b', title: 'Three' },
+  ];
+
+  assert.equal(isLessonUnlocked(episodes, 'ep1', () => 0), true);
+  assert.equal(isLessonUnlocked(episodes, 'ep2', id => (id === 'ep1' ? 4 : 0)), false);
+  assert.equal(isLessonUnlocked(episodes, 'ep2', id => (id === 'ep1' ? 5 : 0)), true);
+  assert.equal(isLessonUnlocked(episodes, 'ep2b', id => (id === 'ep2' ? 5 : 0)), true);
+  assert.equal(isLessonUnlocked(episodes, 'phrases', () => 0), false);
 });
 
 test('deriveLessonState separates letter lessons from practical special sections', () => {
