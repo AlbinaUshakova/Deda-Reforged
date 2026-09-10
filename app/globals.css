@@ -57,9 +57,9 @@
 
 :root {
     color-scheme: light;
-    --font-ui: 'Avenir Next', 'Manrope', 'Nunito Sans', 'Segoe UI Variable', system-ui, sans-serif;
-    --font-display: 'Avenir Next', 'Manrope', 'Nunito Sans', 'Segoe UI Variable', system-ui, sans-serif;
-    --font-georgian: 'Noto Sans Georgian', 'BPG Nino Mtavruli', 'DejaVu Sans', var(--font-ui);
+    --font-ui: var(--font-manrope), 'Segoe UI Variable', system-ui, sans-serif;
+    --font-display: var(--font-nunito-sans), var(--font-ui);
+    --font-georgian: var(--font-noto-georgian), 'DejaVu Sans', var(--font-ui);
     --bg-main: #f6f3ec;
     --bg-surface: #ffffff;
     --bg-panel: rgba(255, 255, 255, 0.74);
@@ -172,6 +172,7 @@ h1,
 h2,
 h3,
 .landing-title,
+.landing-brand,
 .lessons-hero-title,
 .lessons-hero-card-title,
 .header-brand-label,
@@ -672,7 +673,7 @@ h3,
     padding: 0 13px;
     color: rgba(32, 33, 35, 0.68);
     font-size: 12px;
-    font-weight: 780;
+    font-weight: 800;
     letter-spacing: -0.018em;
     box-shadow:
         0 8px 18px rgba(32, 33, 35, 0.055),
@@ -916,7 +917,7 @@ h3,
     background: var(--progress-bg);
     color: var(--text-secondary);
     font-size: 12px;
-    font-weight: 780;
+    font-weight: 800;
     line-height: 1;
     font-variant-numeric: tabular-nums;
 }
@@ -1043,7 +1044,7 @@ h3,
     overflow: hidden;
     color: #6f6960;
     font-size: clamp(8px, 0.82vw, 10px);
-    font-weight: 720;
+    font-weight: 700;
     letter-spacing: -0.012em;
     line-height: 1.1;
     text-overflow: ellipsis;
@@ -1052,7 +1053,7 @@ h3,
 
 .home-progress-score {
     font-size: clamp(9px, 0.86vw, 11px) !important;
-    font-weight: 720;
+    font-weight: 700;
     letter-spacing: -0.012em;
     line-height: 1;
     white-space: nowrap;
@@ -2735,7 +2736,7 @@ body {
 
 .home-lesson-card--current .home-lesson-title {
     color: #171513 !important;
-    font-weight: 720 !important;
+    font-weight: 700 !important;
 }
 
 .home-lesson-card--current .home-lesson-state-label {
@@ -2966,7 +2967,7 @@ body {
       margin-top: clamp(22px, 2.6vw, 30px);
       color: #171513;
       font-size: 15px;
-      font-weight: 720;
+      font-weight: 700;
       letter-spacing: -0.025em;
     }
 
@@ -2991,7 +2992,7 @@ body {
       padding: 0 13px;
       color: #28231e;
       font-size: 14px;
-      font-weight: 740;
+      font-weight: 700;
       letter-spacing: -0.02em;
       box-shadow:
         0 10px 22px rgba(31, 28, 23, 0.055),
@@ -3029,7 +3030,7 @@ body {
       background: #ff7138;
       color: #fffaf2;
       font-size: 11px;
-      font-weight: 780;
+      font-weight: 800;
       box-shadow: 0 7px 14px rgba(255, 113, 56, 0.22);
     }
 
@@ -3296,7 +3297,7 @@ body {
       padding: 10px 14px;
       color: rgba(36, 28, 20, 0.84);
       font-size: 13px;
-      font-weight: 720;
+      font-weight: 700;
       letter-spacing: -0.01em;
       box-shadow:
         0 12px 28px rgba(31, 28, 23, 0.05),
@@ -3426,7 +3427,7 @@ body {
       display: block;
       color: #171513;
       font-size: clamp(16px, 1.35vw, 19px);
-      font-weight: 780;
+      font-weight: 800;
       letter-spacing: -0.035em;
       line-height: 1.02;
     }

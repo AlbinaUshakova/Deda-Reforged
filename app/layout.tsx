@@ -3,11 +3,33 @@ import "./styles/header-alphabet.css";
 import "./styles/flashcards.css";
 import "./styles/blocks-game.css";
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { Suspense } from "react";
 import AppChrome from "@/components/AppChrome";
 import StandaloneModeSync from "@/components/StandaloneModeSync";
 import VercelAnalytics from "@/components/VercelAnalytics";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+
+const uiFont = localFont({
+  src: "../public/fonts/Manrope-Variable.ttf",
+  variable: "--font-manrope",
+  display: "swap",
+  weight: "200 800",
+});
+
+const displayFont = localFont({
+  src: "../public/fonts/NunitoSans-Variable.ttf",
+  variable: "--font-nunito-sans",
+  display: "swap",
+  weight: "200 1000",
+});
+
+const georgianFont = localFont({
+  src: "../public/fonts/NotoSansGeorgian-Variable.ttf",
+  variable: "--font-noto-georgian",
+  display: "swap",
+  weight: "100 900",
+});
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
@@ -55,7 +77,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${uiFont.variable} ${displayFont.variable} ${georgianFont.variable}`}
+    >
       <body className="min-h-screen min-h-[100dvh] text-[var(--app-text)]">
         <StandaloneModeSync />
         <AppChrome>{children}</AppChrome>

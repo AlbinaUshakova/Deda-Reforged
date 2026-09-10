@@ -471,7 +471,7 @@ export function LandingLanguagePicker() {
 
       <details className="text-[13px] text-[var(--text-secondary)]">
         <summary className="cursor-pointer select-none font-medium">
-          {interfaceLanguage === 'en' ? 'Other available courses' : 'Другие доступные курсы'}
+          {interfaceLanguage === 'en' ? 'Other available languages' : 'Другие языки'}
         </summary>
         <div className="landing-course-buttons mt-3">
           {moreCourseIds.map(id => {
