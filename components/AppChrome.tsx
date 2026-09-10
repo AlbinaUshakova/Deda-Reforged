@@ -13,7 +13,7 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       {!isLandingPage && (
-        <header className="sticky top-0 z-[260] h-[clamp(48px,7.2vh,66px)] w-full border-b border-[var(--header-border)] bg-[var(--header-bg)] text-[var(--header-text)] backdrop-blur-md">
+        <header className="app-header sticky top-0 z-[260] w-full border-b border-[var(--header-border)] bg-[var(--header-bg)] text-[var(--header-text)] backdrop-blur-md">
           <div className="app-header-shell mx-auto flex h-full w-full items-center justify-between gap-[clamp(8px,1.8vw,16px)] px-[clamp(12px,2.4vw,24px)] sm:px-[clamp(14px,2.8vw,28px)] lg:w-[78vw] xl:w-[73vw] 2xl:w-[66vw] min-[1900px]:w-[60vw] min-[2100px]:w-[58vw] max-w-[1820px]">
             <div className="app-header-left justify-self-start">
               <BrandToggle />

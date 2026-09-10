@@ -2,7 +2,7 @@ import "./globals.css";
 import "./styles/header-alphabet.css";
 import "./styles/flashcards.css";
 import "./styles/blocks-game.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Suspense } from "react";
 import AppChrome from "@/components/AppChrome";
@@ -69,6 +69,18 @@ export const metadata: Metadata = {
     shortcut: "/images/deda-app-icon.png",
     apple: "/images/deda-app-icon.png",
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Deda",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({

@@ -585,7 +585,7 @@
     }
 
     .blocks-game-screen {
-        min-height: 100dvh;
+        min-height: calc(100dvh - var(--app-header-height));
     }
 
     .blocks-game-screen::before {

@@ -57,6 +57,9 @@
 
 :root {
     color-scheme: light;
+    --app-safe-top: env(safe-area-inset-top, 0px);
+    --app-header-content-height: clamp(48px, 7.2vh, 66px);
+    --app-header-height: calc(var(--app-header-content-height) + var(--app-safe-top));
     --font-ui: var(--font-manrope), 'Segoe UI Variable', system-ui, sans-serif;
     --font-display: var(--font-nunito-sans), var(--font-ui);
     --font-georgian: var(--font-noto-georgian), 'DejaVu Sans', var(--font-ui);
@@ -151,6 +154,12 @@ html.app-no-page-scroll,
 body.app-no-page-scroll {
     height: 100dvh;
     overflow: hidden !important;
+}
+
+.app-header {
+    box-sizing: border-box;
+    height: var(--app-header-height);
+    padding-top: var(--app-safe-top);
 }
 
 body {
@@ -1750,7 +1759,7 @@ button[aria-pressed='true'] {
 }
 
 .app-screen-fixed {
-    height: 100dvh;
+    height: calc(100dvh - var(--app-header-height));
     overflow: hidden;
 }
 
@@ -1974,7 +1983,7 @@ button[aria-pressed='true'] {
     }
 
     .study-card-screen {
-        min-height: 100dvh;
+        min-height: calc(100dvh - var(--app-header-height));
     }
 
     .study-card-screen::before {
