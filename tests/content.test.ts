@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { listEpisodes, loadEpisode, loadNewLettersPerEpisode } from '../lib/content.ts';
 import { COURSES, isCourseLetter } from '../lib/courses.ts';
 import { PHRASE_INTENT_IDS, PHRASE_INTENT_SECTIONS } from '../lib/phraseIntents.ts';
+import { TRAVEL_INTENT_IDS } from '../lib/travelPhraseSections.ts';
 
 test('canonical beginner phrase intent list contains 60 distinct intents', () => {
   assert.equal(PHRASE_INTENT_IDS.length, 60);
@@ -32,9 +33,13 @@ test('listEpisodes returns lessons plus special sections', async () => {
   assert.equal(episodes[9]?.id, 'ep9');
   assert.equal(episodes[10]?.id, 'ep10');
   assert.equal(episodes[10]?.title, 'Приветствия и прощания');
-  assert.equal(episodes[20]?.id, 'ep10k');
-  assert.equal(episodes[20]?.title, 'Числа');
-  assert.equal(episodes[21]?.id, 'favorites');
+  assert.equal(episodes[20]?.id, 'ep10l');
+  assert.equal(episodes[20]?.title, 'Транспорт');
+  assert.equal(episodes[21]?.id, 'ep10m');
+  assert.equal(episodes[21]?.title, 'Отель');
+  assert.equal(episodes[22]?.id, 'ep10k');
+  assert.equal(episodes[22]?.title, 'Числа');
+  assert.equal(episodes[23]?.id, 'favorites');
   assert.ok(ids.includes('favorites'));
   assert.ok(ids.includes('all'));
   assert.ok(!ids.includes('phrases'));
@@ -297,19 +302,57 @@ test('all thematic conversational lessons use the 10 canonical beginner sections
   }
 });
 
-test('Turkish includes compact travel decks for transport and hotel situations', async () => {
-  const episodes = await listEpisodes('tr');
-  const transport = episodes.find((episode) => episode.title === 'Транспорт');
-  const hotel = episodes.find((episode) => episode.title === 'Отель');
+test('all courses include the same transport and hotel practice intents', async () => {
+  for (const { id: courseId } of Object.values(COURSES)) {
+    const episodes = await listEpisodes(courseId);
+    const transport = episodes.find((episode) => episode.title === 'Транспорт');
+    const hotel = episodes.find((episode) => episode.title === 'Отель');
 
-  assert.equal(transport?.cardCount, 7);
-  assert.equal(hotel?.cardCount, 7);
+    assert.equal(transport?.cardCount, 7, `${courseId} transport count`);
+    assert.equal(hotel?.cardCount, 7, `${courseId} hotel count`);
 
-  const transportEpisode = await loadEpisode(transport?.id ?? '', 'tr');
-  const hotelEpisode = await loadEpisode(hotel?.id ?? '', 'tr');
+    const transportEpisode = await loadEpisode(transport?.id ?? '', courseId);
+    const hotelEpisode = await loadEpisode(hotel?.id ?? '', courseId);
+    const cards = [...(transportEpisode?.cards ?? []), ...(hotelEpisode?.cards ?? [])];
 
-  assert.ok(transportEpisode?.cards.some((card) => card.ge_text === 'Taksi durağı nerede?'));
-  assert.ok(hotelEpisode?.cards.some((card) => card.ge_text === 'Rezervasyonum var'));
+    assert.deepEqual(cards.map((card) => card.intent_id), TRAVEL_INTENT_IDS, `${courseId} travel intents`);
+    assert.ok(cards.every((card) => card.ge_text.trim().length > 0), `${courseId} travel phrases`);
+    assert.ok(cards.every((card) => card.ru_meaning.trim().length > 0), `${courseId} travel meanings`);
+  }
+});
+
+test('all courses expose the same 92-card extra practice load', async () => {
+  for (const { id: courseId } of Object.values(COURSES)) {
+    const [episodes, lettersByEpisode] = await Promise.all([
+      listEpisodes(courseId),
+      loadNewLettersPerEpisode(courseId),
+    ]);
+    const practicalEpisodes = episodes.filter((episode) =>
+      /^ep\d+[a-z]*$/i.test(episode.id) && (lettersByEpisode[episode.id] ?? []).length === 0
+    );
+    const cardCount = practicalEpisodes.reduce((total, episode) => total + (episode.cardCount ?? 0), 0);
+
+    assert.equal(cardCount, 92, `${courseId} extra practice count`);
+    assert.deepEqual(
+      [...practicalEpisodes.map((episode) => episode.title)].sort(),
+      [
+        'Приветствия и прощания',
+        'Вежливость',
+        'Знакомство',
+        'Простые ответы',
+        'Понимание языка',
+        'Основные вопросы',
+        'Магазин и оплата',
+        'Кафе и еда',
+        'Общественные места',
+        'Помощь и самочувствие',
+        'Транспорт',
+        'Отель',
+        'Числа',
+      ].sort(),
+      `${courseId} extra practice sections`,
+    );
+  }
 });
 
 test('Turkish practical sections start with the most useful social phrases', async () => {

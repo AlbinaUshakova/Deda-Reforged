@@ -80,6 +80,7 @@ import itEp8Json from '../public/content/it_ru_ep8.json' with { type: 'json' };
 import itEp9Json from '../public/content/it_ru_ep9.json' with { type: 'json' };
 import { DEFAULT_COURSE_ID, getCourse, isCourseLetter, normalizeCourseId, type CourseId } from './courses.ts';
 import { textToHint } from './transliteration.ts';
+import { getTravelPracticeEpisodes } from './travelPhraseSections.ts';
 
 export type CardInfoNote = {
   kind: 'grammar' | 'speech' | 'mistake';
@@ -1133,35 +1134,6 @@ const TURKISH_INTENT_SECTION_EPISODES: Episode[] = [
   },
 ];
 
-const TURKISH_TRAVEL_SECTION_EPISODES: Episode[] = [
-  {
-    id: 'turkish-transport',
-    title: 'Транспорт',
-    cards: [
-      intentPhrase('taxi_stand', 'Taksi durağı nerede?', 'Где стоянка такси?'),
-      intentPhrase('go_to_address', 'Bu adrese gidebilir misiniz?', 'Можете отвезти по этому адресу?', undefined, ['Можете поехать по этому адресу?']),
-      intentPhrase('go_to_airport', 'Havaalanına gitmek istiyorum', 'Я хочу поехать в аэропорт', undefined, ['Мне нужно в аэропорт']),
-      intentPhrase('turn_on_meter', 'Taksimetreyi açabilir misiniz?', 'Можете включить счётчик?', undefined, ['Включите счетчик', 'Включите счётчик']),
-      intentPhrase('how_long', 'Ne kadar sürer?', 'Сколько времени займёт?', undefined, ['Сколько это займет?', 'Сколько времени займёт']),
-      intentPhrase('bus_stop', 'Otobüs durağı nerede?', 'Где автобусная остановка?'),
-      intentPhrase('stop_here', 'Burada durun, lütfen', 'Остановите здесь, пожалуйста', undefined, ['Остановите здесь']),
-    ],
-  },
-  {
-    id: 'turkish-hotel',
-    title: 'Отель',
-    cards: [
-      intentPhrase('have_reservation', 'Rezervasyonum var', 'У меня есть бронь', undefined, ['У меня бронь', 'У меня есть бронирование']),
-      intentPhrase('room_ready', 'Oda hazır mı?', 'Номер готов?', undefined, ['Комната готова?']),
-      intentPhrase('breakfast_included', 'Kahvaltı dahil mi?', 'Завтрак включён?', undefined, ['Завтрак включен?']),
-      intentPhrase('wifi_password', 'Wi-Fi şifresi nedir?', 'Какой пароль от Wi-Fi?', undefined, ['Пароль от вайфая', 'Какой пароль от вайфая?']),
-      intentPhrase('checkout_time', 'Çıkış saat kaçta?', 'Во сколько выезд?', undefined, ['Во сколько нужно освободить номер?']),
-      intentPhrase('ask_towel', 'Bir havlu alabilir miyim?', 'Можно мне полотенце?', undefined, ['Можно полотенце?']),
-      intentPhrase('call_taxi', 'Bir taksi çağırabilir misiniz?', 'Можете вызвать такси?', undefined, ['Вызовите такси, пожалуйста']),
-    ],
-  },
-];
-
 const SPANISH_INTENT_SECTION_EPISODES: Episode[] = [
   {
     id: 'spanish-greetings',
@@ -1968,8 +1940,6 @@ const TURKISH_INTENT_SECTION_IDS = [
   'ep10j',
 ] as const;
 
-const TURKISH_TRAVEL_SECTION_IDS = ['ep10l', 'ep10m'] as const;
-
 const TURKISH_PRACTICE_SECTION_ORDER = [
   'ep10a',
   'ep10b',
@@ -2070,9 +2040,7 @@ function getTurkishPracticeLessons(): RawEpisode[] {
     ...TURKISH_INTENT_SECTION_EPISODES.map((episode, index) => (
       toRawLesson(episode, TURKISH_INTENT_SECTION_IDS[index])
     )),
-    ...TURKISH_TRAVEL_SECTION_EPISODES.map((episode, index) => (
-      toRawLesson(episode, TURKISH_TRAVEL_SECTION_IDS[index])
-    )),
+    ...getTravelPracticeEpisodes('tr'),
   ];
   const order = new Map<string, number>(TURKISH_PRACTICE_SECTION_ORDER.map((id, index) => [id, index]));
   return sections.sort((a, b) => (order.get(a.id) ?? 99) - (order.get(b.id) ?? 99));
@@ -2114,6 +2082,7 @@ function getExtraLessons(courseId: CourseId): RawEpisode[] {
           toRawLesson(episode, FRENCH_INTENT_SECTION_IDS[index])
         ))
       : []),
+    ...(courseId === 'tr' ? [] : getTravelPracticeEpisodes(courseId)),
     toRawLesson(NUMBERS_SECTION_BY_COURSE[courseId], NUMBERS_ID_BY_COURSE[courseId]),
   ];
 }

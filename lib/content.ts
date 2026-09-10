@@ -16,6 +16,7 @@ import {
   ITALIAN_NUMBERS_ID,
   listItalianIntentItems,
 } from './italianPhraseSections.ts';
+import { getTravelPracticeEpisodes } from './travelPhraseSections.ts';
 export type { CardInfoNote, Episode } from './contentData.ts';
 
 function mergeEpisodes(newId: string, title: string, episodes: Array<Episode | null>): Episode | null {
@@ -114,6 +115,7 @@ function getItalianAllEpisodeIds(): string[] {
   return [
     ...listStaticEpisodeIds('it').filter(id => /^ep[1-9]$/i.test(id)),
     ...ITALIAN_INTENT_SECTION_IDS,
+    ...getTravelPracticeEpisodes('it').map(episode => episode.id),
     ITALIAN_NUMBERS_ID,
   ];
 }
@@ -129,7 +131,11 @@ export async function loadNewLettersPerEpisode(
 
   const letters = buildLettersByEpisode(episodes, normalizedCourseId);
   if (normalizedCourseId === 'it') {
-    for (const id of [...ITALIAN_INTENT_SECTION_IDS, ITALIAN_NUMBERS_ID]) {
+    for (const id of [
+      ...ITALIAN_INTENT_SECTION_IDS,
+      ...getTravelPracticeEpisodes('it').map(episode => episode.id),
+      ITALIAN_NUMBERS_ID,
+    ]) {
       letters[id] = [];
     }
   }
@@ -145,6 +151,8 @@ export async function loadEpisode(
   if (normalizedCourseId === 'it') {
     const italianIntentEpisode = getItalianIntentEpisode(id);
     if (italianIntentEpisode) return italianIntentEpisode;
+    const italianTravelEpisode = getTravelPracticeEpisodes('it').find(episode => episode.id === id);
+    if (italianTravelEpisode) return italianTravelEpisode;
     if (id === ITALIAN_NUMBERS_ID) return loadItalianNumbersEpisode();
   }
 
@@ -240,6 +248,11 @@ export async function listEpisodes(
   return [
     ...readingLessons,
     ...listItalianIntentItems(),
+    ...getTravelPracticeEpisodes('it').map(episode => ({
+      id: episode.id,
+      title: episode.title,
+      cardCount: episode.cards.length,
+    })),
     ...(numbers ? [{ id: ITALIAN_NUMBERS_ID, title: 'Числа', cardCount: numbers.cards.length }] : []),
     ...base.filter(episode => episode.id === 'favorites' || episode.id === 'all'),
   ];
