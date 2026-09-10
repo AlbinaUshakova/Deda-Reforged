@@ -288,7 +288,7 @@ export default function LandingPage() {
               </div>
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">4</span>
-                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Read directly' : 'Самостоятельно'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Rely less on transliteration as you go.' : 'Постепенно без транслитерации.'}</span></span>
+                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Read on your own' : 'Читаешь сам'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Hints gradually step back.' : 'Подсказок становится меньше.'}</span></span>
               </div>
             </div>
           </div>
