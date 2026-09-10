@@ -283,7 +283,7 @@ export default function LandingPage() {
               </div>
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">3</span>
-                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Practice' : 'Игра'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Practice new words in a short game.' : 'Закрепи слова в игре.'}</span></span>
+                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Practice' : 'Игра'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Practice reading in a short game.' : 'Закрепи навык чтения в игре.'}</span></span>
               </div>
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">4</span>
