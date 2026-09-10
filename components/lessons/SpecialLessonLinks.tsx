@@ -246,7 +246,7 @@ export function SpecialLessonLinks({
                 ? (interfaceLanguage === 'en' ? 'Completed' : 'Пройдено')
                 : isStarted
                   ? (interfaceLanguage === 'en' ? `${studiedCount} of ${cardCount} studied` : `${studiedCount} из ${cardCount} изучено`)
-                  : (interfaceLanguage === 'en' ? `${cardCount} cards` : `${cardCount} карточек`);
+                  : getCardCountLabel(cardCount, interfaceLanguage);
 
               return (
                 <Link key={special.id} href={`/study/${special.id}`} legacyBehavior>

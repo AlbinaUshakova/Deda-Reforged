@@ -33,8 +33,8 @@ export function getSpecialStudyCopy(
 ): string | undefined {
   if (kind === 'favorites') {
     return interfaceLanguage === 'en'
-      ? 'Your saved words in one deck. Add more from any lesson with the star.'
-      : 'Одна колода со словами, которые ты решила сохранить. Добавляй новые через звезду в любом уроке.';
+      ? 'All words marked with a star in one deck.'
+      : 'Все отмеченные звездой слова в одной колоде.';
   }
   if (kind === 'all') {
     return interfaceLanguage === 'en'
