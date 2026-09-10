@@ -139,8 +139,8 @@ export function SpecialLessonLinks({
       href: '/custom-cards' as Route,
       title: interfaceLanguage === 'en' ? 'My cards' : 'Мои карточки',
       meta: interfaceLanguage === 'en'
-        ? `Add a word or phrase and its meaning · ${getCardCountLabel(customCardsCount, interfaceLanguage)}`
-        : `Добавь слово или фразу и перевод · ${getCardCountLabel(customCardsCount, interfaceLanguage)}`,
+        ? `Write new words in your own letters · ${getCardCountLabel(customCardsCount, interfaceLanguage)}`
+        : `Записывай новые слова родными буквами · ${getCardCountLabel(customCardsCount, interfaceLanguage)}`,
       featured: true,
     },
     favoritesSpecial

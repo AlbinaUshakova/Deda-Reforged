@@ -12,20 +12,9 @@ import {
   type CustomCard,
   type CustomCardInput,
 } from '@/lib/customCards';
-import type { CourseId } from '@/lib/courses';
+import { getCustomCardExample } from '@/lib/customCardExamples';
 
 const EMPTY_FORM: CustomCardInput = { front: '', meaning: '', association: '' };
-
-const CARD_EXAMPLES: Record<CourseId, { front: string; ru: string; en: string }> = {
-  ka: { front: 'გამარჯობა', ru: 'привет', en: 'hello' },
-  sr: { front: 'здраво', ru: 'привет', en: 'hello' },
-  tr: { front: 'merhaba', ru: 'привет', en: 'hello' },
-  es: { front: 'hola', ru: 'привет', en: 'hello' },
-  de: { front: 'hallo', ru: 'привет', en: 'hello' },
-  en: { front: 'hello', ru: 'привет', en: 'greeting' },
-  fr: { front: 'bonjour', ru: 'привет', en: 'hello' },
-  it: { front: 'ciao', ru: 'привет', en: 'hello' },
-};
 
 function cardCountLabel(count: number, language: 'ru' | 'en') {
   if (language === 'en') return `${count} ${count === 1 ? 'card' : 'cards'}`;
@@ -44,7 +33,7 @@ export default function CustomCardsPage() {
   const [cards, setCards] = useState<CustomCard[]>([]);
   const [form, setForm] = useState<CustomCardInput>(EMPTY_FORM);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const example = CARD_EXAMPLES[courseId];
+  const example = getCustomCardExample(courseId, language);
 
   const refresh = useCallback(() => setCards(readCustomCards(courseId)), [courseId]);
 
@@ -93,8 +82,8 @@ export default function CustomCardsPage() {
             </h1>
             <p className="mt-3 max-w-xl text-sm font-medium text-[var(--text-secondary)] sm:text-base">
               {language === 'en'
-                ? 'Add any word or phrase with its meaning, then learn it with cards or practice.'
-                : 'Добавь любое слово или фразу с переводом, а затем учи в карточках или практике.'}
+                ? 'Add a new word in its original script or write how it sounds in your own letters. Then learn it with cards or practice.'
+                : 'Добавь новое слово буквами изучаемого языка или запиши его звучание родными буквами. Затем учи в карточках или практике.'}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -111,16 +100,22 @@ export default function CustomCardsPage() {
           </div>
         </div>
 
-        <div className="mb-4 flex items-center gap-3 rounded-[22px] border border-[rgba(255,107,53,0.2)] bg-[rgba(255,247,239,0.82)] px-4 py-3 shadow-[0_10px_28px_rgba(255,107,53,0.08)] sm:px-5">
+        <div className="mb-4 flex flex-wrap items-center gap-2 rounded-[22px] border border-[rgba(255,107,53,0.2)] bg-[rgba(255,247,239,0.82)] px-4 py-3 shadow-[0_10px_28px_rgba(255,107,53,0.08)] sm:gap-3 sm:px-5">
           <span className="shrink-0 rounded-full bg-[var(--accent)] px-3 py-1 text-sm font-black text-white">
-            {example.front}
+            {example.entered}
+          </span>
+          <span className="text-xs font-bold text-[var(--text-secondary)]">
+            {language === 'en' ? 'or' : 'или'}
+          </span>
+          <span className="shrink-0 rounded-full bg-white px-3 py-1 text-sm font-black text-[var(--text-primary)] shadow-sm">
+            {example.original}
           </span>
           <span className="text-[var(--text-tertiary)]" aria-hidden="true">→</span>
           <span className="text-sm font-extrabold text-[var(--text-primary)]">
-            {language === 'en' ? example.en : example.ru}
+            {example.meaning}
           </span>
           <span className="ml-auto hidden text-xs font-semibold text-[var(--text-secondary)] sm:block">
-            {language === 'en' ? 'Your word, your meaning' : 'Твоё слово, твой перевод'}
+            {language === 'en' ? 'Write it your way' : 'Пиши так, как удобно'}
           </span>
         </div>
 
@@ -137,24 +132,29 @@ export default function CustomCardsPage() {
           </div>
           <form className="grid gap-3 md:grid-cols-2" onSubmit={handleSubmit}>
             <label className="grid gap-1.5 text-xs font-bold text-[var(--text-secondary)]">
-              {language === 'en' ? 'In the language you are learning' : 'На изучаемом языке'}
+              {language === 'en' ? 'New word or phrase' : 'Новое слово или фраза'}
               <input
                 className="min-h-12 rounded-2xl border border-black/10 bg-white px-4 text-base font-semibold text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]"
                 value={form.front}
                 onChange={event => setForm(current => ({ ...current, front: event.target.value }))}
                 maxLength={120}
-                placeholder={example.front}
+                placeholder={example.entered}
                 required
               />
+              <span className="font-medium leading-snug text-[var(--text-tertiary)]">
+                {language === 'en'
+                  ? `For example: “${example.entered}” or “${example.original}”.`
+                  : `Например: «${example.entered}» или «${example.original}».`}
+              </span>
             </label>
             <label className="grid gap-1.5 text-xs font-bold text-[var(--text-secondary)]">
-              {language === 'en' ? 'Meaning in your language' : 'Перевод на твоём языке'}
+              {language === 'en' ? 'Meaning in your language' : 'Значение на твоём языке'}
               <input
                 className="min-h-12 rounded-2xl border border-black/10 bg-white px-4 text-base font-semibold text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]"
                 value={form.meaning}
                 onChange={event => setForm(current => ({ ...current, meaning: event.target.value }))}
                 maxLength={180}
-                placeholder={language === 'en' ? example.en : example.ru}
+                placeholder={example.meaning}
                 required
               />
             </label>
@@ -165,7 +165,7 @@ export default function CustomCardsPage() {
                 value={form.association ?? ''}
                 onChange={event => setForm(current => ({ ...current, association: event.target.value }))}
                 maxLength={160}
-                placeholder={language === 'en' ? 'A phrase that sounds similar' : 'Например: «мэр, оба!» для merhaba'}
+                placeholder={language === 'en' ? 'A phrase that sounds similar' : 'Например: «мэр, оба!» для «мерхаба»'}
               />
               <span className="font-medium leading-snug text-[var(--text-tertiary)]">
                 {language === 'en'
