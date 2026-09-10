@@ -18,7 +18,7 @@ import {
   progressKeyForEpisode,
 } from '@/lib/courses';
 import { getCourseName } from '@/lib/interfaceText';
-import { deriveLessonState, getLessonPosition } from '@/lib/lessonProgress';
+import { deriveLessonState } from '@/lib/lessonProgress';
 import {
   LandingCourseTitle,
   LandingFinalCtaTitle,
@@ -58,7 +58,7 @@ export default function LandingPage() {
       ),
     [courseId, progressMap],
   );
-  const { recommendedEpId, normalEpisodes } = useMemo(
+  const { recommendedEpId } = useMemo(
     () =>
       deriveLessonState({
         episodes: initialEpisodesData.episodes,
@@ -70,17 +70,16 @@ export default function LandingPage() {
     [courseProgress, initialEpisodesData.episodes, initialEpisodesData.lettersByEpisode, lessonTargetScore],
   );
   const ctaEpisodeId = recommendedEpId ?? 'ep1';
-  const ctaLessonNumber = getLessonPosition(normalEpisodes, ctaEpisodeId) ?? 1;
   const ctaProgress = progressMap[progressKeyForEpisode(courseId, ctaEpisodeId)] ?? 0;
-  const ctaHref = (settings.hasCompletedOnboarding ? `/study/${ctaEpisodeId}` : '/lessons') as Route;
+  const ctaHref = '/lessons' as Route;
   const ctaLabel = settings.hasCompletedOnboarding
     ? ctaProgress > 0
       ? interfaceLanguage === 'en'
         ? 'Continue'
         : 'Продолжить'
       : interfaceLanguage === 'en'
-        ? `Start lesson ${ctaLessonNumber}`
-        : `Начать урок ${ctaLessonNumber}`
+        ? 'View lessons'
+        : 'К урокам'
     : interfaceLanguage === 'en'
       ? 'Start the first lesson'
       : 'Первый урок';
