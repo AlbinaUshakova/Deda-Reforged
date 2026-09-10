@@ -543,11 +543,6 @@ export default function FlashcardDeck({
 
           <div className="flashcard-nav-progress" aria-live="polite">
             <span className="flashcard-nav-progress-count">{counter}</span>
-            <span className="flashcard-nav-progress-state">
-              {flipped
-                ? (interfaceLanguage === 'en' ? 'Translation' : 'Перевод')
-                : (interfaceLanguage === 'en' ? 'Word' : 'Слово')}
-            </span>
           </div>
 
           <button
@@ -560,20 +555,16 @@ export default function FlashcardDeck({
             <span className="flashcard-nav-icon" aria-hidden="true">›</span>
           </button>
         </nav>
-        {hasCard && (
+        {hasCard && flipped && (
           <p className="flashcard-bottom-hint mt-3 text-center text-[12px] font-medium text-[var(--text-tertiary)]">
             {getSpecialDeckHint(specialEpisodeKind, flipped, isLastCard, interfaceLanguage) ??
-              (flipped
-                ? (isLastCard
-                  ? (interfaceLanguage === 'en'
-                    ? 'Finish this card and move to practice.'
-                    : 'Закончи эту карточку и переходи к практике.')
-                  : (interfaceLanguage === 'en'
-                    ? 'Now go to the next card.'
-                    : 'Теперь переходи к следующей карточке.'))
+              (isLastCard
+                ? (interfaceLanguage === 'en'
+                  ? 'Finish this card and move to practice.'
+                  : 'Закончи эту карточку и переходи к практике.')
                 : (interfaceLanguage === 'en'
-                  ? 'Read the word first, then flip the card.'
-                  : 'Сначала прочитай слово, потом переверни карточку.'))}
+                  ? 'Now go to the next card.'
+                  : 'Теперь переходи к следующей карточке.'))}
           </p>
         )}
       </div>
