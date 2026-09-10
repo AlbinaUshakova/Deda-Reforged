@@ -123,9 +123,9 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
                 type: 'word' as const,
                 ge_text: card.front,
                 ru_meaning: card.meaning,
-                translit: card.transcription,
-                transcription_ru: card.transcription,
-                transcription_en: card.transcription,
+                translit: card.association,
+                transcription_ru: card.association,
+                transcription_en: card.association,
                 playable: true,
               })),
             }

@@ -13,6 +13,7 @@ type FlashcardCardActionsProps = {
   onToggleFavorite: () => void;
   onToggleTranslit: () => void;
   showFavorite?: boolean;
+  transcriptionKind?: 'transcription' | 'association';
 };
 
 const navLikeMiniControl =
@@ -29,6 +30,7 @@ export function FlashcardCardActions({
   onToggleFavorite,
   onToggleTranslit,
   showFavorite = true,
+  transcriptionKind = 'transcription',
 }: FlashcardCardActionsProps) {
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const hintLabel = interfaceLanguage === 'en' ? 'Hint' : 'Подсказка';
@@ -38,9 +40,14 @@ export function FlashcardCardActions({
   const favoriteTitle = isFavorite
     ? (interfaceLanguage === 'en' ? 'Remove from saved' : 'Убрать сохранение')
     : (interfaceLanguage === 'en' ? 'Save card' : 'Сохранить карточку');
-  const translitTitle = showTranslit
-    ? (interfaceLanguage === 'en' ? 'Hide transcription' : 'Скрыть транскрипцию')
-    : (interfaceLanguage === 'en' ? 'Show transcription' : 'Показать транскрипцию');
+  const isAssociation = transcriptionKind === 'association';
+  const translitTitle = isAssociation
+    ? showTranslit
+      ? (interfaceLanguage === 'en' ? 'Hide association' : 'Скрыть ассоциацию')
+      : (interfaceLanguage === 'en' ? 'Show association' : 'Показать ассоциацию')
+    : showTranslit
+      ? (interfaceLanguage === 'en' ? 'Hide transcription' : 'Скрыть транскрипцию')
+      : (interfaceLanguage === 'en' ? 'Show transcription' : 'Показать транскрипцию');
 
   return (
     <div className="flashcard-action-bar absolute left-[clamp(14px,2vw,24px)] right-[clamp(14px,2vw,24px)] top-[clamp(12px,1.4vw,16px)] z-10 flex items-start justify-between gap-2">
@@ -103,7 +110,7 @@ export function FlashcardCardActions({
             aria-pressed={showTranslit}
             data-state={showTranslit ? 'active' : 'idle'}
           >
-            <span className="flashcard-action-icon" aria-hidden="true">Aa</span>
+            <span className="flashcard-action-icon" aria-hidden="true">{isAssociation ? '≈' : 'Aa'}</span>
           </button>
         )}
       </div>

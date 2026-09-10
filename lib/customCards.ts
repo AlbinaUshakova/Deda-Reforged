@@ -10,7 +10,7 @@ export type CustomCard = {
   courseId: CourseId;
   front: string;
   meaning: string;
-  transcription?: string;
+  association?: string;
   createdAt: number;
   updatedAt: number;
 };
@@ -18,8 +18,10 @@ export type CustomCard = {
 export type CustomCardInput = {
   front: string;
   meaning: string;
-  transcription?: string;
+  association?: string;
 };
+
+type StoredCustomCard = CustomCard & { transcription?: string };
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem'>;
 
@@ -36,11 +38,11 @@ function normalizeInput(input: CustomCardInput): CustomCardInput {
   return {
     front: cleanText(input.front, 120),
     meaning: cleanText(input.meaning, 180),
-    transcription: cleanText(input.transcription ?? '', 160) || undefined,
+    association: cleanText(input.association ?? '', 160) || undefined,
   };
 }
 
-function isCustomCard(value: unknown): value is CustomCard {
+function isStoredCustomCard(value: unknown): value is StoredCustomCard {
   if (!value || typeof value !== 'object') return false;
   const card = value as Record<string, unknown>;
   return (
@@ -50,6 +52,7 @@ function isCustomCard(value: unknown): value is CustomCard {
     card.front.trim().length > 0 &&
     typeof card.meaning === 'string' &&
     card.meaning.trim().length > 0 &&
+    (card.association === undefined || typeof card.association === 'string') &&
     (card.transcription === undefined || typeof card.transcription === 'string') &&
     typeof card.createdAt === 'number' &&
     typeof card.updatedAt === 'number'
@@ -60,7 +63,14 @@ function readAllCustomCards(storage: StorageLike | null): CustomCard[] {
   if (!storage) return [];
   try {
     const parsed = JSON.parse(storage.getItem(CUSTOM_CARDS_KEY) ?? '[]') as unknown;
-    return Array.isArray(parsed) ? parsed.filter(isCustomCard) : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(isStoredCustomCard).map(card => {
+      const { transcription, ...currentCard } = card;
+      return {
+        ...currentCard,
+        association: cleanText(card.association ?? transcription ?? '', 160) || undefined,
+      };
+    });
   } catch {
     return [];
   }
@@ -104,7 +114,7 @@ export function addCustomCard(
     courseId,
     front: normalized.front,
     meaning: normalized.meaning,
-    transcription: normalized.transcription,
+    association: normalized.association,
     createdAt: now,
     updatedAt: now,
   };

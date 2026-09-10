@@ -415,7 +415,9 @@ export default function FlashcardDeck({
   }, [card, isCustomDeck, toggleFav]);
 
   const hasTranscription = !!transcriptionText.trim();
-  const shouldRenderTranslitToggle = hasTranscription && shouldShowTranscriptionToggle(episodeId, courseId, flipped, showTranslit);
+  const shouldRenderTranslitToggle = hasTranscription && (
+    isCustomDeck || shouldShowTranscriptionToggle(episodeId, courseId, flipped, showTranslit)
+  );
 
   useEffect(() => {
     setRevealCount(0);
@@ -492,6 +494,7 @@ export default function FlashcardDeck({
                 onToggleFavorite={toggleCurrentFavorite}
                 onToggleTranslit={() => setShowTranslit(v => !v)}
                 showFavorite={!isCustomDeck}
+                transcriptionKind={isCustomDeck ? 'association' : 'transcription'}
               />
             )}
 
@@ -516,6 +519,7 @@ export default function FlashcardDeck({
                 showTranslit={showTranslit}
                 showHint={false}
                 isReviewPriority={isReviewPriority}
+                showAssociationLabel={isCustomDeck}
                 renderCardText={renderCardText}
                 renderLessonLetterHighlight={renderLessonLetterHighlight}
               />

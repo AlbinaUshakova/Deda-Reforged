@@ -23,6 +23,7 @@ type FlashcardCardContentProps = {
   showTranslit: boolean;
   showHint: boolean;
   isReviewPriority: boolean;
+  showAssociationLabel?: boolean;
   renderCardText: (text: string, kind: 'ge' | 'ru') => React.ReactNode;
   renderLessonLetterHighlight: (text: string) => React.ReactNode;
 };
@@ -47,6 +48,7 @@ export function FlashcardCardContent({
   showTranslit,
   showHint,
   isReviewPriority,
+  showAssociationLabel = false,
   renderCardText,
   renderLessonLetterHighlight,
 }: FlashcardCardContentProps) {
@@ -73,6 +75,11 @@ export function FlashcardCardContent({
     <div className="flashcard-supplementary-info flex flex-col items-center gap-2">
       {showTranslit && transcriptionText.trim() && (
         <div className="flashcard-translit-panel">
+          {showAssociationLabel && (
+            <span className="mr-1 text-[10px] font-bold uppercase tracking-[0.08em] text-[var(--text-tertiary)]">
+              {interfaceLanguage === 'en' ? 'Association' : 'Ассоциация'}
+            </span>
+          )}
           <span className="flashcard-translit-value">{transcriptionText}</span>
         </div>
       )}

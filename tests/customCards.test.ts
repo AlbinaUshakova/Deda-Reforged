@@ -31,7 +31,7 @@ test('custom cards are stored separately for each course', () => {
 
 test('custom cards are normalized and newest changes appear first', () => {
   const storage = createStorage();
-  addCustomCard('ka', { front: '  ჩემი   სიტყვა ', meaning: ' мое   слово ', transcription: '  chemi sitqva ' }, storage, { id: 'one', now: 1 });
+  addCustomCard('ka', { front: '  ჩემი   სიტყვა ', meaning: ' мое   слово ', association: '  чем и сито ' }, storage, { id: 'one', now: 1 });
   addCustomCard('ka', { front: 'სხვა', meaning: 'другое' }, storage, { id: 'two', now: 2 });
 
   const cards = readCustomCards('ka', storage);
@@ -41,7 +41,33 @@ test('custom cards are normalized and newest changes appear first', () => {
     courseId: 'ka',
     front: 'ჩემი სიტყვა',
     meaning: 'мое слово',
-    transcription: 'chemi sitqva',
+    association: 'чем и сито',
+    createdAt: 1,
+    updatedAt: 1,
+  });
+});
+
+test('legacy custom card transcription becomes a sound association', () => {
+  const storage = createStorage({
+    [CUSTOM_CARDS_KEY]: JSON.stringify([
+      {
+        id: 'legacy',
+        courseId: 'tr',
+        front: 'merhaba',
+        meaning: 'привет',
+        transcription: 'мэр, оба',
+        createdAt: 1,
+        updatedAt: 1,
+      },
+    ]),
+  });
+
+  assert.deepEqual(readCustomCards('tr', storage)[0], {
+    id: 'legacy',
+    courseId: 'tr',
+    front: 'merhaba',
+    meaning: 'привет',
+    association: 'мэр, оба',
     createdAt: 1,
     updatedAt: 1,
   });

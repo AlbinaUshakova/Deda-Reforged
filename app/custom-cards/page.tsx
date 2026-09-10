@@ -14,7 +14,7 @@ import {
 } from '@/lib/customCards';
 import type { CourseId } from '@/lib/courses';
 
-const EMPTY_FORM: CustomCardInput = { front: '', meaning: '', transcription: '' };
+const EMPTY_FORM: CustomCardInput = { front: '', meaning: '', association: '' };
 
 const CARD_EXAMPLES: Record<CourseId, { front: string; ru: string; en: string }> = {
   ka: { front: 'გამარჯობა', ru: 'привет', en: 'hello' },
@@ -77,7 +77,7 @@ export default function CustomCardsPage() {
 
   function startEditing(card: CustomCard) {
     setEditingId(card.id);
-    setForm({ front: card.front, meaning: card.meaning, transcription: card.transcription ?? '' });
+    setForm({ front: card.front, meaning: card.meaning, association: card.association ?? '' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -159,13 +159,19 @@ export default function CustomCardsPage() {
               />
             </label>
             <label className="grid gap-1.5 text-xs font-bold text-[var(--text-secondary)] md:col-span-2">
-              {language === 'en' ? 'Transcription (optional)' : 'Транскрипция (необязательно)'}
+              {language === 'en' ? 'Sound association (optional)' : 'Ассоциация по звучанию (необязательно)'}
               <input
                 className="min-h-12 rounded-2xl border border-black/10 bg-white px-4 text-base font-semibold text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]"
-                value={form.transcription ?? ''}
-                onChange={event => setForm(current => ({ ...current, transcription: event.target.value }))}
+                value={form.association ?? ''}
+                onChange={event => setForm(current => ({ ...current, association: event.target.value }))}
                 maxLength={160}
+                placeholder={language === 'en' ? 'A phrase that sounds similar' : 'Например: «мэр, оба!» для merhaba'}
               />
+              <span className="font-medium leading-snug text-[var(--text-tertiary)]">
+                {language === 'en'
+                  ? 'Use a familiar phrase that helps you remember how the new word sounds.'
+                  : 'Добавь знакомую фразу, которая поможет вспомнить звучание нового слова.'}
+              </span>
             </label>
             <div className="mt-1 flex flex-wrap gap-2 md:col-span-2">
               <button className="study-action-pill study-action-pill--primary" type="submit">
@@ -199,7 +205,11 @@ export default function CustomCardsPage() {
                   <div className="min-w-0">
                     <p className="truncate text-lg font-extrabold">{card.front}</p>
                     <p className="truncate text-sm font-medium text-[var(--text-secondary)]">{card.meaning}</p>
-                    {card.transcription && <p className="mt-1 truncate text-xs text-[var(--text-tertiary)]">{card.transcription}</p>}
+                    {card.association && (
+                      <p className="mt-1 truncate text-xs text-[var(--text-tertiary)]">
+                        {language === 'en' ? 'Association' : 'Ассоциация'}: {card.association}
+                      </p>
+                    )}
                   </div>
                   <div className="flex shrink-0 gap-1">
                     <button
