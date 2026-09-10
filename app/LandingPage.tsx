@@ -164,7 +164,7 @@ export default function LandingPage() {
                   ))}
                 </div>
                 <div className="text-center text-[13px] font-medium text-[var(--text-secondary)]">
-                  {interfaceLanguage === 'en' ? 'Also available now: Serbian' : 'Также доступен: Сербский'}
+                  {interfaceLanguage === 'en' ? 'Also available now: Serbian and Turkish' : 'Также доступны: сербский и турецкий'}
                 </div>
                 <div className="flex flex-wrap justify-center gap-3">
                   {onboardingSecondaryCourseIds.map(courseId => (

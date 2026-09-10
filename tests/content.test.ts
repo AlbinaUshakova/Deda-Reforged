@@ -297,6 +297,21 @@ test('all thematic conversational lessons use the 10 canonical beginner sections
   }
 });
 
+test('Turkish includes compact travel decks for transport and hotel situations', async () => {
+  const episodes = await listEpisodes('tr');
+  const transport = episodes.find((episode) => episode.title === 'Транспорт');
+  const hotel = episodes.find((episode) => episode.title === 'Отель');
+
+  assert.equal(transport?.cardCount, 7);
+  assert.equal(hotel?.cardCount, 7);
+
+  const transportEpisode = await loadEpisode(transport?.id ?? '', 'tr');
+  const hotelEpisode = await loadEpisode(hotel?.id ?? '', 'tr');
+
+  assert.ok(transportEpisode?.cards.some((card) => card.ge_text === 'Taksi durağı nerede?'));
+  assert.ok(hotelEpisode?.cards.some((card) => card.ge_text === 'Rezervasyonum var'));
+});
+
 test('Georgian beginner phrase sections cover all 60 canonical intents', async () => {
   const sectionIds = ['ep10', 'ep10b', 'ep10c', 'ep10d', 'ep10e', 'ep10f', 'ep10g', 'ep10h', 'ep10i', 'ep10j'];
   const episodes = await Promise.all(sectionIds.map(id => loadEpisode(id, 'ka')));
