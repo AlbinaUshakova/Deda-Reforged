@@ -1017,10 +1017,10 @@ const TURKISH_INTENT_SECTION_EPISODES: Episode[] = [
     cards: [
       intentPhrase('hello_formal', 'Merhaba', 'Здравствуйте', undefined, undefined, undefined, 'MEHR-hah-bah'),
       intentPhrase('hello_informal', 'Selam', 'Привет', undefined, undefined, undefined, 'seh-LAHM'),
+      intentPhrase('goodbye', 'Hoşça kal', 'До свидания', undefined, ['Пока'], undefined, 'HOSH-cha kal'),
       intentPhrase('good_morning', 'Günaydın', 'Доброе утро', undefined, undefined, undefined, 'gew-NIGH-duhn'),
       intentPhrase('good_day', 'İyi günler', 'Добрый день', undefined, undefined, undefined, 'EE-yee gewn-LAIR'),
       intentPhrase('good_evening', 'İyi akşamlar', 'Добрый вечер', undefined, undefined, undefined, 'EE-yee ak-sham-LAR'),
-      intentPhrase('goodbye', 'Hoşça kal', 'До свидания', undefined, ['Пока'], undefined, 'HOSH-cha kal'),
     ],
   },
   {
@@ -1028,10 +1028,10 @@ const TURKISH_INTENT_SECTION_EPISODES: Episode[] = [
     title: 'Вежливость',
     cards: [
       intentPhrase('thanks', 'Teşekkür ederim', 'Спасибо', undefined, undefined, undefined, 'teh-shehk-KUER eh-deh-REEM'),
-      intentPhrase('thanks_very_much', 'Çok teşekkürler', 'Большое спасибо', undefined, ['Спасибо большое'], undefined, 'chok teh-shehk-KUER-lair'),
       intentPhrase('please_request', 'Lütfen', 'Пожалуйста', 'В просьбе: “пожалуйста”.', undefined, undefined, 'LUET-fen'),
-      intentPhrase('you_are_welcome', 'Rica ederim', 'Не за что', undefined, ['Пожалуйста'], undefined, 'ree-JAH eh-deh-REEM'),
       intentPhrase('excuse_me_attention', 'Afedersiniz', 'Извините', 'Чтобы обратиться к человеку или пройти.', ['Простите'], undefined, 'ah-feh-dehr-see-NEEZ'),
+      intentPhrase('you_are_welcome', 'Rica ederim', 'Не за что', undefined, ['Пожалуйста'], undefined, 'ree-JAH eh-deh-REEM'),
+      intentPhrase('thanks_very_much', 'Çok teşekkürler', 'Большое спасибо', undefined, ['Спасибо большое'], undefined, 'chok teh-shehk-KUER-lair'),
       intentPhrase('sorry_fault', 'Özür dilerim', 'Мне жаль', undefined, ['Простите'], undefined, 'uh-ZUER dee-leh-REEM'),
       intentPhrase('no_problem', 'Sorun değil', 'Ничего страшного', undefined, ['Все в порядке', 'Всё в порядке'], undefined, 'soh-ROON DEH-eel'),
       intentPhrase('bless_you', 'Çok yaşa', 'Будьте здоровы', undefined, undefined, undefined, 'chok yah-SHAH'),
@@ -1056,10 +1056,10 @@ const TURKISH_INTENT_SECTION_EPISODES: Episode[] = [
     cards: [
       intentPhrase('yes', 'Evet', 'Да'),
       intentPhrase('no', 'Hayır', 'Нет'),
-      intentPhrase('maybe', 'Belki', 'Может быть'),
       intentPhrase('okay', 'Tamam', 'Хорошо', undefined, ['Ладно', 'Ок', 'Окей']),
       intentPhrase('of_course', 'Tabii', 'Конечно'),
       intentPhrase('i_dont_know', 'Bilmiyorum', 'Я не знаю', undefined, ['Не знаю']),
+      intentPhrase('maybe', 'Belki', 'Может быть'),
     ],
   },
   {
@@ -1067,20 +1067,20 @@ const TURKISH_INTENT_SECTION_EPISODES: Episode[] = [
     title: 'Понимание языка',
     cards: [
       intentPhrase('i_dont_understand', 'Anlamıyorum', 'Я не понимаю', undefined, ['Не понимаю']),
-      intentPhrase('i_understand', 'Anlıyorum', 'Я понимаю', undefined, ['Понимаю']),
       intentPhrase('ask_repeat', 'Tekrar edin, lütfen', 'Повторите, пожалуйста'),
+      intentPhrase('do_you_speak_english', 'İngilizce biliyor musunuz?', 'Вы говорите по-английски?'),
       intentPhrase('what_does_it_mean', 'Bu ne demek?', 'Что это значит?'),
       intentPhrase('how_to_say', 'Bu Türkçe nasıl söylenir?', 'Как это сказать по-турецки?'),
-      intentPhrase('do_you_speak_english', 'İngilizce biliyor musunuz?', 'Вы говорите по-английски?'),
       intentPhrase('i_speak_a_little', 'Biraz Türkçe biliyorum', 'Я немного говорю по-турецки'),
+      intentPhrase('i_understand', 'Anlıyorum', 'Я понимаю', undefined, ['Понимаю']),
     ],
   },
   {
     id: 'turkish-questions',
     title: 'Основные вопросы',
     cards: [
-      intentPhrase('what_is_this', 'Bu ne?', 'Что это?'),
       intentPhrase('where_is_it', 'Nerede?', 'Где это?'),
+      intentPhrase('what_is_this', 'Bu ne?', 'Что это?'),
       intentPhrase('what_time_is_it', 'Saat kaç?', 'Который час?', undefined, ['Сколько времени?']),
       intentPhrase('what_happened', 'Ne oldu?', 'Что случилось?'),
       intentPhrase('is_everything_ok', 'Her şey yolunda mı?', 'Всё в порядке?', undefined, ['Все в порядке?']),
@@ -1092,10 +1092,10 @@ const TURKISH_INTENT_SECTION_EPISODES: Episode[] = [
     title: 'Магазин и оплата',
     cards: [
       intentPhrase('ask_price', 'Ne kadar?', 'Сколько это стоит?', undefined, ['Сколько стоит?']),
+      intentPhrase('pay_by_card', 'Kartla ödeyebilir miyim?', 'Можно оплатить картой?', undefined, ['Можно картой?']),
       intentPhrase('i_want_this', 'Bunu istiyorum', 'Я хочу это', undefined, ['Хочу это']),
       intentPhrase('ask_availability', 'Su var mı?', 'У вас есть вода?'),
       intentPhrase('thats_all', 'Hepsi bu, teşekkürler', 'Это всё, спасибо', undefined, ['Это все, спасибо']),
-      intentPhrase('pay_by_card', 'Kartla ödeyebilir miyim?', 'Можно оплатить картой?', undefined, ['Можно картой?']),
       intentPhrase('receipt_please', 'Fiş, lütfen', 'Чек, пожалуйста', undefined, ['Дайте чек']),
       intentPhrase('bag_please', 'Poşet, lütfen', 'Пакет, пожалуйста', undefined, ['Пакет']),
     ],
@@ -1116,10 +1116,10 @@ const TURKISH_INTENT_SECTION_EPISODES: Episode[] = [
     id: 'turkish-public',
     title: 'Общественные места',
     cards: [
-      intentPhrase('let_me_pass', 'Geçebilir miyim?', 'Разрешите пройти'),
-      intentPhrase('go_ahead', 'Buyurun', 'Проходите, пожалуйста'),
       intentPhrase('where_is_toilet', 'Tuvalet nerede?', 'Где туалет?'),
       intentPhrase('is_this_seat_free', 'Burası boş mu?', 'Это место свободно?'),
+      intentPhrase('let_me_pass', 'Geçebilir miyim?', 'Разрешите пройти'),
+      intentPhrase('go_ahead', 'Buyurun', 'Проходите, пожалуйста'),
     ],
   },
   {
@@ -1970,6 +1970,21 @@ const TURKISH_INTENT_SECTION_IDS = [
 
 const TURKISH_TRAVEL_SECTION_IDS = ['ep10l', 'ep10m'] as const;
 
+const TURKISH_PRACTICE_SECTION_ORDER = [
+  'ep10a',
+  'ep10b',
+  'ep10e',
+  'ep10d',
+  'ep10f',
+  'ep10c',
+  'ep10l',
+  'ep10m',
+  'ep10h',
+  'ep10g',
+  'ep10i',
+  'ep10j',
+] as const;
+
 const SPANISH_INTENT_SECTION_IDS = [
   'ep11a',
   'ep11b',
@@ -2050,6 +2065,19 @@ function toRawLesson(episode: Episode, id: string): RawEpisode {
   };
 }
 
+function getTurkishPracticeLessons(): RawEpisode[] {
+  const sections = [
+    ...TURKISH_INTENT_SECTION_EPISODES.map((episode, index) => (
+      toRawLesson(episode, TURKISH_INTENT_SECTION_IDS[index])
+    )),
+    ...TURKISH_TRAVEL_SECTION_EPISODES.map((episode, index) => (
+      toRawLesson(episode, TURKISH_TRAVEL_SECTION_IDS[index])
+    )),
+  ];
+  const order = new Map<string, number>(TURKISH_PRACTICE_SECTION_ORDER.map((id, index) => [id, index]));
+  return sections.sort((a, b) => (order.get(a.id) ?? 99) - (order.get(b.id) ?? 99));
+}
+
 function getExtraLessons(courseId: CourseId): RawEpisode[] {
   const ids = EXTRA_LESSON_IDS_BY_COURSE[courseId];
   const phrasesEpisode = PHRASES_EPISODE_BY_COURSE[courseId];
@@ -2070,16 +2098,7 @@ function getExtraLessons(courseId: CourseId): RawEpisode[] {
           toRawLesson(episode, SERBIAN_INTENT_SECTION_IDS[index])
         ))
       : []),
-    ...(courseId === 'tr'
-      ? [
-          ...TURKISH_TRAVEL_SECTION_EPISODES.map((episode, index) => (
-            toRawLesson(episode, TURKISH_TRAVEL_SECTION_IDS[index])
-          )),
-          ...TURKISH_INTENT_SECTION_EPISODES.map((episode, index) => (
-            toRawLesson(episode, TURKISH_INTENT_SECTION_IDS[index])
-          )),
-        ]
-      : []),
+    ...(courseId === 'tr' ? getTurkishPracticeLessons() : []),
     ...(courseId === 'es'
       ? SPANISH_INTENT_SECTION_EPISODES.map((episode, index) => (
           toRawLesson(episode, SPANISH_INTENT_SECTION_IDS[index])

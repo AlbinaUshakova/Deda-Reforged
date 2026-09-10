@@ -312,6 +312,32 @@ test('Turkish includes compact travel decks for transport and hotel situations',
   assert.ok(hotelEpisode?.cards.some((card) => card.ge_text === 'Rezervasyonum var'));
 });
 
+test('Turkish practical sections start with the most useful social phrases', async () => {
+  const practicalSections = (await listEpisodes('tr')).filter(episode => /^ep10[a-m]$/i.test(episode.id));
+
+  assert.deepEqual(practicalSections.slice(0, 6).map(episode => episode.title), [
+    'Приветствия и прощания',
+    'Вежливость',
+    'Понимание языка',
+    'Простые ответы',
+    'Основные вопросы',
+    'Знакомство',
+  ]);
+
+  const greetings = await loadEpisode('ep10a', 'tr');
+  const languageHelp = await loadEpisode('ep10e', 'tr');
+  assert.deepEqual(greetings?.cards.slice(0, 3).map(card => card.ge_text), [
+    'Merhaba',
+    'Selam',
+    'Hoşça kal',
+  ]);
+  assert.deepEqual(languageHelp?.cards.slice(0, 3).map(card => card.ge_text), [
+    'Anlamıyorum',
+    'Tekrar edin, lütfen',
+    'İngilizce biliyor musunuz?',
+  ]);
+});
+
 test('Georgian beginner phrase sections cover all 60 canonical intents', async () => {
   const sectionIds = ['ep10', 'ep10b', 'ep10c', 'ep10d', 'ep10e', 'ep10f', 'ep10g', 'ep10h', 'ep10i', 'ep10j'];
   const episodes = await Promise.all(sectionIds.map(id => loadEpisode(id, 'ka')));
