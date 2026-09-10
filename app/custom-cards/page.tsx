@@ -134,23 +134,18 @@ export default function CustomCardsPage() {
             <label className="grid gap-1.5 text-xs font-bold text-[var(--text-secondary)]">
               {language === 'en' ? 'New word or phrase' : 'Новое слово или фраза'}
               <input
-                className="min-h-12 rounded-2xl border border-black/10 bg-white px-4 text-base font-semibold text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]"
+                className="h-12 rounded-2xl border border-black/10 bg-white px-4 text-base font-semibold text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]"
                 value={form.front}
                 onChange={event => setForm(current => ({ ...current, front: event.target.value }))}
                 maxLength={120}
                 placeholder={example.entered}
                 required
               />
-              <span className="font-medium leading-snug text-[var(--text-tertiary)]">
-                {language === 'en'
-                  ? `For example: “${example.entered}” or “${example.original}”.`
-                  : `Например: «${example.entered}» или «${example.original}».`}
-              </span>
             </label>
             <label className="grid gap-1.5 text-xs font-bold text-[var(--text-secondary)]">
               {language === 'en' ? 'Meaning in your language' : 'Значение на твоём языке'}
               <input
-                className="min-h-12 rounded-2xl border border-black/10 bg-white px-4 text-base font-semibold text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]"
+                className="h-12 rounded-2xl border border-black/10 bg-white px-4 text-base font-semibold text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]"
                 value={form.meaning}
                 onChange={event => setForm(current => ({ ...current, meaning: event.target.value }))}
                 maxLength={180}
