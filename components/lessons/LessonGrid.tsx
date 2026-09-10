@@ -185,8 +185,8 @@ export function LessonGrid({
                         </div>
                         <span className="home-progress-score">
                           {interfaceLanguage === 'en'
-                            ? `${earnedPoints}/${lessonTargetScore}`
-                            : `${earnedPoints}/${lessonTargetScore}`}
+                            ? `${earnedPoints}/${lessonTargetScore} points`
+                            : `${earnedPoints}/${lessonTargetScore} очков`}
                         </span>
                       </div>
                     )}
