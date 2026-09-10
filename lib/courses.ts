@@ -272,7 +272,6 @@ const SERBIAN_LETTER_AUDIO: Record<string, string> = {
   'В': '/audio/letters-sr/03-v.wav',
   'Г': '/audio/letters-sr/04-g.wav',
   'Д': '/audio/letters-sr/05-d.wav',
-  'Ђ': '/audio/letters-sr/06-dj-soft.wav',
   'Е': '/audio/letters-sr/07-e.wav',
   'Ж': '/audio/letters-sr/08-zh.wav',
   'З': '/audio/letters-sr/09-z.wav',
@@ -710,31 +709,31 @@ const ENGLISH_LATIN_HINTS: Record<string, string> = {
 };
 
 const ENGLISH_LETTER_NAMES: Record<string, string> = {
-  A: 'a',
+  A: 'ay',
   B: 'bee',
   C: 'cee',
   D: 'dee',
-  E: 'e',
+  E: 'ee',
   F: 'eff',
   G: 'gee',
   H: 'aitch',
-  I: 'i',
+  I: 'eye',
   J: 'jay',
   K: 'kay',
   L: 'ell',
   M: 'em',
   N: 'en',
-  O: 'o',
+  O: 'oh',
   P: 'pee',
   Q: 'cue',
   R: 'ar',
   S: 'ess',
   T: 'tee',
-  U: 'u',
+  U: 'you',
   V: 'vee',
   W: 'double u',
   X: 'ex',
-  Y: 'wy',
+  Y: 'why',
   Z: 'zed',
 };
 
@@ -950,9 +949,9 @@ const FRENCH_LATIN_HINTS: Record<string, string> = {
 };
 
 const FRENCH_LETTER_NAMES: Record<string, string> = {
-  A: 'a', B: 'bé', C: 'cé', D: 'dé', E: 'euh', F: 'ef', G: 'jé', H: 'ash',
-  I: 'i', J: 'ji', K: 'ka', L: 'el', M: 'em', N: 'en', O: 'o', P: 'pé', Q: 'ku',
-  R: 'er', S: 'es', T: 'té', U: 'ü', V: 'vé', W: 'double vé', X: 'iks', Y: 'i grec', Z: 'zed',
+  A: 'a', B: 'bé', C: 'cé', D: 'dé', E: 'euh', F: 'effe', G: 'gé', H: 'hache',
+  I: 'i', J: 'ji', K: 'ka', L: 'elle', M: 'emme', N: 'enne', O: 'o', P: 'pé', Q: 'ku',
+  R: 'erre', S: 'esse', T: 'té', U: 'u', V: 'vé', W: 'double vé', X: 'ixe', Y: 'i grec', Z: 'zède',
   'À': 'a', 'Â': 'a', 'Ç': 'sé cédille', 'É': 'e', 'È': 'e', 'Ê': 'e', 'Ë': 'e',
   'Î': 'i', 'Ï': 'i', 'Ô': 'o', 'Œ': 'oe', 'Ù': 'ü', 'Û': 'ü',
 };
@@ -1370,19 +1369,11 @@ export function getLetterSpeechText(
   courseId: unknown = DEFAULT_COURSE_ID,
 ): string {
   const course = getCourse(courseId);
-  if (course.id === 'ka' && course.letterAudioMap[letter]) {
-    return course.letterNames[letter] ?? letter;
-  }
-  if (course.letterSpeechLabels?.[letter]) return course.letterSpeechLabels[letter];
-  return getLetterSoundLabel(letter, course.id)
-    .replace(/\/.*$/g, '')
-    .replace(/[.]/g, '')
-    .trim();
+  return course.letterNames[letter] ?? letter;
 }
 
 export function getLetterSpeechLang(courseId: unknown = DEFAULT_COURSE_ID): string {
-  const course = getCourse(courseId);
-  return course.id === 'ka' ? course.speechLang : 'ru-RU';
+  return getCourse(courseId).speechLang;
 }
 
 export function getLetterKind(

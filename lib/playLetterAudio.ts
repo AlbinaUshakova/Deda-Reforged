@@ -15,6 +15,27 @@ type InlinePlayableAudio = HTMLAudioElement & { playsInline?: boolean };
 let sharedAudio: InlinePlayableAudio | null = null;
 let playbackToken = 0;
 
+export function selectSpeechVoice<T extends Pick<SpeechSynthesisVoice, 'lang' | 'localService' | 'default'>>(
+  voices: T[],
+  speechLang: string,
+): T | undefined {
+  const normalizedTarget = speechLang.toLowerCase().replace('_', '-');
+  const targetLanguage = normalizedTarget.split('-')[0];
+  const candidates = voices.filter(voice =>
+    voice.lang?.toLowerCase().replace('_', '-').split('-')[0] === targetLanguage,
+  );
+
+  return candidates.sort((left, right) => {
+    const score = (voice: T) => {
+      const normalizedVoiceLang = voice.lang.toLowerCase().replace('_', '-');
+      return (normalizedVoiceLang === normalizedTarget ? 4 : 0) +
+        (voice.localService ? 2 : 0) +
+        (voice.default ? 1 : 0);
+    };
+    return score(right) - score(left);
+  })[0];
+}
+
 function resetAudio(audio: InlinePlayableAudio) {
   audio.pause();
   if (audio.readyState > 0) {
@@ -73,16 +94,14 @@ export async function playLetterAudio({
 
     const utterance = new SpeechSynthesisUtterance(fallbackText);
     const voices = preferredVoices?.length ? preferredVoices : synth.getVoices();
-    const preferredVoice = voices.find(v =>
-      v.lang?.toLowerCase().startsWith(speechLang.toLowerCase().split('-')[0]),
-    );
+    const preferredVoice = selectSpeechVoice(voices, speechLang);
 
     utterance.lang = speechLang;
     if (preferredVoice) {
       utterance.voice = preferredVoice;
       utterance.lang = preferredVoice.lang;
     }
-    utterance.rate = 0.9;
+    utterance.rate = 0.88;
     utterance.onend = finish;
     utterance.onerror = () => {
       if (token !== playbackToken) return;

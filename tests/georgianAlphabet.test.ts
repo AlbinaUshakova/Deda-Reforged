@@ -100,40 +100,22 @@ test('course alphabets classify vowels and consonants', () => {
   assert.equal(getLetterKind('Ä', 'de'), 'vowel');
 });
 
-test('non-Georgian TTS fallback speaks safe phonetic labels', () => {
-  const forbiddenSpeechFragments = [
-    'capital',
-    'letter',
-    'мягк',
-    'нем',
-    'долг',
-    '/',
-    '.',
-  ];
-
-  for (const courseId of ['sr', 'tr', 'es', 'en', 'de'] as const) {
+test('TTS fallback uses native letter names and course languages', () => {
+  for (const courseId of ['ka', 'sr', 'tr', 'es', 'en', 'de', 'fr', 'it'] as const) {
     for (const letter of COURSES[courseId].alphabet) {
       const speechText = getLetterSpeechText(letter, courseId);
-      assert.ok(
-        speechText.length > 0,
-        `${courseId}:${letter} should send a non-empty TTS label`,
-      );
-      for (const fragment of forbiddenSpeechFragments) {
-        assert.ok(
-          !speechText.toLowerCase().includes(fragment),
-          `${courseId}:${letter} should not send "${speechText}" to TTS`,
-        );
-      }
+      assert.equal(speechText, COURSES[courseId].letterNames[letter]);
     }
-
-    assert.equal(getLetterSpeechLang(courseId), 'ru-RU');
+    assert.equal(getLetterSpeechLang(courseId), COURSES[courseId].speechLang);
   }
 
   assert.equal(getLetterSpeechText('А', 'sr'), 'а');
-  assert.equal(getLetterSpeechText('Ğ', 'tr'), 'г');
-  assert.equal(getLetterSpeechText('H', 'es'), 'не читается');
-  assert.equal(getLetterSpeechText('W', 'en'), 'дабл ю');
-  assert.equal(getLetterSpeechText('ẞ', 'de'), 'сс');
+  assert.equal(COURSES.sr.letterAudioMap['Ђ'], undefined);
+  assert.equal(getLetterSpeechText('Ђ', 'sr'), 'ђе');
+  assert.equal(getLetterSpeechText('Ğ', 'tr'), 'yumuşak ge');
+  assert.equal(getLetterSpeechText('H', 'es'), 'hache');
+  assert.equal(getLetterSpeechText('W', 'en'), 'double u');
+  assert.equal(getLetterSpeechText('ẞ', 'de'), 'Eszett');
 });
 
 test('courses with teaching-specific signs expose a separate visual section', () => {
