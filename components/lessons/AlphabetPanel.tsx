@@ -10,7 +10,7 @@ import {
   getAlphabetTitleLabel,
 } from '@/lib/interfaceText';
 import { getDisplayText, type TransliterationMode } from '@/lib/transliteration';
-import { getCourse, type CourseId } from '@/lib/courses';
+import { getCourse, getLetterHint, type CourseId } from '@/lib/courses';
 import type { AlphabetLetterStatus } from '@/lib/lessonProgress';
 
 const alphabetLetterColorByStatus: Record<AlphabetLetterStatus, string> = {
@@ -68,6 +68,7 @@ export function AlphabetPanel({
             >
               {row.map((ch) => {
                 const visibleUppercase = getDisplayText(ch, transliterationMode, courseId);
+                const soundHint = getLetterHint(ch, transliterationMode, courseId);
                 const audioLabel = getAlphabetAudioLabel(interfaceLanguage, ch, courseId);
                 const isVowel = course.vowels.includes(ch);
                 const isCompositeSerbianLetter =
@@ -87,6 +88,11 @@ export function AlphabetPanel({
                     aria-label={audioLabel}
                   >
                     <div className={`home-alphabet-letter ${letterFontClass} translate-y-[-1px] leading-none`}>{visibleUppercase}</div>
+                    {soundHint && (
+                      <div className="home-alphabet-translit mt-[3px] truncate leading-none">
+                        {soundHint}
+                      </div>
+                    )}
                   </button>
                 );
               })}

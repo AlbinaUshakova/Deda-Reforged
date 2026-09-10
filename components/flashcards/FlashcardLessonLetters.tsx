@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '@/lib/appStore';
-import { getCourse, getLetterSpeechLang, getLetterSpeechText } from '@/lib/courses';
+import { getCourse, getLetterHint, getLetterSpeechLang, getLetterSpeechText } from '@/lib/courses';
 import { playLetterAudio, stopLetterAudioPlayback } from '@/lib/playLetterAudio';
 import { getDisplayText, type TransliterationMode } from '@/lib/transliteration';
 import { getActiveTransliterationMode } from '@/lib/settings';
@@ -100,6 +100,7 @@ export function FlashcardLessonLetters({
             playingLetter === letter ? 'flashcard-lesson-letter--active' : ''
           }`;
           const visibleLetter = getDisplayText(letter, transliterationMode, courseId);
+          const soundHint = getLetterHint(letter, transliterationMode, courseId);
 
           if (!canPlayAudio) {
             return (
@@ -128,6 +129,9 @@ export function FlashcardLessonLetters({
               aria-pressed={playingLetter === letter}
             >
               <span className={`flashcard-lesson-letter-char ${letterFontClass}`}>{visibleLetter}</span>
+              {soundHint && (
+                <span className="flashcard-lesson-letter-hint">{soundHint}</span>
+              )}
             </button>
           );
         })}

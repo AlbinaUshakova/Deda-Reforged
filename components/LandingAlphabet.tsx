@@ -7,6 +7,7 @@ import { getDisplayText } from '@/lib/transliteration';
 import {
   getCourse,
   getLetterKind,
+  getLetterHint,
   getLetterSpeechLang,
   getLetterSpeechText,
 } from '@/lib/courses';
@@ -53,6 +54,7 @@ export default function LandingAlphabet() {
             {row.map((ch) => {
               const letterKind = getLetterKind(ch, courseId);
               const visibleLetter = getDisplayText(ch, transliterationMode, courseId);
+              const soundHint = getLetterHint(ch, transliterationMode, courseId);
               const audioLabel = getAlphabetAudioLabel(interfaceLanguage, ch, courseId);
               const isCompositeSerbianLetter =
                 courseId === 'sr' && ['Lj', 'Nj', 'Dž'].includes(visibleLetter);
@@ -71,6 +73,11 @@ export default function LandingAlphabet() {
                   aria-label={audioLabel}
                 >
                   <div className={`landing-alphabet-letter home-alphabet-letter ${letterFontClass} translate-y-[-1px] leading-none`}>{visibleLetter}</div>
+                  {soundHint && (
+                    <div className="home-alphabet-translit mt-[3px] truncate leading-none">
+                      {soundHint}
+                    </div>
+                  )}
                 </button>
               );
             })}

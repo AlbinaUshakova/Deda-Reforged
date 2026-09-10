@@ -229,7 +229,7 @@ export default function GlobalAlphabetOverlay() {
                   >
                     <div className={`home-alphabet-letter ${letterFontClass} translate-y-[-1px] leading-none`}>{visibleUppercase}</div>
                     {soundHint && (
-                      <div className="mt-[3px] truncate text-[9px] font-semibold leading-none text-[var(--text-tertiary)] sm:text-[10px]">
+                      <div className="home-alphabet-translit mt-[3px] truncate leading-none">
                         {soundHint}
                       </div>
                     )}

@@ -110,7 +110,7 @@ test('TTS fallback uses native letter names and course languages', () => {
   }
 
   assert.equal(getLetterSpeechText('А', 'sr'), 'а');
-  assert.equal(COURSES.sr.letterAudioMap['Ђ'], undefined);
+  assert.deepEqual(COURSES.sr.letterAudioMap, {});
   assert.equal(getLetterSpeechText('Ђ', 'sr'), 'ђе');
   assert.equal(getLetterSpeechText('Ğ', 'tr'), 'yumuşak ge');
   assert.equal(getLetterSpeechText('H', 'es'), 'hache');
