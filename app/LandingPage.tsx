@@ -279,7 +279,7 @@ export default function LandingPage() {
               </div>
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">2</span>
-                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Read words' : 'Слова'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Read with the letters you already know.' : 'Читай из уже знакомых букв.'}</span></span>
+                <span><span className="landing-feature-title">{interfaceLanguage === 'en' ? 'Read with hints' : 'Чтение с подсказками'}</span><span className="landing-feature-copy">{interfaceLanguage === 'en' ? 'Words and phrases from letters you know.' : 'Слова и фразы из знакомых букв.'}</span></span>
               </div>
               <div className="landing-feature">
                 <span className="landing-feature-icon" aria-hidden="true">3</span>
