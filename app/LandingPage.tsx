@@ -13,7 +13,6 @@ import { useAppStore } from '@/lib/appStore';
 import { getEpisodesDataSync } from '@/lib/clientContentCache';
 import {
   PRIMARY_ACTIVE_COURSE_IDS,
-  SECONDARY_ACTIVE_COURSE_IDS,
   type CourseId,
   progressKeyForEpisode,
 } from '@/lib/courses';
@@ -45,7 +44,6 @@ export default function LandingPage() {
 
   const onboardingVisible = hydrated && !settings.hasCompletedOnboarding;
   const onboardingPrimaryCourseIds = useMemo(() => PRIMARY_ACTIVE_COURSE_IDS, []);
-  const onboardingSecondaryCourseIds = useMemo(() => SECONDARY_ACTIVE_COURSE_IDS, []);
   const initialEpisodesData = useMemo(() => getEpisodesDataSync(courseId), [courseId]);
   const courseProgress = useMemo(
     () =>
@@ -162,27 +160,10 @@ export default function LandingPage() {
                     </button>
                   ))}
                 </div>
-                <div className="text-center text-[13px] font-medium text-[var(--text-secondary)]">
-                  {interfaceLanguage === 'en' ? 'Also available now: Serbian and Turkish' : 'Также доступны: сербский и турецкий'}
-                </div>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {onboardingSecondaryCourseIds.map(courseId => (
-                    <button
-                      key={courseId}
-                      type="button"
-                      onClick={() => handleCoursePick(courseId)}
-                      disabled={isRoutingAfterOnboarding}
-                      className="rounded-[18px] border border-[var(--border-soft)] bg-white px-4 py-3 text-[17px] font-semibold text-[var(--text-primary)] shadow-[0_10px_24px_rgba(15,23,42,0.06)] transition hover:-translate-y-0.5"
-                      aria-label={`Choose ${getCourseName(courseId, interfaceLanguage)}`}
-                    >
-                      {getCourseName(courseId, interfaceLanguage)}
-                    </button>
-                  ))}
-                </div>
                 <div className="text-center text-[12px] font-medium text-[var(--text-secondary)]">
                   {interfaceLanguage === 'en'
-                    ? 'Korean, Russian, Japanese, and Arabic come next.'
-                    : 'Дальше: корейский, русский, японский и арабский.'}
+                    ? 'Coming soon: Korean, Russian, Japanese, and Arabic.'
+                    : 'Скоро: корейский, русский, японский и арабский.'}
                 </div>
               </div>
             )}

@@ -10,6 +10,8 @@ import {
 import {
   COURSES,
   COURSE_IDS,
+  HIDDEN_ACTIVE_COURSE_IDS,
+  PRIMARY_ACTIVE_COURSE_IDS,
   getLetterKind,
   getLetterSpeechLang,
   getLetterSoundLabel,
@@ -196,4 +198,9 @@ test('course list order matches product language switcher order', () => {
     COURSE_IDS.map(courseId => COURSES[courseId].sourceLanguageLabel),
     ['🇬🇪', '🇬🇧', '🇪🇸', '🇩🇪', '🇫🇷', '🇮🇹', '🇷🇸', '🇹🇷'],
   );
+});
+
+test('landing language portfolio keeps only Georgian active in the main flow', () => {
+  assert.deepEqual(PRIMARY_ACTIVE_COURSE_IDS, ['ka']);
+  assert.deepEqual(HIDDEN_ACTIVE_COURSE_IDS, ['sr', 'tr', 'es', 'de', 'en', 'fr', 'it']);
 });

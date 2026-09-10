@@ -6,7 +6,6 @@ import {
   COURSES,
   HIDDEN_ACTIVE_COURSE_IDS,
   PRIMARY_ACTIVE_COURSE_IDS,
-  SECONDARY_ACTIVE_COURSE_IDS,
   type CourseId,
 } from '@/lib/courses';
 import { getAlphabetDisplayTitle, getCourseName } from '@/lib/interfaceText';
@@ -404,7 +403,6 @@ export function LandingLanguagePicker() {
   const hydrate = useAppStore(state => state.hydrate);
   const updateSettings = useAppStore(state => state.updateSettings);
   const primaryCourseIds = PRIMARY_ACTIVE_COURSE_IDS;
-  const secondaryCourseIds = SECONDARY_ACTIVE_COURSE_IDS;
   const moreCourseIds = HIDDEN_ACTIVE_COURSE_IDS.filter(id => !(interfaceLanguage === 'en' && id === 'en'));
 
   useEffect(() => {
@@ -428,30 +426,6 @@ export function LandingLanguagePicker() {
               title={courseName}
             >
               <span>{courseName}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="flex flex-wrap items-center gap-2 text-[13px] font-medium text-[var(--text-secondary)]">
-        <span>{interfaceLanguage === 'en' ? 'More languages available now:' : 'Сейчас также доступны:'}</span>
-        {secondaryCourseIds.map(id => {
-          const course = COURSES[id];
-          const courseName = getCourseName(course.id, interfaceLanguage);
-          return (
-            <button
-              key={course.id}
-              type="button"
-              className={`rounded-full border px-3 py-1.5 text-[13px] font-semibold transition ${
-                courseId === course.id
-                  ? 'border-[var(--accent)] bg-[var(--accent)] text-white'
-                  : 'border-[var(--border-soft)] bg-white text-[var(--text-primary)] hover:border-[rgba(249,115,22,0.3)]'
-              }`}
-              onClick={() => updateSettings({ courseId: course.id })}
-              aria-label={interfaceLanguage === 'en' ? `Choose ${courseName}` : `Выбрать ${courseName}`}
-              aria-pressed={courseId === course.id}
-            >
-              {courseName}
             </button>
           );
         })}
