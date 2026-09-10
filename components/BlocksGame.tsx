@@ -585,7 +585,7 @@ export default function BlocksGame({
                     showCorrect={showCorrect}
                     error={error}
                     attempts={attempts}
-                    isFavoritesEpisode={isFavoritesEpisode}
+                    isFavoritesEpisode={isFavoritesEpisode || episodeId === 'custom'}
                     isCurrentFavorite={isCurrentFavorite}
                     inputRef={answerInputRef}
                     panelStyle={questionPanelStyle}

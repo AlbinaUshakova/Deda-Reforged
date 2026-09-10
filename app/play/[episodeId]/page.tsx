@@ -15,6 +15,7 @@ import { getLessonProgressGuidance, getLessonProgressSummary } from '@/lib/progr
 import { getSpecialEpisodeKind, getSpecialEpisodeLabel, getSpecialPlayCopy, getSpecialPlayEmptyState } from '@/lib/specialEpisodeText';
 import { orderReviewCards, readReviewMemory } from '@/lib/reviewMemory';
 import { readFavoriteWords } from '@/lib/studyPreferences';
+import { readCustomCards } from '@/lib/customCards';
 
 type Word = { ge: string; ru: string; acceptedRu?: string[]; acceptedGe?: string[]; audio?: string };
 type Card = EpisodeCard;
@@ -120,7 +121,21 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
 
     (async () => {
       try {
-        const ep = await loadEpisodeById(episodeId, courseId);
+        const ep = episodeId === 'custom'
+          ? {
+              id: 'custom',
+              title: interfaceLanguage === 'en' ? 'My cards' : 'Мои карточки',
+              cards: readCustomCards(courseId).map(card => ({
+                type: 'word' as const,
+                ge_text: card.front,
+                ru_meaning: card.meaning,
+                translit: card.transcription,
+                transcription_ru: card.transcription,
+                transcription_en: card.transcription,
+                playable: true,
+              })),
+            }
+          : await loadEpisodeById(episodeId, courseId);
         if (cancelled) return;
 
         if (!ep) {
@@ -165,10 +180,10 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
 
         const ws: Word[] = cards.map((c) => ({
           ge: c.ge_text,
-          ru: translationLanguage === 'en'
+          ru: translationLanguage === 'en' && episodeId !== 'custom'
             ? translateRussianMeaningToEnglish(c.ru_meaning)
             : c.ru_meaning,
-          acceptedRu: translationLanguage === 'en'
+          acceptedRu: translationLanguage === 'en' && episodeId !== 'custom'
             ? (c.accepted_ru ?? []).map(translateRussianMeaningToEnglish)
             : c.accepted_ru,
           acceptedGe: c.accepted_ge,
@@ -190,7 +205,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
     return () => {
       cancelled = true;
     };
-  }, [courseId, episodeId, learnedReviewEpisodeSignature, translationLanguage]);
+  }, [courseId, episodeId, interfaceLanguage, learnedReviewEpisodeSignature, translationLanguage]);
 
   const hasWords = useMemo(() => words.length > 0, [words]);
   const studyHref = `/study/${episodeId}` as Route;

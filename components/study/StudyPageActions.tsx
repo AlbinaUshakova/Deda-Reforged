@@ -10,12 +10,14 @@ export default function StudyPageActions({
   courseProgressLabel,
   progressSummary,
   nextLessonHref,
+  manageHref,
 }: {
   playHref: Route;
   lessonLabel?: string;
   courseProgressLabel?: string;
   progressSummary?: string;
   nextLessonHref?: Route;
+  manageHref?: Route;
 }) {
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
 
@@ -56,6 +58,16 @@ export default function StudyPageActions({
                 >
                   <span aria-hidden="true">→</span>
                   {interfaceLanguage === 'en' ? 'Next lesson' : 'Дальше'}
+                </Link>
+              )}
+              {manageHref && (
+                <Link
+                  className="study-action-pill study-action-pill--secondary"
+                  href={manageHref}
+                  aria-label={interfaceLanguage === 'en' ? 'Manage personal cards' : 'Изменить личные карточки'}
+                >
+                  <span aria-hidden="true">✎</span>
+                  {interfaceLanguage === 'en' ? 'Manage' : 'Изменить'}
                 </Link>
               )}
             </div>
@@ -101,6 +113,16 @@ export default function StudyPageActions({
             >
               <span aria-hidden="true">→</span>
               {interfaceLanguage === 'en' ? 'Next lesson' : 'Дальше'}
+            </Link>
+          )}
+          {manageHref && (
+            <Link
+              className="study-action-pill study-action-pill--secondary"
+              href={manageHref}
+              aria-label={interfaceLanguage === 'en' ? 'Manage personal cards' : 'Изменить личные карточки'}
+            >
+              <span aria-hidden="true">✎</span>
+              {interfaceLanguage === 'en' ? 'Manage' : 'Изменить'}
             </Link>
           )}
         </div>

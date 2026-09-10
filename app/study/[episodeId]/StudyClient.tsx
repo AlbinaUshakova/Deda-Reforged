@@ -12,7 +12,18 @@ import { LESSON_UNLOCK_SCORE, getLessonPosition, getNextLessonId, getNormalLesso
 import { getLessonProgressGuidance, getLessonProgressSummary } from '@/lib/progressFeedback';
 import { getSpecialEmptyState, getSpecialEpisodeKind, getSpecialEpisodeLabel, getSpecialStudyCopy } from '@/lib/specialEpisodeText';
 import { readFavoriteWordMap } from '@/lib/studyPreferences';
+import { CUSTOM_CARDS_UPDATED_EVENT, readCustomCards } from '@/lib/customCards';
 import { getStudyDeckCards, resolveStudyEpisode } from './studyContent';
+
+function getCardCountLabel(count: number, interfaceLanguage: 'ru' | 'en') {
+  if (interfaceLanguage === 'en') return `${count} ${count === 1 ? 'card' : 'cards'}`;
+  const lastTwo = count % 100;
+  const last = count % 10;
+  if (lastTwo >= 11 && lastTwo <= 14) return `${count} карточек`;
+  if (last === 1) return `${count} карточка`;
+  if (last >= 2 && last <= 4) return `${count} карточки`;
+  return `${count} карточек`;
+}
 
 export default function StudyClient({
   episodeId,
@@ -82,9 +93,7 @@ export default function StudyClient({
         interfaceLanguage,
       })
     : hasWords
-      ? interfaceLanguage === 'en'
-        ? `${displayedWordCount} cards`
-        : `${displayedWordCount} карточек`
+      ? getCardCountLabel(displayedWordCount, interfaceLanguage)
       : undefined;
   const lessonLabel = lessonPosition
     ? interfaceLanguage === 'en'
@@ -126,6 +135,29 @@ export default function StudyClient({
   useEffect(() => {
     let cancelled = false;
     setIsEpisodeLoading(true);
+
+    if (episodeId === 'custom') {
+      const refreshCustomEpisode = () => {
+        const cards = readCustomCards(courseId).map(card => ({
+          type: 'word' as const,
+          ge_text: card.front,
+          ru_meaning: card.meaning,
+          translit: card.transcription,
+          transcription_ru: card.transcription,
+          transcription_en: card.transcription,
+          playable: true,
+        }));
+        setCourseEpisode({ id: 'custom', title: 'My cards', cards });
+        setIsEpisodeLoading(false);
+      };
+      refreshCustomEpisode();
+      window.addEventListener('storage', refreshCustomEpisode);
+      window.addEventListener(CUSTOM_CARDS_UPDATED_EVENT, refreshCustomEpisode);
+      return () => {
+        window.removeEventListener('storage', refreshCustomEpisode);
+        window.removeEventListener(CUSTOM_CARDS_UPDATED_EVENT, refreshCustomEpisode);
+      };
+    }
 
     if (courseId === DEFAULT_COURSE_ID) {
       setCourseEpisode(bundled);
@@ -186,6 +218,7 @@ export default function StudyClient({
           courseProgressLabel={courseProgressLabel}
           progressSummary={progressSummary}
           nextLessonHref={nextLessonHref}
+          manageHref={episodeId === 'custom' ? ('/custom-cards' as Route) : undefined}
         />
 
         {isEpisodeLoading ? (

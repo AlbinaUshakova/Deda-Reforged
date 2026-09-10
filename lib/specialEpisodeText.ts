@@ -1,9 +1,10 @@
-export type SpecialEpisodeKind = 'favorites' | 'all' | 'phrases' | null;
+export type SpecialEpisodeKind = 'favorites' | 'all' | 'phrases' | 'custom' | null;
 
 export function getSpecialEpisodeKind(episodeId: string): SpecialEpisodeKind {
   if (episodeId === 'favorites') return 'favorites';
   if (episodeId === 'all') return 'all';
   if (episodeId === 'phrases') return 'phrases';
+  if (episodeId === 'custom') return 'custom';
   return null;
 }
 
@@ -19,6 +20,9 @@ export function getSpecialEpisodeLabel(
   }
   if (kind === 'phrases') {
     return interfaceLanguage === 'en' ? 'Phrase pack' : 'Набор фраз';
+  }
+  if (kind === 'custom') {
+    return interfaceLanguage === 'en' ? 'My cards' : 'Мои карточки';
   }
   return undefined;
 }
@@ -42,6 +46,11 @@ export function getSpecialStudyCopy(
       ? 'Short ready-made phrases for quick speaking review.'
       : 'Короткие готовые фразы для быстрого повторения перед разговорной практикой.';
   }
+  if (kind === 'custom') {
+    return interfaceLanguage === 'en'
+      ? 'A personal deck with the words you added.'
+      : 'Личная колода со словами, которые ты добавила.';
+  }
   return undefined;
 }
 
@@ -63,6 +72,11 @@ export function getSpecialPlayCopy(
     return interfaceLanguage === 'en'
       ? 'Practice ready-made phrases for quick speaking recall.'
       : 'Быстрая тренировка готовых речевых фраз.';
+  }
+  if (kind === 'custom') {
+    return interfaceLanguage === 'en'
+      ? 'Practice the words from your personal deck.'
+      : 'Тренируй слова из своей личной колоды.';
   }
   return undefined;
 }
@@ -86,6 +100,11 @@ export function getSpecialPlayEmptyState(
       ? 'No review cards for practice yet.'
       : 'Пока нет карточек для повторения в игре.';
   }
+  if (kind === 'custom') {
+    return interfaceLanguage === 'en'
+      ? 'Add cards to your personal deck before starting practice.'
+      : 'Сначала добавь карточки в личную колоду.';
+  }
   return undefined;
 }
 
@@ -107,6 +126,11 @@ export function getSpecialEmptyState(
     return interfaceLanguage === 'en'
       ? 'No review cards here yet.'
       : 'Здесь пока нет карточек для повторения.';
+  }
+  if (kind === 'custom') {
+    return interfaceLanguage === 'en'
+      ? 'Your deck is empty. Add the first card.'
+      : 'Личная колода пока пуста. Добавь первую карточку.';
   }
   return undefined;
 }
@@ -156,6 +180,12 @@ export function getSpecialDeckHint(
     return interfaceLanguage === 'en'
       ? 'Read the card first, then flip it.'
       : 'Сначала прочитай карточку, потом переверни ее.';
+  }
+
+  if (kind === 'custom') {
+    return interfaceLanguage === 'en'
+      ? 'Read your word first, then flip the card.'
+      : 'Сначала прочитай свое слово, потом переверни карточку.';
   }
 
   return undefined;

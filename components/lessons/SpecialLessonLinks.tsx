@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import type { Route } from 'next';
 import { useAppStore } from '@/lib/appStore';
 import { readFavoriteWords } from '@/lib/studyPreferences';
+import { CUSTOM_CARDS_UPDATED_EVENT, readCustomCards } from '@/lib/customCards';
 import type { LessonListItem } from '@/lib/lessonProgress';
 
 const sectionIconPaths: Record<string, string> = {
@@ -73,6 +75,14 @@ function SectionIcon({ title }: { title: string }) {
   );
 }
 
+type SupportModeCard = {
+  id: string;
+  href: Route;
+  title: string;
+  meta: string;
+  locked?: boolean;
+};
+
 export function SpecialLessonLinks({
   practicalSpecials,
   allLessonsSpecial,
@@ -89,15 +99,30 @@ export function SpecialLessonLinks({
   reviewDeckCardCount: number;
 }) {
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
+  const courseId = useAppStore(state => state.settings.courseId);
   const [savedWordsCount, setSavedWordsCount] = useState(0);
+  const [customCardsCount, setCustomCardsCount] = useState(0);
 
   useEffect(() => {
-    try {
-      setSavedWordsCount(readFavoriteWords().size);
-    } catch {
-      setSavedWordsCount(0);
-    }
-  }, []);
+    const refreshCounts = () => {
+      try {
+        setSavedWordsCount(readFavoriteWords().size);
+        setCustomCardsCount(readCustomCards(courseId).length);
+      } catch {
+        setSavedWordsCount(0);
+        setCustomCardsCount(0);
+      }
+    };
+    refreshCounts();
+    window.addEventListener('focus', refreshCounts);
+    window.addEventListener('storage', refreshCounts);
+    window.addEventListener(CUSTOM_CARDS_UPDATED_EVENT, refreshCounts);
+    return () => {
+      window.removeEventListener('focus', refreshCounts);
+      window.removeEventListener('storage', refreshCounts);
+      window.removeEventListener(CUSTOM_CARDS_UPDATED_EVENT, refreshCounts);
+    };
+  }, [courseId]);
   const legacyPhrasesSpecial = phrasesSpecial && !practicalSpecials.some(
     special => special.id === phrasesSpecial.id,
   )
@@ -107,6 +132,7 @@ export function SpecialLessonLinks({
     favoritesSpecial
       ? {
           id: favoritesSpecial.id,
+          href: `/study/${favoritesSpecial.id}` as Route,
           title: interfaceLanguage === 'en' ? 'Saved words' : 'Сохраненные слова',
           meta: interfaceLanguage === 'en'
             ? `Words you starred · ${getCardCountLabel(savedWordsCount, interfaceLanguage)}`
@@ -116,6 +142,7 @@ export function SpecialLessonLinks({
     allLessonsSpecial
       ? {
           id: allLessonsSpecial.id,
+          href: `/study/${allLessonsSpecial.id}` as Route,
           title: interfaceLanguage === 'en' ? 'Review deck' : 'Повторение',
           locked: !allLessonsReady,
           meta:
@@ -128,9 +155,18 @@ export function SpecialLessonLinks({
                 : `Слова из освоенных уроков · ${getCardCountLabel(reviewDeckCardCount, interfaceLanguage)}`,
         }
       : null,
+    {
+      id: 'custom',
+      href: '/custom-cards' as Route,
+      title: interfaceLanguage === 'en' ? 'My cards' : 'Мои карточки',
+      meta: interfaceLanguage === 'en'
+        ? `Your own words · ${getCardCountLabel(customCardsCount, interfaceLanguage)}`
+        : `Свои слова · ${getCardCountLabel(customCardsCount, interfaceLanguage)}`,
+    },
     legacyPhrasesSpecial
       ? {
           id: legacyPhrasesSpecial.id,
+          href: `/study/${legacyPhrasesSpecial.id}` as Route,
           title: translateSectionTitle(legacyPhrasesSpecial.title, interfaceLanguage),
           meta:
             interfaceLanguage === 'en'
@@ -138,9 +174,10 @@ export function SpecialLessonLinks({
               : 'Готовые речевые фразы',
         }
       : null,
-  ].filter((item): item is { id: string; title: string; meta: string; locked?: boolean } => item !== null);
+  ] as Array<SupportModeCard | null>;
+  const visibleSupportModeCards = supportModeCards.filter((item): item is SupportModeCard => item !== null);
 
-  if (supportModeCards.length === 0 && practicalSpecials.length === 0) {
+  if (visibleSupportModeCards.length === 0 && practicalSpecials.length === 0) {
     return null;
   }
 
@@ -150,7 +187,7 @@ export function SpecialLessonLinks({
 
   return (
     <section className="home-special-section relative z-[170] mt-8 min-[1512px]:mt-12 min-[1700px]:mt-14 [@media(max-height:980px)]:mt-9 mx-auto w-full max-w-[1160px]">
-      {supportModeCards.length > 0 && (
+      {visibleSupportModeCards.length > 0 && (
         <div className="home-special-block mb-4">
           <div className="home-special-heading">
             <div>
@@ -160,8 +197,8 @@ export function SpecialLessonLinks({
             </div>
           </div>
           <div className="home-support-grid">
-            {supportModeCards.map((card) => (
-              <Link key={card.id} href={`/study/${card.id}`} legacyBehavior>
+            {visibleSupportModeCards.map((card) => (
+              <Link key={card.id} href={card.href} legacyBehavior>
                 <a
                   className={`home-support-card ${card.locked ? 'home-support-card--locked' : 'lesson-card--interactive'}`}
                   onClick={(event) => {

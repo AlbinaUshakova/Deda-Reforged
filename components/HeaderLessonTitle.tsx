@@ -15,6 +15,7 @@ function getKnownFallbackTitle(episodeId: string, interfaceLanguage: 'ru' | 'en'
   if (episodeId === 'favorites') return interfaceLanguage === 'en' ? 'Saved words' : 'Сохраненные слова';
   if (episodeId === 'all') return interfaceLanguage === 'en' ? 'Review deck' : 'Повторение';
   if (episodeId === 'phrases') return interfaceLanguage === 'en' ? 'Phrase pack' : 'Набор фраз';
+  if (episodeId === 'custom') return interfaceLanguage === 'en' ? 'My cards' : 'Мои карточки';
   return '';
 }
 

@@ -29,6 +29,7 @@ test('special decks never auto-open transcription', () => {
   assert.equal(shouldAutoShowTranscription('favorites', 'ka'), false);
   assert.equal(shouldAutoShowTranscription('all', 'ka'), false);
   assert.equal(shouldAutoShowTranscription('phrases', 'ka'), false);
+  assert.equal(shouldAutoShowTranscription('custom', 'ka'), false);
 });
 
 test('toggle stays hidden on stronger lessons until needed', () => {

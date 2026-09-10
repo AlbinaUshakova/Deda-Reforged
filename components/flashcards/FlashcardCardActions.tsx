@@ -12,6 +12,7 @@ type FlashcardCardActionsProps = {
   onResetHint: () => void;
   onToggleFavorite: () => void;
   onToggleTranslit: () => void;
+  showFavorite?: boolean;
 };
 
 const navLikeMiniControl =
@@ -27,6 +28,7 @@ export function FlashcardCardActions({
   onResetHint,
   onToggleFavorite,
   onToggleTranslit,
+  showFavorite = true,
 }: FlashcardCardActionsProps) {
   const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const hintLabel = interfaceLanguage === 'en' ? 'Hint' : 'Подсказка';
@@ -69,22 +71,24 @@ export function FlashcardCardActions({
       </button>
 
       <div className="flashcard-action-group flex min-w-0 items-center gap-2">
-        <button
-          type="button"
-          className={`flashcard-favorite-btn flashcard-top-muted flashcard-mini-btn min-h-8 px-3 text-[11px] md:text-xs ${navLikeMiniControl}`}
-          onClick={e => {
-            e.stopPropagation();
-            onToggleFavorite();
-          }}
-          title={favoriteTitle}
-          aria-label={favoriteTitle}
-          aria-pressed={isFavorite}
-          data-state={isFavorite ? 'active' : 'idle'}
-        >
-          <span className="flashcard-action-icon" aria-hidden="true">
-            {isFavorite ? '★' : '☆'}
-          </span>
-        </button>
+        {showFavorite && (
+          <button
+            type="button"
+            className={`flashcard-favorite-btn flashcard-top-muted flashcard-mini-btn min-h-8 px-3 text-[11px] md:text-xs ${navLikeMiniControl}`}
+            onClick={e => {
+              e.stopPropagation();
+              onToggleFavorite();
+            }}
+            title={favoriteTitle}
+            aria-label={favoriteTitle}
+            aria-pressed={isFavorite}
+            data-state={isFavorite ? 'active' : 'idle'}
+          >
+            <span className="flashcard-action-icon" aria-hidden="true">
+              {isFavorite ? '★' : '☆'}
+            </span>
+          </button>
+        )}
 
         {hasTranscription && (
           <button

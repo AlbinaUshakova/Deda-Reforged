@@ -106,6 +106,7 @@ export default function FlashcardDeck({
   const course = getCourse(courseId);
   const [lessonLetters, setLessonLetters] = useState<string[]>([]);
   const specialEpisodeKind = getSpecialEpisodeKind(episodeId ?? '');
+  const isCustomDeck = specialEpisodeKind === 'custom';
 
   const hasTopics = useMemo(
     () => cards.some(c => !!c.topic),
@@ -272,9 +273,11 @@ export default function FlashcardDeck({
   const translationText = useMemo(
     () =>
       interfaceLanguage === 'en'
-        ? translateRussianMeaningToEnglish(card?.ru_meaning || '')
+        ? (isCustomDeck
+          ? (card?.ru_meaning || '')
+          : translateRussianMeaningToEnglish(card?.ru_meaning || ''))
         : (card?.ru_meaning || ''),
-    [card?.ru_meaning, interfaceLanguage],
+    [card?.ru_meaning, interfaceLanguage, isCustomDeck],
   );
   const displayGeText = useMemo(
     () => getDisplayText(card?.ge_text || '', transliterationMode, courseId),
@@ -350,6 +353,10 @@ export default function FlashcardDeck({
     [],
   );
 
+  const toggleFavoriteShortcut = useCallback((ge: string) => {
+    if (!isCustomDeck) toggleFav(ge);
+  }, [isCustomDeck, toggleFav]);
+
   const flipCard = useCallback(() => {
     setFlipped(f => !f);
   }, []);
@@ -360,7 +367,7 @@ export default function FlashcardDeck({
     onFlip: flipCard,
     onNext,
     onPrev,
-    onToggleFavorite: toggleFav,
+    onToggleFavorite: toggleFavoriteShortcut,
   });
 
   const total = effectiveOrder.length;
@@ -403,9 +410,9 @@ export default function FlashcardDeck({
   }, []);
 
   const toggleCurrentFavorite = useCallback(() => {
-    if (!card) return;
+    if (!card || isCustomDeck) return;
     toggleFav(card.ge_text);
-  }, [card, toggleFav]);
+  }, [card, isCustomDeck, toggleFav]);
 
   const hasTranscription = !!transcriptionText.trim();
   const shouldRenderTranslitToggle = hasTranscription && shouldShowTranscriptionToggle(episodeId, courseId, flipped, showTranslit);
@@ -484,6 +491,7 @@ export default function FlashcardDeck({
                 onResetHint={resetHint}
                 onToggleFavorite={toggleCurrentFavorite}
                 onToggleTranslit={() => setShowTranslit(v => !v)}
+                showFavorite={!isCustomDeck}
               />
             )}
 
