@@ -75,16 +75,13 @@ export default function CustomCardsPage() {
       <div className="relative z-10 mx-auto w-full max-w-[980px]">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--accent)]">
-              {language === 'en' ? 'Support mode' : 'Режим поддержки'}
-            </span>
-            <h1 className="mt-2 text-[clamp(2rem,6vw,4.2rem)] font-black leading-[0.95] tracking-[-0.055em]">
+            <h1 className="text-[clamp(2rem,6vw,4.2rem)] font-black leading-[0.95] tracking-[-0.055em]">
               {language === 'en' ? 'My cards' : 'Мои карточки'}
             </h1>
             <p className="mt-3 max-w-xl text-sm font-medium text-[var(--text-secondary)] sm:text-base">
               {language === 'en'
-                ? 'Create a personal deck for the words you want to learn.'
-                : 'Создай личную колоду для слов, которые хочешь выучить.'}
+                ? 'Add the words you want to learn.'
+                : 'Добавляй слова, которые хочешь выучить.'}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -161,7 +158,7 @@ export default function CustomCardsPage() {
           {cards.length === 0 ? (
             <div className="py-8 text-center">
               <p className="text-lg font-extrabold">
-                {language === 'en' ? 'Your deck is empty' : 'Личная колода пока пуста'}
+                {language === 'en' ? 'No cards yet' : 'Карточек пока нет'}
               </p>
               <p className="mt-2 text-sm text-[var(--text-secondary)]">
                 {language === 'en' ? 'Add the first word above.' : 'Добавь первое слово выше.'}

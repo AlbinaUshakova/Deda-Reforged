@@ -66,12 +66,6 @@ function parseEpisodeApiResponse(value: unknown): Episode | null {
   };
 }
 
-function getEpisodeFallbackTitle(episodeId: string): string {
-  const match = episodeId.match(/^ep(\d+)$/i);
-  if (match) return `Lesson ${match[1]}`;
-  return episodeId;
-}
-
 async function loadEpisodeById(episodeId: string, courseId: string): Promise<Episode | null> {
   const res = await fetch(`/api/content/episode?id=${encodeURIComponent(episodeId)}&course=${encodeURIComponent(courseId)}`, {
     cache: 'no-store',
@@ -139,7 +133,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
         if (cancelled) return;
 
         if (!ep) {
-          setTitle(episodeId);
+          setTitle('');
           setWords([]);
           setInitialBest(0);
           setIsLoading(false);
@@ -194,7 +188,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
       } catch (e) {
         console.error('load play episode error', e);
         if (!cancelled) {
-          setTitle(episodeId);
+          setTitle('');
           setWords([]);
           setInitialBest(0);
           setIsLoading(false);
@@ -209,7 +203,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
 
   const hasWords = useMemo(() => words.length > 0, [words]);
   const studyHref = `/study/${episodeId}` as Route;
-  const pageTitle = title || getEpisodeFallbackTitle(episodeId);
+  const pageTitle = title || (interfaceLanguage === 'en' ? 'Practice' : 'Практика');
   const normalEpisodes = useMemo(
     () => getNormalLessonEpisodes(episodesData.episodes, episodesData.lettersByEpisode),
     [episodesData.episodes, episodesData.lettersByEpisode],
@@ -305,8 +299,8 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
             <div className="mt-8 text-center text-[var(--text-secondary)]">
               {getSpecialPlayEmptyState(specialEpisodeKind, interfaceLanguage) ??
                 (interfaceLanguage === 'en'
-                  ? 'There are no game words in this episode yet.'
-                  : 'В этом эпизоде пока нет слов для игры.')}
+                  ? 'There are no words to practice here yet.'
+                  : 'Здесь пока нет слов для практики.')}
             </div>
           )}
         </div>

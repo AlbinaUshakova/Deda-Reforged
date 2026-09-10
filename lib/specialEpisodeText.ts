@@ -16,10 +16,10 @@ export function getSpecialEpisodeLabel(
     return interfaceLanguage === 'en' ? 'Saved words' : 'Сохраненные слова';
   }
   if (kind === 'all') {
-    return interfaceLanguage === 'en' ? 'Review deck' : 'Повторение';
+    return interfaceLanguage === 'en' ? 'Review' : 'Повторение';
   }
   if (kind === 'phrases') {
-    return interfaceLanguage === 'en' ? 'Phrase pack' : 'Набор фраз';
+    return interfaceLanguage === 'en' ? 'Phrases' : 'Фразы';
   }
   if (kind === 'custom') {
     return interfaceLanguage === 'en' ? 'My cards' : 'Мои карточки';
@@ -33,13 +33,13 @@ export function getSpecialStudyCopy(
 ): string | undefined {
   if (kind === 'favorites') {
     return interfaceLanguage === 'en'
-      ? 'All words marked with a star in one deck.'
-      : 'Все отмеченные звездой слова в одной колоде.';
+      ? 'Words you marked with a star.'
+      : 'Слова, которые ты отметила звездой.';
   }
   if (kind === 'all') {
     return interfaceLanguage === 'en'
-      ? 'A mixed course deck with difficult words first.'
-      : 'Смешанная колода курса: сложные слова идут первыми.';
+      ? 'Review words from completed lessons.'
+      : 'Повтори слова из освоенных уроков.';
   }
   if (kind === 'phrases') {
     return interfaceLanguage === 'en'
@@ -48,8 +48,8 @@ export function getSpecialStudyCopy(
   }
   if (kind === 'custom') {
     return interfaceLanguage === 'en'
-      ? 'A personal deck with the words you added.'
-      : 'Личная колода со словами, которые ты добавила.';
+      ? 'Cards with the words you added.'
+      : 'Карточки со словами, которые ты добавила.';
   }
   return undefined;
 }
@@ -65,8 +65,8 @@ export function getSpecialPlayCopy(
   }
   if (kind === 'all') {
     return interfaceLanguage === 'en'
-      ? 'Practice difficult words first, then review the rest.'
-      : 'Сначала сложные слова, затем остальная колода.';
+      ? 'Practice words from completed lessons.'
+      : 'Повторяй слова из освоенных уроков.';
   }
   if (kind === 'phrases') {
     return interfaceLanguage === 'en'
@@ -75,8 +75,8 @@ export function getSpecialPlayCopy(
   }
   if (kind === 'custom') {
     return interfaceLanguage === 'en'
-      ? 'Practice the words from your personal deck.'
-      : 'Тренируй слова из своей личной колоды.';
+      ? 'Practice the words you added.'
+      : 'Тренируй слова, которые ты добавила.';
   }
   return undefined;
 }
@@ -102,8 +102,8 @@ export function getSpecialPlayEmptyState(
   }
   if (kind === 'custom') {
     return interfaceLanguage === 'en'
-      ? 'Add cards to your personal deck before starting practice.'
-      : 'Сначала добавь карточки в личную колоду.';
+      ? 'Add a few cards before starting practice.'
+      : 'Сначала добавь несколько карточек.';
   }
   return undefined;
 }
@@ -129,8 +129,8 @@ export function getSpecialEmptyState(
   }
   if (kind === 'custom') {
     return interfaceLanguage === 'en'
-      ? 'Your deck is empty. Add the first card.'
-      : 'Личная колода пока пуста. Добавь первую карточку.';
+      ? 'No cards yet. Add the first one.'
+      : 'Карточек пока нет. Добавь первую.';
   }
   return undefined;
 }
@@ -159,9 +159,15 @@ export function getSpecialDeckHint(
         : 'Переходи к следующей фразе.';
     }
 
+    if (kind === 'favorites') {
+      return interfaceLanguage === 'en'
+        ? 'Go to the next saved word.'
+        : 'Переходи к следующему сохраненному слову.';
+    }
+
     return interfaceLanguage === 'en'
-      ? 'Go to the next saved word.'
-      : 'Переходи к следующей сохраненной карточке.';
+      ? 'Go to the next card.'
+      : 'Переходи к следующей карточке.';
   }
 
   if (kind === 'phrases') {

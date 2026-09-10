@@ -58,7 +58,7 @@ export function BlocksQuestionPanel({
   if (!hasWords) {
     return (
       <div className="text-sm text-slate-500">
-        {interfaceLanguage === 'en' ? 'There are no words in this episode yet.' : 'В этом эпизоде пока нет слов.'}
+        {interfaceLanguage === 'en' ? 'There are no words here yet.' : 'Здесь пока нет слов.'}
       </div>
     );
   }

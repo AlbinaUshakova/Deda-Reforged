@@ -186,21 +186,21 @@ export async function loadEpisode(
   }
 
   if (id === 'ep1_2') {
-    return mergeEpisodes('ep1_2', 'Эпизод 1–2', [
+    return mergeEpisodes('ep1_2', 'Уроки 1–2', [
       loadSingleStaticEpisode('ep1', normalizedCourseId),
       loadSingleStaticEpisode('ep2', normalizedCourseId),
     ]);
   }
 
   if (id === 'ep3_4') {
-    return mergeEpisodes('ep3_4', 'Эпизод 3–4', [
+    return mergeEpisodes('ep3_4', 'Уроки 3–4', [
       loadSingleStaticEpisode('ep3', normalizedCourseId),
       loadSingleStaticEpisode('ep4', normalizedCourseId),
     ]);
   }
 
   if (id === 'ep5_6') {
-    return mergeEpisodes('ep5_6', 'Эпизод 5–6', [
+    return mergeEpisodes('ep5_6', 'Уроки 5–6', [
       loadSingleStaticEpisode('ep5', normalizedCourseId),
       loadSingleStaticEpisode('ep6', normalizedCourseId),
     ]);

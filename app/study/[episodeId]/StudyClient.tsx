@@ -99,7 +99,7 @@ export default function StudyClient({
     ? interfaceLanguage === 'en'
       ? `Lesson ${lessonPosition}`
       : `Урок ${lessonPosition}`
-    : getSpecialEpisodeLabel(specialEpisodeKind, interfaceLanguage);
+    : getSpecialEpisodeLabel(specialEpisodeKind, interfaceLanguage) ?? ep?.title;
   const courseProgressLabel = lessonPosition && normalEpisodes.length > 0
     ? getLessonProgressGuidance({
         score: currentBest,
@@ -226,7 +226,7 @@ export default function StudyClient({
             {interfaceLanguage === 'en' ? 'Loading lesson…' : 'Загружаю урок…'}
           </div>
         ) : !hasEpisode ? (
-          <div className="mx-auto max-w-[980px] p-6 text-center">{interfaceLanguage === 'en' ? 'Episode not found' : 'Эпизод не найден'}</div>
+          <div className="mx-auto max-w-[980px] p-6 text-center">{interfaceLanguage === 'en' ? 'This lesson could not be opened' : 'Не удалось открыть этот урок'}</div>
         ) : hasWords ? (
           <div className="relative z-0 mx-auto mt-[clamp(2px,0.8vh,10px)] w-full max-w-[980px]">
             <FlashcardDeck
@@ -240,8 +240,8 @@ export default function StudyClient({
           <div className="mx-auto mt-8 max-w-[980px] text-center text-[var(--text-secondary)]">
             {getSpecialEmptyState(specialEpisodeKind, interfaceLanguage) ?? (
               interfaceLanguage === 'en'
-                ? 'There are no flashcard words in this episode yet.'
-                : 'В этом эпизоде пока нет слов для карточек.'
+                ? 'There are no words here yet.'
+                : 'Здесь пока нет слов.'
             )}
           </div>
         )}

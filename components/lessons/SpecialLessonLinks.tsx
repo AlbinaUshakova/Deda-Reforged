@@ -147,7 +147,7 @@ export function SpecialLessonLinks({
       ? {
           id: allLessonsSpecial.id,
           href: `/study/${allLessonsSpecial.id}` as Route,
-          title: interfaceLanguage === 'en' ? 'Review deck' : 'Повторение',
+          title: interfaceLanguage === 'en' ? 'Review' : 'Повторение',
           locked: !allLessonsReady,
           meta:
             !allLessonsReady
@@ -196,7 +196,7 @@ export function SpecialLessonLinks({
           <div className="home-special-heading">
             <div>
               <span className="home-special-eyebrow">
-                {interfaceLanguage === 'en' ? 'Support modes' : 'Режимы поддержки'}
+                {interfaceLanguage === 'en' ? 'More practice' : 'Ещё для практики'}
               </span>
             </div>
           </div>
