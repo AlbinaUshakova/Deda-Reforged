@@ -1,7 +1,7 @@
-import { textToHint, type TransliterationMode } from '@/lib/transliteration';
-import { italianTextToHint } from '@/lib/italianTranscription';
-import type { CourseId } from '@/lib/courses';
-import type { InterfaceLanguage } from '@/lib/interfaceText';
+import { textToHint, type TransliterationMode } from './transliteration.ts';
+import { italianTextToHint } from './italianTranscription.ts';
+import type { CourseId } from './courses.ts';
+import type { InterfaceLanguage } from './interfaceText.ts';
 
 export type CardWithTranscription = {
   ge_text: string;
