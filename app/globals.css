@@ -1216,6 +1216,42 @@ h3,
     transform: translateY(-2px);
 }
 
+.home-support-card--featured {
+    border-color: rgba(255, 107, 53, 0.34);
+    background:
+        radial-gradient(circle at 100% 0%, rgba(0, 168, 132, 0.13), transparent 44%),
+        linear-gradient(145deg, #fff2e8, #fffaf4 72%);
+    box-shadow:
+        0 14px 32px rgba(255, 107, 53, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.home-support-card--featured:hover,
+.home-support-card--featured:focus-visible {
+    background:
+        radial-gradient(circle at 100% 0%, rgba(0, 168, 132, 0.17), transparent 44%),
+        linear-gradient(145deg, #ffeadc, #fff8ef 72%);
+    box-shadow:
+        0 18px 38px rgba(255, 107, 53, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.94);
+}
+
+.home-support-card-badge {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 3px;
+    border-radius: 999px;
+    background: #ff6b35;
+    padding: 3px 8px 3px 6px;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 850;
+    letter-spacing: 0.055em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
 .home-support-card--locked {
     cursor: not-allowed;
     opacity: 0.68;

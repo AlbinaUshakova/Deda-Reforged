@@ -85,6 +85,7 @@ type SupportModeCard = {
   title: string;
   meta: string;
   locked?: boolean;
+  featured?: boolean;
 };
 
 export function SpecialLessonLinks({
@@ -133,6 +134,15 @@ export function SpecialLessonLinks({
     ? phrasesSpecial
     : undefined;
   const supportModeCards = [
+    {
+      id: 'custom',
+      href: '/custom-cards' as Route,
+      title: interfaceLanguage === 'en' ? 'My cards' : 'Мои карточки',
+      meta: interfaceLanguage === 'en'
+        ? `Add a word or phrase and its meaning · ${getCardCountLabel(customCardsCount, interfaceLanguage)}`
+        : `Добавь слово или фразу и перевод · ${getCardCountLabel(customCardsCount, interfaceLanguage)}`,
+      featured: true,
+    },
     favoritesSpecial
       ? {
           id: favoritesSpecial.id,
@@ -159,14 +169,6 @@ export function SpecialLessonLinks({
                 : `Слова из освоенных уроков · ${getCardCountLabel(reviewDeckCardCount, interfaceLanguage)}`,
         }
       : null,
-    {
-      id: 'custom',
-      href: '/custom-cards' as Route,
-      title: interfaceLanguage === 'en' ? 'My cards' : 'Мои карточки',
-      meta: interfaceLanguage === 'en'
-        ? `Your own words · ${getCardCountLabel(customCardsCount, interfaceLanguage)}`
-        : `Свои слова · ${getCardCountLabel(customCardsCount, interfaceLanguage)}`,
-    },
     legacyPhrasesSpecial
       ? {
           id: legacyPhrasesSpecial.id,
@@ -204,7 +206,7 @@ export function SpecialLessonLinks({
             {visibleSupportModeCards.map((card) => (
               <Link key={card.id} href={card.href} legacyBehavior>
                 <a
-                  className={`home-support-card ${card.locked ? 'home-support-card--locked' : 'lesson-card--interactive'}`}
+                  className={`home-support-card ${card.featured ? 'home-support-card--featured' : ''} ${card.locked ? 'home-support-card--locked' : 'lesson-card--interactive'}`}
                   onClick={(event) => {
                     if (!card.locked) return;
                     event.preventDefault();
@@ -212,6 +214,12 @@ export function SpecialLessonLinks({
                   aria-disabled={card.locked ? 'true' : undefined}
                 >
                   <span className="home-special-card-copy">
+                    {card.featured && (
+                      <span className="home-support-card-badge">
+                        <span aria-hidden="true">＋</span>
+                        {interfaceLanguage === 'en' ? 'Create your own' : 'Создай свои'}
+                      </span>
+                    )}
                     <span className="home-support-card-title">{card.title}</span>
                     <span className="home-support-card-meta">{card.meta}</span>
                   </span>
