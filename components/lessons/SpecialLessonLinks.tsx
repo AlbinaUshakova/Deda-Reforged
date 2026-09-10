@@ -237,11 +237,6 @@ export function SpecialLessonLinks({
               <span className="home-special-eyebrow">
                 {interfaceLanguage === 'en' ? 'Extra practice' : 'Дополнительная практика'}
               </span>
-              <span className="home-special-summary">
-                {interfaceLanguage === 'en'
-                  ? `${studiedCards} of ${totalCards} studied`
-                  : `${studiedCards} из ${totalCards} изучено`}
-              </span>
             </div>
           </div>
           <div className="home-special-total-progress" aria-label={interfaceLanguage === 'en' ? `Studied ${totalProgress}%` : `Изучено ${totalProgress}%`}>
