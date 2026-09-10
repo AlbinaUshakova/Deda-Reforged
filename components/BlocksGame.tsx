@@ -3,7 +3,6 @@
 
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { BlocksQuestionPanel } from '@/components/blocks/BlocksQuestionPanel';
-import { LessonPassedCelebration } from '@/components/blocks/LessonPassedCelebration';
 import BlocksGrid from './BlocksGrid';
 import type { Route } from 'next';
 import { useAppStore } from '@/lib/appStore';
@@ -21,6 +20,7 @@ import { upsertProgress } from '@/lib/supabase';
 import { getActiveTransliterationMode } from '@/lib/settings';
 import { LESSON_UNLOCK_SCORE, isLessonEpisodeId } from '@/lib/lessonProgress';
 import { recordReviewMistake, recordReviewSuccess } from '@/lib/reviewMemory';
+import { crossedLessonUnlockScore } from '@/lib/gameMilestones';
 
 type Word = { ge: string; ru: string; acceptedRu?: string[]; acceptedGe?: string[]; audio?: string };
 
@@ -77,10 +77,8 @@ export default function BlocksGame({
   const courseId = useAppStore(state => state.settings.courseId);
   const storedTransliterationMode = useAppStore(state => state.settings.transliterationMode);
   const transliterationMode = getActiveTransliterationMode(interfaceLanguage, courseId, storedTransliterationMode) as TransliterationMode;
-  const lessonTargetScore = useAppStore(state => state.settings.lessonTargetScore);
   const isFavoritesEpisode = episodeId === 'favorites';
   const isMainLessonEpisode = episodeId ? isLessonEpisodeId(episodeId) : false;
-  const [celebrate, setCelebrate] = useState(false);
   const [showUnlockToast, setShowUnlockToast] = useState(false);
 
   const hasWords = useMemo(() => words && words.length > 0, [words]);
@@ -125,6 +123,12 @@ export default function BlocksGame({
   useEffect(() => {
     setBestScore(initialBest);
   }, [initialBest]);
+
+  useEffect(() => {
+    if (!showUnlockToast) return;
+    const timeout = setTimeout(() => setShowUnlockToast(false), 2400);
+    return () => clearTimeout(timeout);
+  }, [showUnlockToast]);
 
   // helper: очистить таймер показа правильного ответа
   const clearRevealTimer = () => {
@@ -491,20 +495,13 @@ export default function BlocksGame({
 
   // когда из BlocksGrid приходит новый рекорд — обновляем прогресс и карту
   const handleBestScoreChange = (newBest: number) => {
-    const justPassed =
-      isMainLessonEpisode &&
-      bestScore < lessonTargetScore &&
-      newBest >= lessonTargetScore;
-    const justUnlockedNextLesson =
-      isMainLessonEpisode &&
-      bestScore < LESSON_UNLOCK_SCORE &&
-      newBest >= LESSON_UNLOCK_SCORE &&
-      newBest < lessonTargetScore;
+    const justUnlockedNextLesson = crossedLessonUnlockScore({
+      previousBest: bestScore,
+      nextBest: newBest,
+      unlockScore: LESSON_UNLOCK_SCORE,
+      hasNextLesson: isMainLessonEpisode && Boolean(nextLessonHref),
+    });
     setBestScore(newBest);
-    if (justPassed) {
-      setShowUnlockToast(false);
-      setCelebrate(true);
-    }
     if (justUnlockedNextLesson) {
       setShowUnlockToast(true);
     }
@@ -536,13 +533,6 @@ export default function BlocksGame({
     : '';
   return (
     <div className="blocks-game-root flex w-full justify-center lg:justify-start mt-1 md:mt-2">
-      {celebrate && (
-        <LessonPassedCelebration
-          onDone={() => setCelebrate(false)}
-          interfaceLanguage={interfaceLanguage}
-          nextLessonHref={nextLessonHref as never}
-        />
-      )}
       <div
         className={
           'blocks-game-layout relative flex w-full max-w-5xl rounded-[28px] bg-transparent px-1 sm:px-3 md:px-6 py-2 md:py-4 lg:py-5 ' +
@@ -632,35 +622,11 @@ export default function BlocksGame({
             studyHref={studyHref as Route | undefined}
             nextLessonHref={nextLessonHref as Route | undefined}
             hasUnlockedNextLesson={isMainLessonEpisode && bestScore >= LESSON_UNLOCK_SCORE}
-            milestoneOverlay={showUnlockToast && !celebrate ? (
+            milestoneOverlay={showUnlockToast ? (
               <div className="lesson-unlock-toast" role="status" aria-live="polite">
                 <div className="lesson-unlock-toast-card">
-                  <div className="lesson-unlock-toast-emoji" aria-hidden="true">✨</div>
                   <div className="lesson-unlock-toast-title">
-                    {interfaceLanguage === 'en' ? 'You are reading real words' : 'Ты уже читаешь слова'}
-                  </div>
-                  <div className="lesson-unlock-toast-sub">
-                    {nextLessonHref
-                      ? (interfaceLanguage === 'en'
-                        ? 'The next lesson is ready. Continue now or come back to it later.'
-                        : 'Следующий урок готов. Продолжай сейчас или вернись к нему позже.')
-                      : (interfaceLanguage === 'en'
-                        ? 'You reached the score needed for the next step.'
-                        : 'Ты набрала порог для следующего шага.')}
-                  </div>
-                  <div className="lesson-unlock-toast-actions">
-                    {nextLessonHref && (
-                      <a href={nextLessonHref} className="lesson-unlock-toast-link">
-                        {interfaceLanguage === 'en' ? 'Next lesson' : 'Следующий урок'}
-                      </a>
-                    )}
-                    <button
-                      type="button"
-                      className="lesson-unlock-toast-dismiss"
-                      onClick={() => setShowUnlockToast(false)}
-                    >
-                      {interfaceLanguage === 'en' ? 'Keep practicing' : 'Ещё потренироваться'}
-                    </button>
+                    {interfaceLanguage === 'en' ? 'Next lesson unlocked' : 'Следующий урок открыт'}
                   </div>
                 </div>
               </div>

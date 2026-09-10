@@ -1081,25 +1081,20 @@
     inset: 0;
     z-index: 90;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 16px;
+    padding: 18px 16px;
     pointer-events: none;
 }
 
 .lesson-unlock-toast-card {
-    pointer-events: auto;
-    display: flex;
-    max-width: 420px;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
+    pointer-events: none;
     border: 1px solid rgba(16, 163, 127, 0.18);
-    border-radius: 22px;
+    border-radius: 999px;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(240, 253, 248, 0.96)),
         radial-gradient(circle at 50% 0%, rgba(52, 211, 153, 0.16), transparent 46%);
-    padding: 16px 18px;
+    padding: 10px 16px;
     text-align: center;
     box-shadow:
         0 18px 42px rgba(31, 28, 23, 0.12),
@@ -1113,11 +1108,11 @@
 }
 
 .lesson-unlock-toast-title {
-    color: var(--text-primary);
-    font-size: 18px;
-    font-weight: 850;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
+    color: #08765d;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
 }
 
 .lesson-unlock-toast-sub {
