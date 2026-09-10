@@ -170,8 +170,8 @@
 
 .menu-floating-anchor {
     position: fixed;
-    top: 68px;
-    right: 8px;
+    top: calc(var(--app-header-height) + 8px);
+    right: var(--app-content-edge);
     z-index: 230;
 }
 
@@ -182,23 +182,15 @@
 
 .menu-panel-size {
     width: clamp(184px, 31vw, 244px);
-    max-width: calc(100vw - 16px);
-    max-height: calc(100dvh - 102px);
+    max-width: calc(100vw - (2 * var(--app-page-gutter)));
+    max-height: calc(100dvh - var(--app-header-height) - 24px);
     font-size: clamp(10px, 1.55vw, 12px);
 }
 
-@media (min-width: 640px) {
-    .menu-floating-anchor {
-        right: 16px;
-    }
-}
-
-/* На широких экранах стараемся держать меню в правом "гаттере",
-   чтобы не наезжать на центральное игровое/карточное поле. */
-@media (min-width: 1400px) {
-    .menu-floating-anchor {
-        right: max(16px, calc((100vw - 980px) / 2 - 256px));
-    }
+.app-alphabet-overlay {
+    left: var(--app-content-edge) !important;
+    top: calc(var(--app-header-height) + 8px) !important;
+    max-height: calc(100dvh - var(--app-header-height) - 24px) !important;
 }
 
 .menu-stepper-input {
@@ -430,10 +422,7 @@
     }
 
     .alphabet-compact {
-        left: 8px !important;
-        top: 64px !important;
-        width: min(180px, calc(100vw - 16px)) !important;
-        max-height: calc(100dvh - 80px) !important;
+        width: min(180px, calc(100vw - (2 * var(--app-page-gutter)))) !important;
         padding-inline: 8px !important;
         padding-bottom: 8px !important;
         border-radius: 16px !important;

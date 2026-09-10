@@ -192,7 +192,7 @@ export default function LandingPage() {
       <section
         id="languages"
         aria-hidden={backgroundAriaHidden}
-        className="mx-auto flex w-full max-w-[1240px] flex-col justify-center px-4 pt-6 sm:px-6 sm:pt-8 lg:px-8 lg:pt-9"
+        className="landing-main-section mx-auto flex w-full max-w-[1240px] flex-col justify-center px-4 pt-6 sm:px-6 sm:pt-8 lg:px-8 lg:pt-9"
       >
         <div className="landing-topbar">
           <div className="landing-brand">Deda</div>

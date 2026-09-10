@@ -10,7 +10,7 @@ export default function SupportPageClient() {
   const privacyHref = '/privacy' as Route;
 
   return (
-    <main className="min-h-[calc(100dvh-66px)] bg-[var(--app-bg)] px-4 py-10 text-[var(--text-primary)]">
+    <main className="app-page-below-header bg-[var(--app-bg)] px-4 py-10 text-[var(--text-primary)]">
       <section className="mx-auto max-w-3xl rounded-[32px] border border-[var(--border-soft)] bg-[var(--bg-card)] px-5 py-6 shadow-[var(--shadow-soft)] sm:px-8 sm:py-8">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-tertiary)]">
           Deda

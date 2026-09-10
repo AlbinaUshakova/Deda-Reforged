@@ -58,8 +58,11 @@
 :root {
     color-scheme: light;
     --app-safe-top: env(safe-area-inset-top, 0px);
+    --app-safe-bottom: env(safe-area-inset-bottom, 0px);
     --app-header-content-height: clamp(48px, 7.2vh, 66px);
     --app-header-height: calc(var(--app-header-content-height) + var(--app-safe-top));
+    --app-page-gutter: 16px;
+    --app-content-edge: max(var(--app-page-gutter), calc((100vw - 980px) / 2));
     --font-ui: var(--font-manrope), 'Segoe UI Variable', system-ui, sans-serif;
     --font-display: var(--font-nunito-sans), var(--font-ui);
     --font-georgian: var(--font-noto-georgian), 'DejaVu Sans', var(--font-ui);
@@ -160,6 +163,10 @@ body.app-no-page-scroll {
     box-sizing: border-box;
     height: var(--app-header-height);
     padding-top: var(--app-safe-top);
+}
+
+.app-page-below-header {
+    min-height: calc(100dvh - var(--app-header-height));
 }
 
 body {
@@ -2007,10 +2014,16 @@ button[aria-pressed='true'] {
 
     .study-screen-shell {
         height: auto !important;
-        min-height: 100dvh;
+        min-height: 100%;
         overflow: visible !important;
+        padding-inline: var(--app-page-gutter) !important;
         padding-top: 14px !important;
-        padding-bottom: 22px !important;
+        padding-bottom: max(22px, var(--app-safe-bottom)) !important;
+    }
+
+    .lessons-screen {
+        padding-inline: var(--app-page-gutter) !important;
+        padding-bottom: max(12px, var(--app-safe-bottom)) !important;
     }
 
     .study-screen-shell::after {
@@ -2893,11 +2906,31 @@ body {
       padding-inline: 16px;
     }
 
+    .landing-main-section {
+      padding-top: calc(24px + var(--app-safe-top)) !important;
+    }
+
+    @media (min-width: 640px) {
+      .landing-main-section {
+        padding-top: calc(32px + var(--app-safe-top)) !important;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .landing-main-section {
+        padding-top: calc(36px + var(--app-safe-top)) !important;
+      }
+    }
+
     .landing-topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
+    }
+
+    .landing-shell .menu-floating-anchor {
+      top: calc(72px + var(--app-safe-top));
     }
 
     .landing-brand {

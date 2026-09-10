@@ -10,7 +10,7 @@ export default function SupportDedaPage() {
   const isEnglish = interfaceLanguage === 'en';
 
   return (
-    <main className="min-h-[calc(100dvh-66px)] bg-[var(--app-bg)] px-4 py-10 text-[var(--text-primary)]">
+    <main className="app-page-below-header bg-[var(--app-bg)] px-4 py-10 text-[var(--text-primary)]">
       <section className="mx-auto max-w-xl overflow-hidden rounded-[32px] border border-[var(--border-soft)] bg-[var(--bg-card)] px-6 py-8 text-center shadow-[var(--shadow-soft)] sm:px-10 sm:py-10">
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(255,107,53,0.11)] text-2xl text-[var(--accent)]" aria-hidden="true">
           ♡

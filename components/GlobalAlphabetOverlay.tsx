@@ -192,7 +192,7 @@ export default function GlobalAlphabetOverlay() {
       role="dialog"
       aria-label={getAlphabetTitleLabel(interfaceLanguage, course.scriptTitleNative)}
       aria-hidden={!open}
-      className={`alphabet-compact fixed left-2 top-[64px] z-[140] w-[clamp(196px,40vw,260px)] max-h-[calc(100dvh-84px)] overflow-y-auto rounded-[20px] border border-slate-200/80 bg-white/95 px-3 pb-3 pt-2 shadow-[0_16px_40px_rgba(31,28,23,0.18)] backdrop-blur-md transition-all duration-200 ease-out sm:left-3 sm:top-[70px] ${open
+      className={`app-alphabet-overlay alphabet-compact fixed z-[140] w-[clamp(196px,40vw,260px)] overflow-y-auto rounded-[20px] border border-slate-200/80 bg-white/95 px-3 pb-3 pt-2 shadow-[0_16px_40px_rgba(31,28,23,0.18)] backdrop-blur-md transition-all duration-200 ease-out ${open
         ? 'translate-y-0 opacity-100'
         : 'pointer-events-none -translate-y-2 select-none opacity-0'
         }`}
