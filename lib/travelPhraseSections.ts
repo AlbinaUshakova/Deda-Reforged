@@ -53,6 +53,7 @@ const TRAVEL_TEXTS: Record<CourseId, readonly string[]> = {
     'შეიძლება ერთი პირსახოცი?',
     'შეგიძლიათ ტაქსი გამომიძახოთ?',
   ],
+  ru: TRAVEL_INTENTS.map(([, meaning]) => meaning),
   sr: [
     'Где је такси станица?',
     'Можете ли ме одвести на ову адресу?',
@@ -186,6 +187,7 @@ const ENGLISH_TRANSCRIPTIONS_RU = [
 
 const SECTION_PREFIX: Record<CourseId, string> = {
   ka: 'ep10',
+  ru: 'ep8',
   sr: 'ep9',
   tr: 'ep10',
   es: 'ep11',

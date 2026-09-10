@@ -60,7 +60,8 @@ export function normalizeSettings(
   const interfaceLanguage = normalizeInterfaceLanguage(raw.interfaceLanguage ?? 'ru');
   const normalizedCourseId = normalizeCourseId(raw.courseId);
   const courseId =
-    interfaceLanguage === 'en' && normalizedCourseId === 'en'
+    (interfaceLanguage === 'en' && normalizedCourseId === 'en') ||
+    (interfaceLanguage === 'ru' && normalizedCourseId === 'ru')
       ? DEFAULT_COURSE_ID
       : normalizedCourseId;
 
@@ -99,7 +100,14 @@ export function setSettings(s: Partial<Settings>) {
         ...(s.translationDirection === undefined ? { translationDirection: 'ge-ru' as const } : {}),
         ...(s.transliterationMode === undefined ? { transliterationMode: 'ru' as const } : {}),
       }
-      : merged;
+      : merged.courseId === 'ru'
+        ? {
+            ...merged,
+            interfaceLanguage: 'en' as const,
+            ...(s.translationDirection === undefined ? { translationDirection: 'ge-ru' as const } : {}),
+            ...(s.transliterationMode === undefined ? { transliterationMode: 'latin' as const } : {}),
+          }
+        : merged;
   const normalized = normalizeSettings(nextSettings);
   localStorage.setItem(KEY, JSON.stringify(normalized));
   localStorage.setItem('deda_translation_direction', normalized.translationDirection);

@@ -1,0 +1,21 @@
+{
+  "id": "ep1",
+  "title": "Урок 1",
+  "letters": ["А", "О", "М", "Т", "К"],
+  "cards": [
+    { "type": "word", "ge_text": "мама", "ru_meaning": "мама", "en_meaning": "mom" },
+    { "type": "word", "ge_text": "мак", "ru_meaning": "мак", "en_meaning": "poppy" },
+    { "type": "word", "ge_text": "кот", "ru_meaning": "кот", "en_meaning": "cat" },
+    { "type": "word", "ge_text": "ток", "ru_meaning": "ток", "en_meaning": "current" },
+    { "type": "word", "ge_text": "том", "ru_meaning": "том", "en_meaning": "volume" },
+    { "type": "word", "ge_text": "там", "ru_meaning": "там", "en_meaning": "there" },
+    { "type": "word", "ge_text": "кто", "ru_meaning": "кто", "en_meaning": "who" },
+    { "type": "word", "ge_text": "так", "ru_meaning": "так", "en_meaning": "like this" },
+    { "type": "word", "ge_text": "тот", "ru_meaning": "тот", "en_meaning": "that one" },
+    { "type": "word", "ge_text": "атака", "ru_meaning": "атака", "en_meaning": "attack" },
+    { "type": "phrase", "ge_text": "мама там", "ru_meaning": "мама там", "en_meaning": "mom is there" },
+    { "type": "phrase", "ge_text": "кот там", "ru_meaning": "кот там", "en_meaning": "the cat is there" },
+    { "type": "phrase", "ge_text": "кто там?", "ru_meaning": "кто там?", "en_meaning": "who is there?" },
+    { "type": "phrase", "ge_text": "тот кот", "ru_meaning": "тот кот", "en_meaning": "that cat" }
+  ]
+}

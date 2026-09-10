@@ -5,7 +5,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useAppStore } from '@/lib/appStore';
 import { getEpisodesDataCached, getEpisodesDataSync } from '@/lib/clientContentCache';
 import type { EpisodeCard } from '@/lib/clientContentCache';
-import { progressKeyForEpisode } from '@/lib/courses';
+import { gameWatermarkStyle, progressKeyForEpisode } from '@/lib/courses';
 import BlocksGame from '@/components/BlocksGame';
 import StudyPageActions from '@/components/study/StudyPageActions';
 import { translateRussianMeaningToEnglish } from '@/lib/englishMeanings';
@@ -176,7 +176,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
         const ws: Word[] = cards.map((c) => ({
           ge: c.ge_text,
           ru: translationLanguage === 'en' && episodeId !== 'custom'
-            ? translateRussianMeaningToEnglish(c.ru_meaning)
+            ? (c.en_meaning || translateRussianMeaningToEnglish(c.ru_meaning))
             : c.ru_meaning,
           acceptedRu: translationLanguage === 'en' && episodeId !== 'custom'
             ? (c.accepted_ru ?? []).map(translateRussianMeaningToEnglish)
@@ -286,7 +286,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
 
   if (lessonAccessPending || isLockedLesson) {
     return (
-      <main className="blocks-game-screen app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">
+      <main style={gameWatermarkStyle(courseId)} className="blocks-game-screen app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">
         <div className="mx-auto max-w-[980px] p-6 text-center text-[var(--text-secondary)]">
           {interfaceLanguage === 'en' ? 'Checking lesson access…' : 'Проверяю доступ к уроку…'}
         </div>
@@ -295,7 +295,7 @@ export default function PlayPage({ params }: { params: { episodeId: string } }) 
   }
 
   return (
-    <main className="blocks-game-screen app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">
+    <main style={gameWatermarkStyle(courseId)} className="blocks-game-screen app-screen-fixed relative min-h-screen bg-transparent text-[var(--text-primary)]">
       <div className="study-screen-orb study-screen-orb--left" aria-hidden="true" />
       <div className="study-screen-orb study-screen-orb--right" aria-hidden="true" />
       <div className="study-screen-shell mx-auto h-full w-full overflow-hidden px-[clamp(14px,3.6vw,48px)] py-[clamp(16px,2.6vh,32px)]">

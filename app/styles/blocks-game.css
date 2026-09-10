@@ -119,13 +119,13 @@
 }
 
 .blocks-game-screen::before {
-    content: 'თამაში';
+    content: var(--game-watermark, 'თამაში');
     position: absolute;
     top: 126px;
     left: 50%;
     transform: translateX(-50%);
     color: rgba(120, 113, 108, 0.042);
-    font-family: var(--font-georgian);
+    font-family: var(--game-watermark-font, var(--font-georgian));
     font-size: clamp(72px, 11vw, 156px);
     font-weight: 900;
     letter-spacing: 0.08em;

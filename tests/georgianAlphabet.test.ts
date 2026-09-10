@@ -101,7 +101,7 @@ test('course alphabets classify vowels and consonants', () => {
 });
 
 test('TTS fallback uses native letter names and course languages', () => {
-  for (const courseId of ['ka', 'sr', 'tr', 'es', 'en', 'de', 'fr', 'it'] as const) {
+  for (const courseId of ['ka', 'ru', 'sr', 'tr', 'es', 'en', 'de', 'fr', 'it'] as const) {
     for (const letter of COURSES[courseId].alphabet) {
       const speechText = getLetterSpeechText(letter, courseId);
       assert.equal(speechText, COURSES[courseId].letterNames[letter]);
@@ -111,6 +111,8 @@ test('TTS fallback uses native letter names and course languages', () => {
 
   assert.equal(getLetterSpeechText('А', 'sr'), 'а');
   assert.deepEqual(COURSES.sr.letterAudioMap, {});
+  assert.equal(getLetterSpeechText('Б', 'ru'), 'бэ');
+  assert.equal(getLetterSpeechLang('ru'), 'ru-RU');
   assert.equal(getLetterSpeechText('Ђ', 'sr'), 'ђе');
   assert.equal(getLetterSpeechText('Ğ', 'tr'), 'yumuşak ge');
   assert.equal(getLetterSpeechText('H', 'es'), 'hache');
@@ -152,6 +154,7 @@ test('courses with teaching-specific signs expose a separate visual section', ()
 test('course primary alphabets are displayed as one uninterrupted grid', () => {
   const primaryAlphabetByCourse = {
     ka: COURSES.ka.alphabet,
+    ru: COURSES.ru.alphabet,
     sr: COURSES.sr.alphabet,
     tr: COURSES.tr.alphabet,
     en: COURSES.en.alphabet,
@@ -175,14 +178,14 @@ test('course primary alphabets are displayed as one uninterrupted grid', () => {
 });
 
 test('course list order matches product language switcher order', () => {
-  assert.deepEqual(COURSE_IDS, ['ka', 'en', 'es', 'de', 'fr', 'it', 'sr', 'tr']);
+  assert.deepEqual(COURSE_IDS, ['ka', 'ru', 'en', 'es', 'de', 'fr', 'it', 'sr', 'tr']);
   assert.deepEqual(
     COURSE_IDS.map(courseId => COURSES[courseId].sourceLanguageLabel),
-    ['🇬🇪', '🇬🇧', '🇪🇸', '🇩🇪', '🇫🇷', '🇮🇹', '🇷🇸', '🇹🇷'],
+    ['🇬🇪', '🇷🇺', '🇬🇧', '🇪🇸', '🇩🇪', '🇫🇷', '🇮🇹', '🇷🇸', '🇹🇷'],
   );
 });
 
-test('landing language portfolio keeps only Georgian active in the main flow', () => {
-  assert.deepEqual(PRIMARY_ACTIVE_COURSE_IDS, ['ka']);
+test('landing language portfolio keeps Georgian and Russian active in the main flow', () => {
+  assert.deepEqual(PRIMARY_ACTIVE_COURSE_IDS, ['ka', 'ru']);
   assert.deepEqual(HIDDEN_ACTIVE_COURSE_IDS, ['sr', 'tr', 'es', 'de', 'en', 'fr', 'it']);
 });

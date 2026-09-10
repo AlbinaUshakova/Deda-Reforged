@@ -14,6 +14,7 @@ import { getActiveTransliterationMode } from '@/lib/settings';
 
 const courseAdverb: Record<CourseId, string> = {
   ka: 'по-грузински',
+  ru: 'по-русски',
   en: 'по-английски',
   es: 'по-испански',
   de: 'по-немецки',
@@ -25,7 +26,6 @@ const courseAdverb: Record<CourseId, string> = {
 
 const COMING_SOON_COURSES = [
   { key: 'ko', label: { en: 'Korean', ru: 'Корейский' } },
-  { key: 'ru', label: { en: 'Russian', ru: 'Русский' } },
   { key: 'ja', label: { en: 'Japanese', ru: 'Японский' } },
   { key: 'ar', label: { en: 'Arabic', ru: 'Арабский' } },
 ] as const;
@@ -57,6 +57,21 @@ const restaurantBills: Record<CourseId, RestaurantBill> = {
     service: '3.90 ₾',
     total: '42.90 ₾',
     payment: 'ბარათი',
+  },
+  ru: {
+    label: 'Счёт',
+    place: 'Кафе Deda',
+    date: '23.07.2026',
+    table: 'Стол 4',
+    items: [
+      { qty: '1x', name: 'Борщ', price: '450 ₽' },
+      { qty: '1x', name: 'Блины', price: '320 ₽' },
+      { qty: '1x', name: 'Чай', price: '150 ₽' },
+    ],
+    subtotal: '920 ₽',
+    service: '92 ₽',
+    total: '1012 ₽',
+    payment: 'Карта',
   },
   en: {
     label: 'Bill',
@@ -167,6 +182,7 @@ const restaurantBills: Record<CourseId, RestaurantBill> = {
 
 const BILL_LABELS: Record<CourseId, { subtotal: string; service: string; total: string }> = {
   ka: { subtotal: 'ჯამი', service: 'სერვისი', total: 'სულ' },
+  ru: { subtotal: 'Сумма', service: 'Сервис', total: 'Итого' },
   en: { subtotal: 'Subtotal', service: 'Service', total: 'Total' },
   es: { subtotal: 'Subtotal', service: 'Servicio', total: 'Total' },
   de: { subtotal: 'Zwischensumme', service: 'Service', total: 'Gesamt' },
@@ -191,6 +207,21 @@ const restaurantBillTranslations: Record<CourseId, RestaurantBill> = {
     service: '3.90 ₾',
     total: '42.90 ₾',
     payment: 'Карта',
+  },
+  ru: {
+    label: 'Bill',
+    place: 'Deda Cafe',
+    date: '23/07/2026',
+    table: 'Table 4',
+    items: [
+      { qty: '1x', name: 'Borscht', price: '450 ₽' },
+      { qty: '1x', name: 'Pancakes', price: '320 ₽' },
+      { qty: '1x', name: 'Tea', price: '150 ₽' },
+    ],
+    subtotal: '920 ₽',
+    service: '92 ₽',
+    total: '1012 ₽',
+    payment: 'Card',
   },
   en: {
     label: 'Счёт',
@@ -311,6 +342,15 @@ const readingReasons: Record<CourseId, {
       { title: 'Буква = звук, без исключений', text: '33 буквы мхедрули, ни заглавных, ни строчных. Выучил букву — читаешь любое слово с ней.' },
       { title: 'Есть звуки “с выстрелом”', text: 'ტ, პ, კ произносятся резким толчком воздуха. Таких звуков нет в русском, к ним просто нужно привыкнуть.' },
       { title: 'Слово может быть предложением', text: 'Грузинский глагол умеет упаковать действие, кто делает и на кого направлено. Длинное слово часто просто компактное.' },
+    ],
+  },
+  ru: {
+    title: 'Russian: what matters for reading',
+    subtitle: 'Cyrillic looks unfamiliar, but its core reading patterns are learnable.',
+    items: [
+      { title: 'Begin with familiar shapes', text: 'A, K, M, O and T look familiar and give you real words immediately.' },
+      { title: 'Notice the false friends', text: 'В sounds like v, Н like n, Р like r, С like s, and У like u.' },
+      { title: 'Read the signs with their neighbors', text: 'Ь softens a consonant, while Ъ separates it from the next vowel.' },
     ],
   },
   en: {
@@ -473,6 +513,7 @@ export function LandingLanguagePicker() {
 
 export function LandingRestaurantBill() {
   const courseId = useAppStore(state => state.settings.courseId);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const hydrate = useAppStore(state => state.hydrate);
   const [flipped, setFlipped] = useState(false);
   const bill = restaurantBills[courseId];
@@ -496,7 +537,9 @@ export function LandingRestaurantBill() {
     options: { translated?: boolean } = {},
   ) => {
     const labels = options.translated
-      ? { subtotal: 'Сумма', service: 'Сервис', total: 'Итого' }
+      ? (courseId === 'ru'
+          ? { subtotal: 'Subtotal', service: 'Service', total: 'Total' }
+          : { subtotal: 'Сумма', service: 'Сервис', total: 'Итого' })
       : BILL_LABELS[courseId];
 
     return (
@@ -546,7 +589,9 @@ export function LandingRestaurantBill() {
       role="button"
       tabIndex={0}
       aria-pressed={flipped}
-      aria-label={flipped ? 'Показать чек на языке курса' : 'Показать перевод чека на русский'}
+      aria-label={flipped
+        ? (interfaceLanguage === 'en' ? 'Show the bill in the language you are learning' : 'Показать чек на языке курса')
+        : (interfaceLanguage === 'en' ? 'Show the English translation of the bill' : 'Показать перевод чека на русский')}
       onClick={toggleBill}
       onKeyDown={handleBillKeyDown}
     >
@@ -564,6 +609,7 @@ export function LandingRestaurantBill() {
 
 export function LandingReadingReasons() {
   const courseId = useAppStore(state => state.settings.courseId);
+  const interfaceLanguage = useAppStore(state => state.settings.interfaceLanguage);
   const hydrate = useAppStore(state => state.hydrate);
   const reason = readingReasons[courseId];
 
@@ -573,7 +619,9 @@ export function LandingReadingReasons() {
 
   return (
     <section className="landing-reasons-card" aria-labelledby="landing-reasons-title">
-      <div className="landing-reasons-kicker">Перед первым уроком</div>
+      <div className="landing-reasons-kicker">
+        {interfaceLanguage === 'en' ? 'Before your first lesson' : 'Перед первым уроком'}
+      </div>
       <h2 id="landing-reasons-title" className="landing-preview-title">{reason.title}</h2>
       <p className="landing-reasons-subtitle">{reason.subtitle}</p>
       <div className="landing-reasons-list">

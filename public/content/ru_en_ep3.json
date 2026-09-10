@@ -1,0 +1,23 @@
+{
+  "id": "ep3",
+  "title": "Урок 3",
+  "letters": ["Е", "Л", "П", "Д", "Я"],
+  "cards": [
+    { "type": "word", "ge_text": "лес", "ru_meaning": "лес", "en_meaning": "forest" },
+    { "type": "word", "ge_text": "дело", "ru_meaning": "дело", "en_meaning": "matter" },
+    { "type": "word", "ge_text": "еда", "ru_meaning": "еда", "en_meaning": "food" },
+    { "type": "word", "ge_text": "папа", "ru_meaning": "папа", "en_meaning": "dad" },
+    { "type": "word", "ge_text": "поле", "ru_meaning": "поле", "en_meaning": "field" },
+    { "type": "word", "ge_text": "план", "ru_meaning": "план", "en_meaning": "plan" },
+    { "type": "word", "ge_text": "лапа", "ru_meaning": "лапа", "en_meaning": "paw" },
+    { "type": "word", "ge_text": "мел", "ru_meaning": "мел", "en_meaning": "chalk" },
+    { "type": "word", "ge_text": "пена", "ru_meaning": "пена", "en_meaning": "foam" },
+    { "type": "word", "ge_text": "линия", "ru_meaning": "линия", "en_meaning": "line" },
+    { "type": "word", "ge_text": "идея", "ru_meaning": "идея", "en_meaning": "idea" },
+    { "type": "phrase", "ge_text": "я дома", "ru_meaning": "я дома", "en_meaning": "I am home" },
+    { "type": "phrase", "ge_text": "папа там", "ru_meaning": "папа там", "en_meaning": "dad is there" },
+    { "type": "phrase", "ge_text": "она ела", "ru_meaning": "она ела", "en_meaning": "she ate" },
+    { "type": "phrase", "ge_text": "мама и папа", "ru_meaning": "мама и папа", "en_meaning": "mom and dad" },
+    { "type": "phrase", "ge_text": "я не один", "ru_meaning": "я не один", "en_meaning": "I am not alone" }
+  ]
+}

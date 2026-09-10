@@ -6,6 +6,7 @@ const AUTO_TRANSCRIPTION_LIMITS: Partial<Record<CourseId, number>> = {
 
 const PRACTICE_EPISODE_PREFIX: Record<CourseId, string> = {
   ka: 'ep10',
+  ru: 'ep8',
   sr: 'ep9',
   tr: 'ep10',
   es: 'ep11',

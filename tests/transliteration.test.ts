@@ -38,6 +38,11 @@ test('letterToHint supports Russian and latin hints for all non-Georgian courses
 });
 
 test('textToHint builds course-aware sound hint strings', () => {
+  assert.equal(textToHint('Мама', 'latin', 'ru'), 'mama');
+  assert.equal(textToHint('Есть', 'latin', 'ru'), 'yest');
+  assert.equal(textToHint('Сколько', 'latin', 'ru'), 'skolko');
+  assert.equal(textToHint('Подъезд', 'latin', 'ru'), 'podyezd');
+
   assert.equal(textToHint('Здраво', 'ru', 'sr'), 'здраво');
   assert.equal(textToHint('Здраво', 'latin', 'sr'), 'zdravo');
 
@@ -82,6 +87,8 @@ test('single-letter sound hints match alphabet hints where reading is not contex
     'Ј',
     'Ћ',
     'Џ',
+    'Ъ',
+    'Ь',
   ]);
 
   for (const courseId of COURSE_IDS) {

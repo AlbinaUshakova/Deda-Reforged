@@ -24,6 +24,15 @@ const languageBriefs: Record<CourseId, LanguageBrief> = {
       { label: 'Слова бывают очень ёмкими', text: 'Одно длинное слово может заменить целую фразу.' },
     ],
   },
+  ru: {
+    title: 'Russian: what matters for reading',
+    subtitle: 'Cyrillic looks unfamiliar, but many letters read consistently.',
+    points: [
+      { label: 'Start with familiar shapes', text: 'Some letters look and sound familiar: A, K, M, O and T.' },
+      { label: 'Watch the false friends', text: 'В sounds like v, Н like n, Р like r, С like s, and У like u.' },
+      { label: 'Signs change nearby sounds', text: 'Ь softens a consonant, while Ъ separates it from the following vowel.' },
+    ],
+  },
   en: {
     title: 'Английский: главное для чтения',
     subtitle: 'Буквы часто звучат по-разному, и это нормально.',
@@ -91,6 +100,7 @@ const languageBriefs: Record<CourseId, LanguageBrief> = {
 
 const nationalCatByCourse: Record<CourseId, string> = {
   ka: '/images/cats/national/deda-ka.png',
+  ru: '/images/cats/national/deda-en.png',
   es: '/images/cats/national/deda-es.png',
   de: '/images/cats/national/deda-de.png',
   en: '/images/cats/national/deda-en.png',

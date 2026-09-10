@@ -13,6 +13,10 @@ const EXAMPLES: Record<CourseId, Record<InterfaceLanguage, CustomCardExample>> =
     ru: { entered: 'гамарджоба', original: 'გამარჯობა', meaning: 'Здравствуйте' },
     en: { entered: 'gamarjoba', original: 'გამარჯობა', meaning: 'Hello' },
   },
+  ru: {
+    ru: { entered: 'здравствуйте', original: 'Здравствуйте', meaning: 'Hello' },
+    en: { entered: 'zdravstvuyte', original: 'Здравствуйте', meaning: 'Hello' },
+  },
   sr: {
     ru: { entered: 'добар дан', original: 'Добар дан', meaning: 'Здравствуйте' },
     en: { entered: 'dobar dan', original: 'Добар дан', meaning: 'Hello' },

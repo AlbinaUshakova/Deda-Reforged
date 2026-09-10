@@ -1,0 +1,23 @@
+{
+  "id": "ep6",
+  "title": "Урок 6",
+  "letters": ["Ы", "Ь", "Э", "Ю", "Ф"],
+  "cards": [
+    { "type": "word", "ge_text": "сыр", "ru_meaning": "сыр", "en_meaning": "cheese" },
+    { "type": "word", "ge_text": "соль", "ru_meaning": "соль", "en_meaning": "salt" },
+    { "type": "word", "ge_text": "фильм", "ru_meaning": "фильм", "en_meaning": "film" },
+    { "type": "word", "ge_text": "юг", "ru_meaning": "юг", "en_meaning": "south" },
+    { "type": "word", "ge_text": "эхо", "ru_meaning": "эхо", "en_meaning": "echo" },
+    { "type": "word", "ge_text": "февраль", "ru_meaning": "февраль", "en_meaning": "February" },
+    { "type": "word", "ge_text": "футбол", "ru_meaning": "футбол", "en_meaning": "football" },
+    { "type": "word", "ge_text": "семья", "ru_meaning": "семья", "en_meaning": "family" },
+    { "type": "word", "ge_text": "мышь", "ru_meaning": "мышь", "en_meaning": "mouse" },
+    { "type": "word", "ge_text": "дверь", "ru_meaning": "дверь", "en_meaning": "door" },
+    { "type": "phrase", "ge_text": "это фильм", "ru_meaning": "это фильм", "en_meaning": "this is a film" },
+    { "type": "phrase", "ge_text": "я люблю сыр", "ru_meaning": "я люблю сыр", "en_meaning": "I love cheese" },
+    { "type": "phrase", "ge_text": "мой друг здесь", "ru_meaning": "мой друг здесь", "en_meaning": "my friend is here" },
+    { "type": "phrase", "ge_text": "где соль?", "ru_meaning": "где соль?", "en_meaning": "where is the salt?" },
+    { "type": "phrase", "ge_text": "фильм хороший", "ru_meaning": "фильм хороший", "en_meaning": "the film is good" },
+    { "type": "phrase", "ge_text": "я люблю музыку", "ru_meaning": "я люблю музыку", "en_meaning": "I love music" }
+  ]
+}

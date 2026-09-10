@@ -119,7 +119,7 @@ test('loadNewLettersPerEpisode returns letters for each numbered lesson', async 
 });
 
 test('course alphabets and special letters are covered by lessons', async () => {
-  for (const courseId of ['ka', 'sr', 'tr', 'es', 'de', 'en'] as const) {
+  for (const courseId of ['ka', 'ru', 'sr', 'tr', 'es', 'de', 'en'] as const) {
     const course = COURSES[courseId];
     const lettersByEpisode = await loadNewLettersPerEpisode(courseId);
     const taughtLetters = new Set(Object.values(lettersByEpisode).flat());
@@ -141,7 +141,7 @@ test('course alphabets and special letters are covered by lessons', async () => 
 });
 
 test('course cards are real words or phrases, not standalone letter drills', async () => {
-  for (const courseId of ['ka', 'sr', 'tr', 'es', 'de', 'en'] as const) {
+  for (const courseId of ['ka', 'ru', 'sr', 'tr', 'es', 'de', 'en'] as const) {
     const episodes = await listEpisodes(courseId);
 
     for (const { id } of episodes) {
@@ -158,14 +158,14 @@ test('course cards are real words or phrases, not standalone letter drills', asy
 });
 
 test('non-Georgian courses load conversational lessons without shopping section', async () => {
-  for (const courseId of ['sr', 'tr', 'es', 'de', 'en'] as const) {
+  for (const courseId of ['ru', 'sr', 'tr', 'es', 'de', 'en'] as const) {
     const episodes = await listEpisodes(courseId);
     const ids = episodes.map((episode) => episode.id);
 
     assert.ok(ids.includes('ep1'), `${courseId} should include ep1`);
     assert.ok(ids.includes('all'), `${courseId} should include all lessons`);
     assert.ok(ids.includes('favorites'), `${courseId} should include favorites`);
-    if (courseId === 'de' || courseId === 'en' || courseId === 'es' || courseId === 'sr' || courseId === 'tr') {
+    if (courseId === 'ru' || courseId === 'de' || courseId === 'en' || courseId === 'es' || courseId === 'sr' || courseId === 'tr') {
       assert.ok(episodes.some((episode) => episode.title === 'Вежливость'), `${courseId} should include thematic politeness lesson`);
       assert.ok(!episodes.some((episode) => episode.title === 'Вежливые фразы'), `${courseId} should not include the old combined phrases lesson`);
       assert.ok(episodes.some((episode) => episode.title === 'Приветствия и прощания'), `${courseId} should include greeting lesson`);
@@ -454,6 +454,27 @@ test('English beginner phrase sections cover all 60 canonical intents', async ()
   assert.ok(cards.every(card => card.translit?.trim()));
 });
 
+test('Russian course covers the alphabet and keeps English translations explicit', async () => {
+  const lessonIds = ['ep1', 'ep2', 'ep3', 'ep4', 'ep5', 'ep6', 'ep7'];
+  const lessons = await Promise.all(lessonIds.map(id => loadEpisode(id, 'ru')));
+  const lettersByEpisode = await loadNewLettersPerEpisode('ru');
+  const taughtLetters = new Set(Object.values(lettersByEpisode).flat());
+
+  assert.deepEqual(taughtLetters, new Set(COURSES.ru.alphabet));
+  assert.ok(lessons.every(Boolean));
+  assert.ok(lessons.flatMap(lesson => lesson?.cards ?? []).every(card => card.en_meaning?.trim()));
+
+  const sectionIds = ['ep8a', 'ep8b', 'ep8c', 'ep8d', 'ep8e', 'ep8f', 'ep8g', 'ep8h', 'ep8i', 'ep8j'];
+  const sections = await Promise.all(sectionIds.map(id => loadEpisode(id, 'ru')));
+  const intentIds = sections
+    .flatMap(section => section?.cards ?? [])
+    .map(card => card.intent_id)
+    .filter((id): id is string => Boolean(id));
+
+  assert.equal(intentIds.length, 60);
+  assert.deepEqual(new Set(intentIds), new Set(PHRASE_INTENT_IDS));
+});
+
 test('special lesson list items expose phrase counts', async () => {
   const episodes = await listEpisodes('de');
   const politeness = episodes.find(episode => episode.id === 'ep7b');
@@ -495,7 +516,7 @@ function expectedReadingLessonCardRange(index: number) {
 }
 
 test('reading lessons stay compact for decoding practice', async () => {
-  for (const courseId of ['ka', 'sr', 'tr', 'es', 'de', 'en'] as const) {
+  for (const courseId of ['ka', 'ru', 'sr', 'tr', 'es', 'de', 'en'] as const) {
     const episodes = await listEpisodes(courseId);
     const lessons = episodes.filter(isReadingLesson);
 
@@ -515,7 +536,7 @@ test('reading lessons stay compact for decoding practice', async () => {
 });
 
 test('reading lessons include the target number of short phrases', async () => {
-  for (const courseId of ['ka', 'sr', 'tr', 'es', 'de', 'en'] as const) {
+  for (const courseId of ['ka', 'ru', 'sr', 'tr', 'es', 'de', 'en'] as const) {
     const episodes = await listEpisodes(courseId);
     const readingLessons = episodes.filter(isReadingLesson);
 
@@ -576,7 +597,7 @@ test('english course cards provide manual pronunciation hints', async () => {
 });
 
 test('course lessons do not repeat the same card inside one lesson', async () => {
-  for (const courseId of ['ka', 'sr', 'tr', 'es', 'de', 'en'] as const) {
+  for (const courseId of ['ka', 'ru', 'sr', 'tr', 'es', 'de', 'en'] as const) {
     const episodes = await listEpisodes(courseId);
 
     for (const episode of episodes) {
@@ -631,7 +652,7 @@ test('reading lessons avoid rare dictionary-only starter words', async () => {
     'умеренный',
   ].map((meaning) => meaning.toLocaleLowerCase('ru'));
 
-  for (const courseId of ['ka', 'sr', 'tr', 'es', 'de', 'en'] as const) {
+  for (const courseId of ['ka', 'ru', 'sr', 'tr', 'es', 'de', 'en'] as const) {
     const episodes = await listEpisodes(courseId);
 
     for (const episode of episodes.filter(isReadingLesson)) {
@@ -649,7 +670,7 @@ test('reading lessons avoid rare dictionary-only starter words', async () => {
 });
 
 test('reading lessons avoid standalone one-letter or one-symbol cards', async () => {
-  for (const courseId of ['ka', 'sr', 'tr', 'es', 'de', 'en'] as const) {
+  for (const courseId of ['ka', 'ru', 'sr', 'tr', 'es', 'de', 'en'] as const) {
     const episodes = await listEpisodes(courseId);
 
     for (const episode of episodes.filter(isReadingLesson)) {
@@ -668,7 +689,7 @@ test('reading lessons avoid standalone one-letter or one-symbol cards', async ()
 });
 
 test('reading lesson cards use only current and previous lesson letters', async () => {
-  for (const courseId of ['ka', 'sr', 'tr', 'es', 'de', 'en'] as const) {
+  for (const courseId of ['ka', 'ru', 'sr', 'tr', 'es', 'de', 'en'] as const) {
     const episodes = await listEpisodes(courseId);
     const lettersByEpisode = await loadNewLettersPerEpisode(courseId);
     const seen = new Set<string>();

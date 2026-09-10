@@ -1,0 +1,22 @@
+{
+  "id": "ep7",
+  "title": "Урок 7",
+  "letters": ["Ё", "Щ", "Ъ"],
+  "cards": [
+    { "type": "word", "ge_text": "ёж", "ru_meaning": "ёж", "en_meaning": "hedgehog" },
+    { "type": "word", "ge_text": "ещё", "ru_meaning": "ещё", "en_meaning": "more" },
+    { "type": "word", "ge_text": "подъезд", "ru_meaning": "подъезд", "en_meaning": "building entrance" },
+    { "type": "word", "ge_text": "объём", "ru_meaning": "объём", "en_meaning": "volume" },
+    { "type": "word", "ge_text": "съёмка", "ru_meaning": "съёмка", "en_meaning": "filming" },
+    { "type": "word", "ge_text": "щука", "ru_meaning": "щука", "en_meaning": "pike" },
+    { "type": "word", "ge_text": "борщ", "ru_meaning": "борщ", "en_meaning": "borscht" },
+    { "type": "word", "ge_text": "плащ", "ru_meaning": "плащ", "en_meaning": "raincoat" },
+    { "type": "word", "ge_text": "вещь", "ru_meaning": "вещь", "en_meaning": "thing" },
+    { "type": "phrase", "ge_text": "ёж дома", "ru_meaning": "ёж дома", "en_meaning": "the hedgehog is home" },
+    { "type": "phrase", "ge_text": "ещё чай", "ru_meaning": "ещё чай", "en_meaning": "more tea" },
+    { "type": "phrase", "ge_text": "где подъезд?", "ru_meaning": "где подъезд?", "en_meaning": "where is the entrance?" },
+    { "type": "phrase", "ge_text": "это борщ", "ru_meaning": "это борщ", "en_meaning": "this is borscht" },
+    { "type": "phrase", "ge_text": "мой плащ", "ru_meaning": "мой плащ", "en_meaning": "my raincoat" },
+    { "type": "phrase", "ge_text": "хочу ещё", "ru_meaning": "хочу ещё", "en_meaning": "I want more" }
+  ]
+}

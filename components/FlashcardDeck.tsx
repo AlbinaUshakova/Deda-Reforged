@@ -44,6 +44,7 @@ type Card = {
   transcription_en?: string;
   ipa?: string;
   ru_meaning?: string;
+  en_meaning?: string;
   info_notes?: Array<{ kind: 'grammar' | 'speech' | 'mistake'; text: string }>;
   type?: 'word' | 'letter';
   level?: number;
@@ -275,9 +276,9 @@ export default function FlashcardDeck({
       interfaceLanguage === 'en'
         ? (isCustomDeck
           ? (card?.ru_meaning || '')
-          : translateRussianMeaningToEnglish(card?.ru_meaning || ''))
+          : (card?.en_meaning || translateRussianMeaningToEnglish(card?.ru_meaning || '')))
         : (card?.ru_meaning || ''),
-    [card?.ru_meaning, interfaceLanguage, isCustomDeck],
+    [card?.en_meaning, card?.ru_meaning, interfaceLanguage, isCustomDeck],
   );
   const displayGeText = useMemo(
     () => getDisplayText(card?.ge_text || '', transliterationMode, courseId),

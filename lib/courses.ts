@@ -1,9 +1,9 @@
 import { geLetterAudioMap } from './georgianLetterAudio.ts';
 
-export type CourseId = 'ka' | 'sr' | 'tr' | 'es' | 'de' | 'en' | 'fr' | 'it';
+export type CourseId = 'ka' | 'ru' | 'sr' | 'tr' | 'es' | 'de' | 'en' | 'fr' | 'it';
 
-export const COURSE_ORDER: CourseId[] = ['ka', 'en', 'es', 'de', 'fr', 'it', 'sr', 'tr'];
-export const PRIMARY_ACTIVE_COURSE_IDS: CourseId[] = ['ka'];
+export const COURSE_ORDER: CourseId[] = ['ka', 'ru', 'en', 'es', 'de', 'fr', 'it', 'sr', 'tr'];
+export const PRIMARY_ACTIVE_COURSE_IDS: CourseId[] = ['ka', 'ru'];
 export const HIDDEN_ACTIVE_COURSE_IDS: CourseId[] = ['sr', 'tr', 'es', 'de', 'en', 'fr', 'it'];
 
 export type Course = {
@@ -150,6 +150,34 @@ const GEORGIAN_LATIN_HINTS: Record<string, string> = {
   'ი': 'i', 'კ': "k'", 'ლ': 'l', 'მ': 'm', 'ნ': 'n', 'ო': 'o', 'პ': "p'", 'ჟ': 'zh',
   'რ': 'r', 'ს': 's', 'ტ': "t'", 'უ': 'u', 'ფ': 'p', 'ქ': 'k', 'ღ': 'gh', 'ყ': "q'",
   'შ': 'sh', 'ჩ': 'ch', 'ც': 'ts', 'ძ': 'dz', 'წ': "ts'", 'ჭ': "ch'", 'ხ': 'kh', 'ჯ': 'j', 'ჰ': 'h',
+};
+
+const RUSSIAN_ALPHABET = [
+  'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й',
+  'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф',
+  'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я',
+];
+
+const RUSSIAN_LETTER_NAMES: Record<string, string> = {
+  'А': 'а', 'Б': 'бэ', 'В': 'вэ', 'Г': 'гэ', 'Д': 'дэ', 'Е': 'е', 'Ё': 'ё', 'Ж': 'жэ',
+  'З': 'зэ', 'И': 'и', 'Й': 'и краткое', 'К': 'ка', 'Л': 'эль', 'М': 'эм', 'Н': 'эн', 'О': 'о',
+  'П': 'пэ', 'Р': 'эр', 'С': 'эс', 'Т': 'тэ', 'У': 'у', 'Ф': 'эф', 'Х': 'ха', 'Ц': 'цэ',
+  'Ч': 'че', 'Ш': 'ша', 'Щ': 'ща', 'Ъ': 'твёрдый знак', 'Ы': 'ы', 'Ь': 'мягкий знак',
+  'Э': 'э', 'Ю': 'ю', 'Я': 'я',
+};
+
+const RUSSIAN_RU_HINTS: Record<string, string> = {
+  'А': 'а', 'Б': 'б', 'В': 'в', 'Г': 'г', 'Д': 'д', 'Е': 'е', 'Ё': 'ё', 'Ж': 'ж', 'З': 'з', 'И': 'и',
+  'Й': 'й', 'К': 'к', 'Л': 'л', 'М': 'м', 'Н': 'н', 'О': 'о', 'П': 'п', 'Р': 'р', 'С': 'с', 'Т': 'т',
+  'У': 'у', 'Ф': 'ф', 'Х': 'х', 'Ц': 'ц', 'Ч': 'ч', 'Ш': 'ш', 'Щ': 'щ', 'Ъ': '—', 'Ы': 'ы', 'Ь': '—',
+  'Э': 'э', 'Ю': 'ю', 'Я': 'я',
+};
+
+const RUSSIAN_LATIN_HINTS: Record<string, string> = {
+  'А': 'a', 'Б': 'b', 'В': 'v', 'Г': 'g', 'Д': 'd', 'Е': 'ye', 'Ё': 'yo', 'Ж': 'zh', 'З': 'z', 'И': 'i',
+  'Й': 'y', 'К': 'k', 'Л': 'l', 'М': 'm', 'Н': 'n', 'О': 'o', 'П': 'p', 'Р': 'r', 'С': 's', 'Т': 't',
+  'У': 'u', 'Ф': 'f', 'Х': 'kh', 'Ц': 'ts', 'Ч': 'ch', 'Ш': 'sh', 'Щ': 'shch', 'Ъ': '—', 'Ы': 'y', 'Ь': '—',
+  'Э': 'e', 'Ю': 'yu', 'Я': 'ya',
 };
 
 const SERBIAN_ALPHABET = [
@@ -1096,6 +1124,29 @@ export const COURSES: Record<CourseId, Course> = {
     speechLang: 'ka-GE',
     locale: 'ka',
   },
+  ru: {
+    id: 'ru',
+    title: 'Русский',
+    shortTitle: 'Русский',
+    sourceLanguageLabel: '🇷🇺',
+    targetLanguageLabel: '🇬🇧',
+    scriptTitleRu: 'Русский алфавит',
+    scriptTitleNative: 'Русский алфавит',
+    alphabetTitle: 'Русский алфавит',
+    alphabet: RUSSIAN_ALPHABET,
+    alphabetRows: rows(RUSSIAN_ALPHABET, 6),
+    vowels: ['А', 'Е', 'Ё', 'И', 'О', 'У', 'Ы', 'Э', 'Ю', 'Я'],
+    alphabetHighlightedLetters: ['Ё', 'Й', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'],
+    alphabetSections: [section('Основные буквы', RUSSIAN_ALPHABET)],
+    letterNames: RUSSIAN_LETTER_NAMES,
+    letterNameRu: RUSSIAN_RU_HINTS,
+    letterSoundLabels: RUSSIAN_RU_HINTS,
+    soundHints: makeSoundHints(RUSSIAN_RU_HINTS, RUSSIAN_LATIN_HINTS),
+    letterHints: makeSoundHints(RUSSIAN_RU_HINTS, RUSSIAN_LATIN_HINTS),
+    letterAudioMap: {},
+    speechLang: 'ru-RU',
+    locale: 'ru-RU',
+  },
   sr: {
     id: 'sr',
     title: 'Сербский',
@@ -1295,7 +1346,7 @@ export const DEFAULT_COURSE_ID: CourseId = 'ka';
 export const COURSE_IDS = COURSE_ORDER;
 
 export function normalizeCourseId(value: unknown): CourseId {
-  return value === 'sr' || value === 'tr' || value === 'es' || value === 'de' || value === 'en' || value === 'fr' || value === 'it'
+  return value === 'ru' || value === 'sr' || value === 'tr' || value === 'es' || value === 'de' || value === 'en' || value === 'fr' || value === 'it'
     ? value
     : DEFAULT_COURSE_ID;
 }
@@ -1312,6 +1363,26 @@ export function scriptWatermarkStyle(courseId: unknown): Record<string, string> 
   return {
     '--script-watermark': `'${course.alphabet.join('')}'`,
     '--script-watermark-font': id === 'ka' ? 'var(--font-georgian)' : 'var(--font-display)',
+  };
+}
+
+const GAME_WATERMARK_BY_COURSE: Record<CourseId, string> = {
+  ka: 'თამაში',
+  ru: 'ИГРА',
+  sr: 'ИГРА',
+  tr: 'OYUN',
+  es: 'JUEGO',
+  de: 'SPIEL',
+  en: 'GAME',
+  fr: 'JEU',
+  it: 'GIOCO',
+};
+
+export function gameWatermarkStyle(courseId: unknown): Record<string, string> {
+  const id = normalizeCourseId(courseId);
+  return {
+    '--game-watermark': `'${GAME_WATERMARK_BY_COURSE[id]}'`,
+    '--game-watermark-font': id === 'ka' ? 'var(--font-georgian)' : 'var(--font-display)',
   };
 }
 

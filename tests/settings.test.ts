@@ -31,3 +31,8 @@ test('normalizeSettings returns defaults for invalid input', () => {
 
   assert.deepEqual(normalized, DEFAULT_SETTINGS);
 });
+
+test('Russian course is reserved for the English learning interface', () => {
+  assert.equal(normalizeSettings({ courseId: 'ru', interfaceLanguage: 'en' }).courseId, 'ru');
+  assert.equal(normalizeSettings({ courseId: 'ru', interfaceLanguage: 'ru' }).courseId, 'ka');
+});

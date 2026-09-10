@@ -63,6 +63,22 @@ const SERBIAN_CYRILLIC_TO_RU: Record<string, string> = {
   С: 'с', Т: 'т', Ћ: 'чь', У: 'у', Ф: 'ф', Х: 'х', Ц: 'ц', Ч: 'ч', Џ: 'дж', Ш: 'ш',
 };
 
+function russianTextToHint(text: string, mode: TransliterationMode): string {
+  if (mode === 'ru') return text.toLocaleLowerCase('ru-RU');
+
+  const letters = Array.from(text);
+  return letters.map((ch, index) => {
+    const upper = ch.toLocaleUpperCase('ru-RU');
+    if (upper === 'Ъ' || upper === 'Ь') return '';
+    if (upper === 'Е') {
+      const previous = letters[index - 1]?.toLocaleUpperCase('ru-RU') ?? '';
+      const startsSyllable = index === 0 || /[\sАЕЁИОУЫЭЮЯЪЬ]/.test(previous);
+      return startsSyllable ? 'ye' : 'e';
+    }
+    return getLetterHint(upper, 'latin', 'ru') || ch;
+  }).join('');
+}
+
 const TURKISH_TO_RU: Record<string, string> = {
   a: 'а', b: 'б', c: 'дж', ç: 'ч', d: 'д', e: 'э', f: 'ф', g: 'г', ğ: '',
   h: 'х', ı: 'ы', i: 'и', j: 'ж', k: 'к', l: 'л', m: 'м', n: 'н', o: 'о',
@@ -291,6 +307,7 @@ export function textToHint(
 ): string {
   const course = getCourse(courseId);
   if (course.id === DEFAULT_COURSE_ID) return geTextToHint(text, mode);
+  if (course.id === 'ru') return russianTextToHint(text, mode);
   if (course.id === 'sr') return serbianTextToHint(text, mode);
   if (course.id === 'tr') return turkishTextToHint(text, mode);
   if (course.id === 'es') return spanishTextToHint(text, mode);

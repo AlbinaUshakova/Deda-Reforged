@@ -13,6 +13,14 @@ test('Russian custom-card examples use familiar letters and mean hello', () => {
   }
 });
 
+test('Russian course example is explained in English', () => {
+  assert.deepEqual(getCustomCardExample('ru', 'en'), {
+    entered: 'zdravstvuyte',
+    original: 'Здравствуйте',
+    meaning: 'Hello',
+  });
+});
+
 test('Turkish example shows both comfortable and original spellings', () => {
   assert.deepEqual(getCustomCardExample('tr', 'ru'), {
     entered: 'мерхаба',

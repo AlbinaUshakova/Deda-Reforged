@@ -5,6 +5,7 @@ export type InterfaceLanguage = Settings['interfaceLanguage'];
 
 const COURSE_NAMES: Record<CourseId, { ru: string; en: string }> = {
   ka: { ru: 'Грузинский', en: 'Georgian' },
+  ru: { ru: 'Русский', en: 'Russian' },
   sr: { ru: 'Сербский', en: 'Serbian' },
   tr: { ru: 'Турецкий', en: 'Turkish' },
   es: { ru: 'Испанский', en: 'Spanish' },
@@ -55,6 +56,9 @@ export function getAlphabetDisplayTitle(
   if (courseId === 'ka') {
     return 'ქართული ანბანი';
   }
+  if (courseId === 'ru') {
+    return 'Русский алфавит';
+  }
   if (courseId === 'sr') {
     return transliterationMode === 'latin' ? 'Srpska latinica' : 'Српска ћирилица';
   }
@@ -85,6 +89,9 @@ export function getHeaderAlphabetButtonTitle(
 ) {
   if (courseId === 'ka') {
     return 'ქართული';
+  }
+  if (courseId === 'ru') {
+    return 'Русский';
   }
   if (courseId === 'sr') {
     return transliterationMode === 'latin' ? 'Latinica' : 'Ћирилица';

@@ -1,0 +1,21 @@
+{
+  "id": "ep2",
+  "title": "Урок 2",
+  "letters": ["Н", "И", "С", "Р", "В"],
+  "cards": [
+    { "type": "word", "ge_text": "мир", "ru_meaning": "мир", "en_meaning": "world" },
+    { "type": "word", "ge_text": "нос", "ru_meaning": "нос", "en_meaning": "nose" },
+    { "type": "word", "ge_text": "сон", "ru_meaning": "сон", "en_meaning": "sleep" },
+    { "type": "word", "ge_text": "рис", "ru_meaning": "рис", "en_meaning": "rice" },
+    { "type": "word", "ge_text": "кино", "ru_meaning": "кино", "en_meaning": "cinema" },
+    { "type": "word", "ge_text": "вино", "ru_meaning": "вино", "en_meaning": "wine" },
+    { "type": "word", "ge_text": "икра", "ru_meaning": "икра", "en_meaning": "caviar" },
+    { "type": "word", "ge_text": "кран", "ru_meaning": "кран", "en_meaning": "tap" },
+    { "type": "word", "ge_text": "старт", "ru_meaning": "старт", "en_meaning": "start" },
+    { "type": "word", "ge_text": "страна", "ru_meaning": "страна", "en_meaning": "country" },
+    { "type": "phrase", "ge_text": "он там", "ru_meaning": "он там", "en_meaning": "he is there" },
+    { "type": "phrase", "ge_text": "она там", "ru_meaning": "она там", "en_meaning": "she is there" },
+    { "type": "phrase", "ge_text": "кот и мама", "ru_meaning": "кот и мама", "en_meaning": "the cat and mom" },
+    { "type": "phrase", "ge_text": "кто с нами?", "ru_meaning": "кто с нами?", "en_meaning": "who is with us?" }
+  ]
+}

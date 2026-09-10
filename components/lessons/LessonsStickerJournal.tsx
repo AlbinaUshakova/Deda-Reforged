@@ -12,6 +12,7 @@ const ACH_POOL = ACH_SEQUENCE.map((n) => `/images/cats/deda-ach-${n}.png`);
 
 const costumeByCourse: Record<CourseId, string> = {
   ka: '/images/cats/deda-cost-ka.png',
+  ru: '/images/cats/deda-cost-en.png',
   en: '/images/cats/deda-cost-en.png',
   es: '/images/cats/deda-cost-es.png',
   de: '/images/cats/deda-cost-de.png',

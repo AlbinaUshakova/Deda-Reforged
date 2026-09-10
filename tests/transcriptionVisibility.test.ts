@@ -43,7 +43,7 @@ test('toggle stays hidden on stronger lessons until needed', () => {
 });
 
 test('extra practice always offers transcription without opening it automatically', async () => {
-  const courseIds: CourseId[] = ['ka', 'sr', 'tr', 'es', 'de', 'en', 'fr', 'it'];
+  const courseIds: CourseId[] = ['ka', 'ru', 'sr', 'tr', 'es', 'de', 'en', 'fr', 'it'];
 
   for (const courseId of courseIds) {
     const [episodes, lettersByEpisode] = await Promise.all([

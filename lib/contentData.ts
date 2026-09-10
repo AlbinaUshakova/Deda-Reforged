@@ -1,5 +1,6 @@
 import staticEpisodes from '../public/content/episodes.json' with { type: 'json' };
 import srStaticEpisodes from '../public/content/episodes_sr.json' with { type: 'json' };
+import ruStaticEpisodes from '../public/content/episodes_ru.json' with { type: 'json' };
 import ep1Json from '../public/content/ka_ru_ep1.json' with { type: 'json' };
 import ep2Json from '../public/content/ka_ru_ep2.json' with { type: 'json' };
 import ep2bJson from '../public/content/ka_ru_ep2b.json' with { type: 'json' };
@@ -19,6 +20,13 @@ import srEp5Json from '../public/content/sr_ru_ep5.json' with { type: 'json' };
 import srEp6Json from '../public/content/sr_ru_ep6.json' with { type: 'json' };
 import srEp7Json from '../public/content/sr_ru_ep7.json' with { type: 'json' };
 import srEp8Json from '../public/content/sr_ru_ep8.json' with { type: 'json' };
+import ruEp1Json from '../public/content/ru_en_ep1.json' with { type: 'json' };
+import ruEp2Json from '../public/content/ru_en_ep2.json' with { type: 'json' };
+import ruEp3Json from '../public/content/ru_en_ep3.json' with { type: 'json' };
+import ruEp4Json from '../public/content/ru_en_ep4.json' with { type: 'json' };
+import ruEp5Json from '../public/content/ru_en_ep5.json' with { type: 'json' };
+import ruEp6Json from '../public/content/ru_en_ep6.json' with { type: 'json' };
+import ruEp7Json from '../public/content/ru_en_ep7.json' with { type: 'json' };
 import trStaticEpisodes from '../public/content/episodes_tr.json' with { type: 'json' };
 import trEp1Json from '../public/content/tr_ru_ep1.json' with { type: 'json' };
 import trEp1bJson from '../public/content/tr_ru_ep1b.json' with { type: 'json' };
@@ -91,6 +99,7 @@ export type EpisodeCard = {
   type: 'word' | 'phrase' | 'letter';
   ge_text: string;
   ru_meaning: string;
+  en_meaning?: string;
   translit?: string;
   transcription_ru?: string;
   transcription_en?: string;
@@ -136,6 +145,15 @@ const RAW_EPISODES: RawEpisode[] = [
 
 const RAW_EPISODES_BY_COURSE: Record<CourseId, RawEpisode[]> = {
   ka: RAW_EPISODES,
+  ru: [
+    ruEp1Json as RawEpisode,
+    ruEp2Json as RawEpisode,
+    ruEp3Json as RawEpisode,
+    ruEp4Json as RawEpisode,
+    ruEp5Json as RawEpisode,
+    ruEp6Json as RawEpisode,
+    ruEp7Json as RawEpisode,
+  ],
   sr: [
     srEp1Json as RawEpisode,
     srEp2Json as RawEpisode,
@@ -229,6 +247,10 @@ export const STATIC_EPISODES_FALLBACK: EpisodesListItem[] = staticLessonItems.co
 
 const STATIC_LESSON_ITEMS_BY_COURSE: Record<CourseId, EpisodesListItem[]> = {
   ka: staticLessonItems,
+  ru: (ruStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
+    id: episode.id,
+    title: episode.title,
+  })),
   sr: (srStaticEpisodes as Array<{ id: string; title: string }>).map((episode) => ({
     id: episode.id,
     title: episode.title,
@@ -888,6 +910,18 @@ const GEORGIAN_INTENT_SECTION_EPISODES: Episode[] = [
   },
 ];
 
+const RUSSIAN_INTENT_SECTION_EPISODES: Episode[] = GEORGIAN_INTENT_SECTION_EPISODES.map(
+  (episode) => ({
+    ...episode,
+    id: episode.id.replace('georgian-', 'russian-'),
+    cards: episode.cards.map((card) => ({
+      ...card,
+      ge_text: card.ru_meaning,
+      info_notes: undefined,
+    })),
+  }),
+);
+
 const SERBIAN_INTENT_SECTION_EPISODES: Episode[] = [
   {
     id: 'serbian-greetings',
@@ -1509,6 +1543,7 @@ const FRENCH_INTENT_SECTION_IDS = [
 
 export const PHRASES_EPISODE_BY_COURSE: Record<CourseId, Episode | null> = {
   ka: null,
+  ru: null,
   sr: null,
   tr: null,
   es: null,
@@ -1914,6 +1949,19 @@ const GEORGIAN_INTENT_SECTION_IDS = [
   'ep10j',
 ] as const;
 
+const RUSSIAN_INTENT_SECTION_IDS = [
+  'ep8a',
+  'ep8b',
+  'ep8c',
+  'ep8d',
+  'ep8e',
+  'ep8f',
+  'ep8g',
+  'ep8h',
+  'ep8i',
+  'ep8j',
+] as const;
+
 const SERBIAN_INTENT_SECTION_IDS = [
   'ep9a',
   'ep9b',
@@ -1983,6 +2031,7 @@ const ENGLISH_INTENT_SECTION_IDS = [
 
 const EXTRA_LESSON_IDS_BY_COURSE: Record<CourseId, { phrases?: string }> = {
   ka: {},
+  ru: {},
   sr: {},
   tr: {},
   es: {},
@@ -1995,6 +2044,7 @@ const EXTRA_LESSON_IDS_BY_COURSE: Record<CourseId, { phrases?: string }> = {
 const NUMBERS_ID_BY_COURSE: Record<CourseId, string> = {
   de: 'ep7k',
   ka: 'ep10k',
+  ru: 'ep8k',
   sr: 'ep9k',
   tr: 'ep10k',
   es: 'ep11k',
@@ -2006,7 +2056,10 @@ const NUMBERS_ID_BY_COURSE: Record<CourseId, string> = {
 type NumberRow = { n: number; ge: string; ru: string; tl?: string };
 
 function buildNumbersEpisode(courseId: CourseId): Episode {
-  const rows = (numbersData as unknown as Record<string, NumberRow[]>)[courseId] ?? [];
+  const numberRows = numbersData as unknown as Record<string, NumberRow[]>;
+  const rows = courseId === 'ru'
+    ? (numberRows.en ?? []).map((row) => ({ ...row, ge: row.ru }))
+    : numberRows[courseId] ?? [];
   const cards = rows.map((row) =>
     courseId === 'en'
       ? intentEnPhrase(`number_${row.n}`, row.ge, row.tl ?? '', row.ru)
@@ -2017,6 +2070,7 @@ function buildNumbersEpisode(courseId: CourseId): Episode {
 
 const NUMBERS_SECTION_BY_COURSE: Record<CourseId, Episode> = {
   ka: buildNumbersEpisode('ka'),
+  ru: buildNumbersEpisode('ru'),
   de: buildNumbersEpisode('de'),
   es: buildNumbersEpisode('es'),
   sr: buildNumbersEpisode('sr'),
@@ -2061,6 +2115,11 @@ function getExtraLessons(courseId: CourseId): RawEpisode[] {
           toRawLesson(episode, GEORGIAN_INTENT_SECTION_IDS[index])
         ))
       : []),
+    ...(courseId === 'ru'
+      ? RUSSIAN_INTENT_SECTION_EPISODES.map((episode, index) => (
+          toRawLesson(episode, RUSSIAN_INTENT_SECTION_IDS[index])
+        ))
+      : []),
     ...(courseId === 'sr'
       ? SERBIAN_INTENT_SECTION_EPISODES.map((episode, index) => (
           toRawLesson(episode, SERBIAN_INTENT_SECTION_IDS[index])
@@ -2098,6 +2157,7 @@ function resolveLegacyEpisodeId(id: string, courseId: CourseId): string {
   if (id === 'phrases') {
     return EXTRA_LESSON_IDS_BY_COURSE[courseId].phrases ??
       (courseId === 'en' ? ENGLISH_INTENT_SECTION_IDS[0] :
+        courseId === 'ru' ? RUSSIAN_INTENT_SECTION_IDS[0] :
         courseId === 'es' ? SPANISH_INTENT_SECTION_IDS[0] :
           courseId === 'sr' ? SERBIAN_INTENT_SECTION_IDS[0] :
             courseId === 'tr' ? TURKISH_INTENT_SECTION_IDS[0] :

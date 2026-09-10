@@ -1,0 +1,23 @@
+{
+  "id": "ep4",
+  "title": "Урок 4",
+  "letters": ["У", "Б", "Г", "Ч", "Й"],
+  "cards": [
+    { "type": "word", "ge_text": "чай", "ru_meaning": "чай", "en_meaning": "tea" },
+    { "type": "word", "ge_text": "друг", "ru_meaning": "друг", "en_meaning": "friend" },
+    { "type": "word", "ge_text": "буква", "ru_meaning": "буква", "en_meaning": "letter" },
+    { "type": "word", "ge_text": "губа", "ru_meaning": "губа", "en_meaning": "lip" },
+    { "type": "word", "ge_text": "игра", "ru_meaning": "игра", "en_meaning": "game" },
+    { "type": "word", "ge_text": "рука", "ru_meaning": "рука", "en_meaning": "hand" },
+    { "type": "word", "ge_text": "утро", "ru_meaning": "утро", "en_meaning": "morning" },
+    { "type": "word", "ge_text": "город", "ru_meaning": "город", "en_meaning": "city" },
+    { "type": "word", "ge_text": "берег", "ru_meaning": "берег", "en_meaning": "shore" },
+    { "type": "word", "ge_text": "герой", "ru_meaning": "герой", "en_meaning": "hero" },
+    { "type": "word", "ge_text": "клуб", "ru_meaning": "клуб", "en_meaning": "club" },
+    { "type": "phrase", "ge_text": "чай и булка", "ru_meaning": "чай и булка", "en_meaning": "tea and a bun" },
+    { "type": "phrase", "ge_text": "друг дома", "ru_meaning": "друг дома", "en_meaning": "a friend is home" },
+    { "type": "phrase", "ge_text": "где мама?", "ru_meaning": "где мама?", "en_meaning": "where is mom?" },
+    { "type": "phrase", "ge_text": "он мой", "ru_meaning": "он мой", "en_meaning": "he is mine" },
+    { "type": "phrase", "ge_text": "я могу", "ru_meaning": "я могу", "en_meaning": "I can" }
+  ]
+}

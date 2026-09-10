@@ -1,0 +1,23 @@
+{
+  "id": "ep5",
+  "title": "Урок 5",
+  "letters": ["З", "Ж", "Ш", "Х", "Ц"],
+  "cards": [
+    { "type": "word", "ge_text": "жена", "ru_meaning": "жена", "en_meaning": "wife" },
+    { "type": "word", "ge_text": "зима", "ru_meaning": "зима", "en_meaning": "winter" },
+    { "type": "word", "ge_text": "цена", "ru_meaning": "цена", "en_meaning": "price" },
+    { "type": "word", "ge_text": "хлеб", "ru_meaning": "хлеб", "en_meaning": "bread" },
+    { "type": "word", "ge_text": "шар", "ru_meaning": "шар", "en_meaning": "ball" },
+    { "type": "word", "ge_text": "жара", "ru_meaning": "жара", "en_meaning": "heat" },
+    { "type": "word", "ge_text": "чашка", "ru_meaning": "чашка", "en_meaning": "cup" },
+    { "type": "word", "ge_text": "хорошо", "ru_meaning": "хорошо", "en_meaning": "good" },
+    { "type": "word", "ge_text": "машина", "ru_meaning": "машина", "en_meaning": "car" },
+    { "type": "word", "ge_text": "сахар", "ru_meaning": "сахар", "en_meaning": "sugar" },
+    { "type": "word", "ge_text": "заказ", "ru_meaning": "заказ", "en_meaning": "order" },
+    { "type": "phrase", "ge_text": "где хлеб?", "ru_meaning": "где хлеб?", "en_meaning": "where is the bread?" },
+    { "type": "phrase", "ge_text": "чай хороший", "ru_meaning": "чай хороший", "en_meaning": "the tea is good" },
+    { "type": "phrase", "ge_text": "вот цена", "ru_meaning": "вот цена", "en_meaning": "here is the price" },
+    { "type": "phrase", "ge_text": "машина там", "ru_meaning": "машина там", "en_meaning": "the car is there" },
+    { "type": "phrase", "ge_text": "хочу чай", "ru_meaning": "хочу чай", "en_meaning": "I want tea" }
+  ]
+}
